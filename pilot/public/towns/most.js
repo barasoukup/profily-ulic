@@ -137,7 +137,7 @@ export const sources = { osm, surfaces, lines, parking, podlaznost: ruianBuildin
 export function maps({ ArcgisExport, BIG_TILES, osm: osmLayer, cuzk }) {
   return {
     base: {
-      "Ortofoto Most": [osmLayer(1), new ArcgisExport("", { service: `${MO}/Ortofoto/Ortofoto2025Cuzk/MapServer`, minZoom: 15, maxZoom: 21, ...BIG_TILES, attribution: "ortofoto © ČÚZK, Statutární město Most" })],
+      "Ortofoto Most": [osmLayer(1), new ArcgisExport("", { service: `${MO}/Ortofoto/Ortofoto2025Cuzk/MapServer`, minZoom: 15, maxZoom: 21, ...BIG_TILES, attribution: "ortofoto © ČÚZK (CC BY 4.0), Statutární město Most" })],
       "Technická mapa": [osmLayer(0.5), new ArcgisExport("", { service: MO_UMPS, minZoom: 17, maxZoom: 21, ...BIG_TILES, attribution: "technická mapa © Statutární město Most" })],
       "Ortofoto ČÚZK": [cuzk()],
       "OpenStreetMap": [osmLayer(1)],

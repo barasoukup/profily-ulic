@@ -618,7 +618,7 @@ export const FI = {
   "Obrázek PNG": "PNG-kuva",
   "Vektor SVG": "SVG-vektorikuva",
   "Soubor": "Tiedosto",
-  "pasport komunikácií © Hlavné mesto SR Bratislava a MČ Dúbravka": "katurekisteri © Hlavné mesto SR Bratislava ja MČ Dúbravka",
+  "pasport komunikácií © Hlavné mesto SR Bratislava a MČ Dúbravka, © EUROSENSE SLOVAKIA, s.r.o.": "katurekisteri © Hlavné mesto SR Bratislava ja MČ Dúbravka, © EUROSENSE SLOVAKIA, s.r.o.",
   "pasport dopravy a zelene © mesto Prešov (CC BY 4.0)": "liikenne- ja viheraluerekisteri © mesto Prešov (CC BY 4.0)",
   "pasport komunikácií © mesto Žilina": "katurekisteri © mesto Žilina",
   "pasport komunikácií © mesto Košice": "katurekisteri © mesto Košice",
@@ -809,7 +809,7 @@ export const FI = {
   "Úřední vyměřování (geodienste.ch) teď neodpovídá, profil je odhad z ortofota a OSM.": "Virallinen kiinteistömittaus (geodienste.ch) ei nyt vastaa, poikkileikkaus on arvio ortokuvasta ja OSM:stä.",
   // The Netherlands (Bára 20. 11. 2026).
   "mapy povrchů BGT, ortofota PDOK a OSM": "BGT-pintakartta, PDOK-ortokuva ja OSM",
-  "ortofoto © PDOK (Beeldmateriaal Nederland)": "ortokuva © PDOK (Beeldmateriaal Nederland)",
+  "ortofoto © Beeldmateriaal.nl (PDOK, CC BY 4.0)": "ortokuva © Beeldmateriaal.nl (PDOK, CC BY 4.0)",
   "mapa povrchů BGT © Kadaster a správci BGT (PDOK, CC0)": "BGT-pintakartta © Kadaster ja BGT:n ylläpitäjät (PDOK, CC0)",
   " · mapa povrchů BGT neodpověděla, odhad z ortofota a OSM": " · BGT-pintakartta ei vastannut, arvio ortokuvasta ja OSM:stä",
   "Mapa povrchů BGT (PDOK) teď neodpovídá, profil je odhad z ortofota a OSM.": "BGT-pintakartta (PDOK) ei vastaa nyt, poikkileikkaus on arvio ortokuvasta ja OSM:stä.",
@@ -822,21 +822,21 @@ export const FI = {
   "podélné stání: 2 × 6 m (ASVV 2012 podle obce Oost Gelre), v Amsterdamu 2,1–2,4 m": "kadunsuuntainen pysäköinti: 2 × 6 m (ASVV 2012, kunnan Oost Gelre mukaan), Amsterdamissa 2,1–2,4 m",
   "Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Smí se jen u značky E8b (RVV 1990 čl. 10). Zákon šířku neuvádí, v praxi 3,5 m pro hasiče na jednosměrce a 4,5 m vozovky pro oba směry; aplikace nechává průjezdné pruhy, tedy aspoň {need}.": "Pysäköinti puoliksi jalkakäytävällä (OSM): ajoradalle jää {free}. Sallittu vain merkin E8b kohdalla (RVV 1990 10 art.). Laki ei määrää leveyttä, käytännössä 3,5 m pelastuslaitokselle yksisuuntaisella kadulla ja 4,5 m ajorata molempiin suuntiin; sovellus pitää ajokaistat vapaina, siis vähintään {need}.",
   "jednosměrka s cyklisty v protisměru: vozovka nejméně 3,5 m, základ 4 m (Amsterdam, Afwegingskader fietsstraten 2020)": "yksisuuntainen katu, jolla pyöräillään vastasuuntaan: ajorata vähintään 3,5 m, perusarvo 4 m (Amsterdam, Afwegingskader fietsstraten 2020)",
-  "Sítě © Gemeente Amsterdam a Waternet (CC BY).": "Verkostot © Gemeente Amsterdam ja Waternet (CC BY).",
+  "Sítě © Gemeente Amsterdam a Waternet (Creative Commons Naamsvermelding, verze neuvedena).": "Verkostot © Gemeente Amsterdam ja Waternet (Creative Commons Naamsvermelding, versiota ei ilmoitettu).",
   "kabel veřejného osvětlení": "katuvalaistuksen kaapeli",
   "parkovací místa © Gemeente Amsterdam": "pysäköintipaikat © Gemeente Amsterdam",
   // Belgium and Luxembourg (Bára 20. 11. 2026).
-  "ortofoto © SPW (Service public de Wallonie)": "ortokuva © SPW (Service public de Wallonie)",
-  "ortofoto © Digitaal Vlaanderen": "ortokuva © Digitaal Vlaanderen",
-  "ortofoto © ACT Luxembourg (geoportail.lu)": "ortokuva © ACT Luxembourg (geoportail.lu)",
+  "ortofoto © SPW (Service public de Wallonie, CC BY 4.0)": "ortokuva © SPW (Service public de Wallonie, CC BY 4.0)",
+  "ortofoto: Bron: Luchtopnamen Digitaal Vlaanderen (Modellicentie gratis hergebruik v1.0)": "ortokuva: Bron: Luchtopnamen Digitaal Vlaanderen (Modellicentie gratis hergebruik v1.0)",
+  "ortofoto © ACT Luxembourg (geoportail.lu, CC0)": "ortokuva © ACT Luxembourg (geoportail.lu, CC0)",
   "čar mapy GRB, ortofota a OSM": "GRB-kartan viivat, ortokuva ja OSM",
   "čar mapy PICC, ortofota a OSM": "PICC-kartan viivat, ortokuva ja OSM",
-  "čáry GRB © Digitaal Vlaanderen": "GRB-viivat © Digitaal Vlaanderen",
+  "čáry GRB: Bron: Grootschalig Referentie Bestand Vlaanderen, Digitaal Vlaanderen (Modellicentie gratis hergebruik v1.0)": "GRB-viivat: Bron: Grootschalig Referentie Bestand Vlaanderen, Digitaal Vlaanderen (Modellicentie gratis hergebruik v1.0)",
   " · mapa povrchů GRB neodpověděla, odhad z ortofota a OSM": " · GRB-pintakartta ei vastannut, arvio ortokuvasta ja OSM:stä",
   "Mapa povrchů GRB (Digitaal Vlaanderen) teď neodpovídá, profil je odhad z ortofota a OSM.": "GRB-pintakartta (Digitaal Vlaanderen) ei vastaa nyt, poikkileikkaus on arvio ortokuvasta ja OSM:stä.",
   "mapy povrchů GRB, ortofota a OSM": "GRB-pintakartta, ortokuva ja OSM",
   "mapa povrchů (GRB): {who}": "pintakartta (GRB): {who}",
-  "čáry PICC © SPW (Service public de Wallonie)": "PICC-viivat © SPW (Service public de Wallonie)",
+  "čáry PICC © SPW (Service public de Wallonie, CC BY 4.0)": "PICC-viivat © SPW (Service public de Wallonie, CC BY 4.0)",
   "chodník: volný průchod nejméně 1,5 m, základ 1,8 m (Flandry, Vademecum voetgangersvoorzieningen 2026; Valonsko 1,5 m; Brusel 2 m)": "jalkakäytävä: vapaa kulkuleveys väh. 1,5 m, perusarvo 1,8 m (Flanderi, Vademecum voetgangersvoorzieningen 2026; Valloonia 1,5 m; Bryssel 2 m)",
   "společná stezka pro chodce a cyklisty (D10): jednosměrná 2 m, obousměrná 2,5 m, doporučeno 3 m (Valonsko, Guide cyclable)": "yhdistetty pyörätie ja jalkakäytävä (D10): yksisuuntainen 2 m, kaksisuuntainen 2,5 m, suositus 3 m (Valloonia, Guide cyclable)",
   "stezka pro cyklisty jednosměrná: Flandry 2 m (Vademecum fietsvoorzieningen 2024), Valonsko nejméně 1,3 m (Guide cyclable); obousměrná Flandry 3 m, Valonsko 2,2–2,6 m": "yksisuuntainen pyörätie: Flanderi 2 m (Vademecum fietsvoorzieningen 2024), Valloonia vähintään 1,3 m (Guide cyclable); kaksisuuntainen Flanderi 3 m, Valloonia 2,2–2,6 m",
@@ -1086,13 +1086,13 @@ export const FI = {
 export const FI_HTML = {
   footer: `Tiedot: tekniset kartat © <a href="https://www.geoportalpraha.cz">IPR Praha</a> (myös kerrosluvut ja rakentamisen kehitys, CC BY 4.0), statutaarikaupunkien Brno, Jihlava, Most, Opava ja Plzeň
     sekä maakuntien (<a href="https://dmvs.cuzk.gov.cz">IS DMVS ČÚZK</a>) · RÚIAN (myös osoitehaku), kiinteistörekisteri ja ortokuva © ČÚZK (CC BY 4.0) · Slovakian ortokuva, rakennukset ja rajat © <a href="https://www.geoportal.sk">GKÚ Bratislava</a>, NLC (ZBGIS, CC BY 4.0), Slovakian kadut ja osoitteet © MV SR ·
-    katurekisterit © Hlavné mesto SR Bratislava, MČ Dúbravka, mesto Žilina, mesto Banská Bystrica, mesto Košice, mesto Prešov (CC BY 4.0), kartta-aineistot © mestá Nitra, Piešťany, Hlohovec, tekninen kartta © Hlavné mesto SR Bratislava ·
-    johdot © IPR Praha, Gemeente Amsterdam ja Waternet (lisenssiä ei ilmoitettu), mestá Prešov (CC BY 4.0), Nitra, Košice, Piešťany, Olomoucký kraj, statutaarikaupungit Karviná, Ostrava, Město Břeclav ·
+    katurekisterit © Hlavné mesto SR Bratislava, MČ Dúbravka, EUROSENSE SLOVAKIA, s.r.o., mesto Žilina, mesto Banská Bystrica, mesto Košice, mesto Prešov (CC BY 4.0), kartta-aineistot © mestá Nitra, Piešťany, Hlohovec, tekninen kartta © Hlavné mesto SR Bratislava ·
+    johdot © IPR Praha, Gemeente Amsterdam ja Waternet (Creative Commons Naamsvermelding, versiota ei ilmoitettu), mestá Prešov (CC BY 4.0), Nitra, Košice, Piešťany, Olomoucký kraj, statutaarikaupungit Karviná, Ostrava, Město Břeclav ·
     Itävalta: ortokuva © basemap.at (CC BY 4.0), Flächen-Mehrzweckkarte © Stadt Wien – data.wien.gv.at (CC BY 4.0), raja © EuroGeographics (GISCO), Salzburgin liikennemerkit © Stadt Salzburg (CC BY 3.0 AT), haku Photon © komoot (OSM-tiedot) ·
     Saksa: osavaltioiden ortokuvat © LGL-BW, Bayerische Vermessungsverwaltung, GeoBasis-DE/LGB, Landesamt GeoInformation Bremen, LGV Hamburg, HVBG, GeoBasis-DE/M-V, LGLN, GeoBasis-DE/NRW, GeoBasis-DE/LVermGeoRP, GeoBasis-DE/LVermGeo SH, GeoBasis-DE/LVGL-SL, GeoSN, GeoBasis-DE/LVermGeo ST, GDI-Th; <a href="https://www.govdata.de/dl-de/by-2-0">dl-de/by-2-0</a>, <a href="https://www.govdata.de/dl-de/zero-2-0">dl-de/zero-2-0</a>, <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>, raja © EuroGeographics (GISCO), liikennemerkit Wikimedia Commons (viranomaisteokset), haku Photon © komoot (OSM-tiedot) ·
     Sveitsi ja Liechtenstein: ortokuva SWISSIMAGE ja rajat © swisstopo, virallinen kiinteistömittaus (Bodenbedeckung) © kantonit ja Liechtenstein, <a href="https://geodienste.ch">geodienste.ch</a>, liikennemerkit Wikimedia Commons (viranomaisteokset, ASTRA), haku Photon © komoot (OSM-tiedot) ·
     Alankomaat: BGT-pintakartta ja BAG-rakennukset © Kadaster ja tietojen ylläpitäjät (bronhouders), <a href="https://www.pdok.nl">PDOK</a> (CC0, Public Domain Mark), ortokuva © Beeldmateriaal Nederland (PDOK, <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>), rakennusten korkeudet <a href="https://3dbag.nl">3D BAG</a> © TU Delft ja 3DGI (CC BY 4.0), raja © EuroGeographics (GISCO), liikennemerkit Wikimedia Commons (viranomaisteokset), haku PDOK Locatieserver, Amsterdamin pysäköintipaikat © Gemeente Amsterdam ·
-    Belgia ja Luxemburg: ortokuva ja GRB-viivat: lähde Digitaal Vlaanderen (<a href="https://www.vlaanderen.be/digitaal-vlaanderen/onze-oplossingen/open-data/voorwaarden-voor-het-hergebruik-van-overheidsinformatie/modellicentie-gratis-hergebruik">Modellicentie gratis hergebruik</a>), ortokuva ja PICC-viivat © SPW (Service public de Wallonie), ortokuva © ACT Luxembourg (geoportail.lu), rajat © EuroGeographics (GISCO), liikennemerkit Wikimedia Commons (viranomaisteokset), haku Photon © komoot (OSM-data) ·
+    Belgia ja Luxemburg: ortokuva ja GRB-viivat: lähde Digitaal Vlaanderen (<a href="https://www.vlaanderen.be/digitaal-vlaanderen/onze-oplossingen/open-data/voorwaarden-voor-het-hergebruik-van-overheidsinformatie/modellicentie-gratis-hergebruik">Modellicentie gratis hergebruik v1.0</a>), ortokuva ja PICC-viivat © SPW (Service public de Wallonie, <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>), ortokuva © ACT Luxembourg (geoportail.lu, CC0), rajat © EuroGeographics (GISCO), liikennemerkit Wikimedia Commons (viranomaisteokset), haku Photon © komoot (OSM-data) ·
     Puola: ortokuva ja osoitehaku © GUGiK (Geoportal.gov.pl, PRG), Krakovan pintakartta (MJO) © Gmina Miejska Kraków, rajat © EuroGeographics (GISCO), liikennemerkit Wikimedia Commons (viranomaisteokset), haku Photon © komoot (OSM-tiedot) ·
     Ranska: ortokuva, rakennukset (BD TOPO) ja osoitehaku © <a href="https://geoservices.ign.fr">IGN France</a> (Géoplateforme, <a href="https://www.etalab.gouv.fr/licence-ouverte-open-licence/">Licence Ouverte 2.0</a>), Pariisin pintakartta (Plan de voirie) © <a href="https://opendata.paris.fr">Ville de Paris</a> (<a href="https://opendatacommons.org/licenses/odbl/">ODbL</a>), rajat © EuroGeographics (GISCO), liikennemerkit Wikimedia Commons (viranomaisteokset) ·
     Espanja: ortokuva PNOA ja osoitehaku CartoCiudad © Instituto Geográfico Nacional de España (CC BY 4.0, scne.es), rakennukset © Dirección General del Catastro, Navarrassa Servicio proporcionado por el Gobierno de Navarra (CC BY 4.0), Baskimaassa © Arabako, Bizkaiko ja Gipuzkoako Foru Aldundia, Zaragozan pintakartta © Ayuntamiento de Zaragoza (IDEZar), rajat © EuroGeographics (GISCO), liikennemerkit Wikimedia Commons (viranomaisteokset) ·
@@ -1106,7 +1106,7 @@ export const FI_HTML = {
     Suomi: ortokuva © Helsingin kaupunki, kaupunkimittauspalvelut, Espoon kaupunki ja Turun kaupunki (CC BY 4.0), pintakartta (Yleisten alueiden rekisteri) ja rakennukset © Helsingin kaupunki (CC BY 4.0), Ryhti-rakennukset ja -osoitteet © Suomen ympäristökeskus SYKE (CC BY 4.0), rajat © EuroGeographics (GISCO), liikennemerkit Wikimedia Commons (viranomaisteokset), haku Photon © komoot (OSM-tiedot) ·
     Tanska: ortokuva ”Indeholder data fra Styrelsen for Dataforsyning og Infrastruktur, Ortofoto forår, WMTS-tjeneste” (<a href="https://dataforsyningen.dk/asset/PDF/rettigheder_vilkaar/Vilk%C3%A5r%20for%20brug%20af%20frie%20geografiske%20data.pdf">ehdot</a>) ja osoitehaku GSearch © Klimadatastyrelsen, Kööpenhaminan ajoradan reunat, pysäköintialueet ja rakennukset (GeoDanmark, BBR) © Københavns Kommune (lisenssiä ei ilmoitettu), Aarhusin rakennukset (BBR) © Aarhus Kommune (CC BY 4.0), rajat © EuroGeographics (GISCO), liikennemerkit Wikimedia Commons (viranomaisteokset), haku Photon © komoot (OSM-tiedot) ·
     Liettua: Vilnan pintakartta (topografiset alueet 1 : 500) © Vilniaus miesto savivaldybė / Vilniaus planas (lisenssiä ei ilmoitettu; vain parametrilla ?vilnius=1), GRPK:n rakennusten ääriviivat © Lietuvos Respublikos aplinkos ministerija (CC BY 4.0), rajat © EuroGeographics (GISCO), liikennemerkit Wikimedia Commons (piirrokset Augustasci, CC BY 4.0, taulut 846 ja 853 Gigillo83, CC BY-SA 4.0), haku Photon © komoot (OSM-tiedot) ·
-    pysäköinti © TSK hl. m. Prahy (CC BY 4.0), pysäköintikiellot, puut ja katuluokat <a href="https://opendata.geoportalpraha.cz">Geoportál Praha</a> (CC BY 4.0), <a href="https://www.parkovanivbrne.cz">parkovanivbrne.cz</a>, kaupungit Jihlava, Opava, Plzeň (CC0) ·
+    pysäköinti © TSK hl. m. Prahy (CC BY 4.0), pysäköintikiellot, puut ja katuluokat <a href="https://opendata.geoportalpraha.cz">Geoportál Praha</a> (CC BY 4.0), <a href="https://www.parkovanivbrne.cz">parkovanivbrne.cz</a>, kaupungit Jihlava (CC BY-SA), Opava, Plzeň (CC0) ·
     © <a href="https://www.openstreetmap.org/copyright">OpenStreetMapin</a> tekijät (ODbL) ·
     kuvitus © <a href="https://github.com/streetmix/streetmix/tree/main/packages/illustrations">Streetmix</a>, lisenssi
     <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> ·
@@ -1169,9 +1169,9 @@ export const FI_CITY = {
   brno: own("Brnossa", "Brnon kaupunki", "Brnon kaupungin tekninen kartta", "Brnon kaupunki", "maksullisen pysäköinnin osuudet (parkovanivbrne.cz)",
     "Tiedot © Statutární město Brno (tekninen kartta ja MTVU; rakennukset ja pyöräilyväylät, data.brno.cz, CC BY 4.0, muokattu), pysäköinti © parkovanivbrne.cz"),
   jihlava: own("Jihlavassa", "Jihlavan kaupunki", "Jihlavan katurekisteri", "Jihlavan kaupunki", "pysäköintipaikat (Jihlavan kaupunki)",
-    `Tiedot © Statutární město Jihlava (katurekisteri, pysäköinti, kaupunkikalusteet), RÚIAN ja kiinteistörekisteri © ČÚZK, 2026 (CC BY 4.0, muokattu)`),
+    `Tiedot © Statutární město Jihlava (katurekisteri, pysäköinti CC BY-SA, kaupunkikalusteet), RÚIAN ja kiinteistörekisteri © ČÚZK, 2026 (CC BY 4.0, muokattu)`),
   most: own("Mostissa", "Mostin kaupunki", "Mostin tekninen kartta", "Mostin kaupunki", TECH_PARKING,
-    `Tiedot © Statutární město Most (kohdekartta ja tekninen kartta, katuvalaistus), ${RUIAN}`),
+    `Tiedot © Statutární město Most (kohdekartta ja katuvalaistus, CC BY-SA; tekninen kartta), ${RUIAN}`),
   opava: own("Opavassa", "Opavan kaupunki", "Opavan erikoiskartta", "Opavan kaupunki", "pysäköintipaikat (Opavan kaupunki)",
     `Tiedot © Statutární město Opava (erikoiskartta, pysäköinti, puut, penkit, pysäkit), ${RUIAN}`),
   pardubice: {

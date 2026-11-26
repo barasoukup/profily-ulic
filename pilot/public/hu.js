@@ -601,7 +601,7 @@ export const HU = {
   "Obrázek PNG": "PNG-kép",
   "Vektor SVG": "SVG (vektor)",
   "Soubor": "Fájl",
-  "pasport komunikácií © Hlavné mesto SR Bratislava a MČ Dúbravka": "útnyilvántartás © Hlavné mesto SR Bratislava és MČ Dúbravka",
+  "pasport komunikácií © Hlavné mesto SR Bratislava a MČ Dúbravka, © EUROSENSE SLOVAKIA, s.r.o.": "útnyilvántartás © Hlavné mesto SR Bratislava és MČ Dúbravka, © EUROSENSE SLOVAKIA, s.r.o.",
   "pasport dopravy a zelene © mesto Prešov (CC BY 4.0)": "közlekedési és zöldfelület-nyilvántartás © mesto Prešov (CC BY 4.0)",
   "pasport komunikácií © mesto Žilina": "útnyilvántartás © mesto Žilina",
   "pasport komunikácií © mesto Košice": "útnyilvántartás © mesto Košice",
@@ -788,7 +788,7 @@ export const HU = {
   "Příčné profily ulic v Česku, na Slovensku, v Rakousku, v Německu, ve Švýcarsku, v Lichtenštejnsku, v Nizozemsku, v Belgii, v Lucembursku, v Polsku, ve Francii, v Monaku, ve Španělsku, v Portugalsku, na Kypru, na Maltě, v částech Itálie, v Estonsku, ve Slovinsku, ve Finsku, v Dánsku a v Litvě z map povrchů měst, ČÚZK a ZBGIS: od fasády k fasádě, upravitelné, s místními ilustracemi.": "Csehországi, szlovákiai, ausztriai, németországi, svájci, liechtensteini, hollandiai, belgiumi, luxemburgi, lengyelországi, franciaországi, monacói, spanyolországi, portugáliai, ciprusi, máltai, egyes olaszországi, észtországi, szlovéniai, finnországi, dániai és litvániai utcák keresztmetszetei a városok, a ČÚZK és a ZBGIS felületi térképeiből: homlokzattól homlokzatig, szerkeszthetően, helyi illusztrációkkal.",
   // The Netherlands (Bára 20. 11. 2026).
   "mapy povrchů BGT, ortofota PDOK a OSM": "a BGT felületi térképe, a PDOK ortofotója és az OSM",
-  "ortofoto © PDOK (Beeldmateriaal Nederland)": "ortofotó © PDOK (Beeldmateriaal Nederland)",
+  "ortofoto © Beeldmateriaal.nl (PDOK, CC BY 4.0)": "ortofotó © Beeldmateriaal.nl (PDOK, CC BY 4.0)",
   "mapa povrchů BGT © Kadaster a správci BGT (PDOK, CC0)": "BGT felületi térkép © Kadaster és a BGT kezelői (PDOK, CC0)",
   " · mapa povrchů BGT neodpověděla, odhad z ortofota a OSM": " · a BGT felületi térképe nem válaszolt, becslés ortofotóból és OSM-ből",
   "Mapa povrchů BGT (PDOK) teď neodpovídá, profil je odhad z ortofota a OSM.": "A BGT felületi térképe (PDOK) most nem válaszol, a keresztmetszet becslés ortofotóból és OSM-ből.",
@@ -801,21 +801,21 @@ export const HU = {
   "podélné stání: 2 × 6 m (ASVV 2012 podle obce Oost Gelre), v Amsterdamu 2,1–2,4 m": "párhuzamos parkolás: 2 × 6 m (ASVV 2012 Oost Gelre község szerint), Amszterdamban 2,1–2,4 m",
   "Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Smí se jen u značky E8b (RVV 1990 čl. 10). Zákon šířku neuvádí, v praxi 3,5 m pro hasiče na jednosměrce a 4,5 m vozovky pro oba směry; aplikace nechává průjezdné pruhy, tedy aspoň {need}.": "Félig a járdán parkolás az OSM szerint: az úttesten {free} marad. Csak az E8b jelzőtábla mellett megengedett (RVV 1990, 10. cikk). A jogszabály nem ad meg szélességet, a gyakorlatban 3,5 m a tűzoltóknak egyirányú utcában és 4,5 m úttest mindkét irányhoz; az alkalmazás járhatónak hagyja a forgalmi sávokat, azaz legalább {need}.",
   "jednosměrka s cyklisty v protisměru: vozovka nejméně 3,5 m, základ 4 m (Amsterdam, Afwegingskader fietsstraten 2020)": "egyirányú utca szembeni kerékpározással: úttest legalább 3,5 m, alap 4 m (Amszterdam, Afwegingskader fietsstraten 2020)",
-  "Sítě © Gemeente Amsterdam a Waternet (CC BY).": "Közművek © Gemeente Amsterdam és Waternet (CC BY).",
+  "Sítě © Gemeente Amsterdam a Waternet (Creative Commons Naamsvermelding, verze neuvedena).": "Közművek © Gemeente Amsterdam és Waternet (Creative Commons Naamsvermelding, a verzió nincs megadva).",
   "kabel veřejného osvětlení": "közvilágítási kábel",
   "parkovací místa © Gemeente Amsterdam": "parkolóhelyek © Gemeente Amsterdam",
   // Belgium and Luxembourg (Bára 20. 11. 2026).
-  "ortofoto © SPW (Service public de Wallonie)": "ortofotó © SPW (Service public de Wallonie)",
-  "ortofoto © Digitaal Vlaanderen": "ortofotó © Digitaal Vlaanderen",
-  "ortofoto © ACT Luxembourg (geoportail.lu)": "ortofotó © ACT Luxembourg (geoportail.lu)",
+  "ortofoto © SPW (Service public de Wallonie, CC BY 4.0)": "ortofotó © SPW (Service public de Wallonie, CC BY 4.0)",
+  "ortofoto: Bron: Luchtopnamen Digitaal Vlaanderen (Modellicentie gratis hergebruik v1.0)": "ortofotó: Bron: Luchtopnamen Digitaal Vlaanderen (Modellicentie gratis hergebruik v1.0)",
+  "ortofoto © ACT Luxembourg (geoportail.lu, CC0)": "ortofotó © ACT Luxembourg (geoportail.lu, CC0)",
   "čar mapy GRB, ortofota a OSM": "a GRB térkép vonalai, az ortofotó és az OSM",
   "čar mapy PICC, ortofota a OSM": "a PICC térkép vonalai, az ortofotó és az OSM",
-  "čáry GRB © Digitaal Vlaanderen": "GRB-vonalak © Digitaal Vlaanderen",
+  "čáry GRB: Bron: Grootschalig Referentie Bestand Vlaanderen, Digitaal Vlaanderen (Modellicentie gratis hergebruik v1.0)": "GRB-vonalak: Bron: Grootschalig Referentie Bestand Vlaanderen, Digitaal Vlaanderen (Modellicentie gratis hergebruik v1.0)",
   " · mapa povrchů GRB neodpověděla, odhad z ortofota a OSM": " · a GRB felületi térképe nem válaszolt, becslés ortofotóból és OSM-ből",
   "Mapa povrchů GRB (Digitaal Vlaanderen) teď neodpovídá, profil je odhad z ortofota a OSM.": "A GRB felületi térképe (Digitaal Vlaanderen) most nem válaszol, a keresztmetszet becslés ortofotóból és OSM-ből.",
   "mapy povrchů GRB, ortofota a OSM": "a GRB felületi térképe, az ortofotó és az OSM",
   "mapa povrchů (GRB): {who}": "felületi térkép (GRB): {who}",
-  "čáry PICC © SPW (Service public de Wallonie)": "PICC-vonalak © SPW (Service public de Wallonie)",
+  "čáry PICC © SPW (Service public de Wallonie, CC BY 4.0)": "PICC-vonalak © SPW (Service public de Wallonie, CC BY 4.0)",
   "chodník: volný průchod nejméně 1,5 m, základ 1,8 m (Flandry, Vademecum voetgangersvoorzieningen 2026; Valonsko 1,5 m; Brusel 2 m)": "járda: szabad járószélesség legalább 1,5 m, alapérték 1,8 m (Flandria, Vademecum voetgangersvoorzieningen 2026; Vallónia 1,5 m; Brüsszel 2 m)",
   "společná stezka pro chodce a cyklisty (D10): jednosměrná 2 m, obousměrná 2,5 m, doporučeno 3 m (Valonsko, Guide cyclable)": "gyalog- és kerékpárút (D10): egyirányú 2 m, kétirányú 2,5 m, ajánlott 3 m (Vallónia, Guide cyclable)",
   "stezka pro cyklisty jednosměrná: Flandry 2 m (Vademecum fietsvoorzieningen 2024), Valonsko nejméně 1,3 m (Guide cyclable); obousměrná Flandry 3 m, Valonsko 2,2–2,6 m": "egyirányú kerékpárút: Flandria 2 m (Vademecum fietsvoorzieningen 2024), Vallónia legalább 1,3 m (Guide cyclable); kétirányú Flandria 3 m, Vallónia 2,2–2,6 m",
@@ -1065,13 +1065,13 @@ export const HU = {
 export const HU_HTML = {
   footer: `Adatok: műszaki térképek © <a href="https://www.geoportalpraha.cz">IPR Praha</a> (valamint szintszám és a beépítés változása, CC BY 4.0), Brno, Jihlava, Most, Opava és Plzeň statutáris városok
     és a kerületek (<a href="https://dmvs.cuzk.gov.cz">IS DMVS ČÚZK</a>) · RÚIAN (a címkeresés is), kataszter és ortofotó © ČÚZK (CC BY 4.0) · Szlovákia ortofotója, épületei és határai © <a href="https://www.geoportal.sk">GKÚ Bratislava</a>, NLC (ZBGIS, CC BY 4.0), Szlovákia utcái és címei © MV SR ·
-    útnyilvántartás © Hlavné mesto SR Bratislava, MČ Dúbravka, mesto Žilina, mesto Banská Bystrica, mesto Košice, mesto Prešov (CC BY 4.0), térképrajzolat © mestá Nitra, Piešťany, Hlohovec, műszaki térkép © Hlavné mesto SR Bratislava ·
-    közművek © IPR Praha, Gemeente Amsterdam és Waternet (a licenc nincs megadva), mestá Prešov (CC BY 4.0), Nitra, Košice, Piešťany, Olomoucký kraj, Karviná és Ostrava statutáris városok, Břeclav város ·
+    útnyilvántartás © Hlavné mesto SR Bratislava, MČ Dúbravka, EUROSENSE SLOVAKIA, s.r.o., mesto Žilina, mesto Banská Bystrica, mesto Košice, mesto Prešov (CC BY 4.0), térképrajzolat © mestá Nitra, Piešťany, Hlohovec, műszaki térkép © Hlavné mesto SR Bratislava ·
+    közművek © IPR Praha, Gemeente Amsterdam és Waternet (Creative Commons Naamsvermelding, a verzió nincs megadva), mestá Prešov (CC BY 4.0), Nitra, Košice, Piešťany, Olomoucký kraj, Karviná és Ostrava statutáris városok, Břeclav város ·
     Ausztria: ortofotó © basemap.at (CC BY 4.0), Flächen-Mehrzweckkarte © Stadt Wien – data.wien.gv.at (CC BY 4.0), határ © EuroGeographics (GISCO), Salzburg jelzőtáblái © Stadt Salzburg (CC BY 3.0 AT), Photon keresés © komoot (OSM-adatok) ·
     Németország: a tartományok ortofotói © LGL-BW, Bayerische Vermessungsverwaltung, GeoBasis-DE/LGB, Landesamt GeoInformation Bremen, LGV Hamburg, HVBG, GeoBasis-DE/M-V, LGLN, GeoBasis-DE/NRW, GeoBasis-DE/LVermGeoRP, GeoBasis-DE/LVermGeo SH, GeoBasis-DE/LVGL-SL, GeoSN, GeoBasis-DE/LVermGeo ST, GDI-Th; <a href="https://www.govdata.de/dl-de/by-2-0">dl-de/by-2-0</a>, <a href="https://www.govdata.de/dl-de/zero-2-0">dl-de/zero-2-0</a>, <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>, határ © EuroGeographics (GISCO), jelzőtáblák: Wikimedia Commons (hivatalos művek), Photon keresés © komoot (OSM-adatok) ·
     Svájc és Liechtenstein: SWISSIMAGE ortofotó és határok © swisstopo, hivatalos kataszteri felmérés (Bodenbedeckung) © a kantonok és Liechtenstein a <a href="https://geodienste.ch">geodienste.ch</a> szolgáltatáson keresztül, jelzőtáblák: Wikimedia Commons (hivatalos művek, ASTRA), Photon keresés © komoot (OSM-adatok) ·
     Hollandia: BGT felületi térkép és BAG épületek © Kadaster és az adatok kezelői (bronhouders) a <a href="https://www.pdok.nl">PDOK</a> szolgáltatáson keresztül (CC0, Public Domain Mark), ortofotó © Beeldmateriaal Nederland (PDOK, <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>), épületmagasságok <a href="https://3dbag.nl">3D BAG</a> © TU Delft és 3DGI (CC BY 4.0), határ © EuroGeographics (GISCO), jelzőtáblák: Wikimedia Commons (hivatalos művek), PDOK Locatieserver keresés, amszterdami parkolóhelyek © Gemeente Amsterdam ·
-    Belgium és Luxemburg: ortofotó és GRB-vonalak: forrás Digitaal Vlaanderen (<a href="https://www.vlaanderen.be/digitaal-vlaanderen/onze-oplossingen/open-data/voorwaarden-voor-het-hergebruik-van-overheidsinformatie/modellicentie-gratis-hergebruik">Modellicentie gratis hergebruik</a>), ortofotó és PICC-vonalak © SPW (Service public de Wallonie), ortofotó © ACT Luxembourg (geoportail.lu), határ © EuroGeographics (GISCO), jelzőtáblák: Wikimedia Commons (hivatalos művek), Photon keresés © komoot (OSM-adatok) ·
+    Belgium és Luxemburg: ortofotó és GRB-vonalak: forrás Digitaal Vlaanderen (<a href="https://www.vlaanderen.be/digitaal-vlaanderen/onze-oplossingen/open-data/voorwaarden-voor-het-hergebruik-van-overheidsinformatie/modellicentie-gratis-hergebruik">Modellicentie gratis hergebruik v1.0</a>), ortofotó és PICC-vonalak © SPW (Service public de Wallonie, <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>), ortofotó © ACT Luxembourg (geoportail.lu, CC0), határ © EuroGeographics (GISCO), jelzőtáblák: Wikimedia Commons (hivatalos művek), Photon keresés © komoot (OSM-adatok) ·
     Lengyelország: ortofotó és címkeresés © GUGiK (Geoportal.gov.pl, PRG), Krakkó felületi térképe (MJO) © Gmina Miejska Kraków, határ © EuroGeographics (GISCO), jelzőtáblák: Wikimedia Commons (hivatalos művek), Photon keresés © komoot (OSM-adatok) ·
     Franciaország: ortofotó, épületek (BD TOPO) és címkeresés © <a href="https://geoservices.ign.fr">IGN France</a> (Géoplateforme, <a href="https://www.etalab.gouv.fr/licence-ouverte-open-licence/">Licence Ouverte 2.0</a>), Párizs felületi térképe (Plan de voirie) © <a href="https://opendata.paris.fr">Ville de Paris</a> (<a href="https://opendatacommons.org/licenses/odbl/">ODbL</a>), határ © EuroGeographics (GISCO), jelzőtáblák: Wikimedia Commons (hivatalos művek) ·
     Spanyolország: PNOA ortofotó és CartoCiudad címkeresés © Instituto Geográfico Nacional de España (CC BY 4.0, scne.es), épületek © Dirección General del Catastro, Navarrában Servicio proporcionado por el Gobierno de Navarra (CC BY 4.0), Baszkföldön © Arabako, Bizkaiko és Gipuzkoako Foru Aldundia, Zaragoza felületi térképe © Ayuntamiento de Zaragoza (IDEZar), határ © EuroGeographics (GISCO), jelzőtáblák: Wikimedia Commons (hivatalos művek) ·
@@ -1085,7 +1085,7 @@ export const HU_HTML = {
     Finnország: ortofotó © Helsingin kaupunki, kaupunkimittauspalvelut, Espoon kaupunki és Turun kaupunki (CC BY 4.0), felületi térkép (Yleisten alueiden rekisteri) és épületek © Helsingin kaupunki (CC BY 4.0), épületek és címek (Ryhti) © Suomen ympäristökeskus SYKE (CC BY 4.0), határ © EuroGeographics (GISCO), jelzőtáblák: Wikimedia Commons (hivatalos művek), Photon keresés © komoot (OSM-adatok) ·
     Dánia: ortofotó „Indeholder data fra Styrelsen for Dataforsyning og Infrastruktur, Ortofoto forår, WMTS-tjeneste” (<a href="https://dataforsyningen.dk/asset/PDF/rettigheder_vilkaar/Vilk%C3%A5r%20for%20brug%20af%20frie%20geografiske%20data.pdf">feltételek</a>) és címkeresés (GSearch) © Klimadatastyrelsen, Koppenhága úttestszélei, parkolóterületei és épületei (GeoDanmark, BBR) © Københavns Kommune (a licenc nincs megadva), Aarhus épületei (BBR) © Aarhus Kommune (CC BY 4.0), határ © EuroGeographics (GISCO), jelzőtáblák: Wikimedia Commons (hivatalos művek), Photon keresés © komoot (OSM-adatok) ·
     Litvánia: Vilnius felületi térképe (topográfiai felületek 1 : 500) © Vilniaus miesto savivaldybė / Vilniaus planas (a licenc nincs megadva; csak ?vilnius=1 esetén), GRPK épületkörvonalak © Lietuvos Respublikos aplinkos ministerija (CC BY 4.0), határ © EuroGeographics (GISCO), jelzőtáblák: Wikimedia Commons (Augustasci rajzai CC BY 4.0 alatt, a 846. és 853. tábla Gigillo83 munkája CC BY-SA 4.0 alatt), Photon keresés © komoot (OSM-adatok) ·
-    parkolás © TSK hl. m. Prahy (CC BY 4.0), várakozási tilalmak, fák és útosztályok: <a href="https://opendata.geoportalpraha.cz">Geoportál Praha</a> (CC BY 4.0), <a href="https://www.parkovanivbrne.cz">parkovanivbrne.cz</a>, Jihlava, Opava és Plzeň városok (CC0) ·
+    parkolás © TSK hl. m. Prahy (CC BY 4.0), várakozási tilalmak, fák és útosztályok: <a href="https://opendata.geoportalpraha.cz">Geoportál Praha</a> (CC BY 4.0), <a href="https://www.parkovanivbrne.cz">parkovanivbrne.cz</a>, Jihlava (CC BY-SA), Opava és Plzeň városok (CC0) ·
     © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>-közreműködők (ODbL) ·
     illusztrációk © <a href="https://github.com/streetmix/streetmix/tree/main/packages/illustrations">Streetmix</a>, licenc:
     <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> ·
@@ -1149,9 +1149,9 @@ export const HU_CITY = {
   brno: own("Brno", "Brno város", "Brno város műszaki térképe", "Brno város", "fizető parkolási szakaszok (parkovanivbrne.cz)",
     "Adatok © Statutární město Brno (műszaki térkép és MTVU; épületek és kerékpáros infrastruktúra, data.brno.cz, CC BY 4.0, módosítva), parkolás © parkovanivbrne.cz"),
   jihlava: own("Jihlava", "Jihlava város", "Jihlava útnyilvántartása", "Jihlava város", "parkolóhelyek (Jihlava város)",
-    `Adatok © Statutární město Jihlava (útnyilvántartás, parkolás, utcabútorok), RÚIAN és kataszter © ČÚZK, 2026 (CC BY 4.0, módosítva)`),
+    `Adatok © Statutární město Jihlava (útnyilvántartás, parkolás CC BY-SA, utcabútorok), RÚIAN és kataszter © ČÚZK, 2026 (CC BY 4.0, módosítva)`),
   most: own("Most", "Most város", "Most műszaki térképe", "Most város", TECH_PARKING,
-    `Adatok © Statutární město Most (objektumtérkép és műszaki térkép, közvilágítás), ${RUIAN}`),
+    `Adatok © Statutární město Most (objektumtérkép és közvilágítás, CC BY-SA; műszaki térkép), ${RUIAN}`),
   opava: own("Opava", "Opava város", "Opava céltérképe", "Opava város", "parkolóhelyek (Opava város)",
     `Adatok © Statutární město Opava (céltérkép, parkolás, fák, padok, megállók), ${RUIAN}`),
   pardubice: {

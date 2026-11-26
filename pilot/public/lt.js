@@ -598,7 +598,7 @@ export const LT = {
   "Obrázek PNG": "PNG paveikslėlis",
   "Vektor SVG": "SVG (vektorinis)",
   "Soubor": "Failas",
-  "pasport komunikácií © Hlavné mesto SR Bratislava a MČ Dúbravka": "gatvių inventorizacija © Hlavné mesto SR Bratislava ir MČ Dúbravka",
+  "pasport komunikácií © Hlavné mesto SR Bratislava a MČ Dúbravka, © EUROSENSE SLOVAKIA, s.r.o.": "gatvių inventorizacija © Hlavné mesto SR Bratislava ir MČ Dúbravka, © EUROSENSE SLOVAKIA, s.r.o.",
   "pasport dopravy a zelene © mesto Prešov (CC BY 4.0)": "transporto ir želdynų inventorizacija © mesto Prešov (CC BY 4.0)",
   "pasport komunikácií © mesto Žilina": "gatvių inventorizacija © mesto Žilina",
   "pasport komunikácií © mesto Košice": "gatvių inventorizacija © mesto Košice",
@@ -784,7 +784,7 @@ export const LT = {
   "Příčné profily ulic v Česku, na Slovensku, v Rakousku, v Německu, ve Švýcarsku, v Lichtenštejnsku, v Nizozemsku, v Belgii, v Lucembursku, v Polsku, ve Francii, v Monaku, ve Španělsku, v Portugalsku, na Kypru, na Maltě, v částech Itálie, v Estonsku, ve Slovinsku, ve Finsku, v Dánsku a v Litvě z map povrchů měst, ČÚZK a ZBGIS: od fasády k fasádě, upravitelné, s místními ilustracemi.": "Gatvių skersiniai profiliai Čekijoje, Slovakijoje, Austrijoje, Vokietijoje, Šveicarijoje, Lichtenšteine, Nyderlanduose, Belgijoje, Liuksemburge, Lenkijoje, Prancūzijoje, Monake, Ispanijoje, Portugalijoje, Kipre, Maltoje, Italijos dalyse, Estijoje, Slovėnijoje, Suomijoje, Danijoje ir Lietuvoje pagal miestų, ČÚZK ir ZBGIS dangų žemėlapius: nuo fasado iki fasado, redaguojami, su vietinėmis iliustracijomis.",
   // The Netherlands (Bára 20. 11. 2026).
   "mapy povrchů BGT, ortofota PDOK a OSM": "BGT dangų žemėlapio, PDOK ortofoto ir OSM",
-  "ortofoto © PDOK (Beeldmateriaal Nederland)": "ortofoto © PDOK (Beeldmateriaal Nederland)",
+  "ortofoto © Beeldmateriaal.nl (PDOK, CC BY 4.0)": "ortofoto © Beeldmateriaal.nl (PDOK, CC BY 4.0)",
   "mapa povrchů BGT © Kadaster a správci BGT (PDOK, CC0)": "BGT dangų žemėlapis © Kadaster ir BGT tvarkytojai (PDOK, CC0)",
   " · mapa povrchů BGT neodpověděla, odhad z ortofota a OSM": " · BGT dangų žemėlapis neatsakė, įvertis pagal ortofoto ir OSM",
   "Mapa povrchů BGT (PDOK) teď neodpovídá, profil je odhad z ortofota a OSM.": "BGT dangų žemėlapis (PDOK) šiuo metu neatsako, profilis – įvertis pagal ortofoto ir OSM.",
@@ -797,21 +797,21 @@ export const LT = {
   "podélné stání: 2 × 6 m (ASVV 2012 podle obce Oost Gelre), v Amsterdamu 2,1–2,4 m": "lygiagretus stovėjimas: 2 × 6 m (ASVV 2012 pagal Oost Gelre savivaldybę), Amsterdame 2,1–2,4 m",
   "Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Smí se jen u značky E8b (RVV 1990 čl. 10). Zákon šířku neuvádí, v praxi 3,5 m pro hasiče na jednosměrce a 4,5 m vozovky pro oba směry; aplikace nechává průjezdné pruhy, tedy aspoň {need}.": "Stovėjimas pusiau ant šaligatvio pagal OSM: važiuojamojoje dalyje lieka {free}. Leidžiama tik prie ženklo E8b (RVV 1990 10 str.). Įstatymas pločio nenurodo, praktiškai 3,5 m ugniagesiams vienpusėje gatvėje ir 4,5 m važiuojamosios dalies abiem kryptimis; programa palieka pravažiuojamas eismo juostas, taigi ne mažiau kaip {need}.",
   "jednosměrka s cyklisty v protisměru: vozovka nejméně 3,5 m, základ 4 m (Amsterdam, Afwegingskader fietsstraten 2020)": "vienpusė gatvė su dviratininkais priešinga kryptimi: važiuojamoji dalis ne siauresnė kaip 3,5 m, bazinis 4 m (Amsterdamas, Afwegingskader fietsstraten 2020)",
-  "Sítě © Gemeente Amsterdam a Waternet (CC BY).": "Tinklai © Gemeente Amsterdam ir Waternet (CC BY).",
+  "Sítě © Gemeente Amsterdam a Waternet (Creative Commons Naamsvermelding, verze neuvedena).": "Tinklai © Gemeente Amsterdam ir Waternet (Creative Commons Naamsvermelding, versija nenurodyta).",
   "kabel veřejného osvětlení": "gatvių apšvietimo kabelis",
   "parkovací místa © Gemeente Amsterdam": "stovėjimo vietos © Gemeente Amsterdam",
   // Belgium and Luxembourg (Bára 20. 11. 2026).
-  "ortofoto © SPW (Service public de Wallonie)": "ortofoto © SPW (Service public de Wallonie)",
-  "ortofoto © Digitaal Vlaanderen": "ortofoto © Digitaal Vlaanderen",
-  "ortofoto © ACT Luxembourg (geoportail.lu)": "ortofoto © ACT Luxembourg (geoportail.lu)",
+  "ortofoto © SPW (Service public de Wallonie, CC BY 4.0)": "ortofoto © SPW (Service public de Wallonie, CC BY 4.0)",
+  "ortofoto: Bron: Luchtopnamen Digitaal Vlaanderen (Modellicentie gratis hergebruik v1.0)": "ortofoto: Bron: Luchtopnamen Digitaal Vlaanderen (Modellicentie gratis hergebruik v1.0)",
+  "ortofoto © ACT Luxembourg (geoportail.lu, CC0)": "ortofoto © ACT Luxembourg (geoportail.lu, CC0)",
   "čar mapy GRB, ortofota a OSM": "GRB žemėlapio linijų, ortofoto ir OSM",
   "čar mapy PICC, ortofota a OSM": "PICC žemėlapio linijų, ortofoto ir OSM",
-  "čáry GRB © Digitaal Vlaanderen": "linijos GRB © Digitaal Vlaanderen",
+  "čáry GRB: Bron: Grootschalig Referentie Bestand Vlaanderen, Digitaal Vlaanderen (Modellicentie gratis hergebruik v1.0)": "linijos GRB: Bron: Grootschalig Referentie Bestand Vlaanderen, Digitaal Vlaanderen (Modellicentie gratis hergebruik v1.0)",
   " · mapa povrchů GRB neodpověděla, odhad z ortofota a OSM": " · GRB dangų žemėlapis neatsakė, įvertis pagal ortofoto ir OSM",
   "Mapa povrchů GRB (Digitaal Vlaanderen) teď neodpovídá, profil je odhad z ortofota a OSM.": "GRB dangų žemėlapis (Digitaal Vlaanderen) šiuo metu neatsako, profilis – įvertis pagal ortofoto ir OSM.",
   "mapy povrchů GRB, ortofota a OSM": "GRB dangų žemėlapio, ortofoto ir OSM",
   "mapa povrchů (GRB): {who}": "dangų žemėlapis (GRB): {who}",
-  "čáry PICC © SPW (Service public de Wallonie)": "linijos PICC © SPW (Service public de Wallonie)",
+  "čáry PICC © SPW (Service public de Wallonie, CC BY 4.0)": "linijos PICC © SPW (Service public de Wallonie, CC BY 4.0)",
   "chodník: volný průchod nejméně 1,5 m, základ 1,8 m (Flandry, Vademecum voetgangersvoorzieningen 2026; Valonsko 1,5 m; Brusel 2 m)": "šaligatvis: laisvas praėjimo plotis ne mažiau kaip 1,5 m, bazinis 1,8 m (Flandrija, Vademecum voetgangersvoorzieningen 2026; Valonija 1,5 m; Briuselis 2 m)",
   "společná stezka pro chodce a cyklisty (D10): jednosměrná 2 m, obousměrná 2,5 m, doporučeno 3 m (Valonsko, Guide cyclable)": "bendras pėsčiųjų ir dviračių takas (D10): vienpusis 2 m, dvipusis 2,5 m, rekomenduojama 3 m (Valonija, Guide cyclable)",
   "stezka pro cyklisty jednosměrná: Flandry 2 m (Vademecum fietsvoorzieningen 2024), Valonsko nejméně 1,3 m (Guide cyclable); obousměrná Flandry 3 m, Valonsko 2,2–2,6 m": "vienpusis dviračių takas: Flandrija 2 m (Vademecum fietsvoorzieningen 2024), Valonija ne mažiau kaip 1,3 m (Guide cyclable); dvipusis Flandrija 3 m, Valonija 2,2–2,6 m",
@@ -1061,12 +1061,12 @@ export const LT = {
 export const LT_HTML = {
   footer: `Duomenys: techniniai žemėlapiai © <a href="https://www.geoportalpraha.cz">IPR Praha</a> (taip pat aukštingumas ir užstatymo raida, CC BY 4.0), statutinių miestų Brno, Jihlavos, Mosto, Opavos ir Pilzeno
     bei kraštų (<a href="https://dmvs.cuzk.gov.cz">IS DMVS ČÚZK</a>) · RÚIAN (taip pat adresų paieška), kadastras ir ortofoto © ČÚZK (CC BY 4.0) · Slovakijos ortofoto, pastatai ir ribos © <a href="https://www.geoportal.sk">GKÚ Bratislava</a>, NLC (ZBGIS, CC BY 4.0), Slovakijos gatvės ir adresai © MV SR ·
-    gatvių inventorizacijos © Hlavné mesto SR Bratislava, MČ Dúbravka, mesto Žilina, mesto Banská Bystrica, mesto Košice, mesto Prešov (CC BY 4.0), brėžiniai © mestá Nitra, Piešťany, Hlohovec, techninis žemėlapis © Hlavné mesto SR Bratislava ·
+    gatvių inventorizacijos © Hlavné mesto SR Bratislava, MČ Dúbravka, EUROSENSE SLOVAKIA, s.r.o., mesto Žilina, mesto Banská Bystrica, mesto Košice, mesto Prešov (CC BY 4.0), brėžiniai © mestá Nitra, Piešťany, Hlohovec, techninis žemėlapis © Hlavné mesto SR Bratislava ·
     Austrija: ortofoto © basemap.at (CC BY 4.0), Flächen-Mehrzweckkarte © Stadt Wien – data.wien.gv.at (CC BY 4.0), siena © EuroGeographics (GISCO), Zalcburgo kelio ženklai © Stadt Salzburg (CC BY 3.0 AT), paieška Photon © komoot (OSM duomenys) ·
     Vokietija: federalinių žemių ortofoto © LGL-BW, Bayerische Vermessungsverwaltung, GeoBasis-DE/LGB, Landesamt GeoInformation Bremen, LGV Hamburg, HVBG, GeoBasis-DE/M-V, LGLN, GeoBasis-DE/NRW, GeoBasis-DE/LVermGeoRP, GeoBasis-DE/LVermGeo SH, GeoBasis-DE/LVGL-SL, GeoSN, GeoBasis-DE/LVermGeo ST, GDI-Th; <a href="https://www.govdata.de/dl-de/by-2-0">dl-de/by-2-0</a>, <a href="https://www.govdata.de/dl-de/zero-2-0">dl-de/zero-2-0</a>, <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>, siena © EuroGeographics (GISCO), kelio ženklai Wikimedia Commons (oficialūs dokumentai), paieška Photon © komoot (OSM duomenys) ·
     Šveicarija ir Lichtenšteinas: ortofoto SWISSIMAGE ir sienos © swisstopo, oficialieji kadastriniai matavimai (Bodenbedeckung) © kantonai ir Lichtenšteinas per <a href="https://geodienste.ch">geodienste.ch</a>, kelio ženklai Wikimedia Commons (oficialūs dokumentai, ASTRA), paieška Photon © komoot (OSM duomenys) ·
     Nyderlandai: BGT dangų žemėlapis ir BAG pastatai © Kadaster ir duomenų tvarkytojai (bronhouders) per <a href="https://www.pdok.nl">PDOK</a> (CC0, Public Domain Mark), ortofoto © Beeldmateriaal Nederland (PDOK, <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>), pastatų aukščiai <a href="https://3dbag.nl">3D BAG</a> © TU Delft ir 3DGI (CC BY 4.0), siena © EuroGeographics (GISCO), kelio ženklai Wikimedia Commons (oficialūs dokumentai), paieška PDOK Locatieserver, Amsterdamo stovėjimo vietos © Gemeente Amsterdam ·
-    Belgija ir Liuksemburgas: ortofoto ir linijos GRB: šaltinis Digitaal Vlaanderen (<a href="https://www.vlaanderen.be/digitaal-vlaanderen/onze-oplossingen/open-data/voorwaarden-voor-het-hergebruik-van-overheidsinformatie/modellicentie-gratis-hergebruik">Modellicentie gratis hergebruik</a>), ortofoto ir linijos PICC © SPW (Service public de Wallonie), ortofoto © ACT Luxembourg (geoportail.lu), siena © EuroGeographics (GISCO), kelio ženklai Wikimedia Commons (oficialūs dokumentai), paieška Photon © komoot (OSM duomenys) ·
+    Belgija ir Liuksemburgas: ortofoto ir linijos GRB: šaltinis Digitaal Vlaanderen (<a href="https://www.vlaanderen.be/digitaal-vlaanderen/onze-oplossingen/open-data/voorwaarden-voor-het-hergebruik-van-overheidsinformatie/modellicentie-gratis-hergebruik">Modellicentie gratis hergebruik v1.0</a>), ortofoto ir linijos PICC © SPW (Service public de Wallonie, <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>), ortofoto © ACT Luxembourg (geoportail.lu, CC0), siena © EuroGeographics (GISCO), kelio ženklai Wikimedia Commons (oficialūs dokumentai), paieška Photon © komoot (OSM duomenys) ·
     Lenkija: ortofoto ir adresų paieška © GUGiK (Geoportal.gov.pl, PRG), Krokuvos dangų žemėlapis (MJO) © Gmina Miejska Kraków, siena © EuroGeographics (GISCO), kelio ženklai Wikimedia Commons (oficialūs dokumentai), paieška Photon © komoot (OSM duomenys) ·
     Prancūzija: ortofoto, pastatai (BD TOPO) ir adresų paieška © <a href="https://geoservices.ign.fr">IGN France</a> (Géoplateforme, <a href="https://www.etalab.gouv.fr/licence-ouverte-open-licence/">Licence Ouverte 2.0</a>), Paryžiaus dangų žemėlapis (Plan de voirie) © <a href="https://opendata.paris.fr">Ville de Paris</a> (<a href="https://opendatacommons.org/licenses/odbl/">ODbL</a>), siena © EuroGeographics (GISCO), kelio ženklai Wikimedia Commons (oficialūs dokumentai) ·
     Ispanija: ortofoto PNOA ir adresų paieška CartoCiudad © Instituto Geográfico Nacional de España (CC BY 4.0, scne.es), pastatai © Dirección General del Catastro, Navaroje Servicio proporcionado por el Gobierno de Navarra (CC BY 4.0), Baskijoje © Arabako, Bizkaiko ir Gipuzkoako Foru Aldundia, Saragosos dangų žemėlapis © Ayuntamiento de Zaragoza (IDEZar), siena © EuroGeographics (GISCO), kelio ženklai Wikimedia Commons (oficialūs dokumentai) ·
@@ -1080,8 +1080,8 @@ export const LT_HTML = {
     Suomija: ortofoto © Helsingin kaupunki, kaupunkimittauspalvelut, Espoon kaupunki ir Turun kaupunki (CC BY 4.0), dangų žemėlapis (Yleisten alueiden rekisteri) ir pastatai © Helsingin kaupunki (CC BY 4.0), pastatai ir adresai Ryhti © Suomen ympäristökeskus SYKE (CC BY 4.0), siena © EuroGeographics (GISCO), kelio ženklai Wikimedia Commons (oficialūs dokumentai), paieška Photon © komoot (OSM duomenys) ·
     Danija: ortofoto „Indeholder data fra Styrelsen for Dataforsyning og Infrastruktur, Ortofoto forår, WMTS-tjeneste“ (<a href="https://dataforsyningen.dk/asset/PDF/rettigheder_vilkaar/Vilk%C3%A5r%20for%20brug%20af%20frie%20geografiske%20data.pdf">sąlygos</a>) ir adresų paieška GSearch © Klimadatastyrelsen, Kopenhagos važiuojamosios dalies kraštai, automobilių stovėjimo aikštelės ir pastatai (GeoDanmark, BBR) © Københavns Kommune (licencija nenurodyta), Orhuso pastatai (BBR) © Aarhus Kommune (CC BY 4.0), siena © EuroGeographics (GISCO), kelio ženklai Wikimedia Commons (oficialūs dokumentai), paieška Photon © komoot (OSM duomenys) ·
     Lietuva: Vilniaus dangų žemėlapis (topografiniai plotai 1 : 500) © Vilniaus miesto savivaldybė / Vilniaus planas (licencija nenurodyta; tik su ?vilnius=1), GRPK pastatų kontūrai © Lietuvos Respublikos aplinkos ministerija (CC BY 4.0), siena © EuroGeographics (GISCO), kelio ženklai Wikimedia Commons (Augustasci brėžiniai pagal CC BY 4.0, lentelės 846 ir 853 – Gigillo83 pagal CC BY-SA 4.0), paieška Photon © komoot (OSM duomenys) ·
-    tinklai © IPR Praha, Gemeente Amsterdam ir Waternet (licencija nenurodyta), mestá Prešov (CC BY 4.0), Nitra, Košice, Piešťany, Olomoucký kraj, statutiniai miestai Karviná, Ostrava, Břeclavo miestas ·
-    stovėjimas © TSK hl. m. Prahy (CC BY 4.0), stovėjimo draudimai, medžiai ir gatvių klasės iš <a href="https://opendata.geoportalpraha.cz">Geoportál Praha</a> (CC BY 4.0), <a href="https://www.parkovanivbrne.cz">parkovanivbrne.cz</a>, Jihlavos, Opavos ir Pilzeno miestai (CC0) ·
+    tinklai © IPR Praha, Gemeente Amsterdam ir Waternet (Creative Commons Naamsvermelding, versija nenurodyta), mestá Prešov (CC BY 4.0), Nitra, Košice, Piešťany, Olomoucký kraj, statutiniai miestai Karviná, Ostrava, Břeclavo miestas ·
+    stovėjimas © TSK hl. m. Prahy (CC BY 4.0), stovėjimo draudimai, medžiai ir gatvių klasės iš <a href="https://opendata.geoportalpraha.cz">Geoportál Praha</a> (CC BY 4.0), <a href="https://www.parkovanivbrne.cz">parkovanivbrne.cz</a>, Jihlavos (CC BY-SA), Opavos ir Pilzeno miestai (CC0) ·
     © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> bendradarbiai (ODbL) ·
     iliustracijos © <a href="https://github.com/streetmix/streetmix/tree/main/packages/illustrations">Streetmix</a>, licencija
     <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> ·
@@ -1143,9 +1143,9 @@ export const LT_CITY = {
   brno: own("Brno", "Brno miesto", "Brno miesto techninis žemėlapis", "Brno miesto", "mokamo stovėjimo atkarpos (parkovanivbrne.cz)",
     "Duomenys © Statutární město Brno (techninis žemėlapis ir MTVU; pastatai ir dviračių infrastruktūra, data.brno.cz, CC BY 4.0, pakeista), stovėjimas © parkovanivbrne.cz"),
   jihlava: own("Jihlava", "Jihlavos miesto", "Jihlavos gatvių inventorizacija", "Jihlavos miesto", "stovėjimo vietos (Jihlavos miestas)",
-    `Duomenys © Statutární město Jihlava (gatvių inventorizacija, stovėjimas, mažoji architektūra), RÚIAN ir kadastras © ČÚZK, 2026 (CC BY 4.0, pakeista)`),
+    `Duomenys © Statutární město Jihlava (gatvių inventorizacija, stovėjimas CC BY-SA, mažoji architektūra), RÚIAN ir kadastras © ČÚZK, 2026 (CC BY 4.0, pakeista)`),
   most: own("Most", "Mosto miesto", "Mosto techninis žemėlapis", "Mosto miesto", TECH_PARKING,
-    `Duomenys © Statutární město Most (objektų ir techninis žemėlapis, gatvių apšvietimas), ${RUIAN}`),
+    `Duomenys © Statutární město Most (objektų žemėlapis ir gatvių apšvietimas, CC BY-SA; techninis žemėlapis), ${RUIAN}`),
   opava: own("Opava", "Opavos miesto", "Opavos specialusis žemėlapis", "Opavos miesto", "stovėjimo vietos (Opavos miestas)",
     `Duomenys © Statutární město Opava (specialusis žemėlapis, stovėjimas, medžiai, suoleliai, stotelės), ${RUIAN}`),
   pardubice: {

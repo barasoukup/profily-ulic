@@ -618,7 +618,7 @@ export const GA = {
   "Obrázek PNG": "Íomhá PNG",
   "Vektor SVG": "SVG (veicteoir)",
   "Soubor": "Comhad",
-  "pasport komunikácií © Hlavné mesto SR Bratislava a MČ Dúbravka": "fardal bóithre © Hlavné mesto SR Bratislava agus MČ Dúbravka",
+  "pasport komunikácií © Hlavné mesto SR Bratislava a MČ Dúbravka, © EUROSENSE SLOVAKIA, s.r.o.": "fardal bóithre © Hlavné mesto SR Bratislava agus MČ Dúbravka, © EUROSENSE SLOVAKIA, s.r.o.",
   "pasport dopravy a zelene © mesto Prešov (CC BY 4.0)": "fardal tráchta agus spásanna glasa © mesto Prešov (CC BY 4.0)",
   "pasport komunikácií © mesto Žilina": "fardal bóithre © mesto Žilina",
   "pasport komunikácií © mesto Košice": "fardal bóithre © mesto Košice",
@@ -809,7 +809,7 @@ export const GA = {
   "Příčné profily ulic v Česku, na Slovensku, v Rakousku, v Německu, ve Švýcarsku, v Lichtenštejnsku, v Nizozemsku, v Belgii, v Lucembursku, v Polsku, ve Francii, v Monaku, ve Španělsku, v Portugalsku, na Kypru, na Maltě, v částech Itálie, v Estonsku, ve Slovinsku, ve Finsku, v Dánsku a v Litvě z map povrchů měst, ČÚZK a ZBGIS: od fasády k fasádě, upravitelné, s místními ilustracemi.": "Trasghearrthaí sráideanna sa tSeicia, sa tSlóvaic, san Ostair, sa Ghearmáin, san Eilvéis, i Lichtinstéin, san Ísiltír, sa Bheilg, i Lucsamburg, sa Pholainn, sa Fhrainc, i Monacó, sa Spáinn, sa Phortaingéil, sa Chipir, i Málta, i gcodanna den Iodáil, san Eastóin, sa tSlóivéin, san Fhionlainn, sa Danmhairg agus sa Liotuáin as léarscáileanna dromchlaí na gcathracha, ČÚZK agus ZBGIS: ó aghaidh go haghaidh, in-eagarthóireachta, le léaráidí áitiúla.",
   // The Netherlands (Bára 20. 11. 2026).
   "mapy povrchů BGT, ortofota PDOK a OSM": "léarscáil dromchlaí BGT, ortafótagraf PDOK agus OSM",
-  "ortofoto © PDOK (Beeldmateriaal Nederland)": "ortafótagraf © PDOK (Beeldmateriaal Nederland)",
+  "ortofoto © Beeldmateriaal.nl (PDOK, CC BY 4.0)": "ortafótagraf © Beeldmateriaal.nl (PDOK, CC BY 4.0)",
   "mapa povrchů BGT © Kadaster a správci BGT (PDOK, CC0)": "léarscáil dromchlaí BGT © Kadaster agus coimeádaithe BGT (PDOK, CC0)",
   " · mapa povrchů BGT neodpověděla, odhad z ortofota a OSM": " · níor fhreagair léarscáil dromchlaí BGT, meastachán ón ortafótagraf agus OSM",
   "Mapa povrchů BGT (PDOK) teď neodpovídá, profil je odhad z ortofota a OSM.": "Níl léarscáil dromchlaí BGT (PDOK) ag freagairt anois; is meastachán ón ortafótagraf agus OSM an phróifíl.",
@@ -822,21 +822,21 @@ export const GA = {
   "podélné stání: 2 × 6 m (ASVV 2012 podle obce Oost Gelre), v Amsterdamu 2,1–2,4 m": "páirceáil chomhthreomhar: 2 × 6 m (ASVV 2012 de réir bhardas Oost Gelre), in Amstardam 2.1–2.4 m",
   "Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Smí se jen u značky E8b (RVV 1990 čl. 10). Zákon šířku neuvádí, v praxi 3,5 m pro hasiče na jednosměrce a 4,5 m vozovky pro oba směry; aplikace nechává průjezdné pruhy, tedy aspoň {need}.": "Páirceáil leath ar an gcosán de réir OSM: fanann {free} sa charrbhealach. Ní cheadaítear é ach ag an gcomhartha E8b (RVV 1990 airt. 10). Ní luann an dlí leithead; sa chleachtas 3.5 m don bhriogáid dóiteáin ar shráid aontreo agus carrbhealach 4.5 m don dá threo; coinníonn an aip na lánaí tráchta inúsáidte, mar sin {need} ar a laghad.",
   "jednosměrka s cyklisty v protisměru: vozovka nejméně 3,5 m, základ 4 m (Amsterdam, Afwegingskader fietsstraten 2020)": "sráid aontreo le rothaíocht i gcoinne an tsrutha: carrbhealach 3.5 m ar a laghad, caighdeán 4 m (Amstardam, Afwegingskader fietsstraten 2020)",
-  "Sítě © Gemeente Amsterdam a Waternet (CC BY).": "Líonraí © Gemeente Amsterdam agus Waternet (CC BY).",
+  "Sítě © Gemeente Amsterdam a Waternet (Creative Commons Naamsvermelding, verze neuvedena).": "Líonraí © Gemeente Amsterdam agus Waternet (Creative Commons Naamsvermelding, leagan gan lua).",
   "kabel veřejného osvětlení": "cábla soilsithe sráide",
   "parkovací místa © Gemeente Amsterdam": "spásanna páirceála © Gemeente Amsterdam",
   // Belgium and Luxembourg (Bára 20. 11. 2026).
-  "ortofoto © SPW (Service public de Wallonie)": "ortafótagraf © SPW (Service public de Wallonie)",
-  "ortofoto © Digitaal Vlaanderen": "ortafótagraf © Digitaal Vlaanderen",
-  "ortofoto © ACT Luxembourg (geoportail.lu)": "ortafótagraf © ACT Luxembourg (geoportail.lu)",
+  "ortofoto © SPW (Service public de Wallonie, CC BY 4.0)": "ortafótagraf © SPW (Service public de Wallonie, CC BY 4.0)",
+  "ortofoto: Bron: Luchtopnamen Digitaal Vlaanderen (Modellicentie gratis hergebruik v1.0)": "ortafótagraf: Bron: Luchtopnamen Digitaal Vlaanderen (Modellicentie gratis hergebruik v1.0)",
+  "ortofoto © ACT Luxembourg (geoportail.lu, CC0)": "ortafótagraf © ACT Luxembourg (geoportail.lu, CC0)",
   "čar mapy GRB, ortofota a OSM": "línte léarscáil GRB, ortafótagraf agus OSM",
   "čar mapy PICC, ortofota a OSM": "línte léarscáil PICC, ortafótagraf agus OSM",
-  "čáry GRB © Digitaal Vlaanderen": "línte GRB © Digitaal Vlaanderen",
+  "čáry GRB: Bron: Grootschalig Referentie Bestand Vlaanderen, Digitaal Vlaanderen (Modellicentie gratis hergebruik v1.0)": "línte GRB: Bron: Grootschalig Referentie Bestand Vlaanderen, Digitaal Vlaanderen (Modellicentie gratis hergebruik v1.0)",
   " · mapa povrchů GRB neodpověděla, odhad z ortofota a OSM": " · níor fhreagair léarscáil dromchlaí GRB, meastachán ón ortafótagraf agus OSM",
   "Mapa povrchů GRB (Digitaal Vlaanderen) teď neodpovídá, profil je odhad z ortofota a OSM.": "Níl léarscáil dromchlaí GRB (Digitaal Vlaanderen) ag freagairt anois; is meastachán ón ortafótagraf agus OSM an phróifíl.",
   "mapy povrchů GRB, ortofota a OSM": "léarscáil dromchlaí GRB, ortafótagraf agus OSM",
   "mapa povrchů (GRB): {who}": "léarscáil dromchlaí (GRB): {who}",
-  "čáry PICC © SPW (Service public de Wallonie)": "línte PICC © SPW (Service public de Wallonie)",
+  "čáry PICC © SPW (Service public de Wallonie, CC BY 4.0)": "línte PICC © SPW (Service public de Wallonie, CC BY 4.0)",
   "chodník: volný průchod nejméně 1,5 m, základ 1,8 m (Flandry, Vademecum voetgangersvoorzieningen 2026; Valonsko 1,5 m; Brusel 2 m)": "cosán: leithead siúil saor 1.5 m ar a laghad, caighdeán 1.8 m (Flóndras, Vademecum voetgangersvoorzieningen 2026; an Vallúin 1.5 m; an Bhruiséil 2 m)",
   "společná stezka pro chodce a cyklisty (D10): jednosměrná 2 m, obousměrná 2,5 m, doporučeno 3 m (Valonsko, Guide cyclable)": "cosán agus raon rothar comhroinnte (D10): aontreo 2 m, déthreo 2.5 m, molta 3 m (an Vallúin, Guide cyclable)",
   "stezka pro cyklisty jednosměrná: Flandry 2 m (Vademecum fietsvoorzieningen 2024), Valonsko nejméně 1,3 m (Guide cyclable); obousměrná Flandry 3 m, Valonsko 2,2–2,6 m": "raon rothar aontreo: Flóndras 2 m (Vademecum fietsvoorzieningen 2024), an Vallúin 1.3 m ar a laghad (Guide cyclable); déthreo Flóndras 3 m, an Vallúin 2.2–2.6 m",
@@ -1086,13 +1086,13 @@ export const GA = {
 export const GA_HTML = {
   footer: `Sonraí: léarscáileanna teicniúla © <a href="https://www.geoportalpraha.cz">IPR Praha</a> (agus líon na n-urlár agus forbairt na tógála, CC BY 4.0), na gcathracha reachtúla Brno, Jihlava, Most, Opava agus Plzeň
     agus na réigiún (<a href="https://dmvs.cuzk.gov.cz">IS DMVS ČÚZK</a>) · RÚIAN (agus cuardach na seoltaí), cadastar agus ortafótagraf © ČÚZK (CC BY 4.0) · ortafótagraf, foirgnimh agus teorainneacha na Slóvaice © <a href="https://www.geoportal.sk">GKÚ Bratislava</a>, NLC (ZBGIS, CC BY 4.0), sráideanna agus seoltaí na Slóvaice © MV SR ·
-    fardail bóithre © Hlavné mesto SR Bratislava, MČ Dúbravka, mesto Žilina, mesto Banská Bystrica, mesto Košice, mesto Prešov (CC BY 4.0), líníocht léarscáile © mestá Nitra, Piešťany, Hlohovec, léarscáil theicniúil © Hlavné mesto SR Bratislava ·
-    seirbhísí faoi thalamh © IPR Praha, Gemeente Amsterdam agus Waternet (ceadúnas gan lua), mestá Prešov (CC BY 4.0), Nitra, Košice, Piešťany, Olomoucký kraj, cathracha Karviná, Ostrava, Břeclav ·
+    fardail bóithre © Hlavné mesto SR Bratislava, MČ Dúbravka, EUROSENSE SLOVAKIA, s.r.o., mesto Žilina, mesto Banská Bystrica, mesto Košice, mesto Prešov (CC BY 4.0), líníocht léarscáile © mestá Nitra, Piešťany, Hlohovec, léarscáil theicniúil © Hlavné mesto SR Bratislava ·
+    seirbhísí faoi thalamh © IPR Praha, Gemeente Amsterdam agus Waternet (Creative Commons Naamsvermelding, leagan gan lua), mestá Prešov (CC BY 4.0), Nitra, Košice, Piešťany, Olomoucký kraj, cathracha Karviná, Ostrava, Břeclav ·
     An Ostair: ortafótagraf © basemap.at (CC BY 4.0), léarscáil dromchlaí Vín © Stadt Wien – data.wien.gv.at (CC BY 4.0), teorainn © EuroGeographics (GISCO), comharthaí tráchta Salzburg © Stadt Salzburg (CC BY 3.0 AT), cuardach Photon © komoot (sonraí OSM) ·
     An Ghearmáin: ortafótagraif na Länder © LGL-BW, Bayerische Vermessungsverwaltung, GeoBasis-DE/LGB, Landesamt GeoInformation Bremen, LGV Hamburg, HVBG, GeoBasis-DE/M-V, LGLN, GeoBasis-DE/NRW, GeoBasis-DE/LVermGeoRP, GeoBasis-DE/LVermGeo SH, GeoBasis-DE/LVGL-SL, GeoSN, GeoBasis-DE/LVermGeo ST, GDI-Th; <a href="https://www.govdata.de/dl-de/by-2-0">dl-de/by-2-0</a>, <a href="https://www.govdata.de/dl-de/zero-2-0">dl-de/zero-2-0</a>, <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>, teorainn © EuroGeographics (GISCO), comharthaí tráchta Wikimedia Commons (saothair oifigiúla), cuardach Photon © komoot (sonraí OSM) ·
     An Eilvéis agus Lichtinstéin: ortafótagraf SWISSIMAGE agus teorainneacha © swisstopo, suirbhé cadastrach oifigiúil (Bodenbedeckung) © na cantúin agus Lichtinstéin trí <a href="https://geodienste.ch">geodienste.ch</a>, comharthaí tráchta Wikimedia Commons (saothair oifigiúla, ASTRA), cuardach Photon © komoot (sonraí OSM) ·
     An Ísiltír: léarscáil dromchlaí BGT agus foirgnimh BAG © Kadaster agus coimeádaithe na sonraí (bronhouders) trí <a href="https://www.pdok.nl">PDOK</a> (CC0, Public Domain Mark), ortafótagraf © Beeldmateriaal Nederland (PDOK, <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>), airde foirgneamh <a href="https://3dbag.nl">3D BAG</a> © TU Delft agus 3DGI (CC BY 4.0), teorainn © EuroGeographics (GISCO), comharthaí tráchta Wikimedia Commons (saothair oifigiúla), cuardach PDOK Locatieserver, spásanna páirceála Amstardam © Gemeente Amsterdam ·
-    An Bheilg agus Lucsamburg: ortafótagraf agus línte GRB: foinse Digitaal Vlaanderen (<a href="https://www.vlaanderen.be/digitaal-vlaanderen/onze-oplossingen/open-data/voorwaarden-voor-het-hergebruik-van-overheidsinformatie/modellicentie-gratis-hergebruik">Modellicentie gratis hergebruik</a>), ortafótagraf agus línte PICC © SPW (Service public de Wallonie), ortafótagraf © ACT Luxembourg (geoportail.lu), teorainneacha © EuroGeographics (GISCO), comharthaí tráchta Wikimedia Commons (saothair oifigiúla), cuardach Photon © komoot (sonraí OSM) ·
+    An Bheilg agus Lucsamburg: ortafótagraf agus línte GRB: foinse Digitaal Vlaanderen (<a href="https://www.vlaanderen.be/digitaal-vlaanderen/onze-oplossingen/open-data/voorwaarden-voor-het-hergebruik-van-overheidsinformatie/modellicentie-gratis-hergebruik">Modellicentie gratis hergebruik v1.0</a>), ortafótagraf agus línte PICC © SPW (Service public de Wallonie, <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>), ortafótagraf © ACT Luxembourg (geoportail.lu, CC0), teorainneacha © EuroGeographics (GISCO), comharthaí tráchta Wikimedia Commons (saothair oifigiúla), cuardach Photon © komoot (sonraí OSM) ·
     An Pholainn: ortafótagraf agus cuardach seoltaí © GUGiK (Geoportal.gov.pl, PRG), léarscáil dromchlaí Cracó (MJO) © Gmina Miejska Kraków, teorainneacha © EuroGeographics (GISCO), comharthaí tráchta Wikimedia Commons (saothair oifigiúla), cuardach Photon © komoot (sonraí OSM) ·
     An Fhrainc: ortafótagraf, foirgnimh (BD TOPO) agus cuardach seoltaí © <a href="https://geoservices.ign.fr">IGN France</a> (Géoplateforme, <a href="https://www.etalab.gouv.fr/licence-ouverte-open-licence/">Licence Ouverte 2.0</a>), léarscáil dromchlaí Pháras (Plan de voirie) © <a href="https://opendata.paris.fr">Ville de Paris</a> (<a href="https://opendatacommons.org/licenses/odbl/">ODbL</a>), teorainneacha © EuroGeographics (GISCO), comharthaí tráchta Wikimedia Commons (saothair oifigiúla) ·
     An Spáinn: ortafótagraf PNOA agus cuardach seoltaí CartoCiudad © Instituto Geográfico Nacional de España (CC BY 4.0, scne.es), foirgnimh © Dirección General del Catastro, i Navarra Servicio proporcionado por el Gobierno de Navarra (CC BY 4.0), i dTír na mBascach © Arabako, Bizkaiko agus Gipuzkoako Foru Aldundia, léarscáil dromchlaí Zaragoza © Ayuntamiento de Zaragoza (IDEZar), teorainneacha © EuroGeographics (GISCO), comharthaí tráchta Wikimedia Commons (saothair oifigiúla) ·
@@ -1106,7 +1106,7 @@ export const GA_HTML = {
     An Fhionlainn: ortafótagraf © Helsingin kaupunki, kaupunkimittauspalvelut, Espoon kaupunki agus Turun kaupunki (CC BY 4.0), léarscáil dromchlaí (Yleisten alueiden rekisteri) agus foirgnimh © Helsingin kaupunki (CC BY 4.0), foirgnimh agus seoltaí Ryhti © Suomen ympäristökeskus SYKE (CC BY 4.0), teorainn © EuroGeographics (GISCO), comharthaí tráchta Wikimedia Commons (saothair oifigiúla), cuardach Photon © komoot (sonraí OSM) ·
     An Danmhairg: ortafótagraf “Indeholder data fra Styrelsen for Dataforsyning og Infrastruktur, Ortofoto forår, WMTS-tjeneste” (<a href="https://dataforsyningen.dk/asset/PDF/rettigheder_vilkaar/Vilk%C3%A5r%20for%20brug%20af%20frie%20geografiske%20data.pdf">téarmaí</a>) agus cuardach seoltaí GSearch © Klimadatastyrelsen, imill an charrbhealaigh, limistéir pháirceála agus foirgnimh Chóbanhávan (GeoDanmark, BBR) © Københavns Kommune (níl an cheadúnas luaite), foirgnimh Aarhus (BBR) © Aarhus Kommune (CC BY 4.0), teorainn © EuroGeographics (GISCO), comharthaí tráchta Wikimedia Commons (saothair oifigiúla), cuardach Photon © komoot (sonraí OSM) ·
     An Liotuáin: léarscáil dromchlaí Vilnias (limistéir thopagrafacha 1 : 500) © Vilniaus miesto savivaldybė / Vilniaus planas (níl an cheadúnas luaite; le ?vilnius=1 amháin), imlínte foirgneamh GRPK © Lietuvos Respublikos aplinkos ministerija (CC BY 4.0), teorainn © EuroGeographics (GISCO), comharthaí tráchta Wikimedia Commons (líníochtaí le Augustasci faoi CC BY 4.0, táblaí 846 agus 853 le Gigillo83 faoi CC BY-SA 4.0), cuardach Photon © komoot (sonraí OSM) ·
-    páirceáil © TSK hl. m. Prahy (CC BY 4.0), coisc ar pháirceáil, crainn agus aicmí sráideanna ó <a href="https://opendata.geoportalpraha.cz">Geoportál Praha</a> (CC BY 4.0), <a href="https://www.parkovanivbrne.cz">parkovanivbrne.cz</a>, cathracha Jihlava, Opava, Plzeň (CC0) ·
+    páirceáil © TSK hl. m. Prahy (CC BY 4.0), coisc ar pháirceáil, crainn agus aicmí sráideanna ó <a href="https://opendata.geoportalpraha.cz">Geoportál Praha</a> (CC BY 4.0), <a href="https://www.parkovanivbrne.cz">parkovanivbrne.cz</a>, cathracha Jihlava (CC BY-SA), Opava, Plzeň (CC0) ·
     © rannpháirtithe <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> (ODbL) ·
     léaráidí © <a href="https://github.com/streetmix/streetmix/tree/main/packages/illustrations">Streetmix</a>, ceadúnas
     <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> ·
@@ -1169,9 +1169,9 @@ export const GA_CITY = {
   brno: own("Brno", "Cathair Brno", "Léarscáil theicniúil Brno", "Cathair Brno", "stráicí páirceála íoctha (parkovanivbrne.cz)",
     "sonraí © Statutární město Brno (léarscáil theicniúil agus MTVU; foirgnimh agus áiseanna rothaíochta, data.brno.cz, CC BY 4.0, athraithe), páirceáil © parkovanivbrne.cz"),
   jihlava: own("Jihlava", "Cathair Jihlava", "Fardal bóithre Jihlava", "Cathair Jihlava", "spásanna páirceála (Cathair Jihlava)",
-    `sonraí © Statutární město Jihlava (fardal bóithre, páirceáil, troscán sráide), RÚIAN agus cadastar © ČÚZK, 2026 (CC BY 4.0, athraithe)`),
+    `sonraí © Statutární město Jihlava (fardal bóithre, páirceáil CC BY-SA, troscán sráide), RÚIAN agus cadastar © ČÚZK, 2026 (CC BY 4.0, athraithe)`),
   most: own("Most", "Cathair Most", "Léarscáil theicniúil Most", "Cathair Most", TECH_PARKING,
-    `sonraí © Statutární město Most (léarscáil oibiachtaí agus léarscáil theicniúil, soilsiú sráide), ${RUIAN}`),
+    `sonraí © Statutární město Most (léarscáil oibiachtaí agus soilsiú sráide, CC BY-SA; léarscáil theicniúil), ${RUIAN}`),
   opava: own("Opava", "Cathair Opava", "Léarscáil théamach Opava", "Cathair Opava", "spásanna páirceála (Cathair Opava)",
     `sonraí © Statutární město Opava (léarscáil théamach, páirceáil, crainn, binsí, stadanna), ${RUIAN}`),
   pardubice: {

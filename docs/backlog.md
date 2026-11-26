@@ -241,8 +241,11 @@ Co rozhodne Bára, je označeno **(Bára)**.
 
 ## Licence ke kontrole
 
-- Ortofoto PDOK (Nizozemsko), Flandry, Valonsko, ACT Lucembursko (ortho_latest), sítě Amsterdamu, mapa Krakova,
-  služby českých a slovenských měst (MTVU, UMPS, pasporty).
+- ~~Ortofoto PDOK (Nizozemsko), Flandry, Valonsko, ACT Lucembursko (ortho_latest)~~: licence ověřené a v kreditech
+  (`evaluation/licence/ZPRAVA.md`, kredity opravené 26. 11. 2026 ve větvi credits-fix, i GRB, Most, Jihlava, Dúbravka).
+- Sítě Amsterdamu: kredit sjednocený („Creative Commons Naamsvermelding, verze neuvedena“), zeptat se datapunt@amsterdam.nl na verzi.
+- Mapa Krakova: potřebuje písemný souhlas MSIP (ZPRAVA.md), rozhodnout o vypnutí.
+- Služby českých a slovenských měst (MTVU, UMPS, pasporty): licence nikde neuvedená, zeptat se měst (ZPRAVA.md, Koho se zeptat).
 
 ## Nápady (Bára zatím nevybrala)
 
