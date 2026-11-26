@@ -555,15 +555,15 @@ export const HU = {
   "{name} teď neodpovídá, plochy jsou z technické mapy ČÚZK.": "{name} most nem válaszol, a felületek a ČÚZK műszaki térképéről származnak.",
   "Technická mapa ČÚZK teď neodpovídá, profil je odhad z OSM.": "A ČÚZK műszaki térképe most nem válaszol, a keresztmetszet OSM-alapú becslés.",
   "Mapa povrchů tu nic nevrátila, profil je odhad z OSM.": "A felületi térkép itt nem adott vissza semmit, a keresztmetszet OSM-alapú becslés.",
-  "Obruby jsou podle OSM a domy z OSM, šířky ověřte.": "A szegélyek és az épületek az OSM-ből származnak, ellenőrizze a szélességeket.",
+  "Obruby jsou podle OSM a domy z {houses}, šířky ověřte.": "A szegélyek az OSM-ből származnak, az épületek forrása: {houses}; ellenőrizze a szélességeket.",
   "Mapa povrchů tu ulici nemá.": "A felületi térképen itt nem szerepel az utca.",
   "{name} teď neodpovídá (server je přetížený).": "{name} most nem válaszol (a szerver túlterhelt).",
   "{name} teď neodpovídá.": "{name} most nem válaszol.",
   "Technická mapa ČÚZK teď neodpovídá.": "A ČÚZK műszaki térképe most nem válaszol.",
   "Technická mapa tu má jen čáry bez ploch (kraj plochy do ní nedodává).": "A műszaki térképen itt csak vonalak vannak, felületek nélkül (a kerület nem szolgáltat felületeket).",
   "Mapa povrchů tu nic nevrátila.": "A felületi térkép itt nem adott vissza semmit.",
-  "Obruby jsou odhadnuté z ortofota a domy z OSM, šířky ověřte.": "A szegélyek ortofotóból becsültek, az épületek az OSM-ből származnak, ellenőrizze a szélességeket.",
-  "Ortofoto tu nepomohlo: obruby jsou podle OSM a domy z OSM, šířky ověřte.": "Az ortofotó itt nem segített: a szegélyek és az épületek az OSM-ből származnak, ellenőrizze a szélességeket.",
+  "Obruby jsou odhadnuté z ortofota a domy z {houses}, šířky ověřte.": "A szegélyek ortofotóból becsültek, az épületek forrása: {houses}; ellenőrizze a szélességeket.",
+  "Ortofoto tu nepomohlo: obruby jsou podle OSM a domy z {houses}, šířky ověřte.": "Az ortofotó itt nem segített: a szegélyek az OSM-ből származnak, az épületek forrása: {houses}; ellenőrizze a szélességeket.",
 
   // ---------- rainwater management (types.js water, HDV_UNDER) ----------
   "Vsakovací průleh": "Szikkasztó vápa",

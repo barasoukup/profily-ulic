@@ -552,15 +552,15 @@ export const LT = {
   "{name} teď neodpovídá, plochy jsou z technické mapy ČÚZK.": "{name} šiuo metu neatsako, plotai paimti iš ČÚZK techninio žemėlapio.",
   "Technická mapa ČÚZK teď neodpovídá, profil je odhad z OSM.": "ČÚZK techninis žemėlapis šiuo metu neatsako, profilis – įvertis pagal OSM.",
   "Mapa povrchů tu nic nevrátila, profil je odhad z OSM.": "Dangų žemėlapis čia nieko negrąžino, profilis – įvertis pagal OSM.",
-  "Obruby jsou podle OSM a domy z OSM, šířky ověřte.": "Bordiūrai ir pastatai pagal OSM, pločius patikrinkite.",
+  "Obruby jsou podle OSM a domy z {houses}, šířky ověřte.": "Bordiūrai pagal OSM, pastatai pagal {houses}, pločius patikrinkite.",
   "Mapa povrchů tu ulici nemá.": "Dangų žemėlapyje čia gatvės nėra.",
   "{name} teď neodpovídá (server je přetížený).": "{name} šiuo metu neatsako (serveris perkrautas).",
   "{name} teď neodpovídá.": "{name} šiuo metu neatsako.",
   "Technická mapa ČÚZK teď neodpovídá.": "ČÚZK techninis žemėlapis šiuo metu neatsako.",
   "Technická mapa tu má jen čáry bez ploch (kraj plochy do ní nedodává).": "Techniniame žemėlapyje čia tik linijos be plotų (šio krašto administracija plotų neteikia).",
   "Mapa povrchů tu nic nevrátila.": "Dangų žemėlapis čia nieko negrąžino.",
-  "Obruby jsou odhadnuté z ortofota a domy z OSM, šířky ověřte.": "Bordiūrai įvertinti pagal ortofoto, pastatai pagal OSM, pločius patikrinkite.",
-  "Ortofoto tu nepomohlo: obruby jsou podle OSM a domy z OSM, šířky ověřte.": "Ortofoto čia nepadėjo: bordiūrai ir pastatai pagal OSM, pločius patikrinkite.",
+  "Obruby jsou odhadnuté z ortofota a domy z {houses}, šířky ověřte.": "Bordiūrai įvertinti pagal ortofoto, pastatai pagal {houses}, pločius patikrinkite.",
+  "Ortofoto tu nepomohlo: obruby jsou podle OSM a domy z {houses}, šířky ověřte.": "Ortofoto čia nepadėjo: bordiūrai pagal OSM, pastatai pagal {houses}, pločius patikrinkite.",
 
   // ---------- rainwater management (types.js water, HDV_UNDER) ----------
   "Vsakovací průleh": "Infiltracinė įduba",

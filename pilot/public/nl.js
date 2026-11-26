@@ -571,15 +571,15 @@ export const NL = {
   "{name} teď neodpovídá, plochy jsou z technické mapy ČÚZK.": "{name} reageert nu niet, de vlakken komen uit de technische kaart van het ČÚZK.",
   "Technická mapa ČÚZK teď neodpovídá, profil je odhad z OSM.": "De technische kaart van het ČÚZK reageert nu niet, het profiel is een schatting uit OSM.",
   "Mapa povrchů tu nic nevrátila, profil je odhad z OSM.": "De oppervlakkenkaart heeft hier niets geleverd, het profiel is een schatting uit OSM.",
-  "Obruby jsou podle OSM a domy z OSM, šířky ověřte.": "Trottoirbanden en gebouwen komen uit OSM; controleer de breedtes.",
+  "Obruby jsou podle OSM a domy z {houses}, šířky ověřte.": "Trottoirbanden komen uit OSM, gebouwen uit {houses}; controleer de breedtes.",
   "Mapa povrchů tu ulici nemá.": "De oppervlakkenkaart heeft de straat hier niet.",
   "{name} teď neodpovídá (server je přetížený).": "{name} reageert nu niet (de server is overbelast).",
   "{name} teď neodpovídá.": "{name} reageert nu niet.",
   "Technická mapa ČÚZK teď neodpovídá.": "De technische kaart van het ČÚZK reageert nu niet.",
   "Technická mapa tu má jen čáry bez ploch (kraj plochy do ní nedodává).": "De technische kaart heeft hier alleen lijnen zonder vlakken (de regio levert geen vlakken).",
   "Mapa povrchů tu nic nevrátila.": "De oppervlakkenkaart heeft hier niets geleverd.",
-  "Obruby jsou odhadnuté z ortofota a domy z OSM, šířky ověřte.": "De trottoirbanden zijn geschat uit de luchtfoto, de gebouwen komen uit OSM; controleer de breedtes.",
-  "Ortofoto tu nepomohlo: obruby jsou podle OSM a domy z OSM, šířky ověřte.": "De luchtfoto hielp hier niet: trottoirbanden en gebouwen komen uit OSM; controleer de breedtes.",
+  "Obruby jsou odhadnuté z ortofota a domy z {houses}, šířky ověřte.": "De trottoirbanden zijn geschat uit de luchtfoto, de gebouwen komen uit {houses}; controleer de breedtes.",
+  "Ortofoto tu nepomohlo: obruby jsou podle OSM a domy z {houses}, šířky ověřte.": "De luchtfoto hielp hier niet: trottoirbanden komen uit OSM, gebouwen uit {houses}; controleer de breedtes.",
 
   // ---------- rainwater management (types.js water, HDV_UNDER) ----------
   "Vsakovací průleh": "Wadi",

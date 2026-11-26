@@ -570,15 +570,15 @@ export const LV = {
   "{name} teď neodpovídá, plochy jsou z technické mapy ČÚZK.": "{name} pašlaik neatbild, laukumi ir no ČÚZK tehniskās kartes.",
   "Technická mapa ČÚZK teď neodpovídá, profil je odhad z OSM.": "ČÚZK tehniskā karte pašlaik neatbild, šķērsprofils ir aplēse pēc OSM.",
   "Mapa povrchů tu nic nevrátila, profil je odhad z OSM.": "Segumu karte šeit neko neatgrieza, šķērsprofils ir aplēse pēc OSM.",
-  "Obruby jsou podle OSM a domy z OSM, šířky ověřte.": "Apmales un ēkas ir pēc OSM, lūdzu, pārbaudiet platumus.",
+  "Obruby jsou podle OSM a domy z {houses}, šířky ověřte.": "Apmales ir pēc OSM, ēkas no {houses}, lūdzu, pārbaudiet platumus.",
   "Mapa povrchů tu ulici nemá.": "Segumu kartē šeit ielas nav.",
   "{name} teď neodpovídá (server je přetížený).": "{name} pašlaik neatbild (serveris ir pārslogots).",
   "{name} teď neodpovídá.": "{name} pašlaik neatbild.",
   "Technická mapa ČÚZK teď neodpovídá.": "ČÚZK tehniskā karte pašlaik neatbild.",
   "Technická mapa tu má jen čáry bez ploch (kraj plochy do ní nedodává).": "Tehniskajā kartē šeit ir tikai līnijas bez laukumiem (apgabals laukumus nepiegādā).",
   "Mapa povrchů tu nic nevrátila.": "Segumu karte šeit neko neatgrieza.",
-  "Obruby jsou odhadnuté z ortofota a domy z OSM, šířky ověřte.": "Apmales ir aplēstas pēc ortofoto, ēkas ir no OSM, lūdzu, pārbaudiet platumus.",
-  "Ortofoto tu nepomohlo: obruby jsou podle OSM a domy z OSM, šířky ověřte.": "Ortofoto šeit nepalīdzēja: apmales un ēkas ir pēc OSM, lūdzu, pārbaudiet platumus.",
+  "Obruby jsou odhadnuté z ortofota a domy z {houses}, šířky ověřte.": "Apmales ir aplēstas pēc ortofoto, ēkas ir no {houses}, lūdzu, pārbaudiet platumus.",
+  "Ortofoto tu nepomohlo: obruby jsou podle OSM a domy z {houses}, šířky ověřte.": "Ortofoto šeit nepalīdzēja: apmales ir pēc OSM, ēkas no {houses}, lūdzu, pārbaudiet platumus.",
 
   // ---------- rainwater management (types.js water, HDV_UNDER) ----------
   "Vsakovací průleh": "Infiltrācijas ievalka",

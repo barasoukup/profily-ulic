@@ -552,15 +552,15 @@ export const BG = {
   "{name} teď neodpovídá, plochy jsou z technické mapy ČÚZK.": "{name} в момента не отговаря, площите са от техническата карта на ČÚZK.",
   "Technická mapa ČÚZK teď neodpovídá, profil je odhad z OSM.": "Техническата карта на ČÚZK в момента не отговаря, профилът е приблизителен, по OSM.",
   "Mapa povrchů tu nic nevrátila, profil je odhad z OSM.": "Картата на настилките тук не върна нищо, профилът е приблизителен, по OSM.",
-  "Obruby jsou podle OSM a domy z OSM, šířky ověřte.": "Бордюрите и сградите са по OSM, проверете ширините.",
+  "Obruby jsou podle OSM a domy z {houses}, šířky ověřte.": "Бордюрите са по OSM, а сградите по {houses}, проверете ширините.",
   "Mapa povrchů tu ulici nemá.": "Картата на настилките тук не съдържа улицата.",
   "{name} teď neodpovídá (server je přetížený).": "{name} в момента не отговаря (сървърът е претоварен).",
   "{name} teď neodpovídá.": "{name} в момента не отговаря.",
   "Technická mapa ČÚZK teď neodpovídá.": "Техническата карта на ČÚZK в момента не отговаря.",
   "Technická mapa tu má jen čáry bez ploch (kraj plochy do ní nedodává).": "Техническата карта тук има само линии без площи (регионът не предоставя площи).",
   "Mapa povrchů tu nic nevrátila.": "Картата на настилките тук не върна нищо.",
-  "Obruby jsou odhadnuté z ortofota a domy z OSM, šířky ověřte.": "Бордюрите са определени приблизително по ортофото, а сградите са по OSM; проверете ширините.",
-  "Ortofoto tu nepomohlo: obruby jsou podle OSM a domy z OSM, šířky ověřte.": "Ортофото тук не помогна: бордюрите и сградите са по OSM, проверете ширините.",
+  "Obruby jsou odhadnuté z ortofota a domy z {houses}, šířky ověřte.": "Бордюрите са определени приблизително по ортофото, а сградите са по {houses}; проверете ширините.",
+  "Ortofoto tu nepomohlo: obruby jsou podle OSM a domy z {houses}, šířky ověřte.": "Ортофото тук не помогна: бордюрите са по OSM, а сградите по {houses}, проверете ширините.",
 
   // ---------- rainwater management (types.js water, HDV_UNDER) ----------
   "Vsakovací průleh": "Попивна канавка",

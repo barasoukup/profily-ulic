@@ -570,15 +570,15 @@ export const SL = {
   "{name} teď neodpovídá, plochy jsou z technické mapy ČÚZK.": "{name} se trenutno ne odziva, površine so iz tehnične karte ČÚZK.",
   "Technická mapa ČÚZK teď neodpovídá, profil je odhad z OSM.": "Tehnična karta ČÚZK se trenutno ne odziva, profil je ocena iz OSM.",
   "Mapa povrchů tu nic nevrátila, profil je odhad z OSM.": "Karta površin tukaj ni vrnila ničesar, profil je ocena iz OSM.",
-  "Obruby jsou podle OSM a domy z OSM, šířky ověřte.": "Robniki in stavbe so iz OSM, preverite širine.",
+  "Obruby jsou podle OSM a domy z {houses}, šířky ověřte.": "Robniki so iz OSM, stavbe iz {houses}, preverite širine.",
   "Mapa povrchů tu ulici nemá.": "Karta površin tukaj nima ulice.",
   "{name} teď neodpovídá (server je přetížený).": "{name} se trenutno ne odziva (strežnik je preobremenjen).",
   "{name} teď neodpovídá.": "{name} se trenutno ne odziva.",
   "Technická mapa ČÚZK teď neodpovídá.": "Tehnična karta ČÚZK se trenutno ne odziva.",
   "Technická mapa tu má jen čáry bez ploch (kraj plochy do ní nedodává).": "Tehnična karta ima tukaj le črte brez površin (okraj vanjo ne prispeva površin).",
   "Mapa povrchů tu nic nevrátila.": "Karta površin tukaj ni vrnila ničesar.",
-  "Obruby jsou odhadnuté z ortofota a domy z OSM, šířky ověřte.": "Robniki so ocenjeni iz ortofota, stavbe so iz OSM, preverite širine.",
-  "Ortofoto tu nepomohlo: obruby jsou podle OSM a domy z OSM, šířky ověřte.": "Ortofoto tukaj ni pomagalo: robniki in stavbe so iz OSM, preverite širine.",
+  "Obruby jsou odhadnuté z ortofota a domy z {houses}, šířky ověřte.": "Robniki so ocenjeni iz ortofota, stavbe so iz {houses}, preverite širine.",
+  "Ortofoto tu nepomohlo: obruby jsou podle OSM a domy z {houses}, šířky ověřte.": "Ortofoto tukaj ni pomagalo: robniki so iz OSM, stavbe iz {houses}, preverite širine.",
 
   // ---------- rainwater management (types.js water, HDV_UNDER) ----------
   "Vsakovací průleh": "Ponikovalni jarek",

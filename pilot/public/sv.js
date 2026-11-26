@@ -570,15 +570,15 @@ export const SV = {
   "{name} teď neodpovídá, plochy jsou z technické mapy ČÚZK.": "{name} svarar inte just nu, ytorna kommer från ČÚZK:s tekniska karta.",
   "Technická mapa ČÚZK teď neodpovídá, profil je odhad z OSM.": "ČÚZK:s tekniska karta svarar inte just nu, sektionen är en uppskattning från OSM.",
   "Mapa povrchů tu nic nevrátila, profil je odhad z OSM.": "Ytkartan gav inget här, sektionen är en uppskattning från OSM.",
-  "Obruby jsou podle OSM a domy z OSM, šířky ověřte.": "Kantstenar och byggnader kommer från OSM, kontrollera bredderna.",
+  "Obruby jsou podle OSM a domy z {houses}, šířky ověřte.": "Kantstenar kommer från OSM och byggnader från {houses}, kontrollera bredderna.",
   "Mapa povrchů tu ulici nemá.": "Ytkartan saknar gatan här.",
   "{name} teď neodpovídá (server je přetížený).": "{name} svarar inte just nu (servern är överbelastad).",
   "{name} teď neodpovídá.": "{name} svarar inte just nu.",
   "Technická mapa ČÚZK teď neodpovídá.": "ČÚZK:s tekniska karta svarar inte just nu.",
   "Technická mapa tu má jen čáry bez ploch (kraj plochy do ní nedodává).": "Den tekniska kartan har här bara linjer utan ytor (regionen levererar inga ytor).",
   "Mapa povrchů tu nic nevrátila.": "Ytkartan gav inget här.",
-  "Obruby jsou odhadnuté z ortofota a domy z OSM, šířky ověřte.": "Kantstenarna är uppskattade från ortofotot och byggnaderna kommer från OSM, kontrollera bredderna.",
-  "Ortofoto tu nepomohlo: obruby jsou podle OSM a domy z OSM, šířky ověřte.": "Ortofotot hjälpte inte här: kantstenar och byggnader kommer från OSM, kontrollera bredderna.",
+  "Obruby jsou odhadnuté z ortofota a domy z {houses}, šířky ověřte.": "Kantstenarna är uppskattade från ortofotot och byggnaderna kommer från {houses}, kontrollera bredderna.",
+  "Ortofoto tu nepomohlo: obruby jsou podle OSM a domy z {houses}, šířky ověřte.": "Ortofotot hjälpte inte här: kantstenar kommer från OSM och byggnader från {houses}, kontrollera bredderna.",
 
   // ---------- rainwater management (types.js water, HDV_UNDER) ----------
   "Vsakovací průleh": "Svackdike",

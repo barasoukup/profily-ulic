@@ -106,7 +106,7 @@ export const SK = {
   "ortofoto © basemap.at (CC BY 4.0)": "ortofoto © basemap.at (CC BY 4.0)",
   "ortofoto © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)": "ortofoto © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)",
   "Místo se nepodařilo načíst ze ZBGIS. Zkuste to znovu.": "Miesto sa nepodarilo načítať zo ZBGIS. Skúste to znova.",
-  "Obruby jsou podle OSM a domy z OSM, šířky ověřte.": "Obrubníky sú podľa OSM a domy z OSM, šírky overte.",
+  "Obruby jsou podle OSM a domy z {houses}, šířky ověřte.": "Obrubníky sú podľa OSM a domy z {houses}, šírky overte.",
   "Mapa povrchů tu ulici nemá.": "Mapa povrchov tu ulicu nemá.",
   "{name} teď neodpovídá (server je přetížený).": "{name} teraz neodpovedá (server je preťažený).",
   "{name} teď neodpovídá.": "{name} teraz neodpovedá.",
@@ -562,8 +562,8 @@ export const SK = {
   "{name} teď neodpovídá, plochy jsou z technické mapy ČÚZK.": "{name} teraz neodpovedá, plochy sú z technickej mapy ČÚZK.",
   "Technická mapa ČÚZK teď neodpovídá, profil je odhad z OSM.": "Technická mapa ČÚZK teraz neodpovedá, profil je odhad z OSM.",
   "Mapa povrchů tu nic nevrátila, profil je odhad z OSM.": "Mapa povrchov tu nič nevrátila, profil je odhad z OSM.",
-  "Obruby jsou odhadnuté z ortofota a domy z OSM, šířky ověřte.": "Obrubníky sú odhadnuté z ortofota a domy z OSM, šírky overte.",
-  "Ortofoto tu nepomohlo: obruby jsou podle OSM a domy z OSM, šířky ověřte.": "Ortofoto tu nepomohlo: obrubníky sú podľa OSM a domy z OSM, šírky overte.",
+  "Obruby jsou odhadnuté z ortofota a domy z {houses}, šířky ověřte.": "Obrubníky sú odhadnuté z ortofota a domy z {houses}, šírky overte.",
+  "Ortofoto tu nepomohlo: obruby jsou podle OSM a domy z {houses}, šířky ověřte.": "Ortofoto tu nepomohlo: obrubníky sú podľa OSM a domy z {houses}, šírky overte.",
 
   // ---------- rainwater management (types.js water, HDV_UNDER) ----------
   "Vsakovací průleh": "Vsakovací prieľah",

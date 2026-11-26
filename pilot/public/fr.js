@@ -572,15 +572,15 @@ export const FR = {
   "{name} teď neodpovídá, plochy jsou z technické mapy ČÚZK.": "{name} ne répond pas pour l'instant, les surfaces viennent du plan technique du ČÚZK.",
   "Technická mapa ČÚZK teď neodpovídá, profil je odhad z OSM.": "Le plan technique du ČÚZK ne répond pas pour l'instant, le profil est une estimation d'après OSM.",
   "Mapa povrchů tu nic nevrátila, profil je odhad z OSM.": "Le plan des surfaces n'a rien renvoyé ici, le profil est une estimation d'après OSM.",
-  "Obruby jsou podle OSM a domy z OSM, šířky ověřte.": "Les bordures et les bâtiments viennent d'OSM, vérifiez les largeurs.",
+  "Obruby jsou podle OSM a domy z {houses}, šířky ověřte.": "Les bordures viennent d'OSM et les bâtiments des données {houses}, vérifiez les largeurs.",
   "Mapa povrchů tu ulici nemá.": "Le plan des surfaces n'a pas la rue ici.",
   "{name} teď neodpovídá (server je přetížený).": "{name} ne répond pas pour l'instant (serveur surchargé).",
   "{name} teď neodpovídá.": "{name} ne répond pas pour l'instant.",
   "Technická mapa ČÚZK teď neodpovídá.": "Le plan technique du ČÚZK ne répond pas pour l'instant.",
   "Technická mapa tu má jen čáry bez ploch (kraj plochy do ní nedodává).": "Le plan technique n'a ici que des lignes sans surfaces (la région n'y fournit pas de surfaces).",
   "Mapa povrchů tu nic nevrátila.": "Le plan des surfaces n'a rien renvoyé ici.",
-  "Obruby jsou odhadnuté z ortofota a domy z OSM, šířky ověřte.": "Les bordures sont estimées d'après l'orthophoto et les bâtiments viennent d'OSM, vérifiez les largeurs.",
-  "Ortofoto tu nepomohlo: obruby jsou podle OSM a domy z OSM, šířky ověřte.": "L'orthophoto n'a pas aidé ici : les bordures et les bâtiments viennent d'OSM, vérifiez les largeurs.",
+  "Obruby jsou odhadnuté z ortofota a domy z {houses}, šířky ověřte.": "Les bordures sont estimées d'après l'orthophoto et les bâtiments sont issus des données {houses}, vérifiez les largeurs.",
+  "Ortofoto tu nepomohlo: obruby jsou podle OSM a domy z {houses}, šířky ověřte.": "L'orthophoto n'a pas aidé ici : les bordures viennent d'OSM et les bâtiments des données {houses}, vérifiez les largeurs.",
 
   // ---------- rainwater management (types.js water, HDV_UNDER) ----------
   "Vsakovací průleh": "Noue d'infiltration",

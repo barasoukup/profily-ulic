@@ -570,15 +570,15 @@ export const RO = {
   "{name} teď neodpovídá, plochy jsou z technické mapy ČÚZK.": "{name} nu răspunde acum, suprafețele sunt din harta tehnică a ČÚZK.",
   "Technická mapa ČÚZK teď neodpovídá, profil je odhad z OSM.": "Harta tehnică a ČÚZK nu răspunde acum, profilul este o estimare din OSM.",
   "Mapa povrchů tu nic nevrátila, profil je odhad z OSM.": "Harta suprafețelor nu a returnat nimic aici, profilul este o estimare din OSM.",
-  "Obruby jsou podle OSM a domy z OSM, šířky ověřte.": "Bordurile și clădirile sunt din OSM, verificați lățimile.",
+  "Obruby jsou podle OSM a domy z {houses}, šířky ověřte.": "Bordurile sunt din OSM, clădirile din {houses}, verificați lățimile.",
   "Mapa povrchů tu ulici nemá.": "Harta suprafețelor nu are aici strada.",
   "{name} teď neodpovídá (server je přetížený).": "{name} nu răspunde acum (serverul este supraîncărcat).",
   "{name} teď neodpovídá.": "{name} nu răspunde acum.",
   "Technická mapa ČÚZK teď neodpovídá.": "Harta tehnică a ČÚZK nu răspunde acum.",
   "Technická mapa tu má jen čáry bez ploch (kraj plochy do ní nedodává).": "Harta tehnică are aici doar linii, fără suprafețe (regiunea nu furnizează suprafețe).",
   "Mapa povrchů tu nic nevrátila.": "Harta suprafețelor nu a returnat nimic aici.",
-  "Obruby jsou odhadnuté z ortofota a domy z OSM, šířky ověřte.": "Bordurile sunt estimate din ortofoto, clădirile sunt din OSM, verificați lățimile.",
-  "Ortofoto tu nepomohlo: obruby jsou podle OSM a domy z OSM, šířky ověřte.": "Ortofoto nu a ajutat aici: bordurile și clădirile sunt din OSM, verificați lățimile.",
+  "Obruby jsou odhadnuté z ortofota a domy z {houses}, šířky ověřte.": "Bordurile sunt estimate din ortofoto, clădirile sunt din {houses}, verificați lățimile.",
+  "Ortofoto tu nepomohlo: obruby jsou podle OSM a domy z {houses}, šířky ověřte.": "Ortofoto nu a ajutat aici: bordurile sunt din OSM, clădirile din {houses}, verificați lățimile.",
 
   // ---------- rainwater management (types.js water, HDV_UNDER) ----------
   "Vsakovací průleh": "Șanț înierbat de infiltrare",
