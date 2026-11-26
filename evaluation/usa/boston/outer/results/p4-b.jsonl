@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "X", "jistota": "stredni", "why": "Vpravo za chodníkem je asfaltové parkoviště (plocha), ne zeleň; složení jinak shodné."}
+{"n": 2, "verdict": "stejne", "jistota": "nizka", "why": "Profily se liší jen šířkou okrajové zeleně za chodníkem, z podkladů nerozhodnutelné."}
+{"n": 3, "verdict": "stejne", "jistota": "stredni", "why": "Totéž složení, rozdíl jen 0,6 m zeleně."}
+{"n": 4, "verdict": "Y", "jistota": "nizka", "why": "Vpravo za chodníkem je jen úzký předzahrádkový pruh před domy, X přidává 11 m zeleně; složení jinak shodné."}
+{"n": 5, "verdict": "Y", "jistota": "stredni", "why": "Vpravo za chodníkem je asi 4 m trávníku a pak domy; X má 15,5 m zeleně, což zasahuje do zástavby."}
+{"n": 6, "verdict": "Y", "jistota": "stredni", "why": "Vpravo za chodníkem je trávník asi 3,5 m před domem, Y (4,9 m) sedí lépe než X (1,5 m)."}
+{"n": 7, "verdict": "Y", "jistota": "nizka", "why": "Vlevo je široký trávník od domu k chodníku (asi 10 m), Y se blíží víc; vpravo mají oba chodník 6 m místo zeleně plus chodníku."}
+{"n": 8, "verdict": "stejne", "jistota": "nizka", "why": "Stejné čtyři pruhy s krajnicemi; vpravo je parkoviště, obě varianty tam dávají zeleň, liší se jen šířkou."}
+{"n": 9, "verdict": "stejne", "jistota": "vysoka", "why": "Identické složení, rozdíl jen 0,9 m zeleně na okraji."}
+{"n": 10, "verdict": "stejne", "jistota": "nizka", "why": "Liší se jen 5 m zeleně na začátku, v ortofotu je tam parkoviště a fotka neodpovídá místu; nejde rozlišit."}

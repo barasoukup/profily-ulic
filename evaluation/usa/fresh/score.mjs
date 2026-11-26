@@ -31,6 +31,7 @@ console.log("| typ | řezů | mapa : odhad | nerozhodně | nejde posoudit | pod�
 console.log(row("bez obslužných", out.filter((x) => x.kind !== "service")));
 for (const k of KINDS) console.log(row(k, out.filter((x) => x.kind === k)));
 // ---- the universal measurement
+if (process.env.EVAL_NO_U) { console.log("\n## Po řezech A/B\n\n| řez | typ | posuzovatelé | výsledek |\n|---|---|---|---|"); for (const x of out.sort((a, b) => +a.id.split("-")[1] - b.id.split("-")[1])) console.log(`| ${x.id} | ${x.kind} | ${x.v.join(", ")} | ${x.r} |`); process.exit(0); }
 const D = new URL("../../universal/data/", import.meta.url).href, A = { [`s ${WHO}`]: new Map(json(D + `${NAME}.json`).filter((r) => r.variant === "def").map((r) => [r.id, r])), "bez mapy": new Map(json(D + `${NAME}.json`).filter((r) => r.variant === OFF).map((r) => [r.id, r])), "jen OSM": new Map(json(D + `${NAME}-osm.json`).map((r) => [r.id, r])) };
 const J = [1, 2, 3, 4, 5, 6].filter((k) => k <= 3 || fs.existsSync(here(`results/q${k}.jsonl`))).flatMap((k) => lines(`results/q${k}.jsonl`)); // (New York: four packages)
 const LANE = ["pruh", "bus", "tramvaj"], use = J.filter((j) => j.usable && Object.values(A).every((m) => m.get(j.id)?.parts?.length) && j.parts.some((p) => LANE.includes(String(p[0]).replace("?", ""))));

@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "stejne", "jistota": "nizka", "why": "Profily se liší jen 0,5 m zeleně u fasády A; složení (chodník, stání, 4 pruhy, krajnice, chodník) je shodné a odpovídá ortofotu."}
+{"n": 2, "verdict": "X", "jistota": "nizka", "why": "Na straně A je před chodníkem trávník/dvorek, ne zpevněná plocha; X (zelen) sedí lépe než plocha 7,7 m. Zbytek shodný."}
+{"n": 3, "verdict": "stejne", "jistota": "nizka", "why": "Rozdíl jen 0,8 m zeleně na kraji A; zbytek stejný a odpovídá dvěma směrům s dělicím ostrůvkem."}
+{"n": 4, "verdict": "stejne", "jistota": "nizka", "why": "Liší se jen 1,3 m zeleně na A; ostatní shodné."}
+{"n": 5, "verdict": "stejne", "jistota": "nizka", "why": "Rozdíl jen 1 m zeleně na A, ostatní složení totožné (obě stejně nesedí na parkoviště a úzkou vozovku)."}
+{"n": 6, "verdict": "stejne", "jistota": "nizka", "why": "Křižovatka; oba mají stejnou vozovku, liší se jen zelení 16,4 m na A, kterou ortofoto jednoznačně nerozhodne."}
+{"n": 7, "verdict": "X", "jistota": "stredni", "why": "Na A je mezi domem a chodníkem pás předzahrádky/trávníku, který X zachycuje 2,7 m zeleně; Y ho vynechává."}
+{"n": 8, "verdict": "Y", "jistota": "nizka", "why": "Na B končí ulice plotem a domem; Y tam končí, X přidává 11,6 m zeleně navíc přes plot do pozemku."}
+{"n": 9, "verdict": "stejne", "jistota": "nizka", "why": "Liší se jen 0,6 m zeleně na A; zbytek stejný."}
+{"n": 10, "verdict": "stejne", "jistota": "nizka", "why": "Liší se jen 1,2 m zeleně na B; složení stejné."}

@@ -638,6 +638,9 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
   parkovišti a náměstí). Washington 100 řezů beze změny, regrese beze změny.
 - Přegenerovat: `node tools/build_staty.mjs usa && node tools/build_towns_us.mjs && node tools/build_coverage.mjs`.
   Před nasazením workflow OSM tiles se `states: us` (nebo `us_bos`).
+- Mezery za vnějším chodníkem (27. 11., `evaluation/usa/boston/outer/ZPRAVA.md`, `planimetrics.js outerGaps`, `ortho-osm.js
+  outerGapsByImage`): domy a parkoviště z OSM, zbytek ortofotem (MassGIS je bez listí, zeleň podle žlutosti a sytosti). A/B 52
+  nových tepen 18 : 16, **vypnuto**, `?outergaps=1`.
 
 ## Společné pro státy (Bára 23. 11. 2026)
 - Sever Kypru a Itálie mimo otevřená ortofota (i se San Marinem a Vatikánem) profil nedostanou, aplikace to řekne

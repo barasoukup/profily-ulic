@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "X", "jistota": "stredni", "why": "Strana B je zpevněné parkoviště (plocha), ne zeleň; 0,6 m zeleně na A je zanedbatelné."}
+{"n": 2, "verdict": "stejne", "jistota": "stredni", "why": "Složení i šířky shodné, rozdíl jen v zeleni za chodníkem."}
+{"n": 3, "verdict": "stejne", "jistota": "stredni", "why": "Stejné složení, rozdíl 0,6 m ve výplni zeleně na straně A."}
+{"n": 4, "verdict": "Y", "jistota": "nizka", "why": "Úzká ulice se stáním po obou stranách je shodná; X má za chodníkem na B 11,4 m zeleně, ale fasáda je už za cca 3-4 m."}
+{"n": 5, "verdict": "Y", "jistota": "stredni", "why": "Složení shodné (2+2 pruhy, středový pás); Y končí u fasády domů na B (cca 5 m), X zeleň zbytečně dlouhá."}
+{"n": 6, "verdict": "Y", "jistota": "nizka", "why": "Shodné složení se stáním po obou stranách; za chodníkem na B je trávník cca 4,5 m do domu, Y (4,9) sedí lépe než 1,5."}
+{"n": 7, "verdict": "Y", "jistota": "nizka", "why": "Shodné chyby (4 pruhy místo 2, chodník 6 m na B), Y ale začíná u fasády domu na A."}
+{"n": 8, "verdict": "X", "jistota": "nizka", "why": "Stejné složení 4 pruhů; X končí zhruba u fasády budovy na B, Y přesahuje okraj."}
+{"n": 9, "verdict": "stejne", "jistota": "nizka", "why": "Složení totožné, liší se jen 0,9 m zeleně na konci; z podkladů nejde rozlišit."}
+{"n": 10, "verdict": "stejne", "jistota": "nizka", "why": "Totožné složení, rozdíl jen v zeleni na A (parkoviště/zástavba); fotky nesedí s ortofotem."}

@@ -25,6 +25,7 @@ const VARIANTS = {
   tt0: { q: "off=tunneltracks", off: ["tunneltracks"] },
   rt0: { q: "off=roadtracks", off: [] }, // Canada: without OSM's cycle tracks in the map's carriageway
   bos0: { q: "boston=0&cambridge=0", off: [] }, // Boston (evaluation/usa/boston): without the maps of Boston and Cambridge
+  og0: { q: "off=outergaps", off: [] }, // Boston (evaluation/usa/boston/outer): measured with the outer gaps on by default; now def is without them, ?outergaps=1 with
   osm: { q: "dc=0&toronto=0&nyc=0&sf=0&boston=0&cambridge=0&orto=0&ai=0", off: [], load: true },
   old: { q: "off=ulicky,treepits,pocetpruhu", off: ["ulicky", "treepits", "pocetpruhu"] },
 };

@@ -488,6 +488,8 @@ autobus a tramvaj MBTA, ortofoto MassGIS, texty a normy Bostonu) a `cambridge` (
   `?boston=0`, `?cambridge=0` vypnou, `?bostonhouse=0` vypne podlaží domů.
 - **ortofoto** MassGIS 2025 (15 cm, dlaždice z20, „No restrictions“) nad celým metrem: pruhy, obruby, podklad mapy (`lanes-ortho.js us-ma`).
 - normy Boston Complete Streets Guidelines 2013 jen oranžově (`evaluation/usa/boston/NORMY.md`), stání 3 m na směr jako DC.
+- mezery za vnějším chodníkem podle domů a parkovišť z OSM a ortofota (`planimetrics.js outerGaps`, `ortho-osm.js
+  outerGapsByImage`) jen s `?outergaps=1` (A/B 18 : 16, `evaluation/usa/boston/outer/ZPRAVA.md`).
 Měření `evaluation/usa/boston/ZPRAVA.md`.
 
 ### Kanada: Toronto (Bára 25. 11. 2026)

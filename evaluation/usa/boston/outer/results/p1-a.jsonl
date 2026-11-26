@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "Y", "jistota": "nizka", "why": "Složení ulice stejné (tři pruhy, stání po stranách); X přidává 14 m zeleně, ale za ulicí je zpevněná plocha/parkoviště a Y končí blíž skutečnému okraji."}
+{"n": 2, "verdict": "stejne", "jistota": "stredni", "why": "Ulice (dva pruhy, krajnice, chodníky) je shodná; liší se jen předzahrádky za chodníky, které nejsou součástí ulice."}
+{"n": 3, "verdict": "stejne", "jistota": "nizka", "why": "Shodné složení se dvěma dvoupruhovými jízdními pásy a dělicím pásem; liší se jen pás za chodníkem, který je na ortofotu zpevněný/stín, ne zeleň."}
+{"n": 4, "verdict": "Y", "jistota": "nizka", "why": "Shodné složení; za pravým chodníkem je jen úzký pás zeleně do fasády, takže Y (2 m) sedí lépe než X (3,7 m)."}
+{"n": 5, "verdict": "Y", "jistota": "nizka", "why": "Shodné složení; za pravou stranou je zpevněná plocha a fasáda přibližně 10 m od ulice, X s 14,8 m zeleně přesahuje fasádu."}
+{"n": 6, "verdict": "stejne", "jistota": "stredni", "why": "Obě mají 3+3 jízdní pruhy se středovým pásem a pravým chodníkem; vlevo je jen parkoviště s okrajem, rozdíl zeleně 1,9 vs 3,2 m je nepodstatný."}
+{"n": 7, "verdict": "Y", "jistota": "nizka", "why": "Složení shodné (2+3 pruhy, středový pás, chodník); vpravo za chodníkem je parkoviště až k budově asi 19 m, takže Y dosahuje fasády, X končí o 18 m dřív (u obou je ale plocha místo zeleně)."}
+{"n": 8, "verdict": "X", "jistota": "nizka", "why": "Shodné složení (chodníky, stání po stranách, dva pruhy); vlevo domy stojí těsně u chodníku, takže užší zeleň 1,6 m je blíž než 3 m."}
+{"n": 9, "verdict": "X", "jistota": "stredni", "why": "Shodné složení se stáním po obou stranách a dvěma pruhy; vpravo je za chodníkem předzahrádka asi 5,5 m k domu, což odpovídá X (5,6) lépe než Y (2,5)."}
+{"n": 10, "verdict": "stejne", "jistota": "stredni", "why": "Profily jsou totožné kromě 0,3 m zeleně na konci; složení i šířky shodné."}

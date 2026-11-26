@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "Y", "jistota": "stredni", "why": "Vlevo je před ulicí pás zeleně/zahrad asi 20-30 m (domy až dál), Y to zachycuje, X začíná chodníkem hned u A."}
+{"n": 2, "verdict": "stejne", "jistota": "vysoka", "why": "Profily se liší jen zelení za okrajem na straně B."}
+{"n": 3, "verdict": "stejne", "jistota": "stredni", "why": "Rozdíl jen 0,6 m zeleně u A, v podkladech nerozhodnutelný."}
+{"n": 4, "verdict": "Y", "jistota": "nizka", "why": "Vlevo domy až k chodníku, delší zeleň u A je blíž skutečné poloze okraje."}
+{"n": 5, "verdict": "stejne", "jistota": "vysoka", "why": "Liší se jen 0,3 m zeleně na kraji."}
+{"n": 6, "verdict": "stejne", "jistota": "vysoka", "why": "Liší se jen zeleň o 1 m za chodníkem."}
+{"n": 7, "verdict": "Y", "jistota": "stredni", "why": "Za chodníkem vpravo stojí budovy, zeleň 10 m navíc v X tam není."}
+{"n": 8, "verdict": "stejne", "jistota": "stredni", "why": "Rozdíl jen v zeleni za okrajem ulice."}
+{"n": 9, "verdict": "stejne", "jistota": "vysoka", "why": "Rozdíl 0,7 m zeleně u A."}
+{"n": 10, "verdict": "Y", "jistota": "nizka", "why": "Za chodníkem vpravo jsou hned budovy, zeleň 8,8 m navíc v X nemá oporu; bez fotek."}

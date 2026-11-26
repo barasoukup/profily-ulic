@@ -1,0 +1,2562 @@
+[
+ {
+  "id": "bo-1",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "Dudley Street",
+  "highway": "secondary",
+  "wayId": 570158272,
+  "lat": 42.3217036,
+  "lon": -71.0722832,
+  "bearing": -16.9,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-2",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "Gallivan Boulevard",
+  "highway": "trunk",
+  "wayId": 1413342954,
+  "lat": 42.2821802,
+  "lon": -71.0582754,
+  "bearing": 70.6,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-3",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "Spring Street",
+  "highway": "secondary",
+  "wayId": 8650522,
+  "lat": 42.2766934,
+  "lon": -71.1656603,
+  "bearing": 53.8,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-4",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "",
+  "highway": "secondary",
+  "wayId": 504638684,
+  "lat": 42.2962068,
+  "lon": -71.0485096,
+  "bearing": -26.7,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-5",
+  "country": "US",
+  "town": "cambridge",
+  "kind": "arterial",
+  "name": "Albany Street",
+  "highway": "secondary",
+  "wayId": 44807924,
+  "lat": 42.3578762,
+  "lon": -71.1023919,
+  "bearing": 56.7,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-6",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "Commonwealth Avenue",
+  "highway": "primary",
+  "wayId": 825263816,
+  "lat": 42.3514719,
+  "lon": -71.0790225,
+  "bearing": 70.1,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-7",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "Rutherford Avenue",
+  "highway": "primary",
+  "wayId": 591493145,
+  "lat": 42.3717528,
+  "lon": -71.0636666,
+  "bearing": -57.1,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-8",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "Frankfort Street",
+  "highway": "secondary",
+  "wayId": 1527511081,
+  "lat": 42.3769098,
+  "lon": -71.0270197,
+  "bearing": 39.1,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-9",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "Hyde Park Avenue",
+  "highway": "primary",
+  "wayId": 924066369,
+  "lat": 42.2896753,
+  "lon": -71.1182151,
+  "bearing": 6.2,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-10",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "William T. Morrissey Boulevard",
+  "highway": "primary",
+  "wayId": 215895489,
+  "lat": 42.3193019,
+  "lon": -71.0500422,
+  "bearing": -21.9,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-11",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "Harrison Avenue",
+  "highway": "secondary",
+  "wayId": 8650870,
+  "lat": 42.3410096,
+  "lon": -71.0675521,
+  "bearing": 43.9,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-12",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "Nonantum Road",
+  "highway": "secondary",
+  "wayId": 8638345,
+  "lat": 42.3579828,
+  "lon": -71.1624455,
+  "bearing": 79.7,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-13",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "Perkins Street",
+  "highway": "secondary",
+  "wayId": 8646764,
+  "lat": 42.31883,
+  "lon": -71.1251507,
+  "bearing": 64.1,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-14",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "Atlantic Avenue",
+  "highway": "primary",
+  "wayId": 426488940,
+  "lat": 42.3537949,
+  "lon": -71.0533829,
+  "bearing": 56.7,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-15",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "Centre Street",
+  "highway": "secondary",
+  "wayId": 310310958,
+  "lat": 42.2780751,
+  "lon": -71.1600295,
+  "bearing": 5.6,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-16",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "Washburn Street",
+  "highway": "secondary",
+  "wayId": 924284136,
+  "lat": 42.3278412,
+  "lon": -71.0594204,
+  "bearing": -31.2,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-17",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "Washington Street",
+  "highway": "primary",
+  "wayId": 706404864,
+  "lat": 42.2684683,
+  "lon": -71.149193,
+  "bearing": 41.4,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-18",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "Heath Street",
+  "highway": "secondary",
+  "wayId": 1193027096,
+  "lat": 42.3270643,
+  "lon": -71.1076524,
+  "bearing": -63.3,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-19",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "Veterans of Foreign Wars Parkway",
+  "highway": "trunk",
+  "wayId": 1459972571,
+  "lat": 42.2918678,
+  "lon": -71.1656584,
+  "bearing": 56.8,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-20",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "Broadway",
+  "highway": "primary",
+  "wayId": 1136392750,
+  "lat": 42.3949691,
+  "lon": -71.0667968,
+  "bearing": 34.3,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-21",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "Neponset Avenue",
+  "highway": "primary",
+  "wayId": 60239171,
+  "lat": 42.2856743,
+  "lon": -71.0419506,
+  "bearing": -67.3,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-22",
+  "country": "US",
+  "town": "cambridge",
+  "kind": "arterial",
+  "name": "Memorial Drive",
+  "highway": "trunk",
+  "wayId": 1108993579,
+  "lat": 42.3633749,
+  "lon": -71.1160824,
+  "bearing": -0.4,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-23",
+  "country": "US",
+  "town": "cambridge",
+  "kind": "arterial",
+  "name": "Massachusetts Avenue",
+  "highway": "primary",
+  "wayId": 1109076067,
+  "lat": 42.3995775,
+  "lon": -71.1330632,
+  "bearing": -51.3,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-24",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "Western Avenue",
+  "highway": "secondary",
+  "wayId": 508842803,
+  "lat": 42.36352,
+  "lon": -71.1257473,
+  "bearing": 83.1,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-25",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "Morton Street",
+  "highway": "trunk",
+  "wayId": 1420319524,
+  "lat": 42.2854475,
+  "lon": -71.0930533,
+  "bearing": -16.5,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-26",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "Frontage Road",
+  "highway": "primary",
+  "wayId": 426470682,
+  "lat": 42.3356589,
+  "lon": -71.065853,
+  "bearing": -5.2,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-27",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "Nashua Street",
+  "highway": "primary",
+  "wayId": 288990796,
+  "lat": 42.3675708,
+  "lon": -71.0664384,
+  "bearing": 61.4,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-28",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "Cummins Highway",
+  "highway": "primary",
+  "wayId": 426602288,
+  "lat": 42.2789238,
+  "lon": -71.1164938,
+  "bearing": -53.2,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-29",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "Shawmut Avenue",
+  "highway": "secondary",
+  "wayId": 924361904,
+  "lat": 42.3295082,
+  "lon": -71.0859936,
+  "bearing": -14.5,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-30",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "Washington Street",
+  "highway": "primary",
+  "wayId": 844540169,
+  "lat": 42.3503137,
+  "lon": -71.1655999,
+  "bearing": -71.2,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-31",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "Hanover Street",
+  "highway": "secondary",
+  "wayId": 109301988,
+  "lat": 42.3666376,
+  "lon": -71.0526783,
+  "bearing": 10.6,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-32",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "Perkins Street",
+  "highway": "secondary",
+  "wayId": 8646820,
+  "lat": 42.3213573,
+  "lon": -71.1136899,
+  "bearing": 78,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-33",
+  "country": "US",
+  "town": "cambridge",
+  "kind": "arterial",
+  "name": "Memorial Drive",
+  "highway": "trunk",
+  "wayId": 836110387,
+  "lat": 42.3603734,
+  "lon": -71.0833188,
+  "bearing": 60.6,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-34",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "American Legion Highway",
+  "highway": "secondary",
+  "wayId": 8647127,
+  "lat": 42.2888123,
+  "lon": -71.1046141,
+  "bearing": 58.5,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-35",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "William T. Morrissey Boulevard",
+  "highway": "primary",
+  "wayId": 1137220729,
+  "lat": 42.2992079,
+  "lon": -71.0495496,
+  "bearing": -3.5,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-36",
+  "country": "US",
+  "town": "cambridge",
+  "kind": "arterial",
+  "name": "Brookline Street",
+  "highway": "primary",
+  "wayId": 1014490332,
+  "lat": 42.363094,
+  "lon": -71.1022239,
+  "bearing": 33.8,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-37",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "",
+  "highway": "secondary",
+  "wayId": 42463960,
+  "lat": 42.3689635,
+  "lon": -71.0220179,
+  "bearing": 3.3,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-38",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "Veterans of Foreign Wars Parkway",
+  "highway": "trunk",
+  "wayId": 1460853222,
+  "lat": 42.2965222,
+  "lon": -71.1476372,
+  "bearing": 85,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-39",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "Dorchester Avenue",
+  "highway": "primary",
+  "wayId": 1178446021,
+  "lat": 42.3424851,
+  "lon": -71.0571245,
+  "bearing": -0.5,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-40",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "Quincy Street",
+  "highway": "secondary",
+  "wayId": 426490100,
+  "lat": 42.316275,
+  "lon": -71.0825267,
+  "bearing": -69.5,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-41",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "",
+  "highway": "trunk_link",
+  "wayId": 619454099,
+  "lat": 42.2697526,
+  "lon": -71.0936992,
+  "bearing": -88.5,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-42",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "Commonwealth Avenue",
+  "highway": "primary",
+  "wayId": 802333195,
+  "lat": 42.3493905,
+  "lon": -71.0874735,
+  "bearing": 81.6,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-43",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "Melnea Cass Boulevard",
+  "highway": "primary",
+  "wayId": 426466013,
+  "lat": 42.33216,
+  "lon": -71.0795746,
+  "bearing": -60.1,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-44",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "Rutherford Avenue",
+  "highway": "primary",
+  "wayId": 89912880,
+  "lat": 42.3842504,
+  "lon": -71.073419,
+  "bearing": 9.2,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-45",
+  "country": "US",
+  "town": "cambridge",
+  "kind": "arterial",
+  "name": "Fresh Pond Parkway",
+  "highway": "trunk",
+  "wayId": 1411398199,
+  "lat": 42.3837241,
+  "lon": -71.1422244,
+  "bearing": 25.9,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-46",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "Dorchester Avenue",
+  "highway": "primary",
+  "wayId": 637322214,
+  "lat": 42.3370545,
+  "lon": -71.0570875,
+  "bearing": -1,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-47",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "Brookline Avenue",
+  "highway": "trunk",
+  "wayId": 307333283,
+  "lat": 42.3366833,
+  "lon": -71.1096504,
+  "bearing": 38.3,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-48",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "",
+  "highway": "primary_link",
+  "wayId": 215726062,
+  "lat": 42.3008116,
+  "lon": -71.0496598,
+  "bearing": -15.9,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-49",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "Magazine Street",
+  "highway": "secondary",
+  "wayId": 301850267,
+  "lat": 42.3253211,
+  "lon": -71.0744427,
+  "bearing": 73,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-50",
+  "country": "US",
+  "town": "cambridge",
+  "kind": "arterial",
+  "name": "Massachusetts Avenue",
+  "highway": "primary",
+  "wayId": 426480264,
+  "lat": 42.3912911,
+  "lon": -71.1230701,
+  "bearing": -57.4,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-51",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "Neponset Valley Parkway",
+  "highway": "secondary",
+  "wayId": 420759690,
+  "lat": 42.2441262,
+  "lon": -71.1339561,
+  "bearing": -70.4,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-52",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "Hyde Park Avenue",
+  "highway": "primary",
+  "wayId": 1308541146,
+  "lat": 42.2533102,
+  "lon": -71.1246746,
+  "bearing": 20.1,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-53",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "Saratoga Street",
+  "highway": "secondary",
+  "wayId": 196017482,
+  "lat": 42.38056,
+  "lon": -71.025782,
+  "bearing": 63.4,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-54",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "Hyde Park Avenue",
+  "highway": "primary",
+  "wayId": 213575595,
+  "lat": 42.2499559,
+  "lon": -71.126276,
+  "bearing": 19.5,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-55",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "Columbia Road",
+  "highway": "secondary",
+  "wayId": 591236013,
+  "lat": 42.3319165,
+  "lon": -71.0289135,
+  "bearing": 59.3,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-56",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "Franklin Street",
+  "highway": "secondary",
+  "wayId": 485292840,
+  "lat": 42.3557219,
+  "lon": -71.0554854,
+  "bearing": 52.2,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-57",
+  "country": "US",
+  "town": "cambridge",
+  "kind": "arterial",
+  "name": "Broadway",
+  "highway": "secondary",
+  "wayId": 33720646,
+  "lat": 42.3708814,
+  "lon": -71.1049625,
+  "bearing": -62,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-58",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "Dorchester Street",
+  "highway": "secondary",
+  "wayId": 924712784,
+  "lat": 42.3309563,
+  "lon": -71.0541841,
+  "bearing": 55.8,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-59",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "D Street",
+  "highway": "primary",
+  "wayId": 426499069,
+  "lat": 42.347129,
+  "lon": -71.0411252,
+  "bearing": 33.9,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-60",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "Commonwealth Avenue",
+  "highway": "primary",
+  "wayId": 885839457,
+  "lat": 42.3419602,
+  "lon": -71.1449562,
+  "bearing": 61.7,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-61",
+  "country": "US",
+  "town": "cambridge",
+  "kind": "arterial",
+  "name": "Cardinal Medeiros Avenue",
+  "highway": "secondary",
+  "wayId": 8614918,
+  "lat": 42.3665133,
+  "lon": -71.0916592,
+  "bearing": 22.9,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-62",
+  "country": "US",
+  "town": "cambridge",
+  "kind": "arterial",
+  "name": "Blanchard Road",
+  "highway": "secondary",
+  "wayId": 8614853,
+  "lat": 42.3929114,
+  "lon": -71.1578648,
+  "bearing": -13.5,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-63",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "Washington Street",
+  "highway": "secondary",
+  "wayId": 1189751261,
+  "lat": 42.2795113,
+  "lon": -71.0699214,
+  "bearing": -23.9,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-64",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "Commonwealth Avenue",
+  "highway": "primary",
+  "wayId": 1394170882,
+  "lat": 42.3491844,
+  "lon": -71.0996973,
+  "bearing": -80.9,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-65",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "Hotel Drive",
+  "highway": "secondary",
+  "wayId": 426661529,
+  "lat": 42.3682471,
+  "lon": -71.0248044,
+  "bearing": -35.4,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-66",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "Huntington Avenue",
+  "highway": "primary",
+  "wayId": 8647333,
+  "lat": 42.3324582,
+  "lon": -71.1113211,
+  "bearing": 48.8,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-67",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "Washington Street",
+  "highway": "secondary",
+  "wayId": 301814878,
+  "lat": 42.2911246,
+  "lon": -71.0716675,
+  "bearing": -2.9,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-68",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "Chestnut Hill Avenue",
+  "highway": "secondary",
+  "wayId": 8649610,
+  "lat": 42.3410754,
+  "lon": -71.1548505,
+  "bearing": 24.7,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-69",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "Columbia Road",
+  "highway": "primary",
+  "wayId": 426485096,
+  "lat": 42.321422,
+  "lon": -71.0546943,
+  "bearing": 82.8,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-70",
+  "country": "US",
+  "town": "cambridge",
+  "kind": "arterial",
+  "name": "Huron Avenue",
+  "highway": "primary",
+  "wayId": 92017351,
+  "lat": 42.3793129,
+  "lon": -71.1457385,
+  "bearing": 40.9,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-71",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "Blue Hill Avenue",
+  "highway": "primary",
+  "wayId": 426473714,
+  "lat": 42.2864669,
+  "lon": -71.0907054,
+  "bearing": 13.7,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-72",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "Causeway Street",
+  "highway": "secondary",
+  "wayId": 619113893,
+  "lat": 42.3646046,
+  "lon": -71.0628382,
+  "bearing": 54.4,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-73",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "Shawmut Avenue",
+  "highway": "secondary",
+  "wayId": 41743611,
+  "lat": 42.3417784,
+  "lon": -71.071231,
+  "bearing": 52.1,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-74",
+  "country": "US",
+  "town": "cambridge",
+  "kind": "arterial",
+  "name": "Concord Avenue",
+  "highway": "primary",
+  "wayId": 1324302667,
+  "lat": 42.3908115,
+  "lon": -71.1561456,
+  "bearing": -81,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-75",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "Dorchester Street",
+  "highway": "secondary",
+  "wayId": 924741550,
+  "lat": 42.3301913,
+  "lon": -71.0558743,
+  "bearing": 58.3,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-76",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "William J. Day Boulevard",
+  "highway": "secondary",
+  "wayId": 8645970,
+  "lat": 42.3330273,
+  "lon": -71.0246487,
+  "bearing": 81.5,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-77",
+  "country": "US",
+  "town": "cambridge",
+  "kind": "arterial",
+  "name": "Pleasant Street",
+  "highway": "secondary",
+  "wayId": 1183252318,
+  "lat": 42.3652049,
+  "lon": -71.1068108,
+  "bearing": 28.1,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-78",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "Blue Hill Avenue",
+  "highway": "primary",
+  "wayId": 426467422,
+  "lat": 42.2893169,
+  "lon": -71.0897617,
+  "bearing": 15,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-79",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "River Street",
+  "highway": "secondary",
+  "wayId": 591816726,
+  "lat": 42.271746,
+  "lon": -71.0730352,
+  "bearing": 54.5,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-80",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "William T. Morrissey Boulevard",
+  "highway": "primary",
+  "wayId": 923353894,
+  "lat": 42.3167893,
+  "lon": -71.0486465,
+  "bearing": -22.3,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-81",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "Lagrange Street",
+  "highway": "secondary",
+  "wayId": 8647589,
+  "lat": 42.2985377,
+  "lon": -71.1717166,
+  "bearing": 23,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-82",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "Francis Street",
+  "highway": "secondary",
+  "wayId": 1377084983,
+  "lat": 42.3347359,
+  "lon": -71.1057465,
+  "bearing": -49.7,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-83",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "Leo M. Birmingham Parkway",
+  "highway": "primary",
+  "wayId": 8642193,
+  "lat": 42.3583748,
+  "lon": -71.1499519,
+  "bearing": 85.6,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-84",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "Enneking Parkway",
+  "highway": "secondary",
+  "wayId": 48960286,
+  "lat": 42.2585905,
+  "lon": -71.1382993,
+  "bearing": 65.8,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-85",
+  "country": "US",
+  "town": "cambridge",
+  "kind": "arterial",
+  "name": "Mount Auburn Street",
+  "highway": "primary",
+  "wayId": 133607128,
+  "lat": 42.3742201,
+  "lon": -71.1252846,
+  "bearing": -63.9,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-86",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "Tremont Street",
+  "highway": "secondary",
+  "wayId": 1225477466,
+  "lat": 42.3337748,
+  "lon": -71.103639,
+  "bearing": -67,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-87",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "Newbury Street",
+  "highway": "secondary",
+  "wayId": 825263834,
+  "lat": 42.349583,
+  "lon": -71.0826104,
+  "bearing": 70.1,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-88",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "New Chardon Street",
+  "highway": "primary",
+  "wayId": 8641560,
+  "lat": 42.3618898,
+  "lon": -71.062556,
+  "bearing": 29.5,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-89",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "Atlantic Avenue",
+  "highway": "primary",
+  "wayId": 1188182969,
+  "lat": 42.3581131,
+  "lon": -71.0514031,
+  "bearing": -10.6,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-90",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "Harrison Avenue",
+  "highway": "secondary",
+  "wayId": 1377360141,
+  "lat": 42.3348282,
+  "lon": -71.0752837,
+  "bearing": 40.6,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-91",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "Park Drive",
+  "highway": "trunk",
+  "wayId": 1482403866,
+  "lat": 42.3473402,
+  "lon": -71.105453,
+  "bearing": -29.2,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-92",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "West Broadway",
+  "highway": "secondary",
+  "wayId": 28640407,
+  "lat": 42.3359666,
+  "lon": -71.0464204,
+  "bearing": -49.2,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-93",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "William J. Day Boulevard",
+  "highway": "primary",
+  "wayId": 420753198,
+  "lat": 42.3302428,
+  "lon": -71.0413437,
+  "bearing": -86.9,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-94",
+  "country": "US",
+  "town": "cambridge",
+  "kind": "arterial",
+  "name": "Fresh Pond Parkway",
+  "highway": "trunk",
+  "wayId": 1567763427,
+  "lat": 42.3851856,
+  "lon": -71.141326,
+  "bearing": 17.1,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-95",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "Bennington Street",
+  "highway": "secondary",
+  "wayId": 533481329,
+  "lat": 42.3824237,
+  "lon": -71.0189417,
+  "bearing": 63.2,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-96",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "Soldiers Field Road",
+  "highway": "primary",
+  "wayId": 41826169,
+  "lat": 42.3597943,
+  "lon": -71.1527729,
+  "bearing": 58.3,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-97",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "Truman Parkway",
+  "highway": "secondary",
+  "wayId": 8648760,
+  "lat": 42.2474911,
+  "lon": -71.1249629,
+  "bearing": 35.6,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-98",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "Veterans of Foreign Wars Parkway",
+  "highway": "trunk",
+  "wayId": 1414373617,
+  "lat": 42.2959924,
+  "lon": -71.1412183,
+  "bearing": -81.2,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-99",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "Adams Street",
+  "highway": "secondary",
+  "wayId": 1088522759,
+  "lat": 42.2775124,
+  "lon": -71.0601481,
+  "bearing": 19.2,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-100",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "Soldiers Field Road",
+  "highway": "primary",
+  "wayId": 8639366,
+  "lat": 42.3589891,
+  "lon": -71.1575776,
+  "bearing": -87,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-101",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "West Milton Street",
+  "highway": "primary",
+  "wayId": 8638340,
+  "lat": 42.240244,
+  "lon": -71.1418542,
+  "bearing": -66.1,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-102",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "Washington Street",
+  "highway": "primary",
+  "wayId": 1364503170,
+  "lat": 42.2796599,
+  "lon": -71.1354164,
+  "bearing": 38.6,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-103",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "Centre Street",
+  "highway": "secondary",
+  "wayId": 8643890,
+  "lat": 42.2704606,
+  "lon": -71.1619454,
+  "bearing": 1,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-104",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "Cummins Highway",
+  "highway": "primary",
+  "wayId": 1087278025,
+  "lat": 42.2677912,
+  "lon": -71.0945816,
+  "bearing": -45.6,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-105",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "Park Drive",
+  "highway": "primary",
+  "wayId": 42824879,
+  "lat": 42.3426979,
+  "lon": -71.094968,
+  "bearing": 29.4,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-106",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "Main Street",
+  "highway": "secondary",
+  "wayId": 1000386664,
+  "lat": 42.3805166,
+  "lon": -71.0701872,
+  "bearing": -35.8,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-107",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "Circuit Drive",
+  "highway": "secondary",
+  "wayId": 8651669,
+  "lat": 42.3038597,
+  "lon": -71.0914206,
+  "bearing": -27.6,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-108",
+  "country": "US",
+  "town": "cambridge",
+  "kind": "arterial",
+  "name": "Garden Street",
+  "highway": "primary",
+  "wayId": 1210079731,
+  "lat": 42.3782221,
+  "lon": -71.1236256,
+  "bearing": -31.4,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-109",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "Belvidere Street",
+  "highway": "secondary",
+  "wayId": 405119216,
+  "lat": 42.3459899,
+  "lon": -71.0839585,
+  "bearing": -78.8,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-110",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "Columbia Road",
+  "highway": "secondary",
+  "wayId": 426442408,
+  "lat": 42.3114661,
+  "lon": -71.0698518,
+  "bearing": 47.7,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-111",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "Geneva Avenue",
+  "highway": "secondary",
+  "wayId": 426447678,
+  "lat": 42.3076913,
+  "lon": -71.0805252,
+  "bearing": -45.8,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-112",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "",
+  "highway": "secondary",
+  "wayId": 1391817151,
+  "lat": 42.3651897,
+  "lon": -71.0187979,
+  "bearing": 40.8,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-113",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "Hyde Park Avenue",
+  "highway": "primary",
+  "wayId": 508839214,
+  "lat": 42.2755297,
+  "lon": -71.1197922,
+  "bearing": 8.1,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-114",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "Hyde Park Avenue",
+  "highway": "primary",
+  "wayId": 8647562,
+  "lat": 42.2679917,
+  "lon": -71.120914,
+  "bearing": 1.3,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-115",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "Clarendon Street",
+  "highway": "secondary",
+  "wayId": 591278027,
+  "lat": 42.3505319,
+  "lon": -71.0751399,
+  "bearing": -20.1,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-116",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "Blue Hill Avenue",
+  "highway": "trunk",
+  "wayId": 426473712,
+  "lat": 42.2840739,
+  "lon": -71.0915214,
+  "bearing": 14.9,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-117",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "Columbia Road",
+  "highway": "secondary",
+  "wayId": 8650902,
+  "lat": 42.3296214,
+  "lon": -71.0514557,
+  "bearing": 49.4,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-118",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "Harrison Avenue",
+  "highway": "secondary",
+  "wayId": 448441075,
+  "lat": 42.3523647,
+  "lon": -71.0613555,
+  "bearing": -10.6,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-119",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "Columbia Road",
+  "highway": "primary",
+  "wayId": 591236269,
+  "lat": 42.3239674,
+  "lon": -71.0523694,
+  "bearing": -4.3,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-120",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "Park Plaza",
+  "highway": "primary",
+  "wayId": 8652528,
+  "lat": 42.3514415,
+  "lon": -71.0697194,
+  "bearing": 76,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-121",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "Boardman Street",
+  "highway": "secondary",
+  "wayId": 8636367,
+  "lat": 42.3898177,
+  "lon": -71.0114618,
+  "bearing": -42.9,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-122",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "Washington Street",
+  "highway": "primary",
+  "wayId": 426606643,
+  "lat": 42.27453,
+  "lon": -71.1416271,
+  "bearing": 44,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-123",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "Shawmut Avenue",
+  "highway": "secondary",
+  "wayId": 301846671,
+  "lat": 42.3407063,
+  "lon": -71.0729575,
+  "bearing": 48.8,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-124",
+  "country": "US",
+  "town": "cambridge",
+  "kind": "arterial",
+  "name": "Concord Avenue",
+  "highway": "primary",
+  "wayId": 8856381,
+  "lat": 42.3904613,
+  "lon": -71.1533359,
+  "bearing": -80.1,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-125",
+  "country": "US",
+  "town": "cambridge",
+  "kind": "arterial",
+  "name": "Dover Street",
+  "highway": "secondary",
+  "wayId": 1490266761,
+  "lat": 42.3953157,
+  "lon": -71.1257187,
+  "bearing": 50.7,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-126",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "Columbus Avenue",
+  "highway": "primary",
+  "wayId": 426450288,
+  "lat": 42.3291146,
+  "lon": -71.0965289,
+  "bearing": 26.6,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-127",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "Columbia Road",
+  "highway": "secondary",
+  "wayId": 102474889,
+  "lat": 42.3201895,
+  "lon": -71.0619968,
+  "bearing": 47.8,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-128",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "Frontage Road",
+  "highway": "primary",
+  "wayId": 102907642,
+  "lat": 42.3380122,
+  "lon": -71.0640639,
+  "bearing": 22,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-129",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "Bunker Hill Street",
+  "highway": "secondary",
+  "wayId": 95609071,
+  "lat": 42.3775631,
+  "lon": -71.058463,
+  "bearing": -65.5,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-130",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "Haul Road",
+  "highway": "primary",
+  "wayId": 426497573,
+  "lat": 42.3464672,
+  "lon": -71.048196,
+  "bearing": 41.3,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-131",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "Essex Street",
+  "highway": "secondary",
+  "wayId": 48941978,
+  "lat": 42.3519467,
+  "lon": -71.0562349,
+  "bearing": -71.5,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-132",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "Summer Street",
+  "highway": "primary",
+  "wayId": 591236034,
+  "lat": 42.3376659,
+  "lon": -71.0354782,
+  "bearing": -1.7,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-133",
+  "country": "US",
+  "town": "cambridge",
+  "kind": "arterial",
+  "name": "Monsignor O'Brien Highway",
+  "highway": "trunk",
+  "wayId": 426646448,
+  "lat": 42.3701979,
+  "lon": -71.0750694,
+  "bearing": -52.9,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-134",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "Wood Avenue",
+  "highway": "secondary",
+  "wayId": 8652189,
+  "lat": 42.2666835,
+  "lon": -71.1112134,
+  "bearing": -25.4,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-135",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "Washington Street",
+  "highway": "secondary",
+  "wayId": 591252038,
+  "lat": 42.3048108,
+  "lon": -71.0797942,
+  "bearing": -42.6,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-136",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "Quincy Street",
+  "highway": "secondary",
+  "wayId": 8646027,
+  "lat": 42.3119291,
+  "lon": -71.0717633,
+  "bearing": -65.6,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-137",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "Harvard Street",
+  "highway": "secondary",
+  "wayId": 570200608,
+  "lat": 42.2963322,
+  "lon": -71.0807739,
+  "bearing": 75.7,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-138",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "Seaver Street",
+  "highway": "primary",
+  "wayId": 1109913053,
+  "lat": 42.3129471,
+  "lon": -71.094382,
+  "bearing": -65.9,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-139",
+  "country": "US",
+  "town": "cambridge",
+  "kind": "arterial",
+  "name": "Somerville Avenue",
+  "highway": "primary",
+  "wayId": 1329522677,
+  "lat": 42.3884813,
+  "lon": -71.1188969,
+  "bearing": -46.8,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-140",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "Columbus Avenue",
+  "highway": "primary",
+  "wayId": 92029619,
+  "lat": 42.3475427,
+  "lon": -71.0731743,
+  "bearing": 43.7,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-141",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "Frontage Road",
+  "highway": "primary",
+  "wayId": 1119590978,
+  "lat": 42.3439574,
+  "lon": -71.0610364,
+  "bearing": 34.5,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-142",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "Riverway",
+  "highway": "trunk",
+  "wayId": 924347482,
+  "lat": 42.3431207,
+  "lon": -71.1037569,
+  "bearing": -46,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-143",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "Soldiers Field Road",
+  "highway": "primary",
+  "wayId": 1413970484,
+  "lat": 42.3616616,
+  "lon": -71.1461305,
+  "bearing": 38.9,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-144",
+  "country": "US",
+  "town": "cambridge",
+  "kind": "arterial",
+  "name": "Columbia Street",
+  "highway": "secondary",
+  "wayId": 1121040920,
+  "lat": 42.3727854,
+  "lon": -71.0945707,
+  "bearing": 23.3,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-145",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "Hyde Park Avenue",
+  "highway": "primary",
+  "wayId": 924114926,
+  "lat": 42.2872975,
+  "lon": -71.1185727,
+  "bearing": 5.8,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-146",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "Washington Street",
+  "highway": "primary",
+  "wayId": 1093794149,
+  "lat": 42.2668054,
+  "lon": -71.1510619,
+  "bearing": 40.9,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-147",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "Boylston Street",
+  "highway": "primary",
+  "wayId": 814346830,
+  "lat": 42.3501653,
+  "lon": -71.0770709,
+  "bearing": 70,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-148",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "Gallivan Boulevard",
+  "highway": "trunk",
+  "wayId": 618266490,
+  "lat": 42.2833168,
+  "lon": -71.0505687,
+  "bearing": 85,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-149",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "Hyde Park Avenue",
+  "highway": "primary",
+  "wayId": 737808550,
+  "lat": 42.2775544,
+  "lon": -71.1193946,
+  "bearing": 8.4,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-150",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "Purchase Street",
+  "highway": "primary",
+  "wayId": 8641806,
+  "lat": 42.3561121,
+  "lon": -71.0515354,
+  "bearing": 8.7,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-151",
+  "country": "US",
+  "town": "cambridge",
+  "kind": "arterial",
+  "name": "Cambridgepark Drive",
+  "highway": "secondary",
+  "wayId": 1125181573,
+  "lat": 42.3946987,
+  "lon": -71.140722,
+  "bearing": 86.7,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-152",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "Dorchester Avenue",
+  "highway": "primary",
+  "wayId": 426489977,
+  "lat": 42.3079634,
+  "lon": -71.0583498,
+  "bearing": 10.6,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-153",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "Shawmut Avenue",
+  "highway": "secondary",
+  "wayId": 43100856,
+  "lat": 42.3457829,
+  "lon": -71.0663426,
+  "bearing": 19.9,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-154",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "Dartmouth Street",
+  "highway": "secondary",
+  "wayId": 927057118,
+  "lat": 42.3468374,
+  "lon": -71.0757219,
+  "bearing": -19.8,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-155",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "Warren Street",
+  "highway": "secondary",
+  "wayId": 1188173799,
+  "lat": 42.3296906,
+  "lon": -71.0832934,
+  "bearing": 10.2,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-156",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "",
+  "highway": "secondary",
+  "wayId": 591136338,
+  "lat": 42.3682324,
+  "lon": -71.0192782,
+  "bearing": 41.6,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-157",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "",
+  "highway": "primary_link",
+  "wayId": 8648107,
+  "lat": 42.3351759,
+  "lon": -71.0863061,
+  "bearing": -69.5,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-158",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "Blue Hill Avenue",
+  "highway": "secondary",
+  "wayId": 279666894,
+  "lat": 42.3123002,
+  "lon": -71.0804057,
+  "bearing": 30.6,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-159",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "Clarendon Street",
+  "highway": "secondary",
+  "wayId": 201707825,
+  "lat": 42.3491815,
+  "lon": -71.0744789,
+  "bearing": -19.8,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ },
+ {
+  "id": "bo-160",
+  "country": "US",
+  "town": "boston",
+  "kind": "arterial",
+  "name": "Airport Road",
+  "highway": "secondary",
+  "wayId": 426661533,
+  "lat": 42.3699912,
+  "lon": -71.0257898,
+  "bearing": -38.9,
+  "variants": [
+   "def",
+   "og0"
+  ]
+ }
+]

@@ -60,6 +60,8 @@ for (let k = 0; k * 10 < pairs.length; k++) {
   await fs.writeFile(path.join(dir, "ZADANI.md"), L.join("\n"));
 }
 await fs.writeFile(path.join(HERE, "results", "key.json"), JSON.stringify(key, null, 1));
+// (An A/B of a fix alone, EVAL_NO_U=1: no universal measurement; evaluation/usa/boston/outer, sf/fixes.)
+if (process.env.EVAL_NO_U) { console.log("bez fotky podél ulice:", noPhoto.join(", ") || "žádný"); process.exit(0); }
 // The universal measurement: 30 of the cuts with a photo, by types in the sample's proportion.
 const left = full.filter((s) => !noPhoto.includes(s.id)), kinds = [...new Set(left.map((s) => s.kind))], pick = [];
 for (const kind of kinds) { const l = shuffle(left.filter((s) => s.kind === kind)); pick.push(...l.slice(0, Math.round((30 * l.length) / left.length))); }

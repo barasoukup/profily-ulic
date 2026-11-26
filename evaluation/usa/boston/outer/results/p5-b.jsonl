@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "stejne", "jistota": "nizka", "why": "profily se liší jen 0,5 m zeleně u fasády, nerozlišitelné"}
+{"n": 2, "verdict": "X", "jistota": "stredni", "why": "před domem je trávník/předzahrádka (zeleň), ne zpevněná plocha"}
+{"n": 3, "verdict": "X", "jistota": "nizka", "why": "mezera fasáda–chodník v ortofotu asi 2,5 m, X sedí lépe"}
+{"n": 4, "verdict": "Y", "jistota": "nizka", "why": "pás zeleně u budovy asi 5 m, chodník začíná dál; Y blíž"}
+{"n": 5, "verdict": "Y", "jistota": "nizka", "why": "chodník a okraj vozovky jsou v ortofotu o metr dál než v X"}
+{"n": 6, "verdict": "X", "jistota": "stredni", "why": "chodník začíná hned za budovou a vozovka končí u B u obruby; Y je o 16 m moc široký"}
+{"n": 7, "verdict": "X", "jistota": "stredni", "why": "mezi fasádou a chodníkem je asi 3 m pás zeleně, Y ho nemá"}
+{"n": 8, "verdict": "Y", "jistota": "stredni", "why": "okraj ulice u B je zhruba za zelení a chodníkem u plotu, X přidává 11,6 m zeleně navíc"}
+{"n": 9, "verdict": "Y", "jistota": "nizka", "why": "složení stejné, chodník v ortofotu leží dál od A, Y je o něco blíž"}
+{"n": 10, "verdict": "stejne", "jistota": "nizka", "why": "profily se liší jen 1,2 m zeleně na straně B, obě jsou daleko od skutečné fasády"}

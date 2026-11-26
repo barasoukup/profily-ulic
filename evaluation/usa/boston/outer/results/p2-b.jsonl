@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "Y", "jistota": "nizka", "why": "Složení stejné; Y navíc zahrnuje předzahrádku vlevo až k domu, X končí u chodníku."}
+{"n": 2, "verdict": "stejne", "jistota": "nizka", "why": "Totéž složení, liší se jen o 1 m zeleně vlevo; vlevo je spíš oplocený areál u budovy."}
+{"n": 3, "verdict": "X", "jistota": "vysoka", "why": "Y má vlevo 30 m zeleně daleko za fasádu domu (domy asi 7 m od chodníku); X sedí."}
+{"n": 4, "verdict": "Y", "jistota": "stredni", "why": "Vlevo chodník těsně u fasády budovy; X přidává 8,6 m zeleně, která tam není."}
+{"n": 5, "verdict": "X", "jistota": "stredni", "why": "Stejné složení, ale Y má vlevo 31 m zeleně za fasádu budovy (ta je asi 6 až 8 m od silnice)."}
+{"n": 6, "verdict": "stejne", "jistota": "stredni", "why": "Totožné složení i šířky, liší se jen okrajová zeleň o 0,8 a 0,3 m."}
+{"n": 7, "verdict": "Y", "jistota": "vysoka", "why": "Vlevo je za chodníkem zpevněné parkoviště (plocha), ne zeleň."}
+{"n": 8, "verdict": "Y", "jistota": "stredni", "why": "Vlevo je za chodníkem parkoviště a budova, ne 15,8 m zeleně; Y končí u okraje ulice."}
+{"n": 9, "verdict": "stejne", "jistota": "nizka", "why": "Stejné složení, rozdíl jen 2,4 m okrajové zeleně u plošiny; noční 360 fotka v zářezu nepomůže."}
+{"n": 10, "verdict": "X", "jistota": "nizka", "why": "Vlevo je budova s ohradou hned za chodníkem, zeleň navíc v Y tam není; ostatní stejné."}

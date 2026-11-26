@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "Y", "jistota": "stredni", "why": "Mezi fasádou a chodníkem vlevo je asi 7 m předzahrádky/příjezdu, Y ji má, X chodník klade rovnou k začátku"}
+{"n": 2, "verdict": "Y", "jistota": "nizka", "why": "Obě bez pravého chodníku (u parkoviště je); Y klade levý chodník blíž skutečné poloze (asi 22,5 m)"}
+{"n": 3, "verdict": "Y", "jistota": "nizka", "why": "Vlevo je mezi domem a chodníkem pás zeleně/dvora, který X vynechává; dvě jízdní pruhy a chodníky shodné"}
+{"n": 4, "verdict": "Y", "jistota": "stredni", "why": "Levý chodník leží rovnou u fasády budovy, X před něj vkládá 8,6 m zeleně, která tam není"}
+{"n": 5, "verdict": "X", "jistota": "nizka", "why": "Celkový rozsah X od fasády po okraj vozovky sedí na ortofoto (okraj kolem 69 m); Y je kratší, stejné složení"}
+{"n": 6, "verdict": "X", "jistota": "stredni", "why": "Součet X odpovídá vzdálenosti fasád (asi 41,5 m) a poloha středního pásu/chodníku sedí; Y je o ~1 m užší"}
+{"n": 7, "verdict": "Y", "jistota": "stredni", "why": "Vlevo za chodníkem je zpevněné parkoviště, ne zeleň; Y ho dává jako plochu, jinak shodné"}
+{"n": 8, "verdict": "Y", "jistota": "nizka", "why": "Vlevo za chodníkem je parkoviště (asfalt), ne 15,8 m zeleně jako v X; zbytek stejný"}
+{"n": 9, "verdict": "X", "jistota": "nizka", "why": "Složení stejné, X klade začátek vozovky blíž skutečné poloze (okraj kolem 21 m) než Y"}
+{"n": 10, "verdict": "X", "jistota": "nizka", "why": "Vlevo budova stojí rovnou u chodníku, zeleň 4,6 m v Y tam není; ortofoto je ve stínu, nejistá šířka"}

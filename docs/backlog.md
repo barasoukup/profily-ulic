@@ -196,8 +196,11 @@ Co rozhodne Bára, je označeno **(Bára)**.
 
 - **USA (Boston, 26. 11. 2026, `evaluation/usa/boston`):** **(Bára)** mapa Bostonu a Cambridge celkově neprůkazná (27 : 21),
   na tepnách prohrává 8 : 15: mezera mezi polygony za chodníkem je zeleň i tam, kde je parkoviště, náměstí nebo dům (Street Edges
-  nemá parkoviště, budovy podkladové mapy nejsou úplné), široká mezera mezi vozovkami je dělicí pás (b-14, 21 m). Zkusit: mezeru
-  uvnitř řezu za vnějším chodníkem posoudit ortofotem jako odhad; parkoviště Bostonu (BTD MunicipalParkingLots jsou jen městská).
+  nemá parkoviště, budovy podkladové mapy nejsou úplné), široká mezera mezi vozovkami je dělicí pás (b-14, 21 m). ~~Zkusit: mezeru
+  uvnitř řezu za vnějším chodníkem posoudit ortofotem jako odhad~~ (27. 11. 2026, `evaluation/usa/boston/outer`: domy a parkoviště
+  z OSM, zbytek ortofotem MassGIS, které je bez listí; A/B 52 nových tepen 18 : 16, **vypnuto, `?outergaps=1`**; **(Bára)** zkusit
+  jen konec profilu u parkoviště (13 : 8) na dalším novém vzorku); dělicí pás 21 m (b-14) otevřený; parkoviště Bostonu (BTD
+  MunicipalParkingLots jsou jen městská).
   Nebo mapu jen pro místní ulice (nový vzorek). Ve všech variantách nejčastěji chybí stání (mapy ho nemají; BTD má značení
   `Cartegraph_BTD_readonly` LongMarkings a ParkingMeters, nezkoumáno). **(Bára)** licence Street Edges (PDDL z položky celé
   podkladové mapy). Podlaží budov Bostonu neměřená. Somerville, Brookline, Newton bez otevřené mapy povrchů (jen odhad).

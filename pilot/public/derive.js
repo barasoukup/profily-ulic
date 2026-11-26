@@ -534,6 +534,7 @@ export function mtvuPolygons(json, frame) {
       anyTram: f.attributes.ANY_TRAM === 1,
       fromLines: f.attributes.Z_CAR === 1, // read from the DTM's lines (dmvs.js fromLines), its kind a guess
       passport: f.attributes.PASPORT === 1, // a town's passport (gis.js asPassport)
+      outerGap: f.attributes.OUTER_GAP === 1, // a gap of a planimetric map beyond the outer sidewalk (towns/planimetrics.js outerGaps)
       rings,
       bbox: bboxOf(rings.flat()),
       lonlat: f.geometry.rings.map((r) => r.map(([lon, lat]) => [lat, lon])),
