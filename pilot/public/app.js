@@ -214,13 +214,16 @@ const BIG_TILES = { tileSize: 512, zoomOffset: -1 };
 // is the national layer with the cities' own on top, each limited to its city (mesta.json).
 const DMVS = "https://dmvs.cuzk.gov.cz/api/wms";
 const osmLayer = (opacity = 1) => L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", { maxZoom: 21, maxNativeZoom: 19, opacity, attribution: `© <a href="https://www.openstreetmap.org/copyright">${tr("přispěvatelé OpenStreetMap")}</a>` });
+// Czechia's box and rings (staty.json): ČÚZK's orthophoto and the DMVS load tiles and credit themselves only there
+// (Bára 26. 11. 2026: San Francisco said "ortofoto © ČÚZK", and the tiles were asked of ČÚZK all over the world).
+const czBounds = () => { const rings = STATY.cesko || [], pts = rings.flat(); if (!pts.length) return {}; const xs = pts.map((q) => q[0]), ys = pts.map((q) => q[1]); const b = L.latLngBounds([Math.min(...ys), Math.min(...xs)], [Math.max(...ys), Math.max(...xs)]); b.rings = rings; return { bounds: b }; };
 const cuzkOrtho = () => L.tileLayer.wms("https://ags.cuzk.gov.cz/arcgis1/services/ORTOFOTO/MapServer/WMSServer", {
-  layers: "0", format: "image/jpeg", maxZoom: 21, attribution: "ortofoto © ČÚZK",
+  layers: "0", format: "image/jpeg", maxZoom: 21, attribution: "ortofoto © ČÚZK", ...czBounds(),
 });
 // The DMVS answers WMS 1.3.0 only (since 11/2026; Leaflet asks 1.1.1 by default).
 const dmvsWms = (layer, opts = {}) => L.tileLayer.wms(`${DMVS}/${layer}`, {
   layers: layer, format: "image/png", version: "1.3.0", transparent: true, maxZoom: 21, tileSize: 512, zoomOffset: -1,
-  attribution: "technická mapa © kraje, IS DMVS ČÚZK", ...opts,
+  attribution: "technická mapa © kraje, IS DMVS ČÚZK", ...czBounds(), ...opts,
 });
 // The box of a city from its boundary: its layers load tiles only there.
 const within = (id) => {
