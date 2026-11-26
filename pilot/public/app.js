@@ -292,7 +292,7 @@ if (STATY?.netherlands) {
     },
   });
   kinds.ortho.push(new NlOrtho(`${NL_ORTHO}/{z}/{x}/{y}.jpeg`, {
-    maxZoom: 21, maxNativeZoom: 21, attribution: tr("ortofoto © PDOK (Beeldmateriaal Nederland)"),
+    maxZoom: 21, maxNativeZoom: 21, attribution: tr("ortofoto © Beeldmateriaal.nl (PDOK, CC BY 4.0)"),
     bounds: L.latLngBounds([Math.min(...ys), Math.min(...xs)], [Math.max(...ys), Math.max(...xs)]),
   }));
 }
@@ -328,7 +328,7 @@ const boundsOf = (rings) => { const pts = rings.flat(), xs = pts.map((q) => q[0]
 // (regions-be.json, loaded once).
 if (STATY?.luxembourg) {
   const Lu = insideOnly([boxedPlace("LU", STATY.luxembourg)]);
-  kinds.ortho.push(new Lu(`${LU_ORTHO}/{z}/{x}/{y}.jpeg`, { maxZoom: 21, maxNativeZoom: 21, attribution: tr("ortofoto © ACT Luxembourg (geoportail.lu)"), bounds: boundsOf(STATY.luxembourg) }));
+  kinds.ortho.push(new Lu(`${LU_ORTHO}/{z}/{x}/{y}.jpeg`, { maxZoom: 21, maxNativeZoom: 21, attribution: tr("ortofoto © ACT Luxembourg (geoportail.lu, CC0)"), bounds: boundsOf(STATY.luxembourg) }));
 }
 if (STATY?.belgium) {
   const reg = await fetch(new URL("./regions-be.json", import.meta.url)).then((r) => r.json()).catch(() => null);
@@ -337,8 +337,8 @@ if (STATY?.belgium) {
     const R = insideOnly(places);
     kinds.ortho.push(new R("", { bboxUrl: url, maxZoom: 21, attribution: tr(credit), bounds: boundsOf(reg ? codes.flatMap((c) => reg[c]) : STATY.belgium) }));
   };
-  add(["wal"], (b, w, h) => BE_ORTHO.wal.url(b, w, h, "image/png"), "ortofoto © SPW (Service public de Wallonie)");
-  add(["vl", "bru"], (b, w, h) => BE_ORTHO.vl.url(b, w, h, "image/png"), "ortofoto © Digitaal Vlaanderen");
+  add(["wal"], (b, w, h) => BE_ORTHO.wal.url(b, w, h, "image/png"), "ortofoto © SPW (Service public de Wallonie, CC BY 4.0)");
+  add(["vl", "bru"], (b, w, h) => BE_ORTHO.vl.url(b, w, h, "image/png"), "ortofoto: Bron: Luchtopnamen Digitaal Vlaanderen (Modellicentie gratis hergebruik v1.0)");
 }
 // Poland: GUGiK's orthophoto (WMS in Web Mercator), only for tiles over Poland, transparent where it has no photo (it has
 // some up to about 1 km beyond the border, so at the border its tiles cover the Czech ones there: the hostile review).

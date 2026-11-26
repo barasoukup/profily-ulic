@@ -627,7 +627,7 @@ export const EN = {
   "Obrázek PNG": "PNG image",
   "Vektor SVG": "SVG (vector)",
   "Soubor": "File",
-  "pasport komunikácií © Hlavné mesto SR Bratislava a MČ Dúbravka": "road inventory © City of Bratislava and the borough of Dúbravka",
+  "pasport komunikácií © Hlavné mesto SR Bratislava a MČ Dúbravka, © EUROSENSE SLOVAKIA, s.r.o.": "road inventory © City of Bratislava and the borough of Dúbravka, © EUROSENSE SLOVAKIA, s.r.o.",
   "pasport dopravy a zelene © mesto Prešov (CC BY 4.0)": "inventory of roads and green © City of Prešov (CC BY 4.0)",
   "pasport komunikácií © mesto Žilina": "road inventory © City of Žilina",
   "pasport komunikácií © mesto Košice": "road inventory © mesto Košice",
@@ -806,7 +806,7 @@ export const EN = {
   "z pasportu města": "from the town's inventory",
   // The Netherlands (Bára 20. 11. 2026).
   "mapy povrchů BGT, ortofota PDOK a OSM": "the BGT surface map, the PDOK orthophoto and OSM",
-  "ortofoto © PDOK (Beeldmateriaal Nederland)": "orthophoto © PDOK (Beeldmateriaal Nederland)",
+  "ortofoto © Beeldmateriaal.nl (PDOK, CC BY 4.0)": "orthophoto © Beeldmateriaal.nl (PDOK, CC BY 4.0)",
   "mapa povrchů BGT © Kadaster a správci BGT (PDOK, CC0)": "BGT surface map © Kadaster and the BGT source holders (bronhouders) (PDOK, CC0)",
   " · mapa povrchů BGT neodpověděla, odhad z ortofota a OSM": " · the BGT surface map did not answer, an estimate from the orthophoto and OSM",
   "Mapa povrchů BGT (PDOK) teď neodpovídá, profil je odhad z ortofota a OSM.": "The BGT surface map (PDOK) is not answering now; the profile is an estimate from the orthophoto and OSM.",
@@ -819,21 +819,21 @@ export const EN = {
   "podélné stání: 2 × 6 m (ASVV 2012 podle obce Oost Gelre), v Amsterdamu 2,1–2,4 m": "parallel parking: 2 × 6 m (ASVV 2012 as Oost Gelre quotes it), 2.1–2.4 m in Amsterdam",
   "Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Smí se jen u značky E8b (RVV 1990 čl. 10). Zákon šířku neuvádí, v praxi 3,5 m pro hasiče na jednosměrce a 4,5 m vozovky pro oba směry; aplikace nechává průjezdné pruhy, tedy aspoň {need}.": "Half-on-kerb parking from OSM: {free} is left in the carriageway. It is allowed only at the sign E8b (RVV 1990 art. 10). The law gives no width; in practice 3.5 m for the fire brigade on a one-way street and a 4.5 m carriageway for both directions; the app keeps the driving lanes passable, so at least {need}.",
   "jednosměrka s cyklisty v protisměru: vozovka nejméně 3,5 m, základ 4 m (Amsterdam, Afwegingskader fietsstraten 2020)": "one-way street with contraflow cycling: carriageway at least 3.5 m, base 4 m (Amsterdam, Afwegingskader fietsstraten 2020)",
-  "Sítě © Gemeente Amsterdam a Waternet (CC BY).": "Networks © Gemeente Amsterdam and Waternet (CC BY).",
+  "Sítě © Gemeente Amsterdam a Waternet (Creative Commons Naamsvermelding, verze neuvedena).": "Networks © Gemeente Amsterdam and Waternet (Creative Commons Naamsvermelding, version not stated).",
   "kabel veřejného osvětlení": "street lighting cable",
   "parkovací místa © Gemeente Amsterdam": "parking spaces © Gemeente Amsterdam",
   // Belgium and Luxembourg (Bára 20. 11. 2026).
-  "ortofoto © SPW (Service public de Wallonie)": "orthophoto © SPW (Service public de Wallonie)",
-  "ortofoto © Digitaal Vlaanderen": "orthophoto © Digitaal Vlaanderen",
-  "ortofoto © ACT Luxembourg (geoportail.lu)": "orthophoto © ACT Luxembourg (geoportail.lu)",
+  "ortofoto © SPW (Service public de Wallonie, CC BY 4.0)": "orthophoto © SPW (Service public de Wallonie, CC BY 4.0)",
+  "ortofoto: Bron: Luchtopnamen Digitaal Vlaanderen (Modellicentie gratis hergebruik v1.0)": "orthophoto: Bron: Luchtopnamen Digitaal Vlaanderen (Modellicentie gratis hergebruik v1.0)",
+  "ortofoto © ACT Luxembourg (geoportail.lu, CC0)": "orthophoto © ACT Luxembourg (geoportail.lu, CC0)",
   "čar mapy GRB, ortofota a OSM": "the lines of the GRB map, the orthophoto and OSM",
   "čar mapy PICC, ortofota a OSM": "the lines of the PICC map, the orthophoto and OSM",
-  "čáry GRB © Digitaal Vlaanderen": "GRB lines © Digitaal Vlaanderen",
+  "čáry GRB: Bron: Grootschalig Referentie Bestand Vlaanderen, Digitaal Vlaanderen (Modellicentie gratis hergebruik v1.0)": "GRB lines: Bron: Grootschalig Referentie Bestand Vlaanderen, Digitaal Vlaanderen (Modellicentie gratis hergebruik v1.0)",
   " · mapa povrchů GRB neodpověděla, odhad z ortofota a OSM": " · the GRB surface map did not answer, an estimate from the orthophoto and OSM",
   "Mapa povrchů GRB (Digitaal Vlaanderen) teď neodpovídá, profil je odhad z ortofota a OSM.": "The GRB surface map (Digitaal Vlaanderen) is not answering now; the profile is an estimate from the orthophoto and OSM.",
   "mapy povrchů GRB, ortofota a OSM": "the GRB surface map, the orthophoto and OSM",
   "mapa povrchů (GRB): {who}": "surface map (GRB): {who}",
-  "čáry PICC © SPW (Service public de Wallonie)": "PICC lines © SPW (Service public de Wallonie)",
+  "čáry PICC © SPW (Service public de Wallonie, CC BY 4.0)": "PICC lines © SPW (Service public de Wallonie, CC BY 4.0)",
   "chodník: volný průchod nejméně 1,5 m, základ 1,8 m (Flandry, Vademecum voetgangersvoorzieningen 2026; Valonsko 1,5 m; Brusel 2 m)": "sidewalk: clear walking width at least 1.5 m, base 1.8 m (Flanders, Vademecum voetgangersvoorzieningen 2026; Wallonia 1.5 m; Brussels 2 m)",
   "společná stezka pro chodce a cyklisty (D10): jednosměrná 2 m, obousměrná 2,5 m, doporučeno 3 m (Valonsko, Guide cyclable)": "shared path for pedestrians and cyclists (D10): one-way 2 m, two-way 2.5 m, recommended 3 m (Wallonia, Guide cyclable)",
   "stezka pro cyklisty jednosměrná: Flandry 2 m (Vademecum fietsvoorzieningen 2024), Valonsko nejméně 1,3 m (Guide cyclable); obousměrná Flandry 3 m, Valonsko 2,2–2,6 m": "one-way cycle track: Flanders 2 m (Vademecum fietsvoorzieningen 2024), Wallonia at least 1.3 m (Guide cyclable); two-way Flanders 3 m, Wallonia 2.2–2.6 m",
@@ -1083,12 +1083,12 @@ export const EN = {
 export const EN_HTML = {
   footer: `Data: technical maps © <a href="https://www.geoportalpraha.cz">IPR Praha</a> (and building heights and development history, CC BY 4.0), of the statutory cities of Brno, Jihlava, Most, Opava and Plzeň
     and of the regions (<a href="https://dmvs.cuzk.gov.cz">IS DMVS ČÚZK</a>) · RÚIAN (and the address search), cadastre and orthophoto © ČÚZK (CC BY 4.0) · orthophoto, buildings and borders of Slovakia © <a href="https://www.geoportal.sk">GKÚ Bratislava</a>, NLC (ZBGIS, CC BY 4.0), streets and addresses of Slovakia © MV SR ·
-    road inventories © Hlavné mesto SR Bratislava, MČ Dúbravka, mesto Žilina, mesto Banská Bystrica, mesto Košice, mesto Prešov (CC BY 4.0), map drawings © mestá Nitra, Piešťany, Hlohovec, technical map © Hlavné mesto SR Bratislava ·
+    road inventories © Hlavné mesto SR Bratislava, MČ Dúbravka, EUROSENSE SLOVAKIA, s.r.o., mesto Žilina, mesto Banská Bystrica, mesto Košice, mesto Prešov (CC BY 4.0), map drawings © mestá Nitra, Piešťany, Hlohovec, technical map © Hlavné mesto SR Bratislava ·
     Austria: orthophoto © basemap.at (CC BY 4.0), surface map of Vienna © Stadt Wien – data.wien.gv.at (CC BY 4.0), border © EuroGeographics (GISCO), traffic signs of Salzburg © Stadt Salzburg (CC BY 3.0 AT), search Photon © komoot (OSM data) ·
     Germany: orthophotos of the Länder © LGL-BW, Bayerische Vermessungsverwaltung, GeoBasis-DE/LGB, Landesamt GeoInformation Bremen, LGV Hamburg, HVBG, GeoBasis-DE/M-V, LGLN, GeoBasis-DE/NRW, GeoBasis-DE/LVermGeoRP, GeoBasis-DE/LVermGeo SH, GeoBasis-DE/LVGL-SL, GeoSN, GeoBasis-DE/LVermGeo ST, GDI-Th; <a href="https://www.govdata.de/dl-de/by-2-0">dl-de/by-2-0</a>, <a href="https://www.govdata.de/dl-de/zero-2-0">dl-de/zero-2-0</a>, <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>, border © EuroGeographics (GISCO), traffic signs Wikimedia Commons (official works), search Photon © komoot (OSM data) ·
     Switzerland and Liechtenstein: SWISSIMAGE orthophoto and borders © swisstopo, official cadastral survey (Bodenbedeckung) © the cantons and Liechtenstein through <a href="https://geodienste.ch">geodienste.ch</a>, traffic signs Wikimedia Commons (official works, ASTRA), search Photon © komoot (OSM data) ·
     Netherlands: BGT surface map and BAG buildings © Kadaster and the data holders (bronhouders) through <a href="https://www.pdok.nl">PDOK</a> (CC0, Public Domain Mark), orthophoto © Beeldmateriaal Nederland (PDOK, <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>), building heights <a href="https://3dbag.nl">3D BAG</a> © TU Delft and 3DGI (CC BY 4.0), border © EuroGeographics (GISCO), traffic signs Wikimedia Commons (official works), search PDOK Locatieserver, parking spaces of Amsterdam © Gemeente Amsterdam ·
-    Belgium and Luxembourg: orthophoto and GRB lines: source Digitaal Vlaanderen (<a href="https://www.vlaanderen.be/digitaal-vlaanderen/onze-oplossingen/open-data/voorwaarden-voor-het-hergebruik-van-overheidsinformatie/modellicentie-gratis-hergebruik">Modellicentie gratis hergebruik</a>), orthophoto and PICC lines © SPW (Service public de Wallonie), orthophoto © ACT Luxembourg (geoportail.lu), borders © EuroGeographics (GISCO), traffic signs Wikimedia Commons (official works), search Photon © komoot (OSM data) ·
+    Belgium and Luxembourg: orthophoto and GRB lines: source Digitaal Vlaanderen (<a href="https://www.vlaanderen.be/digitaal-vlaanderen/onze-oplossingen/open-data/voorwaarden-voor-het-hergebruik-van-overheidsinformatie/modellicentie-gratis-hergebruik">Modellicentie gratis hergebruik v1.0</a>), orthophoto and PICC lines © SPW (Service public de Wallonie, <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>), orthophoto © ACT Luxembourg (geoportail.lu, CC0), borders © EuroGeographics (GISCO), traffic signs Wikimedia Commons (official works), search Photon © komoot (OSM data) ·
     Poland: orthophoto and address search © GUGiK (Geoportal.gov.pl, PRG), surface map of Kraków (MJO) © Gmina Miejska Kraków, border © EuroGeographics (GISCO), traffic signs Wikimedia Commons (official works), search Photon © komoot (OSM data) ·
     France: orthophoto, buildings (BD TOPO) and address search © <a href="https://geoservices.ign.fr">IGN France</a> (Géoplateforme, <a href="https://www.etalab.gouv.fr/licence-ouverte-open-licence/">Licence Ouverte 2.0</a>), surface map of Paris (Plan de voirie) © <a href="https://opendata.paris.fr">Ville de Paris</a> (<a href="https://opendatacommons.org/licenses/odbl/">ODbL</a>), border © EuroGeographics (GISCO), traffic signs Wikimedia Commons (official works) ·
     Spain: PNOA orthophoto and CartoCiudad address search © Instituto Geográfico Nacional de España (CC BY 4.0, scne.es), buildings © Dirección General del Catastro, in Navarre Servicio proporcionado por el Gobierno de Navarra (CC BY 4.0), in the Basque Country © Arabako, Bizkaiko and Gipuzkoako Foru Aldundia, surface map of Zaragoza © Ayuntamiento de Zaragoza (IDEZar), border © EuroGeographics (GISCO), traffic signs Wikimedia Commons (official works) ·
@@ -1102,8 +1102,8 @@ export const EN_HTML = {
     Finland: orthophoto © Helsingin kaupunki, kaupunkimittauspalvelut, Espoon kaupunki and Turun kaupunki (CC BY 4.0), surface map (Yleisten alueiden rekisteri) and buildings © Helsingin kaupunki (CC BY 4.0), Ryhti buildings and addresses © Suomen ympäristökeskus SYKE (CC BY 4.0), border © EuroGeographics (GISCO), traffic signs Wikimedia Commons (official works), search Photon © komoot (OSM data) ·
     Denmark: orthophoto “Indeholder data fra Styrelsen for Dataforsyning og Infrastruktur, Ortofoto forår, WMTS-tjeneste” (<a href="https://dataforsyningen.dk/asset/PDF/rettigheder_vilkaar/Vilk%C3%A5r%20for%20brug%20af%20frie%20geografiske%20data.pdf">terms</a>) and address search GSearch © Klimadatastyrelsen, Copenhagen's road edges, parking areas and buildings (GeoDanmark, BBR) © Københavns Kommune (licence not stated), buildings of Aarhus (BBR) © Aarhus Kommune (CC BY 4.0), border © EuroGeographics (GISCO), traffic signs Wikimedia Commons (official works), search Photon © komoot (OSM data) ·
     Lithuania: Vilnius's surface map (topographic areas 1 : 500) © Vilniaus miesto savivaldybė / Vilniaus planas (licence not stated; only with ?vilnius=1), GRPK building outlines © Lietuvos Respublikos aplinkos ministerija (CC BY 4.0), border © EuroGeographics (GISCO), traffic signs Wikimedia Commons (drawings by Augustasci under CC BY 4.0, tables 846 and 853 by Gigillo83 under CC BY-SA 4.0), search Photon © komoot (OSM data) ·
-    networks under the street © IPR Praha, Gemeente Amsterdam and Waternet (licence not stated), mestá Prešov (CC BY 4.0), Nitra, Košice, Piešťany, the Olomouc Region, the cities of Karviná, Ostrava, Břeclav ·
-    parking © TSK hl. m. Prahy (CC BY 4.0), no-parking areas, trees and street classes from <a href="https://opendata.geoportalpraha.cz">Geoportál Praha</a> (CC BY 4.0), <a href="https://www.parkovanivbrne.cz">parkovanivbrne.cz</a>, the cities of Jihlava, Opava, Plzeň (CC0) ·
+    networks under the street © IPR Praha, Gemeente Amsterdam and Waternet (Creative Commons Naamsvermelding, version not stated), mestá Prešov (CC BY 4.0), Nitra, Košice, Piešťany, the Olomouc Region, the cities of Karviná, Ostrava, Břeclav ·
+    parking © TSK hl. m. Prahy (CC BY 4.0), no-parking areas, trees and street classes from <a href="https://opendata.geoportalpraha.cz">Geoportál Praha</a> (CC BY 4.0), <a href="https://www.parkovanivbrne.cz">parkovanivbrne.cz</a>, the cities of Jihlava (CC BY-SA), Opava, Plzeň (CC0) ·
     © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors (ODbL) ·
     illustrations © <a href="https://github.com/streetmix/streetmix/tree/main/packages/illustrations">Streetmix</a>, licence
     <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> ·
@@ -1162,9 +1162,9 @@ export const EN_CITY = {
   brno: own("Brno", "City of Brno", "Brno technical map", "the City of Brno", "paid parking sections (parkovanivbrne.cz)",
     "data © Statutární město Brno (technical map and MTVU; buildings and cycling measures, data.brno.cz, CC BY 4.0, modified), parking © parkovanivbrne.cz"),
   jihlava: own("Jihlava", "City of Jihlava", "Jihlava road inventory", "the City of Jihlava", "parking spaces (City of Jihlava)",
-    `data © Statutární město Jihlava (road inventory, parking, street furniture), RÚIAN and cadastre © ČÚZK, 2026 (CC BY 4.0, modified)`),
+    `data © Statutární město Jihlava (road inventory, parking CC BY-SA, street furniture), RÚIAN and cadastre © ČÚZK, 2026 (CC BY 4.0, modified)`),
   most: own("Most", "City of Most", "Most technical map", "the City of Most", TECH_PARKING,
-    `data © Statutární město Most (object and technical map, street lighting), ${RUIAN}`),
+    `data © Statutární město Most (object map and street lighting, CC BY-SA; technical map), ${RUIAN}`),
   opava: own("Opava", "City of Opava", "Opava thematic map", "the City of Opava", "parking spaces (City of Opava)",
     `data © Statutární město Opava (thematic map, parking, trees, benches, stops), ${RUIAN}`),
   pardubice: {

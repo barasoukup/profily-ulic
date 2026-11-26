@@ -106,7 +106,7 @@ const PAKOM = { vozovka: ROAD, chodník: WALK, parkovisko: PARK, cyklotrasa: BIK
 const pakom = (base) => async (bbox) => asMtvu([[await tmapyWfs(base, "ms:pk-pov", bbox, "typ,msGeometry"), (a) => PAKOM[a.typ] ?? null]], MTVU_LABELS);
 export const SK_TOWNS = {
   // Dúbravka first: where both have a surface, the borough's (newer, with roadways) wins.
-  bratislava: { box: [16.83, 47.99, 17.33, 48.27], credit: "pasport komunikácií © Hlavné mesto SR Bratislava a MČ Dúbravka",
+  bratislava: { box: [16.83, 47.99, 17.33, 48.27], credit: "pasport komunikácií © Hlavné mesto SR Bratislava a MČ Dúbravka, © EUROSENSE SLOVAKIA, s.r.o.",
     async own(bbox) {
       const [x0, y0, x1, y1] = bbox.split(",").map(Number);
       const dub = x1 > 16.98 && x0 < 17.07 && y1 > 48.165 && y0 < 48.215;

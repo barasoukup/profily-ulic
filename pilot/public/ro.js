@@ -617,7 +617,7 @@ export const RO = {
   "Obrázek PNG": "Imagine PNG",
   "Vektor SVG": "SVG (vector)",
   "Soubor": "Fișier",
-  "pasport komunikácií © Hlavné mesto SR Bratislava a MČ Dúbravka": "registrul străzilor © Hlavné mesto SR Bratislava și MČ Dúbravka",
+  "pasport komunikácií © Hlavné mesto SR Bratislava a MČ Dúbravka, © EUROSENSE SLOVAKIA, s.r.o.": "registrul străzilor © Hlavné mesto SR Bratislava și MČ Dúbravka, © EUROSENSE SLOVAKIA, s.r.o.",
   "pasport dopravy a zelene © mesto Prešov (CC BY 4.0)": "registrul străzilor și spațiilor verzi © mesto Prešov (CC BY 4.0)",
   "pasport komunikácií © mesto Žilina": "registrul străzilor © mesto Žilina",
   "pasport komunikácií © mesto Košice": "registrul străzilor © mesto Košice",
@@ -809,7 +809,7 @@ export const RO = {
   "Příčné profily ulic v Česku, na Slovensku, v Rakousku, v Německu, ve Švýcarsku, v Lichtenštejnsku, v Nizozemsku, v Belgii, v Lucembursku, v Polsku, ve Francii, v Monaku, ve Španělsku, v Portugalsku, na Kypru, na Maltě, v částech Itálie, v Estonsku, ve Slovinsku, ve Finsku, v Dánsku a v Litvě z map povrchů měst, ČÚZK a ZBGIS: od fasády k fasádě, upravitelné, s místními ilustracemi.": "Profiluri transversale ale străzilor din Cehia, Slovacia, Austria, Germania, Elveția, Liechtenstein, Țările de Jos, Belgia, Luxemburg, Polonia, Franța, Monaco, Spania, Portugalia, Cipru, Malta, părți ale Italiei, Estonia, Slovenia, Finlanda, Danemarca și Lituania, din hărțile suprafețelor orașelor, ale ČÚZK și din ZBGIS: de la fațadă la fațadă, editabile, cu ilustrații locale.",
   // The Netherlands (Bára 20. 11. 2026).
   "mapy povrchů BGT, ortofota PDOK a OSM": "hărții suprafețelor BGT, ortofoto PDOK și OSM",
-  "ortofoto © PDOK (Beeldmateriaal Nederland)": "ortofoto © PDOK (Beeldmateriaal Nederland)",
+  "ortofoto © Beeldmateriaal.nl (PDOK, CC BY 4.0)": "ortofoto © Beeldmateriaal.nl (PDOK, CC BY 4.0)",
   "mapa povrchů BGT © Kadaster a správci BGT (PDOK, CC0)": "harta suprafețelor BGT © Kadaster și administratorii BGT (PDOK, CC0)",
   " · mapa povrchů BGT neodpověděla, odhad z ortofota a OSM": " · harta suprafețelor BGT nu a răspuns, estimare din ortofoto și OSM",
   "Mapa povrchů BGT (PDOK) teď neodpovídá, profil je odhad z ortofota a OSM.": "Harta suprafețelor BGT (PDOK) nu răspunde acum, profilul este o estimare din ortofoto și OSM.",
@@ -822,21 +822,21 @@ export const RO = {
   "podélné stání: 2 × 6 m (ASVV 2012 podle obce Oost Gelre), v Amsterdamu 2,1–2,4 m": "parcare longitudinală: 2 × 6 m (ASVV 2012 după comuna Oost Gelre), în Amsterdam 2,1–2,4 m",
   "Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Smí se jen u značky E8b (RVV 1990 čl. 10). Zákon šířku neuvádí, v praxi 3,5 m pro hasiče na jednosměrce a 4,5 m vozovky pro oba směry; aplikace nechává průjezdné pruhy, tedy aspoň {need}.": "Parcare parțial pe trotuar conform OSM: pe carosabil rămân {free}. Este permisă doar la indicatorul E8b (RVV 1990 art. 10). Legea nu indică o lățime, în practică 3,5 m pentru pompieri pe o stradă cu sens unic și 4,5 m de carosabil pentru ambele sensuri; aplicația păstrează benzile de circulație practicabile, deci cel puțin {need}.",
   "jednosměrka s cyklisty v protisměru: vozovka nejméně 3,5 m, základ 4 m (Amsterdam, Afwegingskader fietsstraten 2020)": "stradă cu sens unic cu biciclete în sens invers: carosabil de cel puțin 3,5 m, de bază 4 m (Amsterdam, Afwegingskader fietsstraten 2020)",
-  "Sítě © Gemeente Amsterdam a Waternet (CC BY).": "Rețele © Gemeente Amsterdam și Waternet (CC BY).",
+  "Sítě © Gemeente Amsterdam a Waternet (Creative Commons Naamsvermelding, verze neuvedena).": "Rețele © Gemeente Amsterdam și Waternet (Creative Commons Naamsvermelding, versiune nespecificată).",
   "kabel veřejného osvětlení": "cablu de iluminat public",
   "parkovací místa © Gemeente Amsterdam": "locuri de parcare © Gemeente Amsterdam",
   // Belgium and Luxembourg (Bára 20. 11. 2026).
-  "ortofoto © SPW (Service public de Wallonie)": "ortofoto © SPW (Service public de Wallonie)",
-  "ortofoto © Digitaal Vlaanderen": "ortofoto © Digitaal Vlaanderen",
-  "ortofoto © ACT Luxembourg (geoportail.lu)": "ortofoto © ACT Luxembourg (geoportail.lu)",
+  "ortofoto © SPW (Service public de Wallonie, CC BY 4.0)": "ortofoto © SPW (Service public de Wallonie, CC BY 4.0)",
+  "ortofoto: Bron: Luchtopnamen Digitaal Vlaanderen (Modellicentie gratis hergebruik v1.0)": "ortofoto: Bron: Luchtopnamen Digitaal Vlaanderen (Modellicentie gratis hergebruik v1.0)",
+  "ortofoto © ACT Luxembourg (geoportail.lu, CC0)": "ortofoto © ACT Luxembourg (geoportail.lu, CC0)",
   "čar mapy GRB, ortofota a OSM": "liniile hărții GRB, ortofoto și OSM",
   "čar mapy PICC, ortofota a OSM": "liniile hărții PICC, ortofoto și OSM",
-  "čáry GRB © Digitaal Vlaanderen": "liniile GRB © Digitaal Vlaanderen",
+  "čáry GRB: Bron: Grootschalig Referentie Bestand Vlaanderen, Digitaal Vlaanderen (Modellicentie gratis hergebruik v1.0)": "liniile GRB: Bron: Grootschalig Referentie Bestand Vlaanderen, Digitaal Vlaanderen (Modellicentie gratis hergebruik v1.0)",
   " · mapa povrchů GRB neodpověděla, odhad z ortofota a OSM": " · harta suprafețelor GRB nu a răspuns, estimare din ortofoto și OSM",
   "Mapa povrchů GRB (Digitaal Vlaanderen) teď neodpovídá, profil je odhad z ortofota a OSM.": "Harta suprafețelor GRB (Digitaal Vlaanderen) nu răspunde acum, profilul este o estimare din ortofoto și OSM.",
   "mapy povrchů GRB, ortofota a OSM": "hărții suprafețelor GRB, ortofoto și OSM",
   "mapa povrchů (GRB): {who}": "harta suprafețelor (GRB): {who}",
-  "čáry PICC © SPW (Service public de Wallonie)": "liniile PICC © SPW (Service public de Wallonie)",
+  "čáry PICC © SPW (Service public de Wallonie, CC BY 4.0)": "liniile PICC © SPW (Service public de Wallonie, CC BY 4.0)",
   "chodník: volný průchod nejméně 1,5 m, základ 1,8 m (Flandry, Vademecum voetgangersvoorzieningen 2026; Valonsko 1,5 m; Brusel 2 m)": "trotuar: lățime liberă de trecere de cel puțin 1,5 m, standard 1,8 m (Flandra, Vademecum voetgangersvoorzieningen 2026; Valonia 1,5 m; Bruxelles 2 m)",
   "společná stezka pro chodce a cyklisty (D10): jednosměrná 2 m, obousměrná 2,5 m, doporučeno 3 m (Valonsko, Guide cyclable)": "pistă comună pentru pietoni și biciclete (D10): unidirecțională 2 m, bidirecțională 2,5 m, recomandat 3 m (Valonia, Guide cyclable)",
   "stezka pro cyklisty jednosměrná: Flandry 2 m (Vademecum fietsvoorzieningen 2024), Valonsko nejméně 1,3 m (Guide cyclable); obousměrná Flandry 3 m, Valonsko 2,2–2,6 m": "pistă pentru biciclete unidirecțională: Flandra 2 m (Vademecum fietsvoorzieningen 2024), Valonia cel puțin 1,3 m (Guide cyclable); bidirecțională Flandra 3 m, Valonia 2,2–2,6 m",
@@ -1086,13 +1086,13 @@ export const RO = {
 export const RO_HTML = {
   footer: `Date: hărți tehnice © <a href="https://www.geoportalpraha.cz">IPR Praha</a> (precum și numărul de niveluri și evoluția construcțiilor, CC BY 4.0), ale orașelor statutare Brno, Jihlava, Most, Opava și Plzeň
     și ale regiunilor (<a href="https://dmvs.cuzk.gov.cz">IS DMVS ČÚZK</a>) · RÚIAN (inclusiv căutarea adreselor), cadastru și ortofoto © ČÚZK (CC BY 4.0) · ortofoto, clădiri și limite ale Slovaciei © <a href="https://www.geoportal.sk">GKÚ Bratislava</a>, NLC (ZBGIS, CC BY 4.0), străzi și adrese ale Slovaciei © MV SR ·
-    registre ale străzilor © Hlavné mesto SR Bratislava, MČ Dúbravka, mesto Žilina, mesto Banská Bystrica, mesto Košice, mesto Prešov (CC BY 4.0), desene cartografice © mestá Nitra, Piešťany, Hlohovec, hartă tehnică © Hlavné mesto SR Bratislava ·
-    rețele © IPR Praha, Gemeente Amsterdam și Waternet (licență nespecificată), mestá Prešov (CC BY 4.0), Nitra, Košice, Piešťany, Olomoucký kraj, orașele statutare Karviná, Ostrava, orașul Břeclav ·
+    registre ale străzilor © Hlavné mesto SR Bratislava, MČ Dúbravka, EUROSENSE SLOVAKIA, s.r.o., mesto Žilina, mesto Banská Bystrica, mesto Košice, mesto Prešov (CC BY 4.0), desene cartografice © mestá Nitra, Piešťany, Hlohovec, hartă tehnică © Hlavné mesto SR Bratislava ·
+    rețele © IPR Praha, Gemeente Amsterdam și Waternet (Creative Commons Naamsvermelding, versiune nespecificată), mestá Prešov (CC BY 4.0), Nitra, Košice, Piešťany, Olomoucký kraj, orașele statutare Karviná, Ostrava, orașul Břeclav ·
     Austria: ortofoto © basemap.at (CC BY 4.0), Flächen-Mehrzweckkarte © Stadt Wien – data.wien.gv.at (CC BY 4.0), limită © EuroGeographics (GISCO), indicatoare rutiere Salzburg © Stadt Salzburg (CC BY 3.0 AT), căutare Photon © komoot (date OSM) ·
     Germania: ortofotografiile landurilor © LGL-BW, Bayerische Vermessungsverwaltung, GeoBasis-DE/LGB, Landesamt GeoInformation Bremen, LGV Hamburg, HVBG, GeoBasis-DE/M-V, LGLN, GeoBasis-DE/NRW, GeoBasis-DE/LVermGeoRP, GeoBasis-DE/LVermGeo SH, GeoBasis-DE/LVGL-SL, GeoSN, GeoBasis-DE/LVermGeo ST, GDI-Th; <a href="https://www.govdata.de/dl-de/by-2-0">dl-de/by-2-0</a>, <a href="https://www.govdata.de/dl-de/zero-2-0">dl-de/zero-2-0</a>, <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>, limită © EuroGeographics (GISCO), indicatoare rutiere Wikimedia Commons (opere oficiale), căutare Photon © komoot (date OSM) ·
     Elveția și Liechtenstein: ortofoto SWISSIMAGE și limite © swisstopo, măsurătoarea cadastrală oficială (Bodenbedeckung) © cantoanele și Liechtenstein prin <a href="https://geodienste.ch">geodienste.ch</a>, indicatoare rutiere Wikimedia Commons (opere oficiale, ASTRA), căutare Photon © komoot (date OSM) ·
     Țările de Jos: harta suprafețelor BGT și clădirile BAG © Kadaster și administratorii datelor (bronhouders) prin <a href="https://www.pdok.nl">PDOK</a> (CC0, Public Domain Mark), ortofoto © Beeldmateriaal Nederland (PDOK, <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>), înălțimile clădirilor <a href="https://3dbag.nl">3D BAG</a> © TU Delft și 3DGI (CC BY 4.0), limită © EuroGeographics (GISCO), indicatoare rutiere Wikimedia Commons (opere oficiale), căutare PDOK Locatieserver, locuri de parcare din Amsterdam © Gemeente Amsterdam ·
-    Belgia și Luxemburg: ortofoto și liniile GRB: sursa Digitaal Vlaanderen (<a href="https://www.vlaanderen.be/digitaal-vlaanderen/onze-oplossingen/open-data/voorwaarden-voor-het-hergebruik-van-overheidsinformatie/modellicentie-gratis-hergebruik">Modellicentie gratis hergebruik</a>), ortofoto și liniile PICC © SPW (Service public de Wallonie), ortofoto © ACT Luxembourg (geoportail.lu), limită © EuroGeographics (GISCO), indicatoare rutiere Wikimedia Commons (opere oficiale), căutare Photon © komoot (date OSM) ·
+    Belgia și Luxemburg: ortofoto și liniile GRB: sursa Digitaal Vlaanderen (<a href="https://www.vlaanderen.be/digitaal-vlaanderen/onze-oplossingen/open-data/voorwaarden-voor-het-hergebruik-van-overheidsinformatie/modellicentie-gratis-hergebruik">Modellicentie gratis hergebruik v1.0</a>), ortofoto și liniile PICC © SPW (Service public de Wallonie, <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>), ortofoto © ACT Luxembourg (geoportail.lu, CC0), limită © EuroGeographics (GISCO), indicatoare rutiere Wikimedia Commons (opere oficiale), căutare Photon © komoot (date OSM) ·
     Polonia: ortofoto și căutarea adreselor © GUGiK (Geoportal.gov.pl, PRG), harta suprafețelor Cracoviei (MJO) © Gmina Miejska Kraków, limită © EuroGeographics (GISCO), indicatoare rutiere Wikimedia Commons (opere oficiale), căutare Photon © komoot (date OSM) ·
     Franța: ortofoto, clădiri (BD TOPO) și căutarea adreselor © <a href="https://geoservices.ign.fr">IGN France</a> (Géoplateforme, <a href="https://www.etalab.gouv.fr/licence-ouverte-open-licence/">Licence Ouverte 2.0</a>), harta suprafețelor Parisului (Plan de voirie) © <a href="https://opendata.paris.fr">Ville de Paris</a> (<a href="https://opendatacommons.org/licenses/odbl/">ODbL</a>), limită © EuroGeographics (GISCO), indicatoare rutiere Wikimedia Commons (opere oficiale) ·
     Spania: ortofoto PNOA și căutarea adreselor CartoCiudad © Instituto Geográfico Nacional de España (CC BY 4.0, scne.es), clădiri © Dirección General del Catastro, în Navarra Servicio proporcionado por el Gobierno de Navarra (CC BY 4.0), în Țara Bascilor © Arabako, Bizkaiko și Gipuzkoako Foru Aldundia, harta suprafețelor Zaragozei © Ayuntamiento de Zaragoza (IDEZar), limită © EuroGeographics (GISCO), indicatoare rutiere Wikimedia Commons (opere oficiale) ·
@@ -1106,7 +1106,7 @@ export const RO_HTML = {
     Finlanda: ortofoto © Helsingin kaupunki, kaupunkimittauspalvelut, Espoon kaupunki și Turun kaupunki (CC BY 4.0), harta suprafețelor (Yleisten alueiden rekisteri) și clădiri © Helsingin kaupunki (CC BY 4.0), clădiri și adrese Ryhti © Suomen ympäristökeskus SYKE (CC BY 4.0), limită © EuroGeographics (GISCO), indicatoare rutiere Wikimedia Commons (opere oficiale), căutare Photon © komoot (date OSM) ·
     Danemarca: ortofoto „Indeholder data fra Styrelsen for Dataforsyning og Infrastruktur, Ortofoto forår, WMTS-tjeneste” (<a href="https://dataforsyningen.dk/asset/PDF/rettigheder_vilkaar/Vilk%C3%A5r%20for%20brug%20af%20frie%20geografiske%20data.pdf">condiții</a>) și căutarea adreselor GSearch © Klimadatastyrelsen, marginile carosabilului, suprafețele de parcare și clădirile (GeoDanmark, BBR) din Copenhaga © Københavns Kommune (licență neindicată), clădiri din Aarhus (BBR) © Aarhus Kommune (CC BY 4.0), limită © EuroGeographics (GISCO), indicatoare rutiere Wikimedia Commons (opere oficiale), căutare Photon © komoot (date OSM) ·
     Lituania: harta suprafețelor orașului Vilnius (suprafețe topografice 1 : 500) © Vilniaus miesto savivaldybė / Vilniaus planas (licență neindicată; doar cu ?vilnius=1), contururile clădirilor GRPK © Lietuvos Respublikos aplinkos ministerija (CC BY 4.0), limită © EuroGeographics (GISCO), indicatoare rutiere Wikimedia Commons (desene de Augustasci sub CC BY 4.0, tabele 846 și 853 de Gigillo83 sub CC BY-SA 4.0), căutare Photon © komoot (date OSM) ·
-    parcare © TSK hl. m. Prahy (CC BY 4.0), interdicții de staționare, arbori și clase de străzi din <a href="https://opendata.geoportalpraha.cz">Geoportál Praha</a> (CC BY 4.0), <a href="https://www.parkovanivbrne.cz">parkovanivbrne.cz</a>, orașele Jihlava, Opava, Plzeň (CC0) ·
+    parcare © TSK hl. m. Prahy (CC BY 4.0), interdicții de staționare, arbori și clase de străzi din <a href="https://opendata.geoportalpraha.cz">Geoportál Praha</a> (CC BY 4.0), <a href="https://www.parkovanivbrne.cz">parkovanivbrne.cz</a>, orașele Jihlava (CC BY-SA), Opava, Plzeň (CC0) ·
     © contribuitorii <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> (ODbL) ·
     ilustrații © <a href="https://github.com/streetmix/streetmix/tree/main/packages/illustrations">Streetmix</a>, licență
     <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> ·
@@ -1170,9 +1170,9 @@ export const RO_CITY = {
   brno: own("Brno", "orașului Brno", "Harta tehnică a orașului Brno", "orașului Brno", "tronsoane cu parcare cu plată (parkovanivbrne.cz)",
     "Date © Statutární město Brno (hartă tehnică și MTVU; clădiri și infrastructură pentru biciclete, data.brno.cz, CC BY 4.0, prelucrat), parcare © parkovanivbrne.cz"),
   jihlava: own("Jihlava", "orașului Jihlava", "Registrul străzilor din Jihlava", "orașului Jihlava", "locuri de parcare (orașul Jihlava)",
-    `Date © Statutární město Jihlava (registrul străzilor, parcare, mobilier urban), RÚIAN și cadastru © ČÚZK, 2026 (CC BY 4.0, prelucrat)`),
+    `Date © Statutární město Jihlava (registrul străzilor, parcare CC BY-SA, mobilier urban), RÚIAN și cadastru © ČÚZK, 2026 (CC BY 4.0, prelucrat)`),
   most: own("Most", "orașului Most", "Harta tehnică din Most", "orașului Most", TECH_PARKING,
-    `Date © Statutární město Most (hartă de obiecte și hartă tehnică, iluminat public), ${RUIAN}`),
+    `Date © Statutární město Most (hartă de obiecte și iluminat public, CC BY-SA; hartă tehnică), ${RUIAN}`),
   opava: own("Opava", "orașului Opava", "Harta de uz special din Opava", "orașului Opava", "locuri de parcare (orașul Opava)",
     `Date © Statutární město Opava (hartă de uz special, parcare, arbori, bănci, stații), ${RUIAN}`),
   pardubice: {

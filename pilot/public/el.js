@@ -617,7 +617,7 @@ export const EL = {
   "Obrázek PNG": "Εικόνα PNG",
   "Vektor SVG": "Διανυσματικό SVG",
   "Soubor": "Αρχείο",
-  "pasport komunikácií © Hlavné mesto SR Bratislava a MČ Dúbravka": "μητρώο οδών © Hlavné mesto SR Bratislava και MČ Dúbravka",
+  "pasport komunikácií © Hlavné mesto SR Bratislava a MČ Dúbravka, © EUROSENSE SLOVAKIA, s.r.o.": "μητρώο οδών © Hlavné mesto SR Bratislava και MČ Dúbravka, © EUROSENSE SLOVAKIA, s.r.o.",
   "pasport dopravy a zelene © mesto Prešov (CC BY 4.0)": "μητρώο οδών και πρασίνου © mesto Prešov (CC BY 4.0)",
   "pasport komunikácií © mesto Žilina": "μητρώο οδών © mesto Žilina",
   "pasport komunikácií © mesto Košice": "μητρώο οδών © mesto Košice",
@@ -809,7 +809,7 @@ export const EL = {
   "Příčné profily ulic v Česku, na Slovensku, v Rakousku, v Německu, ve Švýcarsku, v Lichtenštejnsku, v Nizozemsku, v Belgii, v Lucembursku, v Polsku, ve Francii, v Monaku, ve Španělsku, v Portugalsku, na Kypru, na Maltě, v částech Itálie, v Estonsku, ve Slovinsku, ve Finsku, v Dánsku a v Litvě z map povrchů měst, ČÚZK a ZBGIS: od fasády k fasádě, upravitelné, s místními ilustracemi.": "Διατομές οδών στην Τσεχία, τη Σλοβακία, την Αυστρία, τη Γερμανία, την Ελβετία, το Λιχτενστάιν, την Ολλανδία, το Βέλγιο, το Λουξεμβούργο, την Πολωνία, τη Γαλλία, το Μονακό, την Ισπανία, την Πορτογαλία, την Κύπρο, τη Μάλτα, τμήματα της Ιταλίας, την Εσθονία, τη Σλοβενία, τη Φινλανδία, τη Δανία και τη Λιθουανία από τους χάρτες επιφανειών των πόλεων, του ČÚZK και του ZBGIS: από όψη σε όψη, επεξεργάσιμες, με τοπικές εικονογραφήσεις.",
   // The Netherlands (Bára 20. 11. 2026).
   "mapy povrchů BGT, ortofota PDOK a OSM": "του χάρτη επιφανειών BGT, της ορθοφωτογραφίας PDOK και του OSM",
-  "ortofoto © PDOK (Beeldmateriaal Nederland)": "ορθοφωτογραφία © PDOK (Beeldmateriaal Nederland)",
+  "ortofoto © Beeldmateriaal.nl (PDOK, CC BY 4.0)": "ορθοφωτογραφία © Beeldmateriaal.nl (PDOK, CC BY 4.0)",
   "mapa povrchů BGT © Kadaster a správci BGT (PDOK, CC0)": "χάρτης επιφανειών BGT © Kadaster και οι διαχειριστές του BGT (PDOK, CC0)",
   " · mapa povrchů BGT neodpověděla, odhad z ortofota a OSM": " · ο χάρτης επιφανειών BGT δεν απάντησε, εκτίμηση από ορθοφωτογραφία και OSM",
   "Mapa povrchů BGT (PDOK) teď neodpovídá, profil je odhad z ortofota a OSM.": "Ο χάρτης επιφανειών BGT (PDOK) δεν απαντά τώρα, η διατομή είναι εκτίμηση από ορθοφωτογραφία και OSM.",
@@ -822,21 +822,21 @@ export const EL = {
   "podélné stání: 2 × 6 m (ASVV 2012 podle obce Oost Gelre), v Amsterdamu 2,1–2,4 m": "παράλληλη στάθμευση: 2 × 6 m (ASVV 2012 κατά τον δήμο Oost Gelre), στο Άμστερνταμ 2,1–2,4 m",
   "Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Smí se jen u značky E8b (RVV 1990 čl. 10). Zákon šířku neuvádí, v praxi 3,5 m pro hasiče na jednosměrce a 4,5 m vozovky pro oba směry; aplikace nechává průjezdné pruhy, tedy aspoň {need}.": "Στάθμευση κατά το ήμισυ στο πεζοδρόμιο κατά το OSM: στο οδόστρωμα μένουν {free}. Επιτρέπεται μόνο στην πινακίδα E8b (RVV 1990 άρθρο 10). Ο νόμος δεν ορίζει πλάτος, στην πράξη 3,5 m για την πυροσβεστική σε μονόδρομο και 4,5 m οδοστρώματος για τις δύο κατευθύνσεις· η εφαρμογή διατηρεί διαβατές τις λωρίδες κυκλοφορίας, δηλαδή τουλάχιστον {need}.",
   "jednosměrka s cyklisty v protisměru: vozovka nejméně 3,5 m, základ 4 m (Amsterdam, Afwegingskader fietsstraten 2020)": "μονόδρομος με ποδηλάτες αντίθετα στη ροή: οδόστρωμα τουλάχιστον 3,5 m, βασικό 4 m (Άμστερνταμ, Afwegingskader fietsstraten 2020)",
-  "Sítě © Gemeente Amsterdam a Waternet (CC BY).": "Δίκτυα © Gemeente Amsterdam και Waternet (CC BY).",
+  "Sítě © Gemeente Amsterdam a Waternet (Creative Commons Naamsvermelding, verze neuvedena).": "Δίκτυα © Gemeente Amsterdam και Waternet (Creative Commons Naamsvermelding, η έκδοση δεν αναφέρεται).",
   "kabel veřejného osvětlení": "καλώδιο οδοφωτισμού",
   "parkovací místa © Gemeente Amsterdam": "θέσεις στάθμευσης © Gemeente Amsterdam",
   // Belgium and Luxembourg (Bára 20. 11. 2026).
-  "ortofoto © SPW (Service public de Wallonie)": "ορθοφωτογραφία © SPW (Service public de Wallonie)",
-  "ortofoto © Digitaal Vlaanderen": "ορθοφωτογραφία © Digitaal Vlaanderen",
-  "ortofoto © ACT Luxembourg (geoportail.lu)": "ορθοφωτογραφία © ACT Luxembourg (geoportail.lu)",
+  "ortofoto © SPW (Service public de Wallonie, CC BY 4.0)": "ορθοφωτογραφία © SPW (Service public de Wallonie, CC BY 4.0)",
+  "ortofoto: Bron: Luchtopnamen Digitaal Vlaanderen (Modellicentie gratis hergebruik v1.0)": "ορθοφωτογραφία: Bron: Luchtopnamen Digitaal Vlaanderen (Modellicentie gratis hergebruik v1.0)",
+  "ortofoto © ACT Luxembourg (geoportail.lu, CC0)": "ορθοφωτογραφία © ACT Luxembourg (geoportail.lu, CC0)",
   "čar mapy GRB, ortofota a OSM": "των γραμμών του χάρτη GRB, της ορθοφωτογραφίας και του OSM",
   "čar mapy PICC, ortofota a OSM": "των γραμμών του χάρτη PICC, της ορθοφωτογραφίας και του OSM",
-  "čáry GRB © Digitaal Vlaanderen": "γραμμές GRB © Digitaal Vlaanderen",
+  "čáry GRB: Bron: Grootschalig Referentie Bestand Vlaanderen, Digitaal Vlaanderen (Modellicentie gratis hergebruik v1.0)": "γραμμές GRB: Bron: Grootschalig Referentie Bestand Vlaanderen, Digitaal Vlaanderen (Modellicentie gratis hergebruik v1.0)",
   " · mapa povrchů GRB neodpověděla, odhad z ortofota a OSM": " · ο χάρτης επιφανειών GRB δεν απάντησε, εκτίμηση από ορθοφωτογραφία και OSM",
   "Mapa povrchů GRB (Digitaal Vlaanderen) teď neodpovídá, profil je odhad z ortofota a OSM.": "Ο χάρτης επιφανειών GRB (Digitaal Vlaanderen) δεν απαντά τώρα, η διατομή είναι εκτίμηση από ορθοφωτογραφία και OSM.",
   "mapy povrchů GRB, ortofota a OSM": "του χάρτη επιφανειών GRB, της ορθοφωτογραφίας και του OSM",
   "mapa povrchů (GRB): {who}": "χάρτης επιφανειών (GRB): {who}",
-  "čáry PICC © SPW (Service public de Wallonie)": "γραμμές PICC © SPW (Service public de Wallonie)",
+  "čáry PICC © SPW (Service public de Wallonie, CC BY 4.0)": "γραμμές PICC © SPW (Service public de Wallonie, CC BY 4.0)",
   "chodník: volný průchod nejméně 1,5 m, základ 1,8 m (Flandry, Vademecum voetgangersvoorzieningen 2026; Valonsko 1,5 m; Brusel 2 m)": "πεζοδρόμιο: ελεύθερο πλάτος διέλευσης τουλάχιστον 1,5 m, βασικό 1,8 m (Φλάνδρα, Vademecum voetgangersvoorzieningen 2026; Βαλλονία 1,5 m; Βρυξέλλες 2 m)",
   "společná stezka pro chodce a cyklisty (D10): jednosměrná 2 m, obousměrná 2,5 m, doporučeno 3 m (Valonsko, Guide cyclable)": "κοινή διαδρομή πεζών και ποδηλάτων (D10): μίας κατεύθυνσης 2 m, διπλής κατεύθυνσης 2,5 m, συνιστώμενο 3 m (Βαλλονία, Guide cyclable)",
   "stezka pro cyklisty jednosměrná: Flandry 2 m (Vademecum fietsvoorzieningen 2024), Valonsko nejméně 1,3 m (Guide cyclable); obousměrná Flandry 3 m, Valonsko 2,2–2,6 m": "ποδηλατόδρομος μίας κατεύθυνσης: Φλάνδρα 2 m (Vademecum fietsvoorzieningen 2024), Βαλλονία τουλάχιστον 1,3 m (Guide cyclable); διπλής κατεύθυνσης Φλάνδρα 3 m, Βαλλονία 2,2–2,6 m",
@@ -1086,13 +1086,13 @@ export const EL = {
 export const EL_HTML = {
   footer: `Δεδομένα: τεχνικοί χάρτες © <a href="https://www.geoportalpraha.cz">IPR Praha</a> (καθώς και αριθμοί ορόφων και εξέλιξη της δόμησης, CC BY 4.0), των πόλεων Brno, Jihlava, Most, Opava και Plzeň
     και των περιφερειών (<a href="https://dmvs.cuzk.gov.cz">IS DMVS ČÚZK</a>) · RÚIAN (και η αναζήτηση διευθύνσεων), κτηματολόγιο και ορθοφωτογραφία © ČÚZK (CC BY 4.0) · ορθοφωτογραφία, κτίρια και όρια της Σλοβακίας © <a href="https://www.geoportal.sk">GKÚ Bratislava</a>, NLC (ZBGIS, CC BY 4.0), οδοί και διευθύνσεις της Σλοβακίας © MV SR ·
-    μητρώα οδών © Hlavné mesto SR Bratislava, MČ Dúbravka, mesto Žilina, mesto Banská Bystrica, mesto Košice, mesto Prešov (CC BY 4.0), σχέδια χαρτών © mestá Nitra, Piešťany, Hlohovec, τεχνικός χάρτης © Hlavné mesto SR Bratislava ·
-    δίκτυα © IPR Praha, Gemeente Amsterdam και Waternet (η άδεια δεν αναφέρεται), mestá Prešov (CC BY 4.0), Nitra, Košice, Piešťany, Olomoucký kraj, πόλεις Karviná, Ostrava, Břeclav ·
+    μητρώα οδών © Hlavné mesto SR Bratislava, MČ Dúbravka, EUROSENSE SLOVAKIA, s.r.o., mesto Žilina, mesto Banská Bystrica, mesto Košice, mesto Prešov (CC BY 4.0), σχέδια χαρτών © mestá Nitra, Piešťany, Hlohovec, τεχνικός χάρτης © Hlavné mesto SR Bratislava ·
+    δίκτυα © IPR Praha, Gemeente Amsterdam και Waternet (Creative Commons Naamsvermelding, η έκδοση δεν αναφέρεται), mestá Prešov (CC BY 4.0), Nitra, Košice, Piešťany, Olomoucký kraj, πόλεις Karviná, Ostrava, Břeclav ·
     Αυστρία: ορθοφωτογραφία © basemap.at (CC BY 4.0), Flächen-Mehrzweckkarte © Stadt Wien – data.wien.gv.at (CC BY 4.0), όριο © EuroGeographics (GISCO), πινακίδες σήμανσης Salzburg © Stadt Salzburg (CC BY 3.0 AT), αναζήτηση Photon © komoot (δεδομένα OSM) ·
     Γερμανία: ορθοφωτογραφίες των κρατιδίων © LGL-BW, Bayerische Vermessungsverwaltung, GeoBasis-DE/LGB, Landesamt GeoInformation Bremen, LGV Hamburg, HVBG, GeoBasis-DE/M-V, LGLN, GeoBasis-DE/NRW, GeoBasis-DE/LVermGeoRP, GeoBasis-DE/LVermGeo SH, GeoBasis-DE/LVGL-SL, GeoSN, GeoBasis-DE/LVermGeo ST, GDI-Th· <a href="https://www.govdata.de/dl-de/by-2-0">dl-de/by-2-0</a>, <a href="https://www.govdata.de/dl-de/zero-2-0">dl-de/zero-2-0</a>, <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>, όριο © EuroGeographics (GISCO), πινακίδες σήμανσης Wikimedia Commons (επίσημα έργα), αναζήτηση Photon © komoot (δεδομένα OSM) ·
     Ελβετία και Λιχτενστάιν: ορθοφωτογραφία SWISSIMAGE και όρια © swisstopo, επίσημη κτηματογράφηση (Bodenbedeckung) © καντόνια και Λιχτενστάιν μέσω <a href="https://geodienste.ch">geodienste.ch</a>, πινακίδες σήμανσης Wikimedia Commons (επίσημα έργα, ASTRA), αναζήτηση Photon © komoot (δεδομένα OSM) ·
     Ολλανδία: χάρτης επιφανειών BGT και κτίρια BAG © Kadaster και οι διαχειριστές των δεδομένων (bronhouders) μέσω <a href="https://www.pdok.nl">PDOK</a> (CC0, Public Domain Mark), ορθοφωτογραφία © Beeldmateriaal Nederland (PDOK, <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>), ύψη κτιρίων <a href="https://3dbag.nl">3D BAG</a> © TU Delft και 3DGI (CC BY 4.0), όριο © EuroGeographics (GISCO), πινακίδες σήμανσης Wikimedia Commons (επίσημα έργα), αναζήτηση PDOK Locatieserver, θέσεις στάθμευσης του Άμστερνταμ © Gemeente Amsterdam ·
-    Βέλγιο και Λουξεμβούργο: ορθοφωτογραφία και γραμμές GRB: πηγή Digitaal Vlaanderen (<a href="https://www.vlaanderen.be/digitaal-vlaanderen/onze-oplossingen/open-data/voorwaarden-voor-het-hergebruik-van-overheidsinformatie/modellicentie-gratis-hergebruik">Modellicentie gratis hergebruik</a>), ορθοφωτογραφία και γραμμές PICC © SPW (Service public de Wallonie), ορθοφωτογραφία © ACT Luxembourg (geoportail.lu), όριο © EuroGeographics (GISCO), πινακίδες σήμανσης Wikimedia Commons (επίσημα έργα), αναζήτηση Photon © komoot (δεδομένα OSM) ·
+    Βέλγιο και Λουξεμβούργο: ορθοφωτογραφία και γραμμές GRB: πηγή Digitaal Vlaanderen (<a href="https://www.vlaanderen.be/digitaal-vlaanderen/onze-oplossingen/open-data/voorwaarden-voor-het-hergebruik-van-overheidsinformatie/modellicentie-gratis-hergebruik">Modellicentie gratis hergebruik v1.0</a>), ορθοφωτογραφία και γραμμές PICC © SPW (Service public de Wallonie, <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>), ορθοφωτογραφία © ACT Luxembourg (geoportail.lu, CC0), όριο © EuroGeographics (GISCO), πινακίδες σήμανσης Wikimedia Commons (επίσημα έργα), αναζήτηση Photon © komoot (δεδομένα OSM) ·
     Πολωνία: ορθοφωτογραφία και αναζήτηση διευθύνσεων © GUGiK (Geoportal.gov.pl, PRG), χάρτης επιφανειών της Κρακοβίας (MJO) © Gmina Miejska Kraków, όριο © EuroGeographics (GISCO), πινακίδες σήμανσης Wikimedia Commons (επίσημα έργα), αναζήτηση Photon © komoot (δεδομένα OSM) ·
     Γαλλία: ορθοφωτογραφία, κτίρια (BD TOPO) και αναζήτηση διευθύνσεων © <a href="https://geoservices.ign.fr">IGN France</a> (Géoplateforme, <a href="https://www.etalab.gouv.fr/licence-ouverte-open-licence/">Licence Ouverte 2.0</a>), χάρτης επιφανειών του Παρισιού (Plan de voirie) © <a href="https://opendata.paris.fr">Ville de Paris</a> (<a href="https://opendatacommons.org/licenses/odbl/">ODbL</a>), όριο © EuroGeographics (GISCO), πινακίδες σήμανσης Wikimedia Commons (επίσημα έργα) ·
     Ισπανία: ορθοφωτογραφία PNOA και αναζήτηση διευθύνσεων CartoCiudad © Instituto Geográfico Nacional de España (CC BY 4.0, scne.es), κτίρια © Dirección General del Catastro, στη Ναβάρρα Servicio proporcionado por el Gobierno de Navarra (CC BY 4.0), στη Χώρα των Βάσκων © Arabako, Bizkaiko και Gipuzkoako Foru Aldundia, χάρτης επιφανειών της Σαραγόσας © Ayuntamiento de Zaragoza (IDEZar), όριο © EuroGeographics (GISCO), πινακίδες σήμανσης Wikimedia Commons (επίσημα έργα) ·
@@ -1106,7 +1106,7 @@ export const EL_HTML = {
     Φινλανδία: ορθοφωτογραφία © Helsingin kaupunki, kaupunkimittauspalvelut, Espoon kaupunki και Turun kaupunki (CC BY 4.0), χάρτης επιφανειών (Yleisten alueiden rekisteri) και κτίρια © Helsingin kaupunki (CC BY 4.0), κτίρια και διευθύνσεις Ryhti © Suomen ympäristökeskus SYKE (CC BY 4.0), όριο © EuroGeographics (GISCO), πινακίδες σήμανσης Wikimedia Commons (επίσημα έργα), αναζήτηση Photon © komoot (δεδομένα OSM) ·
     Δανία: ορθοφωτογραφία «Indeholder data fra Styrelsen for Dataforsyning og Infrastruktur, Ortofoto forår, WMTS-tjeneste» (<a href="https://dataforsyningen.dk/asset/PDF/rettigheder_vilkaar/Vilk%C3%A5r%20for%20brug%20af%20frie%20geografiske%20data.pdf">όροι</a>) και αναζήτηση διευθύνσεων GSearch © Klimadatastyrelsen, άκρα οδοστρώματος, χώροι στάθμευσης και κτίρια της Κοπεγχάγης (GeoDanmark, BBR) © Københavns Kommune (η άδεια δεν αναφέρεται), κτίρια του Ώρχους (BBR) © Aarhus Kommune (CC BY 4.0), όριο © EuroGeographics (GISCO), πινακίδες σήμανσης Wikimedia Commons (επίσημα έργα), αναζήτηση Photon © komoot (δεδομένα OSM) ·
     Λιθουανία: χάρτης επιφανειών του Βίλνιους (τοπογραφικές επιφάνειες 1 : 500) © Vilniaus miesto savivaldybė / Vilniaus planas (η άδεια δεν αναφέρεται· μόνο με ?vilnius=1), περιγράμματα κτιρίων GRPK © Lietuvos Respublikos aplinkos ministerija (CC BY 4.0), όριο © EuroGeographics (GISCO), πινακίδες σήμανσης Wikimedia Commons (σχέδια του Augustasci υπό CC BY 4.0, πινακίδες 846 και 853 του Gigillo83 υπό CC BY-SA 4.0), αναζήτηση Photon © komoot (δεδομένα OSM) ·
-    στάθμευση © TSK hl. m. Prahy (CC BY 4.0), απαγορεύσεις στάθμευσης, δέντρα και κατηγορίες οδών από το <a href="https://opendata.geoportalpraha.cz">Geoportál Praha</a> (CC BY 4.0), <a href="https://www.parkovanivbrne.cz">parkovanivbrne.cz</a>, οι πόλεις Jihlava, Opava, Plzeň (CC0) ·
+    στάθμευση © TSK hl. m. Prahy (CC BY 4.0), απαγορεύσεις στάθμευσης, δέντρα και κατηγορίες οδών από το <a href="https://opendata.geoportalpraha.cz">Geoportál Praha</a> (CC BY 4.0), <a href="https://www.parkovanivbrne.cz">parkovanivbrne.cz</a>, οι πόλεις Jihlava (CC BY-SA), Opava, Plzeň (CC0) ·
     © συνεισφέροντες του <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> (ODbL) ·
     εικονογραφήσεις © <a href="https://github.com/streetmix/streetmix/tree/main/packages/illustrations">Streetmix</a>, άδεια
     <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> ·
@@ -1170,9 +1170,9 @@ export const EL_CITY = {
   brno: own("Brno", "της πόλης Brno", "ο τεχνικός χάρτης της πόλης Brno", "της πόλης Brno", "τμήματα ελεγχόμενης στάθμευσης (parkovanivbrne.cz)",
     "δεδομένα © Statutární město Brno (τεχνικός χάρτης και MTVU· κτίρια και ποδηλατικές υποδομές, data.brno.cz, CC BY 4.0, τροποποιημένα), στάθμευση © parkovanivbrne.cz"),
   jihlava: own("Jihlava", "της πόλης Jihlava", "το μητρώο οδών της πόλης Jihlava", "της πόλης Jihlava", "θέσεις στάθμευσης (πόλη Jihlava)",
-    `δεδομένα © Statutární město Jihlava (μητρώο οδών, στάθμευση, αστικός εξοπλισμός), RÚIAN και κτηματολόγιο © ČÚZK, 2026 (CC BY 4.0, τροποποιημένα)`),
+    `δεδομένα © Statutární město Jihlava (μητρώο οδών, στάθμευση CC BY-SA, αστικός εξοπλισμός), RÚIAN και κτηματολόγιο © ČÚZK, 2026 (CC BY 4.0, τροποποιημένα)`),
   most: own("Most", "της πόλης Most", "ο τεχνικός χάρτης της πόλης Most", "της πόλης Most", TECH_PARKING,
-    `δεδομένα © Statutární město Most (χάρτης αντικειμένων και τεχνικός χάρτης, οδοφωτισμός), ${RUIAN}`),
+    `δεδομένα © Statutární město Most (χάρτης αντικειμένων και οδοφωτισμός, CC BY-SA· τεχνικός χάρτης), ${RUIAN}`),
   opava: own("Opava", "της πόλης Opava", "ο θεματικός χάρτης της πόλης Opava", "της πόλης Opava", "θέσεις στάθμευσης (πόλη Opava)",
     `δεδομένα © Statutární město Opava (θεματικός χάρτης, στάθμευση, δέντρα, παγκάκια, στάσεις), ${RUIAN}`),
   pardubice: {

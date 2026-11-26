@@ -617,7 +617,7 @@ export const MT = {
   "Obrázek PNG": "Stampa PNG",
   "Vektor SVG": "SVG (vettur)",
   "Soubor": "Fajl",
-  "pasport komunikácií © Hlavné mesto SR Bratislava a MČ Dúbravka": "inventarju tat-toroq © Hlavné mesto SR Bratislava u MČ Dúbravka",
+  "pasport komunikácií © Hlavné mesto SR Bratislava a MČ Dúbravka, © EUROSENSE SLOVAKIA, s.r.o.": "inventarju tat-toroq © Hlavné mesto SR Bratislava u MČ Dúbravka, © EUROSENSE SLOVAKIA, s.r.o.",
   "pasport dopravy a zelene © mesto Prešov (CC BY 4.0)": "inventarju tat-trasport u taż-żoni ħodor © mesto Prešov (CC BY 4.0)",
   "pasport komunikácií © mesto Žilina": "inventarju tat-toroq © mesto Žilina",
   "pasport komunikácií © mesto Košice": "inventarju tat-toroq © mesto Košice",
@@ -809,7 +809,7 @@ export const MT = {
   "Příčné profily ulic v Česku, na Slovensku, v Rakousku, v Německu, ve Švýcarsku, v Lichtenštejnsku, v Nizozemsku, v Belgii, v Lucembursku, v Polsku, ve Francii, v Monaku, ve Španělsku, v Portugalsku, na Kypru, na Maltě, v částech Itálie, v Estonsku, ve Slovinsku, ve Finsku, v Dánsku a v Litvě z map povrchů měst, ČÚZK a ZBGIS: od fasády k fasádě, upravitelné, s místními ilustracemi.": "Sezzjonijiet trasversali tat-toroq fiċ-Ċekja, fis-Slovakkja, fl-Awstrija, fil-Ġermanja, fl-Iżvizzera, fil-Liechtenstein, fl-Olanda, fil-Belġju, fil-Lussemburgu, fil-Polonja, fi Franza, f'Monaco, fi Spanja, fil-Portugall, f'Ċipru, f'Malta, f'partijiet mill-Italja, fl-Estonja, fis-Slovenja, fil-Finlandja, fid-Danimarka u fil-Litwanja mill-mapep tal-uċuħ tal-bliet, tal-ČÚZK u minn ZBGIS: minn faċċata għal faċċata, editjabbli, b'illustrazzjonijiet lokali.",
   // The Netherlands (Bára 20. 11. 2026).
   "mapy povrchů BGT, ortofota PDOK a OSM": "mill-mappa tal-uċuħ BGT, mill-ortofoto PDOK u minn OSM",
-  "ortofoto © PDOK (Beeldmateriaal Nederland)": "ortofoto © PDOK (Beeldmateriaal Nederland)",
+  "ortofoto © Beeldmateriaal.nl (PDOK, CC BY 4.0)": "ortofoto © Beeldmateriaal.nl (PDOK, CC BY 4.0)",
   "mapa povrchů BGT © Kadaster a správci BGT (PDOK, CC0)": "mappa tal-uċuħ BGT © Kadaster u l-amministraturi tal-BGT (PDOK, CC0)",
   " · mapa povrchů BGT neodpověděla, odhad z ortofota a OSM": " · il-mappa tal-uċuħ BGT ma weġbitx, stima mill-ortofoto u minn OSM",
   "Mapa povrchů BGT (PDOK) teď neodpovídá, profil je odhad z ortofota a OSM.": "Il-mappa tal-uċuħ BGT (PDOK) bħalissa ma tweġibx; il-profil huwa stima mill-ortofoto u minn OSM.",
@@ -822,21 +822,21 @@ export const MT = {
   "podélné stání: 2 × 6 m (ASVV 2012 podle obce Oost Gelre), v Amsterdamu 2,1–2,4 m": "parkeġġ parallel: 2 × 6 m (ASVV 2012 skont il-komun ta' Oost Gelre), f'Amsterdam 2.1–2.4 m",
   "Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Smí se jen u značky E8b (RVV 1990 čl. 10). Zákon šířku neuvádí, v praxi 3,5 m pro hasiče na jednosměrce a 4,5 m vozovky pro oba směry; aplikace nechává průjezdné pruhy, tedy aspoň {need}.": "Parkeġġ nofsu fuq il-bankina skont OSM: fil-karreġġjata jibqa' {free}. Permess biss mas-sinjal E8b (RVV 1990 art. 10). Il-liġi ma tagħtix wisa'; fil-prattika 3.5 m għall-brigata tat-tifi fi triq b'direzzjoni waħda u karreġġjata ta' 4.5 m taż-żewġ direzzjonijiet; l-applikazzjoni żżomm il-korsiji tat-traffiku ħielsa, jiġifieri mill-inqas {need}.",
   "jednosměrka s cyklisty v protisměru: vozovka nejméně 3,5 m, základ 4 m (Amsterdam, Afwegingskader fietsstraten 2020)": "triq b'direzzjoni waħda bir-roti fid-direzzjoni opposta: karreġġjata mill-inqas 3.5 m, standard 4 m (Amsterdam, Afwegingskader fietsstraten 2020)",
-  "Sítě © Gemeente Amsterdam a Waternet (CC BY).": "Netwerks © Gemeente Amsterdam u Waternet (CC BY).",
+  "Sítě © Gemeente Amsterdam a Waternet (Creative Commons Naamsvermelding, verze neuvedena).": "Netwerks © Gemeente Amsterdam u Waternet (Creative Commons Naamsvermelding, verżjoni mhux speċifikata).",
   "kabel veřejného osvětlení": "kejbil tad-dawl tat-toroq",
   "parkovací místa © Gemeente Amsterdam": "postijiet tal-ipparkjar © Gemeente Amsterdam",
   // Belgium and Luxembourg (Bára 20. 11. 2026).
-  "ortofoto © SPW (Service public de Wallonie)": "ortofoto © SPW (Service public de Wallonie)",
-  "ortofoto © Digitaal Vlaanderen": "ortofoto © Digitaal Vlaanderen",
-  "ortofoto © ACT Luxembourg (geoportail.lu)": "ortofoto © ACT Luxembourg (geoportail.lu)",
+  "ortofoto © SPW (Service public de Wallonie, CC BY 4.0)": "ortofoto © SPW (Service public de Wallonie, CC BY 4.0)",
+  "ortofoto: Bron: Luchtopnamen Digitaal Vlaanderen (Modellicentie gratis hergebruik v1.0)": "ortofoto: Bron: Luchtopnamen Digitaal Vlaanderen (Modellicentie gratis hergebruik v1.0)",
+  "ortofoto © ACT Luxembourg (geoportail.lu, CC0)": "ortofoto © ACT Luxembourg (geoportail.lu, CC0)",
   "čar mapy GRB, ortofota a OSM": "il-linji tal-mappa GRB, l-ortofoto u OSM",
   "čar mapy PICC, ortofota a OSM": "il-linji tal-mappa PICC, l-ortofoto u OSM",
-  "čáry GRB © Digitaal Vlaanderen": "linji GRB © Digitaal Vlaanderen",
+  "čáry GRB: Bron: Grootschalig Referentie Bestand Vlaanderen, Digitaal Vlaanderen (Modellicentie gratis hergebruik v1.0)": "linji GRB: Bron: Grootschalig Referentie Bestand Vlaanderen, Digitaal Vlaanderen (Modellicentie gratis hergebruik v1.0)",
   " · mapa povrchů GRB neodpověděla, odhad z ortofota a OSM": " · il-mappa tal-uċuħ GRB ma weġbitx, stima mill-ortofoto u minn OSM",
   "Mapa povrchů GRB (Digitaal Vlaanderen) teď neodpovídá, profil je odhad z ortofota a OSM.": "Il-mappa tal-uċuħ GRB (Digitaal Vlaanderen) bħalissa ma tweġibx; il-profil huwa stima mill-ortofoto u minn OSM.",
   "mapy povrchů GRB, ortofota a OSM": "mill-mappa tal-uċuħ GRB, mill-ortofoto u minn OSM",
   "mapa povrchů (GRB): {who}": "mappa tal-uċuħ (GRB): {who}",
-  "čáry PICC © SPW (Service public de Wallonie)": "linji PICC © SPW (Service public de Wallonie)",
+  "čáry PICC © SPW (Service public de Wallonie, CC BY 4.0)": "linji PICC © SPW (Service public de Wallonie, CC BY 4.0)",
   "chodník: volný průchod nejméně 1,5 m, základ 1,8 m (Flandry, Vademecum voetgangersvoorzieningen 2026; Valonsko 1,5 m; Brusel 2 m)": "bankina: wisa' ħieles għall-mixi mill-inqas 1.5 m, standard 1.8 m (il-Fjandri, Vademecum voetgangersvoorzieningen 2026; il-Valonja 1.5 m; Brussell 2 m)",
   "společná stezka pro chodce a cyklisty (D10): jednosměrná 2 m, obousměrná 2,5 m, doporučeno 3 m (Valonsko, Guide cyclable)": "mogħdija kondiviża għall-mixi u r-roti (D10): f'direzzjoni waħda 2 m, fiż-żewġ direzzjonijiet 2.5 m, rakkomandat 3 m (il-Valonja, Guide cyclable)",
   "stezka pro cyklisty jednosměrná: Flandry 2 m (Vademecum fietsvoorzieningen 2024), Valonsko nejméně 1,3 m (Guide cyclable); obousměrná Flandry 3 m, Valonsko 2,2–2,6 m": "mogħdija tar-roti f'direzzjoni waħda: il-Fjandri 2 m (Vademecum fietsvoorzieningen 2024), il-Valonja mill-inqas 1.3 m (Guide cyclable); fiż-żewġ direzzjonijiet il-Fjandri 3 m, il-Valonja 2.2–2.6 m",
@@ -1086,12 +1086,12 @@ export const MT = {
 export const MT_HTML = {
   footer: `Data: mapep tekniċi © <a href="https://www.geoportalpraha.cz">IPR Praha</a> (kif ukoll l-għadd ta' sulari u l-iżvilupp tal-bini, CC BY 4.0), tal-bliet statutorji Brno, Jihlava, Most, Opava u Plzeň
     u tar-reġjuni (<a href="https://dmvs.cuzk.gov.cz">IS DMVS ČÚZK</a>) · RÚIAN (anki t-tfittxija tal-indirizzi), katast u ortofoto © ČÚZK (CC BY 4.0) · ortofoto, bini u konfini tas-Slovakkja © <a href="https://www.geoportal.sk">GKÚ Bratislava</a>, NLC (ZBGIS, CC BY 4.0), toroq u indirizzi tas-Slovakkja © MV SR ·
-    inventarji tat-toroq © Hlavné mesto SR Bratislava, MČ Dúbravka, mesto Žilina, mesto Banská Bystrica, mesto Košice, mesto Prešov (CC BY 4.0), tpinġijiet tal-mapep © mestá Nitra, Piešťany, Hlohovec, mappa teknika © Hlavné mesto SR Bratislava ·
+    inventarji tat-toroq © Hlavné mesto SR Bratislava, MČ Dúbravka, EUROSENSE SLOVAKIA, s.r.o., mesto Žilina, mesto Banská Bystrica, mesto Košice, mesto Prešov (CC BY 4.0), tpinġijiet tal-mapep © mestá Nitra, Piešťany, Hlohovec, mappa teknika © Hlavné mesto SR Bratislava ·
     Awstrija: ortofoto © basemap.at (CC BY 4.0), Flächen-Mehrzweckkarte © Stadt Wien – data.wien.gv.at (CC BY 4.0), konfini © EuroGeographics (GISCO), sinjali tat-traffiku ta' Salzburg © Stadt Salzburg (CC BY 3.0 AT), tfittxija Photon © komoot (data ta' OSM) ·
     Ġermanja: ortofoto tal-istati federali © LGL-BW, Bayerische Vermessungsverwaltung, GeoBasis-DE/LGB, Landesamt GeoInformation Bremen, LGV Hamburg, HVBG, GeoBasis-DE/M-V, LGLN, GeoBasis-DE/NRW, GeoBasis-DE/LVermGeoRP, GeoBasis-DE/LVermGeo SH, GeoBasis-DE/LVGL-SL, GeoSN, GeoBasis-DE/LVermGeo ST, GDI-Th; <a href="https://www.govdata.de/dl-de/by-2-0">dl-de/by-2-0</a>, <a href="https://www.govdata.de/dl-de/zero-2-0">dl-de/zero-2-0</a>, <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>, konfini © EuroGeographics (GISCO), sinjali tat-traffiku Wikimedia Commons (xogħlijiet uffiċjali), tfittxija Photon © komoot (data ta' OSM) ·
     Żvizzera u Liechtenstein: ortofoto SWISSIMAGE u konfini © swisstopo, servej katastali uffiċjali (Bodenbedeckung) © il-kantuni u l-Liechtenstein permezz ta' <a href="https://geodienste.ch">geodienste.ch</a>, sinjali tat-traffiku Wikimedia Commons (xogħlijiet uffiċjali, ASTRA), tfittxija Photon © komoot (data ta' OSM) ·
     L-Olanda: mappa tal-uċuħ BGT u bini BAG © Kadaster u l-amministraturi tad-data (bronhouders) permezz ta' <a href="https://www.pdok.nl">PDOK</a> (CC0, Public Domain Mark), ortofoto © Beeldmateriaal Nederland (PDOK, <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>), għoli tal-bini <a href="https://3dbag.nl">3D BAG</a> © TU Delft u 3DGI (CC BY 4.0), konfini © EuroGeographics (GISCO), sinjali tat-traffiku Wikimedia Commons (xogħlijiet uffiċjali), tfittxija PDOK Locatieserver, postijiet tal-parkeġġ ta' Amsterdam © Gemeente Amsterdam ·
-    Il-Belġju u l-Lussemburgu: ortofoto u linji GRB: sors Digitaal Vlaanderen (<a href="https://www.vlaanderen.be/digitaal-vlaanderen/onze-oplossingen/open-data/voorwaarden-voor-het-hergebruik-van-overheidsinformatie/modellicentie-gratis-hergebruik">Modellicentie gratis hergebruik</a>), ortofoto u linji PICC © SPW (Service public de Wallonie), ortofoto © ACT Luxembourg (geoportail.lu), konfini © EuroGeographics (GISCO), sinjali tat-traffiku Wikimedia Commons (xogħlijiet uffiċjali), tfittxija Photon © komoot (dejta OSM) ·
+    Il-Belġju u l-Lussemburgu: ortofoto u linji GRB: sors Digitaal Vlaanderen (<a href="https://www.vlaanderen.be/digitaal-vlaanderen/onze-oplossingen/open-data/voorwaarden-voor-het-hergebruik-van-overheidsinformatie/modellicentie-gratis-hergebruik">Modellicentie gratis hergebruik v1.0</a>), ortofoto u linji PICC © SPW (Service public de Wallonie, <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>), ortofoto © ACT Luxembourg (geoportail.lu, CC0), konfini © EuroGeographics (GISCO), sinjali tat-traffiku Wikimedia Commons (xogħlijiet uffiċjali), tfittxija Photon © komoot (dejta OSM) ·
     Il-Polonja: ortofoto u tfittxija tal-indirizzi © GUGiK (Geoportal.gov.pl, PRG), mappa tal-uċuħ ta' Krakovja (MJO) © Gmina Miejska Kraków, konfini © EuroGeographics (GISCO), sinjali tat-traffiku Wikimedia Commons (xogħlijiet uffiċjali), tfittxija Photon © komoot (data ta' OSM) ·
     Franza: ortofoto, bini (BD TOPO) u tfittxija tal-indirizzi © <a href="https://geoservices.ign.fr">IGN France</a> (Géoplateforme, <a href="https://www.etalab.gouv.fr/licence-ouverte-open-licence/">Licence Ouverte 2.0</a>), mappa tal-uċuħ ta' Pariġi (Plan de voirie) © <a href="https://opendata.paris.fr">Ville de Paris</a> (<a href="https://opendatacommons.org/licenses/odbl/">ODbL</a>), konfini © EuroGeographics (GISCO), sinjali tat-traffiku Wikimedia Commons (xogħlijiet uffiċjali) ·
     Spanja: ortofoto PNOA u tfittxija tal-indirizzi CartoCiudad © Instituto Geográfico Nacional de España (CC BY 4.0, scne.es), bini © Dirección General del Catastro, fin-Navarra Servicio proporcionado por el Gobierno de Navarra (CC BY 4.0), fil-Pajjiż Bask © Arabako, Bizkaiko u Gipuzkoako Foru Aldundia, mappa tal-uċuħ ta' Zaragoza © Ayuntamiento de Zaragoza (IDEZar), konfini © EuroGeographics (GISCO), sinjali tat-traffiku Wikimedia Commons (xogħlijiet uffiċjali) ·
@@ -1105,8 +1105,8 @@ export const MT_HTML = {
     Il-Finlandja: ortofoto © Helsingin kaupunki, kaupunkimittauspalvelut, Espoon kaupunki u Turun kaupunki (CC BY 4.0), mappa tal-uċuħ (Yleisten alueiden rekisteri) u bini © Helsingin kaupunki (CC BY 4.0), bini u indirizzi Ryhti © Suomen ympäristökeskus SYKE (CC BY 4.0), konfini © EuroGeographics (GISCO), sinjali tat-traffiku Wikimedia Commons (xogħlijiet uffiċjali), tfittxija Photon © komoot (data ta' OSM) ·
     Id-Danimarka: ortofoto “Indeholder data fra Styrelsen for Dataforsyning og Infrastruktur, Ortofoto forår, WMTS-tjeneste” (<a href="https://dataforsyningen.dk/asset/PDF/rettigheder_vilkaar/Vilk%C3%A5r%20for%20brug%20af%20frie%20geografiske%20data.pdf">kundizzjonijiet</a>) u tfittxija tal-indirizzi GSearch © Klimadatastyrelsen, truf tal-karreġġjata, żoni tal-parkeġġ u bini ta' Copenhagen (GeoDanmark, BBR) © Københavns Kommune (il-liċenzja mhix indikata), bini ta' Aarhus (BBR) © Aarhus Kommune (CC BY 4.0), konfini © EuroGeographics (GISCO), sinjali tat-traffiku Wikimedia Commons (xogħlijiet uffiċjali), tfittxija Photon © komoot (data ta' OSM) ·
     Il-Litwanja: mappa tal-uċuħ ta' Vilnius (uċuħ topografiċi 1 : 500) © Vilniaus miesto savivaldybė / Vilniaus planas (il-liċenzja mhix indikata; biss b'?vilnius=1), kontorni tal-bini GRPK © Lietuvos Respublikos aplinkos ministerija (CC BY 4.0), konfini © EuroGeographics (GISCO), sinjali tat-traffiku Wikimedia Commons (tpinġijiet ta' Augustasci taħt CC BY 4.0, tabelli 846 u 853 ta' Gigillo83 taħt CC BY-SA 4.0), tfittxija Photon © komoot (data ta' OSM) ·
-    servizzi © IPR Praha, Gemeente Amsterdam u Waternet (liċenzja mhux speċifikata), mestá Prešov (CC BY 4.0), Nitra, Košice, Piešťany, Olomoucký kraj, il-bliet statutorji Karviná, Ostrava, Město Břeclav ·
-    parkeġġ © TSK hl. m. Prahy (CC BY 4.0), projbizzjonijiet tal-parkeġġ, siġar u klassijiet tat-toroq mill-<a href="https://opendata.geoportalpraha.cz">Geoportál Praha</a> (CC BY 4.0), <a href="https://www.parkovanivbrne.cz">parkovanivbrne.cz</a>, il-bliet Jihlava, Opava, Plzeň (CC0) ·
+    servizzi © IPR Praha, Gemeente Amsterdam u Waternet (Creative Commons Naamsvermelding, verżjoni mhux speċifikata), mestá Prešov (CC BY 4.0), Nitra, Košice, Piešťany, Olomoucký kraj, il-bliet statutorji Karviná, Ostrava, Město Břeclav ·
+    parkeġġ © TSK hl. m. Prahy (CC BY 4.0), projbizzjonijiet tal-parkeġġ, siġar u klassijiet tat-toroq mill-<a href="https://opendata.geoportalpraha.cz">Geoportál Praha</a> (CC BY 4.0), <a href="https://www.parkovanivbrne.cz">parkovanivbrne.cz</a>, il-bliet Jihlava (CC BY-SA), Opava, Plzeň (CC0) ·
     © kontributuri ta' <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> (ODbL) ·
     illustrazzjonijiet © <a href="https://github.com/streetmix/streetmix/tree/main/packages/illustrations">Streetmix</a>, liċenzja
     <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> ·
@@ -1169,9 +1169,9 @@ export const MT_CITY = {
   brno: own("Brno", "tal-belt ta' Brno", "Il-mappa teknika tal-belt ta' Brno", "mill-belt ta' Brno", "meded ta' parkeġġ bi ħlas (parkovanivbrne.cz)",
     "Data © Statutární město Brno (mappa teknika u MTVU; bini u infrastruttura tar-roti, data.brno.cz, CC BY 4.0, modifikata), parkeġġ © parkovanivbrne.cz"),
   jihlava: own("Jihlava", "tal-belt ta' Jihlava", "L-inventarju tat-toroq ta' Jihlava", "mill-belt ta' Jihlava", "postijiet tal-parkeġġ (belt ta' Jihlava)",
-    `Data © Statutární město Jihlava (inventarju tat-toroq, parkeġġ, għamara tat-triq), RÚIAN u katast © ČÚZK, 2026 (CC BY 4.0, modifikata)`),
+    `Data © Statutární město Jihlava (inventarju tat-toroq, parkeġġ CC BY-SA, għamara tat-triq), RÚIAN u katast © ČÚZK, 2026 (CC BY 4.0, modifikata)`),
   most: own("Most", "tal-belt ta' Most", "Il-mappa teknika ta' Most", "mill-belt ta' Most", TECH_PARKING,
-    `Data © Statutární město Most (mappa tal-oġġetti u mappa teknika, dawl tat-toroq), ${RUIAN}`),
+    `Data © Statutární město Most (mappa tal-oġġetti u dawl tat-toroq, CC BY-SA; mappa teknika), ${RUIAN}`),
   opava: own("Opava", "tal-belt ta' Opava", "Il-mappa għal skop speċifiku ta' Opava", "mill-belt ta' Opava", "postijiet tal-parkeġġ (belt ta' Opava)",
     `Data © Statutární město Opava (mappa għal skop speċifiku, parkeġġ, siġar, bankijiet, waqfiet), ${RUIAN}`),
   pardubice: {
