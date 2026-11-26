@@ -19,7 +19,30 @@ export const DC_ORTHO = "https://maps2.dcgis.dc.gov/dcgis/rest/services/DCGIS_DA
 const TOKEN = (await fs.readFile(process.env.TOKEN || path.join(ROOT, "..", "streetview", "token.local"), "utf8")).trim();
 const angle = (a, b) => Math.abs(((a - b + 540) % 360) - 180);
 
-export async function orthoImage({ lat, lon, bearing, half = 30 }, out, { cut = true, service = DC_ORTHO } = {}) {
+// A tile cache without an export (MassGIS's, evaluation/usa/boston; Bára 26. 11. 2026): its tiles of level 20 ({z}/{y}/{x},
+// 256 px) over the box in Web Mercator joined, cut and resampled to w × h by ImageMagick.
+const HALF_WORLD = 20037508.342789244;
+async function tileMosaic(tiles, [x0, y0, x1, y1], w, h, z = 20) {
+  const T = (2 * HALF_WORLD) / 2 ** z, tx0 = Math.floor((x0 + HALF_WORLD) / T), tx1 = Math.floor((x1 + HALF_WORLD) / T), ty0 = Math.floor((HALF_WORLD - y1) / T), ty1 = Math.floor((HALF_WORLD - y0) / T);
+  const dir = await fs.mkdtemp(path.join(os.tmpdir(), "mosaic-")), rows = [];
+  for (let ty = ty0; ty <= ty1; ty++) {
+    const row = [];
+    for (let tx = tx0; tx <= tx1; tx++) {
+      const f = path.join(dir, `${ty}_${tx}.jpg`), r = await fetch(`${tiles}/${z}/${ty}/${tx}`, { headers: { "User-Agent": "profily-ulic evaluation" } });
+      if (!r.ok) throw new Error(`dlaždice ortofota ${r.status}`);
+      await fs.writeFile(f, Buffer.from(await r.arrayBuffer()));
+      row.push(f);
+    }
+    rows.push(["(", ...row, "+append", ")"]);
+  }
+  const png = path.join(dir, "out.png"), px = (v) => Math.round(v * 256);
+  const left = px((x0 + HALF_WORLD) / T - tx0), top = px((HALF_WORLD - y1) / T - ty0), cw = px((x1 - x0) / T), ch = px((y1 - y0) / T);
+  await run("magick", [...rows.flat(), "-append", "-crop", `${cw}x${ch}+${left}+${top}`, "+repage", "-resize", `${w}x${h}!`, "-depth", "8", "-define", "png:color-type=6", png]);
+  const img = await decodePng(await fs.readFile(png));
+  await fs.rm(dir, { recursive: true, force: true });
+  return img;
+}
+export async function orthoImage({ lat, lon, bearing, half = 30 }, out, { cut = true, service = DC_ORTHO, tiles = null } = {}) {
   const b = (bearing * Math.PI) / 180, dir = [Math.sin(b), Math.cos(b)], normal = [-Math.cos(b), Math.sin(b)];
   const kx = 111320 * Math.cos((lat * Math.PI) / 180), ky = 110574;
   const ll = (t, u) => [lon + (normal[0] * t + dir[0] * u) / kx, lat + (normal[1] * t + dir[1] * u) / ky];
@@ -28,9 +51,11 @@ export async function orthoImage({ lat, lon, bearing, half = 30 }, out, { cut = 
   const x0 = Math.min(...corners.map((p) => p[0])), x1 = Math.max(...corners.map((p) => p[0]));
   const y0 = Math.min(...corners.map((p) => p[1])), y1 = Math.max(...corners.map((p) => p[1]));
   const k = Math.cos((lat * Math.PI) / 180), w = Math.round(((x1 - x0) * k) / RES), h = Math.round(((y1 - y0) * k) / RES);
-  const res = await fetch(`${service}${service.includes("?") ? "" : "?"}${new URLSearchParams({ bbox: [x0, y0, x1, y1].join(","), bboxSR: 3857, imageSR: 3857, size: `${w},${h}`, format: "png24", f: "image" })}`, { headers: { "User-Agent": "profily-ulic evaluation" } });
-  if (!res.ok) throw new Error(`ortofoto ${res.status}`);
-  const img = await decodePng(Buffer.from(await res.arrayBuffer()));
+  const img = tiles ? await tileMosaic(tiles, [x0, y0, x1, y1], w, h) : await (async () => {
+    const res = await fetch(`${service}${service.includes("?") ? "" : "?"}${new URLSearchParams({ bbox: [x0, y0, x1, y1].join(","), bboxSR: 3857, imageSR: 3857, size: `${w},${h}`, format: "png24", f: "image" })}`, { headers: { "User-Agent": "profily-ulic evaluation" } });
+    if (!res.ok) throw new Error(`ortofoto ${res.status}`);
+    return decodePng(Buffer.from(await res.arrayBuffer()));
+  })();
   const W = Math.round((2 * half) / RES), H = Math.round((2 * ALONG) / RES), px = new Uint8Array(W * H * 4);
   for (let j = 0; j < H; j++) for (let i = 0; i < W; i++) {
     const [mx, my] = merc(...ll(half - (i + 0.5) * RES, ALONG - (j + 0.5) * RES));

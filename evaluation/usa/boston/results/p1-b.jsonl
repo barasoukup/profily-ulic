@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "X", "jistota": "stredni", "why": "Pravá vozovka má pět pruhů (tři vlevo od klínu, dva vpravo) a levá tři; Y má vpravo jen dva pruhy."}
+{"n": 2, "verdict": "X", "jistota": "nizka", "why": "Oba mají cyklopruhy, které na fotkách nejsou; X má šířku vozovky s oboustranným stáním (cca 14 m) blíž skutečnosti, Y je příliš úzký."}
+{"n": 3, "verdict": "Y", "jistota": "nizka", "why": "Vozovka 12,5 m s odstavenými auty; Y má stání a šířku bližší, ale má zeleň místo zpevněné plochy; cyklopruhy chybí v obou."}
+{"n": 4, "verdict": "X", "jistota": "stredni", "why": "Stání na obou stranách a dva pruhy 6,6 m sedí s ortofotem a fotkami; Y vpravo stání nemá."}
+{"n": 5, "verdict": "Y", "jistota": "stredni", "why": "Rampa, tři pruhy po 3,6 m na každé straně a úzký střední pás; X má vpravo příliš úzké pruhy a široký dělicí pás."}
+{"n": 6, "verdict": "stejne", "jistota": "nizka", "why": "Křižovatka, stejná pravá strana, rozdíl jen v levé části (3 vs 2 pruhy) a nejde ho spolehlivě určit."}
+{"n": 7, "verdict": "stejne", "jistota": "nizka", "why": "Ulice stejná (stání, cyklopruhy, dva pruhy); rozdíl jen v typu a šířce plochy za pravým chodníkem, smíšená parkoviště a zeleň."}
+{"n": 8, "verdict": "Y", "jistota": "vysoka", "why": "Y přesně odpovídá: chodník, trávník, stání, cyklopruh, dva pruhy, žlutý pás, dva pruhy a cyklopruh; X má nesmyslných 9 m krajnice."}
+{"n": 9, "verdict": "Y", "jistota": "nizka", "why": "Čtyři pruhy o 3,6 m; Y má bez zbytečných krajnic přiměřenější šířku vozovky a zahrnuje pravý chodník a pěšinu."}
+{"n": 10, "verdict": "X", "jistota": "nizka", "why": "Jeden pruh se stáním a chodníky; X celkovou šířkou dosáhne k fasádě na B, Y končí dříve."}

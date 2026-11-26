@@ -25,6 +25,8 @@ export const POINTS = {
   zaragoza: { of: "spain", at: "41.650391, -0.877306" }, // Calle de Hermanos Ibarra
   toronto: { of: "canada", at: "43.658890, -79.416460" }, // Jersey Avenue, Toronto
   dc: { of: "usa", at: "38.932773, -77.036860" }, // Monroe Street NW, Washington
+  boston: { of: "usa", at: "42.352044, -71.081746" }, // Marlborough Street, Boston (the site's tiles, data/us-plan)
+  cambridge: { of: "usa", at: "42.373870, -71.102450" }, // Cambridge Street, Cambridge
 };
 const latLon = (s) => s.split(",").map(Number);
 

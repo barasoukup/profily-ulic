@@ -1,0 +1,3 @@
+{"n": 1, "verdict": "X", "jistota": "stredni", "why": "Křižovatka: vozovka vlevo asi 28 m včetně odbočení, vpravo široká dlážděná plocha a chodník; Y má jen 11 m vozovky a dvě cyklostezky 7,5 m, ale cyklostezka je jen úzký pás."}
+{"n": 2, "verdict": "Y", "jistota": "nizka", "why": "Dva pruhy se žlutou, stání a chodníky jsou v obou podobné; Y lépe vystihuje trávník mezi okrajem a domy vlevo."}
+{"n": 3, "verdict": "Y", "jistota": "stredni", "why": "Vlevo cesta se zelení a stromy oddělená od vozovky, vpravo chodník a zelený pás; Y má zeleň kolem chodníků, X chodník rovnou u vozovky."}

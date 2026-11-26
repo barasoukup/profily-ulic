@@ -175,6 +175,14 @@ Co rozhodne Bára, je označeno **(Bára)**.
   v Marylandu a Virginii; Photon nabízí i místa mimo metro (hláška řekne proč, jako Itálie); česká jména `?off=ulicky`,
   `pocetpruhu` jsou sdílená s `estonia`. Strana stání RPP: význam kódů `RPPSIDE` by musel říct DDOT.
 
+- **USA (Boston, 26. 11. 2026, `evaluation/usa/boston`):** **(Bára)** mapa Bostonu a Cambridge celkově neprůkazná (27 : 21),
+  na tepnách prohrává 8 : 15: mezera mezi polygony za chodníkem je zeleň i tam, kde je parkoviště, náměstí nebo dům (Street Edges
+  nemá parkoviště, budovy podkladové mapy nejsou úplné), široká mezera mezi vozovkami je dělicí pás (b-14, 21 m). Zkusit: mezeru
+  uvnitř řezu za vnějším chodníkem posoudit ortofotem jako odhad; parkoviště Bostonu (BTD MunicipalParkingLots jsou jen městská).
+  Nebo mapu jen pro místní ulice (nový vzorek). Ve všech variantách nejčastěji chybí stání (mapy ho nemají; BTD má značení
+  `Cartegraph_BTD_readonly` LongMarkings a ParkingMeters, nezkoumáno). **(Bára)** licence Street Edges (PDDL z položky celé
+  podkladové mapy). Podlaží budov Bostonu neměřená. Somerville, Brookline, Newton bez otevřené mapy povrchů (jen odhad).
+
 ## Státy a pravidla
 
 - Lucembursko: malý vzorek měření (12 řezů, polovina cesty a parky), u Remiche bílé ortofoto.
@@ -252,6 +260,8 @@ Co rozhodne Bára, je označeno **(Bára)**.
   nechtěla mít viditelný.
 
 ## Licence ke kontrole
+- **Boston:** Street Edges (`basemap_IPS` 15) nejsou samostatná datová sada Analyze Boston; PDDL je z položky ArcGIS „Basemap“
+  (3c77136ac2204662b9287050fefc67de). Pravidlo Massachusetts o volném pruhu při stání nenalezeno (platí 3 m jako DC). **(Bára)**
 
 - ~~Ortofoto PDOK (Nizozemsko), Flandry, Valonsko, ACT Lucembursko (ortho_latest)~~: licence ověřené a v kreditech
   (`evaluation/licence/ZPRAVA.md`, kredity opravené 26. 11. 2026 ve větvi credits-fix, i GRB, Most, Jihlava, Dúbravka).

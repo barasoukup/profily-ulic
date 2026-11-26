@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "X", "jistota": "stredni", "why": "Parkování na obou stranách, vozovka asi 10 m včetně stání, chodníky po obou stranách; Y má stání jen na jedné straně."}
+{"n": 2, "verdict": "X", "jistota": "stredni", "why": "Na A straně stojí podélně auta u chodníku (parkovani), Y stání vynechává; šířka vozovky odpovídá."}
+{"n": 3, "verdict": "X", "jistota": "nizka", "why": "Dva pruhy a chodníky po obou stranách, šířka vozovky asi 8 m sedí lépe u X; rozdíl je malý."}
+{"n": 4, "verdict": "X", "jistota": "nizka", "why": "Vpravo je zahloubená obslužná ulička s auty, X ji má jako pruh, Y jako plochy a zeleň; ostatní složení podobné."}
+{"n": 5, "verdict": "Y", "jistota": "nizka", "why": "Úzký chodník se živým plotem na straně A a stromy za chodníkem na B odpovídají Y; stání na obou stranách u obou."}
+{"n": 6, "verdict": "Y", "jistota": "nizka", "why": "Y má dělicí pás a tři pruhy pravé vozovky s odbočovacím pruhem; cyklostezka vlevo je ale chybná."}
+{"n": 7, "verdict": "X", "jistota": "stredni", "why": "Úzká ulice mezi fasádami se stáním na obou stranách a jedním pruhem, chodníky kolem 2-3 m; Y má chodníky 5 m, které tam nejsou."}
+{"n": 8, "verdict": "X", "jistota": "nizka", "why": "Křižovatka, nejasné; X obsahuje dělicí ostrůvek a pestřejší složení, Y čtyři stejné pruhy."}
+{"n": 9, "verdict": "Y", "jistota": "nizka", "why": "Neznačená vozovka asi 8 m široká odpovídá dvěma pruhům a krajnici u Y, X je užší."}
+{"n": 10, "verdict": "X", "jistota": "nizka", "why": "Vlevo je stezka a cyklopruh a vpravo dělicí pás s chodníkem, což X zachycuje lépe než Y."}
