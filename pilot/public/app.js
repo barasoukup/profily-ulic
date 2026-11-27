@@ -603,7 +603,7 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wa
       // A click with no street found is logged too (Bára: how many try outside the Czech Republic): only where, to
       // about a kilometre, and whether there were any OSM data there at all (outside the country there are none).
       if (!keepWay) log("bez_ulice", { detail: osm?.elements?.length ? "bez_ulice" : "bez_dat", city: city.id, country: city.country, lat: Math.round(lat * 100) / 100, lon: Math.round(lon * 100) / 100 });
-      return status(tr("Tady jsem žádnou ulici nenašla. Zkuste kliknout přímo na silnici (data pokrývají Česko, Slovensko, Rakousko, Německo, Švýcarsko, Lichtenštejnsko, Nizozemsko, Belgii, Lucembursko, Polsko, Francii, Monako, Španělsko, Portugalsko, Kypr, Maltu, části Itálie, Estonsko, Slovinsko, Finsko, Dánsko, Litvu, okolí Washingtonu, New York, San Francisco a okolí Bostonu v USA a okolí Toronta v Kanadě)."), "error");
+      return status(tr("Tady jsem žádnou ulici nenašla. Zkuste kliknout přímo na silnici."), "error");
     }
     // A street of two one-way carriageways is cut from its middle (e.g. the tram belt).
     if (keepWay && osmCache) near = centerOnStreet(osm, frame, near);
