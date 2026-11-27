@@ -91,6 +91,6 @@ Odhad celkem 28–32 dní (Fable: původních 21–25 bylo asi o třetinu optimi
 ## Co nedělat
 
 Bundler, TypeScript, framework; přepisovat logiku měřených pravidel (jen přesuny); přejmenovávat česká id v datech
-uložených řezů a logu (`chodnik`, `pruh`, `cesko`) bez zpětné kompatibility; Prettier na celý kód (výjimka z „jen přesuny“ je pouze krok 13b); (nanejvýš jedním
+uložených řezů a logu (`chodnik`, `pruh`, `cesko`) bez zpětné kompatibility; Prettier na celý kód (nanejvýš jedním
 commitem nakonec s `.git-blame-ignore-revs`); plošně rozbíjet sdílený objekt `city`; mazat zprávy z měření; víc kroků
-najednou nebo souběžně s novým státem.
+najednou nebo souběžně s novým státem. Výjimka z „jen přesuny“ je pouze krok 13b.
