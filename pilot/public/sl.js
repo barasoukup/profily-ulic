@@ -1169,6 +1169,9 @@ export const SL = {
   "Děkujeme, zpráva odešla.": "Hvala, sporočilo je poslano.",
   "Zpráv je teď moc, zkuste to prosím za hodinu.": "Trenutno je preveč sporočil, poskusite znova čez eno uro.",
   "Zprávu se nepodařilo odeslat, zkuste to prosím za chvíli.": "Sporočila ni bilo mogoče poslati, poskusite znova čez trenutek.",
+  "Značky": "Znaki",
+  "Dopravní značky": "Prometni znaki",
+  "Kreslit pod profilem řádek dopravních značek (i v exportu)": "Pod profilom nariši vrsto prometnih znakov (tudi pri izvozu)",
 };
 
 // Elements of index.html replaced whole (data-i18n): the footer with its links.

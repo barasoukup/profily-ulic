@@ -1168,6 +1168,9 @@ export const SK = {
   "Děkujeme, zpráva odešla.": "Ďakujeme, správa odišla.",
   "Zpráv je teď moc, zkuste to prosím za hodinu.": "Správ je teraz veľa, skúste to, prosím, o hodinu.",
   "Zprávu se nepodařilo odeslat, zkuste to prosím za chvíli.": "Správu sa nepodarilo odoslať, skúste to, prosím, o chvíľu.",
+  "Značky": "Značky",
+  "Dopravní značky": "Dopravné značky",
+  "Kreslit pod profilem řádek dopravních značek (i v exportu)": "Kresliť pod profilom riadok dopravných značiek (aj pri exporte)",
 };
 
 // Elements of index.html replaced whole (data-i18n): the footer with its links.

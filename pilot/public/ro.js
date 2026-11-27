@@ -1170,6 +1170,9 @@ export const RO = {
   "Děkujeme, zpráva odešla.": "Mulțumim, mesajul a fost trimis.",
   "Zpráv je teď moc, zkuste to prosím za hodinu.": "Sunt prea multe mesaje acum, încercați din nou peste o oră.",
   "Zprávu se nepodařilo odeslat, zkuste to prosím za chvíli.": "Mesajul nu a putut fi trimis, încercați din nou peste puțin timp.",
+  "Značky": "Indicatoare",
+  "Dopravní značky": "Indicatoare rutiere",
+  "Kreslit pod profilem řádek dopravních značek (i v exportu)": "Desenează rândul de indicatoare rutiere sub profil (și la export)",
 };
 
 // Elements of index.html replaced whole (data-i18n): the footer with its links.

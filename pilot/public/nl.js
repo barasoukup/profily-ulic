@@ -1170,6 +1170,9 @@ export const NL = {
   "Děkujeme, zpráva odešla.": "Bedankt, het bericht is verzonden.",
   "Zpráv je teď moc, zkuste to prosím za hodinu.": "Er zijn nu te veel berichten, probeer het over een uur opnieuw.",
   "Zprávu se nepodařilo odeslat, zkuste to prosím za chvíli.": "Het bericht kon niet worden verzonden, probeer het zo opnieuw.",
+  "Značky": "Borden",
+  "Dopravní značky": "Verkeersborden",
+  "Kreslit pod profilem řádek dopravních značek (i v exportu)": "De rij verkeersborden onder het profiel tekenen (ook bij exporteren)",
 };
 
 // Elements of index.html replaced whole (data-i18n): the footer with its links.

@@ -1169,6 +1169,9 @@ export const SV = {
   "Děkujeme, zpráva odešla.": "Tack, meddelandet har skickats.",
   "Zpráv je teď moc, zkuste to prosím za hodinu.": "Det är för många meddelanden just nu, försök igen om en timme.",
   "Zprávu se nepodařilo odeslat, zkuste to prosím za chvíli.": "Meddelandet kunde inte skickas, försök igen om en stund.",
+  "Značky": "Skyltar",
+  "Dopravní značky": "Vägmärken",
+  "Kreslit pod profilem řádek dopravních značek (i v exportu)": "Rita raden av vägmärken under sektionen (även vid export)",
 };
 
 // Elements of index.html replaced whole (data-i18n): the footer with its links.

@@ -233,6 +233,10 @@ const TALL_SHARE = 0.45; // the most of the view's width a building may rise abo
 let labelTop = -Infinity; // building labels stay below this y (set per drawing in buildSvg)
 const sprites = {};
 export const setArt = (on) => { artOn = on; };
+// The row of traffic signs under the profile, in the page and the exports; the menu's switch (app.js) turns it off.
+let signsShown = true;
+export const setSignsShown = (on) => { signsShown = on; };
+export const getSignsShown = () => signsShown;
 export const getArt = () => artOn;
 
 // A missing or broken illustration is left out of the drawing instead of stopping the app.
@@ -2848,7 +2852,7 @@ export function buildSvg(profile, opts = {}) {
       el("path", { class: "knob", d: `M${bx - 8} ${GROUND - 300} h16 M${bx - 8} ${GROUND - 300} l5 -5 M${bx - 8} ${GROUND - 300} l5 5 M${bx + 8} ${GROUND - 300} l-5 -5 M${bx + 8} ${GROUND - 300} l-5 5`, stroke: "#185fa5", "stroke-width": 3, fill: "none" }, h);
     });
   }
-  if (opts.signs !== false) {
+  if (opts.signs !== false && signsShown) {
     drawSigns(svg, profile, bounds);
     // Without the page's fitting (an export): the rows below the labels at a fixed size, the picture as tall
     // as they need.

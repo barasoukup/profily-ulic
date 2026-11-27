@@ -1150,6 +1150,9 @@ export const HU = {
   "Děkujeme, zpráva odešla.": "Köszönjük, az üzenet elküldve.",
   "Zpráv je teď moc, zkuste to prosím za hodinu.": "Most túl sok az üzenet, kérjük, próbálja újra egy óra múlva.",
   "Zprávu se nepodařilo odeslat, zkuste to prosím za chvíli.": "Az üzenetet nem sikerült elküldeni, kérjük, próbálja újra egy kis idő múlva.",
+  "Značky": "Táblák",
+  "Dopravní značky": "Közlekedési táblák",
+  "Kreslit pod profilem řádek dopravních značek (i v exportu)": "A közlekedési táblák sorának rajzolása a keresztmetszet alá (exportban is)",
 };
 
 // Elements of index.html replaced whole (data-i18n): the footer with its links.

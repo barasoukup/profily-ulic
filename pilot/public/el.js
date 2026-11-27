@@ -1170,6 +1170,9 @@ export const EL = {
   "Děkujeme, zpráva odešla.": "Ευχαριστούμε, το μήνυμα στάλθηκε.",
   "Zpráv je teď moc, zkuste to prosím za hodinu.": "Υπάρχουν πολλά μηνύματα αυτή τη στιγμή, δοκιμάστε ξανά σε μία ώρα.",
   "Zprávu se nepodařilo odeslat, zkuste to prosím za chvíli.": "Το μήνυμα δεν στάλθηκε, δοκιμάστε ξανά σε λίγο.",
+  "Značky": "Σήματα",
+  "Dopravní značky": "Σήματα κυκλοφορίας",
+  "Kreslit pod profilem řádek dopravních značek (i v exportu)": "Σχεδίαση της σειράς σημάτων κυκλοφορίας κάτω από τη διατομή (και στην εξαγωγή)",
 };
 
 // Elements of index.html replaced whole (data-i18n): the footer with its links.

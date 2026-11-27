@@ -1146,6 +1146,9 @@ export const LT = {
   "Děkujeme, zpráva odešla.": "Ačiū, žinutė išsiųsta.",
   "Zpráv je teď moc, zkuste to prosím za hodinu.": "Šiuo metu žinučių per daug, bandykite dar kartą po valandos.",
   "Zprávu se nepodařilo odeslat, zkuste to prosím za chvíli.": "Žinutės išsiųsti nepavyko, netrukus bandykite dar kartą.",
+  "Značky": "Ženklai",
+  "Dopravní značky": "Kelio ženklai",
+  "Kreslit pod profilem řádek dopravních značek (i v exportu)": "Rodyti kelio ženklų eilę po profiliu (ir eksportuojant)",
 };
 
 // Elements of index.html replaced whole (data-i18n): the footer with its links.

@@ -1146,6 +1146,9 @@ export const ET = {
   "Děkujeme, zpráva odešla.": "Aitäh, sõnum on saadetud.",
   "Zpráv je teď moc, zkuste to prosím za hodinu.": "Praegu on liiga palju sõnumeid, proovige tunni aja pärast uuesti.",
   "Zprávu se nepodařilo odeslat, zkuste to prosím za chvíli.": "Sõnumit ei õnnestunud saata, proovige varsti uuesti.",
+  "Značky": "Märgid",
+  "Dopravní značky": "Liiklusmärgid",
+  "Kreslit pod profilem řádek dopravních značek (i v exportu)": "Joonista profiili alla liiklusmärkide rida (ka ekspordis)",
 };
 
 // Elements of index.html replaced whole (data-i18n): the footer with its links.

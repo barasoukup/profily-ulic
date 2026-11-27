@@ -1146,6 +1146,9 @@ export const BG = {
   "Děkujeme, zpráva odešla.": "Благодарим, съобщението е изпратено.",
   "Zpráv je teď moc, zkuste to prosím za hodinu.": "В момента има твърде много съобщения, опитайте отново след час.",
   "Zprávu se nepodařilo odeslat, zkuste to prosím za chvíli.": "Съобщението не можа да бъде изпратено, опитайте отново след малко.",
+  "Značky": "Знаци",
+  "Dopravní značky": "Пътни знаци",
+  "Kreslit pod profilem řádek dopravních značek (i v exportu)": "Показва под профила реда с пътни знаци (и при експорт)",
 };
 
 // Elements of index.html replaced whole (data-i18n): the footer with its links.

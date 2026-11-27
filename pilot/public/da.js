@@ -1169,6 +1169,9 @@ export const DA = {
   "Děkujeme, zpráva odešla.": "Tak, beskeden er sendt.",
   "Zpráv je teď moc, zkuste to prosím za hodinu.": "Der er for mange beskeder lige nu, prøv igen om en time.",
   "Zprávu se nepodařilo odeslat, zkuste to prosím za chvíli.": "Beskeden kunne ikke sendes, prøv igen om lidt.",
+  "Značky": "Skilte",
+  "Dopravní značky": "Færdselstavler",
+  "Kreslit pod profilem řádek dopravních značek (i v exportu)": "Vis rækken af færdselstavler under profilet (også i eksport)",
 };
 
 // Elements of index.html replaced whole (data-i18n): the footer with its links.

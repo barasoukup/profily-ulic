@@ -1169,6 +1169,9 @@ export const HR = {
   "Děkujeme, zpráva odešla.": "Hvala, poruka je poslana.",
   "Zpráv je teď moc, zkuste to prosím za hodinu.": "Trenutačno ima previše poruka, pokušajte ponovno za sat vremena.",
   "Zprávu se nepodařilo odeslat, zkuste to prosím za chvíli.": "Poruku nije bilo moguće poslati, pokušajte ponovno za trenutak.",
+  "Značky": "Znakovi",
+  "Dopravní značky": "Prometni znakovi",
+  "Kreslit pod profilem řádek dopravních značek (i v exportu)": "Crtaj red prometnih znakova ispod profila (i pri izvozu)",
 };
 
 // Elements of index.html replaced whole (data-i18n): the footer with its links.

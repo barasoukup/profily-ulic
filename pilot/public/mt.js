@@ -1170,6 +1170,9 @@ export const MT = {
   "Děkujeme, zpráva odešla.": "Grazzi, il-messaġġ intbagħat.",
   "Zpráv je teď moc, zkuste to prosím za hodinu.": "Bħalissa hemm wisq messaġġi, jekk jogħġbok erġa’ pprova wara siegħa.",
   "Zprávu se nepodařilo odeslat, zkuste to prosím za chvíli.": "Il-messaġġ ma setax jintbagħat, jekk jogħġbok erġa’ pprova ftit wara.",
+  "Značky": "Sinjali",
+  "Dopravní značky": "Sinjali tat-traffiku",
+  "Kreslit pod profilem řádek dopravních značek (i v exportu)": "Pinġi r-ringiela tas-sinjali tat-traffiku taħt il-profil (anke fl-esportazzjoni)",
 };
 
 // Elements of index.html replaced whole (data-i18n): the footer with its links.

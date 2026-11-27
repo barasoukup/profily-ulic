@@ -1168,6 +1168,9 @@ export const DE = {
   "Děkujeme, zpráva odešla.": "Danke, die Nachricht ist gesendet.",
   "Zpráv je teď moc, zkuste to prosím za hodinu.": "Gerade sind es zu viele Nachrichten, bitte versuchen Sie es in einer Stunde wieder.",
   "Zprávu se nepodařilo odeslat, zkuste to prosím za chvíli.": "Die Nachricht ließ sich nicht senden, bitte versuchen Sie es gleich noch einmal.",
+  "Značky": "Schilder",
+  "Dopravní značky": "Verkehrszeichen",
+  "Kreslit pod profilem řádek dopravních značek (i v exportu)": "Die Reihe der Verkehrszeichen unter dem Querschnitt zeichnen (auch im Export)",
 };
 
 // Elements of index.html replaced whole (data-i18n): the footer with its links.

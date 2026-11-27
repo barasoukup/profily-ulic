@@ -1170,6 +1170,9 @@ export const FI = {
   "Děkujeme, zpráva odešla.": "Kiitos, viesti on lähetetty.",
   "Zpráv je teď moc, zkuste to prosím za hodinu.": "Viestejä on nyt liikaa, yritä uudelleen tunnin kuluttua.",
   "Zprávu se nepodařilo odeslat, zkuste to prosím za chvíli.": "Viestiä ei voitu lähettää, yritä hetken kuluttua uudelleen.",
+  "Značky": "Merkit",
+  "Dopravní značky": "Liikennemerkit",
+  "Kreslit pod profilem řádek dopravních značek (i v exportu)": "Piirrä liikennemerkkien rivi profiilin alle (myös vientiin)",
 };
 
 // Elements of index.html replaced whole (data-i18n): the footer with its links.

@@ -1170,6 +1170,9 @@ export const GA = {
   "Děkujeme, zpráva odešla.": "Go raibh maith agat, seoladh an teachtaireacht.",
   "Zpráv je teď moc, zkuste to prosím za hodinu.": "Tá an iomarca teachtaireachtaí ann faoi láthair, bain triail eile as i gceann uair an chloig.",
   "Zprávu se nepodařilo odeslat, zkuste to prosím za chvíli.": "Níorbh fhéidir an teachtaireacht a sheoladh, bain triail eile as ar ball.",
+  "Značky": "Comharthaí",
+  "Dopravní značky": "Comharthaí bóthair",
+  "Kreslit pod profilem řádek dopravních značek (i v exportu)": "Tarraing an tsraith comharthaí bóthair faoin bpróifíl (san easpórtáil freisin)",
 };
 
 // Elements of index.html replaced whole (data-i18n): the footer with its links.

@@ -1169,6 +1169,9 @@ export const LV = {
   "Děkujeme, zpráva odešla.": "Paldies, ziņa ir nosūtīta.",
   "Zpráv je teď moc, zkuste to prosím za hodinu.": "Pašlaik ir pārāk daudz ziņu, lūdzu, mēģiniet vēlreiz pēc stundas.",
   "Zprávu se nepodařilo odeslat, zkuste to prosím za chvíli.": "Ziņu neizdevās nosūtīt, lūdzu, mēģiniet vēlreiz pēc brīža.",
+  "Značky": "Zīmes",
+  "Dopravní značky": "Ceļa zīmes",
+  "Kreslit pod profilem řádek dopravních značek (i v exportu)": "Zīmēt ceļa zīmju rindu zem profila (arī eksportā)",
 };
 
 // Elements of index.html replaced whole (data-i18n): the footer with its links.
