@@ -177,8 +177,8 @@ road signs of Slovenia“, „Diagrams of indicatory road signs of Slovenia“, 
   proto varuje jen na sběrných a vyšších (OSM `tertiary` a výš), na `residential`, `living_street`, `service` ne.
 - Zákonný odhad stání: volný průjezd 3 m (čl. 65/4/10); na obousměrce smí auto stát jen vpravo ve směru jízdy, tedy
   každý směr u své pravé obruby (obě strany ulice), na jednosměrce na obou stranách (čl. 65/1); **vůbec ne na obousměrce
-  v obci bez středové čáry** (čl. 65/4/12) a ne na vozovce s 2+ pruhy v jednom směru. Známá zjednodušení (recenze
-  24. 11. 2026, k rozhodnutí): středová čára se čte z OSM `lanes` ≥ 2, což ji nedokazuje; bod 10 u **plné** středové čáry
+  v obci bez středové čáry** (čl. 65/4/12) a ne na vozovce s 2+ pruhy v jednom směru. Středová čára se od 27. 11. 2026 čte z ortofota (`lanes-ortho.js centreLine`, `?off=stredcara`), OSM `lanes` ≥ 2 platí jen bez snímku; plná čára měří 3 m k čáře (viz `evaluation/centre-line/ZPRAVA.md`). Dřívější zjednodušení (recenze
+  24. 11. 2026): středová čára se četla z OSM `lanes` ≥ 2, což ji nedokazuje; bod 10 u **plné** středové čáry
   měří 3 m k čáře, ne k protějšímu okraji (vozovka 8 m s plnou čarou uprostřed stání nedovolí, odhad ho dá). OSM plnou
   a přerušovanou čáru nerozlišuje.
   Stání na chodníku jen se značkou a s 1,60 m pro chodce u domu.

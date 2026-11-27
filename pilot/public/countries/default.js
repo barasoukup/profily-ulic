@@ -105,6 +105,12 @@ export default {
   // May the law's estimate put cars on this roadway at all: (tags, oneway, lanes) → boolean (null: yes; Slovenia: not on
   // a two-way street without a centre line).
   parkOnRoadway: null,
+  // The law's parking and the centre line of a two-way roadway, read on the orthophoto (lanes-ortho.js centreLine; derive.js
+  // splitRoadway; ?off=stredcara: not read). null: the centre line is no condition of the law. { required: a two-way
+  // roadway has no parking by the law without one (Slovenia: ZPrCP čl. 65/4/12); solid: the free width is measured to a
+  // solid centre line, not to the opposite kerb (čl. 65/4/10) }. Where the photo does not say (no photo, not known) the
+  // rule of parkOnRoadway stands.
+  centreLine: null,
   // May the law's estimate put cars on the roadway beside a cycle lane (Switzerland: no, VRV Art. 19 Abs. 2).
   parkByCycleLane: true,
   // (A place in no state the app knows has no law of its own: the width the app leaves, no Czech paragraph; Czechia's
