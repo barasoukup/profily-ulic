@@ -156,7 +156,7 @@ Co rozhodne Bára, je označeno **(Bára)**.
   (`lanes-ortho.js`)~~ (26. 11. 2026); dotaz městu na licenci neodeslán. Bod 6: univerzální měření je přepočítané, vzorek jen 12 řezů.
 - Slovinsko, zbytky recenze 24. 11. 2026 (982927a): chybí poznámka v řezu, že model obrub nedostal ortofoto (`app.js`); A/B
   s ortofotem a bez něj; pravidlo podkroví (`?off=podkrovi`) na nových domech naslepo; čísla značek proti obrázkům pravidla
-  26/2024; přesná pozemní hranice GURS; čtení středové čáry z `lanes` ≥ 2 a 3 m k plné čáře **(Bára)**.
+  26/2024; přesná pozemní hranice GURS; čtení středové čáry z `lanes` ≥ 2 a 3 m k plné čáře ~~**(Bára)**~~ (Bára 27. 11. 2026: středovou čáru a jestli je plná číst obecně z ortofota; „3 m k plné čáře“ jako sdílená funkce pro státy, jejichž zákon to má; rozpracováno).
 - Finsko, zbytky recenze 24. 11. 2026 (edfdd21): ~~proužek „plocha“ do 1,5 m u fasády přičíst k chodníku (`besidePassport`)~~
   (26. 11. 2026: `ortho-osm.js facadeStrip` pro všechny mapy povrchů, slepé A/B 12 : 1, `evaluation/facade-strip`);
   obrázky prvního A/B v gitu; prodleva při psaní do hledání (`search.js`); Karesuando u Švédska (řešit se Švédskem);
@@ -202,7 +202,7 @@ Co rozhodne Bára, je označeno **(Bára)**.
   pravidlem); podlaží z výšek obrysů neměřená; okolní okresy (San Mateo, Marin, Alameda) bez mapy povrchů zůstávají zavřené
   **(Bára: přidat jako odhad z OSM jako předměstí Washingtonu?)**; PCC linky F a lampa Path of Gold nezapojené **(Bára:
   PCC potřebuje tyčový sběrač místo pantografu, Path of Gold pravidlo jen pro Market Street)**; licence vrstvy obrub SFMTA
-  (`MapServer/12`) bez vlastních metadat **(Bára)**; San Francisco Fire Code § 503 (místní šířky) nečten; ortofoto pro
+  (`MapServer/12`) bez vlastních metadat ~~**(Bára)**~~ (Bára 27. 11. 2026: licence portálu, uvádět zdroj); San Francisco Fire Code § 503 (místní šířky) nečten; ortofoto pro
   pruhy chybí (otevřené není).
 - **USA (Washington, recenze a čerstvé měření 25. 11. 2026, `evaluation/usa/fresh`):** uličky mezi domy: mezera mezi polygony se
   čte jako zeleň, i kde je zpevněný dvůr, a bere soukromé dvorky za uličkou; rampy a dálnice (3 řezy, 44 : 63 %); klik v ploše
@@ -212,7 +212,7 @@ Co rozhodne Bára, je označeno **(Bára)**.
 - **USA (New York, 26. 11. 2026, `evaluation/usa/nyc`):** ~~licence: položky NYCmaps na ArcGIS Online mají „Limited to use
   defined by OTI“~~ (Bára 26. 11. 2026: používat; tytéž vrstvy jsou na NYC Open Data bez omezení, Admin. Code § 23-502, s kreditem
   zdroje a verze); ~~ortofoto NYS bez uvedené licence („available at no cost“)~~ (Bára 26. 11. 2026: používat s kreditem). **(Bára)** okolní okresy (Jersey City a Hudson County, Westchester, Nassau) jen s odhadem z OSM, nebo
-  ne (teď ne: bez mapy povrchů, okolí Washingtonu a Toronta jen 51 %). **(Bára)** stání: zákonná volná šířka v New Yorku nedoložená
+  ne (teď ne: bez mapy povrchů, okolí Washingtonu a Toronta jen 51 %). ~~**(Bára)**~~ (Bára 27. 11. 2026: 3 m jako DC, stání jen „odhad“) stání: zákonná volná šířka v New Yorku nedoložená
   (34 RCNY § 4-08, FC 503 nepřečtené), platí 3 m aplikace. Ostatní: Bishop's Crook (`newyork/lamp-bishop-*`) nemá kde se kreslit
   (aplikace má jednu lampu nad ulicí, do 5 m sloupkovou); stání v New Yorku je skoro všude, mapa ho nemá (je to vozovka) a odhad
   ho bere jen z aut na ortofotu, které má hluboké stíny mezi vysokými domy (~~rozdělit vozovku podle OSM~~: sdílený kód to
@@ -257,7 +257,7 @@ Co rozhodne Bára, je označeno **(Bára)**.
   `docs/states-survey/` (nejlépe Francie s Paříží, pak Španělsko, Švédsko, Kypr; Finsko a Dánsko jen s klíčem
   **(Bára)**; Slovinsko, pobaltské státy a Norsko zkusit znovu).
 - Domy: chata nebo jiná stavba bez počtu podlaží v RÚIAN dostane výchozí 2 NP (hlášení u silnice 506338718
-  v Královéhradeckém kraji: 1 NP a podkroví). Výchozí hodnota pro rekreační stavby (RÚIAN 8)? **(Bára)**
+  v Královéhradeckém kraji: 1 NP a podkroví). Výchozí hodnota pro rekreační stavby (RÚIAN 8)? ~~**(Bára)**~~ (Bára 27. 11. 2026: 1 NP a podkroví; dávka small-fixes)
 - Podkroví z RÚIAN (23. 11.): rodinný dům a chata se 2+ podlažími mají poslední podlaží ve střeše (silnice 230). Ověřit
   na víc domech.
 
@@ -313,7 +313,7 @@ Co rozhodne Bára, je označeno **(Bára)**.
 
 ## Licence ke kontrole
 - **Boston:** Street Edges (`basemap_IPS` 15) nejsou samostatná datová sada Analyze Boston; PDDL je z položky ArcGIS „Basemap“
-  (3c77136ac2204662b9287050fefc67de). Pravidlo Massachusetts o volném pruhu při stání nenalezeno (platí 3 m jako DC). **(Bára)**
+  (3c77136ac2204662b9287050fefc67de). Pravidlo Massachusetts o volném pruhu při stání nenalezeno (platí 3 m jako DC). ~~**(Bára)**~~ (Bára 27. 11. 2026: nechat 3 m, „odhad“)
 
 - ~~Ortofoto PDOK (Nizozemsko), Flandry, Valonsko, ACT Lucembursko (ortho_latest)~~: licence ověřené a v kreditech
   (`evaluation/licence/ZPRAVA.md`, kredity opravené 26. 11. 2026 ve větvi credits-fix, i GRB, Most, Jihlava, Dúbravka).
