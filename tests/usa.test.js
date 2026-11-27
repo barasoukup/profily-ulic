@@ -296,7 +296,7 @@ test("New York: planimetrie podél řezu (malovaný ostrůvek je vozovka), domy 
   assert.deepEqual(cut.features.map((f) => f.attributes.code), [401, 601, 702, 701, 702, 401]); // the painted median is roadway, a canopy no house
   assert.equal(N.nycCode.roadbed({ SUB_FEATURE_CODE: 350030 })[0], 1003);
   assert.equal(N.nycCode.median({ SUB_FEATURE_CODE: 360020 })[0], 9950);
-  assert.deepEqual(N.nycHouse({ FEATURE_CODE: 2100, HEIGHT_ROOF: 60, CONSTRUCTION_YEAR: 1926 }), { cornice: 5, roof: 0, total: 5, fromHeight: true, built: 1926, nycHouse: true });
+  assert.deepEqual(N.nycHouse({ FEATURE_CODE: 2100, HEIGHT_ROOF: 60, CONSTRUCTION_YEAR: 1926 }), { cornice: 5, roof: 0, total: 5, fromHeight: true, hm: 18.288, built: 1926, nycHouse: true });
   assert.equal(N.nycHouse({ FEATURE_CODE: 5110, HEIGHT_ROOF: 10 }).garage, true);
   assert.deepEqual(N.nycHouse({ FEATURE_CODE: 1002, HEIGHT_ROOF: 30 }), {});
   // New York's norms in New York, DDOT's elsewhere in the state.

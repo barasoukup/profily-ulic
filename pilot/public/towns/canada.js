@@ -14,6 +14,7 @@
 // orthophoto's images.
 import { osmTiles } from "../gis.js";
 import { inArea } from "../places.js";
+import { floorsFromHeight, heightHouse } from "../floors.js";
 import { planimetricMap, gapsBetweenRoads, kerbBays, osmTracks, WALKED } from "./planimetrics.js";
 
 const param = (k) => (typeof location === "undefined" ? globalThis.PROFILY_CA?.[k] ?? null : new URLSearchParams(location.search).get(k));
@@ -39,15 +40,15 @@ export const TORONTO_MAP = {
 };
 const map = planimetricMap(TORONTO_MAP);
 
-// A house by its height (to the ridge, or the parapet of a flat roof): 2.2 m of roof and plinth over floors of 3.3 m, from 25 m
-// on floors of 3.05 m (the review of 25. 11. 2026: the old 3 m made Markham Street's and Queen Street West's houses a floor too
-// tall; the 22 judged houses of houses.json: exact 13, bias +0.14, before 11 and +0.45; 575 houses of OSM: 76 %, bias −0.17).
-export const floorsOf = (h) => (h > 2 && h < 400 ? Math.max(1, Math.round((h - 2.2) / (h <= 25 ? 3.3 : 3.05))) : undefined);
+// A house by its height (to the ridge, or the parapet of a flat roof): floors.js (the rule of 25. 11. 2026: 2.2 m of roof and
+// plinth over floors of 3.3 m, from 25 m on 3.05 m; Bára 27. 11. 2026 with the boundary of one and two floors at 6 m, the roof
+// of a known pitched shape taken off and no floors of a hall). The height travels as `hm`: app.js counts the floors again with
+// what OSM tells of the building (its kind, its roof) once it is known.
+export const floorsOf = floorsFromHeight;
 export function torontoHouse(a) {
   if (!a) return {};
   if (/garage/i.test(a.SUBTYPE_DESC || "")) return { type: "garage", garage: true, caHouse: true };
-  const n = floorsOf(Number(a.DERIVED_HEIGHT));
-  return n ? { cornice: n, roof: 0, total: n, fromHeight: true, caHouse: true } : {};
+  return heightHouse(Number(a.DERIVED_HEIGHT), { caHouse: true });
 }
 async function podlaznost(lat, lon) {
   if (param("torontohouse") === "0" || !TORONTO_MAP.on() || !inArea(AREAS.toronto, lon, lat)) return {};

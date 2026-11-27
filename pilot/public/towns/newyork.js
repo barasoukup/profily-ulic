@@ -30,7 +30,7 @@
 import { inArea } from "../places.js";
 import { getJSON } from "../gis.js";
 import { planimetricMap, islandsBeside, kerbBays, osmTracks, memory, WALKED } from "./planimetrics.js";
-import { floorsOf } from "./canada.js";
+import { heightHouse } from "../floors.js";
 
 const param = (k) => (typeof location === "undefined" ? globalThis.PROFILY_US?.[k] ?? null : new URLSearchParams(location.search).get(k));
 const off = (name) => (param("off") || "").split(",").includes(name);
@@ -145,16 +145,16 @@ export const NYC_MAP = {
 };
 export const nycMap = planimetricMap(NYC_MAP);
 
-// A house from its footprint's attributes: the roof's height in feet (from the ground) as floors (canada.js floorsOf), the
+// A house from its footprint's attributes: the roof's height in feet (from the ground) as floors (floors.js), the
 // year, a garage.
 export function nycHouse(a) {
   if (!a) return {};
   const code = Number(a.FEATURE_CODE);
   if (code === 5110) return { type: "garage", garage: true, nycHouse: true };
   if (!HOUSE.has(code)) return {};
-  const n = floorsOf(Number(a.HEIGHT_ROOF) * 0.3048), year = Number(a.CONSTRUCTION_YEAR);
+  const house = heightHouse(Number(a.HEIGHT_ROOF) * 0.3048), year = Number(a.CONSTRUCTION_YEAR);
   const built = year > 1700 && year < 2100 ? { built: year } : {};
-  return n || built.built ? { ...(n && { cornice: n, roof: 0, total: n, fromHeight: true }), ...built, nycHouse: true } : {};
+  return house.cornice || built.built ? { ...house, ...built, nycHouse: true } : {};
 }
 export async function nycPodlaznost(lat, lon) {
   if (param("nychouse") === "0" || !nycOn() || !inArea(AREA, lon, lat)) return null;
