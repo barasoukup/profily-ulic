@@ -652,7 +652,6 @@ export const DE = {
   "Příčný profil české ulice s tramvajemi, cyklopruhem, chodníky a domy, vedle název Profily ulic":
     "Querschnitt einer tschechischen Straße mit Straßenbahnen, Radfahrstreifen, Gehwegen und Häusern, daneben der Name Profily ulic",
   "Porovnat": "Vergleich",
-  "Ilustrace": "Illustrationen",
   "Obrázek PNG": "PNG-Bild",
   "Vektor SVG": "SVG (Vektor)",
   "Soubor": "Datei",
@@ -723,8 +722,6 @@ export const DE = {
   "Ulice, jak je dnes (z mapy povrchů města nebo ČÚZK a OSM)": "Die Straße, wie sie heute ist (aus der Flächenkarte der Stadt oder des ČÚZK und OSM)",
   "Vaše úprava ulice": "Ihre Umgestaltung der Straße",
   "Stav a návrh pod sebou se seznamem změn": "Bestand und Planung untereinander, mit einer Liste der Änderungen",
-  "Kreslit místní ilustrace: domy, tramvaje, trolejbusy, autobusy a mobiliář města (vypnuto: ilustrace Streetmixu)":
-    "Örtliche Illustrationen zeichnen: Häuser, Straßenbahnen, Oberleitungsbusse, Busse und Mobiliar der Stadt (aus: Streetmix-Illustrationen)",
   "Zkopíruje odkaz, který otevře tuto ulici i s vaším návrhem": "Kopiert einen Link, der diese Straße mit Ihrer Planung öffnet",
   "Mapa: kliknutím na ulici vznikne její příčný profil": "Karte: Ein Klick auf eine Straße erzeugt ihren Querschnitt",
   "Pohled z ulice v místě řezu, ve směru profilu (Panorama Mapy.com)": "Blick von der Straße am Schnitt, in Richtung des Querschnitts (Panorama von Mapy.com)",
@@ -786,7 +783,6 @@ export const DE = {
   "Vozovka": "Fahrbahn",
   "Sdílet": "Teilen",
   "Kopírovat polohu řezu": "Lage des Schnitts kopieren",
-  "Místní ilustrace": "Örtliche Illustrationen",
   "kontakt": "Kontakt",
   // Rainwater objects at their size, with the networks.
   "šířka": "Breite",
@@ -1172,6 +1168,9 @@ export const DE = {
   "Děkujeme, zpráva odešla.": "Danke, die Nachricht ist gesendet.",
   "Zpráv je teď moc, zkuste to prosím za hodinu.": "Gerade sind es zu viele Nachrichten, bitte versuchen Sie es in einer Stunde wieder.",
   "Zprávu se nepodařilo odeslat, zkuste to prosím za chvíli.": "Die Nachricht ließ sich nicht senden, bitte versuchen Sie es gleich noch einmal.",
+  "Značky": "Schilder",
+  "Dopravní značky": "Verkehrszeichen",
+  "Kreslit pod profilem řádek dopravních značek (i v exportu)": "Die Reihe der Verkehrszeichen unter dem Querschnitt zeichnen (auch im Export)",
 };
 
 // Elements of index.html replaced whole (data-i18n): the footer with its links.

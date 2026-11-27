@@ -629,7 +629,6 @@ export const NL = {
   "Příčný profil české ulice s tramvajemi, cyklopruhem, chodníky a domy, vedle název Profily ulic":
     "Dwarsprofiel van een Tsjechische straat met trams, fietsstrook, trottoirs en huizen, ernaast de naam Profily ulic",
   "Porovnat": "Vergelijken",
-  "Ilustrace": "Illustraties",
   "Obrázek PNG": "PNG-afbeelding",
   "Vektor SVG": "SVG (vector)",
   "Soubor": "Bestand",
@@ -700,8 +699,6 @@ export const NL = {
   "Ulice, jak je dnes (z mapy povrchů města nebo ČÚZK a OSM)": "De straat zoals die nu is (uit de oppervlakkenkaart van de stad of van het ČÚZK en OSM)",
   "Vaše úprava ulice": "Uw herinrichting van de straat",
   "Stav a návrh pod sebou se seznamem změn": "Bestaand en ontwerp onder elkaar, met een lijst van wijzigingen",
-  "Kreslit místní ilustrace: domy, tramvaje, trolejbusy, autobusy a mobiliář města (vypnuto: ilustrace Streetmixu)":
-    "Lokale illustraties tekenen: huizen, trams, trolleybussen, bussen en straatmeubilair van de stad (uit: illustraties van Streetmix)",
   "Zkopíruje odkaz, který otevře tuto ulici i s vaším návrhem": "Kopieert een link die deze straat met uw ontwerp opent",
   "Mapa: kliknutím na ulici vznikne její příčný profil": "Kaart: klik op een straat om het dwarsprofiel te maken",
   "Pohled z ulice v místě řezu, ve směru profilu (Panorama Mapy.com)": "Zicht vanaf de straat bij de doorsnede, in de richting van het profiel (Panorama van Mapy.com)",
@@ -763,7 +760,6 @@ export const NL = {
   "Vozovka": "Rijbaan",
   "Sdílet": "Delen",
   "Kopírovat polohu řezu": "Locatie van de doorsnede kopiëren",
-  "Místní ilustrace": "Lokale illustraties",
   "kontakt": "contact",
   // Rainwater objects at their size, with the networks.
   "šířka": "breedte",
@@ -1174,6 +1170,9 @@ export const NL = {
   "Děkujeme, zpráva odešla.": "Bedankt, het bericht is verzonden.",
   "Zpráv je teď moc, zkuste to prosím za hodinu.": "Er zijn nu te veel berichten, probeer het over een uur opnieuw.",
   "Zprávu se nepodařilo odeslat, zkuste to prosím za chvíli.": "Het bericht kon niet worden verzonden, probeer het zo opnieuw.",
+  "Značky": "Borden",
+  "Dopravní značky": "Verkeersborden",
+  "Kreslit pod profilem řádek dopravních značek (i v exportu)": "De rij verkeersborden onder het profiel tekenen (ook bij exporteren)",
 };
 
 // Elements of index.html replaced whole (data-i18n): the footer with its links.

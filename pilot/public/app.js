@@ -7,6 +7,8 @@ import { dkToken } from "./keys.js";
 import { boxed as boxedPlace, within as withinPlace } from "./places.js";
 import { orthoOsmPolys, besidePassport, trimToEnds, estimateNote, outerGapsByImage, medianGapsByImage, deckSpans, bridgeRailings, P as ORTHO_P } from "./ortho-osm.js";
 import { LOOKS as HOUSE_LOOKS } from "./house-looks.js";
+// A click this close to the cut shown (m) is placed exactly, not moved away from junctions (cutAt; Bára 27. 11. 2026).
+const AGAIN_M = 200;
 // The gabled house looks with the gable's outline (house-looks.js; Bára to approve it, 23. 11. 2026): ?stit=1.
 if (new URLSearchParams(location.search).get("stit") === "1") HOUSE_LOOKS.gables = true;
 import { aiCut, aiKerbs, aiSurface, aiParking, parkFromAi, parkSkip, lawKerbs, layLaw, lawUnsplits, widenLaw, aiReady, onAiProgress } from "./ai-kerbs.js";
@@ -34,7 +36,7 @@ const AI_WAIT = 12000; // ms: the longest the first estimated cut waits for the 
 // parking sections left out), to compare the two (evaluation/ortofoto-osm/chyby.mjs, Bára 18. 11. 2026).
 const NO_MAP = new URLSearchParams(location.search).get("mapa") === "0";
 import { deriveSigns, SIGNS, SIGN_CHOICES, signLabel, signFits, signFile, keepDrawable, drawable, MAX_PER_PART } from "./signs.js";
-import { loadSprites, loadSigns, layoutSigns, buildSvg, isHole, exportCredits, mountEditor, svgString, twoLines, totalWidth, setArt, getArt, buildingStyle, artEvents, edgeInfo, underDepth, ROADWAY, nearestRoadway, BUILDING_STYLES, GABLE_LOOKS, OFFICE_TYPES as OFFICE_LIKE, turnLabel } from "./profile.js";
+import { loadSprites, loadSigns, layoutSigns, buildSvg, setSignsShown, getSignsShown, isHole, exportCredits, mountEditor, svgString, twoLines, totalWidth, buildingStyle, artEvents, edgeInfo, underDepth, ROADWAY, nearestRoadway, BUILDING_STYLES, GABLE_LOOKS, OFFICE_TYPES as OFFICE_LIKE, turnLabel } from "./profile.js";
 import * as sources from "./sources.js";
 import { ruianBuilding, ruianOutlines, withBuildings, insideRings } from "./gis.js";
 import { MAPY_KEY } from "./config.js";
@@ -76,8 +78,10 @@ translatePage();
 const PANO_LANGS = new Set(["cs", "de", "el", "en", "es", "fr", "it", "nl", "pl", "pt", "sk"]);
 
 const HALF = 40; // half-length of the cut used for reading the data (m)
-// A cut end dragged further out (a house set back from a wide road) reads that much more, up to MAX_HALF (m).
-const MAX_HALF = 70, HALF_PAD = 3;
+// A cut end dragged further out (a house set back from a wide road) reads that much more, up to MAX_HALF (m); 103 since
+// 27. 11. 2026 (Bára: only dragging reaches that far, a side up to 100 m; a new cut keeps its usual reach).
+const MAX_HALF = 103, HALF_PAD = 3;
+const OSM_RADIUS = 80; // OSM read round a new cut (m); a longer dragged side reads its reach and 10 m more
 const MIN_REACH = 3; // shortest profile side the user can drag the cut end to (m)
 const defaultReach = () => ({ left: MAX_REACH, right: MAX_REACH });
 const WIDE_REACH = 35;
@@ -588,7 +592,13 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wa
     await useCity(lat, lon);
     status(tr("Načítám data z OSM…"));
     let frame = localFrame(lat, lon);
-    let osm = keepWay && osmCache ? osmCache.osm : await sources.osm(lat, lon, 80);
+    const radius = Math.max(OSM_RADIUS, (reach ? Math.max(reach.left, reach.right) + HALF_PAD : 0) + 10);
+    if (keepWay && osmCache && osmCache.radius < radius) {
+      // A side dragged beyond what was read: read again, the street's way taken from the new data.
+      const more = await sources.osm(lat, lon, radius);
+      osmCache = { osm: more, way: more.elements?.find((e) => e.id === osmCache.way.id) || osmCache.way, radius };
+    }
+    let osm = keepWay && osmCache ? osmCache.osm : await sources.osm(lat, lon, radius);
     let near;
     if (keepWay && osmCache) {
       // Along the street, onto the ways that continue it (a bridge is a way of its own; derive.js dragAlong).
@@ -597,8 +607,11 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wa
       // The street the link names, if it is still there (derive.js savedStreet), else the nearest one.
       near = (wantWay && savedStreet(osm, frame, wantWay)) || nearestStreet(osm, frame, [0, 0], wantName);
       // A click lands the cut away from junctions and crossings; a dragged cut stays where it is put, a saved one (a link,
-      // a pasted position with its azimuth) exactly where it was saved.
-      if (near) near = placeCut(osm, frame, near, bearing !== null);
+      // a pasted position with its azimuth) exactly where it was saved. Only the first click in an area is moved (Bára
+      // 27. 11. 2026): a click within AGAIN_M of the cut shown lands where it is, only snapped onto the street and between
+      // two carriageways (?off=firstclick: every click moved as before).
+      const again = bearing === null && !!state.cut && !ORTHO_P.off?.has("firstclick") && Math.hypot(...frame.toXY(state.cut.lon, state.cut.lat)) <= AGAIN_M;
+      if (near) near = again ? centerOnStreet(osm, frame, near) : placeCut(osm, frame, near, bearing !== null);
     }
     if (!near) {
       // A click with no street found is logged too (Bára: how many try outside the Czech Republic): only where, to
@@ -616,7 +629,7 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wa
       const r = (bearing * Math.PI) / 180;
       dir = [Math.sin(r), Math.cos(r)];
     }
-    osmCache = { osm, way: near.way };
+    osmCache = { osm, way: near.way, radius: keepWay && osmCache ? osmCache.radius : radius };
     // The usual reach for a new cut; a motorway, an expressway or a main street may reach WIDE_REACH on a side where the
     // street goes on beyond it (widerSides below; Bára: R1 in Banská Bystrica, the boulevards of Paris). A reach given or
     // kept stays as it is.
@@ -854,7 +867,7 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wa
     // the DMVS standing in for the city's map, the orthophoto of a tram bed.
     const mv = m.status === "fulfilled" ? m.value : null;
     const bedOwn = ortho && country.bedOrtho !== "cuzk" ? country.bedOrtho : null; // the tram bed read on a state's own orthophoto
-    state.cut.sources = { ...(mv?.region && { region: mv.region }), ...(mv?.skTown && { skTown: mv.skTown }), ...(mv?.atTown && { atTown: mv.atTown }), ...(mv?.deTown && { deTown: mv.deTown }), ...(mv?.chAv && { chAv: mv.chAv }), ...(mv?.nlBgt && { nlBgt: true }), ...(mv?.beTown && { beTown: mv.beTown }), ...(mv?.plTown && { plTown: mv.plTown }), ...(mv?.frTown && { frTown: mv.frTown }), ...(mv?.esTown && { esTown: mv.esTown }), ...(mv?.itTown && { itTown: mv.itTown }), ...(mv?.eeTown && { eeTown: mv.eeTown }), ...(mv?.fiTown && { fiTown: mv.fiTown }), ...(mv?.ltTown && { ltTown: mv.ltTown }), ...(mv?.cityMap && { cityMap: mv.cityMap }), ...(mv?.usDdot && { usDdot: true }), ...(mv?.nycSigns && { nycSigns: true }), ...(mv?.sfCurb && { sfCurb: true }), ...(mv?.ltGrpk && { ltGrpk: true }), ...(pk.status === "fulfilled" && pk.value?.amsParking && pk.value.features?.length && { amsParking: true }), ...(pk.status === "fulfilled" && pk.value?.parisParking && { parisParking: true }), ...(pk.status === "fulfilled" && pk.value?.dkParking && pk.value.features?.length && { dkParking: true }), ...(atSigns?.length && signTags.__salzburg && { atSigns: "salzburg" }), ...(country.signs.ogl && result.segments?.some((s) => s.signs?.some((x) => country.signs.ogl.has(country.signs.file(x, s)))) && { ukSigns: true }), ...(mv?.skTm && { skTm: true }), ...(orthoOsm?.kerbs?.why && Object.values(orthoOsm.kerbs.why).includes("ai") && { aiKerbs: true }), ...((orthoOsm?.edges || besideUsed?.edges) && k.value?.edgesFrom && { skEdges: k.value.edgesFrom }), ...((orthoOsm?.areas || orthoOsm?.widthFrom === "zbgis" || besideUsed?.zbgis) && { zbgis: true }), ...(mv?.dmvs && { dmvs: true }), ...(typeof mv?.passport === "string" && { passport: mv.passport }), ...(((ortho && !bedOwn) || ((lanesFromOrtho || orthoOsm?.image) && laneImg.source === "cuzk")) && { ortho: true }), ...((lanesFromOrtho || orthoOsm?.image) && laneImg.source !== "cuzk" ? { orthoCity: laneImg.source } : bedOwn ? { orthoCity: bedOwn } : (besideUsed?.image || mapParked || pitsJoined || outerPaved || medianGreen) && laneImg && { orthoCity: laneImg.source }) };
+    state.cut.sources = { ...(mv?.region && { region: mv.region }), ...(mv?.skTown && { skTown: mv.skTown }), ...(mv?.atTown && { atTown: mv.atTown }), ...(mv?.deTown && { deTown: mv.deTown }), ...(mv?.chAv && { chAv: mv.chAv }), ...(mv?.nlBgt && { nlBgt: true }), ...(mv?.beTown && { beTown: mv.beTown }), ...(mv?.plTown && { plTown: mv.plTown }), ...(mv?.frTown && { frTown: mv.frTown }), ...(mv?.esTown && { esTown: mv.esTown }), ...(mv?.itTown && { itTown: mv.itTown }), ...(mv?.eeTown && { eeTown: mv.eeTown }), ...(mv?.fiTown && { fiTown: mv.fiTown }), ...(mv?.ltTown && { ltTown: mv.ltTown }), ...(mv?.cityMap && { cityMap: mv.cityMap }), ...(mv?.usDdot && { usDdot: true }), ...(mv?.nycSigns && { nycSigns: true }), ...(mv?.sfCurb && { sfCurb: true }), ...(mv?.ltGrpk && { ltGrpk: true }), ...(pk.status === "fulfilled" && pk.value?.amsParking && pk.value.features?.length && { amsParking: true }), ...(pk.status === "fulfilled" && pk.value?.parisParking && { parisParking: true }), ...(pk.status === "fulfilled" && pk.value?.dkParking && pk.value.features?.length && { dkParking: true }), ...(atSigns?.length && signTags.__salzburg && { atSigns: "salzburg" }), ...(country.signs.ogl && result.segments?.some((s) => s.signs?.some((x) => country.signs.ogl.has(country.signs.file(x, s)))) && { ukSigns: true }), ...(mv?.skTm && { skTm: true }), ...(orthoOsm?.kerbs?.why && Object.values(orthoOsm.kerbs.why).includes("ai") && { aiKerbs: true }), ...((orthoOsm?.edges || besideUsed?.edges) && k.value?.edgesFrom && { skEdges: k.value.edgesFrom }), ...((orthoOsm?.areas || orthoOsm?.widthFrom === "zbgis" || besideUsed?.zbgis) && { zbgis: true }), ...(mv?.dmvs && { dmvs: true }), ...(typeof mv?.passport === "string" && { passport: mv.passport }), ...(((ortho && !bedOwn) || ((lanesFromOrtho || orthoOsm?.image) && laneImg?.source === "cuzk")) && { ortho: true }), ...((lanesFromOrtho || orthoOsm?.image) && laneImg && laneImg.source !== "cuzk" ? { orthoCity: laneImg.source } : bedOwn ? { orthoCity: bedOwn } : (besideUsed?.image || mapParked || pitsJoined || outerPaved || medianGreen) && laneImg && { orthoCity: laneImg.source }) };
     // The log of cuts (log.js): the cut exactly, and how it came (a click, a moved cut, a link).
     log("rez", {
       detail: keepWay ? "posun" : bearing !== null ? "odkaz" : "klik", city: city.id, country: city.country, street: name, highway: near.way.tags.highway,
@@ -1118,7 +1131,8 @@ centerMarker.on("drag", () => {
     // Snap to the street as the drop will, so the preview matches the result.
     const near = dragAlong(osmCache.osm, f, osmCache.way, [0, 0]);
     [lon, lat] = f.toLonLat(...near.point);
-    dir = near.dir;
+    // The way's direction may run against the cut's: keep the cut's, or A and B swap sides while dragging (Bára 27. 11. 2026).
+    dir = near.dir[0] * dir[0] + near.dir[1] * dir[1] < 0 ? [-near.dir[0], -near.dir[1]] : near.dir;
   }
   previewCut(lat, lon, [-dir[1], dir[0]], centerMarker);
 });
@@ -2352,19 +2366,19 @@ document.querySelectorAll(".seg-toggle button").forEach((b) => b.addEventListene
   render();
 }));
 
-// Illustrations: each city's own (houses, vehicles, furniture) or Streetmix's, remembered per browser.
-const ART_KEY = "profily-ilustrace";
-function showArt() {
-  $("#btn-art").setAttribute("aria-checked", String(getArt()));
-}
-try { if (localStorage.getItem(ART_KEY) === "streetmix") setArt(false); } catch {}
-showArt();
-$("#btn-art").addEventListener("click", () => {
-  setArt(!getArt());
-  try { localStorage.setItem(ART_KEY, getArt() ? "mesto" : "streetmix"); } catch {}
-  showArt();
+// The row of traffic signs: shown or not, remembered per browser (Bára 27. 11. 2026).
+const SIGNS_KEY = "profily-znacky";
+try { if (localStorage.getItem(SIGNS_KEY) === "ne") setSignsShown(false); } catch {}
+const showSignsSwitch = () => $("#btn-signs").setAttribute("aria-checked", String(getSignsShown()));
+showSignsSwitch();
+$("#btn-signs").addEventListener("click", () => {
+  setSignsShown(!getSignsShown());
+  try { localStorage.setItem(SIGNS_KEY, getSignsShown() ? "ano" : "ne"); } catch {}
+  showSignsSwitch();
   render();
 });
+
+// Illustrations: always each city's own (Bára 27. 11. 2026: the switch to Streetmix's is gone; profile.js setArt stays for the replay).
 
 $("#btn-fix").onclick = () => {
   state.fixing = !state.fixing;

@@ -628,7 +628,6 @@ export const LV = {
   "Příčný profil české ulice s tramvajemi, cyklopruhem, chodníky a domy, vedle název Profily ulic":
     "Čehijas ielas šķērsprofils ar tramvajiem, velojoslu, ietvēm un ēkām, blakus nosaukums Profily ulic",
   "Porovnat": "Salīdzināt",
-  "Ilustrace": "Ilustrācijas",
   "Obrázek PNG": "PNG attēls",
   "Vektor SVG": "SVG (vektors)",
   "Soubor": "Fails",
@@ -699,8 +698,6 @@ export const LV = {
   "Ulice, jak je dnes (z mapy povrchů města nebo ČÚZK a OSM)": "Iela, kāda tā ir šodien (no pilsētas vai ČÚZK segumu kartes un OSM)",
   "Vaše úprava ulice": "Jūsu ielas pārveide",
   "Stav a návrh pod sebou se seznamem změn": "Esošais stāvoklis un projekts viens zem otra, ar izmaiņu sarakstu",
-  "Kreslit místní ilustrace: domy, tramvaje, trolejbusy, autobusy a mobiliář města (vypnuto: ilustrace Streetmixu)":
-    "Zīmēt vietējās ilustrācijas: ēkas, tramvajus, trolejbusus, autobusus un pilsētas ielu aprīkojumu (izslēgts: Streetmix ilustrācijas)",
   "Zkopíruje odkaz, který otevře tuto ulici i s vaším návrhem": "Nokopē saiti, kas atver šo ielu kopā ar jūsu projektu",
   "Mapa: kliknutím na ulici vznikne její příčný profil": "Karte: noklikšķinot uz ielas, tiek izveidots tās šķērsprofils",
   "Pohled z ulice v místě řezu, ve směru profilu (Panorama Mapy.com)": "Skats no ielas griezuma vietā, šķērsprofila virzienā (Mapy.com panorāma)",
@@ -762,7 +759,6 @@ export const LV = {
   "Vozovka": "Brauktuve",
   "Sdílet": "Kopīgot",
   "Kopírovat polohu řezu": "Kopēt griezuma vietu",
-  "Místní ilustrace": "Vietējās ilustrācijas",
   "kontakt": "kontakti",
   // Rainwater objects at their size, with the networks.
   "šířka": "platums",
@@ -1173,6 +1169,9 @@ export const LV = {
   "Děkujeme, zpráva odešla.": "Paldies, ziņa ir nosūtīta.",
   "Zpráv je teď moc, zkuste to prosím za hodinu.": "Pašlaik ir pārāk daudz ziņu, lūdzu, mēģiniet vēlreiz pēc stundas.",
   "Zprávu se nepodařilo odeslat, zkuste to prosím za chvíli.": "Ziņu neizdevās nosūtīt, lūdzu, mēģiniet vēlreiz pēc brīža.",
+  "Značky": "Zīmes",
+  "Dopravní značky": "Ceļa zīmes",
+  "Kreslit pod profilem řádek dopravních značek (i v exportu)": "Zīmēt ceļa zīmju rindu zem profila (arī eksportā)",
 };
 
 // Elements of index.html replaced whole (data-i18n): the footer with its links.

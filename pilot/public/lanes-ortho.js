@@ -114,11 +114,12 @@ export const EE_ORTHO = "https://tiles.maaamet.ee/tm/tms/1.0.0/foto@GMC";
 // patchBudget, and kept too, so the same click gives the same profile; while GURS has just failed (downFor after
 // laneImage's last try) it is not asked at all, the cut is not held a second time.
 export const SI_RETRY = { timeout: 4000, pauses: [300, 1500], budget: 12000, patchBudget: 9000, downFor: 60000 };
-let siDownAt = 0;
-const siDown = () => siDownAt && Date.now() - siDownAt < SI_RETRY.downFor;
+// When each source last failed on every try (a source just down is not asked again within SI_RETRY.downFor).
+const downAt = new Map();
+const siDown = () => downAt.has("si") && Date.now() - downAt.get("si") < SI_RETRY.downFor;
 const siRetryable = (err) => err?.outage || ["TimeoutError", "AbortError", "TypeError"].includes(err?.name);
 // run(timeout) once a try, within budget ms in all; a server down on every try throws the last error.
-async function siTries(run, timeout, budget) {
+async function siTries(run, timeout, budget, key = "si") {
   const start = Date.now();
   let lastError = null;
   for (let i = 0; i <= SI_RETRY.pauses.length; i++) {
@@ -128,14 +129,14 @@ async function siTries(run, timeout, budget) {
     }
     try {
       const out = await run(Math.min(timeout, budget - (Date.now() - start)));
-      siDownAt = 0;
+      downAt.delete(key);
       return out;
     } catch (err) {
       if (!siRetryable(err)) throw err;
       lastError = err;
     }
   }
-  siDownAt = Date.now();
+  downAt.set(key, Date.now());
   throw lastError;
 }
 const siImages = new Map(), SI_KEEP = 40;
@@ -419,7 +420,13 @@ export async function laneImage(opts) {
   }
   if (opts.source === "es" && !esKeys(...opts.frame.toLonLat(0, 0)).length) return null;
   // A source the app does not know: no image (not ČÚZK's, which covers only Czechia; Bára 26. 11. 2026).
-  if (opts.source !== "de") return SOURCES[opts.source] ? laneImageOf(opts.source, opts) : null;
+  // Any other server failing now and then (Spain's PNOA: a 502 after 6 s one time in eight, Bára 27. 11. 2026) is tried
+  // again as GURS is (siTries: a try TIMEOUT long, pauses, SI_RETRY.budget in all); a timeout given is the whole budget.
+  if (opts.source !== "de") {
+    if (!SOURCES[opts.source]) return null;
+    if (opts.timeout !== undefined) return laneImageOf(opts.source, opts);
+    return siTries((timeout) => laneImageOf(opts.source, { ...opts, timeout }), TIMEOUT, SI_RETRY.budget, opts.source);
+  }
   // Germany (countries/DE.js laneOrtho "de"): the Land's orthophoto, near a border the next Land's when the first has no
   // photo there, all within one timeout (the review of Germany).
   const tried = new Set(), start = Date.now(), budget = opts.timeout ?? TIMEOUT;

@@ -629,7 +629,6 @@ export const PL = {
   "Příčný profil české ulice s tramvajemi, cyklopruhem, chodníky a domy, vedle název Profily ulic":
     "Przekrój poprzeczny czeskiej ulicy z tramwajami, pasem rowerowym, chodnikami i budynkami, obok nazwa Profily ulic",
   "Porovnat": "Porównanie",
-  "Ilustrace": "Ilustracje",
   "Obrázek PNG": "Obraz PNG",
   "Vektor SVG": "SVG (wektor)",
   "Soubor": "Plik",
@@ -700,8 +699,6 @@ export const PL = {
   "Ulice, jak je dnes (z mapy povrchů města nebo ČÚZK a OSM)": "Ulica w obecnym stanie (z mapy powierzchni miasta lub ČÚZK i OSM)",
   "Vaše úprava ulice": "Własny projekt ulicy",
   "Stav a návrh pod sebou se seznamem změn": "Stan istniejący i projekt jeden pod drugim, z listą zmian",
-  "Kreslit místní ilustrace: domy, tramvaje, trolejbusy, autobusy a mobiliář města (vypnuto: ilustrace Streetmixu)":
-    "Rysuj lokalne ilustracje: budynki, tramwaje, trolejbusy, autobusy i meble miejskie (wyłączone: ilustracje Streetmix)",
   "Zkopíruje odkaz, který otevře tuto ulici i s vaším návrhem": "Kopiuje link, który otworzy tę ulicę wraz z projektem",
   "Mapa: kliknutím na ulici vznikne její příčný profil": "Mapa: kliknięcie ulicy tworzy jej przekrój poprzeczny",
   "Pohled z ulice v místě řezu, ve směru profilu (Panorama Mapy.com)": "Widok z ulicy w miejscu przekroju, w kierunku profilu (Panorama Mapy.com)",
@@ -763,7 +760,6 @@ export const PL = {
   "Vozovka": "Jezdnia",
   "Sdílet": "Udostępnij",
   "Kopírovat polohu řezu": "Kopiuj położenie przekroju",
-  "Místní ilustrace": "Lokalne ilustracje",
   "kontakt": "kontakt",
   // Rainwater objects at their size, with the networks.
   "šířka": "szerokość",
@@ -1174,6 +1170,9 @@ export const PL = {
   "Děkujeme, zpráva odešla.": "Dziękujemy, wiadomość została wysłana.",
   "Zpráv je teď moc, zkuste to prosím za hodinu.": "Jest teraz zbyt wiele wiadomości, spróbuj ponownie za godzinę.",
   "Zprávu se nepodařilo odeslat, zkuste to prosím za chvíli.": "Nie udało się wysłać wiadomości, spróbuj ponownie za chwilę.",
+  "Značky": "Znaki",
+  "Dopravní značky": "Znaki drogowe",
+  "Kreslit pod profilem řádek dopravních značek (i v exportu)": "Rysuj rząd znaków drogowych pod przekrojem (także w eksporcie)",
 };
 
 // Elements of index.html replaced whole (data-i18n): the footer with its links.

@@ -598,7 +598,6 @@ export const SK = {
   "Příčný profil české ulice s tramvajemi, cyklopruhem, chodníky a domy, vedle název Profily ulic":
     "Priečny profil českej ulice s električkami, cyklopruhom, chodníkmi a domami, vedľa názov Profily ulic",
   "Porovnat": "Porovnať",
-  "Ilustrace": "Ilustrácie",
   "Obrázek PNG": "Obrázok PNG",
   "Vektor SVG": "Vektor SVG",
   "Soubor": "Súbor",
@@ -720,8 +719,6 @@ export const SK = {
   "Ulice, jak je dnes (z mapy povrchů města nebo ČÚZK a OSM)": "Ulica, aká je dnes (z mapy povrchov mesta alebo ČÚZK a OSM)",
   "Vaše úprava ulice": "Vaša úprava ulice",
   "Stav a návrh pod sebou se seznamem změn": "Stav a návrh pod sebou so zoznamom zmien",
-  "Kreslit místní ilustrace: domy, tramvaje, trolejbusy, autobusy a mobiliář města (vypnuto: ilustrace Streetmixu)":
-    "Kresliť miestne ilustrácie: domy, električky, trolejbusy, autobusy a mobiliár mesta (vypnuté: ilustrácie Streetmixu)",
   "Zkopíruje odkaz, který otevře tuto ulici i s vaším návrhem": "Skopíruje odkaz, ktorý otvorí túto ulicu aj s vaším návrhom",
   "Mapa: kliknutím na ulici vznikne její příčný profil": "Mapa: kliknutím na ulicu vznikne jej priečny profil",
   "Pohled z ulice v místě řezu, ve směru profilu (Panorama Mapy.com)": "Pohľad z ulice v mieste rezu, v smere profilu (Panoráma Mapy.com)",
@@ -783,7 +780,6 @@ export const SK = {
   "Vozovka": "Vozovka",
   "Sdílet": "Zdieľať",
   "Kopírovat polohu řezu": "Kopírovať polohu rezu",
-  "Místní ilustrace": "Miestne ilustrácie",
   "Data © státní a městské mapové služby a OpenStreetMap": "Údaje © štátne a mestské mapové služby a OpenStreetMap",
   "· ilustrace Streetmix (CC BY-SA 4.0) a © Bára Soukupová · zdroje, licence a soukromí ·": "· ilustrácie Streetmix (CC BY-SA 4.0) a © Bára Soukupová · zdroje, licencie a súkromie ·",
   "Data {data}": "Údaje {data}",
@@ -1172,6 +1168,9 @@ export const SK = {
   "Děkujeme, zpráva odešla.": "Ďakujeme, správa odišla.",
   "Zpráv je teď moc, zkuste to prosím za hodinu.": "Správ je teraz veľa, skúste to, prosím, o hodinu.",
   "Zprávu se nepodařilo odeslat, zkuste to prosím za chvíli.": "Správu sa nepodarilo odoslať, skúste to, prosím, o chvíľu.",
+  "Značky": "Značky",
+  "Dopravní značky": "Dopravné značky",
+  "Kreslit pod profilem řádek dopravních značek (i v exportu)": "Kresliť pod profilom riadok dopravných značiek (aj pri exporte)",
 };
 
 // Elements of index.html replaced whole (data-i18n): the footer with its links.

@@ -628,7 +628,6 @@ export const DA = {
   "Příčný profil české ulice s tramvajemi, cyklopruhem, chodníky a domy, vedle název Profily ulic":
     "Tværprofil af en tjekkisk gade med sporvogne, cykelbane, fortove og huse, ved siden af navnet Profily ulic",
   "Porovnat": "Sammenlign",
-  "Ilustrace": "Illustrationer",
   "Obrázek PNG": "PNG-billede",
   "Vektor SVG": "SVG (vektor)",
   "Soubor": "Fil",
@@ -699,8 +698,6 @@ export const DA = {
   "Ulice, jak je dnes (z mapy povrchů města nebo ČÚZK a OSM)": "Gaden, som den er i dag (fra byens eller ČÚZK's fladekort og OSM)",
   "Vaše úprava ulice": "Din omdannelse af gaden",
   "Stav a návrh pod sebou se seznamem změn": "Eksisterende og forslag under hinanden med en liste over ændringer",
-  "Kreslit místní ilustrace: domy, tramvaje, trolejbusy, autobusy a mobiliář města (vypnuto: ilustrace Streetmixu)":
-    "Tegn lokale illustrationer: huse, sporvogne, trolleybusser, busser og byens inventar (slået fra: Streetmix-illustrationer)",
   "Zkopíruje odkaz, který otevře tuto ulici i s vaším návrhem": "Kopierer et link, der åbner denne gade med dit forslag",
   "Mapa: kliknutím na ulici vznikne její příčný profil": "Kort: et klik på en gade danner dens tværprofil",
   "Pohled z ulice v místě řezu, ve směru profilu (Panorama Mapy.com)": "Udsigt fra gaden ved snittet i profilets retning (Panorama fra Mapy.com)",
@@ -762,7 +759,6 @@ export const DA = {
   "Vozovka": "Kørebane",
   "Sdílet": "Del",
   "Kopírovat polohu řezu": "Kopiér snittets placering",
-  "Místní ilustrace": "Lokale illustrationer",
   "kontakt": "kontakt",
   // Rainwater objects at their size, with the networks.
   "šířka": "bredde",
@@ -1173,6 +1169,9 @@ export const DA = {
   "Děkujeme, zpráva odešla.": "Tak, beskeden er sendt.",
   "Zpráv je teď moc, zkuste to prosím za hodinu.": "Der er for mange beskeder lige nu, prøv igen om en time.",
   "Zprávu se nepodařilo odeslat, zkuste to prosím za chvíli.": "Beskeden kunne ikke sendes, prøv igen om lidt.",
+  "Značky": "Skilte",
+  "Dopravní značky": "Færdselstavler",
+  "Kreslit pod profilem řádek dopravních značek (i v exportu)": "Vis rækken af færdselstavler under profilet (også i eksport)",
 };
 
 // Elements of index.html replaced whole (data-i18n): the footer with its links.
