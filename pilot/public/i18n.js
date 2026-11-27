@@ -30,7 +30,7 @@ function pick() {
   }
   try { if (Object.hasOwn(LANGS, localStorage.getItem(KEY) ?? "")) return localStorage.getItem(KEY); } catch {}
   const browser = (typeof navigator !== "undefined" && (navigator.languages || [navigator.language])) || [];
-  if (!browser.length) return "cs";
+  // A browser that tells no language gets English too, as one whose languages the app has none of (Bára 27. 11. 2026).
   for (const l of browser) {
     const code = /^([a-z]{2})\b/i.exec(l || "")?.[1].toLowerCase();
     if (Object.hasOwn(LANGS, code ?? "")) return code;
