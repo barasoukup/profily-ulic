@@ -571,7 +571,14 @@ function drawItem(g, it, x, top, right) {
     case "kvetinac": return sprite(g, "planter-box", x, top);
     case "svodidlo": return sprite(g, "guardrail", x, top);
     case "zahradka": return sprite(g, "cafe-seating-occupied", x, top);
-    case "zivy_plot": return sprite(g, "bush", x, top);
+    case "zivy_plot": {
+      // A hedge seen along the street: a dense green block 1.3 m high and 0.8 m wide with a rounded top, not the small
+      // bush a green part draws in its middle (Bára 27. 11. 2026: the hedge on Stübelallee in Dresden was drawn as one
+      // bush among the lawn's own and nobody saw it).
+      line({ x: x - 40, y: top - 130, width: 80, height: 130, fill: "#5f8f3a", rx: 30 });
+      for (const [dx, dy, r, c] of [[-16, -98, 17, "#78a64a"], [14, -108, 15, "#4d7a2e"], [-12, -60, 16, "#4d7a2e"], [16, -44, 14, "#78a64a"], [-6, -20, 13, "#78a64a"]]) el("circle", { cx: x + dx, cy: top + dy, r, fill: c }, g);
+      return;
+    }
     case "plot":
       line({ x: x - 4, y: top - 150, width: 8, height: 150, fill: "#6b6a65" });
       for (let k = 0; k < 3; k++) line({ x: x - 30, y: top - 140 + k * 45, width: 60, height: 5, fill: "#6b6a65" });
@@ -2683,6 +2690,8 @@ export function buildSvg(profile, opts = {}) {
     } else if (t.sprite === "car" && w >= 180 && s.trolley && cityArt() && CITY_ART[artKey()]?.["trolleybus-inbound"]) {
       // A lane only public transport may use (a zone with trolley wires): its trolleybus.
       sprite(g, `trolleybus-${forward ? "outbound" : "inbound"}`, cx, top);
+    } else if (t.sprite === "car" && s.noCar) {
+      // A lane private cars may not use (derive.js carsBanned), no public transport allowed: no vehicle.
     } else if (t.sprite === "car" && w >= 180) {
       sprite(g, forward ? "car-outbound" : "car-inbound", cx, top);
     } else if (t.sprite === "streetcar" && w >= 240) {

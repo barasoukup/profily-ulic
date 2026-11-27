@@ -5,7 +5,7 @@ import { bedOrtho } from "./ortho.js";
 import { laneImage, applyLanes, SK_ORTHO, AT_ORTHO, CH_ORTHO, NL_ORTHO, BE_ORTHO, LU_ORTHO, PL_ORTHO, FR_ORTHO, ES_ORTHO, PT_ORTHO, PT_MAINLAND, ES_NOT_PNOA, CY_ORTHO, MT_ORTHO, IT_ORTHO, EE_ORTHO, SI_ORTHO, FI_ORTHO, US_ORTHO, CA_ORTHO, DK_ORTHO, DE_ORTHO, deWmsUrl, landsAt, landAt, orthoHereAt } from "./lanes-ortho.js";
 import { dkToken } from "./keys.js";
 import { boxed as boxedPlace, within as withinPlace } from "./places.js";
-import { orthoOsmPolys, besidePassport, trimToEnds, estimateNote, outerGapsByImage, medianGapsByImage, deckSpans, bridgeRailings, P as ORTHO_P } from "./ortho-osm.js";
+import { orthoOsmPolys, besidePassport, trimToEnds, estimateNote, outerGapsByImage, medianGapsByImage, deckSpans, bridgeRailings, bridgeWalks, P as ORTHO_P } from "./ortho-osm.js";
 import { LOOKS as HOUSE_LOOKS } from "./house-looks.js";
 // A click this close to the cut shown (m) is placed exactly, not moved away from junctions (cutAt; Bára 27. 11. 2026).
 const AGAIN_M = 200;
@@ -853,6 +853,7 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wa
     // The signs of the state (null: the Czech ones, countries/default.js).
     // A railing at the bridge's edge (Bára 26. 11. 2026), in the Stav and so in the Návrh made from it (removable there
     // as any item); ?off=zabradli: none.
+    bridgeWalks(result, near.way);
     bridgeRailings(result, near.way, decks, lastEnds);
     deriveSigns(result, signTags, { inZps, alongWay, country: country.code });
     keepDrawable(result, country.code);

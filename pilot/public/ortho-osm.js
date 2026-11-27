@@ -131,6 +131,24 @@ export const offDecks = (a, b, decks) => {
 // where a railing is already drawn there. result: deriveProfile's (segments left to right from extent[1] down to
 // extent[0]); way: the clicked street; decks: deckSpans; ends: orthoOsmPolys' ends. Returns the sides given one.
 // ?off=zabradli: none.
+// The strip an estimate leaves unnamed ("nezname", "plocha") at the outer side of a street on a bridge, between its
+// roadway and the end of the profile (the deck's edge or open space), is the bridge's sidewalk (Bára 27. 11. 2026:
+// Augustusbrücke in Dresden, two metres of "Ostatní" at both edges, in fact sidewalks). Only the estimate's own strip
+// (source "odhad", so still marked as an estimate), only beside a roadway part, up to BRIDGE_WALK_MAX m wide. Returns the
+// number of strips changed. ?off=mostchodnik: none.
+const BRIDGE_WALK_MAX = 4.5, BRIDGE_WALK_FROM = new Set(["nezname", "plocha"]);
+const BRIDGE_ROADWAY = new Set(["pruh", "pruh_piktokoridor", "bus", "bus_cyklo", "tramvaj_v_pruhu", "tramvaj_pruh", "tramvaj", "krajnice", "parkovani", "cyklopruh", "ochranny_pruh", "obsluzna"]);
+export function bridgeWalks(result, way) {
+  if (P.off?.has("mostchodnik") || !onBridge(way?.tags) || !result?.segments?.length) return 0;
+  const segs = result.segments;
+  let n = 0;
+  for (const [i, inner] of [[0, 1], [segs.length - 1, segs.length - 2]]) {
+    const s = segs[i], r = segs[inner];
+    if (!s || !r || i === inner || s.source !== "odhad" || !BRIDGE_WALK_FROM.has(s.type) || !BRIDGE_ROADWAY.has(r.type) || s.width > BRIDGE_WALK_MAX) continue;
+    s.type = "chodnik"; n++;
+  }
+  return n;
+}
 const RAIL_NEAR = 1.0, RAIL_PARTS = new Set(["chodnik", "chodnik_kola", "stezka_sdilena", "cyklostezka", "zelen", "plocha", "nastupiste"]);
 export function bridgeRailings(result, way, decks, ends) {
   const out = [];
