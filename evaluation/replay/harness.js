@@ -60,7 +60,10 @@ async function loadIndex() {
 function answerFor(key) {
   const all = index.get(key);
   if (!all) return null;
-  const mine = all.filter((e) => e.cut === cutId);
+  let mine = all.filter((e) => e.cut === cutId);
+  // What ?replay=fill asked live in this cut (fill: 1) replaces the old answers of the same request that were errors:
+  // the app was given the live one at once (an old 503 first would have it retry or give up).
+  if (mine.some((e) => e.fill)) mine = mine.filter((e) => e.fill);
   if (mine.length) {
     const k = `${cutId}|${key}`, n = served.get(k) || 0;
     served.set(k, n + 1);
@@ -102,11 +105,11 @@ window.fetch = async (input, init = {}) => {
     // Record: asked with the app's signal (an answer it gave up on is cancelled, as in the app), the whole body read.
     let got;
     try { const r = await native(input, init); got = { r, buf: await r.arrayBuffer() }; }
-    catch (err) { recorded.push({ key, cut: cutId, error: errorOf(err) }); throw err; }
+    catch (err) { recorded.push({ key, cut: cutId, error: errorOf(err), ...(MODE === "fill" ? { fill: 1 } : {}) }); throw err; }
     const { r, buf } = got;
     const sha = hex(await crypto.subtle.digest("SHA-1", buf));
     const headers = Object.fromEntries(KEEP.map((h) => [h, r.headers.get(h)]).filter(([, v]) => v !== null));
-    recorded.push({ key, cut: cutId, status: r.status, statusText: r.statusText, headers, sha });
+    recorded.push({ key, cut: cutId, status: r.status, statusText: r.statusText, headers, sha, ...(MODE === "fill" ? { fill: 1 } : {}) });
     if (!uploaded.has(sha)) { uploaded.add(sha); await native(`/__replay/body/${sha}`, { method: "POST", body: buf }); }
     return new Response(r.status === 204 || r.status === 304 ? null : buf, { status: r.status, statusText: r.statusText, headers });
   } finally {
