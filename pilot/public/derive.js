@@ -142,6 +142,31 @@ export function nearestStreet(osm, frame, p, name = null) {
   return best;
 }
 
+// A click on a promenade between the two carriageways of a street (Bára 27. 11. 2026, Unter den Linden in Berlin: the
+// cut took the footway down the middle, 2 m of paving, not the street): a footway, path, pedestrian way or cycleway
+// with a one-way carriageway of one name on each side of it, driving opposite ways, both along it, within PARTNER_REACH
+// of it, is the street's middle: the nearer carriageway is the cut's way (centerOnStreet then centres the cut on the
+// street). ?off=promenade: as before.
+const PROMENADE = new Set(["footway", "path", "pedestrian", "cycleway"]);
+export function streetAround(osm, frame, near, p = [0, 0]) {
+  if (!near?.way || ORTHO_P.off?.has("promenade") || !PROMENADE.has(near.way.tags?.highway) || ["sidewalk", "crossing"].includes(near.way.tags.footway)) return near;
+  const sides = {};
+  for (const el of osm.elements || []) {
+    if (!isStreet(el) || MINOR.has(el.tags.highway) || !el.tags.name || !isOnewayTags(el.tags)) continue;
+    const pts = el.geometry.map((g) => frame.toXY(g.lon, g.lat)), c = closestOnPolyline(pts, near.point);
+    if (!c.point || c.d > PARTNER_REACH || Math.abs(c.dir[0] * near.dir[0] + c.dir[1] * near.dir[1]) < 0.7) continue;
+    const side = Math.sign((c.point[0] - near.point[0]) * near.dir[1] - (c.point[1] - near.point[1]) * near.dir[0]);
+    if (!side) continue;
+    const drive = el.tags.oneway === "-1" ? -1 : 1, d = [c.dir[0] * drive, c.dir[1] * drive];
+    const slot = (sides[el.tags.name] ||= {});
+    if (!slot[side] || c.d < slot[side].c.d) slot[side] = { c, d, el, pts };
+  }
+  const pairs = Object.values(sides).filter((q) => q[1] && q[-1] && q[1].d[0] * q[-1].d[0] + q[1].d[1] * q[-1].d[1] < 0);
+  if (!pairs.length) return near;
+  const q = pairs.sort((a, b) => a[1].c.d + a[-1].c.d - b[1].c.d - b[-1].c.d)[0], w = q[1].c.d <= q[-1].c.d ? q[1] : q[-1];
+  return { ...w.c, score: w.c.d, way: w.el, pts: w.pts };
+}
+
 // The street of a saved cut (the way in its link, share.js cutHash) at the frame's origin, as nearestStreet gives it, or
 // null where it is not any more: the way deleted, underground, farther than SAVED_MAX, or ending before the cut (OSM
 // split it; a piece ending a few metres short, SAVED_GAP, still is the street).
