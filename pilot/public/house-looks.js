@@ -24,6 +24,13 @@ export const villageOff = () => ((typeof location === "undefined" ? globalThis.P
 export const smallHouse = (info) => !villageOff() && info?.footprint > 0 && info.footprint <= SMALL_HOUSE_AREA
   && !!info.block && info.block.parts <= SMALL_BLOCK_PARTS && info.block.area <= SMALL_BLOCK_AREA;
 
+// A panel house abroad (Bára 27. 11. 2026: Leipzig, two town houses of 6 floors drawn as panel houses): the shape alone makes
+// one only as a long compact slab, filling its box (a street row of town houses in a bent line does not: its 4 parts
+// filled 29 % of the box); stronger evidence is a year of the panel era (flatKind) or OSM's own word (info.panel).
+// ?off=panel2: the old shape rule (profile.js isSlab).
+export const panelOff = () => ((typeof location === "undefined" ? globalThis.PROFILY_CA?.off : new URLSearchParams(location.search).get("off")) || "").split(",").includes("panel2");
+export const strictSlab = (b) => !!b && ((b.fill >= 0.8 && b.width <= 16 && b.length >= 25) || (b.parts >= 2 && b.fill >= 0.5 && b.width <= 20 && (b.length + b.width) / b.parts >= 30));
+
 const OLD = new Set(["sikma", "mestan", "nizky"]);
 export const yearOf = (info) => info?.built ?? info?.start;
 // The house's place: derive.js point while the cut is made, app.js at (rounded) in the profile kept and saved.

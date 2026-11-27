@@ -1528,6 +1528,8 @@ export function buildingAt(osm, frame, p) {
     const year = parseInt(String(el.tags.start_date ?? "").slice(0, 4), 10);
     return { levels: levels ? levels + (roof || 0) : undefined, height: height || undefined, type: el.tags.building, block: blockShape(b, all), axis: mainAxis(b.ring),
       roofShape: el.tags["roof:shape"], start: year > 1000 ? year : undefined, material: el.tags["building:material"],
+      // OSM says panels (building:prefabricated=yes, building:material=concrete_panel…): the panel house's own evidence.
+      panel: el.tags["building:prefabricated"] === "yes" || /panel|prefab/i.test(el.tags["building:material"] || "") ? true : undefined,
       footprint: ringArea(b.ring) - (b.rings.slice(1).reduce((a, r) => a + ringArea(r), 0)) };
   }
   return null;
@@ -2446,6 +2448,7 @@ export function deriveProfile({ center, dir, half, polys, osm, frame, way, track
     if (b?.start) edges[`${side}Info`].start = b.start;
     // The footprint (m²): a small house alone is a family house when nothing else is known (house-looks.js smallHouse).
     if (b?.footprint) edges[`${side}Info`].footprint = Math.round(b.footprint);
+    if (b?.panel) edges[`${side}Info`].panel = 1;
     // The walls' material (OSM building:material): a wooden house in Estonia and the north, Malta's limestone
     // (house-looks.js); no Czech look reads it.
     if (b?.material) edges[`${side}Info`].material = b.material;

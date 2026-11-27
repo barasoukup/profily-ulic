@@ -1,0 +1,1823 @@
+{
+ "stat": {
+  "houses": 115,
+  "noData": 74,
+  "changed": 26,
+  "regCut": 0,
+  "noPhoto": 10,
+  "dataChanged": 0,
+  "villages": 21,
+  "pairs": {
+   "sikma>vila": 24,
+   "sikma>garaz": 1,
+   "plocha>vila": 1
+  }
+ },
+ "rows": [
+  {
+   "id": "LTa01",
+   "town": "senamiestis",
+   "far": true,
+   "city": "lithuania",
+   "point": [
+    25.3711783,
+    54.7549398
+   ],
+   "mapillary": "1407640614878398",
+   "pano": true,
+   "dist": 13.9,
+   "off": -28.9,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "point": [
+      25.37117832218254,
+      54.75493976246123
+     ],
+     "km": 99,
+     "block": {
+      "length": 20.9,
+      "width": 9.6,
+      "fill": 0.81,
+      "parts": 1,
+      "area": 163
+     },
+     "tint": 0,
+     "footprint": 163.018429297264
+    }
+   },
+   "after": {
+    "look": "vila",
+    "info": {
+     "point": [
+      25.37117832218254,
+      54.75493976246123
+     ],
+     "km": 99,
+     "block": {
+      "length": 20.9,
+      "width": 9.6,
+      "fill": 0.81,
+      "parts": 1,
+      "area": 163
+     },
+     "tint": 0,
+     "footprint": 163.018429297264
+    }
+   }
+  },
+  {
+   "id": "LTa02",
+   "town": "zirmunai",
+   "far": true,
+   "city": "lithuania",
+   "point": [
+    25.3120878,
+    54.6817272
+   ],
+   "mapillary": "28552942191031105",
+   "pano": true,
+   "dist": 17.2,
+   "off": 88.5,
+   "before": {
+    "look": "plocha",
+    "info": {
+     "point": [
+      25.31208779379733,
+      54.68172722594785
+     ],
+     "km": 99,
+     "block": {
+      "length": 19.1,
+      "width": 11.8,
+      "fill": 0.8,
+      "parts": 1,
+      "area": 180
+     },
+     "tint": 0,
+     "type": "apartments",
+     "footprint": 180.3999864450543
+    }
+   },
+   "after": {
+    "look": "vila",
+    "info": {
+     "point": [
+      25.31208779379733,
+      54.68172722594785
+     ],
+     "km": 99,
+     "block": {
+      "length": 19.1,
+      "width": 11.8,
+      "fill": 0.8,
+      "parts": 1,
+      "area": 180
+     },
+     "tint": 0,
+     "type": "apartments",
+     "footprint": 180.3999864450543
+    }
+   }
+  },
+  {
+   "id": "LTa03",
+   "town": "senamiestis",
+   "far": true,
+   "city": "lithuania",
+   "point": [
+    25.2365599,
+    54.580278
+   ],
+   "mapillary": "1143085021583194",
+   "pano": true,
+   "dist": 23.2,
+   "off": -86.7,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "point": [
+      25.23655985237699,
+      54.58027795687495
+     ],
+     "km": 99,
+     "block": {
+      "length": 20.1,
+      "width": 13.6,
+      "fill": 0.74,
+      "parts": 1,
+      "area": 203
+     },
+     "tint": 0,
+     "footprint": 202.60519000509976
+    }
+   },
+   "after": {
+    "look": "vila",
+    "info": {
+     "point": [
+      25.23655985237699,
+      54.58027795687495
+     ],
+     "km": 99,
+     "block": {
+      "length": 20.1,
+      "width": 13.6,
+      "fill": 0.74,
+      "parts": 1,
+      "area": 203
+     },
+     "tint": 0,
+     "footprint": 202.60519000509976
+    }
+   }
+  },
+  {
+   "id": "LTa04",
+   "town": "zirmunai",
+   "far": true,
+   "city": "lithuania",
+   "point": [
+    25.4161646,
+    54.6964089
+   ],
+   "mapillary": "1060877576772516",
+   "pano": true,
+   "dist": 17.3,
+   "off": 79.8,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "point": [
+      25.416164639976596,
+      54.69640888711105
+     ],
+     "km": 99,
+     "block": {
+      "length": 9.4,
+      "width": 7,
+      "fill": 0.7,
+      "parts": 1,
+      "area": 46
+     },
+     "tint": 0,
+     "footprint": 45.88248788306197
+    }
+   },
+   "after": {
+    "look": "vila",
+    "info": {
+     "point": [
+      25.416164639976596,
+      54.69640888711105
+     ],
+     "km": 99,
+     "block": {
+      "length": 9.4,
+      "width": 7,
+      "fill": 0.7,
+      "parts": 1,
+      "area": 46
+     },
+     "tint": 0,
+     "footprint": 45.88248788306197
+    }
+   }
+  },
+  {
+   "id": "LTa05",
+   "town": "zirmunai",
+   "far": true,
+   "city": "lithuania",
+   "point": [
+    25.3898754,
+    54.7152092
+   ],
+   "mapillary": "1093073210248092",
+   "pano": true,
+   "dist": 25,
+   "off": 86.5,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "point": [
+      25.38987535612221,
+      54.715209199364814
+     ],
+     "km": 99,
+     "block": {
+      "length": 13.3,
+      "width": 11,
+      "fill": 0.6,
+      "parts": 1,
+      "area": 87
+     },
+     "tint": 0,
+     "footprint": 87.45494981771333
+    }
+   },
+   "after": {
+    "look": "vila",
+    "info": {
+     "point": [
+      25.38987535612221,
+      54.715209199364814
+     ],
+     "km": 99,
+     "block": {
+      "length": 13.3,
+      "width": 11,
+      "fill": 0.6,
+      "parts": 1,
+      "area": 87
+     },
+     "tint": 0,
+     "footprint": 87.45494981771333
+    }
+   }
+  },
+  {
+   "id": "LTa06",
+   "town": "zirmunai",
+   "far": true,
+   "city": "lithuania",
+   "point": [
+    25.404909,
+    54.7643445
+   ],
+   "mapillary": "1106479395687344",
+   "pano": true,
+   "dist": 13.8,
+   "off": 73.4,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "point": [
+      25.404908976405938,
+      54.7643444779307
+     ],
+     "km": 99,
+     "block": {
+      "length": 11,
+      "width": 7.1,
+      "fill": 0.78,
+      "parts": 1,
+      "area": 61
+     },
+     "tint": 0,
+     "footprint": 60.716351504214344
+    }
+   },
+   "after": {
+    "look": "vila",
+    "info": {
+     "point": [
+      25.404908976405938,
+      54.7643444779307
+     ],
+     "km": 99,
+     "block": {
+      "length": 11,
+      "width": 7.1,
+      "fill": 0.78,
+      "parts": 1,
+      "area": 61
+     },
+     "tint": 0,
+     "footprint": 60.716351504214344
+    }
+   }
+  },
+  {
+   "id": "LTa07",
+   "town": "antakalnis",
+   "far": true,
+   "city": "lithuania",
+   "point": [
+    25.207257,
+    54.6528979
+   ],
+   "mapillary": "1151812510581012",
+   "pano": true,
+   "dist": 13.7,
+   "off": -36.8,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "point": [
+      25.207256954251868,
+      54.65289791527236
+     ],
+     "km": 99,
+     "block": {
+      "length": 20,
+      "width": 16.4,
+      "fill": 0.72,
+      "parts": 1,
+      "area": 236
+     },
+     "tint": 0,
+     "footprint": 235.71147508372053
+    }
+   },
+   "after": {
+    "look": "vila",
+    "info": {
+     "point": [
+      25.207256954251868,
+      54.65289791527236
+     ],
+     "km": 99,
+     "block": {
+      "length": 20,
+      "width": 16.4,
+      "fill": 0.72,
+      "parts": 1,
+      "area": 236
+     },
+     "tint": 0,
+     "footprint": 235.71147508372053
+    }
+   }
+  },
+  {
+   "id": "LTa08",
+   "town": "naujamiestis",
+   "far": false,
+   "city": "lithuania",
+   "point": [
+    25.2571038,
+    54.6688131
+   ],
+   "mapillary": "1066754369664202",
+   "pano": true,
+   "dist": 15.1,
+   "off": 80.6,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "point": [
+      25.257103821541822,
+      54.66881313998216
+     ],
+     "km": 99,
+     "block": {
+      "length": 24.1,
+      "width": 5.4,
+      "fill": 0.85,
+      "parts": 1,
+      "area": 111
+     },
+     "tint": 0,
+     "footprint": 111.04872491988226
+    }
+   },
+   "after": {
+    "look": "vila",
+    "info": {
+     "point": [
+      25.257103821541822,
+      54.66881313998216
+     ],
+     "km": 99,
+     "block": {
+      "length": 24.1,
+      "width": 5.4,
+      "fill": 0.85,
+      "parts": 1,
+      "area": 111
+     },
+     "tint": 0,
+     "footprint": 111.04872491988226
+    }
+   }
+  },
+  {
+   "id": "LTa09",
+   "town": "karoliniskes",
+   "far": true,
+   "city": "lithuania",
+   "point": [
+    25.237506,
+    54.6499913
+   ],
+   "mapillary": "1600103614938674",
+   "pano": true,
+   "dist": 16,
+   "off": -98.9,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "point": [
+      25.237505964009078,
+      54.649991338936616
+     ],
+     "km": 99,
+     "block": {
+      "length": 14.3,
+      "width": 10.5,
+      "fill": 0.76,
+      "parts": 1,
+      "area": 114
+     },
+     "tint": 0,
+     "footprint": 114.30626232887721
+    }
+   },
+   "after": {
+    "look": "vila",
+    "info": {
+     "point": [
+      25.237505964009078,
+      54.649991338936616
+     ],
+     "km": 99,
+     "block": {
+      "length": 14.3,
+      "width": 10.5,
+      "fill": 0.76,
+      "parts": 1,
+      "area": 114
+     },
+     "tint": 0,
+     "footprint": 114.30626232887721
+    }
+   }
+  },
+  {
+   "id": "LTa10",
+   "town": "karoliniskes",
+   "far": true,
+   "city": "lithuania",
+   "point": [
+    25.2482175,
+    54.7644699
+   ],
+   "mapillary": "1079896307472096",
+   "pano": true,
+   "dist": 18,
+   "off": 34.3,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "point": [
+      25.248217509892285,
+      54.76446989003092
+     ],
+     "km": 99,
+     "block": {
+      "length": 18.1,
+      "width": 11.7,
+      "fill": 0.8,
+      "parts": 1,
+      "area": 169
+     },
+     "tint": 0,
+     "footprint": 169.37074802481038
+    }
+   },
+   "after": {
+    "look": "vila",
+    "info": {
+     "point": [
+      25.248217509892285,
+      54.76446989003092
+     ],
+     "km": 99,
+     "block": {
+      "length": 18.1,
+      "width": 11.7,
+      "fill": 0.8,
+      "parts": 1,
+      "area": 169
+     },
+     "tint": 0,
+     "footprint": 169.37074802481038
+    }
+   }
+  },
+  {
+   "id": "LTa11",
+   "town": "zirmunai",
+   "far": false,
+   "city": "lithuania",
+   "point": [
+    25.2813807,
+    54.7043793
+   ],
+   "mapillary": "1442535557837744",
+   "pano": true,
+   "dist": 14,
+   "off": 177.2,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "point": [
+      25.281380728401725,
+      54.70437927293872
+     ],
+     "km": 99,
+     "block": {
+      "length": 15.7,
+      "width": 14.8,
+      "fill": 0.65,
+      "parts": 1,
+      "area": 150
+     },
+     "tint": 0,
+     "footprint": 150.05991652979537
+    }
+   },
+   "after": {
+    "look": "vila",
+    "info": {
+     "point": [
+      25.281380728401725,
+      54.70437927293872
+     ],
+     "km": 99,
+     "block": {
+      "length": 15.7,
+      "width": 14.8,
+      "fill": 0.65,
+      "parts": 1,
+      "area": 150
+     },
+     "tint": 0,
+     "footprint": 150.05991652979537
+    }
+   }
+  },
+  {
+   "id": "LTa12",
+   "town": "zirmunai",
+   "far": true,
+   "city": "lithuania",
+   "point": [
+    25.3352198,
+    54.8012839
+   ],
+   "mapillary": "1054089104321787",
+   "pano": true,
+   "dist": 17.4,
+   "off": -28.3,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "point": [
+      25.33521981551244,
+      54.80128387854028
+     ],
+     "km": 99,
+     "block": {
+      "length": 15.4,
+      "width": 14.4,
+      "fill": 0.59,
+      "parts": 1,
+      "area": 131
+     },
+     "tint": 0,
+     "footprint": 130.54673260393736
+    }
+   },
+   "after": {
+    "look": "vila",
+    "info": {
+     "point": [
+      25.33521981551244,
+      54.80128387854028
+     ],
+     "km": 99,
+     "block": {
+      "length": 15.4,
+      "width": 14.4,
+      "fill": 0.59,
+      "parts": 1,
+      "area": 131
+     },
+     "tint": 0,
+     "footprint": 130.54673260393736
+    }
+   }
+  },
+  {
+   "id": "LTa13",
+   "town": "senamiestis",
+   "far": true,
+   "city": "lithuania",
+   "point": [
+    25.2762929,
+    54.6269796
+   ],
+   "mapillary": "1118199677411237",
+   "pano": true,
+   "dist": 20.1,
+   "off": 17.6,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "point": [
+      25.276292870508676,
+      54.62697960927052
+     ],
+     "km": 99,
+     "block": {
+      "length": 6.3,
+      "width": 6.7,
+      "fill": 0.72,
+      "parts": 1,
+      "area": 31
+     },
+     "tint": 0,
+     "footprint": 30.640920137964713
+    }
+   },
+   "after": {
+    "look": "vila",
+    "info": {
+     "point": [
+      25.276292870508676,
+      54.62697960927052
+     ],
+     "km": 99,
+     "block": {
+      "length": 6.3,
+      "width": 6.7,
+      "fill": 0.72,
+      "parts": 1,
+      "area": 31
+     },
+     "tint": 0,
+     "footprint": 30.640920137964713
+    }
+   }
+  },
+  {
+   "id": "LTa14",
+   "town": "naujamiestis",
+   "far": false,
+   "city": "lithuania",
+   "point": [
+    25.256344,
+    54.6866638
+   ],
+   "mapillary": "2276505682912290",
+   "pano": true,
+   "dist": 22.1,
+   "off": -82.3,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "point": [
+      25.2563440382709,
+      54.686663801115536
+     ],
+     "km": 99,
+     "block": {
+      "length": 19.3,
+      "width": 5,
+      "fill": 0.67,
+      "parts": 1,
+      "area": 65
+     },
+     "tint": 0,
+     "footprint": 64.74806875201148
+    }
+   },
+   "after": {
+    "look": "vila",
+    "info": {
+     "point": [
+      25.2563440382709,
+      54.686663801115536
+     ],
+     "km": 99,
+     "block": {
+      "length": 19.3,
+      "width": 5,
+      "fill": 0.67,
+      "parts": 1,
+      "area": 65
+     },
+     "tint": 0,
+     "footprint": 64.74806875201148
+    }
+   }
+  },
+  {
+   "id": "LTa15",
+   "town": "antakalnis",
+   "far": true,
+   "city": "lithuania",
+   "point": [
+    25.4299467,
+    54.6362536
+   ],
+   "mapillary": "826220628082349",
+   "pano": false,
+   "dist": 22.6,
+   "off": -23.4,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "point": [
+      25.429946712858357,
+      54.63625358749929
+     ],
+     "km": 99,
+     "block": {
+      "length": 17.3,
+      "width": 12.1,
+      "fill": 0.69,
+      "parts": 1,
+      "area": 145
+     },
+     "tint": 0,
+     "footprint": 145.3282452527801
+    }
+   },
+   "after": {
+    "look": "vila",
+    "info": {
+     "point": [
+      25.429946712858357,
+      54.63625358749929
+     ],
+     "km": 99,
+     "block": {
+      "length": 17.3,
+      "width": 12.1,
+      "fill": 0.69,
+      "parts": 1,
+      "area": 145
+     },
+     "tint": 0,
+     "footprint": 145.3282452527801
+    }
+   }
+  },
+  {
+   "id": "LTa16",
+   "town": "zverynas",
+   "far": true,
+   "city": "lithuania",
+   "point": [
+    25.1304242,
+    54.6981038
+   ],
+   "mapillary": "1350725710268228",
+   "pano": true,
+   "dist": 13.5,
+   "off": 143.7,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "point": [
+      25.1304241996614,
+      54.69810379764776
+     ],
+     "km": 99,
+     "block": {
+      "length": 18.2,
+      "width": 15.4,
+      "fill": 0.67,
+      "parts": 1,
+      "area": 187
+     },
+     "tint": 0,
+     "footprint": 187.43908863855904
+    }
+   },
+   "after": {
+    "look": "vila",
+    "info": {
+     "point": [
+      25.1304241996614,
+      54.69810379764776
+     ],
+     "km": 99,
+     "block": {
+      "length": 18.2,
+      "width": 15.4,
+      "fill": 0.67,
+      "parts": 1,
+      "area": 187
+     },
+     "tint": 0,
+     "footprint": 187.43908863855904
+    }
+   }
+  }
+ ],
+ "controls": [
+  {
+   "town": "naujamiestis",
+   "point": [
+    25.26827093896012,
+    54.67620492067713
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     25.26827093896012,
+     54.67620492067713
+    ],
+    "km": 99,
+    "block": {
+     "length": 112.4,
+     "width": 65.5,
+     "fill": 0.38,
+     "parts": 5,
+     "area": 2832
+    },
+    "tint": 0,
+    "type": "office",
+    "footprint": 1108.1340096074473
+   },
+   "look": "plocha"
+  },
+  {
+   "town": "naujamiestis",
+   "point": [
+    25.253482697396233,
+    54.66731693801075
+   ],
+   "info": {
+    "levels": 1,
+    "point": [
+     25.253482697396233,
+     54.66731693801075
+    ],
+    "km": 99,
+    "block": {
+     "length": 37.9,
+     "width": 33.4,
+     "fill": 0.59,
+     "parts": 1,
+     "area": 751
+    },
+    "tint": 0,
+    "type": "commercial",
+    "footprint": 751.0194532582716
+   },
+   "look": "nizky"
+  },
+  {
+   "town": "naujamiestis",
+   "point": [
+    25.27450020066622,
+    54.71219211267692
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     25.27450020066622,
+     54.71219211267692
+    ],
+    "km": 99,
+    "block": {
+     "length": 66.5,
+     "width": 19.5,
+     "fill": 0.72,
+     "parts": 1,
+     "area": 932
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 931.8560953470801
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "zirmunai",
+   "point": [
+    25.31759047734095,
+    54.71387241300042
+   ],
+   "info": {
+    "levels": 1,
+    "point": [
+     25.31759047734095,
+     54.71387241300042
+    ],
+    "km": 99,
+    "block": {
+     "length": 28.7,
+     "width": 17.9,
+     "fill": 0.65,
+     "parts": 1,
+     "area": 333
+    },
+    "tint": 0,
+    "footprint": 333.12477636732604
+   },
+   "look": "nizky"
+  },
+  {
+   "town": "senamiestis",
+   "point": [
+    25.265108896459815,
+    54.68358134337217
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     25.265108896459815,
+     54.68358134337217
+    ],
+    "km": 99,
+    "block": {
+     "length": 102.4,
+     "width": 69.6,
+     "fill": 0.32,
+     "parts": 2,
+     "area": 2254
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "gabled",
+    "footprint": 789.1327522856037
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "naujamiestis",
+   "point": [
+    25.278772871445025,
+    54.68602390337665
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     25.278772871445025,
+     54.68602390337665
+    ],
+    "km": 99,
+    "block": {
+     "length": 357.1,
+     "width": 113.4,
+     "fill": 0.39,
+     "parts": 22,
+     "area": 15670
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 430.1372987559039
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "senamiestis",
+   "point": [
+    25.27088941582888,
+    54.682719779566845
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     25.27088941582888,
+     54.682719779566845
+    ],
+    "km": 99,
+    "block": {
+     "length": 25.2,
+     "width": 26,
+     "fill": 0.79,
+     "parts": 1,
+     "area": 513
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 513.0550340501338
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "zverynas",
+   "point": [
+    25.26814611989963,
+    54.688842602607046
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     25.26814611989963,
+     54.688842602607046
+    ],
+    "km": 99,
+    "block": {
+     "length": 72,
+     "width": 26.6,
+     "fill": 0.83,
+     "parts": 1,
+     "area": 1595
+    },
+    "tint": 0,
+    "type": "commercial",
+    "footprint": 1595.1309461437243
+   },
+   "look": "plocha"
+  },
+  {
+   "town": "senamiestis",
+   "point": [
+    25.283157908127965,
+    54.687010348573075
+   ],
+   "info": {
+    "levels": 3,
+    "point": [
+     25.283157908127965,
+     54.687010348573075
+    ],
+    "km": 99,
+    "block": {
+     "length": 82.1,
+     "width": 52.1,
+     "fill": 0.54,
+     "parts": 1,
+     "area": 2316
+    },
+    "tint": 0,
+    "type": "university",
+    "roofShape": "flat",
+    "footprint": 2316.028037831209
+   },
+   "look": "plocha"
+  },
+  {
+   "town": "senamiestis",
+   "point": [
+    25.304789514880227,
+    54.692340729144156
+   ],
+   "info": {
+    "levels": 2,
+    "point": [
+     25.304789514880227,
+     54.692340729144156
+    ],
+    "km": 99,
+    "block": {
+     "length": 78.5,
+     "width": 18.1,
+     "fill": 0.73,
+     "parts": 8,
+     "area": 1038
+    },
+    "tint": 0,
+    "footprint": 115.60904053931336
+   },
+   "look": "nizky"
+  },
+  {
+   "town": "naujamiestis",
+   "point": [
+    25.266579080014303,
+    54.680089161022885
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     25.266579080014303,
+     54.680089161022885
+    ],
+    "km": 99,
+    "block": {
+     "length": 89.1,
+     "width": 49.7,
+     "fill": 0.59,
+     "parts": 1,
+     "area": 2615
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "hipped",
+    "footprint": 2615.3343164555235
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "zverynas",
+   "point": [
+    25.25916300995145,
+    54.681880249989526
+   ],
+   "info": {
+    "levels": 2,
+    "point": [
+     25.25916300995145,
+     54.681880249989526
+    ],
+    "km": 99,
+    "block": {
+     "length": 17.1,
+     "width": 13,
+     "fill": 0.66,
+     "parts": 1,
+     "area": 147
+    },
+    "tint": 0,
+    "type": "house",
+    "footprint": 147.30158275537224
+   },
+   "look": "vila"
+  },
+  {
+   "town": "naujamiestis",
+   "point": [
+    25.25768565099477,
+    54.66978027079069
+   ],
+   "info": {
+    "levels": 1,
+    "point": [
+     25.25768565099477,
+     54.66978027079069
+    ],
+    "km": 99,
+    "block": {
+     "length": 19.5,
+     "width": 12.1,
+     "fill": 0.72,
+     "parts": 1,
+     "area": 172
+    },
+    "tint": 0,
+    "type": "commercial",
+    "footprint": 171.55173535073027
+   },
+   "look": "nizky"
+  },
+  {
+   "town": "antakalnis",
+   "point": [
+    25.192915411258795,
+    54.67632324733307
+   ],
+   "info": {
+    "levels": 2,
+    "point": [
+     25.192915411258795,
+     54.67632324733307
+    ],
+    "km": 99,
+    "block": {
+     "length": 21.7,
+     "width": 12.6,
+     "fill": 0.78,
+     "parts": 1,
+     "area": 215
+    },
+    "tint": 0,
+    "footprint": 214.9354271835117
+   },
+   "look": "nizky"
+  },
+  {
+   "town": "naujamiestis",
+   "point": [
+    25.253327538340788,
+    54.68182483803546
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     25.253327538340788,
+     54.68182483803546
+    ],
+    "km": 99,
+    "block": {
+     "length": 99.1,
+     "width": 11.4,
+     "fill": 0.96,
+     "parts": 2,
+     "area": 1083
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "flat",
+    "footprint": 547.2245866861497
+   },
+   "look": "plocha"
+  },
+  {
+   "town": "senamiestis",
+   "point": [
+    25.306105152272767,
+    54.68191543120932
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     25.306105152272767,
+     54.68191543120932
+    ],
+    "km": 99,
+    "block": {
+     "length": 63.6,
+     "width": 50.9,
+     "fill": 0.33,
+     "parts": 3,
+     "area": 1074
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 586.3770277529688
+   },
+   "look": "plocha"
+  },
+  {
+   "town": "zirmunai",
+   "point": [
+    25.298437874343225,
+    54.723276935503506
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     25.298437874343225,
+     54.723276935503506
+    ],
+    "km": 99,
+    "block": {
+     "length": 138.6,
+     "width": 15.8,
+     "fill": 0.75,
+     "parts": 2,
+     "area": 1638
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 1220.212225643334
+   },
+   "look": "plocha"
+  },
+  {
+   "town": "zirmunai",
+   "point": [
+    25.299978454482947,
+    54.70248500807973
+   ],
+   "info": {
+    "levels": 2,
+    "point": [
+     25.299978454482947,
+     54.70248500807973
+    ],
+    "km": 99,
+    "block": {
+     "length": 57.1,
+     "width": 50.6,
+     "fill": 0.5,
+     "parts": 1,
+     "area": 1445
+    },
+    "tint": 0,
+    "type": "kindergarten",
+    "footprint": 1444.8435682786755
+   },
+   "look": "skola"
+  },
+  {
+   "town": "naujamiestis",
+   "point": [
+    25.28024566442661,
+    54.67864362030295
+   ],
+   "info": {
+    "levels": 2,
+    "point": [
+     25.28024566442661,
+     54.67864362030295
+    ],
+    "km": 99,
+    "block": {
+     "length": 207.3,
+     "width": 73.5,
+     "fill": 0.55,
+     "parts": 8,
+     "area": 8403
+    },
+    "tint": 0,
+    "type": "retail",
+    "roofShape": "gabled",
+    "footprint": 2699.648820572857
+   },
+   "look": "hala"
+  },
+  {
+   "town": "senamiestis",
+   "point": [
+    25.299675718621916,
+    54.681049803489636
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     25.299675718621916,
+     54.681049803489636
+    ],
+    "km": 99,
+    "block": {
+     "length": 200,
+     "width": 71.4,
+     "fill": 0.42,
+     "parts": 14,
+     "area": 6044
+    },
+    "tint": 0,
+    "type": "retail",
+    "roofShape": "gabled",
+    "footprint": 1147.8085704277728
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "antakalnis",
+   "point": [
+    25.314619835470868,
+    54.69761259695388
+   ],
+   "info": {
+    "levels": 3,
+    "point": [
+     25.314619835470868,
+     54.69761259695388
+    ],
+    "km": 99,
+    "block": {
+     "length": 21.5,
+     "width": 12.9,
+     "fill": 0.6,
+     "parts": 1,
+     "area": 168
+    },
+    "tint": 0,
+    "type": "house",
+    "footprint": 168.2313954477761
+   },
+   "look": "vila"
+  },
+  {
+   "town": "zverynas",
+   "point": [
+    25.259098946593774,
+    54.70068808998371
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     25.259098946593774,
+     54.70068808998371
+    ],
+    "km": 99,
+    "block": {
+     "length": 79.5,
+     "width": 37.9,
+     "fill": 0.69,
+     "parts": 1,
+     "area": 2081
+    },
+    "tint": 0,
+    "type": "office",
+    "footprint": 2081.494162808225
+   },
+   "look": "plocha"
+  },
+  {
+   "town": "zirmunai",
+   "point": [
+    25.29261594528878,
+    54.70835803982596
+   ],
+   "info": {
+    "levels": 8,
+    "point": [
+     25.29261594528878,
+     54.70835803982596
+    ],
+    "km": 99,
+    "block": {
+     "length": 96.2,
+     "width": 53,
+     "fill": 0.34,
+     "parts": 1,
+     "area": 1755
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 1754.8041705585292
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "zirmunai",
+   "point": [
+    25.317233188796717,
+    54.70586037277874
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     25.317233188796717,
+     54.70586037277874
+    ],
+    "km": 99,
+    "block": {
+     "length": 58.5,
+     "width": 15.8,
+     "fill": 0.96,
+     "parts": 1,
+     "area": 889
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 888.9667261237978
+   },
+   "look": "plocha"
+  },
+  {
+   "town": "senamiestis",
+   "point": [
+    25.301162760760825,
+    54.67902797588864
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     25.301162760760825,
+     54.67902797588864
+    ],
+    "km": 99,
+    "block": {
+     "length": 145.2,
+     "width": 81.7,
+     "fill": 0.36,
+     "parts": 1,
+     "area": 4318
+    },
+    "tint": 0,
+    "type": "residential",
+    "roofShape": "saltbox",
+    "footprint": 4317.993524049013
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "naujamiestis",
+   "point": [
+    25.253136674022628,
+    54.66833611721558
+   ],
+   "info": {
+    "levels": 3,
+    "point": [
+     25.253136674022628,
+     54.66833611721558
+    ],
+    "km": 99,
+    "block": {
+     "length": 100,
+     "width": 63.7,
+     "fill": 0.56,
+     "parts": 5,
+     "area": 3535
+    },
+    "tint": 0,
+    "roofShape": "flat",
+    "footprint": 1684.9727972444925
+   },
+   "look": "plocha"
+  },
+  {
+   "town": "naujamiestis",
+   "point": [
+    25.26944151277277,
+    54.681908955141175
+   ],
+   "info": {
+    "levels": 7,
+    "point": [
+     25.26944151277277,
+     54.681908955141175
+    ],
+    "km": 99,
+    "block": {
+     "length": 231.6,
+     "width": 102.6,
+     "fill": 0.3,
+     "parts": 12,
+     "area": 7060
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 391.02495395509004
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "naujamiestis",
+   "point": [
+    25.260596559468485,
+    54.6699339387347
+   ],
+   "info": {
+    "levels": 3,
+    "point": [
+     25.260596559468485,
+     54.6699339387347
+    ],
+    "km": 99,
+    "block": {
+     "length": 212.6,
+     "width": 146.7,
+     "fill": 0.33,
+     "parts": 6,
+     "area": 10415
+    },
+    "tint": 0,
+    "footprint": 3099.98947415943
+   },
+   "look": "plocha"
+  },
+  {
+   "town": "zirmunai",
+   "point": [
+    25.313435433665624,
+    54.70503410960633
+   ],
+   "info": {
+    "levels": 2,
+    "point": [
+     25.313435433665624,
+     54.70503410960633
+    ],
+    "km": 99,
+    "block": {
+     "length": 35.1,
+     "width": 13,
+     "fill": 0.82,
+     "parts": 1,
+     "area": 373
+    },
+    "tint": 0,
+    "type": "residential",
+    "footprint": 373.3732171666834
+   },
+   "look": "nizky"
+  },
+  {
+   "town": "senamiestis",
+   "point": [
+    25.286527195217605,
+    54.69438747578584
+   ],
+   "info": {
+    "levels": 3,
+    "point": [
+     25.286527195217605,
+     54.69438747578584
+    ],
+    "km": 99,
+    "block": {
+     "length": 39.5,
+     "width": 15.4,
+     "fill": 0.76,
+     "parts": 2,
+     "area": 461
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "gabled",
+    "footprint": 205.94543899617975
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "senamiestis",
+   "point": [
+    25.28497356120446,
+    54.678988751265145
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     25.28497356120446,
+     54.678988751265145
+    ],
+    "km": 99,
+    "block": {
+     "length": 320.1,
+     "width": 152.3,
+     "fill": 0.31,
+     "parts": 29,
+     "area": 15176
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "hipped",
+    "footprint": 664.3365783287519
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "senamiestis",
+   "point": [
+    25.28532492052907,
+    54.684873172410846
+   ],
+   "info": {
+    "height": 16,
+    "point": [
+     25.28532492052907,
+     54.684873172410846
+    ],
+    "km": 99,
+    "block": {
+     "length": 128.3,
+     "width": 61.5,
+     "fill": 0.4,
+     "parts": 4,
+     "area": 3162
+    },
+    "tint": 0,
+    "type": "hotel",
+    "roofShape": "hipped",
+    "footprint": 2008.3896656694187
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "zirmunai",
+   "point": [
+    25.279722055069286,
+    54.71933972541021
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     25.279722055069286,
+     54.71933972541021
+    ],
+    "km": 99,
+    "block": {
+     "length": 104.7,
+     "width": 85,
+     "fill": 0.35,
+     "parts": 3,
+     "area": 3091
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 1220.0216748177618
+   },
+   "look": "plocha"
+  },
+  {
+   "town": "senamiestis",
+   "point": [
+    25.28647979983376,
+    54.686904219258636
+   ],
+   "info": {
+    "levels": 3,
+    "point": [
+     25.28647979983376,
+     54.686904219258636
+    ],
+    "km": 99,
+    "block": {
+     "length": 191.5,
+     "width": 117.9,
+     "fill": 0.27,
+     "parts": 11,
+     "area": 6159
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "gabled",
+    "footprint": 678.0604268109728
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "zirmunai",
+   "point": [
+    25.247687241104106,
+    54.66527766191819
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     25.247687241104106,
+     54.66527766191819
+    ],
+    "km": 99,
+    "block": {
+     "length": 179,
+     "width": 34.6,
+     "fill": 0.77,
+     "parts": 1,
+     "area": 4784
+    },
+    "tint": 0,
+    "type": "commercial",
+    "footprint": 4784.462809077251
+   },
+   "look": "plocha"
+  },
+  {
+   "town": "zverynas",
+   "point": [
+    25.258908588331774,
+    54.69941777030187
+   ],
+   "info": {
+    "levels": 3,
+    "point": [
+     25.258908588331774,
+     54.69941777030187
+    ],
+    "km": 99,
+    "block": {
+     "length": 221.6,
+     "width": 222.7,
+     "fill": 0.65,
+     "parts": 1,
+     "area": 31884
+    },
+    "tint": 0,
+    "type": "retail",
+    "footprint": 31883.970927368195
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "naujamiestis",
+   "point": [
+    25.260105585842417,
+    54.68995855572447
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     25.260105585842417,
+     54.68995855572447
+    ],
+    "km": 99,
+    "block": {
+     "length": 318.3,
+     "width": 161,
+     "fill": 0.17,
+     "parts": 5,
+     "area": 8757
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 2337.2038143858135
+   },
+   "look": "plocha"
+  }
+ ]
+}
