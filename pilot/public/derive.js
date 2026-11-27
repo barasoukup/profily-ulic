@@ -1419,6 +1419,7 @@ function bikeDir(t, d, dir) {
 // segregated=yes → foot and cycle path side by side (C10: sidewalk + cycle track, split in half),
 // bicycle=designated → shared foot and cycle path (C9), bicycle=yes → sidewalk open to cyclists.
 // Without a way of its own, the street's sidewalk:<side>:bicycle tag tells.
+const SEG_MIN = 0.9; // m: the narrowest half of a segregated path told by its width tags
 function sidewalkUse(r, cross, way, axisT, dir) {
   const plain = [{ type: "chodnik", s: r.s, e: r.e, source: "dtm" }];
   const c = cross.find((x) => x.t > r.s && x.t < r.e && ["footway", "path", "cycleway", "pedestrian"].includes(x.way.tags?.highway));
@@ -1435,9 +1436,16 @@ function sidewalkUse(r, cross, way, axisT, dir) {
   const bikes = t.highway === "cycleway" ? "designated" : t.bicycle;
   if (!BIKE_OK.has(bikes)) return plain;
   if (t.segregated === "yes" && r.e - r.s >= 2.5) {
-    const m = (r.s + r.e) / 2;
+    // The two halves, unless OSM gives the width of one of them (cycleway:width, footway:width; a combined path's own
+    // width is the sum, not told apart): the cycle track as wide as it says, the sidewalk the rest, each at least
+    // SEG_MIN. ?off=cyklosirka.
+    const total = r.e - r.s, num = (v) => { const n = parseFloat(String(v ?? "").replace(",", ".")); return n > 0 && n < 10 ? n : null; };
+    const cw = ORTHO_P.off?.has("cyklosirka") ? null : num(t["cycleway:width"]), fw = ORTHO_P.off?.has("cyklosirka") ? null : num(t["footway:width"]);
+    const told = cw !== null ? cw : fw !== null ? total - fw : null;
+    const bikeW = told !== null && told >= SEG_MIN && total - told >= SEG_MIN ? told : total / 2;
     // The cycle half lies on the roadway side (the side nearer the street axis).
     const bikeLow = Math.abs(r.s - axisT) < Math.abs(r.e - axisT);
+    const m = bikeLow ? r.s + bikeW : r.e - bikeW;
     const halves = [{ type: "cyklostezka", source: "osm" }, { type: "chodnik", source: "osm" }];
     if (!bikeLow) halves.reverse();
     return [{ ...halves[0], s: r.s, e: m }, { ...halves[1], s: m, e: r.e }];

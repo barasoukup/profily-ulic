@@ -4,13 +4,14 @@ import { localFrame, deriveProfile, mtvuPolygons } from "../pilot/public/derive.
 
 // A street running north (x = 0, roadway 7 m) with a sidewalk strip (MTVU 702, 3 m) on the east side where an OSM path runs
 // (Brandenburger Straße, Leipzig, 27. 11. 2026: a shared path one way for cyclists drew two cycle tracks).
-function east(pathTags, pathReversed = false, code = 702) {
+function east(pathTags, pathReversed = false, code = 702, widths = false) {
   const frame = localFrame(51.35, 12.39);
   const rect = (x0, x1, code) => ({ attributes: { CTVUK_KOD: code }, geometry: { rings: [[[x0, -60], [x1, -60], [x1, 60], [x0, 60], [x0, -60]].map(([x, y]) => frame.toLonLat(x, y))] } });
   const polys = mtvuPolygons({ features: [rect(-6.5, -3.5, 702), rect(-3.5, 3.5, 701), rect(3.5, 6.5, code)] }, frame);
   const line = (x, rev) => { const g = [frame.toLonLat(x, -100), frame.toLonLat(x, 100)].map(([lon, lat]) => ({ lat, lon })); return rev ? g.reverse() : g; };
   const els = [{ type: "way", id: 1, tags: { highway: "residential", lanes: "2" }, geometry: line(0) }, { type: "way", id: 2, tags: pathTags, geometry: line(5, pathReversed) }];
   const r = deriveProfile({ center: [0, 0], dir: [0, 1], half: 40, polys, osm: { elements: els }, frame, way: els[0], noParkGuess: true });
+  if (widths) return r.segments.slice(-2).map((s) => `${s.type} ${+s.width.toFixed(1)}`);
   return r.segments.map((s) => s.type + (s.dir ? (s.dir === "forward" ? ">" : "<") : ""));
 }
 
@@ -27,6 +28,15 @@ test("segregated=yes: stezka a chodník vedle sebe; obousměrná cycleway beze z
   assert.deepEqual(seg.sort(), ["chodnik", "cyklostezka"]);
   const two = east({ highway: "cycleway", oneway: "no" }, false, 703).slice(-2);
   assert.deepEqual(two, ["cyklostezka<", "cyklostezka>"]);
+});
+
+test("segregated=yes: šířka cyklostezky z cycleway:width (nebo footway:width), jinak napůl (27. 11. 2026)", () => {
+  const seg = { highway: "path", bicycle: "designated", foot: "designated", segregated: "yes" };
+  const w = (tags) => east({ ...seg, ...tags }, false, 702, true).sort();
+  assert.deepEqual(w({}), ["chodnik 1.5", "cyklostezka 1.5"]);
+  assert.deepEqual(w({ "cycleway:width": "1.8" }), ["chodnik 1.3", "cyklostezka 1.8"]);
+  assert.deepEqual(w({ "footway:width": "2" }), ["chodnik 2", "cyklostezka 1.1"]);
+  assert.deepEqual(w({ "cycleway:width": "2,9" }), ["chodnik 1.5", "cyklostezka 1.5"], "druhá půlka by byla pod 0,9 m: napůl");
 });
 
 // The estimate from the orthophoto and OSM (ortho-osm.js): a path beside the street, shared by walkers and cyclists, is a part like a sidewalk (702;
