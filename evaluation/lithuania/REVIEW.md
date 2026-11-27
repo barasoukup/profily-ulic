@@ -12,5 +12,5 @@ Recenzent (Opus) četl kód, testy, zprávy a 3 dotazy na gis.vplanas.lt. Verdik
 | 6 | stránkování bez řazení | drobné | opraveno: `orderByFields=OBJECTID`, `resultOffset` a `resultRecordCount` u všech stránek |
 | 7 | normy se rozcházejí s NORMS.md D; šikmé stání s rozměrem kolmého | drobné | šikmé bez varování; NORMS.md doplněno o zapojené hodnoty a odchylky |
 | 8 | pobřežní tolerance 400 m i na pozemních hranicích (BY, LV, Kaliningrad) | drobné | ponecháno: bez ní by padl kus přístavu Klaipėdy (bod 55,715; 21,115 byl „cizina“); stejné omezení mají Finsko a Dánsko |
-| 9 | licence značek bez odkazu na text a seznamu úprav | drobné | doplněno v `signs-LT/README.md` a `LICENCE-A-ZDROJE.md`; čísla 503, 531, 555 z druhé ruky označena |
+| 9 | licence značek bez odkazu na text a seznamu úprav | drobné | doplněno v `signs-LT/README.md` a `LICENSES-AND-SOURCES.md`; čísla 503, 531, 555 z druhé ruky označena |
 | 10 | de.js: „Schutzstreifen“ (= ochranný cyklopruh), „Tafeln“ | drobné | opraveno (Sicherheitstrennstreifen, Sicherheitsstreifen, Zusatzzeichen); lt.js „lygiagretus“ / „išilginis“ k ověření rodilým mluvčím |

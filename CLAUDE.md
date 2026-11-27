@@ -39,7 +39,7 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
   (pokyn posuzovatelům), výsledky v `results/`, obrázky v `images/`. Id variant A/B (`variants/praha-zaklad.mjs`…) a
   názvy datových souborů (`.json`, `.jsonl`, malá `.md` ve `results/`) zůstávají.
 - Popis pravidel: `app/README.md`, vyhodnocení 100 řezů: `evaluation/archive/prague-100/REPORT.md`,
-  licence: `LICENCE-A-ZDROJE.md`.
+  licence: `LICENSES-AND-SOURCES.md`.
 
 ## Pravidla od Báry (dodržuj)
 - Pravidla psaní kódu, testů a hlídací testy: `docs/coding-guidelines.md` (před úpravou kódu si je přečti).
@@ -695,7 +695,7 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
   „17 * * * *“).
 
 ## Měření přesnosti (Bára 17. 11. 2026, přeměřeno 24. 11. 2026)
-- Jedna univerzální metoda pro všechny státy: skill `mereni-presnosti`, kód a zpráva `evaluation/universal/`. Použít u
+- Jedna univerzální metoda pro všechny státy: skill `measure-accuracy`, kód a zpráva `evaluation/universal/`. Použít u
   každého nového státu a u starých, když Bára řekne. Hodnotí složení uličního prostoru, pak šířku; jen řezy s fotkou
   z ulice (Mapillary, v Česku i Mapy.com).
 - Pravidla od 24. 11. 2026 ve **všech** státech (všechny řádky počítá jedna metoda): strana bez fasády se srovnává šířkou
@@ -793,7 +793,7 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
 
 ## O aplikaci (Bára 24. 11. 2026, větev estonia, nenasazené)
 - Menu Soubor → „O aplikaci“ (`app/public/about.js`, dialog v `index.html`): text o aplikaci, autorka podle státu řezu
-  (`countries/*.js author`: v CZ a SK Bára Soukupová, jinde Bara Soukup), MIT a odkazy na repo a `LICENCE-A-ZDROJE.md`.
+  (`countries/*.js author`: v CZ a SK Bára Soukupová, jinde Bara Soukup), MIT a odkazy na repo a `LICENSES-AND-SOURCES.md`.
 - Mapa pokrytí `app/public/coverage.json` (309 kB) dělá `node tools/build_coverage.mjs` z modulů: `SURFACE_MAPS` v každém
   `towns/*.js` („all“, id z AREAS, klíč hranic, „-NUTS3“ vynechá), `laneOrtho` států a částečná ortofota z `lanes-ortho.js`.
   Nový zdroj = upravit `SURFACE_MAPS` a přestavět; `tests/coverage.test.js` hlídá aktuálnost, zařazení všech států a modulů
@@ -810,4 +810,4 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
 ## Licence
 - Kód MIT. Ilustrace Streetmix CC BY-SA 4.0 (s uvedením autora), pražské ilustrace (`app/public/praha/`)
   pod MIT jako kód (Bára rozhodla 8. 11. 2026), kód Streetmixu AGPL-3.0 (jen kopie
-  ve `vendor/`, nepublikuje se). OSM ODbL. Podrobnosti v `LICENCE-A-ZDROJE.md`.
+  ve `vendor/`, nepublikuje se). OSM ODbL. Podrobnosti v `LICENSES-AND-SOURCES.md`.

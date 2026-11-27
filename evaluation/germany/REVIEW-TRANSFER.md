@@ -90,7 +90,7 @@ v patičce jsou, Sársko zůstává neověřené (nález 8).
 7. **`CLAUDE.md` po přenosu neplatí** (oddíl Německo): „balík `de` jen na R2, staví ho job `de` (330 min)“ (je 16 balíků
    `de_xx`), „paneláky podle `city.js inGdr`“ (je `DE.js atPlace` a `laender.json`), „Kandidát na městská data: Hamburg …
    před zapojením A/B“ (je zapojený). Komentář „Each well under an hour“ v `osm-tiles.yml:66` je odhad, žádný běh ho nezměřil.
-8. **Licence zemí se v dokumentech rozcházejí:** `LICENCE-A-ZDROJE.md` řadí Sársko mezi „bez podmínek“ a ST a MV
+8. **Licence zemí se v dokumentech rozcházejí:** `LICENSES-AND-SOURCES.md` řadí Sársko mezi „bez podmínek“ a ST a MV
    jen „s povinným zdrojovým údajem“, `DE_ORTHO.credit` (`lanes-ortho.js:44–60`) uvádí SL a ST dl-de/by-2-0 a MV
    CC BY 4.0. U Sárska `SOURCES.md:24` sám říká „u DOP výslovně neověřeno“: blokující bod 3 staré recenze tedy pro
    Sársko trvá (ověřit, nebo zemi do té doby vypnout).
@@ -122,6 +122,6 @@ v patičce jsou, Sársko zůstává neověřené (nález 8).
   na Pages sám, i když soused odpoví prázdně; test), 3 (dlaždice podkladu, která není celá v jedné zemi, jako průhledné
   PNG; Sasko i Bavorsko mimo své území vrací průhlednou plochu, ověřeno u Varnsdorfu a Aše), 4 (stání z OSM v odhadnuté
   vozovce zůstává 2 m, pruhy ustoupí nejvýš o 0,3 m; test), protisměr bez pravidla nemaže varování pruhů, ruční spuštění
-  `de` postaví všechny země, věta o stání napůl na chodníku v Německu, CLAUDE.md, licence ortofot v LICENCE-A-ZDROJE.md.
+  `de` postaví všechny země, věta o stání napůl na chodníku v Německu, CLAUDE.md, licence ortofot v LICENSES-AND-SOURCES.md.
 - **Ponecháno:** `laender.json` se načte i u českého pohraničí v podkladu Ortofoto (jen tam, kde vrstva Německa leží);
   starý `de-*.posm` na R2 není (Německo se nikdy nenahrálo).

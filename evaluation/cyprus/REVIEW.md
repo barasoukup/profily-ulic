@@ -2,7 +2,7 @@
 
 Rozsah: `countries/CY.js`, `towns/cyprus.js`, `signs-CY/`, `evaluation/cyprus/`, jízda vlevo v `derive.js`
 (`leftHand`, `mirrorLeftHand`), `lanes-ortho.js` („cy“), `search-photon.js`, `credits.js`, `city.js`, `index.html`,
-`LICENCE-A-ZDROJE.md`, `app/README.md`, `tests/cyprus.test.js`, `tests/derive.test.js`, `states.json` a
+`LICENSES-AND-SOURCES.md`, `app/README.md`, `tests/cyprus.test.js`, `tests/derive.test.js`, `states.json` a
 `tools/cyprus-border.json`. HEAD `84140de` (větev `estonia`). Žádný existující soubor jsem neměnil, nic necommitoval.
 
 Co jsem ověřil:
@@ -65,7 +65,7 @@ Oprava: stejná podmínka jako na řádku 2445; test se `leftHand`.
 
 ### 4. Ortofoto DLS 2019 bez licence jako podklad mapy i zdroj měření
 
-`lanes-ortho.js:62–65`, `app.js:304–307`, `LICENCE-A-ZDROJE.md:94` („licence neuvedená (Bára 23. 11.: použít)“).
+`lanes-ortho.js:62–65`, `app.js:304–307`, `LICENSES-AND-SOURCES.md:94` („licence neuvedená (Bára 23. 11.: použít)“).
 `SOURCES.md` kap. 1 sám píše: v katalogu data.gov.cy služba není, DLS ortofota prodává (25 € / km²), katalog API DLS
 žádá o přístup správce a JOSM v roce 2020 ortofoto DLS vyřadil pro nejasnou licenci. Aplikace z něj přitom tahá
 dlaždice do úrovně 21 jako podkladovou mapu (každý posun mapy) a až 30 dlaždic na kliknutí. Vedle leží ortofoto 2014

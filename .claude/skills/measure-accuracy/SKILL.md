@@ -1,5 +1,5 @@
 ---
-name: mereni-presnosti
+name: measure-accuracy
 description: Univerzální měření přesnosti profilů Profilů ulic (stejné ve všech státech): AI posuzovatel z ortofota a fotek z ulice sestaví vlastní profil a porovná se s profilem aplikace (složení uličního prostoru, pak šířka). Použij u každého nového státu a když Bára řekne, že chce přeměřit staré státy (po změnách odhadu, dat nebo ilustrací).
 ---
 

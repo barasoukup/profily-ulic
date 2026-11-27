@@ -13,7 +13,7 @@ udělalo), `screenshots/` (Curych, Basilej, Ženeva, Lugano, Vaduz).
   VRV o jedno vyšší). Vlastní služby geoportálu neodpovídají; jeho úřední vyměřování je na geodienste.ch (kanton `FL`),
   SWISSIMAGE pokrývá i Lichtenštejnsko.
 
-## Univerzální měření přesnosti (skill `mereni-presnosti`)
+## Univerzální měření přesnosti (skill `measure-accuracy`)
 
 Vzorek: 10 švýcarských měst (Curych, Ženeva, Basilej, Lausanne, Bern, Winterthur, Luzern, St. Gallen, Lugano, Biel) a 5
 lichtenštejnských obcí (Vaduz, Schaan, Triesen, Balzers, Eschen), 8 bodů do 1,5 km. Fotku z ulice (Mapillary) mělo 28 řezů

@@ -25,7 +25,7 @@ Soupis z větve `austria` (podmínky na stát nebo id města mimo modul města):
 | `tools/`, `pages.yml`, `index.html` | | seznam států ve smyčkách nasazení (OSM, R2), CSP ručně |
 
 Co z toho plyne:
-1. **Další stát = úpravy v 7–10 souborech**, ne jeden nový soubor. Návod `.claude/skills/pridani-statu` to musí
+1. **Další stát = úpravy v 7–10 souborech**, ne jeden nový soubor. Návod `.claude/skills/add-state` to musí
    vyjmenovávat a snadno se něco vynechá (CSP, smyčky v `pages.yml`, kredit).
 2. **Stát a město se pletou.** `slovensko` a `austria` jsou zapsané jako „města“ (`CITIES`), `cizina` používá modul
    Slovenska. Bratislava, Košice, Vídeň, Graz a Linz proto nejsou města, ale „boxy ilustrací“ (`SK_ART_BOX`,
@@ -170,7 +170,7 @@ Líně už dnes (a dál) jen zdroje měst a hledání.
 4b. **Města všude** (změna chování, schvaluje Bára): hranice obcí SK a AT, Bratislava, Košice, Žilina, Banská
    Bystrica, Prešov, Vídeň, Graz, Linz jako města s texty ze sady státu; log `city` po městech + `country`.
 5. **`tools/countries.mjs`** pro `pages.yml`, test CSP; zkušební sestavení, `_site` stejné.
-6. Přepsat návod `.claude/skills/pridani-statu`, `app/README.md`, CLAUDE.md.
+6. Přepsat návod `.claude/skills/add-state`, `app/README.md`, CLAUDE.md.
 
 Odhad: krok 0 skoro den, kroky 1–4 další den až dva, 5–6 menší.
 

@@ -2,7 +2,7 @@
 
 Zápis měření, které proběhlo s Kyprem (commit `48db470`); nic jsem znovu neměřila, jen přepočítala uložená data
 (`node evaluation/universal/score-states.mjs`; profily aplikace `evaluation/universal/data/app-cy.json`, posuzovatel
-`evaluation/universal/results/u-cy-1.jsonl`). Metoda: skill `mereni-presnosti`, `evaluation/universal/REPORT.md`.
+`evaluation/universal/results/u-cy-1.jsonl`). Metoda: skill `measure-accuracy`, `evaluation/universal/REPORT.md`.
 Posuzovatel staví vlastní profil z ortofota a fotek z ulice; s MTVU v Praze se shoduje v 71–82 % složení, čísla jsou
 tedy shoda s dobrým, ne dokonalým pozorovatelem.
 

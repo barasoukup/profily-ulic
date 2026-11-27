@@ -2,7 +2,7 @@
 
 Rozsah: `countries/MC.js` (nad `FR.js`), `towns/monaco.js`, `evaluation/monaco/RULES.md`, `tools/monaco-border.json`,
 `tools/build_states.mjs`, `states.json`, části `app.js`, `signs.js`, `search-photon.js`, `index.html`, `city.js`,
-`tests/monaco.test.js`, `LICENCE-A-ZDROJE.md`, `app/README.md`. Větev `estonia`, HEAD `84140de`. Žádný soubor kromě
+`tests/monaco.test.js`, `LICENSES-AND-SOURCES.md`, `app/README.md`. Větev `estonia`, HEAD `84140de`. Žádný soubor kromě
 této zprávy jsem neměnil.
 
 Co jsem ověřil:
@@ -103,7 +103,7 @@ podle `countries/<ISO>.js bounds`; nasadit musí Bára.
 - `FR_SPEEDS` dovolí v Monaku značky 80, 90, 110 a 130; kodex zná 30, 50, 70 (`RULES.md` odst. 1). Neškodné, dokud
   to OSM netvrdí.
 - `bounds` (`MC.js:11`) končí na 7,44° v. d., východní cíp Monaka je podle OSM na 7,43987: rezerva 10 m.
-- `LICENCE-A-ZDROJE.md:93`: „značky jako Francie“ bez zmínky, že pro Monako právní základ chybí (viz nález 2).
+- `LICENSES-AND-SOURCES.md:93`: „značky jako Francie“ bez zmínky, že pro Monako právní základ chybí (viz nález 2).
 
 ## Podezření (neověřeno)
 

@@ -2,7 +2,7 @@
 
 Rozsah: `countries/MT.js`, `towns/malta.js`, `signs-MT/`, `evaluation/malta/`, jízda vlevo v `derive.js`
 (`leftHand`, `mirrorLeftHand`), `lanes-ortho.js` (`MT_ORTHO`), `search-photon.js`, `credits.js`, `city.js`,
-`index.html`, `LICENCE-A-ZDROJE.md`, `app/README.md`, `tests/malta.test.js`, `states.json`. HEAD `84140de` (větev
+`index.html`, `LICENSES-AND-SOURCES.md`, `app/README.md`, `tests/malta.test.js`, `states.json`. HEAD `84140de` (větev
 `estonia`). Žádný existující soubor jsem neměnil, nic necommitoval. Nálezy o jízdě vlevo jsou společné s Kyprem
 (`evaluation/cyprus/REVIEW.md`), tady jen stručně.
 
@@ -88,7 +88,7 @@ označit v README i v popisku jako přibližné.
 
 ### 9. Patička uvádí OGL v3.0, soubory jsou pod OGL v1.0; export bez kreditu
 
-`index.html:137` a `LICENCE-A-ZDROJE.md:97`: „Open Government Licence v3.0“, bez jména poskytovatele. Podle
+`index.html:137` a `LICENSES-AND-SOURCES.md:97`: „Open Government Licence v3.0“, bez jména poskytovatele. Podle
 `signs-licence.json` i Commons (ověřeno) je 616, 617, 636, 642, 652, 801, 951, 955–957, 959.1 a 960 pod **OGL
 v1.0**, jen výřez diagramu 954.4 pod OGL 3. Kypr má u týchž souborů správně v1.0 a „UK Department for Transport“.
 V exportu PNG a SVG kredit značek chybí úplně (`credits.js` nemá klíč, `city.js:471` `credit: ""`). Oprava: znění

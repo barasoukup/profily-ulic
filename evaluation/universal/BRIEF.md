@@ -77,4 +77,4 @@ podle `wayId` řezu; přeměření 24. 11. je má pro všechny státy, `collect2
 ## Umístění kliknutí (pro autora měření)
 
 Řezy měření se otevírají jako uložené, tedy bez pravidel křižovatek. Změnu pravidel umístění kontroluje zvlášť
-`evaluation/clicks` (`collect.mjs`, `report.mjs`, `tests/placement.test.js`; postup ve skillu `mereni-presnosti`).
+`evaluation/clicks` (`collect.mjs`, `report.mjs`, `tests/placement.test.js`; postup ve skillu `measure-accuracy`).

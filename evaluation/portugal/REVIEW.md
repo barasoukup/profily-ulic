@@ -2,7 +2,7 @@
 
 Rozsah: `countries/PT.js`, `towns/portugal.js`, `signs-PT/`, `evaluation/portugal/`, části `lanes-ortho.js`, `app.js`,
 `signs.js`, `credits.js`, `search-photon.js`, `index.html`, `city.js`, `tools/countries.mjs`, `tools/build_states.mjs`,
-`tests/portugal.test.js`, `LICENCE-A-ZDROJE.md`, `app/README.md`. Větev `estonia`, HEAD `84140de`. Žádný soubor kromě
+`tests/portugal.test.js`, `LICENSES-AND-SOURCES.md`, `app/README.md`. Větev `estonia`, HEAD `84140de`. Žádný soubor kromě
 této zprávy jsem neměnil.
 
 Co jsem ověřil:

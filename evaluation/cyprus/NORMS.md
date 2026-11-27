@@ -201,7 +201,7 @@ a vídeňských vzorů nejsou kyperský vládní výtvor. Judikaturu jsem nehled
 Proto **nekreslím z obrázků Kodexu**, beru jen soubory z Commons s vlastní licencí: britské OGL v1.0 (vyžaduje uvést
 zdroj: „Contains public sector information licensed under the Open Government Licence v1.0“), kyperské Gigillo83 a
 vídeňské (UN) public domain. Licence po souborech: `evaluation/cyprus/signs-licence.json`. Na rozdíl od Portugalska je
-u britských souborů uvedení zdroje podmínkou licence (patička nebo `LICENCE-A-ZDROJE.md`).
+u britských souborů uvedení zdroje podmínkou licence (patička nebo `LICENSES-AND-SOURCES.md`).
 
 ### C2. Mapování klíčů aplikace
 
@@ -263,4 +263,4 @@ jízdy, tedy u levé obruby každého směru.
 5. Zóna 30: ohlášená, ale právně ani značkou nenalezená. Nekreslit?
 6. Pěší zóna (ip27a): Kypr má jen „povinnou pěší cestu“ (modrý kruh s chodci). Použít ji?
 7. Licence: britské značky jsou pod OGL v1.0, které vyžaduje uvedení zdroje (na rozdíl od PT). Doplnit do patičky nebo
-   do `LICENCE-A-ZDROJE.md`?
+   do `LICENSES-AND-SOURCES.md`?

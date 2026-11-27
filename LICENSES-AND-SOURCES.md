@@ -205,7 +205,7 @@ licence neuvedena; čteno při kliknutí, nešíří se.** Nejsou to otevřená 
 - `data/osm-tiles`: dlaždice OSM celé ČR, odvozená databáze pod **ODbL 1.0** (© přispěvatelé OpenStreetMap),
 - `data/praha/opendata`: dlaždice otevřených dat Geoportálu Praha (CC BY 4.0, upraveno),
 - `data/zps.json` (TSK, CC BY 4.0), `data/built-up-age` (IPR, CC BY 4.0), `data/brno` (parkovanivbrne.cz), `data/plzen` (CC0),
-- tento soubor jako `data/LICENCE-A-ZDROJE.md`.
+- tento soubor jako `data/LICENSES-AND-SOURCES.md` a pod starou adresou `data/LICENCE-A-ZDROJE.md` (kopie).
 
 **Nepublikovat** (zachyceno v `.gitignore`):
 - `data/`: stažené OSM, výřez DTM z ČÚZK, PDF manuálu IPR a podkladů DPMB (chráněné texty), specifikace Golemio

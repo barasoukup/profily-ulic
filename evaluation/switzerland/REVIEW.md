@@ -87,7 +87,7 @@ Bez nálezu:
   - **va1** je prázdný záznam bez `error`; tabulka u Vaduzu hlásí 0 chyb. **va3** (`zelen 22,03 · pruh 1,00`) je
     „nejde posoudit“, ač pruh 1 m je chyba sama o sobě.
   - Vzorek je jen do 1,5 km od center sedmi měst: žádná vesnice, žádný kanton mimo ZH, BS, BE, GE, TI, SG. Univerzální
-    měření přesnosti (`mereni-presnosti`, vzorek v `evaluation/universal/sample.mjs` už je) pro CH a LI neproběhlo.
+    měření přesnosti (`measure-accuracy`, vzorek v `evaluation/universal/sample.mjs` už je) pro CH a LI neproběhlo.
 - **Oprava:** po opravě sebrat vzorek znovu a posoudit ho nezávisle (jiný posuzovatel než autor); `Strasse_Weg` brát
   jako vozovku jen tam, kde ji kříží nebo v ní leží ulice z OSM, jinak jako chodník nebo cestu; na mostě a v tunelu
   (`bridge`, `tunnel`, `layer`) vyměřování nebrat; pustit univerzální měření.
@@ -141,7 +141,7 @@ Bez nálezu:
   zdroje a citovat ho jeho jménem.
 
 ### 8. geodienste.ch: limit 10 dotazů WFS za minutu a žádná cache; tvrzení o „fair use“ nemá doklad
-- **Kde:** `towns/switzerland.js:35–40`, `SOURCES.md`, `LICENCE-A-ZDROJE.md`.
+- **Kde:** `towns/switzerland.js:35–40`, `SOURCES.md`, `LICENSES-AND-SOURCES.md`.
 - **Co je špatně:** každý řez i každý posun řezu je jeden dotaz WFS bez cache a bez brzdy. Kdo táhne řez po ulici,
   jedenáctým dotazem za minutu limit překročí; odmítnutí spadne do `catch` jako „Úřední vyměřování neodpovídá“ a
   profil téže ulice přeskočí z vyměřování na odhad. Věty „fair use 10 dotazů WFS za minutu“ a „webová aplikace do
@@ -152,14 +152,14 @@ Bez nálezu:
   nebo vezme odhad s jinou poznámkou než „neodpovídá“); do `SOURCES.md` odkaz a citaci článku podmínek.
 
 ### 9. Licence vyměřování po kantonech je „?“ a přesto je zapnuté pro všechny; kredit je nepřesný
-- **Kde:** `LICENCE-A-ZDROJE.md` (řádek vyměřování, „Podmínky po kantonech neprověřené“), `credits.js:52–55`,
+- **Kde:** `LICENSES-AND-SOURCES.md` (řádek vyměřování, „Podmínky po kantonech neprověřené“), `credits.js:52–55`,
   `towns/switzerland.js:50, 80`, `types.js:73`.
 - **Co je špatně:** stejná situace jako bod 3 recenze Německa (Sasko): data se čtou a kreslí, podmínky nikdo nečetl.
   Kredit zní „© kanton ZH (geodienste.ch)“; kantony obvykle žádají vlastní znění zdroje. Kanton kreditu je ten
   s nejvíc plochami v obdélníku, ne kanton řezu (Basilej BS/BL, Ženeva u hranice kantonu Vaud). Části profilu z
   vyměřování nesou štítek „z pasportu města“ (`asPassport`), což ve Švýcarsku není pravda. Věta pod profilem říká
   „úředního vyměřování, SWISSIMAGE a OSM“, i když se ortofoto nepoužilo (v A/B většina řezů s `chAv` nemá `orthoCity`).
-- **SWISSIMAGE:** rešerše upozorňuje, že STAC uvádí `license: "proprietary"`, a chce to ověřit; `LICENCE-A-ZDROJE.md`
+- **SWISSIMAGE:** rešerše upozorňuje, že STAC uvádí `license: "proprietary"`, a chce to ověřit; `LICENSES-AND-SOURCES.md`
   má přesto „✓ OGD“. Doplnit odkaz na podmínky bezplatných geodat swisstopo.
 - **Oprava:** projít podmínky aspoň kantonů ZH, BS, BE, GE, TI, SG a Lichtenštejnska (vzorek A/B), ostatní do té
   doby nebrat; kredit podle kantonu plochy pod středem řezu; vlastní štítek zdroje („z úředního vyměřování“).

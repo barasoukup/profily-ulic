@@ -14,7 +14,7 @@ neukládají ani nešíří dál.
 - **V pořádku, stačí doplnit licenci do kreditu:** ortofoto PDOK (CC BY 4.0), ortofoto Valonska a čáry PICC (CC BY 4.0),
   ortofoto Lucemburska (CC0), ortofoto Flander (Modellicentie gratis hergebruik v1.0, předepsaný kredit „Bron: Luchtopnamen
   Digitaal Vlaanderen“).
-- **Opravit v kreditech a v `LICENCE-A-ZDROJE.md`:**
+- **Opravit v kreditech a v `LICENSES-AND-SOURCES.md`:**
   - Most: objektová mapa a stožáry VO jsou otevřená data, na portálu města pod CC BY-SA.
   - Jihlava: parkoviště jsou otevřená data, na portálu města pod CC BY-SA.
   - Sítě Amsterdamu: v patičce je „licence neuvedena“, ale v `site.js` „CC BY“. Platí „Creative Commons, Naamsvermelding“
@@ -37,7 +37,7 @@ neukládají ani nešíří dál.
 ## Tabulka
 
 Sloupec **Stav v aplikaci** porovnává `app/public/credits.js` (kredit u řezu a v exportu), `city.js` (kredit města),
-atribuci podkladových map, patičku `app/public/index.html` a `LICENCE-A-ZDROJE.md`.
+atribuci podkladových map, patičku `app/public/index.html` a `LICENSES-AND-SOURCES.md`.
 
 | Zdroj | Licence (odkaz) | Povinný kredit | Stav v aplikaci | Co udělat |
 |---|---|---|---|---|
@@ -73,7 +73,7 @@ atribuci podkladových map, patičku `app/public/index.html` a `LICENCE-A-ZDROJE
 - **Devět pasportů českých měst, Bratislava, Dúbravka, Žilina, Banská Bystrica:** úřady měst. U Chotěboře a Roudnice
   nejdřív, jestli data vůbec zveřejnily ony.
 
-Pokud technická mapa ani pasport licenci nemá, platí dosavadní formulace z `LICENCE-A-ZDROJE.md`: veřejně přístupná
+Pokud technická mapa ani pasport licenci nemá, platí dosavadní formulace z `LICENSES-AND-SOURCES.md`: veřejně přístupná
 data, licence neuvedena, čteno při kliknutí a nešíří se. Výjimkou je Kraków, kde pravidla města takové použití výslovně
 podmiňují souhlasem.
 

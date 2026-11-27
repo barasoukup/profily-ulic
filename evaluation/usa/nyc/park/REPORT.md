@@ -54,7 +54,7 @@ Shoda posuzovatelů 25/31, kde oba vybrali stranu 19/19. Kde značky prohrály: 
 np-5, np-2, np-53 (stání přidané k dělicímu pásu nebo místo pruhu), np-12, np-13, np-31, np-63 (značka „nesmí“ vzala stání,
 které tam je, nebo naopak).
 
-## Univerzální měření (skill `mereni-presnosti`, `../../../universal/BRIEF.md`)
+## Univerzální měření (skill `measure-accuracy`, `../../../universal/BRIEF.md`)
 
 29 řezů s fotkou z celého vzorku (podle typů), jeden posuzovatel Sonnet na balík, bez profilů; 27 použitelných (np-4 a np-46
 nejsou ulice). `results/q*.jsonl`, `results/score.md`.

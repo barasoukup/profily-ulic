@@ -8,7 +8,7 @@ dokumenty; kresby na Commons ale jejich autor zveřejnil pod licencemi, které d
   (kruh z 302, číslo dosazuje aplikace; podle 329 (50));
 - **Augustasci**, public domain: 411, 412, 413, 413a, 413b;
 - **Gigillo83**, CC BY-SA 4.0: dodatkové tabulky 846 (osoby se zdravotním postižením) a 853 (kromě cyklistů).
-Autoři v patičce aplikace a v `LICENCE-A-ZDROJE.md`, metadata z API Commons v `evaluation/lithuania/signs-licence.json`.
+Autoři v patičce aplikace a v `LICENSES-AND-SOURCES.md`, metadata z API Commons v `evaluation/lithuania/signs-licence.json`.
 Licence: [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/), [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).
 **Úpravy:** souborům bez `viewBox` byl doplněn podle `width` a `height` (jinak se nekreslí); `329.svg` je nový soubor:
 kruh z `302.svg` s číslem jako textem (podle „LT road sign 329 (50).svg“). Jinak beze změn.

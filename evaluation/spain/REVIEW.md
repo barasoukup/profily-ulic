@@ -2,7 +2,7 @@
 
 Rozsah: `countries/ES.js`, `towns/spain.js`, `search-es.js`, `signs-ES/`, `evaluation/spain/`, části `lanes-ortho.js`,
 `signs.js`, `derive.js`, `credits.js`, `app.js`, `index.html`, `tools/countries.mjs`, `tools/build_states.mjs`,
-`tests/spain.test.js`, `LICENCE-A-ZDROJE.md`, `app/README.md`. Větev `estonia`, HEAD `84140de`. Žádný soubor kromě
+`tests/spain.test.js`, `LICENSES-AND-SOURCES.md`, `app/README.md`. Větev `estonia`, HEAD `84140de`. Žádný soubor kromě
 této zprávy jsem neměnil.
 
 Co jsem ověřil:
@@ -110,7 +110,7 @@ Náprava: `AbortSignal.timeout`, paměť jako u Zaragozy, obdélníky Baskicka a
 
 ### 6. Melilla: snímek Airbus pod licencí, kterou neznáme, s kreditem „CC BY 4.0“ (střední)
 
-`SOURCES.md` (odst. 1) i `LICENCE-A-ZDROJE.md:86` říkají, že PNOA v Melille je Pléiades Neo © Airbus DS (2022), „jiná
+`SOURCES.md` (odst. 1) i `LICENSES-AND-SOURCES.md:86` říkají, že PNOA v Melille je Pléiades Neo © Airbus DS (2022), „jiná
 licence, zatím neřešeno“. Aplikace ho přesto v Melille zobrazuje i čte pro pruhy (`app.js:332–334`, `lanes-ortho.js:99`)
 a připisuje „ortofoto PNOA © IGN (CC BY 4.0)“ (`credits.js:32`). Ve sloupci stavu je ✓.
 
@@ -173,7 +173,7 @@ hledaný text pak odchází IGN z jiného státu.
 
 - `NORMS.md` oddíl D navrhuje pro pruh `zaklad` 3,00 m, kód má 2,5 m v obou větvích (`ES.js:23–24`, podmínka mění
   jen text). Rozhodnutí není zapsané.
-- `LICENCE-A-ZDROJE.md:89`: licence Zaragozy „katalog města CC BY 4.0 (neověřeno)“, stav ✓. Stránka `aviso-legal`
+- `LICENSES-AND-SOURCES.md:89`: licence Zaragozy „katalog města CC BY 4.0 (neověřeno)“, stav ✓. Stránka `aviso-legal`
   portálu otevřených dat mi vrátila 404. Kredit nemá rok dat (2017).
 - Univerzální měření (23 řezů, 57 %) je jen v `results/u-es-*.jsonl` a ve zprávě commitu, `evaluation/universal/REPORT.md`
   oddíl nemá. Ve vzorku nejsou ostrovy, Ceuta ani Melilla.

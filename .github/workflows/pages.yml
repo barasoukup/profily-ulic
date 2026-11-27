@@ -232,7 +232,9 @@ jobs:
           mv site-zps.json _site/data/zps.json
           [ -d site-built-up-age ] && mv site-built-up-age _site/data/built-up-age || echo "::warning::no built-up area tiles, flat roofs judged by the house alone"
           [ -d site-us-plan ] && mv site-us-plan _site/data/us-plan || true
-          cp LICENCE-A-ZDROJE.md _site/data/LICENCE-A-ZDROJE.md
+          cp LICENSES-AND-SOURCES.md _site/data/LICENSES-AND-SOURCES.md
+          # the old address of the file (LICENCE-A-ZDROJE.md until 27. 11. 2026) keeps working: the same text
+          cp LICENSES-AND-SOURCES.md _site/data/LICENCE-A-ZDROJE.md
           # One page for the whole Czech Republic: the cities' own data under data/<city>/ (Brno's parking,
           # Plzeň's zones, Prague's open data), the former city sites as pages sending to it (old links keep working).
           for id in brno plzen praha; do

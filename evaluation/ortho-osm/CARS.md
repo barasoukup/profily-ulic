@@ -25,7 +25,7 @@ obruby odhadu (ČÚZK 12,5 cm), 125 stran místních ulic Prahy a Brna, kde voln
 | Brno 2025 chodník medián | 2,60 | 2,39 |
 
 Smíšené (a „navíc“ proti MTVU, které stání nemá), proto vypnuté; zapne `?auta=1`. Dál: prahy pro jemná ortofota
-(IPR 10 cm) zvlášť, pravda o stání z fotek z ulice (skill mereni-presnosti).
+(IPR 10 cm) zvlášť, pravda o stání z fotek z ulice (skill measure-accuracy).
 
 ## Krajnice, stání a detektor na nových stranách (20. 11. 2026)
 Ručně označeno dalších 105 stran místních ulic a tertiary Prahy a Brna (`cars/stitky2.json`, na nich se nic neladilo;

@@ -222,7 +222,7 @@ Stání pro ZTP: C1a + M6h (a B6a1 + M6h = zákaz stání s výjimkou ZTP, fotog
 
 Přehled stažených rychlostních značek B14: 20, 30, 50, 70, 80, 90, 110, 130 (hotovo). Chybí 40 a 60 (jsou na Commons: `France_road_sign_B14_(40).svg`, `(60)`), 100 a 10, 15, 5, 45, 25 nestaženy.
 
-### C2. Licenční shrnutí pro `LICENCE-A-ZDROJE.md`
+### C2. Licenční shrnutí pro `LICENSES-AND-SOURCES.md`
 - Texty předpisů (arrêté 1967, JO) jsou "actes officiels", v Commons označeno {{PD-JORF}} (public domain) u kreseb přímo z JO (B52 až B54, C24a, C111/C112, C115/C116, M6h, M6j, M9b).
 - Překreslení značek jinými autory na Commons: CC BY-SA 3.0 nebo 4.0 (uvést autora: Roulex 45, Grondin, Ryse93, Gigillo83, Chabe01, Paris 16, a odkaz na licenci). Autory a licence každého souboru obsahuje `evaluation/france/signs-licence.json`.
 - Pokud Bára nechce vázat soubory SA, lze překreslit z PD-JORF zdrojů (B52 až B54, C115, M6h jsou PD už teď).

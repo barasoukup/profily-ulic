@@ -101,4 +101,4 @@ v [evaluation/archive/prague-100/REPORT.md](evaluation/archive/prague-100/REPORT
 - Aplikace zaznamenává jen řezy a použité funkce, bez IP adres a cookies
   ([logging/README.md](logging/README.md#soukromí)).
 
-Podrobnosti jsou v [LICENCE-A-ZDROJE.md](LICENCE-A-ZDROJE.md).
+Podrobnosti jsou v [LICENSES-AND-SOURCES.md](LICENSES-AND-SOURCES.md).

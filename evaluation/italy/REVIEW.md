@@ -2,7 +2,7 @@
 
 Rozsah: `countries/IT.js`, `towns/italy.js`, `signs-IT/`, `evaluation/italy/`, části `lanes-ortho.js` („it“),
 `tools/build_states.mjs`, `states.json`, `search-photon.js`, `credits.js`, `sources.js`, `index.html`, `tools/countries.mjs`,
-`logging/worker.js`, `LICENCE-A-ZDROJE.md`, `app/README.md`, `tests/italy.test.js`. Větev `estonia`, HEAD `84140de`.
+`logging/worker.js`, `LICENSES-AND-SOURCES.md`, `app/README.md`, `tests/italy.test.js`. Větev `estonia`, HEAD `84140de`.
 Žádný jiný soubor jsem neměnil, nic jsem necommitoval.
 
 Co jsem ověřil:
@@ -59,7 +59,7 @@ Bez nálezu:
 
 ### 2. Bolzano 2023 není „vlastní nálet“, ale ortofoto ve spolupráci s AGEA; dokumentace tvrdí opak
 - **Kde:** `evaluation/italy/SOURCES.md:36` a `:88` („z vlastních náletů … Bolzano 2023“, „Bez právní nejistoty (ne
-  AGEA)“), `LICENCE-A-ZDROJE.md:98` („ortofota AGEA nepoužita“), `app/public/lanes-ortho.js:71–73`, `app/README.md:308–311`.
+  AGEA)“), `LICENSES-AND-SOURCES.md:98` („ortofota AGEA nepoužita“), `app/public/lanes-ortho.js:71–73`, `app/README.md:308–311`.
 - **Důkaz:** metadata provincie, pole `lineage`: „la Ripartizione 28 ha, **in collaborazione AgEA, nell'ambito del Piano
   di monitoraggio**, realizzato un'ortofoto con un pixel di 20 cm per l'intero territorio provinciale“
   (https://geonetwork1.civis.bz.it/geonetwork/srv/api/records/p_bz:Orthoimagery:Aerial-2023-RGB). Tentýž záznam má
@@ -68,7 +68,7 @@ Bez nálezu:
   AGEA nepoužívá: je to tentýž tříletý nálet, který mají Toskánsko nebo Umbrie s „tutti i diritti riservati“. Bolzano je
   největší ze čtyř oblastí (7 400 km²) a stojí jen na tom, že provincie smí snímek AGEA dál licencovat.
 - **Oprava:** rozhodnutí Báry (nechat s tím, že licenci dává vlastník záznamu, nebo se zeptat provincie:
-  kartografie@provinz.bz.it); v každém případě opravit `SOURCES.md`, `LICENCE-A-ZDROJE.md`, komentář v `lanes-ortho.js`
+  kartografie@provinz.bz.it); v každém případě opravit `SOURCES.md`, `LICENSES-AND-SOURCES.md`, komentář v `lanes-ortho.js`
   a README, aby netvrdily „ne AGEA“.
 
 ## Střední
@@ -162,7 +162,7 @@ ortofota. Přesnější: hranice ISTAT (CC BY) nebo OSM jako u Monaka. U Polska 
 ### 15. Patička a licence
 - „dopravní značky Wikimedia Commons (úřední díla)“: použité II.75 (CC BY-SA 3.0) a II.90 (CC BY-SA 4.0) jsou
   překreslení F l a n k e r a; u Estonska se autor uvádí, u Itálie ne. Buď Bářino rozhodnutí jako u Francie zapsat do
-  `LICENCE-A-ZDROJE.md`, nebo autora doplnit.
+  `LICENSES-AND-SOURCES.md`, nebo autora doplnit.
 - „mapa povrchů a budovy Bologni“: mapa povrchů je vypnutá, používají se jen budovy.
 - Torino: podmínky Geoportálu žádají vlastní znění citace a kopii odvozenin; záznam samotné služby WMS má „Condizioni
   sconosciute“ (`SOURCES.md` to uvádí). Kredit „© Città di Torino (CC BY 4.0)“ nejspíš stačí, ale je to výklad.

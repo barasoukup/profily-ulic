@@ -47,7 +47,7 @@ u hranic (21 hraničních měst DE/AT správně), `signs.js` nečte jazyk, CSP m
   („podmínky LVermGeo ST (PDF)“, „povinný zdrojový údaj“, „noLimitations“). U dl-de/by-2-0 (BW, BE/BB, HH, RP) licence
   žádá i odkaz na text licence a na datovou sadu; aplikace dává jen zkratku bez odkazu.
 - **Oprava:** přečíst podmínky SN, ST, MV, SL a opsat přesné znění kreditu; země bez jasné licence do té doby vypnout
-  (odhad jen z OSM). Do patičky odkaz `govdata.de/dl-de/by-2-0` a na `LICENCE-A-ZDROJE.md`.
+  (odhad jen z OSM). Do patičky odkaz `govdata.de/dl-de/by-2-0` a na `LICENSES-AND-SOURCES.md`.
 
 ## Vážné
 
@@ -157,7 +157,7 @@ u hranic (21 hraničních měst DE/AT správně), `signs.js` nečte jazyk, CSP m
     kterákoli otevřená stránka zapsat soubor do `evaluation/universal/data/`. Jméno je ošetřené, server poslouchá jen
     na 127.0.0.1.
 23. **Dokumentace:** `CLAUDE.md:281` říká „Odhad stání podle zákona vypnutý“, další odrážka opak; `app/README.md:711`
-    „Německé značky ani data z Německa aplikace nemá“; `LICENCE-A-ZDROJE.md` a patička nemají povrchy Berlína,
+    „Německé značky ani data z Německa aplikace nemá“; `LICENSES-AND-SOURCES.md` a patička nemají povrchy Berlína,
     Hamburku a Cách ani Photon pro DE; `tools/check_sources.mjs` německé služby nehlídá.
 24. **Hamburk:** „gemeinsamer Geh- und Radweg“ jde na chodník (702), ne na společnou stezku. **Cáchy:** `aachenCode`
     zahodí plochu s jakýmkoli neprázdným `level`; neověřil jsem, že úroveň terénu je vždy prázdná.

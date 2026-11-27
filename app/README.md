@@ -63,7 +63,7 @@ Struktura je všude stejná: stát → město → zdroje (`docs/architecture-cou
 **Nový stát:** modul `countries/<ISO>.js` (a řádek v `countries/index.js`), složka značek, řádek v `tools/countries.mjs`
 (OSM, Geofabrik, Pages), zbytek státu jako město v `city.js` (`abroad`) a texty v `en.js`, `sk.js`, `de.js`, zdroje
 v `towns/<stát>.js`, hranice v `states.json`, hostitelé v CSP (hlídá `tests/csp.test.js`). Podrobně skill
-`.claude/skills/pridani-statu`. **Nové město nebo zdroj:** viz Města jako moduly níže.
+`.claude/skills/add-state`. **Nové město nebo zdroj:** viz Města jako moduly níže.
 
 Úpravu, která nemá měnit výsledky, ověří záchranná síť `evaluation/replay/` (odpovědi zdrojů nahrané jednou pro 369
 řezů na Slovensku, v Rakousku, v Praze, v Brně a za hranicemi, přehrané před a po změně; tabulky města, kreditů,
@@ -1248,4 +1248,4 @@ Plochy jsou povinné jen tam, kde je mapa povrchů (`SURFACE_MAPS` modulů, bod 
 - Technická mapa a MTVU: © IPR Praha; otevřená data IPR a Geoportálu Praha pod CC BY 4.0. Technické mapy měst
   a krajů a IS DMVS: veřejně přístupná data, čtou se při kliknutí a nešíří se.
 - OSM: © přispěvatelé OpenStreetMap, ODbL. RÚIAN a ortofoto: © ČÚZK, CC BY 4.0.
-- Export i uložený soubor uvádějí zdroje města řezu i s krajem. Podrobnosti v `LICENCE-A-ZDROJE.md`.
+- Export i uložený soubor uvádějí zdroje města řezu i s krajem. Podrobnosti v `LICENSES-AND-SOURCES.md`.

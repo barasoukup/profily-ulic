@@ -448,5 +448,5 @@ Zatím nemáme státní moduly ani dlaždice. Vzhledy navrhuji tak, aby šly sd�
 | nová `drevo` (prkna, lizény, bílé šambrány) | `tallinnamaja`, `puukaupunki`, `drevak` | kamenné přízemí ano/ne, svislá/vodorovná prkna, zádveří, samostatný dům vs. v řadě, krytina |
 
 Tedy 1 rozšíření existující kresby (`sikma`) a 4 nové kresby (`stredomori`, `stit`, `cihla`, `drevo`) pokryjí
-všech 14 vzhledů. Každý přidaný vzhled ověřit na řezech s fotkou z ulice (skill `mereni-presnosti`, nejen „vypadá
+všech 14 vzhledů. Každý přidaný vzhled ověřit na řezech s fotkou z ulice (skill `measure-accuracy`, nejen „vypadá
 to dobře“) a zkontrolovat, že se nezměnil žádný český řez (vzhledy jsou jen za `houseLook` států).

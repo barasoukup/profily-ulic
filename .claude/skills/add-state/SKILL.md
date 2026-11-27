@@ -1,5 +1,5 @@
 ---
-name: pridani-statu
+name: add-state
 description: Postup, jak do Profilů ulic přidat další stát (po Slovensku a Rakousku, listopad 2026). Použij, když Bára chce aplikaci rozšířit na novou zemi nebo region: hranice státu, OSM a R2, ortofoto, hledání, domy, datové zdroje měst s A/B testy, normy, dopravní značky, ilustrace, sítě, kontroly a dokumentace.
 ---
 
@@ -250,7 +250,7 @@ Agent nezapisuje do repozitáře, výsledek dává do scratchpadu.
 | Katastr dopravních značek | `lines().atSigns` → tagy cesty (`parking:<side>:restriction`) podle strany značky, do 25 m od řezu | značky na začátku úseku (zóny, rychlosti) řez dál od nich nevidí |
 | Sítě | `site.js NETS` | hloubku nemá skoro nikdo; výšky terénu ČÚZK jen v Česku |
 | Hranice měst | `tools/build_towns_sk.mjs` → `towns-sk.json` (okresy velkých měst, jinak obec); území zdroje `{ box, town }` přes `places.js inArea` | obdélníky braly sousední obce (Šamorín jako Bratislava) |
-| Kredit | klíč zdroje v `state.cut.sources` (`app.js`) a řádek v `credits.js SOURCE_CREDITS` (`creditLines` i `validate.js` ho pak znají), patičky ve všech jazycích, `LICENCE-A-ZDROJE.md` | klíč, ne hotová věta (uložený soubor a změna jazyka) |
+| Kredit | klíč zdroje v `state.cut.sources` (`app.js`) a řádek v `credits.js SOURCE_CREDITS` (`creditLines` i `validate.js` ho pak znají), patičky ve všech jazycích, `LICENSES-AND-SOURCES.md` | klíč, ne hotová věta (uložený soubor a změna jazyka) |
 
 Služba, která odpoví skutečnou 4xx nebo chybou ArcGIS se jménem špatného pole, se neopakuje (`gis.js err.refused`).
 
@@ -313,7 +313,7 @@ v `cutAt` zastínil pozdější `const name` a rozbil každý řez.
 
 ## 5a. Univerzální měření přesnosti
 
-Po zapojení státu (před nasazením) změřit stát stejně jako ostatní: skill `mereni-presnosti` (`evaluation/universal/`).
+Po zapojení státu (před nasazením) změřit stát stejně jako ostatní: skill `measure-accuracy` (`evaluation/universal/`).
 Hodnotí složení uličního prostoru, pak šířku, posuzovatel z ortofota a fotek z ulice (Mapillary; bez fotky nefunguje).
 Srovnání 17. 11. 2026: shoda složení CZ 56 %, SK 60 %, AT 57 → 58 %, DE 58 → 61 % (po zákonném odhadu stání). Při měření
 ověřit, že odhad státu opravdu čte ortofoto (`sources.orthoCity`) a že nechybí stání (zákon státu: `parkGuess`,
@@ -340,7 +340,7 @@ ověřit, že odhad státu opravdu čte ortofoto (`sources.orthoCity`) a že nec
 ## 9. Dokumentace a předání
 
 - **CLAUDE.md:** oddíl státu (zdroje, co je zapnuté a vypnuté a proč, licence, rozhodnutí Báry).
-- **Dokumentace a licence:** `app/README.md`, `LICENCE-A-ZDROJE.md`, patičky ve všech jazycích.
+- **Dokumentace a licence:** `app/README.md`, `LICENSES-AND-SOURCES.md`, patičky ve všech jazycích.
 - **Zprávy** v `evaluation/<state>/` a commit po každém kroku.
 - **Báře krátce:**
   - co je hotové a výsledky A/B;

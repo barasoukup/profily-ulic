@@ -12,7 +12,7 @@ Stát `estonia` (`countries/EE.js`, `towns/estonia.js`, `search-ee.js`, `signs-E
   A/B 15 domů Kalamaje proti fotkám: odchylka 1,40 → 0,73 podlaží.
 - Hledání In-ADS (domy, ulice, obce a kraje EHAK).
 
-## Univerzální měření (skill `mereni-presnosti`)
+## Univerzální měření (skill `measure-accuracy`)
 
 Dnešní `node evaluation/universal/score-states.mjs` (pravidlo stran bez fasády z 24. 11. 2026, profily aplikace
 z 23. 11., tedy ještě s volnějším pravidlem mapy Tallinnu a výškou ETAK / 3):

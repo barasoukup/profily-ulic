@@ -77,7 +77,7 @@ vzhledů nejsou a dům uložený se štítem se kreslí bez obrysu (jen štítov
 - Rok mají jen katastry (ES, NL BAG, FR BD TOPO); Itálie, Portugalsko, Malta, Kypr, Estonsko většinou jen OSM
   `start_date`, takže rozhoduje „bez roku“ a místo. Regiony (francouzské Středomoří, sever Španělska, Flandry, Brusel,
   Bolzano) jsou obdélníky, ne hranice.
-- Nepřeměřeno na řezech s fotkou (skill `mereni-presnosti`): zatím jen kontrola od oka proti fotkám ze specifikace.
+- Nepřeměřeno na řezech s fotkou (skill `measure-accuracy`): zatím jen kontrola od oka proti fotkám ze specifikace.
 - `TUNED_BUILDING` (domy bez podlaží a výšky se neberou) zůstává; sever Francie (cihla v departementech 59, 62),
   alpský dům a belgický eklektický dům podle specifikace jen poznámka.
 - Dlaždice OSM nenesou `roof:material`, `building:colour`; přidání (specifikace bod 4) neprovedeno.

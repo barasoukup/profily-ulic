@@ -156,7 +156,7 @@ Litva tramvaje nemá; nehledáno.
 3. Pruh: 3,0 m (Vilnius, 50 km/h), u místních ulic 2,75?
 4. Zákon o stání: 3 m od plné čáry (KET 150.7, 2. ruka) jako `freeLane: 3`?
 5. Pěší zóna: Litva samostatnou značku nemá (nenalezeno) — nekreslit nic?
-6. Značky CC BY 4.0 (Augustasci): uvést autora v `LICENCE-A-ZDROJE.md`; tabulky způsobu stání (830–838) chybí, kreslit?
+6. Značky CC BY 4.0 (Augustasci): uvést autora v `LICENSES-AND-SOURCES.md`; tabulky způsobu stání (830–838) chybí, kreslit?
 
 ## Zapojeno (24. 11. 2026, `countries/LT.js`)
 Vše oranžově (`min: 0`), protože jde o doporučení měst: chodník 2,5; cyklopruh 1,5; cyklostezka 2,5; pruh BUS 3,05 (Vilnius:

@@ -44,7 +44,7 @@ Dva samostatní posuzovatelé Sonnet na každou dvojici (8 balíků, X/Y náhodn
 Hlasy 58 : 45, stejně 38. Shoda posuzovatelů 51/72; kde oba vybrali stranu, 39/44. Posuzovatelé si stěžovali na tmavé
 ortofoto (stíny vysokých domů, nálet na jaře) a malé rozdíly šířek: velká část hlasů má nízkou jistotu.
 
-## Univerzální měření (skill `mereni-presnosti`, `../../universal/BRIEF.md`)
+## Univerzální měření (skill `measure-accuracy`, `../../universal/BRIEF.md`)
 
 31 řezů s fotkou (z obou tahů, podle typů), 2 posuzovatelé Sonnet, bez profilů; 28 použitelných (3 nejsou ulice).
 
