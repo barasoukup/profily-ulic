@@ -16,9 +16,10 @@ Co rozhodne Bára, je označeno **(Bára)**.
   Koninginnestraat 5,4 m; stejně dřív Rakousko a Německo). Proč se u jednosměrky s jedním pruhem zákonné stání nepřidá,
   když místo je (`evaluation/universal/ZPRAVA.md`, Belgie).
 - Strop šířky pruhu 4 m (4,5 místní) neplatí u map povrchů: Kraków kr24 pruh 4,9 m, kr31 4,62 + 4,48 m.
-- Chodník s cyklostezkou (`segregated=yes`) se dělí přesně napůl (`derive.js sidewalkUse`). Někde to odpovídá (Most
+~~- Chodník s cyklostezkou (`segregated=yes`) se dělí přesně napůl (`derive.js sidewalkUse`). Někde to odpovídá (Most
   Kotlarski), jinde ne: šířka z OSM `width` nebo z norem státu, případně hranice podle červené barvy na ortofotu.
-  Napřed ověřit na ortofotu, jak to opravdu vypadá (Bára 21. 11. 2026).
+  Napřed ověřit na ortofotu, jak to opravdu vypadá (Bára 21. 11. 2026).~~
+  (27. 11. 2026: šířka z OSM `cycleway:width` / `footway:width` (95 z 261 cest v Praze ji má), jinak napůl; z ortofota (barevný povrch) zatím ne; `?off=cyklosirka`)
 - Ortofoto: rozeznat vodorovné značení od nevyježděných světlých pásů (Bára 12. 11. 2026, řez 324 v Hradci).
 
 - Francie (měření 22. 11., 25 řezů): v odhadu často chybí chodník (10×) a přebývá stání (8×); prověřit na řezech
@@ -27,8 +28,9 @@ Co rozhodne Bára, je označeno **(Bára)**.
   nebo přes vozovku (U libušské sokolovny) se bere jako chodník či obruba, suchý hnědý trávník jako chodník (Kukelská),
   podélná spára uprostřed vozovky jako obruba (Dářská). Pokusy `walkSatOn`, `walkYellow`, `walkMode`, `split6` znovu
   změřené s RÚIAN: nic nevyhrálo všude. Spíš model (`ai-kerbs`, `ai-segmentation`) než další pravidla.
-- Silnice 230 u Mariánských Lázní (`#rez=50.037075,12.789854,37`): vozovka 6,5 m, ortofoto našlo jen jeden pruh 4,74 m
-  a krajnici 1,76 m (chybí středová čára?).
+~~- Silnice 230 u Mariánských Lázní (`#rez=50.037075,12.789854,37`): vozovka 6,5 m, ortofoto našlo jen jeden pruh 4,74 m
+  a krajnici 1,76 m (chybí středová čára?).~~
+  (27. 11. 2026: jediná nalezená čára u obruby dělala pruh 4,73 m, teď zůstanou pravidla 2 × 3,22 m, `lanes-ortho.js`, `?off=obousmerka`)
 - ~~Poznámka pod nadpisem říká „domy z OSM“, i když jsou od 23. 11. v Česku z RÚIAN: nový text ve všech jazycích.~~
   (26. 11. 2026: „domy z {houses}“ podle zdroje fasád, `ortho-osm.js houseSources`: RÚIAN, GRPK s OSM, jinak OSM)
 
@@ -180,7 +182,8 @@ Co rozhodne Bára, je označeno **(Bára)**.
   Strossmayerovo náměstí, jižní strana „nemá pruh pro auta“ (MTVU 701 3,5 m a úsek parkování TSK;
   `#rez=50.098778,14.433932,-83`); Libocká, „chodník V je užší, asi i jízdní pás“ (MTVU vozovka 4 m, zeleň, chodník 2 m;
   `#rez=50.090199,14.324922,-14`). Dřív: V Zeleni, Poncarova.
-- Klánovická: stání z OSM (`parking=lane`) je teď podélné, ale široké 3,9 m podle hrubého polygonu OSM.
+~~- Klánovická: stání z OSM (`parking=lane`) je teď podélné, ale široké 3,9 m podle hrubého polygonu OSM.~~
+  (27. 11. 2026: podélné stání z OSM nejvýš 2,5 m, zbytek je vozovka, `derive.js capParallelBay`, `?off=stanisirka`)
 - Hospodářská půda (MTVU 100) pod nepojmenovanou služební cestou se kreslí jako „Zpevněná plocha“ 44 m
   (`types.js typeFromMtvu`: 100 → „plocha“); pojmenovaná cesta už jde na odhad (Devětsilová).
 - DTM po přechodu na JVF 1.5 (19. 11.): typy se čtou z kódu JVF (číselník z vyhl. 393/2020, `dmvs.js JVF`); kód, který
@@ -256,10 +259,10 @@ Co rozhodne Bára, je označeno **(Bára)**.
 - Další státy vybírat podle otevřeného ortofota s CORS a mapy povrchů aspoň hlavního města. Průzkum 22. 11. 2026:
   `docs/states-survey/` (nejlépe Francie s Paříží, pak Španělsko, Švédsko, Kypr; Finsko a Dánsko jen s klíčem
   **(Bára)**; Slovinsko, pobaltské státy a Norsko zkusit znovu).
-- Domy: chata nebo jiná stavba bez počtu podlaží v RÚIAN dostane výchozí 2 NP (hlášení u silnice 506338718
-  v Královéhradeckém kraji: 1 NP a podkroví). Výchozí hodnota pro rekreační stavby (RÚIAN 8)? ~~**(Bára)**~~ (Bára 27. 11. 2026: 1 NP a podkroví; dávka small-fixes)
-- Podkroví z RÚIAN (23. 11.): rodinný dům a chata se 2+ podlažími mají poslední podlaží ve střeše (silnice 230). Ověřit
-  na víc domech.
+~~- Domy: chata nebo jiná stavba bez počtu podlaží v RÚIAN dostane výchozí 2 NP (hlášení u silnice 506338718
+  v Královéhradeckém kraji: 1 NP a podkroví). Výchozí hodnota pro rekreační stavby (RÚIAN 8)? **(Bára)**~~
+  (27. 11. 2026: chata bez počtu podlaží = 1 NP a podkroví (Bára), `gis.js`, `?off=chata`)
+- ~~Podkroví z RÚIAN~~ Bára 27. 11. 2026: rodinný dům a chata se 2+ NP dál s posledním podlažím ve střeše (měření Prahy: 2 NP 37 %, 3 NP 70 %; `evaluation/small-fixes/podkrovi.mjs`).
 
 ## Hledání
 

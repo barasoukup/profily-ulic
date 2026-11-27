@@ -738,6 +738,7 @@ const BLOCK = new Set(["pruh", "krajnice"]);
 const SNAP = 0.6;
 // ?off=<switch>,<switch>: a rule of this file off for the comparison (the same parameter as app.js ORTHO_P.off).
 const OFF = (k) => { try { return new URLSearchParams(globalThis.location?.search || "").get("off")?.split(",").includes(k) ?? false; } catch { return false; } };
+const ONE_LANE_MAX = 4.25; // a lane wider than this (m) is two where the rules had two
 const SHOULDER_MAX = 3.6; // a boundary of other parts (parking, bike lane…) moves to a line this near
 
 // result: deriveProfile's { segments, runs, extent }; img: laneImage(). Returns the number of carriageways changed
@@ -789,7 +790,7 @@ export function applyLanes(result, img) {
     // profile and only move its boundaries.
     const k = (w.e - w.s) / (c.e - c.s), toProfile = (g) => w.s + (g - c.s) * k;
     const segs = w.parts.every((p) => BLOCK.has(p.seg.type)) ? measured(w, c, found, found.solid, img.st.fine) : redraw(w, found.map(toProfile), img.st.fine);
-    if (segs) { out.push({ w, segs }); changed++; why(c, "změněno"); } else why(c, lastWhy || "zamítnuto");
+    if (segs) { out.push({ w, segs }); changed++; why(c, `změněno, čáry ${found.map((l, i) => `${l.toFixed(2)}${found.solid?.[i] ? "=" : "-"}`).join(" ")}, pravidla ${w.parts.map((p) => p.seg.type + p.seg.width).join(" ")}`); } else why(c, lastWhy || "zamítnuto");
     lastWhy = "";
   }
   // Put the new parts in place of the roadways' old ones (back in screen order).
@@ -924,6 +925,10 @@ function measured(w, c, lines, solid = [], fine = true) {
   // After that every lane must still look like one, or the rules' profile stays.
   if (list.some((p) => p.kind === "pruh" && (p.w < LANE_MIN - 0.2 || p.w > (p.wide ? LANE_MAX + LANE_MIN : LANE_MAX + 0.25)))) return fail("závěrečná kontrola šířek");
   const oldLanes = w.parts.filter((p) => p.seg.type === "pruh"), lanes = list.filter((p) => p.kind === "pruh");
+  // One lane wider than a lane is where the rules had two (a two-way road): the centre line was not found, and the one found
+  // (a worn trace, a patch) is no edge line (silnice 230 by Mariánské Lázně: 6.45 m, a line 1.3 m from the kerb made a lane of
+  // 4.73 m and a shoulder of 1.7 m). The rules' lanes stay. ?off=obousmerka.
+  if (!OFF("obousmerka") && had >= 2 && lanes.length < had && lanes.some((p) => p.w > ONE_LANE_MAX)) return fail("jeden široký pruh, pravidla mají víc");
   let li = 0;
   const segs = list.map((p) => {
     if (p.kind === "krajnice" || p.kind === "stred") return { type: "krajnice", width: +p.w.toFixed(2), source: p.rules ? "odhad" : "ortofoto" };
