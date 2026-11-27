@@ -1265,10 +1265,11 @@ function drawPrahaBuilding(g, x, side, surface, info, chosen) {
     const zr = top + 200;
     box(EDGE - 110, EDGE - 66, zr - 30, zr + 70, tint(wall, 0.95));
     box(EDGE - 116, EDGE - 60, zr + 62, zr + 72, tint(wall, 0.7));
-    box(30, EDGE, top, zr, tile[0]);
-    for (let z = top + 30; z < zr - 8; z += 30) box(30, EDGE, z, z + 4, tile[1], { "fill-opacity": 0.6 });
-    box(30, EDGE, zr - 8, zr + 4, tile[1]);
-    box(EDGE - 150, EDGE - 100, top + 70, top + 130, tint(tile[1], 0.8)); // a roof light
+    poly([[-24, top - 6], [14, zr], [EDGE, zr], [EDGE, top - 6]], tile[0]); // the slope runs down to the cornice, its foot cut slanting
+    for (let z = top + 30; z < zr - 8; z += 30) box(8 + (z - top) * 0.1, EDGE, z, z + 4, tile[1], { "fill-opacity": 0.6 });
+    box(14, EDGE, zr - 8, zr + 4, tile[1]);
+    box(-26, EDGE, top - 8, top + 6, tint(tile[1], 0.85)); dot(-26, top - 2, 7, tint(tile[1], 0.7)); // the eaves' gutter
+    box(EDGE - 154, EDGE - 96, top + 66, top + 134, "#e9e4d8", outline); box(EDGE - 146, EDGE - 104, top + 74, top + 126, GLASS); box(EDGE - 127, EDGE - 123, top + 74, top + 126, "#e9e4d8"); // a roof light: frame, glass
   } else if (gableOn(kind)) {
     drawGable();
   } else if (GABLE_RISE[kind]) {
@@ -1340,9 +1341,9 @@ function drawPrahaBuilding(g, x, side, surface, info, chosen) {
       box(-25, EDGE, z, z + 5, tile[1], { "fill-opacity": 0.55 }); // rows of tiles
       for (let d = i % 2 ? -5 : 15; d < EDGE; d += 40) box(d, d + 3, z - 29, z, tile[1], { "fill-opacity": 0.35 }); // and their joints
     }
-    box(EDGE - 120, EDGE - 70, top + 140, top + 200, tint(tile[1], 0.8)); // a roof light
+    box(EDGE - 124, EDGE - 66, top + 136, top + 204, "#e9e4d8", outline); box(EDGE - 116, EDGE - 74, top + 144, top + 196, GLASS); box(EDGE - 97, EDGE - 93, top + 144, top + 196, "#e9e4d8"); // a roof light: frame, glass
     box(-25, EDGE, zr - 10, zr + 6, tile[1]); // ridge tiles
-    box(-25, EDGE, top - 22, top - 10, tint(tile[1], 0.85)); // gutter
+    box(-27, EDGE, top - 24, top - 10, "#6b6f72", outline); dot(-27, top - 17, 7, "#6b6f72"); // gutter
     box(-30, -12, top - 22, zr + 8, "#8a6a4a", outline); // the verge board of the gable, edge-on
     box(0, EDGE, top - 40, top - 22, shade); // shadow under the eaves
   } else if (style === "sikma" && f.roofRows) {
@@ -1401,7 +1402,7 @@ function drawPrahaBuilding(g, x, side, surface, info, chosen) {
       box(dc - 24, dc + 24, top, z(dc) + 100, "#c46a4b");
       box(dc - 32, dc + 32, z(dc) + 90, z(dc) + 102, "#8d4a34");
     }
-    poly([[0, top], [Math.min(ridge, EDGE), z(Math.min(ridge, EDGE)) - 12], [EDGE, z(EDGE) - 12], [EDGE, top]], ["kostka", "vila", "sorela", "typovy", "mestan", "skola", "kostel"].includes(kind) ? tint(tile[0], 1.08)
+    poly([[0, top], [Math.min(ridge, EDGE), z(Math.min(ridge, EDGE)) - 12], [EDGE, z(EDGE) - 12], [EDGE, top]], ["kostka", "vila", "sorela", "typovy", "mestan", "skola", "kostel", "dansky"].includes(kind) ? tint(tile[0], 1.08)
       : tenementGable(kind, f.roofRows, f.flat) ? tint(wall, 1.04) : shade, outline); // a hipped roof shows its slope; a tenement's gable is its plastered wall
     const slab = (d0, d1) => {
       poly([[d0, z(d0)], [d1, z(d1)], [d1, z(d1) + 30], [d0, z(d0) + 30]], tile[0]);
@@ -1849,7 +1850,7 @@ function drawPrahaBuilding(g, x, side, surface, info, chosen) {
     const gAxes = gableOn(kind) ? gableAxes(kind) : null, dd = gAxes ? gAxes[0] - 65 : 0;
     if (kind === "statek") {
       // A village house: no door by the street; small windows with a cross, the plank door into the yard behind.
-      for (const d of [60, 170]) window(d, f.ground * win.sill, win.w, win.h * f.storey, d);
+      for (const d of [60, 170]) window(d, f.ground * win.sill, win.w, win.h * f.storey, d); // (the upper floors keep these two axes)
       box(262, 352, 0, 205, tint(wall, 0.8));
       box(268, 346, 0, 199, DOOR);
       for (let d = 281; d < 346; d += 13) box(d - 1, d + 1, 0, 199, tint(DOOR, 0.8));
@@ -1942,7 +1943,7 @@ function drawPrahaBuilding(g, x, side, surface, info, chosen) {
         box(0, EDGE, z + 0.24 * h, z + 0.28 * h, "#f4f4f0");
         continue;
       }
-      for (const [i, c] of (gAxes || colAxes(win.w)).entries()) {
+      for (const [i, c] of (gAxes || (kind === "statek" ? [95, 205] : colAxes(win.w))).entries()) {
         win2(c - win.w / 2, floorZ(k) + win.sill * f.storey, win.w, win.h * f.storey, k * 3 + i);
       }
     }
