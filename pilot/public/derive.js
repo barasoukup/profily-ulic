@@ -531,9 +531,22 @@ function ownParking(el, osm, frame, way) {
   }
   return !best || best.w.id === way.id || (way.tags?.name && best.w.tags.name === way.tags.name);
 }
+// A parking area mapped as a plain lot (parking=surface or no type) but drawn as a narrow strip along a street is the
+// street's roadside parking (Krátká, Česká Třebová: a 4 m strip 150 m long, its angled stalls were drawn as the estimated
+// parallel ones on both sides). A lot is deeper: mean depth (area / length) up to STRIP_DEPTH_MAX and long (?off=stripparking).
+const STRIP_DEPTH_MAX = 6, STRIP_ELONGATION = 3, STRIP_LENGTH_MIN = 30; // m: a shorter bit is a lot's corner
+function isParkingStrip(el, frame) {
+  if (ORTHO_P.off?.has("stripparking") || !(el.tags.parking === "surface" || el.tags.parking === undefined) || el.holes?.length) return false;
+  const ring = el.geometry.map((g) => frame.toXY(g.lon, g.lat));
+  let area = 0, length = 0;
+  for (let i = 0, j = ring.length - 1; i < ring.length; j = i++) area += ring[j][0] * ring[i][1] - ring[i][0] * ring[j][1];
+  for (let i = 0; i < ring.length; i++) for (let j = i + 1; j < ring.length; j++) length = Math.max(length, Math.hypot(ring[i][0] - ring[j][0], ring[i][1] - ring[j][1]));
+  const depth = Math.abs(area) / 2 / (length || 1);
+  return depth <= STRIP_DEPTH_MAX && length >= Math.max(STRIP_ELONGATION * depth, STRIP_LENGTH_MIN);
+}
 function osmParkingPolygons(osm, frame, way) {
   return (osm.elements || [])
-    .filter((el) => el.type === "area" && el.tags?.amenity === "parking" && STREET_PARKING.has(el.tags.parking) && ownParking(el, osm, frame, way))
+    .filter((el) => el.type === "area" && el.tags?.amenity === "parking" && (STREET_PARKING.has(el.tags.parking) || isParkingStrip(el, frame)) && ownParking(el, osm, frame, way))
     .map((el) => {
       const rings = [el.geometry, ...(el.holes || [])].map((r) => r.map((g) => frame.toXY(g.lon, g.lat)));
       // parking=lane is parking in the roadway, parallel unless OSM says otherwise: its area drawn roughly deep does not
