@@ -558,7 +558,7 @@ function drawItem(g, it, x, top, right) {
       // A tram stop's own shelter where the city has one (Prague, Brno), else the bus stop's.
       const name = it.tram && ownSprite(`transit-shelter-tram-${side}`) ? `transit-shelter-tram-${side}` : `transit-shelter-01-${side}`;
       sprite(g, name, x, top);
-      if (it.kind === "pristresek_zeleny") greenRoof(g, name, x, top, right); // eslint-disable-line no-undef -- greenRoof is defined nowhere: a ReferenceError for a green-roof shelter without the city's own picture (found by lint 27. 11. 2026, docs/backlog.md)
+      if (it.kind === "pristresek_zeleny") greenRoof(g, name, x, top, right);
       return;
     }
     case "sloupek": return sprite(g, "bollard", x, top);

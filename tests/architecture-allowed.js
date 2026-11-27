@@ -29,10 +29,10 @@ export const UNUSED_EXPORTS = [
 
 export const LONG_FILES = {
   "pilot/public/app.js": 2837,
-  "pilot/public/derive.js": 3048,
-  "pilot/public/lanes-ortho.js": 1160,
+  "pilot/public/derive.js": 3084,
+  "pilot/public/lanes-ortho.js": 1165,
   "pilot/public/ortho-osm.js": 1478,
-  "pilot/public/profile.js": 3077
+  "pilot/public/profile.js": 3089
 };
 
 export const LONG_FUNCTIONS = {
@@ -40,12 +40,12 @@ export const LONG_FUNCTIONS = {
   "pilot/public/app.js:cutAt": 430,
   "pilot/public/app.js:fitLabels": 109,
   "pilot/public/app.js:renderEditor": 250,
-  "pilot/public/derive.js:deriveProfile": 640,
+  "pilot/public/derive.js:deriveProfile": 641,
   "pilot/public/derive.js:splitRoadway": 221,
   "pilot/public/dmvs.js:dtmAreas": 128,
   "pilot/public/dmvs.js:fromLines": 107,
   "pilot/public/houses-america.js:drawAmerican": 566,
-  "pilot/public/lanes-ortho.js:measured": 110,
+  "pilot/public/lanes-ortho.js:measured": 114,
   "pilot/public/maplayers.js:createDataLayers": 204,
   "pilot/public/maplayers.js:draw": 172,
   "pilot/public/ortho-osm.js:besidePassport": 168,

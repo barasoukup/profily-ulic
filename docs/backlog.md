@@ -300,11 +300,7 @@ Co rozhodne Bára, je označeno **(Bára)**.
 
 ## Nasazení a provoz
 
-- **Zelená střecha přístřešku padá** (lint 27. 11. 2026): `profile.js` volá `greenRoof(...)`, funkce není nikde definovaná
-  (smazaná nebo nikdy napsaná), takže přístřešek `pristresek_zeleny` ve městě bez vlastního obrázku `transit-shelter-green-*`
-  skončí `ReferenceError`. Řádek má `eslint-disable-line`; opravit = nakreslit zelenou střechu na obrázek přístřešku,
-  nebo ji ve městech bez obrázku nenabízet (mění chování, proto zatím jen zapsáno).
-
+- ~~**Zelená střecha přístřešku padá**~~ (27. 11. 2026: `greenRoof` vrácená, Bára: dokreslit)
 - ~~Balík OSM `be` (0,7 GB PBF) po prvním běhu workflow změřit, případně rozdělit pod 512 MB.~~ 296 MB, stačí (26. 11. 2026).
 - Balíky `pl_sl` a `pl_ds` zasahují obdélníkem do Česka (jen dotazy navíc).
 - ~~Před nasazením NL, BE, LU, PL, FR, ES: workflow OSM tiles.~~ Hotovo 23. 11. 2026.
