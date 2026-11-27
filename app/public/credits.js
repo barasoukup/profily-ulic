@@ -15,158 +15,158 @@ export const CANTONS = ["AG", "AI", "AR", "BE", "BL", "BS", "FR", "GE", "GL", "G
 export const SOURCE_CREDITS = {
   // A Czech town's passport over the DTM (towns/passports.js).
   passport: Object.fromEntries(Object.keys(PASSPORT_NAMES).map((id) => [id, () => (GREEN_PASSPORTS.has(id)
-    ? t("pasport zeleně © {town}", { town: PASSPORT_NAMES[id] })
-    : t("pasport komunikací © {town}", { town: PASSPORT_NAMES[id] }))])),
+    ? t("credits.greenInventoryTown", { town: PASSPORT_NAMES[id] })
+    : t("credits.roadInventoryTown", { town: PASSPORT_NAMES[id] }))])),
   // ČÚZK's orthophoto, where it was read (a tram bed, the lanes, the estimate's kerbs).
-  ortho: { true: () => t("ortofoto © ČÚZK, 2025 (CC BY 4.0)") },
+  ortho: { true: () => t("credits.orthophotoCuzk2025Cc") },
   // A city's or a state's own orthophoto (lanes-ortho.js).
   orthoCity: {
-    ipr: () => t("ortofoto © IPR Praha, 2024"), brno: () => t("ortofoto © Statutární město Brno, 2025"), plzen: () => t("ortofoto © Statutární město Plzeň, 2024"),
-    sk: () => t("ortofoto © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)"), at: () => t("ortofoto © basemap.at (CC BY 4.0)"),
-    at19: () => t("ortofoto © basemap.at (CC BY 4.0)"),
-    ch: () => t("ortofoto SWISSIMAGE © swisstopo"),
-    nl: () => t("ortofoto © Beeldmateriaal.nl (PDOK, CC BY 4.0)"),
-    "be-vl": () => t("ortofoto: Bron: Luchtopnamen Digitaal Vlaanderen (Modellicentie gratis hergebruik v1.0)"), "be-wal": () => t("ortofoto © SPW (Service public de Wallonie, CC BY 4.0)"),
-    lu: () => t("ortofoto © ACT Luxembourg (geoportail.lu, CC0)"),
-    pl: () => t("ortofoto © GUGiK (Geoportal.gov.pl)"),
-    fr: () => t("ortofoto © IGN (Géoplateforme)"),
-    es: () => t("ortofoto PNOA © IGN (CC BY 4.0)"),
-    "pt-25": () => t("ortofoto © DGT"),
-    cy: () => `${t("ortofoto © DLS Kypr")}, 2019`, // the flight's year as in the footer (Bára 27. 11. 2026)
-    mt: () => t("ortofoto © Planning Authority Malta, 2018 (CC BY 4.0)"),
-    ee: () => t("ortofoto © Maa- ja Ruumiamet, nálet 2024 (stav dlaždic 11/2026)"),
-    si: () => t("ortofoto DOF025 © Geodetska uprava RS, stav 11/2026 (CC BY 4.0)"),
+    ipr: () => t("credits.orthophotoIprPraha2024"), brno: () => t("credits.orthophotoStatutarniMestoBrno"), plzen: () => t("credits.orthophotoStatutarniMestoPlzen"),
+    sk: () => t("credits.orthophotoGkuBratislavaNlc"), at: () => t("credits.orthophotoBasemapCc4"),
+    at19: () => t("credits.orthophotoBasemapCc4"),
+    ch: () => t("common.orthophotoSwissimageSwisstopo"),
+    nl: () => t("common.orthophotoBeeldmateriaalNlPdok"),
+    "be-vl": () => t("credits.orthophotoBronLuchtopnamenDigitaal"), "be-wal": () => t("credits.orthophotoSpwServicePublic"),
+    lu: () => t("common.orthophotoActLuxembourgGeoportail"),
+    pl: () => t("common.orthophotoGugikGeoportalGov"),
+    fr: () => t("common.orthophotoIgnGeoplateforme"),
+    es: () => t("common.pnoaOrthophotoIgnCc"),
+    "pt-25": () => t("common.orthophotoDgt"),
+    cy: () => `${t("common.orthophotoDlsCyprus")}, 2019`, // the flight's year as in the footer (Bára 27. 11. 2026)
+    mt: () => t("credits.orthophotoPlanningAuthorityMalta"),
+    ee: () => t("common.orthophotoMaaJaRuumiamet"),
+    si: () => t("credits.orthophotoDof025GeodetskaUprava"),
     // Finland: the towns' orthophotos (lanes-ortho.js FI_ORTHO).
-    "fi-hki": () => t("ortofoto © Helsingin kaupunki, kaupunkimittauspalvelut (CC BY 4.0)"),
-    "fi-esp": () => t("ortofoto © Espoon kaupunki (CC BY 4.0)"),
-    "fi-tku": () => t("ortofoto © Turun kaupunki, 2022 (CC BY 4.0)"),
+    "fi-hki": () => t("credits.orthophotoHelsinginKaupunkiKaupunkimittauspalvel"),
+    "fi-esp": () => t("credits.orthophotoEspoonKaupunkiCc"),
+    "fi-tku": () => t("credits.orthophotoTurunKaupunki2022"),
     // The USA: DC's orthophoto (lanes-ortho.js US_ORTHO).
-    "us-dc": () => t("ortofoto © DC Office of the Chief Technology Officer, 2025 (CC BY 4.0)"),
-    "us-nyc": () => t("ortofoto © NYS ITS Geospatial Services, 2024"),
-    "us-ma": () => t("ortofoto © MassGIS (Bureau of Geographic Information), 2025"),
-    "ca-tor": () => t("ortofoto © City of Toronto, 2025 (Open Government Licence – Toronto)"),
+    "us-dc": () => t("credits.orthophotoDcOfficeChief"),
+    "us-nyc": () => t("credits.orthophotoNysGeospatialServices"),
+    "us-ma": () => t("credits.orthophotoMassgisBureauGeographic"),
+    "ca-tor": () => t("credits.orthophotoCityToronto2025"),
     // Denmark: GeoDanmark's spring orthophoto through Dataforsyningen, credited as its terms ask (evaluation/denmark/SOURCES.md 1).
-    dk: () => t("ortofoto: Indeholder data fra Styrelsen for Dataforsyning og Infrastruktur, Ortofoto forår, WMTS-tjeneste"),
-    "it-bo": () => t("ortofoto © Comune di Bologna, Regione Emilia-Romagna (CC BY 4.0)"),
-    "it-mo": () => t("ortofoto © Comune di Modena, Regione Emilia-Romagna (CC BY 4.0)"),
-    "it-to": () => t("ortofoto {who}", { who: TO_ORTHO_WHO }),
-    "it-bz": () => t("ortofoto © Provincia autonoma di Bolzano (CC BY 4.0)"),
-    "pt-21": () => t("ortofoto © DGT"),
-    "pt-18": () => t("ortofoto © DGT"),
-    "pt-sat": () => t("ortofoto © DGT"),
+    dk: () => t("common.orthophotoIndeholderDataFra"),
+    "it-bo": () => t("credits.orthophotoComuneDiBologna"),
+    "it-mo": () => t("credits.orthophotoComuneDiModena"),
+    "it-to": () => t("common.orthophotoWho", { who: TO_ORTHO_WHO }),
+    "it-bz": () => t("credits.orthophotoProvinciaAutonomaDi"),
+    "pt-21": () => t("common.orthophotoDgt"),
+    "pt-18": () => t("common.orthophotoDgt"),
+    "pt-sat": () => t("common.orthophotoDgt"),
     // Germany: the orthophoto of the Land (lanes-ortho.js DE_ORTHO, "de-BY" …), with the credit the Land asks for.
-    ...Object.fromEntries(Object.entries(DE_ORTHO).map(([land, o]) => [`de-${land}`, () => t("ortofoto {who}", { who: o.credit })])),
+    ...Object.fromEntries(Object.entries(DE_ORTHO).map(([land, o]) => [`de-${land}`, () => t("common.orthophotoWho", { who: o.credit })])),
   },
   // Bratislava's technical map (towns/slovakia.js, ?tm=1).
-  skTm: { true: () => t("technická mapa © Hlavné mesto SR Bratislava") },
+  skTm: { true: () => t("credits.technicalMapCityBratislava") },
   // A Slovak town's passport where the cut took its surfaces (towns/slovakia.js SK_TOWNS).
   skTown: {
-    bratislava: () => t("pasport komunikácií © Hlavné mesto SR Bratislava a MČ Dúbravka, © EUROSENSE SLOVAKIA, s.r.o."), presov: () => t("pasport dopravy a zelene © mesto Prešov (CC BY 4.0)"),
-    zilina: () => t("pasport komunikácií © mesto Žilina"), bystrica: () => t("pasport komunikácií © mesto Banská Bystrica"), kosice: () => t("pasport komunikácií © mesto Košice"),
-    zvolen: () => t("komunikácie a spevnené plochy © mesto Zvolen"),
+    bratislava: () => t("credits.roadInventoryCityBratislava"), presov: () => t("credits.inventoryRoadsGreenCity"),
+    zilina: () => t("credits.roadInventoryCityZilina"), bystrica: () => t("credits.roadInventoryCityBanska"), kosice: () => t("credits.roadInventoryMestoKosice"),
+    zvolen: () => t("credits.roadsPavedAreasCity"),
   },
   // The lines of a town's map that placed the kerbs (towns/slovakia.js EDGE_SOURCES).
   skEdges: {
-    nitra: () => t("kresba © mesto Nitra"), piestany: () => t("kresba © mesto Piešťany"), zvolen: () => t("kresba © mesto Zvolen"), hlohovec: () => t("polohopis © mesto Hlohovec"),
-    presov: () => t("hranice druhov pozemkov © mesto Prešov (CC BY 4.0)"), "bratislava-tm": () => t("technická mapa © Hlavné mesto SR Bratislava"),
+    nitra: () => t("credits.mapDrawingCityNitra"), piestany: () => t("credits.mapDrawingCityPiestany"), zvolen: () => t("credits.mapDrawingCityZvolen"), hlohovec: () => t("credits.planimetryCityHlohovec"),
+    presov: () => t("credits.landUseBoundariesCity"), "bratislava-tm": () => t("credits.technicalMapCityBratislava"),
     // Belgium's regions (towns/belgium.js).
-    grb: () => t("čáry GRB: Bron: Grootschalig Referentie Bestand Vlaanderen, Digitaal Vlaanderen (Modellicentie gratis hergebruik v1.0)"), picc: () => t("čáry PICC © SPW (Service public de Wallonie, CC BY 4.0)"),
+    grb: () => t("credits.grbLinesBronGrootschalig"), picc: () => t("credits.piccLinesSpwService"),
     // Copenhagen's kerb lines (towns/denmark.js, on; ?kbhkant=0 leaves them out).
-    "kbh-vejkant": () => t("okraje vozovek (GeoDanmark) © Københavns Kommune"),
+    "kbh-vejkant": () => t("credits.carriagewayEdgesGeodanmarkK"),
   },
   // Salzburg's cadastre of signs and Vienna's Flächen-Mehrzweckkarte (towns/austria.js).
-  atSigns: { salzburg: () => t("dopravní značky © Stadt Salzburg (CC BY 3.0 AT)") },
+  atSigns: { salzburg: () => t("credits.trafficSignsStadtSalzburg") },
   // The signs of Cyprus and Malta drawn after British ones (countries/CY.js, MT.js signs.ogl): the Open Government
   // Licence v1.0 asks for this sentence where the Stav shows one.
-  ukSigns: { true: () => t("dopravní značky: Contains public sector information licensed under the Open Government Licence v1.0 (UK Department for Transport)") },
-  atTown: { wien: () => t("mapa povrchů (FMZK) © Stadt Wien – data.wien.gv.at (CC BY 4.0)") },
+  ukSigns: { true: () => t("credits.trafficSignsContainsPublic") },
+  atTown: { wien: () => t("credits.surfaceMapFmzkStadt") },
   // The street surfaces of German cities (towns/germany.js).
   deTown: {
-    berlin: () => t("povrchy ulic (Straßenbefahrung 2014) © Geoportal Berlin (dl-de/zero-2-0)"),
-    hamburg: () => t("povrchy ulic (Feinkartierung Straße) © Freie und Hansestadt Hamburg (dl-de/by-2-0)"),
-    aachen: () => t("povrchy ulic (Straßendatenbank) © Stadt Aachen (dl-de/zero-2-0)"),
+    berlin: () => t("credits.streetSurfacesStraEnbefahrung"),
+    hamburg: () => t("credits.streetSurfacesFeinkartierungStra"),
+    aachen: () => t("credits.streetSurfacesStraEndatenbank"),
   },
   // The land cover of the official cadastral survey of Switzerland and Liechtenstein (towns/switzerland.js), by the
   // canton whose survey it is (geodienste.ch).
-  chAv: Object.fromEntries([...CANTONS, "CH"].map((c) => [c, () => (c === "FL" || c === "LI" ? t("úřední vyměřování (Bodenbedeckung) © Fürstentum Liechtenstein (geodienste.ch)")
-    : c === "CH" ? t("úřední vyměřování (Bodenbedeckung) © kantony (geodienste.ch)") : t("úřední vyměřování (Bodenbedeckung) © kanton {canton} (geodienste.ch)", { canton: c }))])),
+  chAv: Object.fromEntries([...CANTONS, "CH"].map((c) => [c, () => (c === "FL" || c === "LI" ? t("credits.officialCadastralSurveyBodenbedeckung")
+    : c === "CH" ? t("credits.officialCadastralSurveyBodenbedeckungCantons") : t("credits.officialCadastralSurveyBodenbedeckungCanton", { canton: c }))])),
   // The Netherlands' national large-scale topography (towns/netherlands.js).
   // Kraków's base map (towns/poland.js).
-  plTown: { krakow: () => t("mapa povrchů (MJO) © Gmina Miejska Kraków") },
+  plTown: { krakow: () => t("credits.surfaceMapMjoGmina") },
   // Paris's Plan de voirie (towns/france.js).
-  frTown: { paris: () => t("mapa povrchů (Plan de voirie) © Ville de Paris") },
+  frTown: { paris: () => t("credits.surfaceMapPlanDe") },
   // Zaragoza's paving map (towns/spain.js).
-  esTown: { zaragoza: () => t("mapa povrchů © Ayuntamiento de Zaragoza (IDEZar)") },
+  esTown: { zaragoza: () => t("credits.surfaceMapAyuntamientoDe") },
   // The buildings of the foral cadastres of Navarre and the Basque provinces (towns/spain-foral.js), in the words each
   // service asks for (Navarre: this sentence with CC BY 4.0; Gipuzkoa: the author named).
   esForal: {
-    nc: () => t("budovy {who}", { who: "Servicio proporcionado por el Gobierno de Navarra (CC BY 4.0)" }),
-    gi: () => t("budovy {who}", { who: "© Gipuzkoako Foru Aldundia" }),
-    bi: () => t("budovy {who}", { who: "© Bizkaiko Foru Aldundia – Diputación Foral de Bizkaia" }),
-    ar: () => t("budovy {who}", { who: "© Diputación Foral de Álava – Arabako Foru Aldundia" }),
+    nc: () => t("credits.buildingsWho", { who: "Servicio proporcionado por el Gobierno de Navarra (CC BY 4.0)" }),
+    gi: () => t("credits.buildingsWho", { who: "© Gipuzkoako Foru Aldundia" }),
+    bi: () => t("credits.buildingsWho", { who: "© Bizkaiko Foru Aldundia – Diputación Foral de Bizkaia" }),
+    ar: () => t("credits.buildingsWho", { who: "© Diputación Foral de Álava – Arabako Foru Aldundia" }),
   },
   // The buildings of the national Catastro (towns/spain.js), where it told of a house (Bára 27. 11. 2026: in the exports too).
-  esCatastro: { true: () => t("budovy {who}", { who: "© Dirección General del Catastro" }) },
+  esCatastro: { true: () => t("credits.buildingsWho", { who: "© Dirección General del Catastro" }) },
   // Bologna's road areas (towns/italy.js).
   // The buildings of Slovenia's cadastre (towns/slovenia.js), where they told of a house.
-  siGurs: { true: () => t("budovy © Geodetska uprava RS (kataster stavb, stav 11/2026, CC BY 4.0)") },
-  eeTown: { tallinn: () => t("mapa povrchů Tallinnu (tar_maakate, stav 11/2026) © Tallinna Linnaplaneerimise Amet") },
+  siGurs: { true: () => t("credits.buildingsGeodetskaUpravaRs") },
+  eeTown: { tallinn: () => t("credits.tallinnSurfaceMapTar") },
   // The buildings of Estonia's topographic database (towns/estonia.js), where they told of a house.
-  eeEtak: { true: () => t("budovy ETAK © Maa- ja Ruumiamet (stav 11/2026)") },
+  eeEtak: { true: () => t("credits.etakBuildingsMaaJa") },
   // Vilnius's topographic areas 1 : 500 (towns/lithuania.js).
-  ltTown: { vilnius: () => t("mapa povrchů (topografické plochy 1 : 500) © Vilniaus miesto savivaldybė / Vilniaus planas") },
-  ltGrpk: { true: () => t("budovy GRPK © Lietuvos Respublikos aplinkos ministerija (CC BY 4.0)") },
-  cyDls: { true: () => t("budovy © Department of Lands and Surveys (DLS, CC BY 4.0)") },
+  ltTown: { vilnius: () => t("credits.surfaceMapTopographicAreas") },
+  ltGrpk: { true: () => t("credits.buildingsGrpkLietuvosRespublikos") },
+  cyDls: { true: () => t("credits.buildingsDepartmentLandsSurveys") },
   // DC's Planimetrics and DDOT's inventory (towns/usa.js).
-  cityMap: { dc: () => t("mapa povrchů (Planimetrics 2023) © DC GIS, Office of the Chief Technology Officer (CC BY 4.0)"),
+  cityMap: { dc: () => t("credits.surfaceMapPlanimetrics2023"),
     // Toronto's topographic mapping (towns/canada.js), with the statement its licence asks for.
-    toronto: () => t("mapa povrchů: Contains information licensed under the Open Government Licence – Toronto."),
+    toronto: () => t("credits.surfaceMapContainsInformation"),
     // New York's planimetrics (towns/newyork.js).
-    nyc: () => t("mapa povrchů (NYC Planimetric Database 2022) © NYC Office of Technology and Innovation (NYCmaps, NYC Open Data)"),
+    nyc: () => t("credits.surfaceMapNycPlanimetric"),
     // San Francisco's right of way, kerbs and buildings (towns/sanfrancisco.js; PDDL asks for no credit, the city is named).
-    sf: () => t("mapa povrchů (Right of Way, Curbs, Building Footprints) © City and County of San Francisco, DataSF a SFMTA (PDDL)"),
+    sf: () => t("credits.surfaceMapRightWay"),
     // Boston's and Cambridge's (towns/boston.js), both under the PDDL (no credit asked, given).
-    boston: () => t("mapa povrchů (Street Edges, Sidewalk Inventory, budovy) © City of Boston (ODC PDDL)"),
-    cambridge: () => t("mapa povrchů © City of Cambridge GIS (ODC PDDL)") },
+    boston: () => t("credits.surfaceMapStreetEdges"),
+    cambridge: () => t("credits.surfaceMapCityCambridge") },
   // San Francisco's digital curb (towns/sanfrancisco.js), where it placed the parking.
-  sfCurb: { true: () => t("stání (Digital Curb) © SFMTA, DataSF (PDDL)") },
-  nycSigns: { true: () => t("stání (Parking Regulation Locations and Signs) © NYC DOT, NYC Open Data") },
+  sfCurb: { true: () => t("credits.parkingDigitalCurbSfmta") },
+  nycSigns: { true: () => t("credits.parkingRegulationLocationsSigns") },
   // San Francisco's building heights, where they gave the floors.
-  sfHouse: { true: () => t("výšky domů © City and County of San Francisco, DataSF (PDDL)") },
-  usHouse: { boston: () => t("podlaží domů © City of Boston (ODC PDDL)") },
-  caHouse: { true: () => t("výšky domů © City of Toronto (Open Government Licence – Toronto)") },
+  sfHouse: { true: () => t("credits.buildingHeightsCityCounty") },
+  usHouse: { boston: () => t("credits.buildingStoreysCityBoston") },
+  caHouse: { true: () => t("credits.buildingHeightsCityToronto") },
   // DC's assessment tables, where they told of a house.
-  usCama: { true: () => t("domy (CAMA) © DC Office of Tax and Revenue, DC GIS (CC BY 4.0)") },
-  usDdot: { true: () => t("pruhy a stání (Roadway SubBlock) © DDOT, DC GIS (CC BY 4.0)") },
+  usCama: { true: () => t("credits.housesCamaDcOffice") },
+  usDdot: { true: () => t("credits.lanesParkingRoadwaySubblock") },
   // New York's building footprints, where they told of a house (towns/newyork.js).
-  nycHouse: { true: () => t("budovy {who}", { who: "© NYC Office of Technology and Innovation (NYCmaps, NYC Open Data)" }) },
+  nycHouse: { true: () => t("credits.buildingsWho", { who: "© NYC Office of Technology and Innovation (NYCmaps, NYC Open Data)" }) },
   // Helsinki's register of public areas (towns/finland.js).
-  fiTown: { helsinki: () => t("mapa povrchů (Yleisten alueiden rekisteri) © Helsingin kaupunki (CC BY 4.0)") },
+  fiTown: { helsinki: () => t("credits.surfaceMapYleistenAlueiden") },
   // The buildings of Helsinki's register or of Ryhti (towns/finland.js), where they told of a house.
   // The buildings of Copenhagen or Aarhus (towns/denmark.js), where they told of a house.
   dkBuild: {
-    kbh: () => t("budovy (BBR, GeoDanmark) © Københavns Kommune"),
-    aar: () => t("budovy (BBR) © Aarhus Kommune (CC BY 4.0)"),
-    both: () => `${t("budovy (BBR, GeoDanmark) © Københavns Kommune")}, ${t("budovy (BBR) © Aarhus Kommune (CC BY 4.0)")}`,
+    kbh: () => t("credits.buildingsBbrGeodanmarkK"),
+    aar: () => t("credits.buildingsBbrAarhusKommune"),
+    both: () => `${t("credits.buildingsBbrGeodanmarkK")}, ${t("credits.buildingsBbrAarhusKommune")}`,
   },
   // Copenhagen's parking areas (towns/denmark.js, on; ?kbhpark=0 leaves them out).
-  dkParking: { true: () => t("parkovací plochy © Københavns Kommune") },
+  dkParking: { true: () => t("credits.parkingAreasKBenhavns") },
   fiBuild: {
-    hki: () => t("budovy © Helsingin kaupunki (CC BY 4.0)"),
-    ryhti: () => t("budovy © Suomen ympäristökeskus SYKE (Ryhti, CC BY 4.0)"),
-    both: () => `${t("budovy © Helsingin kaupunki (CC BY 4.0)")}, ${t("budovy © Suomen ympäristökeskus SYKE (Ryhti, CC BY 4.0)")}`,
+    hki: () => t("credits.buildingsHelsinginKaupunkiCc"),
+    ryhti: () => t("credits.buildingsSuomenYmparistokeskusSyke"),
+    both: () => `${t("credits.buildingsHelsinginKaupunkiCc")}, ${t("credits.buildingsSuomenYmparistokeskusSyke")}`,
   },
   // Bologna's Carta tecnica and Lombardy's DBT (towns/italy.js, towns/lombardy.js).
-  itTown: { bologna: () => t("mapa povrchů (Carta tecnica comunale) © Comune di Bologna (CC BY 4.0)"), lombardia: () => t("mapa povrchů (Database Topografico) © Regione Lombardia (CC BY 4.0)") },
+  itTown: { bologna: () => t("credits.surfaceMapCartaTecnica"), lombardia: () => t("credits.surfaceMapDatabaseTopografico") },
   // Flanders' road corridors WBN and their division WGO (towns/belgium.js), in the words the licence asks for.
-  beTown: { grb: () => t("mapa povrchů (GRB): {who}", { who: "Bron: Grootschalig Referentie Bestand Vlaanderen, Digitaal Vlaanderen (Modellicentie gratis hergebruik v1.0)" }) },
-  nlBgt: { true: () => t("mapa povrchů BGT © Kadaster a správci BGT (PDOK, CC0)") },
+  beTown: { grb: () => t("credits.surfaceMapGrbWho", { who: "Bron: Grootschalig Referentie Bestand Vlaanderen, Digitaal Vlaanderen (Modellicentie gratis hergebruik v1.0)" }) },
+  nlBgt: { true: () => t("credits.bgtSurfaceMapKadaster") },
   // Amsterdam's parking spaces (towns/netherlands.js).
-  amsParking: { true: () => t("parkovací místa © Gemeente Amsterdam") },
+  amsParking: { true: () => t("credits.parkingSpacesGemeenteAmsterdam") },
   // ZBGIS's roads, car parks and lawns in the estimate (towns/slovakia.js).
-  zbgis: { true: () => t("cesty, parkoviská a tráva © GKÚ Bratislava (ZBGIS, CC BY 4.0)") },
+  zbgis: { true: () => t("credits.roadsCarParksGrass") },
   // The carriageway's kerbs read by the AI model (ai-kerbs.js, ?ai=1): the surface maps and OSM it learnt on.
-  aiKerbs: { true: () => t("obruby vozovky: model AI učený na mapách povrchů {who}", { who: "© IPR Praha, Stadt Wien – data.wien.gv.at (CC BY 4.0), Geoportal Berlin (dl-de/zero-2-0), Freie und Hansestadt Hamburg (dl-de/by-2-0)" }) },
+  aiKerbs: { true: () => t("credits.carriagewayKerbsAiModel", { who: "© IPR Praha, Stadt Wien – data.wien.gv.at (CC BY 4.0), Geoportal Berlin (dl-de/zero-2-0), Freie und Hansestadt Hamburg (dl-de/by-2-0)" }) },
 };
 
 // The credit line of one key and value, or null for one not listed.

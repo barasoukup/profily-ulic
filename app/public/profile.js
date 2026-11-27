@@ -95,24 +95,24 @@ export const exportCredits = (src) => creditLines(city, src || {}, cityArt());
 // the 1950s, the office building. The socialist looks (sorela, typovy, the panel house) only where they were built
 // (socialistLooks below); elsewhere the postwar block of flats (povalecny, Bára 23. 11. 2026). Each is drawn on the base of an older look (BASE_STYLE) with its own details.
 export const BUILDING_STYLES = {
-  sikma: tr("činžovní dům se šikmou střechou"), sorela: tr("dům 50. let (sorela)"), funkce: tr("funkcionalistický činžák"),
-  plocha: tr("panelový dům"), moderni: tr("moderní bytový dům"), kancelar: tr("kancelářská budova"), nizky: tr("městský dům"),
-  typovy: tr("zděný bytový dům 50.–60. let"), povalecny: tr("poválečný bytový dům"), vila: tr("vila, starší rodinný dům"), kostka: tr("rodinný dům 60.–80. let"), novyrd: tr("nový rodinný dům"),
-  statek: tr("venkovský dům štítem do ulice"), mestan: tr("měšťanský dům na náměstí"), skola: tr("škola"),
-  kostel: tr("kostel"), garaz: tr("garáž"), hala: tr("hala"),
+  sikma: tr("profile.tenementPitchedRoof"), sorela: tr("profile.n1950sHouseSocialist"), funkce: tr("profile.functionalistApartmentBlock"),
+  plocha: tr("profile.prefabPanelBlock"), moderni: tr("profile.modernApartmentBuilding"), kancelar: tr("profile.officeBuilding"), nizky: tr("profile.townHouse"),
+  typovy: tr("profile.brickBlockFlats1950s"), povalecny: tr("profile.postwarBlockFlats"), vila: tr("profile.villaOlderFamilyHouse"), kostka: tr("profile.familyHouse1960s80s"), novyrd: tr("profile.newFamilyHouse"),
+  statek: tr("profile.villageHouseGableStreet"), mestan: tr("profile.burgherHouseTownSquare"), skola: tr("profile.school"),
+  kostel: tr("profile.church"), garaz: tr("profile.garage"), hala: tr("profile.hall"),
   // The regional looks of Europe's old houses (house-looks.js, docs/house-types-europe.md; Bára 23. 11. 2026), given by
   // the states' houseLook; by hand anywhere. The gabled ones (stit, hanza) only with ?stit=1 (LOOKS.gables).
-  haussmann: tr("haussmannovský dům"), stredomori: tr("středomořský městský dům"), azulejo: tr("portugalský dům s obkladem azulejos"),
-  galeria: tr("dům s prosklenou galerií"), malta: tr("maltský dům s dřevěným balkonem"), kypr: tr("kyperský kamenný dům"),
-  cihlovy: tr("cihlový dům s římsou"), stit: tr("cihlový dům se štítem do ulice"), dansky: tr("dánský cihlový činžák"),
-  stenstad: tr("severský omítaný činžák"), drevak: tr("malovaný dřevěný dům"), puukaupunki: tr("dřevěný městský dům"),
-  tallinnamaja: tr("tallinnský dům"), hanza: tr("hanzovní dům se štítem"),
+  haussmann: tr("profile.haussmannBuilding"), stredomori: tr("profile.mediterraneanTownHouse"), azulejo: tr("profile.portugueseHouseAzulejoTiles"),
+  galeria: tr("profile.houseGlazedGallery"), malta: tr("profile.malteseHouseTimberBalcony"), kypr: tr("profile.cypriotStoneHouse"),
+  cihlovy: tr("profile.brickHouseCornice"), stit: tr("profile.brickHouseGableStreet"), dansky: tr("profile.danishBrickApartmentBuilding"),
+  stenstad: tr("profile.nordicRenderedApartmentBuilding"), drevak: tr("profile.paintedWoodenHouse"), puukaupunki: tr("profile.woodenTownHouse"),
+  tallinnamaja: tr("profile.tallinnHouse"), hanza: tr("profile.hanseaticGabledHouse"),
   // North America (houses-america.js, docs/house-types-north-america.md; Bára 25. 11. 2026), given by the states' houseLook.
-  bayrow: tr("americký cihlový řadový dům"), porchrow: tr("řadový dům s verandou"), framehouse: tr("americký dům s verandou"),
-  brickblock: tr("americký cihlový bytový dům"), slab: tr("americký deskový bytový dům"), podium: tr("bytový dům nad obchody"),
-  glasstower: tr("prosklená věž"), mainstreet: tr("americký dům s obchodem v přízemí"), stripmall: tr("přízemní obchody"),
-  brownstone: tr("newyorský dům z hnědého pískovce"), tenement: tr("newyorský činžák s požárním schodištěm"), tripledecker: tr("bostonský třípodlažní dřevěný dům"),
-  baygable: tr("torontský dům s arkýřem a štítem"), victorian: tr("sanfranciský viktoriánský dům"),
+  bayrow: tr("profile.americanBrickRowHouse"), porchrow: tr("profile.rowHousePorch"), framehouse: tr("profile.americanHousePorch"),
+  brickblock: tr("profile.americanBrickApartmentHouse"), slab: tr("profile.americanSlabApartmentBlock"), podium: tr("profile.apartmentsOverShops"),
+  glasstower: tr("profile.glassTower"), mainstreet: tr("profile.americanMainStreetBuilding"), stripmall: tr("profile.oneStoreyShops"),
+  brownstone: tr("profile.newYorkBrownstone"), tenement: tr("profile.newYorkTenementFire"), tripledecker: tr("profile.bostonTripleDecker"),
+  baygable: tr("profile.torontoBayGableHouse"), victorian: tr("profile.sanFranciscoVictorian"),
 };
 // The gabled looks draw a licence Bára has yet to approve: offered by hand only with ?stit=1.
 export const GABLE_LOOKS = new Set(["stit", "hanza"]);
@@ -336,7 +336,7 @@ function drawUnder(g, s, x, w) {
   const bw = Math.min(w - 8, z.w * 100), bx = x + (w - bw) / 2;
   const y0 = zero + z.top * NET_V, y1 = Math.min(base - 4, y0 + z.h * NET_V);
   const box = el("g", {}, g);
-  el("title", {}, box).textContent = tr("{name} {w} × {h} m, {from}–{to} m pod povrchem", { name: HDV_UNDER[s.under].label, w: num(z.w), h: num(z.h), from: num(z.top), to: num(+(z.top + z.h).toFixed(2)) });
+  el("title", {}, box).textContent = tr("profile.nameWHM", { name: HDV_UNDER[s.under].label, w: num(z.w), h: num(z.h), from: num(z.top), to: num(+(z.top + z.h).toFixed(2)) });
   if (s.under === "sachta") {
     el("rect", { x: bx, y: y0, width: bw, height: y1 - y0, fill: "#d9d4c8", stroke: "#7d776b", "stroke-width": 2 }, box);
     for (let v = y0 + 20; v < y1 - 10; v += 22) el("line", { x1: bx, x2: bx + bw, y1: v, y2: v, stroke: "#7d776b", "stroke-width": 1.5 }, box);
@@ -658,7 +658,7 @@ function laneDir(segs, i, right) {
   return "forward";
 }
 
-export const ORIENT_LABEL = { podelne: tr("podélné"), sikme: tr("šikmé"), kolme: tr("kolmé") };
+export const ORIENT_LABEL = { podelne: tr("common.parallel"), sikme: tr("common.angled"), kolme: tr("common.perpendicular") };
 const CAR_TRACK = 170; // wheel to wheel of the parked car's sprite (cm), for its tilt across the kerb
 const KERB_PAVING = "#c4c0b4"; // the sidewalk's paving under parked cars, a shade darker than the sidewalk
 // On the curb: raised types, and cars parked fully on the sidewalk.
@@ -2317,8 +2317,8 @@ function drawEdge(svg, x, kind, side, surface, info, style) {
     const lv = buildingLevels(info);
     const h = buildingHeight(info);
     if (lv || h) {
-      const text = lv ? (lv.cornice && lv.roof ? tr("{n} + {roof} NP", { n: lv.cornice, roof: lv.roof }) : tr("{n} NP", { n: lv.n }))
-        : buildingStyle(info, style) === "hala" ? tr("hala") : "";
+      const text = lv ? (lv.cornice && lv.roof ? tr("profile.nRoofFl", { n: lv.cornice, roof: lv.roof }) : tr("profile.nFl", { n: lv.n }))
+        : buildingStyle(info, style) === "hala" ? tr("profile.hall") : "";
       el("text", { ...floorLabelAt(x, side), y: top - 25, "font-size": 32, fill: "#4f4e49", class: "lbl-floor", "data-w": EDGE - 24, "data-free": 1 }, g).textContent =
         [text, h ? `${info.height ? "" : "≈ "}${fmt(h).replace(/[,.]00 /, " ")}` : ""].filter(Boolean).join(" · ");
     }
@@ -2346,7 +2346,7 @@ function drawEdge(svg, x, kind, side, surface, info, style) {
       }
     }
     if (lv) {
-      const text = lv.cornice && lv.roof ? tr("{n} + {roof} NP", { n: lv.cornice, roof: lv.roof }) : tr("{n} NP", { n: lv.n });
+      const text = lv.cornice && lv.roof ? tr("profile.nRoofFl", { n: lv.cornice, roof: lv.roof }) : tr("profile.nFl", { n: lv.n });
       el("text", { ...floorLabelAt(x, side), y: top - 25, "font-size": 32, fill: "#4f4e49", class: "lbl-floor", "data-w": EDGE - 24, "data-free": 1 }, g).textContent =
         text + (h ? ` · ${info.height ? "" : "≈ "}${fmt(h).replace(/[,.]00 /, " ")}` : "");
     }
@@ -2380,7 +2380,7 @@ function drawEdge(svg, x, kind, side, surface, info, style) {
     el("rect", { x, y: surface, width: EDGE, height: 60 + GROUND - surface, fill: "#e6e3da" }, g);
   }
   el("text", { class: "lbl-t", "data-row": 1, "data-w": EDGE, x: x + EDGE / 2, y: GROUND + DROP + 215, "text-anchor": "middle", "font-size": 30, fill: "#6b6a65" },
-    g).textContent = { budova: tr("Budova"), stavba: tr("Drobná stavba"), voda: tr("Vodní tok / plocha"), zahrada: tr("Zahrada, louka (mimo ulici)"), zelen: tr("Zeleň (mimo ulici)"), parkoviste: tr("Parkoviště (mimo ulici)"), plot: tr("Za plotem (mimo ulici)") }[kind] || "";
+    g).textContent = { budova: tr("common.building"), stavba: tr("common.smallStructure"), voda: tr("profile.waterRiverPond"), zahrada: tr("profile.gardenMeadowOffStreet"), zelen: tr("profile.greeneryOffStreet"), parkoviste: tr("profile.carParkOffStreet"), plot: tr("profile.behindFenceOffStreet") }[kind] || "";
   return g;
 }
 
@@ -2644,7 +2644,7 @@ export function buildSvg(profile, opts = {}) {
   // The bottom: the label rows, then the signs and the credits line of an export (set after the signs are laid out).
   let bottom = (opts.credits ? H + 110 : H) + DROP;
   const svg = el("svg", { xmlns: NS, viewBox: `${vx} ${yv} ${view[1]} ${bottom - yv}`, "font-family": "Inter, system-ui, sans-serif",
-    role: "img", "aria-label": tr("Příčný profil, celkem {w}: ", { w: fmt(total / 100) }) + segs.map((s) => `${partLabel(s)} ${fmt(s.width)}`).join(", ") });
+    role: "img", "aria-label": tr("profile.crossSectionTotalW", { w: fmt(total / 100) }) + segs.map((s) => `${partLabel(s)} ${fmt(s.width)}`).join(", ") });
   const bg = el("rect", { class: "bg", x: vx, y: yv, width: view[1], height: bottom - yv, fill: "#fbfaf6" }, svg);
 
   const firstRaised = isRaised(segs[0]);
@@ -2661,7 +2661,7 @@ export function buildSvg(profile, opts = {}) {
     g.prepend(el("rect", { x, y: yv, width: EDGE, height: GROUND + DROP + 260 - yv, fill: "transparent" }));
     g.setAttribute("tabindex", "0");
     g.setAttribute("role", "button");
-    g.setAttribute("aria-label", side === "left" ? tr("Levý okraj") : tr("Pravý okraj"));
+    g.setAttribute("aria-label", side === "left" ? tr("common.leftEdge") : tr("common.rightEdge"));
     g.addEventListener("click", () => opts.onEdge(side));
     g.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); opts.onEdge(side); } });
   }
@@ -2792,21 +2792,21 @@ export function buildSvg(profile, opts = {}) {
     if (w >= 80) {
       const contra = s.bikeDir && s.bikeDir !== (s.dir || "forward");
       let label = TYPES[s.type]?.tracks && s.withBus ? `${t.label} + BUS` + (t.directional && s.dir ? (forward ? " ↑" : " ↓") : "")
-        : s.type === "parkovani" && s.use ? tr("Parkování {what}", { what: PARKING_USE[s.use] })
+        : s.type === "parkovani" && s.use ? tr("profile.parkingWhat", { what: PARKING_USE[s.use] })
         // Under a narrow part "Napůl na chodníku" alone (the long name would not fit on two lines).
-        : s.type === "parkovani" && s.position ? (s.position === "half_on_kerb" && w < 300 ? tr("Napůl na chodníku") : tr("Parkování {what}", { what: PARKING_POSITION[s.position] }))
-        : s.type === "parkovani" && s.orient ? tr("Parkování {what}", { what: ORIENT_LABEL[s.orient] })
+        : s.type === "parkovani" && s.position ? (s.position === "half_on_kerb" && w < 300 ? tr("profile.halfPavement") : tr("profile.parkingWhat", { what: PARKING_POSITION[s.position] }))
+        : s.type === "parkovani" && s.orient ? tr("profile.parkingWhat", { what: ORIENT_LABEL[s.orient] })
         // A lane with a piktokoridor is first a lane (Bára): "Jízdní pruh ↑, piktokoridor ↓" with the cyclists' direction
         // when it differs; cyclists in contraflow in a plain lane likewise.
-        : s.type === "pruh_piktokoridor" ? `${TYPES.pruh.label}${s.dir ? (forward ? " ↑" : " ↓") : ""}, ${tr("piktokoridor")}${contra ? (s.bikeDir === "backward" ? " ↓" : " ↑") : ""}`
+        : s.type === "pruh_piktokoridor" ? `${TYPES.pruh.label}${s.dir ? (forward ? " ↑" : " ↓") : ""}, ${tr("profile.cycleSymbols")}${contra ? (s.bikeDir === "backward" ? " ↓" : " ↑") : ""}`
         : partLabel(s) + (t.directional && s.dir ? (forward ? " ↑" : " ↓") : s.type === "pruh" ? " ↑↓" : "") +
-          (contra ? `, ${tr("cyklisté")} ${s.bikeDir === "backward" ? "↓" : "↑"}` : "");
+          (contra ? `, ${tr("common.cyclists")} ${s.bikeDir === "backward" ? "↓" : "↑"}` : "");
       // Trees between the stalls are named with the parking (Bára).
-      if (s.type === "parkovani" && s.items?.some((it) => it.kind === "strom")) label += tr(" se stromy");
+      if (s.type === "parkovani" && s.items?.some((it) => it.kind === "strom")) label += tr("profile.trees");
       // What lies under it (rainwater, types.js HDV_UNDER) and permeable paving, in the name.
       if (s.under && HDV_UNDER[s.under]) label += ` + ${HDV_UNDER[s.under].short}`;
       // "propustná dlažba": the surface graph counts it as partly permeable (Fable: two meanings of "propustný").
-      if (s.permeable) label += s.permeable === "nezpevneny" ? tr(", nezpevněný") : tr(", propustná dlažba");
+      if (s.permeable) label += s.permeable === "nezpevneny" ? tr("profile.unpaved") : tr("profile.permeablePaving");
       const name = el("text", { class: "lbl-t", "data-row": 1, "data-w": w, "data-full": label, x: cx, y: GROUND + DROP + 215, "text-anchor": "middle", "font-size": 28, fill: "#4f4e49" }, g);
       const lines = twoLines(label);
       if (label.length * 0.56 * 28 > w && lines) {
@@ -2846,11 +2846,11 @@ export function buildSvg(profile, opts = {}) {
   });
 
   el("text", { class: "lbl-total top-row", x: total / 2, y: y0 + 70, "text-anchor": "middle", "font-size": 46, "font-weight": 600, fill: "#1f1f1d" }, svg).textContent =
-    tr("Celkem {w}", { w: fmt(total / 100) });
+    tr("common.totalW", { w: fmt(total / 100) });
   // Ends of the cut, lettered as on the map (A = left end, B = right end), above everything else.
   // On a narrow street A and B step aside so the total does not run into them (the page redoes
   // this at screen size in layoutTop, an export keeps it).
-  const half = (tr("Celkem {w}", { w: fmt(total / 100) }).length * 0.56 * 46) / 2;
+  const half = (tr("common.totalW", { w: fmt(total / 100) }).length * 0.56 * 46) / 2;
   const ends = [Math.min(0, total / 2 - half - 70), Math.max(total, total / 2 + half + 70)];
   for (const [letter, x] of [["A", ends[0]], ["B", ends[1]]]) {
     el("circle", { class: "top-row", cx: x, cy: y0 + 70, r: 52, fill: "#d8413f", stroke: "#fff", "stroke-width": 8 }, svg);
@@ -3036,7 +3036,7 @@ const SOIL = "#e4d6bf", NET_ORDER = ["slaboproud", "silnoproud", "plynovod", "te
 const lighten = (hex, k) => "#" + [1, 3, 5].map((i) => Math.round(parseInt(hex.slice(i, i + 2), 16) + (251 - parseInt(hex.slice(i, i + 2), 16)) * k).toString(16).padStart(2, "0")).join("");
 const netEntries = (items, kinds) => [
   ...NET_ORDER.filter((kind) => items.some((i) => i.kind === kind)).map((kind) => ({ k: kinds[kind] || kinds.jine })),
-  ...(items.some((i) => !i.measured) ? [{ empty: true, k: { label: tr("hloubka neznámá"), color: "#6b6a65" } }] : []),
+  ...(items.some((i) => !i.measured) ? [{ empty: true, k: { label: tr("profile.depthUnknown"), color: "#6b6a65" } }] : []),
 ];
 function undergroundDrop(items, kinds, objects = 0) {
   // The networks to 4 m at most (deeper ones sit at the bottom); a rainwater object to its bottom (editor: 10 m).
@@ -3065,7 +3065,7 @@ function drawNetworks(svg, { items, span, kinds }, total) {
     if (cx < -EDGE || cx > total + EDGE) continue;
     const k = kinds[it.kind] || kinds.jine, dn = it.profil > 20 && it.profil < 3000 ? it.profil : k.dn, r = Math.max(8, dn / 20);
     const cy = Math.min(base - r - 4, zero + it.depth * NET_V + r), n = el("g", {}, g);
-    n.dataset.tip = `${k.label}${it.profil > 20 ? ` DN ${it.profil}` : ""} · ${it.measured ? tr("hloubka {d} m", { d: num(it.depth) }) : tr("hloubka neznámá (obvyklá {d} m)", { d: num(it.depth) })}${it.lines > 1 ? ` ${tr("(v datech {n}× vedle sebe)", { n: it.lines })}` : ""}\n${it.popis}`;
+    n.dataset.tip = `${k.label}${it.profil > 20 ? ` DN ${it.profil}` : ""} · ${it.measured ? tr("profile.depthDM", { d: num(it.depth) }) : tr("profile.depthUnknownUsuallyD", { d: num(it.depth) })}${it.lines > 1 ? ` ${tr("profile.nSideData", { n: it.lines })}` : ""}\n${it.popis}`;
     el("circle", { cx, cy, r: Math.max(r, 24), fill: "transparent" }, n); // a target big enough for the tooltip
     if (it.measured) {
       el("circle", { cx, cy, r: r + 6, fill: "#fbfaf6", opacity: 0.55 }, n);

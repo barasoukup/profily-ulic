@@ -26,7 +26,7 @@ async function showMap(el) {
   if (map) { map.invalidateSize(); return; }
   const L = globalThis.L;
   map = L.map(el, { scrollWheelZoom: false, worldCopyJump: true, zoomSnap: 0.5 }).setView([50, 12], 3);
-  L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", { maxZoom: 12, opacity: 0.55, attribution: `© <a href="https://www.openstreetmap.org/copyright">${t("přispěvatelé OpenStreetMap")}</a>` }).addTo(map);
+  L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", { maxZoom: 12, opacity: 0.55, attribution: `© <a href="https://www.openstreetmap.org/copyright">${t("common.openstreetmapContributors")}</a>` }).addTo(map);
   try {
     const data = await (await fetch("coverage.json")).json();
     const layer = L.geoJSON(data, { interactive: false, style: (f) => ({ color: "#3d5a48", weight: 0.4, fillColor: COLORS[f.properties.c] || "#ccc", fillOpacity: 0.8 }) }).addTo(map);
@@ -44,12 +44,12 @@ export function setupAbout({ $, cut, country, lang }) {
   $("#menu-about").onclick = () => {
     // The author's name is a text of the language (Bára 26. 11. 2026): "Bára Soukupová" in Czech and Slovak, "Bara
     // Soukup" in the others, whatever the state of the cut.
-    $("#about-author").textContent = t("Autorka: {name}", { name: t("Bára Soukupová") });
+    $("#about-author").textContent = t("about.authorName", { name: t("about.authorFullName") });
     const link = cut();
     $("#contact-cut").disabled = !link;
     $("#contact-cut-row").hidden = !link;
     send.disabled = !CONTACT_URL;
-    say(CONTACT_URL ? "" : t("Odesílání zpráv tu zatím nejde."));
+    say(CONTACT_URL ? "" : t("about.messagesCannotSentYet"));
     dlg.showModal();
     showMap($("#about-map"));
   };
@@ -65,16 +65,16 @@ export function setupAbout({ $, cut, country, lang }) {
   });
   send.onclick = async () => {
     const message = $("#contact-text").value.trim().slice(0, CONTACT_MAX), email = $("#contact-email").value.trim();
-    if (!message) { say(t("Napište prosím zprávu.")); $("#contact-text").focus(); return; }
-    if (email && !$("#contact-email").checkValidity()) { say(t("E-mail nevypadá správně.")); $("#contact-email").focus(); return; }
+    if (!message) { say(t("about.pleaseWriteMessage")); $("#contact-text").focus(); return; }
+    if (email && !$("#contact-email").checkValidity()) { say(t("about.emailInvalid")); $("#contact-email").focus(); return; }
     send.disabled = true;
-    say(t("Odesílám…"));
+    say(t("common.sending"));
     const result = await sendContact({ message, email, cut: $("#contact-cut").checked ? cut() : null, website: $("#contact-web").value, lang, country: country().code || null });
     send.disabled = false;
     if (result === "ok") {
       $("#contact-text").value = "";
       $("#contact-cut").checked = false;
-      say(t("Děkujeme, zpráva odešla."));
-    } else say(result === "limit" ? t("Zpráv je teď moc, zkuste to prosím za hodinu.") : result === "off" ? t("Odesílání zpráv tu zatím nejde.") : t("Zprávu se nepodařilo odeslat, zkuste to prosím za chvíli."));
+      say(t("about.thankYouMessageHas"));
+    } else say(result === "limit" ? t("about.tooManyMessagesRight") : result === "off" ? t("about.messagesCannotSentYet") : t("about.messageCouldNotSent"));
   };
 }

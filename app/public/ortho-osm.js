@@ -1222,9 +1222,9 @@ export function houseSources(o) {
 // page's language (Intl.ListFormat), "{a} a {b}" by default. The source's name is not declined (Bára 17. 11. 2026).
 export function estimateNote(fb, tried, tr, list = (xs) => xs.join(" a ")) {
   const houses = list(fb.houses?.length ? fb.houses : ["OSM"]);
-  return fb.image ? tr("Obruby jsou odhadnuté z ortofota a domy z {houses}, šířky ověřte.", { houses })
-    : tried ? tr("Ortofoto tu nepomohlo: obruby jsou podle OSM a domy z {houses}, šířky ověřte.", { houses })
-    : tr("Obruby jsou podle OSM a domy z {houses}, šířky ověřte.", { houses });
+  return fb.image ? tr("orthoOsm.kerbsEstimatedOrthophotoBuildings", { houses })
+    : tried ? tr("orthoOsm.orthophotoDidNotHelp", { houses })
+    : tr("orthoOsm.kerbsFollowOsmBuildings", { houses });
 }
 
 // ---------- beyond a town's passport (Slovakia) ----------

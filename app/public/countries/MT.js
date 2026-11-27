@@ -15,16 +15,16 @@ import { mediterraneanLook } from "../house-looks.js";
 function limitsMT(s) {
   switch (s.type) {
     case "chodnik": case "chodnik_kola":
-      return { min: 0, zaklad: 1.2, why: t("chodník: 1,2 m pro přístupnou trasu (zásady přístupnosti CRPD; doporučení)") };
+      return { min: 0, zaklad: 1.2, why: t("country.mt.sidewalk12M") };
     case "parkovani":
-      return s.orient === "kolme" ? { min: 4.8, zaklad: 4.8, why: t("kolmé stání: 4,8 m (stavební standard DC15 maltského stavebního úřadu)") } : null;
+      return s.orient === "kolme" ? { min: 4.8, zaklad: 4.8, why: t("country.mt.perpendicularParking48") } : null;
     // No Maltese figure: the UK's guidance Malta follows in practice, orange only (Bára 27. 11. 2026).
     case "cyklopruh":
-      return { min: 0, zaklad: 2, why: t("cyklopruh: 2 m, nejméně 1,5 m (britská příručka LTN 1/20, tab. 5-2; Malta vlastní normu nemá)") };
+      return { min: 0, zaklad: 2, why: t("country.mt.cycleLane2M") };
     case "cyklostezka":
-      return { min: 0, zaklad: s.dir ? 2 : 3, why: t("stezka pro cyklisty: jednosměrná 2 m, obousměrná 3 m (britská příručka LTN 1/20, tab. 5-2; Malta vlastní normu nemá)") };
+      return { min: 0, zaklad: s.dir ? 2 : 3, why: t("country.mt.cycleTrackOneWay") };
     case "bus": case "bus_cyklo":
-      return { min: 0, zaklad: 4, why: t("vyhrazený pruh BUS: 4 m, nejméně 3 m (britská příručka Keeping Buses Moving, LTN 1/97; Malta vlastní normu nemá)") };
+      return { min: 0, zaklad: 4, why: t("country.mt.busLane4M") };
     default:
       return null;
   }
@@ -70,7 +70,7 @@ export default {
   // At least DC15's 4.1 m (two-way) or 3 m (one-way), and the lanes OSM counts keep MIN_LANE (2.5 m) each beside it
   // (the review of 23. 11. 2026: 4.1 m left four lanes of 2 m); a two-way street so keeps 5 m.
   lawNeed: (oneway, lanes, minLane) => Math.max(oneway ? 3 : 4.1, minLane * Math.max(oneway ? 1 : 2, lanes)),
-  halfKerbNote: (free, need) => t("Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Stání na chodníku je na Maltě zakázané (předpis S.L. 65.11, čl. 79), ledaže ho povolí značka; volnou šířku předpis neuvádí, aplikace nechává {need} (aspoň 4,1 m na míjení podle stavebního standardu DC15, nejméně 2,5 m na každý pruh).", { free, need }),
+  halfKerbNote: (free, need) => t("country.mt.parkingHalfSidewalkOsm", { free, need }),
   parkGuess: true,
   parkByCycleLane: true,
   roadClassFromOsm: true,

@@ -31,7 +31,7 @@ export default {
   // OSM's parking); art. 32 1°: parking on the sidewalk is "gênant".
   parkGuess: false,
   // The Code de la route is an ordonnance souveraine (n° 1.691 of 1957), not a law (the review of 23. 11. 2026).
-  halfKerbNote: (free) => t("Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Stání na chodníku je v Monaku zakázané (čl. 32 pravidel silničního provozu, Code de la route), stát se smí jen na místech vyznačených na vozovce (čl. 31).", { free }),
+  halfKerbNote: (free) => t("country.mc.parkingHalfSidewalkOsm", { free }),
   // No widths of streets in Monaco's law (its accessibility law is about buildings): no warning; France's numbers do not
   // apply there.
   limits: () => null,

@@ -17,28 +17,28 @@ function limitsFR(s, segs) {
     case "chodnik": case "chodnik_kola":
       // 1.2 m only with no wall nor obstacle on either side (de part et d'autre): a sidewalk at a facade has one (the
       // hostile review); the arrêté as published in 2007, a later amendment not verified (NORMS.md).
-      return { min: 1.4, zaklad: 1.8, why: t("chodník: volný průchod nejméně 1,4 m, 1,2 m jen bez zdi a překážek po obou stranách (vyhláška o přístupnosti ulic z 15. 1. 2007, čl. 1, znění z roku 2007); Paříž doporučuje 1,8 m") };
+      return { min: 1.4, zaklad: 1.8, why: t("country.fr.sidewalkLeast14") };
     case "stezka_sdilena":
-      return { min: 0, zaklad: 3, why: t("zelená cesta (voie verte) pro chodce a cyklisty: doporučeno 3 m, při silném provozu 3,5–4 m (doporučení CEREMA)") };
+      return { min: 0, zaklad: 3, why: t("country.fr.greenwayVoieVertePedestrians") };
     case "cyklostezka":
-      return { min: 1.6, zaklad: 2, why: t("stezka pro cyklisty jednosměrná: 2 m, nejméně 1,6 m; obousměrná 3 m, nejméně 2,5 m (doporučení CEREMA a příručka Paříže 2023)") };
+      return { min: 1.6, zaklad: 2, why: t("country.fr.oneWayCycleTrack") };
     case "cyklopruh":
       // Paris's 1 m is for a short stretch only (the hostile review): Lyon's 1.2 m as the minimum.
-      return { min: 1.2, zaklad: 1.5, why: t("cyklopruh: 1,5 m (doporučení CEREMA a příručka Paříže 2023), nejméně 1,2 m (Grand Lyon 2010); od podélného stání odstup 0,5 m") };
+      return { min: 1.2, zaklad: 1.5, why: t("country.fr.cycleLane15") };
     case "bus_cyklo":
-      return { min: 3, zaklad: 3.2, why: t("společný pruh pro autobusy a cyklisty: 3,2–3,5 m, nejméně 3 m (doporučení CEREMA)") };
+      return { min: 3, zaklad: 3.2, why: t("country.fr.sharedBusCycleLane") };
     case "pruh": case "pruh_piktokoridor": {
       if (s.turn) return null;
       const L = lanes(segs), oneway = L.length > 0 && L.every((x) => (x.dir ?? "forward") === (L[0].dir ?? "forward"));
       // Two lanes or more one way: Grand Lyon's 2.5 m (double voie; the hostile review).
-      if (oneway && L.length >= 2) return { min: 0, zaklad: 2.5, why: t("jízdní pruh vícepruhové jednosměrné vozovky: 2,5 m (referenční příručka Grand Lyon 2010, doporučení města)") };
-      return oneway ? { min: 0, zaklad: 3, why: t("jízdní pruh jednosměrné ulice: 3–3,25 m (referenční příručka Grand Lyon 2010, doporučení města)") }
-        : { min: 0, zaklad: 2.75, why: t("jízdní pruh obousměrné ulice: 2,75–3,25 m (referenční příručka Grand Lyon 2010, doporučení města)") };
+      if (oneway && L.length >= 2) return { min: 0, zaklad: 2.5, why: t("country.fr.laneMultiLaneOne") };
+      return oneway ? { min: 0, zaklad: 3, why: t("country.fr.laneOneWayStreet") }
+        : { min: 0, zaklad: 2.75, why: t("country.fr.laneTwoWayStreet") };
     }
     case "parkovani":
       if (s.orient === "sikme") return null;
-      return s.orient === "kolme" ? { min: 4.5, zaklad: 5, why: t("kolmé stání: délka 5 m, nejméně 4,5 m (příručka Paříže 2023, stání)") }
-        : { min: 1.8, zaklad: 2, why: t("podélné stání: 2 × 5 m, nejméně 1,8 m (příručka Paříže 2023, stání)") };
+      return s.orient === "kolme" ? { min: 4.5, zaklad: 5, why: t("country.fr.perpendicularParkingLength5") }
+        : { min: 1.8, zaklad: 2, why: t("country.fr.parallelParking25") };
     default:
       return null;
   }
@@ -80,7 +80,7 @@ export default {
   // allowed almost everywhere): the lanes beside the cars stay drivable, 3 m at least.
   freeLane: 3,
   lawNeed: (oneway, lanes, minLane) => Math.max(3, minLane * Math.max(oneway ? 1 : 2, lanes)),
-  halfKerbNote: (free, need) => t("Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Stání auta na chodníku je ve Francii „velmi obtěžující stání“, přestupek 4. třídy (čl. R417-11 zákona o silničním provozu); volnou šířku vozovky zákon neuvádí, aplikace nechává průjezdné pruhy, tedy aspoň {need}.", { free, need }),
+  halfKerbNote: (free, need) => t("country.fr.parkingHalfSidewalkOsm", { free, need }),
   parkGuess: true,
   parkByCycleLane: true,
   roadClassFromOsm: true,

@@ -135,9 +135,9 @@ test("značky státu SK: každá značka a tabulka má soubor, popisek se sloven
   assert.equal(signLabel({ k: "b1" }, "SK"), "231 Zákaz vjezdu pro všechna vozidla");
   // The Slovak sign's own meaning (323 Bicyklová cesta, not the Czech cycling zone), in Slovak its official name.
   assert.equal(signLabel({ k: "cyklozona" }, "SK"), "323 Cyklistická ulice");
-  const { SK } = await import("../app/public/sk.js");
-  assert.equal(SK["Cyklistická ulice"], "Bicyklová cesta");
-  assert.equal(SK["Zákaz vjezdu pro všechna vozidla"], "Zákaz vjazdu pre všetky vozidlá");
+  const SK = JSON.parse((await import("node:fs")).readFileSync("app/public/locales/sk.json", "utf8"));
+  assert.equal(SK["country.sk.cycleStreet"], "Bicyklová cesta");
+  assert.equal(SK["country.sk.noEntryAllVehicles"], "Zákaz vjazdu pre všetky vozidlá");
   assert.equal(signLabel({ k: "b20a", v: 30 }, "SK"), "253 Nejvyšší dovolená rychlost 30 km/h");
   assert.equal(signLabel({ k: "oneway", plate: "protismer" }, "SK"), "321 + 514 / 230 + 507 Jednosměrný provoz, cyklisté v protisměru");
   assert.equal(signLabel({ k: "ztp" }, "SK"), "272 Parkoviště pro ZTP");

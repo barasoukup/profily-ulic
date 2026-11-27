@@ -11,32 +11,32 @@ import base, { CZ_CODE } from "./default.js";
 // ministry's non-binding recommendations WR-D only as the base, said so. The class of a road (GP, G, Z, L, D) is not
 // in the data: the app's groups by OSM, main streets as Z (the cautious figure), local L, calmed D.
 const PL_LANE_BY_GROUP = {
-  A: { min: 3.5, zaklad: 3.75, why: t("jízdní pruh dálnice a rychlostní silnice (třídy A a S): 3,75 m, nejméně 3,5 m (RMI 2022 § 17)") },
-  B: { min: 2.75, zaklad: 3, why: t("jízdní pruh sběrné ulice (třída Z): 3 m, nejméně 2,75 m; hlavní ulice třídy G 3,5 m (RMI 2022 § 17)") },
-  C: { min: 2.5, zaklad: 2.75, why: t("jízdní pruh místní ulice (třída L): 2,75 m, nejméně 2,5 m (RMI 2022 § 17)") },
-  D: { min: 2.25, zaklad: 2.5, why: t("jízdní pruh obslužné ulice (třída D): 2,5 m, nejméně 2,25 m (RMI 2022 § 17)") },
+  A: { min: 3.5, zaklad: 3.75, why: t("country.pl.drivingLaneMotorwayExpressway") },
+  B: { min: 2.75, zaklad: 3, why: t("country.pl.drivingLaneCollectorStreet") },
+  C: { min: 2.5, zaklad: 2.75, why: t("country.pl.drivingLaneLocalStreet") },
+  D: { min: 2.25, zaklad: 2.5, why: t("country.pl.drivingLaneAccessStreet") },
 };
 function limitsPL(s, segs, i) {
   switch (s.type) {
     case "chodnik": case "chodnik_kola":
-      return { min: 1, zaklad: 1.8, why: t("chodník: 1,8 m, v obtížných podmínkách nejméně 1 m s místy k vyhnutí (RMI 2022 § 29)") };
+      return { min: 1, zaklad: 1.8, why: t("country.pl.sidewalk18M") };
     case "stezka_sdilena":
-      return { min: 2.5, zaklad: 3, why: t("společná stezka pro chodce a cyklisty: 3 m, nejméně 2,5 m (RMI 2022 § 42 odst. 4)") };
+      return { min: 2.5, zaklad: 3, why: t("country.pl.sharedPathPedestriansCyclists") };
     case "cyklostezka":
-      return { min: 1.2, zaklad: 1.5, why: t("stezka pro cyklisty jednosměrná: 1,5 m, nejméně 1,2 m; obousměrná 2,5 m, nejméně 2 m (RMI 2022 § 42 odst. 2 a 3)") };
+      return { min: 1.2, zaklad: 1.5, why: t("country.pl.oneWayCyclePath") };
     case "cyklopruh": case "ochranny_pruh":
-      return { min: 1.25, zaklad: 1.5, why: t("cyklopruh a kontrapas: 1,5 m, nejméně 1,25 m; od podélného stání odstup 0,5 m (RMI 2022 § 42 odst. 5, § 44)") };
+      return { min: 1.25, zaklad: 1.5, why: t("country.pl.cycleLaneContraflowLane") };
     case "bus": case "bus_cyklo":
-      return { min: 3, zaklad: 3.25, why: t("vyhrazený pruh pro autobusy: doporučeno 3,25 m, nejméně 3 m (doporučení ministerstva WR-D-24-2, nezávazné)") };
+      return { min: 3, zaklad: 3.25, why: t("country.pl.busLane325") };
     case "pruh": case "pruh_piktokoridor":
       if (s.turn) return null;
       // A roadway of one lane: at least 3.5 m (RMI 2022 § 17 odst. 3; the hostile review).
-      if (segs.filter((x) => x.type === "pruh" || x.type === "pruh_piktokoridor").length === 1) return { min: 3.5, zaklad: 3.5, why: t("jednopruhová vozovka: nejméně 3,5 m (RMI 2022 § 17 odst. 3)") };
+      if (segs.filter((x) => x.type === "pruh" || x.type === "pruh_piktokoridor").length === 1) return { min: 3.5, zaklad: 3.5, why: t("country.pl.singleLaneCarriagewayLeast") };
       return PL_LANE_BY_GROUP[GROUP[s.roadClass ?? segs.find((x) => x.roadClass)?.roadClass]] || null;
     case "parkovani":
       if (s.orient === "sikme") return null;
-      return s.orient === "kolme" ? { min: 0, zaklad: 5, why: t("kolmé stání: 2,5 × 5 m (doporučení ministerstva WR-D-24-2, nezávazné)") }
-        : { min: 0, zaklad: 2.5, why: t("podélné stání: 2,5 × 6 m (doporučení ministerstva WR-D-24-2, nezávazné)") };
+      return s.orient === "kolme" ? { min: 0, zaklad: 5, why: t("country.pl.perpendicularParking25") }
+        : { min: 0, zaklad: 2.5, why: t("country.pl.parallelParking25") };
     default:
       return null;
   }
@@ -77,7 +77,7 @@ export default {
   // the cars stay drivable, 3 m at least. Art. 47: on the sidewalk only where 1.5 m is left for pedestrians.
   freeLane: 3,
   lawNeed: (oneway, lanes, minLane) => Math.max(3, minLane * Math.max(oneway ? 1 : 2, lanes)),
-  halfKerbNote: (free, need) => t("Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Na chodníku se smí stát, je-li široký aspoň 1,5 m a stání neomezí chodce (čl. 47 zákona o silničním provozu), volnou šířku vozovky zákon neuvádí; aplikace nechává průjezdné pruhy, tedy aspoň {need}.", { free, need }),
+  halfKerbNote: (free, need) => t("country.pl.halfKerbParkingOsm", { free, need }),
   parkGuess: true,
   // RMI 2022 § 44 odst. 2: parking beside a cycle lane only parallel and 0.5 m from it (art. 49 forbids stopping on the
   // lane itself, not beside it: the hostile review).
@@ -91,14 +91,14 @@ export default {
   tramBelt(belt, w) {
     // Tracks in the roadway shared with cars (type TC/TD of WR-D-43-3): 6 m at least, 7 m as the base (the hostile review).
     if (belt.length && belt.every((x) => x.type === "tramvaj_pruh" || x.type === "tramvaj_v_pruhu")) {
-      if (w < 6 - 0.005) return [{ level: "min", text: t("Tramvajový pás ve vozovce {w} je užší než 6 m (doporučení WR-D-43-3, typ TC/TD).", { w: fmt(w) }) }];
-      if (w < 7 - 0.005) return [{ level: "zaklad", text: t("Tramvajový pás ve vozovce {w} je užší než 7 m (doporučení WR-D-43-3, typ TC/TD).", { w: fmt(w) }) }];
+      if (w < 6 - 0.005) return [{ level: "min", text: t("country.pl.tramTracksCarriagewayW", { w: fmt(w) }) }];
+      if (w < 7 - 0.005) return [{ level: "zaklad", text: t("country.pl.tramTracksCarriagewayWNarrower", { w: fmt(w) }) }];
       return [];
     }
     const poles = belt.some((x) => x.items?.some((it) => it.kind === "sloup_trakce"));
-    if (w < 6.3 - 0.005) return [{ level: "min", text: t("Tramvajový pás {w} je užší než 6,3 m pro dvě koleje (doporučení WR-D-43-3).", { w: fmt(w) }) }];
-    if (poles && w < 7.8 - 0.005) return [{ level: "zaklad", text: t("Tramvajový pás se sloupy {w} je užší než 7,8 m (doporučení WR-D-43-3).", { w: fmt(w) }) }];
-    if (!poles && w < 6.8 - 0.005) return [{ level: "zaklad", text: t("Tramvajový pás {w} je užší než 6,8 m (doporučení WR-D-43-3).", { w: fmt(w) }) }];
+    if (w < 6.3 - 0.005) return [{ level: "min", text: t("country.pl.tramBeltWNarrower", { w: fmt(w) }) }];
+    if (poles && w < 7.8 - 0.005) return [{ level: "zaklad", text: t("country.pl.tramBeltPolesW", { w: fmt(w) }) }];
+    if (!poles && w < 6.8 - 0.005) return [{ level: "zaklad", text: t("country.pl.tramBeltWNarrower6", { w: fmt(w) }) }];
     return [];
   },
   signs: { dir: "signs-PL", file: signFile, plate: plateFile, label: signLabel, drawable: (x, seg) => !!signFile(x, seg) },

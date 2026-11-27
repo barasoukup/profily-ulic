@@ -9,46 +9,46 @@ import base, { CZ_CODE } from "./default.js";
 // (2022; quoted in the tables of Lower Austria's Leitfaden Förderung des Radverkehrs 2024: Ausbaustufe D the minimum,
 // C the basic width), the rest after Vienna's Projektierungshandbuch Öffentlicher Raum (MA 18, 2011). RVS 03.02.12,
 // 03.04.12 and 03.07.11 (pedestrians, cross-sections, parking) are not public.
-const AT_LANE = { min: 2.5, zaklad: 2.75, why: t("jízdní pruh v obci: dva pruhy pro osobní auta 5 m, s nákladními a autobusy 5,5–6,5 m (Wiener Projektierungshandbuch, Blatt 6)") };
+const AT_LANE = { min: 2.5, zaklad: 2.75, why: t("country.at.laneTownTwoCar") };
 const AT_LANE_BY_GROUP = {
   // RVS 03.03.30 is not public: no red, only the basic width.
-  A: { min: 0, zaklad: 3.75, why: t("jízdní pruh dálnice: obvykle 3,75 m (RVS 03.03.30 se nepodařilo ověřit, orientačně)") },
-  B: { min: 2.75, zaklad: 3.25, why: t("jízdní pruh hlavní ulice: min. 2,75 m, základ 3,25 m (NÖ Leitfaden Radverkehr 2024, s. 22; Wiener Projektierungshandbuch)") },
+  A: { min: 0, zaklad: 3.75, why: t("country.at.motorwayLaneUsually3") },
+  B: { min: 2.75, zaklad: 3.25, why: t("country.at.laneMainStreetLeast") },
   C: AT_LANE,
-  D: { min: 2.5, zaklad: 2.5, why: t("jízdní pruh místní ulice: dva pruhy pro osobní auta 5 m (Wiener Projektierungshandbuch, Blatt 6)") },
+  D: { min: 2.5, zaklad: 2.5, why: t("country.at.laneLocalStreetTwo") },
 };
 function limitsAT(s, segs, i) {
   const parking = [segs[i - 1], segs[i + 1]].find((x) => x?.type === "parkovani");
   switch (s.type) {
     case "chodnik": case "chodnik_kola":
-      return { min: 1.5, zaklad: 2, why: t("chodník: 2 m, výjimečně 1,5 m (Wiener Projektierungshandbuch; STEP 2025)") };
+      return { min: 1.5, zaklad: 2, why: t("country.at.sidewalk2MException") };
     case "stezka_sdilena":
-      return parking ? { min: 3.05, zaklad: 3.75, why: t("společná stezka pro chodce a cyklisty vedle podélného stání: min. 3,05 m, základ 3,75 m (RVS 03.02.13 podle NÖ Leitfaden 2024)") }
-        : { min: 2.8, zaklad: 3.5, why: t("společná stezka pro chodce a cyklisty: min. 2,8 m, základ 3,5 m (RVS 03.02.13 podle NÖ Leitfaden 2024)") };
+      return parking ? { min: 3.05, zaklad: 3.75, why: t("country.at.sharedPathPedestriansCyclists") }
+        : { min: 2.8, zaklad: 3.5, why: t("country.at.sharedPathPedestriansCyclistsLeast") };
     case "pruh": case "pruh_piktokoridor":
-      if (s.turn) return { min: 0, zaklad: 2.75, why: t("řadicí pruh: orientačně 2,75 m (rakouský zdroj nenalezen)") };
+      if (s.turn) return { min: 0, zaklad: 2.75, why: t("country.at.turningLaneAbout2") };
       return AT_LANE_BY_GROUP[GROUP[s.roadClass ?? segs.find((x) => x.roadClass)?.roadClass]] || AT_LANE;
     case "bus":
-      return { min: 0, zaklad: 3.5, why: t("pruh pro autobusy: 3,5 m (Wiener Projektierungshandbuch, kap. 2)") };
+      return { min: 0, zaklad: 3.5, why: t("country.at.busLane35") };
     case "bus_cyklo":
-      return { min: 0, zaklad: 4, why: t("pruh pro autobusy s cyklisty: 4 m, hlavně ve stoupání (Wiener Projektierungshandbuch, kap. 2)") };
+      return { min: 0, zaklad: 4, why: t("country.at.busLaneCyclists4") };
     case "cyklopruh": case "ochranny_pruh": {
       // Radfahrstreifen and Mehrzweckstreifen have the same widths (RVS 03.02.13, tables 7 and 8).
       if (parking) {
         const perp = parking.orient === "kolme" || parking.orient === "sikme";
         return perp
-          ? { min: 2.5, zaklad: 2.5, why: t("cyklopruh vedle kolmého nebo šikmého stání: 1,75 m a bezpečnostní pás 0,75 m (Wiener Projektierungshandbuch)") }
-          : { min: 2, zaklad: 2, why: t("cyklopruh vedle podélného stání: 2 m (RVS 03.02.13 podle NÖ Leitfaden 2024)") };
+          ? { min: 2.5, zaklad: 2.5, why: t("country.at.cycleLaneBesidePerpendicular") }
+          : { min: 2, zaklad: 2, why: t("country.at.cycleLaneBesideParallel") };
       }
-      return { min: 1.5, zaklad: 1.5, why: t("cyklopruh: 1,5 m, na hlavních trasách 1,8 m (RVS 03.02.13 podle NÖ Leitfaden 2024)") };
+      return { min: 1.5, zaklad: 1.5, why: t("country.at.cycleLane15") };
     }
     case "cyklostezka":
-      return parking ? { min: 1.75, zaklad: 2.05, why: t("stezka pro cyklisty vedle podélného stání: min. 1,75 m, základ 2,05 m (RVS 03.02.13 podle NÖ Leitfaden 2024)") }
-        : { min: 1.5, zaklad: 1.8, why: t("stezka pro cyklisty jednosměrná: min. 1,5 m, základ 1,8 m; obousměrná 2,5 a 3,1 m (RVS 03.02.13 podle NÖ Leitfaden 2024)") };
+      return parking ? { min: 1.75, zaklad: 2.05, why: t("country.at.cycleTrackBesideParallel") }
+        : { min: 1.5, zaklad: 1.8, why: t("country.at.oneWayCycleTrack") };
     case "nastupiste":
-      return { min: 2.5, zaklad: 3.3, why: t("nástupiště zastávky: s přístřeškem min. 2,5 m, základ 3,3 m (Wiener Projektierungshandbuch)") };
+      return { min: 2.5, zaklad: 3.3, why: t("country.at.stopPlatformShelterLeast") };
     case "parkovani":
-      return s.orient === "kolme" || s.orient === "sikme" ? null : { min: 2, zaklad: 2, why: t("podélné stání: 2 m (Wiener Projektierungshandbuch)") };
+      return s.orient === "kolme" || s.orient === "sikme" ? null : { min: 2, zaklad: 2, why: t("country.at.parallelParking2M") };
     default:
       return null;
   }
@@ -93,7 +93,7 @@ export default {
   // StVO § 24 Abs. 3 lit. d, e: two lanes stay free on a two-way road, one on a one-way street; the VwGH takes a lane
   // of about 2.6 m (evaluation/austria/NORMS.md, secondary).
   freeLane: 2.6,
-  halfKerbNote: (free, need) => t("Stání napůl na chodníku z OSM: ve vozovce zůstává {free}, StVO § 24 odst. 3 žádá {need} (dva volné pruhy, v jednosměrce jeden, podle judikatury asi 2,6 m).", { free, need }),
+  halfKerbNote: (free, need) => t("country.at.parkingHalfPavementOsm", { free, need }),
   // The law's estimate on local streets as in Czechia (the universal judging, 17. 11. 2026: parking was missing in 14 of
   // 33 Austrian cuts; ?odhadstani=0 leaves it out).
   parkGuess: true,
@@ -101,9 +101,9 @@ export default {
   roadClassFromOsm: true,
   limits: limitsAT,
   // 3.5 m at least, 3.75 m beside parking (Wiener Projektierungshandbuch).
-  contraflow: (parked) => ({ ...(parked ? { lo: 3.75, base: 3.75 } : { lo: 3.5, base: 3.5 }), why: t("jednosměrka s cyklisty v protisměru bez cyklopruhu: nejméně 3,5 m, se stáním 3,75 m (Wiener Projektierungshandbuch)") }),
+  contraflow: (parked) => ({ ...(parked ? { lo: 3.75, base: 3.75 } : { lo: 3.5, base: 3.5 }), why: t("country.at.oneWayStreetContraflow") }),
   // 6.6 m for two tracks 3 m apart, in a bed of their own or among cars (Wiener Projektierungshandbuch).
-  tramBelt: (belt, w) => (w < 6.6 - 0.005 ? [{ level: "min", text: t("Tramvajový pás {w} je užší než 6,6 m pro dvě koleje (Wiener Projektierungshandbuch).", { w: fmt(w) }) }] : []),
+  tramBelt: (belt, w) => (w < 6.6 - 0.005 ? [{ level: "min", text: t("country.at.tramBeltWNarrower", { w: fmt(w) }) }] : []),
   // Signs without an Austrian drawing and those with a plate (its Zusatztafeln are not drawn: B 1 alone would ban all
   // entry, not all but local traffic) are not drawn (the hostile review of Austria).
   signs: { dir: "signs-AT", file: signFile, plate: () => null, label: signLabel, drawable: (x) => !!signFile(x) && !x.plate },

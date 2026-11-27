@@ -6,13 +6,13 @@
 import { t } from "./i18n.js";
 
 export const SHARE_GROUPS = [
-  { key: "pesi", label: t("Pěší"), color: "#cbb89a" },
-  { key: "kola", label: t("Cyklisté"), color: "#c0604f" },
-  { key: "mhd", label: t("MHD"), color: "#d8413f" },
-  { key: "auta", label: t("Auta v pohybu"), color: "#5c5c59" },
-  { key: "parkovani", label: t("Parkování"), color: "#9b9b97" },
-  { key: "zelen", label: t("Zeleň"), color: "#7fb04a" },
-  { key: "ostatni", label: t("Ostatní"), color: "#dcd8cd" },
+  { key: "pesi", label: t("shares.walking"), color: "#cbb89a" },
+  { key: "kola", label: t("shares.cycling"), color: "#c0604f" },
+  { key: "mhd", label: t("shares.publicTransport"), color: "#d8413f" },
+  { key: "auta", label: t("shares.movingCars"), color: "#5c5c59" },
+  { key: "parkovani", label: t("common.parking"), color: "#9b9b97" },
+  { key: "zelen", label: t("common.greenery"), color: "#7fb04a" },
+  { key: "ostatni", label: t("shares.other"), color: "#dcd8cd" },
 ];
 const SHARE_OF = {
   chodnik: "pesi", chodnik_kola: "pesi", stezka_sdilena: ["pesi", "kola"],
@@ -40,11 +40,11 @@ export function shares(profile) {
 // paving, concrete, tram panels), water, and the rest (walls, unknown). By the part's surface; what lies under it does
 // not count.
 export const SURFACE_GROUPS = [
-  { key: "propustne", label: t("Propustný"), color: "#7fb04a" },
-  { key: "castecne", label: t("Částečně propustný"), color: "#b8c98a" },
-  { key: "nepropustne", label: t("Nepropustný"), color: "#7c7a74" },
-  { key: "voda", label: t("Vodní plocha"), color: "#7fa9cf" },
-  { key: "jine", label: t("Ostatní"), color: "#dcd8cd" },
+  { key: "propustne", label: t("shares.permeable"), color: "#7fb04a" },
+  { key: "castecne", label: t("shares.partlyPermeable"), color: "#b8c98a" },
+  { key: "nepropustne", label: t("shares.impermeable"), color: "#7c7a74" },
+  { key: "voda", label: t("shares.waterSurface"), color: "#7fa9cf" },
+  { key: "jine", label: t("shares.other"), color: "#dcd8cd" },
 ];
 // A retention pond holds water back, it does not soak it away (Fable): with water. "Voda a ostatní" read like the
 // palette's rainwater group (Bára): water and the rest apart.

@@ -11,7 +11,7 @@ export default {
   ...CH,
   code: "LI",
   bounds: [9.47, 47.04, 9.64, 47.28],
-  halfKerbNote: (free, need) => t("Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Zákon šířku neuvádí (lichtenštejnská VRV čl. 21), podle švýcarské praxe 3 m na projetí, aplikace navíc nechává průjezdné pruhy, tedy aspoň {need}; na chodníku musí zůstat 1,5 m (VRV čl. 40).", { free, need }),
+  halfKerbNote: (free, need) => t("country.li.parkingHalfSidewalkOsm", { free, need }),
   parkByCycleLane: CH.parkByCycleLane,
   // The rest as in Switzerland, named here as the states' test asks (each state says its own).
   parkGuess: CH.parkGuess,

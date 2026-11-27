@@ -227,9 +227,9 @@ test("záznam řezu: poloha ve Španělsku, Francii, Belgii, v Amsterdamu i mimo
 
 // Bára 26. 11. 2026: in Czech and Slovak the author is "Bára Soukupová", in the other languages "Bara Soukup".
 test("O aplikaci: autorka česky a slovensky Bára Soukupová, jinde Bara Soukup", async () => {
-  const sk = (await import("../app/public/sk.js")).default ?? (await import("../app/public/sk.js"));
-  const en = (await import("../app/public/en.js")).default ?? (await import("../app/public/en.js"));
-  const pick = (m) => Object.values(m).find((v) => v && typeof v === "object" && "Bára Soukupová" in v)?.["Bára Soukupová"];
-  assert.equal(pick(sk), "Bára Soukupová");
-  assert.equal(pick(en), "Bara Soukup");
+  const { readFileSync } = await import("node:fs");
+  const pick = (l) => JSON.parse(readFileSync(`app/public/locales/${l}.json`, "utf8"))["about.authorFullName"];
+  assert.equal(pick("cs"), "Bára Soukupová");
+  assert.equal(pick("sk"), "Bára Soukupová");
+  assert.equal(pick("en"), "Bara Soukup");
 });

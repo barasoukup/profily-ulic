@@ -18,24 +18,24 @@ const localStreet = (s, segs = []) => { const c = s.roadClass ?? segs.find((x) =
 function limitsEE(s, segs = [], i = -1) {
   switch (s.type) {
     case "chodnik":
-      return { min: 1.5, zaklad: 2, why: t("chodník: nejméně 1,5 m (nařízení o přístupnosti 2026, nové a přestavěné ulice); pro dva chodce 2 m (norma EVS 843, z druhé ruky)") };
+      return { min: 1.5, zaklad: 2, why: t("country.ee.sidewalkLeast15") };
     case "chodnik_kola":
-      return { min: 1.5, zaklad: 2.5, why: t("stezka pro chodce a cyklisty: nejméně 1,5 m (nařízení o přístupnosti 2026); 2,5 m závazně jen mimo obec (normy projektování silnic 2023), ve městě orientačně") };
+      return { min: 1.5, zaklad: 2.5, why: t("country.ee.sharedFootwayCycleTrack") };
     case "cyklopruh":
-      return { min: 0, zaklad: 1.5, why: t("cyklopruh: doporučeno 1,5 m, s nízkou obrubou 1 m (norma EVS 843, z druhé ruky)") };
+      return { min: 0, zaklad: 1.5, why: t("country.ee.cycleLane15") };
     case "cyklostezka": {
       // The standard's figure for a track, whatever its direction; a half of a two-way track by the whole track
       // (countries/cycletrack.js; the review of 24. 11. 2026).
-      const track = { min: 1.5, zaklad: 2.5, why: t("stezka pro cyklisty: 2,5 m, výjimečně 1,5 m (norma EVS 843, z druhé ruky)") };
+      const track = { min: 1.5, zaklad: 2.5, why: t("country.ee.cycleTrack25") };
       return cycleTrackLimits(s, segs, i, track, track);
     }
     case "bus":
-      return { min: 0, zaklad: 3, why: t("pruh pro veřejnou dopravu: doporučeno nejméně 3 m (norma EVS 843, z druhé ruky)") };
+      return { min: 0, zaklad: 3, why: t("country.ee.publicTransportLaneLeast") };
     case "pruh": case "pruh_piktokoridor":
       if (s.turn) return null;
       return localStreet(s, segs)
-        ? { min: 0, zaklad: 2.75, why: t("jízdní pruh místní ulice: 3 m, výjimečně 2,75 m (norma EVS 843, z druhé ruky)") }
-        : { min: 0, zaklad: 3, why: t("jízdní pruh: doporučeno 3 m (příručka uličního prostoru Tallinnu, z druhé ruky)") };
+        ? { min: 0, zaklad: 2.75, why: t("country.ee.trafficLaneLocalStreet") }
+        : { min: 0, zaklad: 3, why: t("country.ee.trafficLane3M") };
     default:
       return null;
   }
@@ -81,7 +81,7 @@ export default {
   // Liiklusseadus § 21 (2) 7: 3 m only beside a continuous line; no general figure: 3 m a direction as elsewhere
   // (NORMS.md B1; for Bára). A car on the sidewalk only where a sign allows it, leaving 1.5 m (§ 20 (4)).
   freeLane: 3,
-  halfKerbNote: (free, need) => t("Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. V Estonsku smí auto stát na chodníku jen tam, kde to dovolí značka, a chodcům musí zůstat aspoň 1,5 m (§ 20 zákona o silničním provozu); aplikace nechává {need}.", { free, need }),
+  halfKerbNote: (free, need) => t("country.ee.parkingHalfSidewalkOsm", { free, need }),
   parkGuess: true,
   parkByCycleLane: true,
   roadClassFromOsm: true,

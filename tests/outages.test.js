@@ -1,9 +1,11 @@
 // When a source does not answer (Bára 12. 11. 2026): the technical map of ČÚZK stands in for a city's map that
-// failed, and the visitor is told what the cut lacks (sources.js national, outage; app.js cutAt).
+// failed, and the visitor is told what the cut lacks (sources.js national, outage; app.js cutAt). The note is a key
+// (the cut keeps it so): its Czech through t().
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { setCity } from "../app/public/city.js";
 import { national, outage } from "../app/public/sources.js";
+import { t } from "../app/public/i18n.js";
 
 const ok = (value) => ({ status: "fulfilled", value });
 const no = (reason = new Error("503")) => ({ status: "rejected", reason });
@@ -40,28 +42,28 @@ test("co řezu chybí, aplikace řekne", () => {
   assert.deepEqual(outage({ surfaces: full, lines: ok({ features: [] }), parking: ok({ features: [] }) }), { note: "", text: "", error: false });
 
   const down = outage({ surfaces: no(), lines: ok({ features: [] }), parking: ok({ features: [] }) });
-  assert.equal(down.note, " · mapa povrchů neodpověděla, jen odhad");
+  assert.equal(t(down.note), " · mapa povrchů neodpověděla, jen odhad");
   assert.match(down.text, /^Technická mapa IPR teď neodpovídá \(server je přetížený\), profil je jen odhad z OSM/);
   assert.ok(down.error);
 
   const stand = outage({ surfaces: ok({ features: [area], dmvs: true, fallback: true }), lines: ok({}), parking: ok({}) });
-  assert.equal(stand.note, " · plochy z technické mapy ČÚZK");
+  assert.equal(t(stand.note), " · plochy z technické mapy ČÚZK");
   assert.match(stand.text, /plochy jsou z technické mapy ČÚZK/);
 
   // Lines and parking: the street would look as if it had no tram or no cars.
   const lacks = outage({ surfaces: full, lines: no(), parking: no() });
-  assert.equal(lacks.note, " · neúplná data");
+  assert.equal(t(lacks.note), " · neúplná data");
   assert.match(lacks.text, /Chybí data kolejí, plotů a svahů, parkovacích stání \(server neodpověděl\)/);
   assert.ok(lacks.error);
   assert.match(outage({ surfaces: full, lines: ok({ features: [], missing: ["opendata"] }), parking: ok({}) }).text, /stromů a tříd ulic TSK/);
 
   // Nothing on the map is no failure; ČÚZK not answering is.
   const empty = outage({ surfaces: ok({ features: [] }), lines: ok({}), parking: ok({}) });
-  assert.equal(empty.note, " · mimo mapu povrchů, jen odhad");
+  assert.equal(t(empty.note), " · mimo mapu povrchů, jen odhad");
   assert.equal(empty.text, "Mapa povrchů tu nic nevrátila, profil je odhad z OSM.");
   assert.ok(!empty.error);
   const cuzk = outage({ surfaces: ok({ features: [], dmvsFailed: true }), lines: ok({}), parking: ok({}) });
-  assert.equal(cuzk.note, " · mapa povrchů neodpověděla, jen odhad");
+  assert.equal(t(cuzk.note), " · mapa povrchů neodpověděla, jen odhad");
   assert.match(cuzk.text, /^Technická mapa ČÚZK teď neodpovídá/);
 });
 
@@ -69,11 +71,11 @@ test("technická mapa jen s čarami (Středočeský kraj): hláška podle toho, 
   setCity("cesko");
   const ok = (value) => ({ status: "fulfilled", value });
   const lines = outage({ surfaces: ok({ features: [], linesOnly: true }), lines: ok({}), parking: ok({}) });
-  assert.equal(lines.note, " · mapa povrchů tu má jen čáry, jen odhad");
+  assert.equal(t(lines.note), " · mapa povrchů tu má jen čáry, jen odhad");
   assert.match(lines.text, /^Technická mapa tu má jen čáry bez ploch \(kraj plochy do ní nedodává\)/);
   assert.ok(!lines.error, "kraj za to nemůže, žádná chyba");
   const read = outage({ surfaces: ok({ features: [area], fromLines: true }), lines: ok({}), parking: ok({}) });
-  assert.equal(read.note, " · plochy odvozené z čar mapy povrchů");
+  assert.equal(t(read.note), " · plochy odvozené z čar mapy povrchů");
   assert.match(read.text, /šířky jsou změřené mezi nimi/);
 });
 
@@ -188,7 +190,7 @@ test("mimo Česko se technické mapy ČÚZK neptá a neříká, že neodpovídá
   // The national DTM is not tried (sources.js national): nothing to fail.
   assert.deepEqual(await national(s, "x", undefined, failing), s);
   const r = outage({ surfaces: ok(s), lines: ok(await sources.lines()), parking: ok(await sources.parking()) });
-  assert.equal(r.note, " · odhad z ortofota a OSM");
+  assert.equal(t(r.note), " · odhad z ortofota a OSM");
   assert.match(r.text, /^Mapu povrchů tu zatím nemáme/);
   assert.equal(r.error, false);
   setCity("praha");

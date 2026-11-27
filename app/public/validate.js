@@ -21,11 +21,11 @@ const num = (v, lo, hi) => typeof v === "number" && Number.isFinite(v) && v >= l
 const INFO_NUMBERS = ["height", "levels", "cornice", "roof", "roofType", "iprKind", "area", "km", "period", "built", "panel", "solid", "house", "farm", "office", "garage", "across", "arcade", "atWalk", "main", "tint"];
 
 export function cleanProfile(p, what = "profil") {
-  if (!Array.isArray(p?.segments) || !p.segments.length) throw new Error(`${what}: ${t("chybí části profilu")}`);
+  if (!Array.isArray(p?.segments) || !p.segments.length) throw new Error(`${what}: ${t("validate.profileHasNoParts")}`);
   for (const s of p.segments) {
-    if (typeof s !== "object" || !s) throw new Error(`${what}: ${t("vadná část")}`);
+    if (typeof s !== "object" || !s) throw new Error(`${what}: ${t("validate.invalidPart")}`);
     if (!(s.type in TYPES)) s.type = "nezname";
-    if (!num(s.width, 0.01, 200)) throw new Error(`${what}: ${t("vadná šířka části")}`);
+    if (!num(s.width, 0.01, 200)) throw new Error(`${what}: ${t("validate.invalidPartWidth")}`);
     if (s.source && !(s.source in SOURCES)) s.source = "user";
     // Values the drawing reads as words: anything else is dropped.
     for (const k of ["dir", "bikeDir"]) if (k in s && !["forward", "backward"].includes(s[k])) delete s[k];

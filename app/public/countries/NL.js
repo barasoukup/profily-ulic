@@ -11,26 +11,26 @@ import { netherlandsLook } from "../house-looks.js";
 // values as CROW-Fietsberaad's discussion notes, CROW's GOW30 guide and Amsterdam's handbooks quote them, said so.
 // Where no source was found (a bus lane, angled parking, a tram belt, a path shared with pedestrians), no warning.
 const NL_LANE_BY_GROUP = {
-  B: { min: 2.5, zaklad: 2.9, why: t("jízdní pruh ulice s 50 km/h: 2,9 m, vozovka nejméně 5,8 m, při nedostatku místa pruh 2,5 m (CROW-Fietsberaad 2014; CROW GOW30 2023 podle ASVV 2021)") },
+  B: { min: 2.5, zaklad: 2.9, why: t("country.nl.drivingLane50Km") },
 };
 function limitsNL(s, segs, i) {
   // Parallel parking beside (the figures of CROW-Fietsberaad 2014 are for it, not for perpendicular or angled bays).
   const parking = [segs[i - 1], segs[i + 1]].find((x) => x?.type === "parkovani" && !["kolme", "sikme"].includes(x.orient));
   switch (s.type) {
     case "chodnik": case "chodnik_kola":
-      return { min: 1.8, zaklad: 2, why: t("chodník: volný průchod nejméně 1,8 m, základ 2–2,2 m (Amsterdam, Ruimte voor de voetganger 2020 a Handboek Rood 2024)") };
+      return { min: 1.8, zaklad: 2, why: t("country.nl.sidewalkClearWalkingWidth") };
     case "pruh": case "pruh_piktokoridor":
       if (s.turn) return null;
       return NL_LANE_BY_GROUP[GROUP[s.roadClass ?? segs.find((x) => x.roadClass)?.roadClass]] || null;
     case "cyklopruh": case "ochranny_pruh":
-      return parking ? { min: 1.7, zaklad: 2, why: t("cyklopruh vedle podélného stání: nejméně 1,7 m, základ 2 m, stání vedle něj aspoň 2,3 m (CROW-Fietsberaad 2014)") }
-        : { min: 1.5, zaklad: 2, why: t("cyklopruh (fietsstrook): základ 2–2,5 m; ASVV 2021 nejméně 2 m, starší doporučení CROW 1,5 m (podle CROW-Fietsberaad 2014)") };
+      return parking ? { min: 1.7, zaklad: 2, why: t("country.nl.cycleLaneBesideParallel") }
+        : { min: 1.5, zaklad: 2, why: t("country.nl.cycleLaneFietsstrookBase") };
     case "cyklostezka":
-      return { min: 2, zaklad: 2.2, why: t("stezka pro cyklisty jednosměrná: nejméně 2 m, základ 2,2 m; obousměrná 2,5 m a 3,5 m (CROW-Fietsberaad 2021 podle doporučení CROW)") };
+      return { min: 2, zaklad: 2.2, why: t("country.nl.oneWayCycleTrack") };
     case "parkovani":
       if (s.orient === "sikme") return null;
-      return s.orient === "kolme" ? { min: 5, zaklad: 5, why: t("kolmé stání: 2,5 × 5 m (ASVV 2012 podle parkovacích norem obce Oost Gelre)") }
-        : { min: 2, zaklad: 2, why: t("podélné stání: 2 × 6 m (ASVV 2012 podle obce Oost Gelre), v Amsterdamu 2,1–2,4 m") };
+      return s.orient === "kolme" ? { min: 5, zaklad: 5, why: t("country.nl.perpendicularParking25") }
+        : { min: 2, zaklad: 2, why: t("country.nl.parallelParking26") };
     default:
       return null;
   }
@@ -77,7 +77,7 @@ export default {
   lawNeed: (oneway, lanes, minLane) => Math.max(oneway ? 3.5 : 4.5, minLane * Math.max(oneway ? 1 : 2, lanes)),
   // Two wheels on the sidewalk only where the sign E8b allows it (RVV 1990 art. 10); else a parked car on the
   // sidewalk is an offence.
-  halfKerbNote: (free, need) => t("Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Smí se jen u značky E8b (RVV 1990 čl. 10). Zákon šířku neuvádí, v praxi 3,5 m pro hasiče na jednosměrce a 4,5 m vozovky pro oba směry; aplikace nechává průjezdné pruhy, tedy aspoň {need}.", { free, need }),
+  halfKerbNote: (free, need) => t("country.nl.halfKerbParkingOsm", { free, need }),
   // RVV 1990 art. 23 (1b): no stopping on a cycle lane nor on the roadway beside it.
   parkByCycleLane: false,
   parkGuess: true,
@@ -85,7 +85,7 @@ export default {
   limits: limitsNL,
   // A one-way street with contraflow cyclists: Amsterdam's cycle street of one way for cars, both for bicycles, 3.5 m,
   // 4 m as the base (Afwegingskader fietsstraten 2020); no national figure.
-  contraflow: () => ({ lo: 3.5, base: 4, why: t("jednosměrka s cyklisty v protisměru: vozovka nejméně 3,5 m, základ 4 m (Amsterdam, Afwegingskader fietsstraten 2020)") }),
+  contraflow: () => ({ lo: 3.5, base: 4, why: t("country.nl.oneWayStreetContraflow") }),
   tramBelt: () => [],
   signs: { dir: "signs-NL", file: signFile, plate: plateFile, label: signLabel, drawable: (x, seg) => !!signFile(x, seg) },
   bedOrtho: null,

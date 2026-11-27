@@ -120,7 +120,7 @@ async function getFeatures(base, path, typeNames, box) {
   const r = await fetch(`${base}${path}?${q}`, { signal: AbortSignal.timeout(TIMEOUT) });
   if (!r.ok) throw new Error(`WFS ${r.status}`);
   const text = await r.text();
-  if (/ExceptionReport/.test(text.slice(0, 600))) throw new Error(`WFS: ${(text.match(/<ows:ExceptionText>([^<]*)/) || [])[1] || t("chyba")}`);
+  if (/ExceptionReport/.test(text.slice(0, 600))) throw new Error(`WFS: ${(text.match(/<ows:ExceptionText>([^<]*)/) || [])[1] || t("dtmwfs.error")}`);
   return parseGml(text);
 }
 // The bbox "x0,y0,x1,y1" in degrees → the S-JTSK box around it.

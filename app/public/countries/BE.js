@@ -13,17 +13,17 @@ import { belgiumDetails, belgiumLook } from "../house-looks.js";
 function limitsBE(s) {
   switch (s.type) {
     case "chodnik": case "chodnik_kola":
-      return { min: 1.5, zaklad: 1.8, why: t("chodník: volný průchod nejméně 1,5 m, základ 1,8 m (Flandry, Vademecum voetgangersvoorzieningen 2026; Valonsko 1,5 m; Brusel 2 m)") };
+      return { min: 1.5, zaklad: 1.8, why: t("country.be.sidewalkClearWalkingWidth") };
     case "stezka_sdilena":
-      return { min: 2, zaklad: 2.5, why: t("společná stezka pro chodce a cyklisty (D10): jednosměrná 2 m, obousměrná 2,5 m, doporučeno 3 m (Valonsko, Guide cyclable)") };
+      return { min: 2, zaklad: 2.5, why: t("country.be.sharedPathPedestriansCyclists") };
     case "cyklostezka":
-      return { min: 1.3, zaklad: 2, why: t("stezka pro cyklisty jednosměrná: Flandry 2 m (Vademecum fietsvoorzieningen 2024), Valonsko nejméně 1,3 m (Guide cyclable); obousměrná Flandry 3 m, Valonsko 2,2–2,6 m") };
+      return { min: 1.3, zaklad: 2, why: t("country.be.oneWayCycleTrack") };
     case "cyklopruh":
-      return { min: 1.1, zaklad: 1.3, why: t("vyznačený cyklopruh: 1,3 m, nejméně 1,1 m, vedle stání odstup 0,8 m (Valonsko, Guide cyclable)") };
+      return { min: 1.1, zaklad: 1.3, why: t("country.be.markedCycleLane1") };
     case "ochranny_pruh":
-      return { min: 0.7, zaklad: 1.7, why: t("doporučený cyklopruh: Flandry 1,7–2 m podle šířky vozovky (fietssuggestiestrook, Vademecum fietsvoorzieningen 2024), Valonsko 0,7–0,9 m (Guide cyclable)") };
+      return { min: 0.7, zaklad: 1.7, why: t("country.be.advisoryCycleLaneFlanders") };
     case "bus": case "bus_cyklo":
-      return { min: 2.75, zaklad: 3.25, why: t("vyhrazený pruh pro autobusy: 3–3,25 m, ve Valonsku se souhlasem dopravce 2,75 m (Flandry, Vademecum fietsvoorzieningen; Valonsko, Guide cyclable)") };
+      return { min: 2.75, zaklad: 3.25, why: t("country.be.busLane325") };
     default:
       return null;
   }
@@ -63,7 +63,7 @@ export default {
   // cars stay drivable.
   freeLane: 3,
   lawNeed: (oneway, lanes, minLane) => Math.max(3, minLane * Math.max(oneway ? 1 : 2, lanes)),
-  halfKerbNote: (free, need) => t("Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Na chodníku se smí stát jen podle místní úpravy (čl. 24 AR 1975), ve vozovce musí zůstat 3 m volného průjezdu (čl. 25.1, 7°); aplikace nechává průjezdné pruhy, tedy aspoň {need}.", { free, need }),
+  halfKerbNote: (free, need) => t("country.be.halfKerbParkingOsm", { free, need }),
   parkGuess: true,
   parkByCycleLane: true,
   roadClassFromOsm: true,

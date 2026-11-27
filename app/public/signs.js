@@ -11,33 +11,33 @@ export const MAX_PER_PART = 2;
 
 // Labels for the palette in Návrh and for the title of each drawn sign.
 export const SIGNS = {
-  b1: t("B 1 Zákaz vjezdu všech vozidel"),
-  b11: t("B 11 Zákaz vjezdu všech motorových vozidel"),
-  b8: t("B 8 Zákaz vjezdu jízdních kol"),
-  b30: t("B 30 Zákaz vstupu chodců"),
-  b20a: t("B 20a Nejvyšší dovolená rychlost"),
-  b28: t("B 28 Zákaz zastavení"),
-  b29: t("B 29 Zákaz stání"),
-  oneway: t("IP 4b / B 2 Jednosměrný provoz"),
-  c8a: t("C 8a Stezka pro cyklisty"),
-  c9a: t("C 9a Stezka pro chodce a cyklisty"),
-  c10a: t("C 10a Stezka pro chodce a cyklisty dělená"),
-  ip11a: t("IP 11a Parkoviště"),
-  ip11d: t("IP 11d Parkoviště (stání na chodníku kolmé nebo šikmé)"),
-  ip11e: t("IP 11e Parkoviště (stání na chodníku podélné)"),
-  ip11f: t("IP 11f Parkoviště (částečné stání na chodníku kolmé nebo šikmé)"),
-  ip11g: t("IP 11g Parkoviště (částečné stání na chodníku podélné)"),
-  ip12: t("IP 12 Vyhrazené parkoviště"),
-  ztp: t("IP 12 + O 1 Parkoviště pro ZTP"),
-  ip14a: t("IZ 1a Dálnice"),
-  ip15a: t("IZ 2a Silnice pro motorová vozidla"),
-  ip20a: t("IP 20a Vyhrazený jízdní pruh BUS"),
-  zona30: t("IZ 8a Zóna 30"),
-  ip26a: t("IZ 5a Obytná zóna"),
-  ip27a: t("IZ 6a Pěší zóna"),
-  cyklozona: t("IZ 9a Zóna pro cyklisty"),
-  sdilena: t("IZ 10a Sdílená zóna"),
-  c7a: t("C 7a Stezka pro chodce"),
+  b1: t("signs.b1NoVehicles"),
+  b11: t("signs.b11NoMotor"),
+  b8: t("signs.b8NoCycling"),
+  b30: t("signs.b30NoPedestrians"),
+  b20a: t("signs.b20aSpeedLimit"),
+  b28: t("signs.b28NoStopping"),
+  b29: t("signs.b29NoParking"),
+  oneway: t("signs.ip4bB2"),
+  c8a: t("signs.c8aCycleTrack"),
+  c9a: t("signs.c9aSharedUse"),
+  c10a: t("signs.c10aSegregatedCycle"),
+  ip11a: t("signs.ip11aParking"),
+  ip11d: t("signs.ip11dParkingPavement"),
+  ip11e: t("signs.ip11eParkingPavement"),
+  ip11f: t("signs.ip11fParkingPartly"),
+  ip11g: t("signs.ip11gParkingPartly"),
+  ip12: t("signs.ip12ReservedParking"),
+  ztp: t("signs.ip12O1"),
+  ip14a: t("signs.iz1aMotorway"),
+  ip15a: t("signs.iz2aRoadMotor"),
+  ip20a: t("signs.ip20aBusLane"),
+  zona30: t("signs.iz8a30Km"),
+  ip26a: t("signs.iz5aHomeZone"),
+  ip27a: t("signs.iz6aPedestrianZone"),
+  cyklozona: t("signs.iz9aCycleZone"),
+  sdilena: t("signs.iz10aSharedZone"),
+  c7a: t("signs.c7aFootpath"),
 };
 // The parts each sign can stand under in Návrh (Bára: no motorway under a sidewalk). Signs drawn from the data stay
 // whatever part they are on.
@@ -56,21 +56,21 @@ export const signFits = (k, type) => !SIGN_PARTS[k] || SIGN_PARTS[k].includes(ty
 // Dodatkové tabulky (plate) of a sign: text of E 13, or a key of a pictogram. Czech on the plate itself (a Czech
 // sign), translated in the label.
 export const PLATES = { kola: "s cyklisty", kolo: "i pro cyklisty", protismer: "cyklisté v protisměru", obsluha: "Mimo dopravní obsluhy", podelne: "podélné", kolme: "kolmé", sikme: "šikmé" };
-const PLATE_LABEL = { kola: t("s cyklisty"), kolo: t("i pro cyklisty"), protismer: t("cyklisté v protisměru"), obsluha: t("Mimo dopravní obsluhy"),
-  podelne: t("podélné"), kolme: t("kolmé"), sikme: t("šikmé") };
+const PLATE_LABEL = { kola: t("signs.cyclists"), kolo: t("signs.cyclesPermitted"), protismer: t("signs.contraflowCycling"), obsluha: t("signs.exceptAccess"),
+  podelne: t("common.parallel"), kolme: t("common.perpendicular"), sikme: t("common.angled") };
 // Every sign with a plate that deriveSigns makes, as a sign of its own in the palette of Návrh (so that what the
 // data draw can be chosen by hand too), labelled as drawn: one-way with contraflow cyclists is IP 4c (B 2 +
 // E 12b when the lane comes towards the viewer), not IP 4b with a plate (a user, 11. 11. 2026); the manner of
 // parking makes IP 11b or IP 11c. Other plates are dropped (validate.js).
 export const SIGN_CHOICES = {
-  "oneway+protismer": { k: "oneway", plate: "protismer", label: t("IP 4c / B 2 + E 12b Jednosměrný provoz, cyklisté v protisměru") },
-  "ip11a+podelne": { k: "ip11a", plate: "podelne", label: t("IP 11c Parkoviště (podélné stání)") },
-  "ip11a+kolme": { k: "ip11a", plate: "kolme", label: t("IP 11b Parkoviště (kolmé stání)") },
-  "ip11a+sikme": { k: "ip11a", plate: "sikme", label: t("IP 11b Parkoviště (šikmé stání)") },
-  "ip20a+kolo": { k: "ip20a", plate: "kolo", label: t("IP 20a Vyhrazený jízdní pruh BUS i pro cyklisty") },
-  "ip27a+kola": { k: "ip27a", plate: "kola", label: t("IZ 6a Pěší zóna s cyklisty") },
-  "b1+obsluha": { k: "b1", plate: "obsluha", label: t("B 1 + E 13 Zákaz vjezdu všech vozidel mimo dopravní obsluhy") },
-  "b11+obsluha": { k: "b11", plate: "obsluha", label: t("B 11 + E 13 Zákaz vjezdu všech motorových vozidel mimo dopravní obsluhy") },
+  "oneway+protismer": { k: "oneway", plate: "protismer", label: t("signs.ip4cB2") },
+  "ip11a+podelne": { k: "ip11a", plate: "podelne", label: t("signs.ip11cParkingParallel") },
+  "ip11a+kolme": { k: "ip11a", plate: "kolme", label: t("signs.ip11bParkingPerpendicular") },
+  "ip11a+sikme": { k: "ip11a", plate: "sikme", label: t("signs.ip11bParkingAngled") },
+  "ip20a+kolo": { k: "ip20a", plate: "kolo", label: t("signs.ip20aBusLaneCycles") },
+  "ip27a+kola": { k: "ip27a", plate: "kola", label: t("signs.iz6aPedestrianZoneCyclists") },
+  "b1+obsluha": { k: "b1", plate: "obsluha", label: t("signs.b1E13") },
+  "b11+obsluha": { k: "b11", plate: "obsluha", label: t("signs.b11E13") },
 };
 export const signChoice = (x) => SIGN_CHOICES[`${x.k}+${x.plate}`];
 // The label of a sign in Návrh and in the title of a drawn sign. In another state (city.country, ISO 3166-1) the

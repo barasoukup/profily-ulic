@@ -31,8 +31,8 @@ export function checkRules(profile, street = null) {
     const label = TYPES[s.type]?.label || s.type;
     // short and why: the warning in two pieces for the list in Návrh (the short one bold, the rule after it).
     const v = { label, w: fmt(s.width), why: l.why };
-    if (s.width < l.min - 0.005) out.push({ i, level: "min", text: t("{label} {w} je pod minimem ({why}).", v), short: t("{label} {w}: pod minimem", v), why: l.why });
-    else if (s.width < l.zaklad - 0.005) out.push({ i, level: "zaklad", text: t("{label} {w} je užší než základ ({why}).", v), short: t("{label} {w}: užší než základ", v), why: l.why });
+    if (s.width < l.min - 0.005) out.push({ i, level: "min", text: t("rules.labelWBelowMinimum", v), short: t("rules.labelWBelowMinimum2", v), why: l.why });
+    else if (s.width < l.zaklad - 0.005) out.push({ i, level: "zaklad", text: t("rules.labelWNarrowerStandard", v), short: t("rules.labelWNarrowerBasic", v), why: l.why });
   });
   // A one-way carriageway with contraflow cyclists and no cycle lane of their own (IP 4c): its lanes with the
   // hard shoulder and hatching, without parking, 4 m as the basic width and 3 m at very low volumes (Manuál
@@ -50,9 +50,9 @@ export function checkRules(profile, street = null) {
     // too, for a state whose rule holds only on some roads (Slovenia: tertiary and up, contraflowSI).
       const parked = [segs[i - 1], segs[j], ...run].some((x) => x?.type === "parkovani");
       const { lo, base, why } = country.contraflow(parked, run);
-      const v = { label: t("Vozovka"), w: fmt(w), why };
-      if (w < lo - 0.005) out.push({ i, level: "min", text: t("Vozovka {w} je pod minimem ({why}).", v), short: t("{label} {w}: pod minimem", v), why });
-      else if (w < base - 0.005) out.push({ i, level: "zaklad", text: t("Vozovka {w} je užší než základ ({why}).", v), short: t("{label} {w}: užší než základ", v), why });
+      const v = { label: t("rules.carriageway"), w: fmt(w), why };
+      if (w < lo - 0.005) out.push({ i, level: "min", text: t("rules.carriagewayWBelowMinimum", v), short: t("rules.labelWBelowMinimum2", v), why });
+      else if (w < base - 0.005) out.push({ i, level: "zaklad", text: t("rules.carriagewayWNarrowerStandard", v), short: t("rules.labelWNarrowerBasic", v), why });
     }
     i = j - 1;
   }
@@ -94,16 +94,16 @@ export function checkUnder(profile, under) {
         // How far the pipe's rim is from the object, across and down (0 inside it).
         const gap = Math.hypot(Math.max(0, Math.abs(m - cx) - z.w / 2), Math.max(0, z.top - depth, depth - z.top - z.h)) - r;
         if (gap >= NEAR) continue;
-        (gap <= 0 ? hits : near).add(t("{net} v hloubce {d}", { net: k?.label || it.kind, d: fmt(it.depth) }));
+        (gap <= 0 ? hits : near).add(t("rules.netD", { net: k?.label || it.kind, d: fmt(it.depth) }));
       }
       if (hits.size || near.size) {
         const name = HDV_UNDER[s.under].label;
         const v = { obj: name[0].toUpperCase() + name.slice(1), part: (TYPES[s.type]?.label || s.type).toLowerCase(), near: fmt(NEAR) };
-        const nearText = (list) => t("blíž než {near} od: {list}", { ...v, list });
+        const nearText = (list) => t("rules.closerNearList", { ...v, list });
         const short = hits.size
-          ? t("{obj} pod částí {part} narazí na: {list}", { ...v, list: [...hits].join(", ") }) + (near.size ? `; ${nearText([...near].join(", "))}` : "")
-          : t("{obj} pod částí {part}: {what}", { ...v, what: nearText([...near].join(", ")) });
-        out.push({ i, level: hits.size ? "min" : "zaklad", short, why: t("střet se sítí a jejím ochranným pásmem posuďte se správcem sítě (Standardy HDV, kap. 6.2.9)") });
+          ? t("rules.objUnderPartRuns", { ...v, list: [...hits].join(", ") }) + (near.size ? `; ${nearText([...near].join(", "))}` : "")
+          : t("rules.objUnderPartWhat", { ...v, what: nearText([...near].join(", ")) });
+        out.push({ i, level: hits.size ? "min" : "zaklad", short, why: t("rules.haveNetworkOwnerAssess") });
       }
     }
     x += s.width;
@@ -176,11 +176,11 @@ export function checkTrees(design, stav, under) {
     if (!found.size) continue;
     const part = byPart.get(tree.i) || { red: false, list: [] };
     for (const [name, { gap, rule, red }] of [...found].sort((q, r) => r[1].red - q[1].red || q[1].gap - r[1].gap)) {
-      const v = { net: name === "kolektor" ? t("kolektor") : under.kinds?.[name]?.label || name, d: fmt(+Math.max(0, gap).toFixed(2)), free: fmt(rule.free), barrier: fmt(rule.barrier ?? 0) };
-      const text = gap <= 0 ? t("{net} přímo pod stromem", v)
-        : rule.barrier === null ? t("{net} {d} od kmene (nejméně {free})", v)
-        : rule.barrier ? t("{net} {d} od kmene (bez opatření od {free}, s opatřením od {barrier})", v)
-        : t("{net} {d} od kmene (bez opatření od {free}, blíž jen s opatřením)", v);
+      const v = { net: name === "kolektor" ? t("rules.utilityTunnel") : under.kinds?.[name]?.label || name, d: fmt(+Math.max(0, gap).toFixed(2)), free: fmt(rule.free), barrier: fmt(rule.barrier ?? 0) };
+      const text = gap <= 0 ? t("rules.netDirectlyBeneathTree", v)
+        : rule.barrier === null ? t("rules.netDTrunkLeast", v)
+        : rule.barrier ? t("rules.netDTrunkLeastFree", v)
+        : t("rules.netDTrunkLeastFreeCloser", v);
       part.red ||= red;
       if (!part.list.includes(text)) part.list.push(text);
     }
@@ -188,7 +188,7 @@ export function checkTrees(design, stav, under) {
   }
   return [...byPart].map(([i, { red, list }]) => ({
     i, level: red ? "min" : "zaklad",
-    short: t("Nový strom v části {part} je blízko sítí: {list}", { part: (TYPES[design.segments[i].type]?.label || "").toLowerCase(), list: list.join(", ") }),
-    why: t("Pražské stavební předpisy, příloha č. 1, bod I: vzdálenost sítě od paty kmene; technickým opatřením je kořenová bariéra nebo chránička"),
+    short: t("rules.newTreePartToo", { part: (TYPES[design.segments[i].type]?.label || "").toLowerCase(), list: list.join(", ") }),
+    why: t("rules.pragueBuildingRegulationsAnnex"),
   }));
 }

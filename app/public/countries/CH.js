@@ -13,29 +13,29 @@ import base, { CZ_CODE } from "./default.js";
 // said so. Where no source was found (a lane of a local street, a pure bus lane, angled parking, a tram belt), no
 // warning (as in Germany).
 const CH_LANE_BY_GROUP = {
-  B: { min: 0, zaklad: 3, why: t("jízdní pruh hlavní ulice v obci: orientačně 3 m (vedle cyklopruhu 3 m, při méně než 300 nákladních autech a autobusech denně 2,75 m, Kanton Zürich 2023; na kantonálních silnicích Schwyzu 3,25 m)") },
+  B: { min: 0, zaklad: 3, why: t("country.ch.laneMainStreetTown") },
 };
 function limitsCH(s, segs, i) {
   const parking = [segs[i - 1], segs[i + 1]].find((x) => x?.type === "parkovani");
   switch (s.type) {
     case "chodnik": case "chodnik_kola":
-      return { min: 1.8, zaklad: 2, why: t("chodník ostatních místních tras: 2 m, nejméně 1,8 m; na hlavních trasách 2,4 m (Standards Fuss- und Veloverkehr Basel-Stadt 2024, tab. 1, podle SN 640 070)") };
+      return { min: 1.8, zaklad: 2, why: t("country.ch.sidewalkOtherLocalRoutes") };
     case "stezka_sdilena":
-      return { min: 0, zaklad: 3, why: t("společná stezka pro chodce a cyklisty: 3 m, s cyklisty v obou směrech 3,5 m (Normalie D 2.01 kantonu Schwyz, 2025)") };
+      return { min: 0, zaklad: 3, why: t("country.ch.sharedFootCyclePath") };
     case "pruh": case "pruh_piktokoridor":
       if (s.turn) return null;
       return CH_LANE_BY_GROUP[GROUP[s.roadClass ?? segs.find((x) => x.roadClass)?.roadClass]] || null;
     case "bus_cyklo":
-      return { min: 3, zaklad: 3, why: t("pruh pro autobusy s cyklisty: 3 m (autobus cyklistu nepředjíždí), nebo aspoň 4,5 m, aby ho předjel; mezi tím ne (Kanton Bern TBA 2021, Basel-Stadt 2024)") };
+      return { min: 3, zaklad: 3, why: t("country.ch.busLaneCyclists3") };
     case "cyklopruh": case "ochranny_pruh":
-      return parking ? { min: 2, zaklad: 2.25, why: t("cyklopruh vedle podélného stání: 1,5 m a bezpečnostní odstup 0,5–0,75 m (VSS 40 291a podle kantonu Bern 2021; Kanton Zürich 2023)") }
-        : { min: 1.5, zaklad: 1.5, why: t("cyklopruh (Radstreifen): 1,5 m, mezi dvěma pruhy 1,8 m (VSS 40 201 a 40 252 podle kantonu Bern 2021; Basilej má základ 1,8 m)") };
+      return parking ? { min: 2, zaklad: 2.25, why: t("country.ch.cycleLaneBesideParallel") }
+        : { min: 1.5, zaklad: 1.5, why: t("country.ch.cycleLaneRadstreifen1") };
     case "cyklostezka":
-      return { min: 1.8, zaklad: 2.6, why: t("stezka pro cyklisty jednosměrná: min. 1,8 m (na hlavních trasách 2,2 m), základ 2,6 m; obousměrná 2,5–3 m a 3–4,5 m (SN 640 060 podle kantonu Bern 2021)") };
+      return { min: 1.8, zaklad: 2.6, why: t("country.ch.oneWayCyclePath") };
     case "parkovani":
       if (s.orient === "sikme") return null;
-      return s.orient === "kolme" ? { min: 5, zaklad: 5, why: t("kolmé stání: hloubka 5 m (VSS 40 291 podle kantonu Bern 2026)") }
-        : { min: 1.9, zaklad: 1.9, why: t("podélné stání: 1,9 m, u vysoké obruby 2,2–2,5 m (VSS 40 291 podle kantonu Bern 2026)") };
+      return s.orient === "kolme" ? { min: 5, zaklad: 5, why: t("country.ch.perpendicularParking5M") }
+        : { min: 1.9, zaklad: 1.9, why: t("country.ch.parallelParking19") };
     default:
       return null;
   }
@@ -84,14 +84,14 @@ export default {
   lawNeed: (oneway, lanes, minLane) => Math.max(3, minLane * Math.max(oneway ? 1 : 2, lanes)),
   // VRV Art. 19 Abs. 2: no parking on a cycle lane nor on the roadway beside it.
   parkByCycleLane: false,
-  halfKerbNote: (free, need) => t("Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Zákon šířku neuvádí (VRV čl. 19), pomůcky kantonů Bern a Luzern berou 3 m na projetí, aplikace navíc nechává průjezdné pruhy, tedy aspoň {need}; na chodníku musí zůstat 1,5 m (VRV čl. 41).", { free, need }),
+  halfKerbNote: (free, need) => t("country.ch.parkingHalfSidewalkOsm", { free, need }),
   parkGuess: true,
   roadClassFromOsm: true,
   limits: limitsCH,
   // A one-way street with contraflow cyclists and no cycle lane: a roadway of 4.8 m for a bicycle meeting a lorry (Kanton
   // Zürich Standards Veloverkehr 2023, kap. 4.9) as the base; no minimum (Bern's 3 m + 1.5 m are for a contraflow
   // cycle lane: the hostile review).
-  contraflow: () => ({ lo: 0, base: 4.8, why: t("jednosměrka s cyklisty v protisměru: vozovka 4,8 m pro potkání kola s nákladním autem (Kanton Zürich 2023, kap. 4.9), minimum nenalezeno") }),
+  contraflow: () => ({ lo: 0, base: 4.8, why: t("country.ch.oneWayStreetContraflow") }),
   // No public width of a Swiss tram belt was found: no warning.
   tramBelt: () => [],
   signs: { dir: "signs-CH", file: signFile, plate: plateFile, label: signLabel, drawable: (x, seg) => !!signFile(x, seg) },

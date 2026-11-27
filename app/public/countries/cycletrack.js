@@ -13,6 +13,6 @@ export function cycleTrackLimits(s, segs = [], i = -1, single, twoWay) {
   return {
     min: twoWay.min > 0 ? twoWay.min - w : 0,
     zaklad: twoWay.zaklad - w,
-    why: t("celá obousměrná stezka {w}; {why}", { w: fmt((s.width || 0) + w), why: twoWay.why }),
+    why: t("country.cycletrack.wholeTwoWayCycle", { w: fmt((s.width || 0) + w), why: twoWay.why }),
   };
 }

@@ -12,15 +12,15 @@ import { luxembourgLook } from "../house-looks.js";
 function limitsLU(s) {
   switch (s.type) {
     case "chodnik": case "chodnik_kola":
-      return { min: 1.5, zaklad: 2, why: t("chodník: nejméně 1,5 m, doporučeno 2 m (Lignes directrices Apaisement 2023, fiche A 05)") };
+      return { min: 1.5, zaklad: 2, why: t("country.lu.sidewalkLeast15") };
     case "cyklopruh":
-      return { min: 1.5, zaklad: 1.5, why: t("cyklopruh (voie cyclable): 1,5 m, vedle stání navíc 0,5–1 m (stanovisko Commission de circulation 2001)") };
+      return { min: 1.5, zaklad: 1.5, why: t("country.lu.cycleLaneVoieCyclable") };
     case "ochranny_pruh":
-      return { min: 1.25, zaklad: 1.5, why: t("doporučený cyklopruh (voie suggestive): 1,25–1,5 m (stanovisko Commission de circulation 2001)") };
+      return { min: 1.25, zaklad: 1.5, why: t("country.lu.advisoryCycleLaneVoie") };
     case "cyklostezka":
-      return { min: 1.2, zaklad: 1.5, why: t("stezka pro cyklisty jednosměrná: vedle vozovky 1,2 m a ochranná zóna 0,65 m, v samostatné trase 1,5 m a krajnice; obousměrná 2–2,5 m (stanovisko Commission de circulation 2001)") };
+      return { min: 1.2, zaklad: 1.5, why: t("country.lu.oneWayCycleTrack") };
     case "bus": case "bus_cyklo":
-      return { min: 3, zaklad: 3.5, why: t("vyhrazený pruh pro autobusy: 3–3,5 m (stanovisko Commission de circulation 2001)") };
+      return { min: 3, zaklad: 3.5, why: t("country.lu.busLane35") };
     default:
       return null;
   }
@@ -54,7 +54,7 @@ export default {
   // or a reserved part (art. 166 r), no general one: as elsewhere, the lanes beside the cars stay drivable, 3 m at least.
   freeLane: 3,
   lawNeed: (oneway, lanes, minLane) => Math.max(3, minLane * Math.max(oneway ? 1 : 2, lanes)),
-  halfKerbNote: (free, need) => t("Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Na chodníku se smí stát jen se značkou (čl. 166 d Code de la route), obecnou volnou šířku zákon neuvádí (3 m jen u plné čáry, čl. 166 r); aplikace nechává průjezdné pruhy, tedy aspoň {need}.", { free, need }),
+  halfKerbNote: (free, need) => t("country.lu.halfKerbParkingOsm", { free, need }),
   // Parking estimated as elsewhere (Bára 21. 11. 2026: with no general free width in the law, parking is allowed almost
   // everywhere, so all the more estimated): only the general duty not to obstruct, kept by the lanes left drivable.
   parkGuess: true,

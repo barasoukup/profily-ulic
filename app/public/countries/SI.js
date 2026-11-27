@@ -11,29 +11,29 @@ import { cycleTrackLimits } from "./cycletrack.js";
 // cest (91/05 …), both "no longer in force but still applied" until the rules of ZCes-2 come: binding for new roads, so the
 // design widths orange and only the cycling minima red. No minimum width of a sidewalk was found (none warned), nor of
 // perpendicular or angled parking; there are no trams.
-const SI_LANE_A = { min: 0, zaklad: 3.25, why: t("jízdní pruh dálkové silnice (70 km/h a víc): 3,25–3,75 m (pravidlo o projektování silnic, čl. 28)") };
-const SI_LANE = { min: 0, zaklad: 2.5, why: t("jízdní pruh místní a sběrné ulice do 50 km/h: 2,5 m (pravidlo o projektování silnic, čl. 28)") };
+const SI_LANE_A = { min: 0, zaklad: 3.25, why: t("country.si.laneLongDistanceRoad") };
+const SI_LANE = { min: 0, zaklad: 2.5, why: t("country.si.laneLocalCollectorStreet") };
 function limitsSI(s, segs = [], i = -1) {
   const parking = [segs[i - 1], segs[i + 1]].find((x) => x?.type === "parkovani");
   switch (s.type) {
     case "chodnik":
       // ZPrCP čl. 65: a car on the sidewalk (only where signs allow it) leaves the pedestrians 1.6 m away from the roadway.
-      return parking?.position ? { min: 1.6, zaklad: 1.6, why: t("zbytek chodníku vedle stání na chodníku: nejméně 1,6 m (zákon o pravidlech silničního provozu, čl. 65)") } : null;
+      return parking?.position ? { min: 1.6, zaklad: 1.6, why: t("country.si.restSidewalkBesideParking") } : null;
     case "chodnik_kola": case "stezka_sdilena":
-      return { min: 1.6, zaklad: 2, why: t("společná stezka pro chodce a cyklisty: 2 m, výjimečně 1,6 m (pravidlo o cyklistických plochách, čl. 15)") };
+      return { min: 1.6, zaklad: 2, why: t("country.si.sharedPathPedestriansCyclists") };
     case "cyklopruh": case "ochranny_pruh":
-      return { min: 1, zaklad: 1.75, why: t("cyklopruh: 1,75 m, nejméně 1 m (pravidlo o cyklistických plochách, čl. 14)") };
+      return { min: 1, zaklad: 1.75, why: t("country.si.cycleLane175") };
     case "cyklostezka":
       // A half of a two-way track by the whole track; one-way, or without a direction (derive.js gives OSM's one-way
       // tracks none), by the one-way figure (countries/cycletrack.js; the review of 24. 11. 2026).
-      return cycleTrackLimits(s, segs, i, { min: 1, zaklad: 2, why: t("jednosměrná stezka pro cyklisty: 2 m, nejméně 1 m (pravidlo o cyklistických plochách, čl. 13)") },
-        { min: 2, zaklad: 3, why: t("obousměrná stezka pro cyklisty: 3 m, nejméně 2 m (pravidlo o cyklistických plochách, čl. 13)") });
+      return cycleTrackLimits(s, segs, i, { min: 1, zaklad: 2, why: t("country.si.oneWayCycleTrack") },
+        { min: 2, zaklad: 3, why: t("country.si.twoWayCycleTrack") });
     case "bus":
-      return { min: 0, zaklad: 3, why: t("pruh pro veřejnou dopravu: nejméně 3 m (pravidlo o projektování silnic, čl. 32)") };
+      return { min: 0, zaklad: 3, why: t("country.si.publicTransportLaneLeast") };
     case "parkovani":
-      return s.orient === "kolme" || s.orient === "sikme" ? null : { min: 0, zaklad: 2.5, why: t("podélné stání: 2,5 m (pravidlo o projektování silnic, čl. 33)") };
+      return s.orient === "kolme" || s.orient === "sikme" ? null : { min: 0, zaklad: 2.5, why: t("country.si.parallelParking25") };
     case "pruh": case "pruh_piktokoridor":
-      if (s.turn) return { min: 0, zaklad: 3, why: t("řadicí pruh pro odbočení vlevo ve městě: 3 m, při málo nákladních vozidlech 2,75 m (pravidlo o projektování silnic, čl. 28)") };
+      if (s.turn) return { min: 0, zaklad: 3, why: t("country.si.leftTurnLaneTown") };
       // The OSM class as the regulation's kind of road is the app's reading (NORMS.md A): a motorway or trunk road as a
       // "daljinska cesta", a primary or secondary one (GROUP B) none: it may be a collector street of 50 km/h (2.5 m) or a
       // "povezovalna cesta" of 60–90 km/h (2.75–3.5 m) and the app knows neither its kind nor its design speed (the review
@@ -54,7 +54,7 @@ function limitsSI(s, segs = [], i = -1) {
 // above (the OSM class tertiary and up, GROUP A–C; the review of 24. 11. 2026): a residential, living or service street
 // (mk4) and a road of unknown class get no warning, the lanes keep their own. run: the carriageway's parts (rules.js);
 // without it (an older caller) none, so no width is claimed where the article gives none.
-const CONTRA_SI = { lo: 3, base: 3.2, why: t("jednosměrka s cyklisty v protisměru: vozovka nejméně 3,2 m, v zóně zklidněného provozu 3 m (pravidlo o cyklistických plochách, čl. 38)") };
+const CONTRA_SI = { lo: 3, base: 3.2, why: t("country.si.oneWayStreetContraflow") };
 export const contraflowSI = (parked, run) => (Array.isArray(run) && run.some((x) => ["A", "B", "C"].includes(GROUP[x?.roadClass])) ? CONTRA_SI : null);
 
 // The signs of the state SI (app/public/signs-SI/, README there). The numbers are those of the rule of 2015 kept by
@@ -98,7 +98,7 @@ export default {
   // the photo does not say.
   centreLine: { required: true, solid: true },
   parkOnRoadway: (tags, oneway, lanes) => (oneway ? lanes < 2 : Number(tags.lanes) >= 2 && tags.lane_markings !== "no"),
-  halfKerbNote: (free, need) => t("Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Ve Slovinsku smí auto stát na chodníku jen tam, kde to dovolí značka, a chodcům musí zůstat aspoň 1,6 m chodníku dál od vozovky (čl. 65 zákona o pravidlech silničního provozu); aplikace nechává {need}.", { free, need }),
+  halfKerbNote: (free, need) => t("country.si.parkingHalfSidewalkOsm", { free, need }),
   parkGuess: true,
   parkByCycleLane: true,
   roadClassFromOsm: true,

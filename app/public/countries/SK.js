@@ -9,51 +9,51 @@ import base, { CZ_CODE, lawNote } from "./default.js";
 // evaluation/slovakia/NORMS.md: TP 117 (2023, signs and markings: the minimum widths of marked lanes), TP 118, TP 73 6110
 // (2024), TP 085 (2019, cycling), vyhláška 532/2002 Z. z. (sidewalk), IDS BK (platforms). STN 73 6110:2024 itself is
 // not public: lanes by class after its 2004 values and TP 117/118. No public Slovak width of a tram belt: no warning.
-const SK_LANE = { min: 2.75, zaklad: 3, why: t("jízdní pruh v obci: min. 2,75 m, základ 3 m (TP 117, 2.12.2)") };
+const SK_LANE = { min: 2.75, zaklad: 3, why: t("country.sk.laneTownLeast2") };
 const SK_LANE_BY_GROUP = {
   // The standard is not public: no red warning, only the basic width (Fable).
-  A: { min: 0, zaklad: 3.5, why: t("jízdní pruh dálnice: 3,5 m (STN 73 6101, neveřejná, orientačně)") },
-  B: { min: 2.75, zaklad: 3, why: t("jízdní pruh sběrné komunikace: min. 2,75 m, základ 3 m (TP 117, 2.12.2), v obci nejvýš 3,25 m (TP 118, 3.1.4.5)") },
+  A: { min: 0, zaklad: 3.5, why: t("country.sk.motorwayLane35") },
+  B: { min: 2.75, zaklad: 3, why: t("country.sk.laneCollectorRoadLeast") },
   C: SK_LANE,
-  D: { min: 2.5, zaklad: 2.75, why: t("jízdní pruh zklidněné komunikace: 2,75 m (TP 73 6110, obr. 43), nejméně 2,5 m (STN 73 6110)") },
+  D: { min: 2.5, zaklad: 2.75, why: t("country.sk.laneTrafficCalmedStreet") },
 };
 function limitsSK(s, segs, i) {
   const parking = [segs[i - 1], segs[i + 1]].find((x) => x?.type === "parkovani");
   switch (s.type) {
     case "chodnik": case "chodnik_kola":
-      if (parking?.position) return { min: 1.5, zaklad: 2, why: t("zbytek chodníku vedle stání na chodníku: aspoň 1,5 m, optimálně 2 m (TP 117, 2.13.4)") };
-      return { min: 1.3, zaklad: 1.5, why: t("chodník: nejméně 1,3 m (vyhl. 532/2002 Z. z.), volná šířka 1,5 m, u zdi 1,75 m (STN 73 6110)") };
+      if (parking?.position) return { min: 1.5, zaklad: 2, why: t("country.sk.restSidewalkBesideParking") };
+      return { min: 1.3, zaklad: 1.5, why: t("country.sk.sidewalkLeast13") };
     case "stezka_sdilena":
-      return { min: 2.5, zaklad: 3, why: t("společná stezka pro chodce a cyklisty v obci: min. 2,5 m (TP 117, 2.8.2.3), 3 m při 150–300 osobách za hodinu (TP 085)") };
+      return { min: 2.5, zaklad: 3, why: t("country.sk.sharedPathPedestriansCyclistsTown") };
     case "pruh": case "pruh_piktokoridor":
-      if (s.turn) return { min: 0, zaklad: 2.75, why: t("řadicí pruh: vyznačený pruh nejméně 2,75 m (TP 117, 2.12.2)") };
+      if (s.turn) return { min: 0, zaklad: 2.75, why: t("country.sk.turningLaneMarkedLane") };
       return SK_LANE_BY_GROUP[GROUP[s.roadClass ?? segs.find((x) => x.roadClass)?.roadClass]] || SK_LANE;
     case "bus":
-      return { min: 3, zaklad: 3.5, why: t("vyhrazený pruh pro autobusy: 3,5 m, ve stísněných poměrech 3,15 m, u zastávky a přechodu 3 m (TP 117, 2.12.4.1)") };
+      return { min: 3, zaklad: 3.5, why: t("country.sk.busLane35") };
     case "bus_cyklo":
       // Bicycles in a bus lane: 3.5 m at most, or 4.75 m and more; not between (TP 117, 2.12.4.1).
       return s.width > 3.5 + 0.005
-        ? { min: 4.75, zaklad: 4.75, why: t("pruh pro autobusy s cyklisty: nejvýš 3,5 m, nebo aspoň 4,75 m, mezi tím ne (TP 117, 2.12.4.1)") }
-        : { min: 3, zaklad: 3, why: t("pruh pro autobusy s cyklisty: 3–3,5 m, nebo aspoň 4,75 m (TP 117, 2.12.4.1)") };
+        ? { min: 4.75, zaklad: 4.75, why: t("country.sk.busLaneCyclistsMost") }
+        : { min: 3, zaklad: 3, why: t("country.sk.busLaneCyclists3") };
     case "cyklopruh": {
       if (parking) {
         const perp = parking.orient === "kolme" || parking.orient === "sikme";
         return perp
-          ? { min: 2.5, zaklad: 2.75, why: t("cyklopruh vedle kolmého nebo šikmého stání: 1,75 m a bezpečnostní pás 0,75–1,25 m (TP 117, 2.12.4.2)") }
-          : { min: 2.25, zaklad: 2.5, why: t("cyklopruh vedle podélného stání: 1,75 m a bezpečnostní pás 0,5–1 m (TP 117, 2.12.4.2)") };
+          ? { min: 2.5, zaklad: 2.75, why: t("country.sk.cycleLaneBesidePerpendicular") }
+          : { min: 2.25, zaklad: 2.5, why: t("country.sk.cycleLaneBesideParallel") };
       }
-      return { min: 1.75, zaklad: 2, why: t("cyklopruh: nejméně 1,75 m, doporučeně 2 m (TP 117, 2.12.4.2)") };
+      return { min: 1.75, zaklad: 2, why: t("country.sk.cycleLaneLeast1") };
     }
     case "ochranny_pruh":
-      return { min: 1.25, zaklad: 1.5, why: t("ochranný pruh pro cyklisty: 1,5 m, nejméně 1,25 m (TP 117, 2.12.4.3)") };
+      return { min: 1.25, zaklad: 1.5, why: t("country.sk.advisoryCycleLane1") };
     case "cyklostezka":
-      return { min: 2, zaklad: 2.5, why: t("stezka pro cyklisty: jednosměrná min. 2 m, obousměrná 2,5 m (TP 117, 2.8.2.3); doporučeně 2,5 m (MIB)") };
+      return { min: 2, zaklad: 2.5, why: t("country.sk.cycleTrackOneWay") };
     case "nastupiste":
-      return { min: 0, zaklad: [segs[i - 1], segs[i + 1]].some((x) => /^tramvaj/.test(x?.type || "")) ? 2.5 : 2, why: t("nástupiště zastávky: zpravidla aspoň 2 m pro autobus, 2,5 m pro tramvaj (IDS BK)") };
+      return { min: 0, zaklad: [segs[i - 1], segs[i + 1]].some((x) => /^tramvaj/.test(x?.type || "")) ? 2.5 : 2, why: t("country.sk.stopPlatformRuleLeast") };
     case "parkovani":
       return s.orient === "kolme" || s.orient === "sikme"
-        ? { min: 4.5, zaklad: 5, why: t("kolmé a šikmé stání: 5 m (4,5 m s přesahem nad obrubník; STN 73 6056, TP 117 tab. 13)") }
-        : { min: 2, zaklad: 2, why: t("podélné stání: 2 m (TP 117, 2.13.8.2)") };
+        ? { min: 4.5, zaklad: 5, why: t("country.sk.perpendicularAngledParking5") }
+        : { min: 2, zaklad: 2, why: t("country.sk.parallelParking2M") };
     default:
       return null;
   }
@@ -75,30 +75,30 @@ const SK_FILE = { b1: "231", b11: "232", b8: "233-58", b30: "233-60", b28: "270"
 // The names of the Slovak signs by their own meaning (vyhláška 30/2020 Z. z.; the review of Slovakia: "323 Zóna pre
 // cyklistov" is "Bicyklová cesta"), in the page's language: in Slovak the official names (sk.js).
 const SK_TITLE = {
-  b1: t("Zákaz vjezdu pro všechna vozidla"),
-  b11: t("Zákaz vjezdu pro všechna motorová vozidla"),
-  b8: t("Zákaz vjezdu pro jízdní kola"),
-  b30: t("Zákaz vstupu pro chodce"),
-  b20a: t("Nejvyšší dovolená rychlost"),
-  b28: t("Zákaz zastavení"),
-  b29: t("Zákaz stání"),
-  oneway: t("Jednosměrná cesta / Zákaz vjezdu"),
-  c7a: t("Cestička pro chodce"),
-  c8a: t("Cyklistická komunikace"),
-  c9a: t("Společná cestička pro chodce a cyklisty"),
-  c10a: t("Oddělená cestička pro chodce a cyklisty"),
-  ip11a: t("Parkování"),
-  ip11d: t("Parkování na chodníku příčně úplně"),
-  ip11e: t("Parkování na chodníku úplně"),
-  ip11f: t("Parkování na chodníku příčně částečně"),
-  ip11g: t("Parkování na chodníku částečně"),
-  ip14a: t("Dálnice"),
-  ip15a: t("Cesta pro motorová vozidla"),
-  ip20a: t("Vyhrazený pruh pro veřejnou dopravu"),
-  zona30: t("Zóna nejvyšší dovolené rychlosti"),
-  ip26a: t("Obytná zóna"),
-  ip27a: t("Pěší zóna"),
-  cyklozona: t("Cyklistická ulice"),
+  b1: t("country.sk.noEntryAllVehicles"),
+  b11: t("country.sk.noEntryAllMotor"),
+  b8: t("country.sk.noEntryBicycles"),
+  b30: t("country.sk.noEntryPedestrians"),
+  b20a: t("country.sk.speedLimit"),
+  b28: t("country.sk.noStopping"),
+  b29: t("common.noParking"),
+  oneway: t("country.sk.oneWayRoadNo"),
+  c7a: t("country.sk.footpath"),
+  c8a: t("country.sk.cycleTrack"),
+  c9a: t("country.sk.sharedPathPedestriansCyclists"),
+  c10a: t("country.sk.segregatedPathPedestriansCyclists"),
+  ip11a: t("common.parking"),
+  ip11d: t("country.sk.perpendicularParkingFullyPavement"),
+  ip11e: t("country.sk.parkingFullyPavement"),
+  ip11f: t("country.sk.perpendicularParkingPartlyPavement"),
+  ip11g: t("country.sk.parkingPartlyPavement"),
+  ip14a: t("country.sk.motorway"),
+  ip15a: t("country.sk.roadMotorVehicles"),
+  ip20a: t("country.sk.reservedLanePublicTransport"),
+  zona30: t("country.sk.speedLimitZone"),
+  ip26a: t("country.sk.residentialZone"),
+  ip27a: t("country.sk.pedestrianZone"),
+  cyklozona: t("country.sk.cycleStreet"),
 };
 const SK_SPEEDS = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130];
 function signFile(s, seg) {
@@ -151,7 +151,7 @@ export default {
   parkGuess: true,
   limits: limitsSK,
   // Slovakia: 3.75 m in a town, 3.5 m where it cannot be had, 4.75 m with much cycling or freight (TP 117, tab. 4).
-  contraflow: () => ({ lo: 3.5, base: 3.75, why: t("jednosměrka s cyklisty v protisměru: 3,75 m, ve stísněných poměrech 3,5 m, při silném provozu 4,75 m (TP 117, tab. 4)") }),
+  contraflow: () => ({ lo: 3.5, base: 3.75, why: t("country.sk.oneWayStreetContraflow") }),
   // No public Slovak width of a tram belt: no warning.
   tramBelt: () => [],
   // A sign SK has not is not drawn (Fable: no shared zone).
@@ -161,7 +161,7 @@ export default {
   laneOrtho: "sk",
   orthoEstimate: true,
   panorama: false,
-  linesMissing: mark("mapy města a ZBGIS"),
+  linesMissing: mark("country.sk.townMapZbgis"),
   art: SK_ART,
   // The house looks as in Czechia: sorela, the brick block of the 1950s–60s, the panel house.
   socialistLooks: true,

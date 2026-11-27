@@ -1,258 +1,200 @@
 // Languages (Bára 12. 11. 2026, Slovak 15. 11. 2026, German 16. 11. 2026, all 24 official languages of the EU
-// 17. 11. 2026): every Czech text of the app has its English (en.js) and its text in every other language (<lang>.js),
-// with the same {names} filled in; none holds a text the app no longer says; the page's own texts (index.html) are
-// translated too.
+// 17. 11. 2026; named keys and one JSON file per language since 27. 11. 2026, app/public/locales/<lang>.json): every
+// key the code and the page use is in every language with the same {names} filled in, none is a key nobody uses, the
+// page's Czech (index.html) is cs.json's, and no language holds Czech it should not.
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
-import { EN, EN_HTML, EN_CITY, EN_ATTRIBUTION } from "../app/public/en.js";
-import { SK, SK_HTML, SK_CITY, SK_ATTRIBUTION } from "../app/public/sk.js";
-import { DE, DE_HTML, DE_CITY, DE_ATTRIBUTION } from "../app/public/de.js";
 import { LANGS } from "../app/public/i18n.js";
 
 const DIR = new URL("../app/public/", import.meta.url);
 const FILES = [...fs.readdirSync(DIR).filter((f) => f.endsWith(".js")), ...["towns", "countries"].flatMap((d) => fs.readdirSync(new URL(`${d}/`, DIR)).map((f) => `${d}/${f}`))]
-  .filter((f) => f.endsWith(".js") && !Object.keys(LANGS).some((l) => f === `${l}.js`));
+  .filter((f) => f.endsWith(".js"));
+const src = (f) => fs.readFileSync(new URL(f, DIR), "utf8");
+const L = Object.fromEntries(Object.keys(LANGS).map((l) => [l, JSON.parse(fs.readFileSync(new URL(`locales/${l}.json`, DIR), "utf8"))]));
+const CS = L.cs, EN = L.en;
+const LEGACY = JSON.parse(fs.readFileSync(new URL("locales/legacy-cs-keys.json", DIR), "utf8"));
+const names = (s) => [...s.matchAll(/\{(\w+)\}/g)].map((m) => m[1]).sort();
+const KEY = /^[a-z][A-Za-z0-9]*(?:\.[A-Za-z0-9-]+)+$/;
 
-// The texts the code hands to t() (tr() where t means something else), as written: "…" only (the code never
-// uses another quote for them).
-export function codeTexts() {
+// The keys the code hands to t() (tr() where t means something else) and mark(), as written: "…" only.
+export function codeKeys() {
   const out = new Map();
   for (const f of FILES) {
-    const src = fs.readFileSync(new URL(f, DIR), "utf8");
-    for (const m of src.matchAll(/\b(?:t|tr|mark)\(\s*"((?:[^"\\]|\\.)*)"/g)) out.set(JSON.parse(`"${m[1]}"`), f);
-    // A t() of anything but a plain text could not be checked here.
-    for (const m of src.matchAll(/\b(?:t|tr|mark)\(\s*([`'])/g)) assert.fail(`${f}: t(${m[1]}…) – texty pro překlad v "…"`);
+    const s = src(f);
+    for (const m of s.matchAll(/\b(?:t|tr|mark)\(\s*"((?:[^"\\]|\\.)*)"/g)) out.set(m[1], f);
+    for (const m of s.matchAll(/\b(?:t|tr|mark)\(\s*([`'])/g)) assert.fail(`${f}: t(${m[1]}…) – klíče v "…"`);
   }
   return out;
 }
+// A t() of a variable only where the text is known to flow so (a credit, a note of the cut, a base map's name, the
+// state's text): anything else would escape this test.
+const VARIABLE = {
+  "app.js": ["tr(credit)", "tr(o.credit)", "tr(k)", 'tr(localStorage.getItem(BASE_KEY) || "")', 'tr(state.cut?.note || "")'],
+  "sources.js": ["t(country.linesMissing)"],
+};
+// The page's keys: data-t, data-t-<attribute>, data-t-html.
+const PAGE = src("index.html");
+const pageKeys = () => [...PAGE.matchAll(/\sdata-t(?:-[\w-]+)?="([^"]+)"/g)].map((m) => m[1]);
 
-// The texts of index.html that translatePage looks up: text nodes and the attributes people read, outside the
-// elements whose HTML is replaced whole (data-i18n) and outside <script>, <style> and <noscript>.
-export function pageTexts() {
-  let html = fs.readFileSync(new URL("index.html", DIR), "utf8");
-  html = html.replace(/<(script|style|noscript)\b[\s\S]*?<\/\1>/g, "");
-  for (;;) {
-    const m = /<(\w+)\b[^>]*\bdata-i18n="[^"]*"[^>]*>/.exec(html);
-    if (!m) break;
-    const end = html.indexOf(`</${m[1]}>`, m.index);
-    html = html.slice(0, m.index) + html.slice(end + m[1].length + 3);
+test("soubory jazyků: platný JSON, plochý, jen texty, všech 24 jazyků se stejnými klíči", () => {
+  assert.deepEqual(fs.readdirSync(new URL("locales/", DIR)).filter((f) => /^[a-z]{2}\.json$/.test(f)).map((f) => f.slice(0, 2)).sort(), Object.keys(LANGS).sort());
+  const keys = Object.keys(CS).sort();
+  for (const [l, tab] of Object.entries(L)) {
+    assert.deepEqual(Object.keys(tab).sort(), keys, `${l}.json má jiné klíče než cs.json`);
+    for (const [k, v] of Object.entries(tab)) {
+      assert.match(k, KEY, `${l}: klíč ${k}`);
+      assert.equal(typeof v, "string", `${l}: ${k}`);
+      assert.ok(v.trim(), `${l}: ${k} je prázdný`);
+    }
   }
-  const out = new Set();
-  const head = html.slice(0, html.indexOf("<body"));
-  out.add(/<title>([^<]*)<\/title>/.exec(head)[1]);
-  for (const m of head.matchAll(/<meta (?:name="description"|property="og:(?:title|description|image:alt)") content="([^"]*)"/g)) out.add(m[1]);
-  const body = html.slice(html.indexOf("<body"));
-  for (const m of body.matchAll(/>([^<]+)</g)) if (/\p{L}/u.test(m[1])) out.add(m[1].trim().replace(/\s+/g, " "));
-  for (const m of body.matchAll(/\s(?:title|aria-label|placeholder|alt|data-label)="([^"]+)"/g)) if (/\p{L}/u.test(m[1])) out.add(m[1]);
-  return out;
-}
-
-const names = (s) => [...s.matchAll(/\{(\w+)\}/g)].map((m) => m[1]).sort();
-// Words of a text that are only Czech (English names keep some: ČÚZK, RÚIAN, Plzeň).
-const CZECH = /[ěščřžůňťď]/i;
-
-test("každý text aplikace má anglický překlad se stejnými {jmény}", () => {
-  const texts = codeTexts();
-  const missing = [...texts].filter(([cs]) => !(cs in EN)).map(([cs, f]) => `${f}: ${cs}`);
-  assert.deepEqual(missing, [], "chybí v en.js");
-  for (const [cs] of texts) assert.deepEqual(names(EN[cs]), names(cs), `jiná {jména}: ${cs}`);
 });
 
-test("en.js nemá texty, které aplikace už neříká", () => {
-  const used = new Set([...codeTexts().keys(), ...pageTexts()]);
-  assert.deepEqual(Object.keys(EN).filter((cs) => !used.has(cs)), []);
+test("každý klíč z kódu a stránky je v jazycích, stejné {jména} ve všech jazycích", () => {
+  const missing = [...codeKeys()].filter(([k]) => !(k in CS)).map(([k, f]) => `${f}: ${k}`);
+  assert.deepEqual(missing, [], "chybí v cs.json");
+  assert.deepEqual(pageKeys().filter((k) => !(k in CS)), [], "index.html: chybí v cs.json");
+  for (const [l, tab] of Object.entries(L)) for (const k of Object.keys(CS)) assert.deepEqual(names(tab[k]), names(CS[k]), `${l}: jiná {jména}: ${k}`);
 });
 
-test("texty stránky (index.html) mají anglický překlad", () => {
-  const missing = [...pageTexts()].filter((cs) => !(cs in EN) && CZECH.test(cs) | /[áéíóúý]/i.test(cs));
-  assert.deepEqual(missing, []);
-  const html = fs.readFileSync(new URL("index.html", DIR), "utf8");
-  for (const m of html.matchAll(/data-i18n="([^"]+)"/g)) assert.ok(EN_HTML[m[1]], `EN_HTML.${m[1]}`);
+test("t() s proměnnou jen na vyjmenovaných místech", () => {
+  const found = {};
+  for (const f of FILES.filter((f) => f !== "i18n.js")) {
+    for (const m of src(f).matchAll(/(?<![\w.$])(?:t|tr|mark)\((?!\s*")([^()]*(?:\([^()]*\)[^()]*)*)\)/g)) {
+      // app.js: a mark() of its own (the hover of a part); t() in the comments
+      if (/^(true|false|)$/.test(m[1].trim())) continue;
+      if (!(found[f] ??= []).includes(m[0])) found[f].push(m[0]);
+    }
+  }
+  assert.deepEqual(found, VARIABLE);
+});
+
+test("žádný klíč, který aplikace nepoužívá", () => {
+  const used = new Set([...codeKeys().keys(), ...pageKeys()]);
+  // Keys in the code as plain strings (lanes-ortho.js credits, which app.js hands to t()).
+  for (const f of FILES) for (const m of src(f).matchAll(/"([a-z][A-Za-z0-9]*(?:\.[A-Za-z0-9-]+)+)"/g)) if (m[1] in CS) used.add(m[1]);
+  // The cities' texts (i18n.js cityTexts), the map credits' words (i18n.js attribution).
+  for (const k of Object.keys(CS)) if (/^(city|attribution)\./.test(k)) used.add(k);
+  assert.deepEqual(Object.keys(CS).filter((k) => !used.has(k)), []);
+  // The old Czech sentences of saved cuts point at keys there are.
+  for (const [cs, k] of Object.entries(LEGACY)) assert.ok(k in CS, `${cs} → ${k}`);
+});
+
+test("index.html: český text a atributy jsou ty z cs.json", () => {
+  // Text of an element with data-t (spaces around do not count), attributes named by data-t-<attribute>.
+  for (const m of PAGE.matchAll(/<(\w+)\b([^>]*)\sdata-t="([^"]+)"([^>]*)>([^<]*)</g)) assert.equal(m[5].trim(), CS[m[3]], m[3]);
+  for (const m of PAGE.matchAll(/<\w+\b[^>]*>/g)) {
+    for (const a of m[0].matchAll(/\sdata-t-([\w-]+)="([^"]+)"/g)) {
+      if (a[1] === "html") continue;
+      const v = new RegExp(`\\s${a[1]}="([^"]*)"`).exec(m[0]);
+      assert.equal(v?.[1], CS[a[2]], `${a[2]} (${a[1]})`);
+    }
+  }
+  const foot = /<div data-t-html="html\.footer">([\s\S]*?)<\/div>\s*<\/details>/.exec(PAGE);
+  assert.equal(foot[1], CS["html.footer"]);
+  // No text of the page translated as before (a whole text looked up in the language): every Czech text has its key.
+  const body = PAGE.slice(PAGE.indexOf("<body")).replace(/<(script|style|noscript)\b[\s\S]*?<\/\1>/g, "").replace(/<div data-t-html[\s\S]*?<\/div>\s*<\/details>/, "");
+  const csValues = new Map(Object.entries(CS).map(([k, v]) => [v, k]));
+  const loose = [...body.matchAll(/>([^<]+)</g)].map((m) => m[1].trim()).filter((s) => csValues.has(s));
+  const keyed = new Set([...PAGE.matchAll(/\sdata-t="([^"]+)"[^>]*>([^<]*)</g)].map((m) => m[2].trim()));
+  assert.deepEqual(loose.filter((s) => !keyed.has(s)), [], "text bez data-t");
 });
 
 test("styly nepíšou texty (překládají se jen v HTML a v kódu)", () => {
-  const css = fs.readFileSync(new URL("style.css", DIR), "utf8");
+  const css = src("style.css");
   assert.deepEqual([...css.matchAll(/content:\s*"([^"]*\p{L}[^"]*)"/gu)].map((m) => m[1]), []);
 });
 
 test("anglické texty jsou anglicky", () => {
-  const czech = Object.entries(EN).filter(([, en]) => /\b(je|jsou|nebo|na|pro|ulice|chodník)\b/i.test(en.replace(/ČÚZK|RÚIAN|Statutární město \S+|kraj\b/g, "")));
+  const czech = Object.entries(EN).filter(([k]) => k !== "html.footer").filter(([, en]) => /\b(je|jsou|nebo|na|pro|ulice|chodník)\b/i.test(en.replace(/ČÚZK|RÚIAN|Statutární město \S+|kraj\b/g, "")));
   assert.deepEqual(czech, []);
 });
 
-test("každé město má anglické texty", async () => {
+test("každé město má texty ve všech jazycích", async () => {
   const { CITY_IDS, cityById } = await import("../app/public/city.js");
   const FIELDS = ["server", "dataName", "dataShort", "techMap", "parkingSource", "rulesHead", "credit"];
-  for (const id of CITY_IDS) {
-    const en = EN_CITY[id] || EN_CITY[cityById(id).like];
-    assert.ok(en, id);
-    // Abroad (city.js abroad) there is no technical map to name and no data of the city to credit.
-    const none = cityById(id).abroad ? ["dataName", "techMap"] : [];
-    for (const k of FIELDS) assert.ok(none.includes(k) ? !en[k] : typeof en[k] === "string" && (en[k] || (k === "credit" && !cityById(id).credit)), `${id}.${k}`);
-    // The credit names the same sources as the Czech one (the export adds the DMVS and RÚIAN when they are missing).
-    for (const src of ["IS DMVS", "RÚIAN"]) assert.equal(en.credit.includes(src), cityById(id).credit.includes(src), `${id}: ${src}`);
+  // The ids with texts of their own are cities; the others take their state's (like) or another town's (i18n.js TEXT_ALIAS).
+  for (const k of Object.keys(CS).filter((k) => k.startsWith("city."))) {
+    const [, id, field] = k.split(".");
+    assert.ok(CITY_IDS.includes(id), k);
+    assert.ok(FIELDS.includes(field), k);
   }
-  assert.ok(EN_ATTRIBUTION.every(([cs, en]) => cs && typeof en === "string"));
+  // In Czech (the city as setCity makes it): every field a text, abroad no map to name (null), the credit maybe "".
+  for (const id of CITY_IDS) {
+    const c = cityById(id);
+    const none = c.abroad ? ["dataName", "techMap"] : [];
+    for (const k of FIELDS) assert.ok(none.includes(k) ? c[k] === null : typeof c[k] === "string" && (c[k] || k === "credit"), `${id}.${k}`);
+  }
+  // The credit names the same sources in every language (the export adds the DMVS and RÚIAN when they are missing).
+  for (const [l, tab] of Object.entries(L)) for (const k of Object.keys(CS).filter((k) => /^city\.[^.]+\.credit$/.test(k)))
+    for (const s of ["IS DMVS", "RÚIAN"]) assert.equal(tab[k].includes(s), CS[k].includes(s), `${l}: ${k}: ${s}`);
 });
 
-test("i18n.js: čísla, {jména}, chybějící text a kredity mapy", async () => {
+test("kredity mapy: česká slova v i18n.js jsou ta z cs.json, každý jazyk má svá", () => {
+  const pairs = [...src("i18n.js").matchAll(/\["([^"]+)", "(attribution\.\w+)"\]/g)];
+  assert.deepEqual(pairs.map((m) => m[2]).sort(), Object.keys(CS).filter((k) => k.startsWith("attribution.")).sort());
+  for (const m of pairs) assert.equal(CS[m[2]], m[1], m[2]);
+});
+
+test("i18n.js: čísla, {jména}, neznámý klíč, starý český text a kredity mapy", async () => {
   globalThis.PROFILY_LANG = "en";
   // A copy of its own (the language is read once, when the module loads).
   const i18n = await import("../app/public/i18n.js?en");
   delete globalThis.PROFILY_LANG;
   assert.equal(i18n.lang, "en");
   assert.equal(i18n.num(3.5), "3.50");
-  assert.equal(i18n.t("Celkem {w}", { w: "12.00 m" }), "Total 12.00 m");
-  assert.equal(i18n.t("text, který en.js nemá"), "text, který en.js nemá", "chybějící text zůstane česky");
+  assert.equal(i18n.t("common.totalW", { w: "12.00 m" }), "Total 12.00 m");
+  assert.equal(i18n.t("text, který jazyk nemá"), "text, který jazyk nemá", "neznámý klíč zůstane, jak je");
+  assert.equal(i18n.t(" · jen odhad z OSM"), " · only an estimate from OSM", "poznámka uloženého řezu z doby před klíči");
+  assert.equal(i18n.t("Technická mapa"), EN["app.surfaceMap"], "podkladová mapa zapamatovaná česky");
   assert.equal(i18n.attribution("technická mapa © Statutární město Brno"), "technical map © Statutární město Brno");
   const cs = await import("../app/public/i18n.js");
   assert.equal(cs.lang, "cs");
   assert.equal(cs.num(3.5), "3,50");
-  assert.equal(cs.t("Celkem {w}", { w: "12,00 m" }), "Celkem 12,00 m");
+  assert.equal(cs.t("common.totalW", { w: "12,00 m" }), "Celkem 12,00 m");
+  assert.equal(cs.t(" · jen odhad z OSM"), " · jen odhad z OSM");
+  assert.equal(cs.attribution("technická mapa © Statutární město Brno"), "technická mapa © Statutární město Brno");
 });
 
-// Slovak (sk.js): the same texts as English, Slovak words, numbers written as in Czech.
-test("slovenčina: každý text aplikace a stránky má překlad se stejnými {jmény} a nic navíc", () => {
-  assert.deepEqual(Object.keys(SK).filter((cs) => !(cs in EN)), [], "v sk.js navíc proti en.js");
-  assert.deepEqual(Object.keys(EN).filter((cs) => !(cs in SK)), [], "chybí v sk.js");
-  for (const cs of Object.keys(SK)) assert.deepEqual(names(SK[cs]), names(cs), `jiná {jména}: ${cs}`);
-  const html = fs.readFileSync(new URL("index.html", DIR), "utf8");
-  for (const m of html.matchAll(/data-i18n="([^"]+)"/g)) assert.ok(SK_HTML[m[1]], `SK_HTML.${m[1]}`);
-});
+// Czech-only letters and words; names of Czech places, offices, standards and sources keep theirs.
+const KEEP_SK = /Géoplateforme|ČÚZK|RÚIAN|IPR|TSK|MHMP|Statutární město \S+|Město \S+|Geoportál Praha|hl\. m\. Prahy|[A-ZČŘŠŽ][a-zěščřžýáíéůú]+(?:ský|cký) kraj|Kraj Vysočina|Plzeň|Plzni|Plzně|Třebíč|Břeclav|Přerov|Frýdek-Místek|Karviná|Ústí|Jihlava|Opava|Ostrava|Most|Brno|Praha|Pardubice|parkovanivbrne\.cz|data\.brno\.cz|Manuál\S*|Olgoj Chorchoj/g;
+const KEEP = /Géoplateforme|ČÚZK|ČSN|GKÚ|ÚGKK|Bára|RÚIAN|ÚAP|IPR|TSK|MHMP|Statutární město \S+|Město \S+|Geoportál Praha|hl\. m\. Prahy|[A-ZČŘŠŽÚ][a-zěščřžýáíéůú]+(?:ský|cký) kraj|Kraj Vysočina|Profily ulic|Plzeň|Plzni|Plzně|Třebíč|Břeclav|Přerov|Frýdek-Místek|Karviná|Ústí nad Labem|Ústí|Žilina|Banská Bystrica|Piešťany|Prešov|Košice|Dúbravka|Soukupová|Mapy\.com|\bSb\.|\bč\./g;
+// The texts the app says (not the footer, the cities' credits and the map credits' Czech: as before the keys, those
+// keep the offices' names).
+const said = (tab) => Object.entries(tab).filter(([k]) => !/^(html|city|attribution)\./.test(k));
 
 test("slovenské texty jsou slovensky", () => {
-  // Czech-only letters and words (names of Czech places and offices keep theirs).
-  const keep = /Géoplateforme|ČÚZK|RÚIAN|IPR|TSK|MHMP|Statutární město \S+|Město \S+|Geoportál Praha|hl\. m\. Prahy|[A-ZČŘŠŽ][a-zěščřžýáíéůú]+(?:ský|cký) kraj|Kraj Vysočina|Plzeň|Plzni|Plzně|Třebíč|Břeclav|Přerov|Frýdek-Místek|Karviná|Ústí|Jihlava|Opava|Ostrava|Most|Brno|Praha|Pardubice|parkovanivbrne\.cz|data\.brno\.cz|Manuál\S*|Olgoj Chorchoj/g;
-  const czech = Object.entries(SK).filter(([, sk]) => /[ěřů]|\b(jsou|nebo|také|který|která|které)\b/i.test(sk.replace(keep, "")));
-  assert.deepEqual(czech.map(([cs]) => cs), []);
-});
-
-test("každé město má slovenské texty", async () => {
-  const { CITY_IDS, cityById } = await import("../app/public/city.js");
-  const FIELDS = ["server", "dataName", "dataShort", "techMap", "parkingSource", "rulesHead", "credit"];
-  for (const id of CITY_IDS) {
-    const sk = SK_CITY[id] || SK_CITY[cityById(id).like];
-    assert.ok(sk, id);
-    // Abroad (city.js abroad) there is no technical map to name and no data of the city to credit.
-    const none = cityById(id).abroad ? ["dataName", "techMap"] : [];
-    for (const k of FIELDS) assert.ok(none.includes(k) ? !sk[k] : typeof sk[k] === "string" && (sk[k] || (k === "credit" && !cityById(id).credit)), `${id}.${k}`);
-    for (const src of ["IS DMVS", "RÚIAN"]) assert.equal(sk.credit.includes(src), cityById(id).credit.includes(src), `${id}: ${src}`);
-  }
-  assert.ok(SK_ATTRIBUTION.every(([cs, sk]) => cs && typeof sk === "string"));
-});
-
-test("i18n.js po slovensky: čísla jako v češtině, chybějící text česky", async () => {
-  globalThis.PROFILY_LANG = "sk";
-  const i18n = await import("../app/public/i18n.js?sk");
-  delete globalThis.PROFILY_LANG;
-  assert.equal(i18n.lang, "sk");
-  assert.equal(i18n.num(3.5), "3,50");
-  assert.equal(i18n.pct(44), "44 %");
-  assert.equal(i18n.t("Celkem {w}", { w: "12,00 m" }), SK["Celkem {w}"].replace("{w}", "12,00 m"));
-  assert.equal(i18n.t("text, který sk.js nemá"), "text, který sk.js nemá");
-});
-
-// German (de.js, Bára 16. 11. 2026): the same texts as English, German words, numbers written as in Czech. The
-// language is not the state: Czech signs, rules and offices keep their Czech names and codes.
-test("němčina: každý text aplikace a stránky má překlad se stejnými {jmény} a nic navíc", () => {
-  assert.deepEqual(Object.keys(DE).filter((cs) => !(cs in EN)), [], "v de.js navíc proti en.js");
-  assert.deepEqual(Object.keys(EN).filter((cs) => !(cs in DE)), [], "chybí v de.js");
-  for (const cs of Object.keys(DE)) assert.deepEqual(names(DE[cs]), names(cs), `jiná {jména}: ${cs}`);
-  const html = fs.readFileSync(new URL("index.html", DIR), "utf8");
-  for (const m of html.matchAll(/data-i18n="([^"]+)"/g)) assert.ok(DE_HTML[m[1]], `DE_HTML.${m[1]}`);
+  const czech = said(L.sk).filter(([, sk]) => /[ěřů]|\b(jsou|nebo|také|který|která|které)\b/i.test(sk.replace(KEEP_SK, "")));
+  assert.deepEqual(czech.map(([k]) => k), []);
 });
 
 test("německé texty jsou německy", () => {
-  // Czech and Slovak names of places, offices, standards and sources keep their letters ("je" and "pro" are German too).
-  const keep = /Géoplateforme|ČÚZK|ČSN|GKÚ|ÚGKK|Bára|RÚIAN|ÚAP|IPR|TSK|MHMP|Statutární město \S+|Město \S+|Geoportál Praha|hl\. m\. Prahy|[A-ZČŘŠŽÚ][a-zěščřžýáíéůú]+(?:ský|cký) kraj|Kraj Vysočina|Profily ulic|Plzeň|Třebíč|Břeclav|Přerov|Frýdek-Místek|Karviná|Ústí nad Labem|Ústí|Žilina|Banská Bystrica|Piešťany|Prešov|Košice|Dúbravka|Soukupová|Mapy\.com|\bSb\.|\bč\./g;
-  const czech = Object.entries(DE).filter(([, de]) => /[ěščřžůňťďýáíéúľĺŕô]|\b(jsou|nebo|také|který|která|ulice|chodník)\b/i.test(de.replace(keep, "")));
-  assert.deepEqual(czech.map(([cs]) => cs), []);
+  const czech = said(L.de).filter(([, de]) => /[ěščřžůňťďýáíéúľĺŕô]|\b(jsou|nebo|také|který|která|ulice|chodník)\b/i.test(de.replace(KEEP, "")));
+  assert.deepEqual(czech.map(([k]) => k), []);
   // The app's terms: the modes and the main parts (Bára's terminology).
-  for (const [cs, de] of [["Stav", "Bestand"], ["Návrh", "Planung"], ["Porovnat", "Vergleich"], ["Chodník", "Gehweg"], ["Jízdní pruh", "Fahrstreifen"],
-    ["Vyhrazený cyklopruh", "Radfahrstreifen"], ["Ochranný cyklopruh", "Schutzstreifen"], ["Vozovka", "Fahrbahn"], ["Profily ulic", "Straßenprofil"]]) assert.equal(DE[cs], de, cs);
+  for (const [k, de] of [["common.existing", "Bestand"], ["common.proposal", "Planung"], ["page.compare", "Vergleich"], ["common.sidewalk", "Gehweg"], ["types.trafficLane", "Fahrstreifen"],
+    ["types.cycleLane", "Radfahrstreifen"], ["types.advisoryCycleLane", "Schutzstreifen"], ["rules.carriageway", "Fahrbahn"], ["common.streetProfile", "Straßenprofil"]]) assert.equal(L.de[k], de, k);
 });
-
-test("každé město má německé texty", async () => {
-  const { CITY_IDS, cityById } = await import("../app/public/city.js");
-  const FIELDS = ["server", "dataName", "dataShort", "techMap", "parkingSource", "rulesHead", "credit"];
-  for (const id of CITY_IDS) {
-    const de = DE_CITY[id] || DE_CITY[cityById(id).like];
-    assert.ok(de, id);
-    const none = cityById(id).abroad ? ["dataName", "techMap"] : [];
-    for (const k of FIELDS) assert.ok(none.includes(k) ? !de[k] : typeof de[k] === "string" && (de[k] || (k === "credit" && !cityById(id).credit)), `${id}.${k}`);
-    for (const src of ["IS DMVS", "RÚIAN"]) assert.equal(de.credit.includes(src), cityById(id).credit.includes(src), `${id}: ${src}`);
-  }
-  assert.deepEqual(DE_ATTRIBUTION.map(([cs]) => cs), EN_ATTRIBUTION.map(([cs]) => cs));
-  assert.ok(DE_ATTRIBUTION.every(([cs, de]) => cs && typeof de === "string"));
-});
-
-test("i18n.js po německy: desetinná čárka jako v češtině, chybějící text česky", async () => {
-  globalThis.PROFILY_LANG = "de";
-  const i18n = await import("../app/public/i18n.js?de");
-  delete globalThis.PROFILY_LANG;
-  assert.equal(i18n.lang, "de");
-  assert.ok("de" in i18n.LANGS);
-  assert.equal(i18n.num(3.5), "3,50");
-  assert.equal(i18n.pct(44), "44 %");
-  assert.equal(i18n.numField(2.5), "2,5");
-  assert.equal(i18n.readNum("2,5"), 2.5);
-  assert.equal(i18n.t("Celkem {w}", { w: "12,00 m" }), "Gesamt 12,00 m");
-  assert.equal(i18n.t("text, který de.js nemá"), "text, který de.js nemá");
-  assert.equal(i18n.attribution("technická mapa © Statutární město Brno"), "technische Karte © Statutární město Brno");
-});
-
-test("jazyk není stát: německé rozhraní nemění značky ani pravidla řezu v Česku", async () => {
-  // The signs and rules follow the cut's state; no module but i18n.js and the language menu reads the language.
-  for (const f of FILES.filter((f) => !["i18n.js", "app.js", "errors.js"].includes(f))) {
-    const src = fs.readFileSync(new URL(f, DIR), "utf8");
-    assert.ok(!/\blang\b\s*[!=]==/.test(src), `${f} rozhoduje podle jazyka`);
-  }
-});
-
-// The other 20 languages of the EU (Bára 17. 11. 2026), machine translations like German: the same texts as English,
-// no Czech left, numbers as the language writes them.
-const OTHER = Object.keys(LANGS).filter((l) => !["cs", "en", "sk", "de"].includes(l));
-const tables = async (l) => {
-  const m = await import(`../app/public/${l}.js`), U = l.toUpperCase();
-  return { texts: m[U], html: m[`${U}_HTML`], city: m[`${U}_CITY`], attribution: m[`${U}_ATTRIBUTION`] };
-};
-// Czech and Slovak names of places, offices, standards and sources keep their letters.
-const KEEP = /ČÚZK|ČSN|GKÚ|ÚGKK|Bára|RÚIAN|ÚAP|IPR|TSK|MHMP|Statutární město \S+|Město \S+|Geoportál Praha|hl\. m\. Prahy|[A-ZČŘŠŽÚ][a-zěščřžýáíéůú]+(?:ský|cký) kraj|Kraj Vysočina|Profily ulic|Plzeň|Plzni|Plzně|Třebíč|Břeclav|Přerov|Frýdek-Místek|Karviná|Ústí nad Labem|Ústí|Žilina|Banská Bystrica|Piešťany|Prešov|Košice|Dúbravka|Soukupová|Mapy\.com|\bSb\.|\bč\./g;
 
 test("všech 24 úředních jazyků EU, každý pojmenovaný sám sebou", () => {
   assert.deepEqual(Object.keys(LANGS).sort(), ["bg", "cs", "da", "de", "el", "en", "es", "et", "fi", "fr", "ga", "hr", "hu", "it", "lt", "lv", "mt", "nl", "pl", "pt", "ro", "sk", "sl", "sv"]);
   assert.equal(new Set(Object.values(LANGS)).size, 24);
 });
 
-for (const l of OTHER) {
-  test(`${l}: každý text aplikace a stránky má překlad se stejnými {jmény}, nic navíc, bez češtiny`, async () => {
-    const { texts, html, city, attribution } = await tables(l);
-    assert.deepEqual(Object.keys(texts).filter((cs) => !(cs in EN)), [], `v ${l}.js navíc proti en.js`);
-    assert.deepEqual(Object.keys(EN).filter((cs) => !(cs in texts)), [], `chybí v ${l}.js`);
-    for (const cs of Object.keys(texts)) {
-      assert.equal(typeof texts[cs], "string", cs);
-      assert.deepEqual(names(texts[cs]), names(cs), `jiná {jména}: ${cs}`);
-    }
-    const page = fs.readFileSync(new URL("index.html", DIR), "utf8");
-    for (const m of page.matchAll(/data-i18n="([^"]+)"/g)) assert.ok(html[m[1]], `${l.toUpperCase()}_HTML.${m[1]}`);
+for (const l of Object.keys(LANGS).filter((l) => !["cs", "en", "sk", "de"].includes(l))) {
+  test(`${l}: bez češtiny`, () => {
     // Czech-only letters and words ("nebo" and "ulice" are Croatian and Slovenian too).
-    const czech = Object.entries(texts).filter(([, v]) => /[ěřůťď]|\b(jsou|také|který|která|které|chodník)\b/i.test(v.replace(KEEP, "")));
-    assert.deepEqual(czech.map(([cs]) => cs), [], `česky v ${l}.js`);
-    // The city's texts: the same fields as in English, the same sources credited.
-    const { CITY_IDS, cityById } = await import("../app/public/city.js");
-    const FIELDS = ["server", "dataName", "dataShort", "techMap", "parkingSource", "rulesHead", "credit"];
-    for (const id of CITY_IDS) {
-      const c = city[id] || city[cityById(id).like];
-      assert.ok(c, `${l}: ${id}`);
-      const none = cityById(id).abroad ? ["dataName", "techMap"] : [];
-      for (const k of FIELDS) assert.ok(none.includes(k) ? !c[k] : typeof c[k] === "string" && (c[k] || (k === "credit" && !cityById(id).credit)), `${l}: ${id}.${k}`);
-      for (const src of ["IS DMVS", "RÚIAN"]) assert.equal(c.credit.includes(src), cityById(id).credit.includes(src), `${l}: ${id}: ${src}`);
-    }
-    assert.deepEqual(attribution.map(([cs]) => cs), EN_ATTRIBUTION.map(([cs]) => cs));
-    assert.ok(attribution.every(([cs, v]) => cs && typeof v === "string" && v));
+    const czech = said(L[l]).filter(([, v]) => /[ěřůťď]|\b(jsou|také|který|která|které|chodník)\b/i.test(v.replace(KEEP, "")));
+    assert.deepEqual(czech.map(([k]) => k), [], `česky v ${l}.json`);
   });
 }
+
+test("jazyk není stát: německé rozhraní nemění značky ani pravidla řezu v Česku", async () => {
+  // The signs and rules follow the cut's state; no module but i18n.js and the language menu reads the language.
+  for (const f of FILES.filter((f) => !["i18n.js", "app.js", "errors.js"].includes(f))) {
+    assert.ok(!/\blang\b\s*[!=]==/.test(src(f)), `${f} rozhoduje podle jazyka`);
+  }
+});
 
 test("čísla podle jazyka: desetinná tečka jen v angličtině, irštině a maltštině", async () => {
   for (const l of Object.keys(LANGS)) {
@@ -265,12 +207,13 @@ test("čísla podle jazyka: desetinná tečka jen v angličtině, irštině a ma
     assert.equal(i18n.numField(2.5), point ? "2.5" : "2,5", l);
     assert.match(i18n.pct(44), /^44\s?%$/, l);
     assert.equal(i18n.t("text, který jazyk nemá"), "text, který jazyk nemá", l);
-    if (l !== "cs") assert.notEqual(i18n.t("Porovnat"), "Porovnat", l);
+    assert.equal(i18n.t("page.compare"), L[l]["page.compare"], l);
+    if (l !== "cs") assert.notEqual(i18n.t("page.compare"), "Porovnat", l);
   }
 });
 
 test("errors.js zná všechny jazyky", async () => {
-  const errors = fs.readFileSync(new URL("errors.js", DIR), "utf8");
+  const errors = src("errors.js");
   for (const l of Object.keys(LANGS)) assert.match(errors, new RegExp(`\\b${l}: \\{ start: "`), `errors.js: ${l}`);
   const list = /var LANGS = "([^"]+)"/.exec(errors)[1].split(" ").sort();
   assert.deepEqual(list, Object.keys(LANGS).sort());

@@ -14,25 +14,25 @@ const PARKED = (segs, i) => [segs[i - 1], segs[i + 1]].find((x) => x?.type === "
 function limitsLT(s, segs = [], i = -1) {
   switch (s.type) {
     case "chodnik":
-      return { min: 0, zaklad: 2.5, why: t("chodník: doporučeno nejméně 2,5 m (příručka ulic Kaunasu 2024; státní minimum nenalezeno)") };
+      return { min: 0, zaklad: 2.5, why: t("country.lt.sidewalkLeast25") };
     case "cyklopruh": case "ochranny_pruh":
-      return { min: 0, zaklad: 1.5, why: PARKED(segs, i) ? t("cyklopruh: nejméně 1,5 m, u podélného stání vést za stáním s ochranným pásem (příručka ulic Kaunasu 2024, doporučení)") : t("cyklopruh: nejméně 1,5 m (příručka ulic Kaunasu 2024, doporučení)") };
+      return { min: 0, zaklad: 1.5, why: PARKED(segs, i) ? t("country.lt.cycleLaneLeast1") : t("country.lt.cycleLaneLeast15") };
     case "cyklostezka": {
       // Kaunas's figure for a track, whatever its direction; a half of a two-way track by the whole track
       // (countries/cycletrack.js; the review of 24. 11. 2026).
-      const track = { min: 0, zaklad: 2.5, why: t("stezka pro cyklisty: 2,5–3,5 m (příručka ulic Kaunasu 2024, doporučení)") };
+      const track = { min: 0, zaklad: 2.5, why: t("country.lt.cycleTrack25") };
       return cycleTrackLimits(s, segs, i, track, track);
     }
     case "bus":
-      return { min: 0, zaklad: 3.05, why: t("pruh pro veřejnou dopravu: 3,25 m při dvou pruzích, 3 m při třech a více, zúžit lze na 3,05 m (příručka ulic Vilniusu 2021, doporučení)") };
+      return { min: 0, zaklad: 3.05, why: t("country.lt.publicTransportLane3") };
     case "pruh": case "pruh_piktokoridor":
       if (s.turn) return null;
-      return { min: 0, zaklad: 2.75, why: t("jízdní pruh: 3 m při 50 km/h, 2,75 m při 30 km/h (příručka ulic Vilniusu 2021, doporučení)") };
+      return { min: 0, zaklad: 2.75, why: t("country.lt.lane3M50") };
     case "parkovani":
       // Angled stalls: the guide gives no size (only "in exceptional cases"); no warning.
       if (s.orient === "sikme") return null;
-      if (s.orient === "kolme") return { min: 0, zaklad: 4.35, why: t("kolmé stání: místo 4,35 m a ochranný pás 0,75 m, jen výjimečně (příručka ulic Kaunasu 2024, doporučení)") };
-      return { min: 0, zaklad: 2.3, why: t("podélné stání: 2,3–2,5 m (příručka ulic Kaunasu 2024, doporučení)") };
+      if (s.orient === "kolme") return { min: 0, zaklad: 4.35, why: t("country.lt.perpendicularParkingBay4") };
+      return { min: 0, zaklad: 2.3, why: t("country.lt.parallelParking23") };
     default:
       return null;
   }
@@ -80,7 +80,7 @@ export default {
   // of a narrow street by the commentaries: 3 m a direction as elsewhere. 150.5: no parking on the sidewalk unless a
   // sign of the way of parking allows it; the width left to pedestrians was not found.
   freeLane: 3,
-  halfKerbNote: (free, need) => t("Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. V Litvě smí auto stát na chodníku jen tam, kde to dovolí značka způsobu stání (bod 150.5 pravidel silničního provozu, z druhé ruky); volnou šířku pro chodce jsme v pravidlech nenašli, aplikace nechává {need}.", { free, need }),
+  halfKerbNote: (free, need) => t("country.lt.parkingHalfSidewalkOsm", { free, need }),
   parkGuess: true,
   parkByCycleLane: true,
   roadClassFromOsm: true,

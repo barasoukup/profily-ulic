@@ -91,10 +91,10 @@ export const MT_ORTHO = (b, w, h, format = "image/jpeg") => `https://malta.cover
 export const TO_ORTHO_WHO = "© Città di Torino (CC BY 4.0): Base cartografica realizzata da Bara Soukup, integrata con Ortofoto digitale colore 2023 della Città di Torino reperiti sul Geoportale del Comune di Torino";
 const itWms = (base, layer) => (b, w, h, format = "image/jpeg") => `${base}?${new URLSearchParams({ SERVICE: "WMS", REQUEST: "GetMap", VERSION: "1.3.0", LAYERS: layer, STYLES: "", CRS: "EPSG:3857", BBOX: b.join(","), WIDTH: w, HEIGHT: h, FORMAT: format })}`;
 export const IT_ORTHO = {
-  "it-bo": { box: [11.22, 44.42, 11.44, 44.56], url: itWms("https://servizigis.regione.emilia-romagna.it/wms/comune_bo_2023_rgb", "Comune_BO_2023_RGB"), credit: "ortofoto © Comune di Bologna, Regione Emilia-Romagna (CC BY 4.0)" },
-  "it-mo": { box: [10.77, 44.52, 11.03, 44.75], url: itWms("https://servizigis.regione.emilia-romagna.it/wms/comune_mo_2024_rgb", "Comune_MO_2024_RGB"), credit: "ortofoto © Comune di Modena, Regione Emilia-Romagna (CC BY 4.0)" },
+  "it-bo": { box: [11.22, 44.42, 11.44, 44.56], url: itWms("https://servizigis.regione.emilia-romagna.it/wms/comune_bo_2023_rgb", "Comune_BO_2023_RGB"), credit: "credits.orthophotoComuneDiBologna" },
+  "it-mo": { box: [10.77, 44.52, 11.03, 44.75], url: itWms("https://servizigis.regione.emilia-romagna.it/wms/comune_mo_2024_rgb", "Comune_MO_2024_RGB"), credit: "credits.orthophotoComuneDiModena" },
   "it-to": { box: [7.57, 44.99, 7.78, 45.15], url: itWms("https://geomap.reteunitaria.piemonte.it/mapproxy/service", "coto_ortofoto_2023"), who: TO_ORTHO_WHO },
-  "it-bz": { box: [10.38, 46.21, 12.48, 47.10], url: itWms("https://geoservices.buergernetz.bz.it/mapproxy/wms", "p_bz-Orthoimagery:Aerial-2023-RGB"), credit: "ortofoto © Provincia autonoma di Bolzano (CC BY 4.0)", outside: inLombardy },
+  "it-bz": { box: [10.38, 46.21, 12.48, 47.10], url: itWms("https://geoservices.buergernetz.bz.it/mapproxy/wms", "p_bz-Orthoimagery:Aerial-2023-RGB"), credit: "credits.orthophotoProvinciaAutonomaDi", outside: inLombardy },
 };
 // The orthophotos of a point; a box's "outside" is the territory it overlaps and does not cover (Bolzano's box reaches
 // into Lombardy: Ponte di Legno, Valfurva; the review of 24. 11. 2026).
@@ -159,9 +159,9 @@ export const SI_ORTHO = (b, w, h, format = "image/jpeg") => `https://ipi.eprosto
 // the estimate from OSM).
 const fiWms = (base, layer) => (b, w, h, format = "image/jpeg") => `${base}?${new URLSearchParams({ SERVICE: "WMS", REQUEST: "GetMap", VERSION: "1.3.0", LAYERS: layer, STYLES: "", CRS: "EPSG:3857", BBOX: b.join(","), WIDTH: w, HEIGHT: h, FORMAT: format, ...(format === "image/png" && { TRANSPARENT: "TRUE" }) })}`;
 export const FI_ORTHO = {
-  "fi-hki": { box: [24.82, 60.125, 25.27, 60.305], res: 0.1, url: fiWms("https://kartta.hel.fi/ws/geoserver/avoindata/wms", "avoindata:Ortoilmakuva_2026_5cm"), credit: "ortofoto © Helsingin kaupunki, kaupunkimittauspalvelut (CC BY 4.0)" },
-  "fi-esp": { box: [24.50, 60.08, 24.85, 60.36], res: 0.3, url: fiWms("https://kartat.espoo.fi/teklaogcweb/wms.ashx", "Ortokartta"), credit: "ortofoto © Espoon kaupunki (CC BY 4.0)" },
-  "fi-tku": { box: [22.05, 60.33, 22.55, 60.62], res: 0.1, url: fiWms("https://turku.asiointi.fi/TeklaOGCWeb/WMS.ashx", "Ilmakuva 2022 True ortho"), credit: "ortofoto © Turun kaupunki, 2022 (CC BY 4.0)" },
+  "fi-hki": { box: [24.82, 60.125, 25.27, 60.305], res: 0.1, url: fiWms("https://kartta.hel.fi/ws/geoserver/avoindata/wms", "avoindata:Ortoilmakuva_2026_5cm"), credit: "credits.orthophotoHelsinginKaupunkiKaupunkimittauspalvel" },
+  "fi-esp": { box: [24.50, 60.08, 24.85, 60.36], res: 0.3, url: fiWms("https://kartat.espoo.fi/teklaogcweb/wms.ashx", "Ortokartta"), credit: "credits.orthophotoEspoonKaupunkiCc" },
+  "fi-tku": { box: [22.05, 60.33, 22.55, 60.62], res: 0.1, url: fiWms("https://turku.asiointi.fi/TeklaOGCWeb/WMS.ashx", "Ilmakuva 2022 True ortho"), credit: "credits.orthophotoTurunKaupunki2022" },
 };
 export const fiOrthoAt = (lon, lat) => Object.keys(FI_ORTHO).filter((k) => { const [x0, y0, x1, y1] = FI_ORTHO[k].box; return lon >= x0 && lon <= x1 && lat >= y0 && lat <= y1; });
 // The USA (Bára 24. 11. 2026, phase 2): DC's orthophoto of 2025 (OCTO, Ortho2025_WebMercator, a tile cache in Web Mercator
@@ -180,15 +180,15 @@ export const NYS_ORTHO = "https://orthos.its.ny.gov/arcgis/rest/services/wms/202
 // Acknowledgement of MassGIS would be appreciated", the item's licence), over the metro (towns-us.json "bostonmetro").
 export const MA_ORTHO = "https://tiles.arcgis.com/tiles/hGdibHYSPO59RG1h/arcgis/rest/services/Massachusetts_Aerial_Imagery_2025/MapServer/tile";
 export const US_ORTHO = {
-  "us-dc": { box: [-77.12, 38.79, -76.909, 38.997], town: "washington", near: 60, res: 0.1, url: agsExport(DC_ORTHO), credit: "ortofoto © DC Office of the Chief Technology Officer, 2025 (CC BY 4.0)" },
-  "us-nyc": { box: [-74.27, 40.47, -73.68, 40.93], town: "newyork", near: 30, res: 0.15, url: agsExport(NYS_ORTHO), credit: "ortofoto © NYS ITS Geospatial Services, 2024" },
-  "us-ma": { box: [-71.9, 41.98, -70.64, 42.74], town: "bostonmetro", near: 60, res: 0.15, tiles: MA_ORTHO, z: 20, px: 256, credit: "ortofoto © MassGIS (Bureau of Geographic Information), 2025" },
+  "us-dc": { box: [-77.12, 38.79, -76.909, 38.997], town: "washington", near: 60, res: 0.1, url: agsExport(DC_ORTHO), credit: "credits.orthophotoDcOfficeChief" },
+  "us-nyc": { box: [-74.27, 40.47, -73.68, 40.93], town: "newyork", near: 30, res: 0.15, url: agsExport(NYS_ORTHO), credit: "credits.orthophotoNysGeospatialServices" },
+  "us-ma": { box: [-71.9, 41.98, -70.64, 42.74], town: "bostonmetro", near: 60, res: 0.15, tiles: MA_ORTHO, z: 20, px: 256, credit: "credits.orthophotoMassgisBureauGeographic" },
 };
 // Canada (Bára 25. 11. 2026): the City of Toronto's orthophoto of the current year (cot_ortho; 2025, 8 cm, a tile cache in Web
 // Mercator to level 23; CORS for the origin asking; Open Government Licence – Toronto by the catalogue's "Web Map Services"),
 // read as DC's, only inside the city (towns-ca.json) and 30 m beyond it. Around the city no orthophoto yet.
 export const CA_ORTHO = {
-  "ca-tor": { box: [-79.645, 43.575, -79.11, 43.86], town: "toronto", near: 30, res: 0.1, url: agsExport("https://gis.toronto.ca/arcgis/rest/services/basemap/cot_ortho/MapServer"), credit: "ortofoto © City of Toronto, 2025 (Open Government Licence – Toronto)" },
+  "ca-tor": { box: [-79.645, 43.575, -79.11, 43.86], town: "toronto", near: 30, res: 0.1, url: agsExport("https://gis.toronto.ca/arcgis/rest/services/basemap/cot_ortho/MapServer"), credit: "credits.orthophotoCityToronto2025" },
 };
 export const usOrthoAt = (lon, lat) => Object.keys(US_ORTHO).filter((k) => inArea(US_ORTHO[k], lon, lat));
 export const caOrthoAt = (lon, lat) => Object.keys(CA_ORTHO).filter((k) => inArea(CA_ORTHO[k], lon, lat));

@@ -14,33 +14,33 @@ function limitsPT(s, segs, i) {
   const parking = [segs[i - 1], segs[i + 1]].find((x) => x?.type === "parkovani");
   switch (s.type) {
     case "chodnik": case "chodnik_kola":
-      return { min: 1.5, zaklad: 1.8, why: t("chodník: volná šířka nejméně 1,5 m u hlavních a sběrných ulic, 1,2 m u každé pěší trasy (zákon o přístupnosti 163/2006); doporučeno 1,8 m (IMT, Lisabon)") };
+      return { min: 1.5, zaklad: 1.8, why: t("country.pt.sidewalkFreeWidthLeast") };
     // Beside parallel parking IMT's 2.2 m at least, 2.5 m recommended, 1 m of it a buffer (NORMS.md A2; the review of
     // 23. 11. 2026: the text said 2.5 m of Lisbon, which gives only a buffer of 0.7 m, and the code did not look).
     case "cyklopruh":
       if (parking && (parking.orient || "podelne") === "podelne")
-        return { min: 2.2, zaklad: 2.5, why: t("cyklopruh vedle podélného stání: nejméně 2,2 m, doporučeno 2,5 m, z toho 1 m ochranný pás (IMT)") };
-      return { min: 1.2, zaklad: 1.5, why: t("cyklopruh: 1,5 m, nejméně 1,2 m (IMT)") };
+        return { min: 2.2, zaklad: 2.5, why: t("country.pt.cycleLaneBesideParallel") };
+      return { min: 1.2, zaklad: 1.5, why: t("country.pt.cycleLane15") };
     case "cyklostezka":
-      return { min: 1.75, zaklad: 2, why: t("stezka pro cyklisty jednosměrná: 2 m, nejméně 1,75 m; obousměrná 3 m, při malém provozu 2,4 m (IMT a LNEC 2024)") };
+      return { min: 1.75, zaklad: 2, why: t("country.pt.oneWayCycleTrack") };
     // IMT's 3 m is France's figure it cites (CEREMA 2016, second hand: NORMS.md A3); Lisbon's 3.25 m at the kerb.
     case "bus":
       // Orange only (Bára 23. 11. 2026): the 3 m minimum is CEREMA's, second hand.
-      return { min: 0, zaklad: 3.25, why: t("vyhrazený pruh BUS: 3,25 m (příručka Lisabonu); nejméně 3 m podle IMT, který cituje francouzskou CEREMA") };
+      return { min: 0, zaklad: 3.25, why: t("country.pt.busLane325") };
     // The minimum is Lisbon's; IMT recommends 3.25 m and calls the shared lane not advisable (NORMS.md A2).
     case "bus_cyklo":
-      return { min: 3.25, zaklad: 3.25, why: t("společný pruh pro autobusy a cyklisty: nejméně 3,25 m (příručka Lisabonu); IMT doporučuje 3,25 m a společný pruh nedoporučuje") };
+      return { min: 3.25, zaklad: 3.25, why: t("country.pt.sharedBusCycleLane") };
     case "pruh": case "pruh_piktokoridor": {
       if (s.turn) return null;
       const L = lanes(segs), oneway = L.length > 0 && L.every((x) => (x.dir ?? "forward") === (L[0].dir ?? "forward"));
       return oneway && L.length >= 2
-        ? { min: 0, zaklad: 2.75, why: t("jízdní pruh vozovky s více pruhy jedním směrem: 2,75 m (příručka Lisabonu)") }
-        : { min: 0, zaklad: 3, why: t("jízdní pruh: 3 m (IMT, příručka Lisabonu)") };
+        ? { min: 0, zaklad: 2.75, why: t("country.pt.laneCarriagewaySeveralLanes") }
+        : { min: 0, zaklad: 3, why: t("country.pt.trafficLane3M") };
     }
     case "parkovani":
-      if (s.orient === "sikme") return { min: 0, zaklad: 4.2, why: t("šikmé stání: pás 4,2 m (příručka Lisabonu)") };
-      return s.orient === "kolme" ? { min: 4.5, zaklad: 5, why: t("kolmé stání: pás 5 m, nejméně 4,5 m (IMT, příručka Lisabonu)") }
-        : { min: 1.8, zaklad: 2, why: t("podélné stání: pás 2 m, v historickém centru 1,8 m (IMT, příručka Lisabonu)") };
+      if (s.orient === "sikme") return { min: 0, zaklad: 4.2, why: t("country.pt.angledParkingStrip4") };
+      return s.orient === "kolme" ? { min: 4.5, zaklad: 5, why: t("country.pt.perpendicularParkingStrip5") }
+        : { min: 1.8, zaklad: 2, why: t("country.pt.parallelParkingStrip2") };
     default:
       return null;
   }
@@ -80,7 +80,7 @@ export default {
   // art. 49/1 g) 3 m beside a continuous line: read as the Czech 3 m a direction (evaluation/portugal/NORMS.md B1; for
   // Bára). Parking is estimated as in Luxembourg.
   freeLane: 3,
-  halfKerbNote: (free, need) => t("Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Stání na chodníku je v Portugalsku zakázané (čl. 49 odst. 1 písm. f zákona o silničním provozu), ledaže ho povolí značka; ostatní nesmějí muset vjet do protisměru (čl. 50), aplikace nechává {need}.", { free, need }),
+  halfKerbNote: (free, need) => t("country.pt.parkingHalfSidewalkOsm", { free, need }),
   parkGuess: true,
   parkByCycleLane: true,
   roadClassFromOsm: true,

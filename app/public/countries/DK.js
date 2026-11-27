@@ -15,33 +15,33 @@ const PARKED = (segs, i) => [segs[i - 1], segs[i + 1]].find((x) => x?.type === "
 function limitsDK(s, segs = [], i = -1) {
   switch (s.type) {
     case "chodnik":
-      return { min: 0, zaklad: 1.5, why: t("chodník: běžně 2,5 m, nejméně 1,5 m (dánská příručka Tværprofiler i byer, 2019; doporučení)") };
+      return { min: 0, zaklad: 1.5, why: t("country.dk.sidewalkUsually25") };
     case "chodnik_kola": case "stezka_sdilena":
-      return { min: 0, zaklad: 1.8, why: t("jednosměrná společná stezka pro chodce a cyklisty: běžně 2,25 m, nejméně 1,8 m (dánská příručka Tværprofiler i byer, 2019; doporučení)") };
+      return { min: 0, zaklad: 1.8, why: t("country.dk.oneWaySharedPath") };
     case "cyklopruh": case "ochranny_pruh": {
       const p = PARKED(segs, i);
       return p && p.orient !== "kolme" && p.orient !== "sikme"
-        ? { min: 0, zaklad: 1.8, why: t("cyklopruh vedle podélného stání: 1,8 m včetně čáry (dánská příručka Tværprofiler i byer, 2019; doporučení)") }
-        : { min: 0, zaklad: 1.5, why: t("cyklopruh: 1,5 m včetně čáry, vedle podélného stání 1,8 m (dánská příručka Tværprofiler i byer, 2019; doporučení)") };
+        ? { min: 0, zaklad: 1.8, why: t("country.dk.cycleLaneBesideParallel") }
+        : { min: 0, zaklad: 1.5, why: t("country.dk.cycleLane15") };
     }
     case "cyklostezka":
       // A half of a two-way track by the whole track; one-way, or without a direction (derive.js gives OSM's one-way
       // tracks none), by the one-way figure (countries/cycletrack.js). Orange only (the review of 24. 11. 2026): the
       // circular 95/1984 is known only as the handbook cites it (NORMS.md: second hand), its text and validity unread.
-      return cycleTrackLimits(s, segs, i, { min: 0, zaklad: 1.8, why: t("jednosměrná stezka pro cyklisty: běžně 2,25 m, nejméně 1,8 m (dánská příručka Tværprofiler i byer, 2019; doporučení)") },
-        { min: 0, zaklad: 2.5, why: t("obousměrná stezka pro cyklisty podél silnice: nejméně 2,5 m (oběžník 95/1984, závazný pro správce silnic, citovaný v příručce Tværprofiler i byer)") });
+      return cycleTrackLimits(s, segs, i, { min: 0, zaklad: 1.8, why: t("country.dk.oneWayCycleTrack") },
+        { min: 0, zaklad: 2.5, why: t("country.dk.twoWayCycleTrack") });
     case "bus":
-      return { min: 0, zaklad: 3, why: t("pruh pro autobusy: běžně 3,5 m, krátce při nízké rychlosti nejméně 3 m (dánská příručka Tværprofiler i byer, 2019; doporučení)") };
+      return { min: 0, zaklad: 3, why: t("country.dk.busLaneUsually3") };
     case "bus_cyklo":
-      return { min: 0, zaklad: 4, why: t("pruh pro autobusy s cyklisty: o 1 m širší než pruh pro autobusy, tedy běžně 4,5 m, nejméně 4 m (dánská příručka Tværprofiler i byer, 2019; doporučení)") };
+      return { min: 0, zaklad: 4, why: t("country.dk.busLaneCyclists1") };
     case "parkovani":
-      if (s.orient === "kolme") return { min: 0, zaklad: 5, why: t("kolmé stání: 5 m (dánská příručka Anlæg for parkering og standsning i byer, 2023; doporučení)") };
-      if (s.orient === "sikme") return { min: 0, zaklad: 4.9, why: t("šikmé stání: hloubka 4,9 m při 30°, 5,6–5,9 m při 45–75° (dánská příručka Anlæg for parkering og standsning i byer, 2023; doporučení)") };
-      return { min: 0, zaklad: 2, why: t("podélné stání: 2 m, 2,3 m včetně čáry (dánské příručky Tværprofiler i byer, 2019, a Anlæg for parkering og standsning i byer, 2023; doporučení)") };
+      if (s.orient === "kolme") return { min: 0, zaklad: 5, why: t("country.dk.perpendicularParking5M") };
+      if (s.orient === "sikme") return { min: 0, zaklad: 4.9, why: t("country.dk.angledParkingDepth4") };
+      return { min: 0, zaklad: 2, why: t("country.dk.parallelParking2M") };
     case "pruh": case "pruh_piktokoridor":
       // § 164 (2) of the order on the use of road markings (quoted in the guide) wants 2.75 m between lines; whether a
       // lane of OSM is marked the app does not know, so orange.
-      return { min: 0, zaklad: 2.75, why: t("jízdní pruh: 3,25 m při 50 km/h (nejméně 3 m), 2,75 m při 30–40 km/h; pruh mezi čarami nejméně 2,75 m (vyhláška o užití dopravního značení, § 164, citovaná v dánské příručce Tværprofiler i byer)") };
+      return { min: 0, zaklad: 2.75, why: t("country.dk.trafficLane325") };
     default:
       return null;
   }
@@ -86,7 +86,7 @@ export default {
   // the app's reading, for Bára). § 28 (3): no parking on a sidewalk, cycle track or path; partly on the sidewalk only
   // outside built-up areas.
   freeLane: 3,
-  halfKerbNote: (free, need) => t("Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. V Dánsku je stání na chodníku v obci zakázané (§ 28 odst. 3 zákona o silničním provozu), obec ho ale může místní úpravou povolit (§ 92); mimo obec smí vozidlo stát částí na chodníku. Zákon volnou šířku vozovky uvádí jen vedle plné čáry (3 m, § 29), aplikace nechává {need}.", { free, need }),
+  halfKerbNote: (free, need) => t("country.dk.parkingHalfSidewalkOsm", { free, need }),
   parkGuess: true,
   // A cycle track OSM tags on the road (derive.js trackAlongRoad) without a width of its own: the usual one-way track of
   // the handbook Tværprofiler i byer (2019), 2.25 m (the review of 24. 11. 2026, bod 2; evaluation/denmark/ab/CYCLE-TRACKS.md).

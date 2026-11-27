@@ -14,25 +14,25 @@ const lanes = (segs) => segs.filter((x) => x.type === "pruh" || x.type === "pruh
 function limitsES(s, segs) {
   switch (s.type) {
     case "chodnik": case "chodnik_kola":
-      return { min: 1.8, zaklad: 2, why: t("chodník: volná šířka přístupné pěší trasy nejméně 1,8 m (vyhláška o přístupnosti TMA/851/2021, čl. 5.2 b); ministerstvo doporučuje 3 m, nikdy pod 2 m") };
+      return { min: 1.8, zaklad: 2, why: t("country.es.sidewalkFreeWidthAccessible") };
     // 1.4 m is the minimum, 1 m only an exception on a short stretch (the review of 23. 11. 2026); the guide has no
     // wider recommended width, so no orange. Its widths are without the lines and buffers; a two-way track (2.6 m,
     // exceptionally 2.2 m) is only in the text (the profile does not tell a two-way track).
     case "cyklostezka": case "cyklopruh":
-      return { min: 1.4, zaklad: 1.4, why: t("cyklopruh a stezka pro cyklisty jednosměrné: nejméně 1,4 m, jen výjimečně na krátkém úseku 1 m; obousměrné 2,6 m, výjimečně 2,2 m; šířky bez vodicích čar a odstupů (doporučení ministerstva dopravy 2024)") };
+      return { min: 1.4, zaklad: 1.4, why: t("country.es.oneWayCycleLane") };
     case "pruh": case "pruh_piktokoridor": {
       if (s.turn) return null;
       // Several lanes one way may narrow to 2.5 m; one lane a direction keeps 3 m (Bára 23. 11. 2026, the review 14: the
       // guide's 2.50–3.00 m, "no dimensionar por encima de los 3,00 m").
       const L = lanes(segs), sameWay = L.filter((x) => (x.dir ?? "forward") === (s.dir ?? "forward")).length;
       return sameWay >= 2
-        ? { min: 0, zaklad: 2.5, why: t("jízdní pruh vozovky s více pruhy jedním směrem: 2,5–2,75 m (doporučení ministerstva dopravy 2024)") }
-        : { min: 0, zaklad: 3, why: t("jízdní pruh městské ulice: 2,5–3 m, ne víc než 3 m (doporučení ministerstva dopravy 2024)") };
+        ? { min: 0, zaklad: 2.5, why: t("country.es.laneCarriagewaySeveralLanes") }
+        : { min: 0, zaklad: 3, why: t("country.es.laneUrbanStreet2") };
     }
     case "parkovani":
-      if (s.orient === "sikme") return { min: 0, zaklad: 4, why: t("šikmé stání: pás 4 m při 45°, 4,5 m při 60° (doporučení ministerstva dopravy 2024)") };
-      return s.orient === "kolme" ? { min: 4.5, zaklad: 5, why: t("kolmé stání: pás 5 m, nejméně 4,5 m (doporučení ministerstva dopravy 2024)") }
-        : { min: 1.8, zaklad: 2, why: t("podélné stání: pás 2 m, nejméně 1,8 m (doporučení ministerstva dopravy 2024)") };
+      if (s.orient === "sikme") return { min: 0, zaklad: 4, why: t("country.es.angledParkingStrip4") };
+      return s.orient === "kolme" ? { min: 4.5, zaklad: 5, why: t("country.es.perpendicularParkingStrip5") }
+        : { min: 1.8, zaklad: 2, why: t("country.es.parallelParkingStrip2") };
     default:
       return null;
   }
@@ -97,7 +97,7 @@ export default {
   // lanes OSM counts keep MIN_LANE each beside it (the review of 23. 11. 2026: 3 m alone left two lanes of 1.5 m).
   freeLane: 3,
   lawNeed: (oneway, lanes, minLane) => Math.max(3, minLane * Math.max(oneway ? 1 : 2, lanes)),
-  halfKerbNote: (free, need) => t("Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Stání na chodníku je ve Španělsku zakázané (čl. 94.2 e nařízení o silničním provozu); vedle stojícího auta musí zůstat aspoň 3 m k protějšímu okraji vozovky (čl. 91.2 a), aplikace nechává {need}.", { free, need }),
+  halfKerbNote: (free, need) => t("country.es.parkingHalfSidewalkOsm", { free, need }),
   parkGuess: true,
   parkByCycleLane: true,
   roadClassFromOsm: true,

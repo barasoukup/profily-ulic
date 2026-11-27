@@ -29,13 +29,13 @@ const PARKED = (segs, i) => [segs[i - 1], segs[i + 1]].find((x) => x?.type === "
 function limitsSF(s, segs, i, street = null) {
   switch (s.type) {
     case "chodnik":
-      if (street?.kind === "alley") return { min: 0, zaklad: 1.83, why: t("chodník v uličce: nejméně 6 ft (1,83 m), doporučeno 9 ft (2,74 m) (minima Better Streets Plan v datech Sidewalk Widths 2014, studie AECOM pro SFMTA)") };
+      if (street?.kind === "alley") return { min: 0, zaklad: 1.83, why: t("country.us.sidewalkAlleyLeast6") };
       if (street?.kind === "service") return null;
-      return { min: 0, zaklad: 3.05, why: t("chodník: v San Franciscu podle typu ulice nejméně 10 ft (3,05 m) v místních obytných, 12 ft (3,66 m) ve většině ostatních, doporučeno 12–15 ft (minima Better Streets Plan v datech Sidewalk Widths 2014, studie AECOM pro SFMTA)") };
+      return { min: 0, zaklad: 3.05, why: t("country.us.sidewalkSanFranciscoStreet") };
     case "cyklopruh": case "ochranny_pruh":
-      return PARKED(segs, i) ? { min: 0, zaklad: 1.52, why: t("cyklopruh vedle stání: nejméně 5 ft (1,52 m), od obruby nejméně 12 ft (3,66 m) včetně stání (NACTO Urban Bikeway Design Guide)") } : null;
+      return PARKED(segs, i) ? { min: 0, zaklad: 1.52, why: t("country.us.cycleLaneBesideParking") } : null;
     case "bus": case "bus_cyklo":
-      return { min: 0, zaklad: 3.05, why: t("pruh pro autobusy: 10–12 ft (3,05–3,66 m) (NACTO Transit Street Design Guide)") };
+      return { min: 0, zaklad: 3.05, why: t("country.us.busLane1012") };
     default:
       return null;
   }
@@ -47,27 +47,27 @@ function limitsUS(s, segs = [], i = -1, place = city, street = null) {
   if (BOSTON_TOWNS.has(place?.id)) return limitsBoston(s, segs, i);
   switch (s.type) {
     case "chodnik":
-      return { min: 0, zaklad: 1.83, why: t("chodník: průchozí šířka nejméně 6 ft (1,83 m) v řídké obytné zástavbě, 8 ft (2,44 m) v husté, 10 ft (3,05 m) v centru (DDOT DEM 2023)") };
+      return { min: 0, zaklad: 1.83, why: t("country.us.sidewalkClearWalkingWidth") };
     case "chodnik_kola": case "stezka_sdilena":
-      return { min: 0, zaklad: 3.05, why: t("společná stezka pro chodce a cyklisty: nejméně 10 ft (3,05 m) (DDOT DEM 2023)") };
+      return { min: 0, zaklad: 3.05, why: t("country.us.sharedPathPedestriansCyclists") };
     case "cyklopruh": case "ochranny_pruh":
       return { min: 0, zaklad: 1.52, why: PARKED(segs, i)
-        ? t("cyklopruh vedle stání: nejméně 5 ft (1,52 m), od obruby nejméně 12 ft (3,66 m) včetně stání (NACTO Urban Bikeway Design Guide)")
-        : t("cyklopruh: nejméně 5 ft (1,52 m), lépe 6 ft (1,83 m) (DDOT DEM 2023)") };
+        ? t("country.us.cycleLaneBesideParking")
+        : t("country.us.cycleLaneLeast5") };
     case "cyklostezka": {
       // A half of a two-way track by the whole track (countries/cycletrack.js).
-      return cycleTrackLimits(s, segs, i, { min: 0, zaklad: 1.52, why: t("jednosměrná chráněná cyklostezka: nejméně 5 ft (1,52 m), při silném provozu 7 ft (2,13 m) (DDOT DEM 2023; NACTO)") },
-        { min: 0, zaklad: 2.44, why: t("obousměrná cyklostezka: 10 ft (3,05 m), ve stísněných poměrech 8 ft (2,44 m) (DDOT Bicycle Facility Design Guide 2020)") });
+      return cycleTrackLimits(s, segs, i, { min: 0, zaklad: 1.52, why: t("country.us.oneWayProtectedCycle") },
+        { min: 0, zaklad: 2.44, why: t("country.us.twoWayCycleTrack") });
     }
     case "bus": case "bus_cyklo":
-      return { min: 0, zaklad: 3.05, why: t("pruh pro autobusy: 10–12 ft (3,05–3,66 m) (NACTO Transit Street Design Guide)") };
+      return { min: 0, zaklad: 3.05, why: t("country.us.busLane1012") };
     case "pruh": case "pruh_piktokoridor":
-      if (s.turn) return { min: 0, zaklad: 2.74, why: t("řadicí pruh: nejméně 9 ft (2,74 m), lépe 10 ft (3,05 m) (DDOT DEM 2023)") };
-      return { min: 0, zaklad: 3.05, why: t("jízdní pruh: 10 ft (3,05 m), na trase autobusů 11 ft (3,35 m) (DDOT DEM 2023; NACTO)") };
+      if (s.turn) return { min: 0, zaklad: 2.74, why: t("country.us.turnLaneLeast9") };
+      return { min: 0, zaklad: 3.05, why: t("country.us.trafficLane10Ft") };
     case "parkovani":
-      if (s.orient === "kolme") return { min: 0, zaklad: 5.49, why: t("kolmé stání: hloubka 18 ft (5,49 m) (DDOT DEM 2023)") };
-      if (s.orient === "sikme") return { min: 0, zaklad: 5.38, why: t("šikmé stání pod 45°: hloubka 17 ft 8 in (5,38 m) (DDOT DEM 2023)") };
-      return { min: 0, zaklad: 2.13, why: t("podélné stání: 8 ft (2,44 m), v místní ulici 7 ft (2,13 m) (DDOT DEM 2023)") };
+      if (s.orient === "kolme") return { min: 0, zaklad: 5.49, why: t("country.us.perpendicularParkingDepth18") };
+      if (s.orient === "sikme") return { min: 0, zaklad: 5.38, why: t("country.us.angledParking45Depth") };
+      return { min: 0, zaklad: 2.13, why: t("country.us.parallelParking8Ft") };
     default:
       return null;
   }
@@ -79,16 +79,16 @@ function limitsUS(s, segs = [], i = -1, place = city, street = null) {
 function limitsNYC(s, segs, i) {
   switch (s.type) {
     case "cyklopruh": case "ochranny_pruh":
-      return { min: 0, zaklad: 1.52, why: t("cyklopruh: obvykle 5–6 ft (1,52–1,83 m) (NYC Street Design Manual, Bike Lane Table)") };
+      return { min: 0, zaklad: 1.52, why: t("country.us.cycleLaneTypically5") };
     case "cyklostezka":
-      return cycleTrackLimits(s, segs, i, { min: 0, zaklad: 1.22, why: t("jednosměrná chráněná cyklostezka: nejméně 4 ft (1,22 m) a nejméně 3 ft (0,91 m) odstupu (NYC Street Design Manual, Bike Lane Table)") },
-        { min: 0, zaklad: 2.44, why: t("obousměrná chráněná cyklostezka: nejméně 8 ft (2,44 m), 4 ft na směr (NYC Street Design Manual, Bike Lane Table)") });
+      return cycleTrackLimits(s, segs, i, { min: 0, zaklad: 1.22, why: t("country.us.oneWayProtectedCycleTrack") },
+        { min: 0, zaklad: 2.44, why: t("country.us.twoWayProtectedCycle") });
     case "bus": case "bus_cyklo":
-      return { min: 0, zaklad: 3.35, why: t("pruh pro autobusy u obruby: nejméně 11 ft (3,35 m) (NYC Street Design Manual, Curb Bus Lane)") };
+      return { min: 0, zaklad: 3.35, why: t("country.us.kerbsideBusLaneLeast") };
     case "pruh": case "pruh_piktokoridor":
-      return { min: 0, zaklad: 3.05, why: t("jízdní pruh: obvykle 10 ft (3,05 m), pro autobusy a nákladní auta 11–12 ft (NYC Street Design Manual, Lanes)") };
+      return { min: 0, zaklad: 3.05, why: t("country.us.trafficLaneTypically10") };
     case "parkovani":
-      return s.orient === "kolme" || s.orient === "sikme" ? null : { min: 0, zaklad: 1.83, why: t("podélné stání: obvykle 8 ft (2,44 m), podle místa i jen 6 ft (1,83 m) (NYC Street Design Manual, Lanes)") };
+      return s.orient === "kolme" || s.orient === "sikme" ? null : { min: 0, zaklad: 1.83, why: t("country.us.parallelParkingTypically8") };
     default:
       return null;
   }
@@ -101,18 +101,18 @@ function limitsNYC(s, segs, i) {
 function limitsBoston(s) {
   switch (s.type) {
     case "chodnik":
-      return { min: 0, zaklad: 2.13, why: t("chodník: celkem nejméně 7 ft (2,13 m), v centru 10 ft (3,05 m); průchozí pás nejméně 5 ft (1,52 m) (Boston Complete Streets Guidelines 2013, s. 23)") };
+      return { min: 0, zaklad: 2.13, why: t("country.us.sidewalkTotalLeast7") };
     case "cyklopruh": case "ochranny_pruh":
-      return { min: 0, zaklad: 1.52, why: t("cyklopruh: nejméně 5 ft (1,52 m), při silném provozu kol 6 ft (1,83 m) (Boston Complete Streets Guidelines 2013, s. 103)") };
+      return { min: 0, zaklad: 1.52, why: t("country.us.cycleLaneLeast5Ft") };
     case "bus":
-      return { min: 0, zaklad: 3.35, why: t("pruh pro autobusy: nejméně 11 ft (3,35 m) (Boston Complete Streets Guidelines 2013, s. 103)") };
+      return { min: 0, zaklad: 3.35, why: t("country.us.busLaneLeast11") };
     case "bus_cyklo":
-      return { min: 0, zaklad: 3.66, why: t("společný pruh pro autobusy a kola: nejméně 12 ft (3,66 m), lépe 13–15 ft (Boston Complete Streets Guidelines 2013, s. 103)") };
+      return { min: 0, zaklad: 3.66, why: t("country.us.sharedBusCycleLane") };
     case "pruh": case "pruh_piktokoridor":
-      return { min: 0, zaklad: 3.05, why: s.turn ? t("řadicí pruh: nejméně 10 ft (3,05 m) (Boston Complete Streets Guidelines 2013, s. 103)")
-        : t("jízdní pruh: nejméně 10 ft (3,05 m), při více než 8 % těžkých vozidel 11–12 ft (Boston Complete Streets Guidelines 2013, s. 103)") };
+      return { min: 0, zaklad: 3.05, why: s.turn ? t("country.us.turnLaneLeast10")
+        : t("country.us.trafficLaneLeast10") };
     case "parkovani":
-      return s.orient === "kolme" || s.orient === "sikme" ? null : { min: 0, zaklad: 2.13, why: t("podélné stání: nejméně 7 ft (2,13 m) (Boston Complete Streets Guidelines 2013, s. 103)") };
+      return s.orient === "kolme" || s.orient === "sikme" ? null : { min: 0, zaklad: 2.13, why: t("country.us.parallelParkingLeast7") };
     default:
       return null;
   }
@@ -153,7 +153,7 @@ export default {
   // parking, not this estimate (towns/usa.js), so the 3 m work in Maryland and Virginia, for which NORMS.md has no source
   // of their own: the app's usual width, not their law.
   freeLane: 3,
-  halfKerbNote: (free, need) => t("Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Aplikace nechává {need}.", { free, need }),
+  halfKerbNote: (free, need) => t("common.parkingHalfSidewalkOsm", { free, need }),
   parkGuess: true,
   parkByCycleLane: true,
   roadClassFromOsm: true,

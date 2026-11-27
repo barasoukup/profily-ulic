@@ -58,7 +58,7 @@ import { createDataLayers, PLOCHY_PANE } from "./maplayers.js";
 import { PASSPORT_NAMES, GREEN_PASSPORTS } from "./towns/passport-names.js";
 import { mountSearch } from "./search.js";
 // tr: t is a common name of a text or a type here.
-import { t as tr, num, pct, numField, readNum, lang, LANGS, setLang, translatePage, attribution } from "./i18n.js";
+import { t as tr, mark, num, pct, numField, readNum, lang, LANGS, setLang, translatePage, attribution } from "./i18n.js";
 
 translatePage();
 // The languages, the last item of the Soubor menu (Bára 17. 11. 2026: hidden there, the browser's language decides
@@ -191,7 +191,7 @@ if (lang !== "cs") for (const m of ["addAttribution", "removeAttribution"]) {
   const own = map.attributionControl[m].bind(map.attributionControl);
   map.attributionControl[m] = (text) => own(text && attribution(text));
 }
-L.control.zoom({ zoomInTitle: tr("Přiblížit"), zoomOutTitle: tr("Oddálit") }).addTo(map);
+L.control.zoom({ zoomInTitle: tr("app.zoom"), zoomOutTitle: tr("app.zoomOut") }).addTo(map);
 // Address search (search.js, RÚIAN of ČÚZK): the map moves there; an address on a street or a street is cut
 // like a click at the nearest point of that street. The log gets only the kind of place, never the query.
 mountSearch(map, { status, services: () => { const c = map.getCenter(); return countryOfCity(cityAt(c.lat, c.lng)).search; }, inVienna: () => { const c = map.getCenter(); return placeAt(c.lat, c.lng).sources.includes("wien"); }, inCzechia: () => { const c = map.getCenter(); return countryOfCity(cityAt(c.lat, c.lng)).code === "CZ"; }, onPick: ({ item, cut }) => { log("hledani", { detail: item.type === "AdresniMisto" ? "adresa" : item.type === "Ulice" ? "ulice" : "misto" }); if (cut) cutAt(cut.lat, cut.lon, false, null, null, item.at?.street || null); } });
@@ -223,7 +223,7 @@ const BIG_TILES = { tileSize: 512, zoomOffset: -1 };
 // One set of base maps for the whole Czech Republic (Bára: one page, no city switch): each kind of map
 // is the national layer with the cities' own on top, each limited to its city (towns.json).
 const DMVS = "https://dmvs.cuzk.gov.cz/api/wms";
-const osmLayer = (opacity = 1) => L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", { maxZoom: 21, maxNativeZoom: 19, opacity, attribution: `© <a href="https://www.openstreetmap.org/copyright">${tr("přispěvatelé OpenStreetMap")}</a>` });
+const osmLayer = (opacity = 1) => L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", { maxZoom: 21, maxNativeZoom: 19, opacity, attribution: `© <a href="https://www.openstreetmap.org/copyright">${tr("common.openstreetmapContributors")}</a>` });
 // A blank tile: what a layer kept to its area draws beyond it (nothing is asked of its server there).
 const BLANK_TILE = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7";
 // Does the tile reach the area's rings: a corner or its middle inside them, or a vertex of them inside the tile (a tile
@@ -305,7 +305,7 @@ if (STATES?.switzerland) {
     },
   });
   kinds.ortho.push(new ChOrtho(`${CH_ORTHO}/{z}/{x}/{y}.jpeg`, {
-    maxZoom: 21, maxNativeZoom: 20, attribution: tr("ortofoto SWISSIMAGE © swisstopo"),
+    maxZoom: 21, maxNativeZoom: 20, attribution: tr("common.orthophotoSwissimageSwisstopo"),
     bounds: L.latLngBounds([Math.min(...ys), Math.min(...xs)], [Math.max(...ys), Math.max(...xs)]),
   }));
 }
@@ -325,7 +325,7 @@ if (STATES?.netherlands) {
     },
   });
   kinds.ortho.push(new NlOrtho(`${NL_ORTHO}/{z}/{x}/{y}.jpeg`, {
-    maxZoom: 21, maxNativeZoom: 21, attribution: tr("ortofoto © Beeldmateriaal.nl (PDOK, CC BY 4.0)"),
+    maxZoom: 21, maxNativeZoom: 21, attribution: tr("common.orthophotoBeeldmateriaalNlPdok"),
     bounds: L.latLngBounds([Math.min(...ys), Math.min(...xs)], [Math.max(...ys), Math.max(...xs)]),
   }));
 }
@@ -358,7 +358,7 @@ const retryOnce = (layer, ms = 2500) => layer.on("tileerror", ({ tile }) => {
 // (regions-be.json, loaded once).
 if (STATES?.luxembourg) {
   const Lu = insideOnly([boxedPlace("LU", STATES.luxembourg)]);
-  kinds.ortho.push(new Lu(`${LU_ORTHO}/{z}/{x}/{y}.jpeg`, { maxZoom: 21, maxNativeZoom: 21, attribution: tr("ortofoto © ACT Luxembourg (geoportail.lu, CC0)"), bounds: boundsOf(STATES.luxembourg) }));
+  kinds.ortho.push(new Lu(`${LU_ORTHO}/{z}/{x}/{y}.jpeg`, { maxZoom: 21, maxNativeZoom: 21, attribution: tr("common.orthophotoActLuxembourgGeoportail"), bounds: boundsOf(STATES.luxembourg) }));
 }
 if (STATES?.belgium) {
   const reg = await fetch(new URL("./regions-be.json", import.meta.url)).then((r) => r.json()).catch(() => null);
@@ -367,37 +367,37 @@ if (STATES?.belgium) {
     const R = insideOnly(places);
     kinds.ortho.push(new R("", { bboxUrl: url, maxZoom: 21, attribution: tr(credit), bounds: boundsOf(reg ? codes.flatMap((c) => reg[c]) : STATES.belgium) }));
   };
-  add(["wal"], (b, w, h) => BE_ORTHO.wal.url(b, w, h, "image/png"), "ortofoto © SPW (Service public de Wallonie, CC BY 4.0)");
-  add(["vl", "bru"], (b, w, h) => BE_ORTHO.vl.url(b, w, h, "image/png"), "ortofoto: Bron: Luchtopnamen Digitaal Vlaanderen (Modellicentie gratis hergebruik v1.0)");
+  add(["wal"], (b, w, h) => BE_ORTHO.wal.url(b, w, h, "image/png"), mark("credits.orthophotoSpwServicePublic"));
+  add(["vl", "bru"], (b, w, h) => BE_ORTHO.vl.url(b, w, h, "image/png"), mark("credits.orthophotoBronLuchtopnamenDigitaal"));
 }
 // Poland: GUGiK's orthophoto (WMS in Web Mercator), only for tiles over Poland, transparent where it has no photo (it has
 // some up to about 1 km beyond the border, so at the border its tiles cover the Czech ones there: the hostile review).
 if (STATES?.poland) {
   const Pl = insideOnly([boxedPlace("PL", STATES.poland)]);
-  kinds.ortho.push(new Pl("", { bboxUrl: (b, w, h) => `${PL_ORTHO(b, w, h, "image/png")}&TRANSPARENT=TRUE`, maxZoom: 21, attribution: tr("ortofoto © GUGiK (Geoportal.gov.pl)"), bounds: boundsOf(STATES.poland) }));
+  kinds.ortho.push(new Pl("", { bboxUrl: (b, w, h) => `${PL_ORTHO(b, w, h, "image/png")}&TRANSPARENT=TRUE`, maxZoom: 21, attribution: tr("common.orthophotoGugikGeoportalGov"), bounds: boundsOf(STATES.poland) }));
 }
 // France: IGN's orthophoto (WMS in Web Mercator), only inside France (the service is white beyond it).
 if (STATES?.france) {
   const Fr = insideOnly([boxedPlace("FR", STATES.france)]);
-  kinds.ortho.push(new Fr("", { bboxUrl: (b, w, h) => `${FR_ORTHO(b, w, h, "image/png")}&TRANSPARENT=TRUE`, maxZoom: 21, attribution: tr("ortofoto © IGN (Géoplateforme)"), bounds: boundsOf(STATES.france) }));
+  kinds.ortho.push(new Fr("", { bboxUrl: (b, w, h) => `${FR_ORTHO(b, w, h, "image/png")}&TRANSPARENT=TRUE`, maxZoom: 21, attribution: tr("common.orthophotoIgnGeoplateforme"), bounds: boundsOf(STATES.france) }));
 }
 // Cyprus: the DLS orthophoto of 2019 (tiles), only over the area of the Republic and the British bases.
 if (STATES?.cyprus) {
   const Cy = insideOnly([boxedPlace("CY", STATES.cyprus)]);
-  kinds.ortho.push(new Cy(`${CY_ORTHO}/{z}/{y}/{x}`, { maxZoom: 21, maxNativeZoom: 21, attribution: tr("ortofoto © DLS Kypr"), bounds: boundsOf(STATES.cyprus) }));
+  kinds.ortho.push(new Cy(`${CY_ORTHO}/{z}/{y}/{x}`, { maxZoom: 21, maxNativeZoom: 21, attribution: tr("common.orthophotoDlsCyprus"), bounds: boundsOf(STATES.cyprus) }));
 }
 // Italy: the open orthophotos, each only over its own box and inside Italy's covered area.
 if (STATES?.italy) {
   const It = insideOnly([boxedPlace("IT", STATES.italy)]);
   for (const o of Object.values(IT_ORTHO)) {
     const [x0, y0, x1, y1] = o.box;
-    kinds.ortho.push(new It("", { bboxUrl: (b, w, h) => `${o.url(b, w, h, "image/png")}&TRANSPARENT=TRUE`, maxZoom: 21, attribution: o.who ? tr("ortofoto {who}", { who: o.who }) : tr(o.credit), bounds: L.latLngBounds([y0, x0], [y1, x1]) }));
+    kinds.ortho.push(new It("", { bboxUrl: (b, w, h) => `${o.url(b, w, h, "image/png")}&TRANSPARENT=TRUE`, maxZoom: 21, attribution: o.who ? tr("common.orthophotoWho", { who: o.who }) : tr(o.credit), bounds: L.latLngBounds([y0, x0], [y1, x1]) }));
   }
 }
 // Estonia: the Board's orthophoto tiles (TMS: the y axis flipped), only over Estonia (dark beyond).
 if (STATES?.estonia) {
   const Ee = insideOnly([boxedPlace("EE", STATES.estonia)]);
-  kinds.ortho.push(new Ee(`${EE_ORTHO}/{z}/{x}/{y}.jpg`, { tms: true, maxZoom: 21, maxNativeZoom: 18, attribution: tr("ortofoto © Maa- ja Ruumiamet, nálet 2024 (stav dlaždic 11/2026)"), bounds: boundsOf(STATES.estonia) }));
+  kinds.ortho.push(new Ee(`${EE_ORTHO}/{z}/{x}/{y}.jpg`, { tms: true, maxZoom: 21, maxNativeZoom: 18, attribution: tr("common.orthophotoMaaJaRuumiamet"), bounds: boundsOf(STATES.estonia) }));
 }
 // Slovenia: GURS's orthophoto DOF025 (WMS in Web Mercator), only over Slovenia (beyond it the server hangs and gives 504).
 if (STATES?.slovenia) {
@@ -405,7 +405,7 @@ if (STATES?.slovenia) {
   // The review of 24. 11. 2026 (RECENZE-SI 3): a tile of z9 over the whole state and some of z18 were 504 after 30 s, so the
   // layer starts at z14 (below it the other basemaps), a tile wholly inside Slovenia is a JPEG (PNG takes GURS twice as
   // long; transparent only at the border) and a failed tile is asked once more.
-  kinds.ortho.push(retryOnce(new Si("", { bboxUrl: (b, w, h, inside) => inside ? SI_ORTHO(b, w, h) : `${SI_ORTHO(b, w, h, "image/png")}&TRANSPARENT=TRUE`, minZoom: 14, maxZoom: 21, attribution: tr("ortofoto DOF025 © Geodetska uprava RS (CC BY 4.0)"), bounds: boundsOf(STATES.slovenia) })));
+  kinds.ortho.push(retryOnce(new Si("", { bboxUrl: (b, w, h, inside) => inside ? SI_ORTHO(b, w, h) : `${SI_ORTHO(b, w, h, "image/png")}&TRANSPARENT=TRUE`, minZoom: 14, maxZoom: 21, attribution: tr("app.orthophotoDof025GeodetskaUprava"), bounds: boundsOf(STATES.slovenia) })));
 }
 // Finland: the towns' own orthophotos (lanes-ortho.js FI_ORTHO: Helsinki, Espoo, Turku), each only over its town's box
 // and inside Finland (none elsewhere: the national one needs a personal key).
@@ -420,32 +420,32 @@ if (STATES?.finland) {
 // only with the app's token (keys.js; without it no layer, the map keeps the others).
 if (STATES?.denmark && dkToken()) {
   const Dk = insideOnly([boxedPlace("DK", STATES.denmark)]);
-  kinds.ortho.push(new Dk(DK_ORTHO("{z}", "{x}", "{y}"), { maxZoom: 21, maxNativeZoom: 20, attribution: tr("ortofoto: Indeholder data fra Styrelsen for Dataforsyning og Infrastruktur, Ortofoto forår, WMTS-tjeneste"), bounds: boundsOf(STATES.denmark) }));
+  kinds.ortho.push(new Dk(DK_ORTHO("{z}", "{x}", "{y}"), { maxZoom: 21, maxNativeZoom: 20, attribution: tr("common.orthophotoIndeholderDataFra"), bounds: boundsOf(STATES.denmark) }));
 }
 // Malta: the Planning Authority's orthophoto of 2018 (in degrees: lanes-ortho.js MT_ORTHO), only over Malta; a JPEG
 // inside the islands, a transparent PNG only on a tile across the coast (as Slovenia; the review of Malta).
 if (STATES?.malta) {
   const Mt = insideOnly([boxedPlace("MT", STATES.malta)]);
-  kinds.ortho.push(new Mt("", { bboxUrl: (b, w, h, inside) => (inside ? MT_ORTHO(b, w, h) : `${MT_ORTHO(b, w, h, "image/png")}&TRANSPARENT=TRUE`), maxZoom: 21, attribution: tr("ortofoto © Planning Authority Malta (CC BY 4.0)"), bounds: boundsOf(STATES.malta) }));
+  kinds.ortho.push(new Mt("", { bboxUrl: (b, w, h, inside) => (inside ? MT_ORTHO(b, w, h) : `${MT_ORTHO(b, w, h, "image/png")}&TRANSPARENT=TRUE`), maxZoom: 21, attribution: tr("app.orthophotoPlanningAuthorityMalta"), bounds: boundsOf(STATES.malta) }));
 }
 // Monaco: IGN's orthophoto covers it too.
 if (STATES?.monaco) {
   const Mc = insideOnly([boxedPlace("MC", STATES.monaco)]);
-  kinds.ortho.push(new Mc("", { bboxUrl: (b, w, h) => `${FR_ORTHO(b, w, h, "image/png")}&TRANSPARENT=TRUE`, maxZoom: 21, attribution: tr("ortofoto © IGN (Géoplateforme)"), bounds: boundsOf(STATES.monaco) }));
+  kinds.ortho.push(new Mc("", { bboxUrl: (b, w, h) => `${FR_ORTHO(b, w, h, "image/png")}&TRANSPARENT=TRUE`, maxZoom: 21, attribution: tr("common.orthophotoIgnGeoplateforme"), bounds: boundsOf(STATES.monaco) }));
 }
 if (STATES?.spain) {
   // Not over Melilla (PNOA's image there is Airbus's under a licence not cleared; Bára 23. 11. 2026, lanes-ortho.js
   // ES_NOT_PNOA): its ring left out of the area drawn.
   const notPnoa = (r) => ES_NOT_PNOA.some(([x0, y0, x1, y1]) => r.every(([x, y]) => x >= x0 && x <= x1 && y >= y0 && y <= y1));
   const Es = insideOnly([boxedPlace("ES", STATES.spain.filter((r) => !notPnoa(r)))]);
-  kinds.ortho.push(new Es("", { bboxUrl: (b, w, h) => `${ES_ORTHO(b, w, h, "image/png")}&TRANSPARENT=TRUE`, maxZoom: 21, attribution: tr("ortofoto PNOA © IGN (CC BY 4.0)"), bounds: boundsOf(STATES.spain) }));
+  kinds.ortho.push(new Es("", { bboxUrl: (b, w, h) => `${ES_ORTHO(b, w, h, "image/png")}&TRANSPARENT=TRUE`, maxZoom: 21, attribution: tr("common.pnoaOrthophotoIgnCc"), bounds: boundsOf(STATES.spain) }));
 }
 // Portugal: DGT's flight of 2025 (the whole mainland; the review of 23. 11. 2026: three stacked layers tripled the
 // requests), only over the mainland (Madeira and the Azores have no DGT photo).
 if (STATES?.portugal) {
   const Pt = insideOnly([boxedPlace("PT", STATES.portugal)]);
   const [x0, y0, x1, y1] = PT_MAINLAND;
-  kinds.ortho.push(new Pt("", { bboxUrl: (b, w, h) => `${PT_ORTHO["pt-25"](b, w, h, "image/png")}&TRANSPARENT=TRUE`, maxZoom: 21, attribution: tr("ortofoto © DGT"), bounds: [[y0, x0], [y1, x1]] }));
+  kinds.ortho.push(new Pt("", { bboxUrl: (b, w, h) => `${PT_ORTHO["pt-25"](b, w, h, "image/png")}&TRANSPARENT=TRUE`, maxZoom: 21, attribution: tr("common.orthophotoDgt"), bounds: [[y0, x0], [y1, x1]] }));
 }
 // Germany: the orthophoto of each Land (lanes-ortho.js DE_ORTHO), a tile from the WMS of the Land its centre lies in
 // (laender.json, loaded when the first tile in Germany is drawn).
@@ -480,7 +480,7 @@ if (STATES?.germany) {
       return tile;
     },
   });
-  kinds.ortho.push(new DeOrtho({ maxZoom: 21, minZoom: 12, attribution: tr("ortofoto © spolkové země Německa (GeoBasis-DE)"),
+  kinds.ortho.push(new DeOrtho({ maxZoom: 21, minZoom: 12, attribution: tr("app.orthophotoGermanLanderGeobasis"),
     bounds: Object.assign(L.latLngBounds([Math.min(...ys), Math.min(...xs)], [Math.max(...ys), Math.max(...xs)]), { rings: STATES.germany }) }));
 }
 // The towns (towns/<id>.js maps): their orthophoto, technical map and lines, each kept to the town.
@@ -524,26 +524,26 @@ onAmerica((towns) => {
     const layer = o.tiles ? new Own(`${o.tiles}/{z}/{y}/{x}`, { maxZoom: 21, maxNativeZoom: o.z, cityAttribution: tr(o.credit), bounds: L.latLngBounds([y0, x0], [y1, x1]) })
       : new Own("", { bboxUrl: (b, w, h) => o.url(b, w, h, "image/png"), maxZoom: 21, cityAttribution: tr(o.credit), bounds: L.latLngBounds([y0, x0], [y1, x1]) });
     cityCredited.push(layer);
-    baseMaps[tr("Ortofoto")].addLayer(layer);
+    baseMaps[tr("app.orthophoto")].addLayer(layer);
   }
   creditCities();
 });
 const lateMap = () => { const c = map.getCenter(); if (isLate(c.lat, c.lng)) ensurePlace(c.lat, c.lng).catch((err) => console.warn("America", err)); };
 map.on("moveend", lateMap);
-const baseMaps = { [tr("Mapa")]: L.layerGroup(kinds.map), [tr("Ortofoto")]: L.layerGroup(kinds.ortho), [tr("Mapa povrchů")]: L.layerGroup(kinds.tech), "OpenStreetMap": osmLayer() };
+const baseMaps = { [tr("app.map")]: L.layerGroup(kinds.map), [tr("app.orthophoto")]: L.layerGroup(kinds.ortho), [tr("app.surfaceMap")]: L.layerGroup(kinds.tech), "OpenStreetMap": osmLayer() };
 const BASE_KEY = "streetdesign-basemap-cr";
-// Remembered by its Czech name, so that the choice holds in either language.
-const baseCs = Object.fromEntries(["Mapa", "Ortofoto", "Mapa povrchů", "OpenStreetMap"].map((cs) => [tr(cs), cs]));
-let baseName = tr("Mapa");
-// "Technická mapa" is "Mapa povrchů" since 17. 11. 2026 (Bára: one name in every state): the old choice holds.
-try { const saved = tr(localStorage.getItem(BASE_KEY)?.replace(/^Technická mapa$/, "Mapa povrchů") || ""); if (baseMaps[saved]) baseName = saved; } catch {}
+// Remembered by its key (OpenStreetMap by its name), so that the choice holds in any language.
+const baseCs = Object.fromEntries([mark("app.map"), mark("app.orthophoto"), mark("app.surfaceMap"), "OpenStreetMap"].map((k) => [tr(k), k]));
+let baseName = tr("app.map");
+// A Czech name remembered before the keys (and "Technická mapa", "Mapa povrchů" since 17. 11.): locales/legacy-cs-keys.json.
+try { const saved = tr(localStorage.getItem(BASE_KEY) || ""); if (baseMaps[saved]) baseName = saved; } catch {}
 baseMaps[baseName].addTo(map);
 map.on("baselayerchange", (e) => { try { localStorage.setItem(BASE_KEY, baseCs[e.name] || e.name); } catch {} });
 const dtm = L.layerGroup(kinds.lines);
 const mtvuLayer = L.layerGroup();
-const layersControl = L.control.layers(baseMaps, { [tr("Linie mapy povrchů")]: dtm, [tr("Plochy u řezu")]: mtvuLayer }).addTo(map);
-document.querySelector(".leaflet-control-layers-toggle")?.setAttribute("title", tr("Podkladová mapa a vrstvy"));
-document.querySelector(".leaflet-control-layers-toggle")?.setAttribute("aria-label", tr("Podkladová mapa a vrstvy"));
+const layersControl = L.control.layers(baseMaps, { [tr("app.surfaceMapLines")]: dtm, [tr("app.surfacesCut")]: mtvuLayer }).addTo(map);
+document.querySelector(".leaflet-control-layers-toggle")?.setAttribute("title", tr("app.baseMapLayers"));
+document.querySelector(".leaflet-control-layers-toggle")?.setAttribute("aria-label", tr("app.baseMapLayers"));
 mtvuLayer.addTo(map);
 // The other data of the cut (parking, points, lines, tracks, axes, buildings) as overlays (maplayers.js).
 const dataLayers = createDataLayers(map, layersControl);
@@ -580,7 +580,7 @@ let osmCache = null; // {frame, osm, way, wayPts}
 
 map.on("click", (e) => cutAt(e.latlng.lat, e.latlng.lng));
 sources.events.addEventListener("retry", (e) => {
-  if (document.body.classList.contains("loading")) status(tr("Server {server} neodpovídá, zkouším znovu ({n}/{of})…", { server: city.abroad && e.detail.host ? e.detail.host : city.server, n: e.detail.attempt, of: e.detail.of }));
+  if (document.body.classList.contains("loading")) status(tr("app.serverNotRespondingTrying", { server: city.abroad && e.detail.host ? e.detail.host : city.server, n: e.detail.attempt, of: e.detail.of }));
 });
 window.cutAt = cutAt; // handy for testing from the console
 // The replay of recorded data (evaluation/replay/harness.js) reads what a visitor would see.
@@ -595,7 +595,7 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wa
     const closed = closedAt(lat, lon);
     if (closed) return status(closed, "error");
     await useCity(lat, lon);
-    status(tr("Načítám data z OSM…"));
+    status(tr("app.loadingOsmData"));
     let frame = localFrame(lat, lon);
     const radius = Math.max(OSM_RADIUS, (reach ? Math.max(reach.left, reach.right) + HALF_PAD : 0) + 10);
     if (keepWay && osmCache && osmCache.radius < radius) {
@@ -622,7 +622,7 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wa
       // A click with no street found is logged too (Bára: how many try outside the Czech Republic): only where, to
       // about a kilometre, and whether there were any OSM data there at all (outside the country there are none).
       if (!keepWay) log("bez_ulice", { detail: osm?.elements?.length ? "bez_ulice" : "bez_dat", city: city.id, country: city.country, lat: Math.round(lat * 100) / 100, lon: Math.round(lon * 100) / 100 });
-      return status(tr("Tady jsem žádnou ulici nenašla. Zkuste kliknout přímo na silnici."), "error");
+      return status(tr("app.noStreetFoundTry"), "error");
     }
     // A street of two one-way carriageways is cut from its middle (e.g. the tram belt).
     if (keepWay && osmCache) near = centerOnStreet(osm, frame, near);
@@ -658,7 +658,7 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wa
     const full = [-1, 1].map((k) => frame.toLonLat(normal[0] * half * k, normal[1] * half * k));
     const lons = full.map((e) => e[0]), lats = full.map((e) => e[1]);
     const pad = 0.0004;
-    status(city.techMap ? tr("Načítám {map}…", { map: city.techMap }) : tr("Načítám ortofoto…"));
+    status(city.techMap ? tr("app.loadingMap", { map: city.techMap }) : tr("app.loadingOrthophoto"));
     const bbox = [Math.min(...lons) - pad, Math.min(...lats) - pad, Math.max(...lons) + pad, Math.max(...lats) + pad].join(",");
     let polys = [], tracks = [];
     const zone = sources.zps(clat, clon).catch(() => undefined);
@@ -731,8 +731,8 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wa
     // come (about 7 MB), with their progress; past AI_WAIT the cut is drawn without it and the download goes on for the
     // next cut (Bára 19. 11. 2026).
     const modelCut = async () => {
-      if (aiReady()) status(tr("Načítám ortofoto…"));
-      else { status(tr("Načítám model pro obruby (jen poprvé)…")); onAiProgress((p) => status(tr("Načítám model pro obruby (jen poprvé)… {p} %", { p: Math.round(100 * p) }))); }
+      if (aiReady()) status(tr("app.loadingOrthophoto"));
+      else { status(tr("app.loadingKerbModelFirst")); onAiProgress((p) => status(tr("app.loadingKerbModelFirstTime", { p: Math.round(100 * p) }))); }
       const job = aiCut({ osm, frame, dir, source: city.laneOrtho || country.laneOrtho }).catch((err) => { console.warn("AI", err); return null; });
       const cut = aiReady() ? await job : await Promise.race([job, new Promise((r) => setTimeout(() => r(null), AI_WAIT))]);
       onAiProgress(null);
@@ -966,8 +966,8 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wa
     // A service that needs a key (Denmark's token, keys.js) and has none, or turned it away: no orthophoto at all, said
     // so (not "try again").
     const orthoNoKey = orthoDown && li.reason?.noKey;
-    const orthoNote = orthoNoKey && (orthoOsm || result.estimate) ? tr("Ortofoto tu není k dispozici (aplikaci chybí přístupový klíč služby, nebo ho služba nepřijala): obruby jsou jen podle OSM, profil je hrubý odhad.")
-      : orthoDown && (orthoOsm || result.estimate) ? tr("Ortofoto teď neodpovědělo: obruby jsou jen podle OSM, profil je hrubý odhad. Zkuste kliknout znovu za chvíli.")
+    const orthoNote = orthoNoKey && (orthoOsm || result.estimate) ? tr("app.orthophotoNotAvailableApp")
+      : orthoDown && (orthoOsm || result.estimate) ? tr("app.orthophotoDidNotAnswer")
       // The houses' source as the estimate used them: RÚIAN in Czechia, the GRPK with OSM in Lithuania, else OSM
       // (ortho-osm.js houseSources; the backlog of 23. 11. 2026: it said OSM in Czechia too).
       : !orthoOsm ? "" : estimateNote(orthoOsm, LANES_ORTHO && orthoHere, tr, (xs) => new Intl.ListFormat(lang, { type: "conjunction" }).format(xs));
@@ -975,36 +975,36 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wa
     // Copenhagen's kerb lines or parking areas did not answer (towns/denmark.js dkFailed; the review of 24. 11. 2026: said
     // nothing before): the cut is made without them, said so.
     if ([k, pk].some((x) => x.status === "fulfilled" && x.value?.dkFailed)) {
-      out.text = `${out.text ? out.text + " " : ""}${tr("Okraje vozovek nebo parkovací plochy Kodaně teď neodpověděly, profil je bez nich.")} ${tr("Zkuste kliknout znovu za chvíli.")}`;
+      out.text = `${out.text ? out.text + " " : ""}${tr("app.copenhagenRoadwayEdgesParking")} ${tr("common.tryClickingAgainMoment")}`;
       out.error = true;
     }
     // DDOT's inventory did not answer (towns/usa.js): the map's surfaces without it, said so.
     if (mv?.ddotFailed && !NO_MAP) {
-      out.text = `${out.text ? out.text + " " : ""}${tr("Inventář ulic Washingtonu (DDOT) teď neodpovídá: stání a počty pruhů jsou odhad.")} ${tr("Zkuste kliknout znovu za chvíli.")}`;
+      out.text = `${out.text ? out.text + " " : ""}${tr("app.washingtonStreetInventoryDdot")} ${tr("common.tryClickingAgainMoment")}`;
       out.error = true;
     }
     // SFMTA's curb zones did not answer (towns/sanfrancisco.js): the kerbs without their parking, said so.
     if (mv?.sfCurbFailed && !NO_MAP) {
-      out.text = `${out.text ? out.text + " " : ""}${tr("Pravidla stání u obrub San Franciska (SFMTA) teď neodpovídají: stání je odhad.")} ${tr("Zkuste kliknout znovu za chvíli.")}`;
+      out.text = `${out.text ? out.text + " " : ""}${tr("app.sanFranciscoKerbsideParking")} ${tr("common.tryClickingAgainMoment")}`;
       out.error = true;
     }
     // The map itself has an intersection at the cut's centre (towns/usa.js).
     if (mv?.junction && !NO_MAP) result.junction = true;
     // A town's passport answered but not at the axis (Slovakia): the profile is still the estimate.
-    state.cut.note = out.note || (orthoOsm && city.abroad ? (country.orthoEstimate && orthoHere && !orthoNoKey ? " · odhad z ortofota a OSM" : " · jen odhad z OSM") : "");
+    state.cut.note = out.note || (orthoOsm && city.abroad ? (country.orthoEstimate && orthoHere && !orthoNoKey ? mark("note.estimateOrthophotoOsm") : mark("note.onlyEstimateOsm")) : "");
     // The heading is the street only (Bára 16. 11. 2026); where the data come from is said under it (#profile-sub).
     $("#street-name").textContent = streetName(state.cut);
-    const junctionNote = tr("Řez nejspíš vede křižovatkou. Posuňte ho tažením středu do úseku mezi křižovatkami.");
-    const droppedNote = tr("Nový řez: návrh začíná znovu od stavu ulice (předchozí návrh zůstává ve sdíleném odkazu nebo uloženém souboru, pokud jste ho uložili).");
+    const junctionNote = tr("app.cutProbablyRunsThrough");
+    const droppedNote = tr("app.newCutProposalStarts");
     // With the profile made without the map, the other notes come after its own (a junction, a design started anew).
     const extra = orthoOsm ? [result.junction && junctionNote, dropped && droppedNote].filter(Boolean).map((x) => " " + x).join("") : "";
     // The map has surfaces here, none at the axis (the outage says nothing of it): that comes first.
-    const axisNote = (orthoOsm || (orthoDown && result.estimate)) && !out.text.includes(orthoNote) ? (city.abroad ? "" : tr("Mapa povrchů tu ulici nemá.") + " ") + orthoNote + (out.text ? " " + out.text : "") : "";
+    const axisNote = (orthoOsm || (orthoDown && result.estimate)) && !out.text.includes(orthoNote) ? (city.abroad ? "" : tr("app.surfaceMapHasNo") + " ") + orthoNote + (out.text ? " " + out.text : "") : "";
     if (axisNote) status(axisNote + extra, out.error ? "error" : undefined);
     else if (out.text) status(out.text + extra, out.error ? "error" : undefined);
-    else if (dropped) status(tr("Nový řez: návrh začíná znovu od stavu ulice (předchozí návrh zůstává ve sdíleném odkazu nebo uloženém souboru, pokud jste ho uložili)."));
+    else if (dropped) status(tr("app.newCutProposalStarts"));
     else status(result.notice ? result.notice
-      : result.junction ? tr("Řez nejspíš vede křižovatkou. Posuňte ho tažením středu do úseku mezi křižovatkami.") : "");
+      : result.junction ? tr("app.cutProbablyRunsThrough") : "");
     save();
     state.underground = null;
     loadUnderground();
@@ -1013,7 +1013,7 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wa
     if (matchMedia("(max-width: 760px)").matches) $("#profile-head").scrollIntoView({ behavior: "smooth", block: "start" });
   } catch (err) {
     console.error(err);
-    status(tr("Data se nepodařilo načíst ({error}). Zkuste kliknout znovu za chvíli.", { error: err.message }), "error");
+    status(tr("app.dataCouldNotLoaded", { error: err.message }), "error");
   }
 }
 
@@ -1029,7 +1029,7 @@ function drawCut(ends) {
 // profile, clockwise from north); the street runs at azimut + 90°.
 function cutText(cut) {
   const az = (((cut.bearing - 90) % 360) + 360) % 360;
-  return `${cut.lat.toFixed(6)}, ${cut.lon.toFixed(6)} · ${tr("azimut")} ${Math.round(az)}°`;
+  return `${cut.lat.toFixed(6)}, ${cut.lon.toFixed(6)} · ${tr("app.azimuth")} ${Math.round(az)}°`;
 }
 
 function showCutInfo() {
@@ -1056,8 +1056,8 @@ const mapyKey = MAPY_KEY || (local ? await import("./config.local.js").then((m) 
 let panoLib, panoView;
 const loadPano = () => (panoLib ??= new Promise((res, rej) => {
   const s = Object.assign(document.createElement("script"), { src: "https://api.mapy.cz/js/panorama/v1/panorama.js", async: true });
-  s.onload = () => (window.Panorama ? res(window.Panorama) : rej(new Error(tr("Panorama se nenačetla."))));
-  s.onerror = () => { panoLib = null; rej(new Error(tr("Panorama Mapy.com se nenačetla."))); };
+  s.onload = () => (window.Panorama ? res(window.Panorama) : rej(new Error(tr("app.panoramaDidNotLoad"))));
+  s.onerror = () => { panoLib = null; rej(new Error(tr("app.mapyComPanoramaDid"))); };
   document.head.append(s);
 }));
 $("#pano-btn").onclick = async () => {
@@ -1065,7 +1065,7 @@ $("#pano-btn").onclick = async () => {
   const { lat, lon, bearing } = state.cut;
   const dlg = $("#pano-dialog");
   $("#pano-out").href = $("#pano-link").href;
-  $("#pano-note").textContent = tr("Načítám…");
+  $("#pano-note").textContent = tr("app.loading");
   dlg.showModal();
   try {
     const P = await loadPano();
@@ -1076,11 +1076,11 @@ $("#pano-btn").onclick = async () => {
       parent: $("#pano-view"), lon, lat, apiKey: mapyKey, radius: 60, yaw, pitch: 0, fov: 1.3, showNavigation: true, lang: PANO_LANGS.has(lang) ? lang : "en",
     });
     if (panoView?.errorCode && panoView.errorCode !== "NONE") {
-      $("#pano-note").textContent = panoView.errorCode === "PANORAMA_NOT_FOUND" ? tr("Tady panorama Mapy.com nemají.") : tr("Panorama nejde zobrazit ({error}).", { error: panoView.error || panoView.errorCode });
+      $("#pano-note").textContent = panoView.errorCode === "PANORAMA_NOT_FOUND" ? tr("app.mapyComHasNo") : tr("app.panoramaCannotShownError", { error: panoView.error || panoView.errorCode });
       return;
     }
     const d = panoView?.info?.date;
-    $("#pano-note").textContent = d ? tr("snímek z {d}. {m}. {y}", { d: +d.slice(8, 10), m: +d.slice(5, 7), y: d.slice(0, 4) }) : "";
+    $("#pano-note").textContent = d ? tr("app.takenDMY", { d: +d.slice(8, 10), m: +d.slice(5, 7), y: d.slice(0, 4) }) : "";
   } catch (err) {
     $("#pano-note").textContent = err.message;
   }
@@ -1091,8 +1091,8 @@ $("#pano-dialog").addEventListener("close", () => { panoView?.destroy?.(); panoV
 $("#btn-copy-cut").onclick = async () => {
   if (!state.cut) return;
   const text = `${cutText(state.cut)} (${streetName(state.cut)}) ${location.href}`;
-  try { await navigator.clipboard.writeText(text); status(tr("Poloha řezu je ve schránce."), "ok"); }
-  catch { try { prompt(tr("Zkopírujte polohu řezu:"), text); } catch { status(text, "ok"); } } // no prompt in some web views
+  try { await navigator.clipboard.writeText(text); status(tr("app.cutPositionCopiedClipboard"), "ok"); }
+  catch { try { prompt(tr("app.copyCutPosition"), text); } catch { status(text, "ok"); } } // no prompt in some web views
 };
 
 // Paste "lat, lon · azimut N°" (or a #rez= link) to jump to a cut.
@@ -1106,7 +1106,7 @@ function parseCut(text) {
 
 $("#cut-goto").onchange = (e) => {
   const c = parseCut(e.target.value);
-  if (!c) return status(tr("Polohu jsem nepoznala. Vložte třeba: {example} · azimut 344°", { example: city.example }), "error");
+  if (!c) return status(tr("app.positionNotRecognisedPaste", { example: city.example }), "error");
   map.setView([c.lat, c.lon], 19);
   cutAt(c.lat, c.lon, false, c.bearing, c.reach, null, c.way);
   e.target.value = "";
@@ -1190,11 +1190,11 @@ function current() {
 }
 
 // The cut's street as shown: its name, or "ulice 123" in the page's language. The cut keeps the name of the data
-// only (empty for a street without one) and its note as the Czech text, so a saved cut reads in either language
+// only (empty for a street without one) and its note as a key (i18n.js), so a saved cut reads in any language
 // and the log gets the same name whatever the visitor's language (Fable's review).
 // The kind of street the norms of a city may go by (rules.js; San Francisco's sidewalks): an alley, another service road.
 const streetKind = (tags) => (tags?.highway !== "service" ? null : tags.service === "alley" ? "alley" : "service");
-const streetName = (c) => c?.name || (c?.wayId ? tr("ulice {id}", { id: c.wayId }) : tr("Ulice"));
+const streetName = (c) => c?.name || (c?.wayId ? tr("app.streetId", { id: c.wayId }) : tr("common.street"));
 
 // Stav is for looking at the street as it is; its data can be corrected only after "Opravit data"
 // (state.fixing), so nothing changes by accident. Návrh is always editable.
@@ -1240,58 +1240,58 @@ const SK_EDGES_TOWN = { nitra: "Nitra", piestany: "Piešťany", zvolen: "Zvolen"
 const SK_PASSPORT_TOWN = { bratislava: "Bratislava", presov: "Prešov", zilina: "Žilina", bystrica: "Banská Bystrica", kosice: "Košice", zvolen: "Zvolen" };
 function cutData() {
   // Vienna's map of surfaces (towns/austria.js).
-  if (state.cut?.sources?.atTown === "wien") return tr("mapy povrchů města Vídně a OSM");
+  if (state.cut?.sources?.atTown === "wien") return tr("app.surfaceMapViennaOsm");
   const deTown = state.cut?.sources?.deTown;
-  if (deTown === "berlin") return tr("mapy povrchů ulic Berlína a OSM");
-  if (deTown === "hamburg") return tr("mapy povrchů ulic Hamburku a OSM");
-  if (deTown === "aachen") return tr("databáze ulic Cách a OSM");
+  if (deTown === "berlin") return tr("app.berlinStreetSurfaceMap");
+  if (deTown === "hamburg") return tr("app.hamburgStreetSurfaceMap");
+  if (deTown === "aachen") return tr("app.aachenStreetDatabaseOsm");
   // Switzerland's and Liechtenstein's cadastral survey (towns/switzerland.js).
-  if (state.cut?.sources?.chAv) return tr("úředního vyměřování, SWISSIMAGE a OSM");
+  if (state.cut?.sources?.chAv) return tr("app.officialCadastralSurveySwissimage");
   // The Netherlands' national large-scale topography (towns/netherlands.js).
-  if (state.cut?.sources?.nlBgt) return tr("mapy povrchů BGT, ortofota PDOK a OSM");
+  if (state.cut?.sources?.nlBgt) return tr("app.bgtSurfaceMapPdok");
   // Kraków's base map (towns/poland.js).
-  if (state.cut?.sources?.plTown === "krakow") return tr("mapy povrchů Krakova, ortofota GUGiK a OSM");
+  if (state.cut?.sources?.plTown === "krakow") return tr("app.krakowSurfaceMapGugik");
   // Paris's Plan de voirie (towns/france.js).
-  if (state.cut?.sources?.frTown === "paris") return tr("mapy povrchů Paříže, ortofota IGN a OSM");
+  if (state.cut?.sources?.frTown === "paris") return tr("app.parisSurfaceMapIgn");
   // Bologna's road areas (towns/italy.js).
-  if (state.cut?.sources?.eeTown === "tallinn") return tr("mapy povrchů Tallinnu, ortofota a OSM");
+  if (state.cut?.sources?.eeTown === "tallinn") return tr("app.tallinnSurfaceMapOrthophoto");
   // Helsinki's register of public areas (towns/finland.js).
-  if (state.cut?.sources?.fiTown === "helsinki") return tr("mapy povrchů Helsinek, ortofota a OSM");
+  if (state.cut?.sources?.fiTown === "helsinki") return tr("app.helsinkiSurfaceMapOrthophoto");
   // Vilnius's topographic areas (towns/lithuania.js).
-  if (state.cut?.sources?.ltTown === "vilnius") return tr("mapy povrchů Vilniusu a OSM");
+  if (state.cut?.sources?.ltTown === "vilnius") return tr("app.vilniusSurfaceMapOsm");
   // DC's Planimetrics and DDOT's inventory (towns/usa.js).
-  if (state.cut?.sources?.cityMap === "dc") return tr("mapy povrchů Washingtonu, inventáře DDOT, ortofota a OSM");
-  if (state.cut?.sources?.cityMap === "toronto") return tr("mapy povrchů Toronta, ortofota a OSM");
-  if (state.cut?.sources?.cityMap === "nyc") return tr("mapy povrchů New Yorku, ortofota a OSM");
-  if (state.cut?.sources?.cityMap === "sf") return tr("mapy povrchů San Franciska a OSM");
+  if (state.cut?.sources?.cityMap === "dc") return tr("app.washingtonSurfaceMapDdot");
+  if (state.cut?.sources?.cityMap === "toronto") return tr("app.torontoSurfaceMapOrthophoto");
+  if (state.cut?.sources?.cityMap === "nyc") return tr("app.newYorkSurfaceMap");
+  if (state.cut?.sources?.cityMap === "sf") return tr("app.sanFranciscoSurfaceMap");
   // Boston's and Cambridge's surface maps (towns/boston.js).
-  if (state.cut?.sources?.cityMap === "boston") return tr("mapy povrchů Bostonu, ortofota MassGIS a OSM");
-  if (state.cut?.sources?.cityMap === "cambridge") return tr("mapy povrchů Cambridge, ortofota MassGIS a OSM");
-  if (state.cut?.sources?.itTown === "bologna") return tr("mapy povrchů Bologni, ortofota a OSM");
+  if (state.cut?.sources?.cityMap === "boston") return tr("app.bostonSurfaceMapMassgis");
+  if (state.cut?.sources?.cityMap === "cambridge") return tr("app.cambridgeSurfaceMapMassgis");
+  if (state.cut?.sources?.itTown === "bologna") return tr("app.bolognaSurfaceMapOrthophoto");
   // Lombardy's DBT (towns/lombardy.js).
-  if (state.cut?.sources?.itTown === "lombardia") return tr("mapy povrchů Lombardie a OSM");
+  if (state.cut?.sources?.itTown === "lombardia") return tr("app.lombardySurfaceMapOsm");
   // Zaragoza's paving map (towns/spain.js).
-  if (state.cut?.sources?.esTown === "zaragoza") return tr("mapy povrchů Zaragozy, ortofota PNOA a OSM");
+  if (state.cut?.sources?.esTown === "zaragoza") return tr("app.zaragozaSurfaceMapPnoa");
   // Flanders' road corridors and their division (towns/belgium.js).
-  if (state.cut?.sources?.beTown === "grb") return tr("mapy povrchů GRB, ortofota a OSM");
+  if (state.cut?.sources?.beTown === "grb") return tr("app.grbSurfaceMapOrthophoto");
   // Belgium's regional maps whose lines placed the kerbs (towns/belgium.js).
-  if (state.cut?.sources?.skEdges === "grb") return tr("čar mapy GRB, ortofota a OSM");
-  if (state.cut?.sources?.skEdges === "picc") return tr("čar mapy PICC, ortofota a OSM");
+  if (state.cut?.sources?.skEdges === "grb") return tr("app.linesGrbMapOrthophoto");
+  if (state.cut?.sources?.skEdges === "picc") return tr("app.linesPiccMapOrthophoto");
   const sk = state.cut?.sources?.skTown, edges = SK_EDGES_TOWN[state.cut?.sources?.skEdges];
   // The lines of a town's map that placed the kerbs (towns/slovakia.js EDGE_SOURCES; Bára: the data really used).
-  if (SK_PASSPORT_TOWN[sk] && edges === SK_PASSPORT_TOWN[sk]) return tr("pasportu komunikací a mapy města {town}, ZBGIS a OSM", { town: edges });
-  if (SK_PASSPORT_TOWN[sk]) return tr("pasportu komunikací města {town}, ZBGIS a OSM", { town: SK_PASSPORT_TOWN[sk] });
-  if (edges) return tr("mapy města {town}, ZBGIS a OSM", { town: edges });
+  if (SK_PASSPORT_TOWN[sk] && edges === SK_PASSPORT_TOWN[sk]) return tr("app.roadInventoryMapTown", { town: edges });
+  if (SK_PASSPORT_TOWN[sk]) return tr("app.roadInventoryTownZbgis", { town: SK_PASSPORT_TOWN[sk] });
+  if (edges) return tr("app.mapTownZbgisOsm", { town: edges });
   const id = state.cut?.sources?.passport;
   // Where the state's orthophoto does not reach (Madeira, the Azores; Bára 27. 11. 2026), the state's line naming an
   // orthophoto would be wrong: the profile is OSM's alone.
   if (!PASSPORT_NAMES[id] && state.cut?.sources?.noOrtho && city.abroad && !state.cut?.sources?.ortho && !state.cut?.sources?.orthoCity) return "OSM";
   if (!PASSPORT_NAMES[id]) return city.dataShort;
-  return GREEN_PASSPORTS.has(id) ? tr("pasportu zeleně města {town}, technické mapy ČÚZK a OSM", { town: PASSPORT_NAMES[id] })
-    : tr("pasportu komunikací města {town}, technické mapy ČÚZK a OSM", { town: PASSPORT_NAMES[id] });
+  return GREEN_PASSPORTS.has(id) ? tr("app.greenInventoryTownTechnical", { town: PASSPORT_NAMES[id] })
+    : tr("app.roadInventoryTownTechnical", { town: PASSPORT_NAMES[id] });
 }
 function draw() {
-  document.title = state.stav && state.cut ? `${streetName(state.cut)} – ${tr("Profily ulic")}` : tr("Profily ulic");
+  document.title = state.stav && state.cut ? `${streetName(state.cut)} – ${tr("common.streetProfile")}` : tr("common.streetProfile");
   document.querySelectorAll(".seg-toggle button").forEach((b) => {
     b.classList.toggle("active", b.dataset.mode === state.mode);
     b.setAttribute("aria-pressed", String(b.dataset.mode === state.mode));
@@ -1305,23 +1305,23 @@ function draw() {
   $("#stav-cta").hidden = !state.stav || state.mode !== "stav";
   $("#stav-cta").classList.toggle("fixing", !!state.fixing);
   $("#stav-text").textContent = state.fixing
-    ? tr("Opravujete data stavu: táhněte úchyty nebo klikněte na část. Opravené části se označí jako upravené ručně.")
-    : tr("Takhle ulice vypadá podle dat {data}. Nesedí? Opravte je, nebo nám chybu nahlaste.", { data: cutData() });
-  $("#btn-fix").textContent = state.fixing ? tr("Hotovo") : tr("Opravit data");
+    ? tr("app.youCorrectingExistingData")
+    : tr("app.streetDataShowNot", { data: cutData() });
+  $("#btn-fix").textContent = state.fixing ? tr("app.done") : tr("common.correctData");
   // The footer's short line names the data of the cut's place (Bára: IPR only in Prague), the general services
   // without a cut; the opened footer keeps all the sources.
-  $("#footer-data").textContent = state.stav && state.cut ? tr("Data {data}", { data: cutData() }) : tr("Data © státní a městské mapové služby a OpenStreetMap");
+  $("#footer-data").textContent = state.stav && state.cut ? tr("app.data", { data: cutData() }) : tr("common.dataNationalCityMap");
   if (state.stav) {
     // Under the street's name: the width, and in every mode what the data of the street are (an estimate, a map that
     // failed…; Bára 16. 11. 2026 after Fable: an estimate is not forgotten while designing).
-    $("#profile-sub").textContent = tr("Celkem {w}", { w: fmtM(totalWidth(state.mode === "navrh" ? state.navrh : state.stav)) }) + tr(state.cut?.note || "");
+    $("#profile-sub").textContent = tr("common.totalW", { w: fmtM(totalWidth(state.mode === "navrh" ? state.navrh : state.stav)) }) + tr(state.cut?.note || "");
   }
   if (!state.stav) {
     box.innerHTML = `<div class="empty">
       <img src="${city.emptyImg}" alt="" width="96" height="126">
-      <div><h1 class="empty-title">${tr("Příčný profil ulice")}</h1>
-      <ol><li>${tr("Klikněte v mapě na ulici. Kde profily umíme, ukazuje mapa v okně O aplikaci.")}</li><li>${tr("Profil od fasády k fasádě se sestaví z otevřených dat: map povrchů měst, ortofot a OSM. Zdroje konkrétního řezu jsou vždy pod profilem.")}</li>
-      <li>${tr("V režimu Návrh ho upravíte: táhněte hranice, klikněte na část, přidejte novou.")}</li></ol></div></div>`;
+      <div><h1 class="empty-title">${tr("app.streetCrossSection")}</h1>
+      <ol><li>${tr("app.clickStreetMapAbout")}</li><li>${tr("app.profileFacadeBuiltOpen")}</li>
+      <li>${tr("app.editProposalDragBorders")}</li></ol></div></div>`;
     $("#editor").replaceChildren();
     $("#palette").replaceChildren();
     renderShares();
@@ -1332,9 +1332,9 @@ function draw() {
     const changed = changedParts(state.stav, state.navrh);
     // One depth of earth for both, so they keep one scale (a rainwater object in the design only, Fable).
     const deep = Math.max(underDepth(state.stav), underDepth(state.navrh));
-    for (const [title, p, opts] of [[tr("Stav"), state.stav, { deep }], [tr("Návrh"), state.navrh, { changed, deep }]]) {
+    for (const [title, p, opts] of [[tr("common.existing"), state.stav, { deep }], [tr("common.proposal"), state.navrh, { changed, deep }]]) {
       const h = Object.assign(document.createElement("h3"), { className: "compare-title", textContent: title });
-      if (opts.changed?.size) h.append(Object.assign(document.createElement("span"), { className: "muted", textContent: tr(" · změněné části jsou obtažené") }));
+      if (opts.changed?.size) h.append(Object.assign(document.createElement("span"), { className: "muted", textContent: tr("note.changedPartsOutlined") }));
       box.append(h, buildSvg(p, opts));
     }
     box.appendChild(diffList(state.stav, state.navrh));
@@ -1373,14 +1373,14 @@ function renderShares() {
   if (!state.stav) { box.hidden = true; return; }
   box.hidden = false;
   box.replaceChildren();
-  shareBars(box, tr("Podíl prostoru ulice"), shares, ["auta", "mhd", "kola"], tr("Sdílené pruhy a stezky se počítají napůl (např. pruh s tramvají půl MHD, půl auta)."));
+  shareBars(box, tr("app.shareStreetSpace"), shares, ["auta", "mhd", "kola"], tr("app.sharedLanesPathsCount"));
   // How much of it lets the rain in (Magdalena, 13. 11. 2026), by the parts' surfaces.
-  shareBars(box, tr("Povrch ulice"), surfaces, ["nepropustne"]);
+  shareBars(box, tr("app.streetSurface"), surfaces, ["nepropustne"]);
 }
 // One bar per profile (Stav and Návrh in Porovnat) of the groups of fn (shares.js), with the groups' metres and per
 // cent, in Porovnat with the share before; dark: groups with white figures.
 function shareBars(box, heading, fn, dark, note) {
-  const rows = state.mode === "porovnat" ? [[tr("Stav"), state.stav], [tr("Návrh"), state.navrh]] : [[null, current()]];
+  const rows = state.mode === "porovnat" ? [[tr("common.existing"), state.stav], [tr("common.proposal"), state.navrh]] : [[null, current()]];
 
   const sec = box.appendChild(Object.assign(document.createElement("section"), { className: "share-sec" }));
   sec.append(Object.assign(document.createElement("h3"), { textContent: heading }));
@@ -1407,7 +1407,7 @@ function shareBars(box, heading, fn, dark, note) {
   for (const g of fn(state.mode === "porovnat" ? state.navrh : current())) {
     if (!g.m && !(before && before[g.key])) continue;
     const d = before ? Math.round(g.pct - before[g.key]) : 0;
-    const item = Object.assign(document.createElement("span"), { textContent: `${g.label} ${fmtM(g.m)} · ${pct(g.pct)}${d ? ` (${tr("bylo {p}", { p: pct(before[g.key] || 0) })})` : ""}` });
+    const item = Object.assign(document.createElement("span"), { textContent: `${g.label} ${fmtM(g.m)} · ${pct(g.pct)}${d ? ` (${tr("app.wasP", { p: pct(before[g.key] || 0) })})` : ""}` });
     item.style.setProperty("--c", g.color);
     legend.append(item);
   }
@@ -1438,9 +1438,9 @@ function diffList(a, b) {
     a.segments.forEach((s, i) => {
       const d = +(b.segments[i].width - s.width).toFixed(2);
       if (d) items.push({ i, text: `${name(s)}: ${fmtM(s.width)} → ${fmtM(b.segments[i].width)} (${d > 0 ? "+" : "−"}${fmtM(Math.abs(d))})` });
-      else if (TYPES[s.type]?.bed && (s.bed || "panely") !== (b.segments[i].bed || "panely")) items.push({ i, text: tr("{type}: povrch tělesa {from} → {to}", { type: name(s), from: TRAM_BEDS[s.bed || "panely"]?.label, to: TRAM_BEDS[b.segments[i].bed || "panely"]?.label }) });
-      else if ((s.under || "") !== (b.segments[i].under || "")) items.push({ i, text: tr("{type}: pod povrchem {what}", { type: name(s), what: HDV_UNDER[b.segments[i].under]?.label || tr("nic") }) });
-      else if (hidden(s) !== hidden(b.segments[i])) items.push({ i, text: tr("{type}: jiné prvky, povrch nebo co je pod povrchem", { type: name(s) }) });
+      else if (TYPES[s.type]?.bed && (s.bed || "panely") !== (b.segments[i].bed || "panely")) items.push({ i, text: tr("app.typeTrackBedSurface", { type: name(s), from: TRAM_BEDS[s.bed || "panely"]?.label, to: TRAM_BEDS[b.segments[i].bed || "panely"]?.label }) });
+      else if ((s.under || "") !== (b.segments[i].under || "")) items.push({ i, text: tr("app.typeBelowSurfaceWhat", { type: name(s), what: HDV_UNDER[b.segments[i].under]?.label || tr("app.nothing") }) });
+      else if (hidden(s) !== hidden(b.segments[i])) items.push({ i, text: tr("app.typeOtherItemsPaving", { type: name(s) }) });
     });
   } else {
     const count = (p) => p.segments.reduce((m, s) => m.set(name(s), (m.get(name(s)) || 0) + s.width), new Map());
@@ -1450,9 +1450,9 @@ function diffList(a, b) {
       if (Math.abs(wa - wb) >= 0.01) items.push({ text: `${k}: ${wa ? fmtM(wa) : "–"} → ${wb ? fmtM(wb) : "–"}` });
     }
   }
-  div.innerHTML = `<h3>${tr("Změny v návrhu")}</h3>`;
+  div.innerHTML = `<h3>${tr("app.changesProposal")}</h3>`;
   const ul = document.createElement("ul");
-  for (const it of items.length ? items : [{ text: tr("Návrh je zatím stejný jako stav.") }]) {
+  for (const it of items.length ? items : [{ text: tr("app.proposalSameExistingStreet") }]) {
     const li = Object.assign(document.createElement("li"), { textContent: it.text });
     if (it.i !== undefined) {
       // Pointing at a change lights up that part in both profiles.
@@ -1480,7 +1480,7 @@ function renderRuleCheck(p, box) {
   if (!found.length) { el.hidden = true; el.replaceChildren(); return; }
   el.hidden = false;
   el.replaceChildren();
-  for (const [head, list] of [[city.rulesHead, widths], [tr("Sítě pod zemí:"), clashes]]) if (list.length) el.append(Object.assign(document.createElement("div"), { textContent: head }), warnList(list));
+  for (const [head, list] of [[city.rulesHead, widths], [tr("app.undergroundNetworks"), clashes]]) if (list.length) el.append(Object.assign(document.createElement("div"), { textContent: head }), warnList(list));
 }
 function warnList(found) {
   const ul = document.createElement("ul");
@@ -1515,8 +1515,8 @@ function renderWidthCheck() {
   if (Math.abs(diff) < 0.01) { box.hidden = true; return; }
   const v = { d: fmtM(Math.abs(diff)), w: fmtM(target), now: fmtM(now) };
   box.textContent = fixing
-    ? (diff > 0 ? tr("Po opravách je profil o {d} širší než změřená ulice ({w}, teď {now}).", v) : tr("Po opravách je profil o {d} užší než změřená ulice ({w}, teď {now}).", v))
-    : (diff > 0 ? tr("Návrh je o {d} širší než ulice ({w}, návrh {now}).", v) : tr("Návrh je o {d} užší než ulice ({w}, návrh {now}).", v));
+    ? (diff > 0 ? tr("app.afterCorrectionsProfileD", v) : tr("app.afterCorrectionsProfileDNarrower", v))
+    : (diff > 0 ? tr("app.proposalDWiderStreet", v) : tr("app.proposalDNarrowerStreet", v));
   if (state.mode !== "navrh" && !fixing) return;
   const segs = edit.segments;
   // The selected part when it can take the difference, else the widest part that can.
@@ -1525,7 +1525,7 @@ function renderWidthCheck() {
     : segs.filter(fits).reduce((b, x) => (!b || x.width > b.width ? x : b), null);
   if (!seg) return;
   const btn = document.createElement("button");
-  btn.textContent = tr("Dorovnat: {type} na {w}", { type: partLabel(seg), w: fmtM(seg.width - diff) });
+  btn.textContent = tr("app.balanceTypeW", { type: partLabel(seg), w: fmtM(seg.width - diff) });
   btn.onclick = () => {
     seg.width = +(seg.width - diff).toFixed(2);
     seg.source = "user";
@@ -1839,7 +1839,7 @@ function undo() {
   if (!undoStack.length) return;
   redoStack.push(snapshot());
   applySnapshot(undoStack.pop());
-  status(tr("Změna je vrácená."), "ok");
+  status(tr("app.changeUndone"), "ok");
 }
 function redo() {
   if (!redoStack.length) return;
@@ -1876,22 +1876,22 @@ function renderInfo(ed, s) {
   if (!s) return;
   const head = Object.assign(document.createElement("div"), { className: "ed-head" });
   head.append(Object.assign(document.createElement("h3"), { textContent: `${partLabel(s)}, ${fmtM(s.width)}` }),
-    Object.assign(document.createElement("span"), { className: "muted", textContent: tr("Zdroj: {source}", { source: SOURCES[s.source]?.label || s.source || "–" }) }));
+    Object.assign(document.createElement("span"), { className: "muted", textContent: tr("app.source", { source: SOURCES[s.source]?.label || s.source || "–" }) }));
   const close = Object.assign(document.createElement("button"), { className: "close", textContent: "×", onclick: () => { state.selected = null; render(); } });
-  close.setAttribute("aria-label", tr("Zavřít"));
+  close.setAttribute("aria-label", tr("common.close"));
   head.append(close);
   ed.append(head);
 }
 
 // What stands at an edge of the street, and the look of a building ("budova" alone lets the app guess it).
-const EDGE_KINDS = () => [["stavba", tr("Drobná stavba")], ["zahrada", tr("Zahrada, louka")], ["zelen", tr("Park, zeleň")], ["voda", tr("Voda")],
-  ["parkoviste", tr("Parkoviště")], ["plot", tr("Plot")], ["volno", tr("Volný prostor")]];
+const EDGE_KINDS = () => [["stavba", tr("common.smallStructure")], ["zahrada", tr("app.gardenMeadow")], ["zelen", tr("app.parkGreenery")], ["voda", tr("common.water")],
+  ["parkoviste", tr("app.carPark")], ["plot", tr("app.fence")], ["volno", tr("app.openSpace")]];
 // What stands there first, the look of a building in a select of its own (Fable: one list of 13, most of them
 // "Budova – …").
 function edgeKindSelect(p, side) {
   const sel = document.createElement("select");
   const current = p.edges?.[side] || "volno";
-  for (const [k, t] of [["budova", tr("Budova")], ...EDGE_KINDS()]) sel.add(new Option(t, k, false, current === k));
+  for (const [k, t] of [["budova", tr("common.building")], ...EDGE_KINDS()]) sel.add(new Option(t, k, false, current === k));
   sel.onchange = () => {
     if (sel.value === current) return;
     p.edges = { ...p.edges, [side]: sel.value };
@@ -1909,7 +1909,7 @@ function edgeLookSelect(p, side) {
   const guess = BUILDING_STYLES[style];
   // The gabled looks only with ?stit=1 (or where the file has one).
   const offered = Object.entries(BUILDING_STYLES).filter(([k]) => HOUSE_LOOKS.gables || !GABLE_LOOKS.has(k) || p.edges?.[`${side}Style`] === k);
-  for (const [k, t] of [["", tr("odhad: {guess}", { guess })], ...offered]) sel.add(new Option(t, k, false, (p.edges?.[`${side}Style`] || "") === k));
+  for (const [k, t] of [["", tr("app.estimateGuess", { guess })], ...offered]) sel.add(new Option(t, k, false, (p.edges?.[`${side}Style`] || "") === k));
   sel.onchange = () => {
     p.edges = { ...p.edges };
     if (sel.value) p.edges[`${side}Style`] = sel.value;
@@ -1925,7 +1925,7 @@ function edgeLookSelect(p, side) {
 function floorsInput(p, side) {
   const data = p.edges?.[`${side}Info`]?.levels;
   const floors = Object.assign(document.createElement("input"), { type: "number", min: 1, max: 60, step: 1, value: p.edges?.[`${side}Levels`] || data || "", placeholder: "–", className: "floors" });
-  floors.setAttribute("aria-label", tr("Podlaží"));
+  floors.setAttribute("aria-label", tr("app.floors"));
   floors.onchange = () => {
     const n = Math.round(Number(floors.value));
     // The look guessed so far stays: other floors would make the guess another house (a panel house of 2
@@ -1959,42 +1959,42 @@ function renderEdge(ed, p, side) {
   const kind = p.edges?.[side] || "volno";
   const info = edgeInfo(p.edges, side);
   const style = kind === "budova" && buildingStyle(info, p.edges?.[`${side}Style`]);
-  const name = kind === "budova" ? BUILDING_STYLES[style] + (info?.arcade ? tr(", s podloubím (OSM)") : "")
+  const name = kind === "budova" ? BUILDING_STYLES[style] + (info?.arcade ? tr("app.arcadeOsm") : "")
     : Object.fromEntries(EDGE_KINDS())[kind] || kind;
   const head = Object.assign(document.createElement("div"), { className: "ed-head" });
-  head.append(Object.assign(document.createElement("h3"), { textContent: `${side === "left" ? tr("Levý okraj") : tr("Pravý okraj")}: ${name}` }));
+  head.append(Object.assign(document.createElement("h3"), { textContent: `${side === "left" ? tr("common.leftEdge") : tr("common.rightEdge")}: ${name}` }));
   const close = Object.assign(document.createElement("button"), { className: "close", textContent: "×", onclick: () => { state.edge = null; render(); } });
-  close.setAttribute("aria-label", tr("Zavřít výběr"));
+  close.setAttribute("aria-label", tr("app.closeSelection"));
   head.append(close);
   ed.append(head);
   if (!canEdit()) {
-    if (info?.levels) ed.append(Object.assign(document.createElement("span"), { className: "muted", textContent: tr("{n} podlaží", { n: info.levels }) + " · " }));
-    ed.append(Object.assign(document.createElement("span"), { className: "muted", textContent: tr("Změníte v Návrhu, chybu v datech opravíte tlačítkem Opravit data.") }));
+    if (info?.levels) ed.append(Object.assign(document.createElement("span"), { className: "muted", textContent: tr("app.nFloors", { n: info.levels }) + " · " }));
+    ed.append(Object.assign(document.createElement("span"), { className: "muted", textContent: tr("app.changeProposalCorrectError") }));
     return;
   }
   const lab = (text, input) => { const l = document.createElement("label"); l.append(text, input); return l; };
   const row = ed.appendChild(Object.assign(document.createElement("div"), { className: "ed-row" }));
-  row.append(lab(tr("Co tu stojí"), edgeKindSelect(p, side)));
-  if (kind === "budova") row.append(lab(tr("Vzhled domu"), edgeLookSelect(p, side)), lab(tr("Podlaží"), floorsInput(p, side)));
+  row.append(lab(tr("app.whatStands"), edgeKindSelect(p, side)));
+  if (kind === "budova") row.append(lab(tr("app.buildingStyle"), edgeLookSelect(p, side)), lab(tr("app.floors"), floorsInput(p, side)));
 }
 
 // Whether the card's "Další volby" is open, for the visit: once opened it stays open from part to part.
 let moreOpen = false;
 // What a part with a term for a name is, in plain words (Fable: for lay people as well as experts).
 const TYPE_HINTS = {
-  pruleh: tr("Mělký zatravněný příkop, do kterého stéká dešťová voda a vsakuje se."),
-  ryha: tr("Rýha vyplněná štěrkem, do které se vsakuje dešťová voda."),
-  nadrz: tr("Nádrž, která zadrží dešťovou vodu a pomalu ji pouští dál."),
-  pruh_piktokoridor: tr("Jízdní pruh se značkami kola: cyklisté jezdí s auty."),
-  ochranny_pruh: tr("Cyklopruh za přerušovanou čarou: auta ho smějí přejet."),
-  cyklopruh: tr("Cyklopruh za plnou čarou, jen pro cyklisty."),
-  tramvaj: tr("Koleje mimo vozovku, oddělené obrubou nebo zelení."),
-  tramvaj_pruh: tr("Pruh vozovky jen pro tramvaje."),
-  tramvaj_v_pruhu: tr("Koleje v pruhu, kde jezdí i auta."),
-  krajnice: tr("Okraj vozovky mimo jízdní pruhy."),
-  obsluzna: tr("Úzká cesta k domům nebo k parkování, odděleně od jízdních pruhů."),
-  delici: tr("Pás mezi jízdními směry nebo mezi vozovkou a chodníkem."),
-  nastupiste: tr("Místo, kde se čeká a nastupuje do tramvaje nebo autobusu."),
+  pruleh: tr("app.shallowGrassedDitchRainwater"),
+  ryha: tr("app.gravelFilledTrenchRainwater"),
+  nadrz: tr("app.basinHoldsRainwaterBack"),
+  pruh_piktokoridor: tr("app.trafficLaneBicycleSymbols"),
+  ochranny_pruh: tr("app.cycleLaneBehindBroken"),
+  cyklopruh: tr("app.cycleLaneBehindSolid"),
+  tramvaj: tr("app.tracksOffCarriagewaySeparated"),
+  tramvaj_pruh: tr("app.laneCarriagewayTramsOnly"),
+  tramvaj_v_pruhu: tr("app.tracksLaneCarsUse"),
+  krajnice: tr("app.edgeCarriagewayOutsideTraffic"),
+  obsluzna: tr("app.narrowRoadHousesParking"),
+  delici: tr("app.stripBetweenDirectionsTraffic"),
+  nastupiste: tr("app.wherePeopleWaitBoard"),
 };
 function renderEditor(p) {
   const ed = $("#editor");
@@ -2007,7 +2007,7 @@ function renderEditor(p) {
   // Nothing selected: one line of what to do (Fable: the panel of the edges was in the way; a click on a house
   // at the edge opens its own card).
   if (s === undefined) {
-    ed.append(Object.assign(document.createElement("p"), { className: "ed-hint muted", textContent: tr("Klikněte na část profilu nebo na dům či zahradu na kraji. Šířku změníte tažením modrých úchytů.") }));
+    ed.append(Object.assign(document.createElement("p"), { className: "ed-hint muted", textContent: tr("app.clickPartProfileBuilding") }));
     ed.classList.add("hint-only");
     return;
   }
@@ -2044,23 +2044,23 @@ function renderEditor(p) {
   // the one choice the part is mostly about; its items and signs; the rarer choices folded under "Další volby".
   const head = Object.assign(document.createElement("div"), { className: "ed-head" });
   head.append(Object.assign(document.createElement("h3"), { textContent: partLabel(s) }),
-    Object.assign(document.createElement("span"), { className: "muted", textContent: tr("Zdroj: {source}", { source: SOURCES[s.source]?.label || s.source || "–" }) }));
+    Object.assign(document.createElement("span"), { className: "muted", textContent: tr("app.source", { source: SOURCES[s.source]?.label || s.source || "–" }) }));
   const acts = Object.assign(document.createElement("span"), { className: "ed-acts" });
   const act = (text, title, fn, cls, off) => { const b = btn(text, fn, cls); b.title = title; b.setAttribute("aria-label", title); b.disabled = !!off; return b; };
   acts.append(
-    act("←", tr("Posunout doleva"), () => { if (i > 0) { [segs[i - 1], segs[i]] = [segs[i], segs[i - 1]]; done(i - 1); } }, "", i === 0),
-    act("→", tr("Posunout doprava"), () => { if (i < segs.length - 1) { [segs[i + 1], segs[i]] = [segs[i], segs[i + 1]]; done(i + 1); } }, "", i === segs.length - 1),
-    act(tr("Rozdělit"), tr("Rozdělit na dvě"), () => { const h = +(s.width / 2).toFixed(2); segs.splice(i, 1, { ...s, width: h, source: "user" }, { ...s, width: +(s.width - h).toFixed(2), source: "user" }); done(); }),
+    act("←", tr("app.moveLeft"), () => { if (i > 0) { [segs[i - 1], segs[i]] = [segs[i], segs[i - 1]]; done(i - 1); } }, "", i === 0),
+    act("→", tr("app.moveRight"), () => { if (i < segs.length - 1) { [segs[i + 1], segs[i]] = [segs[i], segs[i + 1]]; done(i + 1); } }, "", i === segs.length - 1),
+    act(tr("app.split"), tr("app.splitTwo"), () => { const h = +(s.width / 2).toFixed(2); segs.splice(i, 1, { ...s, width: h, source: "user" }, { ...s, width: +(s.width - h).toFixed(2), source: "user" }); done(); }),
     // After a delete the neighbour is selected, so "Dorovnat" offers to give it the width (renderWidthCheck).
     // In Návrh and in a correction a deleted part leaves a hole of its width, so what lies beyond it stays in its place (Bára: the
     // surface must not drift from what is under it).
-    act(tr("Smazat"), tr("Smazat část"), () => {
+    act(tr("app.delete"), tr("app.deletePart"), () => {
       if (keepsPlace()) { segs.splice(i, 1, { type: HOLE, width: s.width, source: "user" }); done(i); }
       else { segs.splice(i, 1); done(segs.length ? Math.max(0, i - 1) : null); }
     }, "danger", isHole(s)), // a hole is already the empty place
   );
   acts.append(btn("×", () => { state.selected = null; render(); }, "close"));
-  acts.lastChild.setAttribute("aria-label", tr("Zavřít výběr"));
+  acts.lastChild.setAttribute("aria-label", tr("app.closeSelection"));
   head.append(acts);
   const row = (into = ed) => into.appendChild(Object.assign(document.createElement("div"), { className: "ed-row" }));
   const step = (d) => btn(d > 0 ? "+" : "−", () => { setWidth(segs, i, Math.max(minW(), +(s.width + d).toFixed(2))); spreadAll(s); s.source = "user"; done(); }, "step");
@@ -2071,7 +2071,7 @@ function renderEditor(p) {
   const r1 = row();
   const wbox = Object.assign(document.createElement("span"), { className: "stepper" });
   wbox.append(step(-0.25), width, step(0.25));
-  r1.append(lab(tr("Typ"), type), lab(tr("Šířka (m)"), wbox));
+  r1.append(lab(tr("app.type"), type), lab(tr("app.widthM"), wbox));
   // The rarer choices: their row inside the folded box, and what is set in them named on the fold.
   const moreBox = Object.assign(document.createElement("details"), { className: "ed-more", open: moreOpen });
   moreBox.ontoggle = () => { moreOpen = moreBox.open; };
@@ -2082,8 +2082,8 @@ function renderEditor(p) {
     // Away from or towards the viewer; a lane of a two-way street with one axis has no direction and is drawn
     // "↑↓" (derive.js), so it can be made and kept here too. Another part without a direction says so.
     const dir = document.createElement("select");
-    const both = s.type === "pruh" ? [["", tr("↑↓ obousměrný")]] : s.dir ? [] : [["", tr("bez směru")]];
-    for (const [v, t] of [["forward", tr("↑ od diváka")], ["backward", tr("↓ k divákovi")], ...both]) dir.add(new Option(t, v, false, (s.dir || "") === v));
+    const both = s.type === "pruh" ? [["", tr("app.twoWay")]] : s.dir ? [] : [["", tr("app.noDirection")]];
+    for (const [v, t] of [["forward", tr("app.awayViewer")], ["backward", tr("app.towardsViewer")], ...both]) dir.add(new Option(t, v, false, (s.dir || "") === v));
     dir.onchange = () => {
       const was = s.dir;
       if (dir.value) s.dir = dir.value; else delete s.dir;
@@ -2091,15 +2091,15 @@ function renderEditor(p) {
       if (s.bikeDir && was && s.dir && was !== s.dir) s.bikeDir = s.bikeDir === "backward" ? "forward" : "backward";
       done();
     };
-    r1.append(lab(tr("Směr jízdy"), dir));
+    r1.append(lab(tr("app.direction"), dir));
   }
   if (s.type === "pruh" || s.type === "pruh_piktokoridor") {
     // Cyclists sharing the lane (drawn with the cars, "cyklisté ↓" in contraflow; a piktokoridor has them anyway).
     const bike = document.createElement("select");
-    for (const [v, t] of [["", s.type === "pruh" ? tr("ne") : tr("po směru pruhu")], ["forward", tr("↑ od diváka")], ["backward", tr("↓ k divákovi")]]) bike.add(new Option(t, v, false, (s.bikeDir || "") === v));
+    for (const [v, t] of [["", s.type === "pruh" ? tr("app.no") : tr("app.sameDirectionLane")], ["forward", tr("app.awayViewer")], ["backward", tr("app.towardsViewer")]]) bike.add(new Option(t, v, false, (s.bikeDir || "") === v));
     bike.onchange = () => { if (bike.value) s.bikeDir = bike.value; else delete s.bikeDir; s.source = "user"; done(); };
-    r2.append(lab(tr("Cyklisté v pruhu"), bike));
-    if (s.bikeDir) set.push(tr("cyklisté {dir}", { dir: opt(bike) }));
+    r2.append(lab(tr("app.cyclistsLane"), bike));
+    if (s.bikeDir) set.push(tr("app.cyclistsDir", { dir: opt(bike) }));
   }
   if (["pruh", "pruh_piktokoridor", "bus", "bus_cyklo"].includes(s.type)) {
     // Trolley wires over the lane (OSM trolley_wire): drawn above it; a bus lane under them carries the trolleybus.
@@ -2109,12 +2109,12 @@ function renderEditor(p) {
       s.source = "user";
       done();
     };
-    r2.append(lab(tr("Troleje") + " ", wires));
-    if (s.wires) set.push(tr("troleje"));
+    r2.append(lab(tr("app.trolleyWires") + " ", wires));
+    if (s.wires) set.push(tr("app.trolleyWires2"));
   }
   if (s.type === "parkovani") {
     const orient = document.createElement("select");
-    for (const [v, t] of [["podelne", tr("podélné")], ["sikme", tr("šikmé")], ["kolme", tr("kolmé")]]) {
+    for (const [v, t] of [["podelne", tr("common.parallel")], ["sikme", tr("common.angled")], ["kolme", tr("common.perpendicular")]]) {
       orient.add(new Option(t, v, false, (s.orient || "podelne") === v));
     }
     orient.onchange = () => {
@@ -2125,17 +2125,17 @@ function renderEditor(p) {
       s.source = "user";
       done();
     };
-    r1.append(lab(tr("Stání"), orient));
+    r1.append(lab(tr("app.layout"), orient));
     const use = document.createElement("select");
-    for (const [v, t] of [["", tr("běžné")], ...Object.entries(PARKING_USE)]) use.add(new Option(t, v, false, (s.use || "") === v));
+    for (const [v, t] of [["", tr("app.general")], ...Object.entries(PARKING_USE)]) use.add(new Option(t, v, false, (s.use || "") === v));
     use.onchange = () => { if (use.value) s.use = use.value; else delete s.use; s.source = "user"; done(); };
-    r2.append(lab(tr("Účel"), use));
+    r2.append(lab(tr("app.use"), use));
     if (s.use) set.push(opt(use));
     // Where the cars stand: in the roadway, on the sidewalk, or across the kerb (half on the sidewalk).
     const pos = document.createElement("select");
-    for (const [v, t] of [["", tr("ve vozovce")], ...Object.entries(PARKING_POSITION)]) pos.add(new Option(t, v, false, (s.position || "") === v));
+    for (const [v, t] of [["", tr("app.roadway")], ...Object.entries(PARKING_POSITION)]) pos.add(new Option(t, v, false, (s.position || "") === v));
     pos.onchange = () => { if (pos.value) s.position = pos.value; else delete s.position; s.source = "user"; done(); };
-    r2.append(lab(tr("Poloha"), pos));
+    r2.append(lab(tr("app.position"), pos));
     if (s.position) set.push(opt(pos));
   }
   if (TYPES[s.type]?.bed) {
@@ -2143,28 +2143,28 @@ function renderEditor(p) {
     const bed = document.createElement("select");
     for (const [v, t] of Object.entries(TRAM_BEDS)) bed.add(new Option(t.label, v, false, (s.bed || "panely") === v));
     bed.onchange = () => { s.bed = bed.value; delete s.bedGuess; s.source = "user"; done(); };
-    r1.append(lab(tr("Povrch tělesa"), bed));
+    r1.append(lab(tr("app.tramwaySurface"), bed));
   }
   if (PERMEABLE_TYPES.includes(s.type)) {
     // Ordinary, permeable paving (5.1.2) or unpaved.
     const perm = document.createElement("select");
     for (const [v, label] of Object.entries(SURFACES)) perm.add(new Option(label, v, false, String(s.permeable || "") === v));
     perm.onchange = () => { const v = perm.value; if (v === "true") s.permeable = true; else if (v) s.permeable = v; else delete s.permeable; s.source = "user"; done(); };
-    r2.append(lab(tr("Povrch"), perm));
+    r2.append(lab(tr("app.surface"), perm));
     if (s.permeable) set.push(opt(perm));
   }
   // Rainwater management (Bára after Magdalena): what lies under the part.
   if (UNDER_TYPES.includes(s.type)) {
     const under = document.createElement("select");
-    for (const [v, t] of [["", tr("nic")], ...Object.entries(HDV_UNDER).map(([k, u]) => [k, u.label])]) under.add(new Option(t, v, false, (s.under || "") === v));
+    for (const [v, t] of [["", tr("app.nothing")], ...Object.entries(HDV_UNDER).map(([k, u]) => [k, u.label])]) under.add(new Option(t, v, false, (s.under || "") === v));
     // Another object starts from its own default size.
     under.onchange = () => { if (under.value) s.under = under.value; else delete s.under; delete s.underSize; s.source = "user"; done(); };
-    r2.append(lab(tr("Pod povrchem"), under));
+    r2.append(lab(tr("app.belowSurface"), under));
     if (s.under) {
       set.push(opt(under));
       // Its size (types.js underSize; the standard sizes it by calculation): wide, from what depth, how high.
       const z = underSize(s), size = Object.assign(document.createElement("span"), { className: "under-size" });
-      for (const [k, text, lo, hi] of [["w", tr("šířka"), 0.3, Math.max(0.3, s.width - 0.2)], ["top", tr("od hloubky"), 0, 5], ["h", tr("výška"), 0.2, 5]]) {
+      for (const [k, text, lo, hi] of [["w", tr("app.width"), 0.3, Math.max(0.3, s.width - 0.2)], ["top", tr("app.topDepth"), 0, 5], ["h", tr("app.height"), 0.2, 5]]) {
         const inp = Object.assign(document.createElement("input"), { type: "text", inputMode: "decimal", value: numField(z[k]), className: "num" });
         inp.onchange = () => {
           // An emptied field goes back to the default (Fable: it gave 0).
@@ -2180,7 +2180,7 @@ function renderEditor(p) {
         };
         size.append(lab(text, inp));
       }
-      size.append(Object.assign(document.createElement("span"), { className: "muted", textContent: tr("m; výchozí odhad, rozměr dá výpočet podle Standardů HDV") }));
+      size.append(Object.assign(document.createElement("span"), { className: "muted", textContent: tr("app.mDefaultEstimateSize") }));
       row(moreBox).append(size);
     }
   }
@@ -2188,30 +2188,30 @@ function renderEditor(p) {
     // Buses may use the tram part (OSM psv / bus on the tracks).
     const bus = Object.assign(document.createElement("input"), { type: "checkbox", checked: !!s.withBus });
     bus.onchange = () => { if (bus.checked) s.withBus = true; else delete s.withBus; s.source = "user"; done(); };
-    r2.append(lab(tr("I pro autobusy") + " ", bus));
-    if (s.withBus) set.push(tr("i pro autobusy"));
+    r2.append(lab(tr("app.alsoBuses") + " ", bus));
+    if (s.withBus) set.push(tr("app.busesToo"));
   }
   if (["pruh", "pruh_piktokoridor", "bus", "bus_cyklo", "tramvaj_v_pruhu"].includes(s.type)) {
     // The usual arrows, and the lane's own from OSM when it is another combination (named as drawn).
     const turn = document.createElement("select");
     const turns = s.turn && !TURN_CHOICES.includes(s.turn) ? [...TURN_CHOICES, s.turn] : TURN_CHOICES;
-    for (const [v, t] of [["", tr("bez šipky")], ...turns.map((v) => [v, turnLabel(v)])]) {
+    for (const [v, t] of [["", tr("app.noArrow")], ...turns.map((v) => [v, turnLabel(v)])]) {
       turn.add(new Option(t, v, false, (s.turn || "") === v));
     }
     turn.onchange = () => { if (turn.value) s.turn = turn.value; else delete s.turn; s.source = "user"; done(); };
-    r2.append(lab(tr("Šipky na vozovce"), turn));
-    if (s.turn) set.push(tr("šipka {turn}", { turn: opt(turn) }));
+    r2.append(lab(tr("app.laneArrows"), turn));
+    if (s.turn) set.push(tr("app.arrowTurn", { turn: opt(turn) }));
   }
   // Merging gives the part's width to its neighbour, so the street keeps its width (Bára: a shoulder that is
   // really part of the lane).
-  const merge = [[i - 1, tr("Sloučit s levou")], [i + 1, tr("Sloučit s pravou")]].filter(([j]) => segs[j]).map(([j, label]) => btn(label, () => {
+  const merge = [[i - 1, tr("app.mergeLeft")], [i + 1, tr("app.mergeRight")]].filter(([j]) => segs[j]).map(([j, label]) => btn(label, () => {
     segs[j].width = +(segs[j].width + s.width).toFixed(2);
     segs[j].source = "user";
     segs.splice(i, 1);
     done(j < i ? j : i);
   }));
   if (merge.length) row(moreBox).append(...merge);
-  summary.append(tr("Další volby"));
+  summary.append(tr("app.moreOptions"));
   if (set.length) summary.append(Object.assign(document.createElement("span"), { className: "muted", textContent: ` · ${set.join(", ")}` }));
   // Items (furniture, barriers) inside the segment and its traffic signs (at most MAX_PER_PART): one row of tags.
   const items = document.createElement("span");
@@ -2223,11 +2223,11 @@ function renderEditor(p) {
     const pair = items.appendChild(Object.assign(document.createElement("span"), { className: "item-pair" }));
     pair.append(btn(`${ITEMS[it.kind] || it.kind} ×`, () => { s.items.splice(k, 1); spreadItems(s, it.kind); s.source = "user"; done(); }, "tag"));
     // A lamp's height and a bike rack's direction (Magdalena): a small select by its tag.
-    const opts = it.kind === "lampa" ? [["", tr("výška: obvyklá")], ...LAMP_HEIGHTS.map((h) => [String(h), tr("výška {h} m", { h })])]
-      : it.kind === "stojan_kola" ? [["", tr("napříč ulicí")], ["along", tr("podél ulice")]] : null;
+    const opts = it.kind === "lampa" ? [["", tr("app.heightUsual")], ...LAMP_HEIGHTS.map((h) => [String(h), tr("app.heightHM", { h })])]
+      : it.kind === "stojan_kola" ? [["", tr("app.acrossStreet")], ["along", tr("app.alongStreet")]] : null;
     if (!opts) return;
     const sel = Object.assign(document.createElement("select"), { className: "item-opt" });
-    sel.setAttribute("aria-label", it.kind === "lampa" ? tr("Výška lampy") : tr("Směr stojanu"));
+    sel.setAttribute("aria-label", it.kind === "lampa" ? tr("app.streetLightHeight") : tr("app.cycleStandOrientation"));
     for (const [v, t] of opts) sel.add(new Option(t, v, false, v === (it.kind === "lampa" ? String(it.h || "") : it.along ? "along" : "")));
     sel.onchange = () => {
       if (it.kind === "lampa") { if (sel.value) it.h = Number(sel.value); else delete it.h; }
@@ -2238,8 +2238,8 @@ function renderEditor(p) {
     pair.append(sel);
   });
   const add = document.createElement("select");
-  add.setAttribute("aria-label", tr("Přidat prvek"));
-  add.add(new Option(tr("+ přidat prvek"), ""));
+  add.setAttribute("aria-label", tr("app.addItem2"));
+  add.add(new Option(tr("app.addItem"), ""));
   for (const [k, t] of Object.entries(ITEMS)) add.add(new Option(t, k));
   add.onchange = () => { if (!add.value) return; (s.items ||= []).push({ kind: add.value, f: itemPlace(segs, i, add.value) }); spreadItems(s, add.value); s.source = "user"; done(); };
   items.append(add);
@@ -2296,7 +2296,7 @@ function signTags(list = [], max, type, set) {
   });
   if (list.length < max && fits.length) {
     const add = document.createElement("select");
-    add.add(new Option(tr("+ přidat značku"), ""));
+    add.add(new Option(tr("app.addSign"), ""));
     for (const k of fits) {
       add.add(new Option(name({ k }), k));
       for (const [ck, c] of Object.entries(SIGN_CHOICES)) if (c.k === k && drawable(c, null, country.code)) add.add(new Option(name(c), ck));
@@ -2306,7 +2306,7 @@ function signTags(list = [], max, type, set) {
       if (!k) return;
       const { label, ...x } = SIGN_CHOICES[k] || { k };
       if (k === "b20a") {
-        const v = Number(prompt(tr("Nejvyšší dovolená rychlost (km/h):"), "30"));
+        const v = Number(prompt(tr("app.speedLimitKmH"), "30"));
         if (!(v > 0 && v <= 200)) return render();
         x.v = Math.round(v);
       }
@@ -2319,21 +2319,21 @@ function signTags(list = [], max, type, set) {
 
 // Parts to add, grouped as people look for them.
 const PALETTE_GROUPS = [
-  [tr("Pro pěší"), ["chodnik", "chodnik_kola", "nastupiste"]],
+  [tr("app.walking"), ["chodnik", "chodnik_kola", "nastupiste"]],
   // The shared path is first a cycling path in the lists (Bára).
-  [tr("Pro cyklisty"), ["cyklopruh", "ochranny_pruh", "pruh_piktokoridor", "cyklostezka", "stezka_sdilena"]],
-  [tr("Auta a autobusy"), ["pruh", "parkovani", "bus", "bus_cyklo", "obsluzna", "krajnice"]],
-  [tr("Tramvaj"), ["tramvaj_v_pruhu", "tramvaj_pruh", "tramvaj"]],
-  [tr("Železnice"), ["railway"]],
-  [tr("Zeleň a ostatní"), ["zelen", "stromorad", "predzahradka", "delici", "plocha", "zahradka", "zed"]],
-  [tr("Hospodaření s vodou"), ["pruleh", "ryha", "nadrz", "voda"]],
+  [tr("app.cycling"), ["cyklopruh", "ochranny_pruh", "pruh_piktokoridor", "cyklostezka", "stezka_sdilena"]],
+  [tr("app.carsBuses"), ["pruh", "parkovani", "bus", "bus_cyklo", "obsluzna", "krajnice"]],
+  [tr("app.tram"), ["tramvaj_v_pruhu", "tramvaj_pruh", "tramvaj"]],
+  [tr("common.railway"), ["railway"]],
+  [tr("app.greeneryOther"), ["zelen", "stromorad", "predzahradka", "delici", "plocha", "zahradka", "zed"]],
+  [tr("app.rainwater"), ["pruleh", "ryha", "nadrz", "voda"]],
 ];
 // The palette's groups with the types in none of them under "Další" (withUnknown: the editor's list also offers
 // "Neurčeno", the palette does not add it).
 function paletteGroups(withUnknown = false) {
   const shown = new Set(PALETTE_GROUPS.flatMap(([, ks]) => ks));
   const rest = Object.keys(TYPES).filter((k) => !shown.has(k) && (withUnknown || k !== "nezname"));
-  return [...PALETTE_GROUPS, [tr("Další"), rest]].map(([t, ks]) => [t, ks.filter((k) => TYPES[k])]).filter(([, ks]) => ks.length);
+  return [...PALETTE_GROUPS, [tr("app.more"), rest]].map(([t, ks]) => [t, ks.filter((k) => TYPES[k])]).filter(([, ks]) => ks.length);
 }
 // The palette folded into "+ Přidat díl" (Fable: 27 parts always under the card made two screens of it); once
 // opened it stays open for the visit.
@@ -2343,13 +2343,13 @@ function renderPalette(p) {
   pal.replaceChildren();
   const box = pal.appendChild(Object.assign(document.createElement("details"), { open: paletteOpen }));
   box.ontoggle = () => { paletteOpen = box.open; };
-  box.append(Object.assign(document.createElement("summary"), { className: "btn", textContent: tr("+ Přidat díl") }));
+  box.append(Object.assign(document.createElement("summary"), { className: "btn", textContent: tr("app.addPart") }));
   const hint = document.createElement("div");
   hint.className = "pal-note muted";
   const selSeg = p.segments[state.selected];
-  hint.textContent = state.mode === "navrh" && isHole(selSeg) ? tr("Nový díl vyplní vybrané volné místo.")
-    : state.mode === "navrh" ? (state.selected === null ? tr("Nový díl přijde do volného místa, jinak na úkor posledního dílu.") : tr("Nový díl přijde vpravo od vybraného, na jeho úkor."))
-    : state.selected === null ? tr("Nový díl přijde na konec.") : tr("Nový díl přijde vpravo od vybraného.");
+  hint.textContent = state.mode === "navrh" && isHole(selSeg) ? tr("app.newPartFillsSelected")
+    : state.mode === "navrh" ? (state.selected === null ? tr("app.newPartGoesEmpty") : tr("app.newPartGoesRight"))
+    : state.selected === null ? tr("app.newPartGoesEnd") : tr("app.newPartGoesRightSelected");
   box.append(hint);
   for (const [title, list] of paletteGroups()) {
     const group = Object.assign(document.createElement("div"), { className: "pal-group" });
@@ -2366,7 +2366,7 @@ function renderPalette(p) {
         if (t.directional) seg.dir = "forward";
         let at = state.selected === null ? segs.length : state.selected + 1;
         if (state.mode === "navrh" && segs.length) at = placeNew(segs, state.selected, seg);
-        if (at < 0) { status(tr("Na nový díl tu není místo: uvolněte ho zúžením nebo smazáním jiného dílu."), "error"); return; }
+        if (at < 0) { status(tr("app.noRoomNewPart"), "error"); return; }
         segs.splice(at, 0, seg);
         state.selected = at;
         edited();
@@ -2415,8 +2415,8 @@ $("#btn-fix").onclick = () => {
 // Reporting a badly built cut (Bára): what is wrong, in the visitor's words, with the cut and its profile as the
 // app built it (and as corrected, if the visitor corrected it), into the log (kind "hlaseni", logging/reports.mjs).
 // [value in the log, label]
-const REPORT_WHAT = [["šířky", tr("šířky")], ["pruhy", tr("pruhy")], ["chodník", tr("chodník")], ["parkování", tr("parkování")], ["tramvaj", tr("tramvaj")],
-  ["cyklisté", tr("cyklisté")], ["zeleň a stromy", tr("zeleň a stromy")], ["domy", tr("domy")], ["značky", tr("značky")], ["jiné", tr("jiné")]];
+const REPORT_WHAT = [["šířky", tr("app.widths")], ["pruhy", tr("app.lanes")], ["chodník", tr("app.pavement")], ["parkování", tr("common.parkingLowercase")], ["tramvaj", tr("app.tram2")],
+  ["cyklisté", tr("common.cyclists")], ["zeleň a stromy", tr("app.greeneryTrees")], ["domy", tr("app.buildings")], ["značky", tr("app.signs")], ["jiné", tr("common.other")]];
 $("#report-what").append(...REPORT_WHAT.map(([w, label]) => {
   const l = document.createElement("label");
   l.append(Object.assign(document.createElement("input"), { type: "checkbox", value: w }), label);
@@ -2426,8 +2426,8 @@ $("#report-what").append(...REPORT_WHAT.map(([w, label]) => {
 // the Stav bar and from the Soubor menu (also in Návrh, where wrong widths are often noticed).
 for (const b of ["#btn-report", "#menu-report"]) $(b).hidden = !logOn;
 const openReport = () => {
-  if (!state.cut || !state.stav) return status(tr("Nejdřív klikněte na ulici v mapě."), "error");
-  $("#report-title").textContent = tr("{street} – co je na tomto řezu špatně?", { street: streetName(state.cut) });
+  if (!state.cut || !state.stav) return status(tr("app.firstClickStreetMap"), "error");
+  $("#report-title").textContent = tr("app.streetWhatWrongCut", { street: streetName(state.cut) });
   $("#report-status").textContent = "";
   $("#report-send").disabled = false;
   $("#report-dialog").showModal();
@@ -2438,9 +2438,9 @@ $("#report-close").onclick = $("#report-cancel").onclick = () => $("#report-dial
 $("#report-send").onclick = async () => {
   const co = [...document.querySelectorAll("#report-what input:checked")].map((i) => i.value);
   const text = $("#report-text").value.trim().slice(0, 1000);
-  if (!text && !co.length) { $("#report-status").textContent = tr("Napište prosím, co je špatně."); $("#report-text").focus(); return; }
+  if (!text && !co.length) { $("#report-status").textContent = tr("app.pleaseWriteWhatWrong"); $("#report-text").focus(); return; }
   $("#report-send").disabled = true;
-  $("#report-status").textContent = tr("Odesílám…");
+  $("#report-status").textContent = tr("common.sending");
   // The Stav as it is now always goes along; what the app built, when this page built it (a restored or loaded
   // profile has no such record).
   const ok = await sendReport("hlaseni", {
@@ -2449,13 +2449,13 @@ $("#report-send").onclick = async () => {
   });
   if (!ok) {
     $("#report-send").disabled = false;
-    $("#report-status").textContent = tr("Hlášení se nepodařilo odeslat, zkuste to prosím za chvíli.");
+    $("#report-status").textContent = tr("app.reportCouldNotSent");
     return;
   }
   $("#report-text").value = "";
   for (const i of document.querySelectorAll("#report-what input")) i.checked = false;
   $("#report-dialog").close();
-  status(tr("Děkujeme, hlášení je odesláno."), "ok");
+  status(tr("app.thankYouReportHas"), "ok");
 };
 
 // About (menu Soubor): the app, its author, where it has which data, a message (about.js).
@@ -2497,12 +2497,12 @@ function exportSources() {
   return src;
 }
 function exportSvgs() {
-  const title = state.cut ? streetName(state.cut) : tr("Profil");
+  const title = state.cut ? streetName(state.cut) : tr("app.profile");
   const credits = exportCredits(exportSources());
   if (state.mode === "porovnat" || !state.stav) {
-    return [buildSvg(state.stav, { title: `${title} – ${tr("stav")}`, credits }), buildSvg(state.navrh, { title: `${title} – ${tr("návrh")}`, credits })];
+    return [buildSvg(state.stav, { title: `${title} – ${tr("app.existing")}`, credits }), buildSvg(state.navrh, { title: `${title} – ${tr("app.proposal")}`, credits })];
   }
-  return [buildSvg(current(), { title: `${title} – ${state.mode === "navrh" ? tr("návrh") : tr("stav")}`, credits })];
+  return [buildSvg(current(), { title: `${title} – ${state.mode === "navrh" ? tr("app.proposal") : tr("app.existing")}`, credits })];
 }
 
 function download(name, blob) {
@@ -2528,7 +2528,7 @@ $("#btn-export-png").onclick = async () => {
   const img = new Image();
   const url = URL.createObjectURL(new Blob([text], { type: "image/svg+xml" }));
   img.src = url;
-  try { await img.decode(); } catch { status(tr("Obrázek se nepodařilo vytvořit."), "error"); URL.revokeObjectURL(url); return; }
+  try { await img.decode(); } catch { status(tr("app.imageCouldNotMade"), "error"); URL.revokeObjectURL(url); return; }
   URL.revokeObjectURL(url);
   const scale = 0.6; // px per cm
   const canvas = Object.assign(document.createElement("canvas"), { width: vb[2] * scale, height: vb[3] * scale });
@@ -2541,7 +2541,7 @@ $("#btn-save").onclick = () => {
   log("ulozeni", cutLog());
   const data = { app: "streetdesign-pilot", version: 1, cut: state.cut, stav: state.stav, navrh: state.navrh, navrhEdited: state.navrhEdited,
     zdroje: exportCredits(exportSources()).join("\n"),
-    licence: tr("Data podle zdrojů (CC BY 4.0, ODbL 1.0 a další, viz zdroje); profil s ilustracemi Streetmixu pod CC BY-SA 4.0. Zdroje a licence: https://github.com/barasoukup/profily-ulic/blob/main/LICENCE-A-ZDROJE.md") };
+    licence: tr("app.dataUnderTheirSources") };
   download(`${fileBase()}.json`, new Blob([JSON.stringify(data, null, 2)], { type: "application/json" }));
 };
 
@@ -2553,7 +2553,7 @@ $("#file-load").onchange = async (e) => {
     await savedPlace(data);
     restore(data);
   } catch (err) {
-    status(tr("Soubor se nepodařilo načíst: {error}", { error: err.message }), "error");
+    status(tr("app.fileCouldNotLoaded", { error: err.message }), "error");
   }
   e.target.value = "";
 };
@@ -2604,8 +2604,8 @@ $("#btn-flip").onclick = () => {
 // The place of a saved cut, before it is restored (late.js): without a connection its state is unknown, the profile shows.
 const savedPlace = (data) => { const { lat, lon } = data?.cut || {}; return typeof lat === "number" && typeof lon === "number" ? ensurePlace(lat, lon).catch((err) => console.warn("America", err)) : null; };
 function restore(data) {
-  cleanProfile(data?.stav, tr("stav"));
-  if (data.navrh) cleanProfile(data.navrh, tr("návrh"));
+  cleanProfile(data?.stav, tr("app.existing"));
+  if (data.navrh) cleanProfile(data.navrh, tr("app.proposal"));
   data.cut = cleanCut(data.cut);
   undoStack.length = redoStack.length = 0;
   Object.assign(state, { cut: data.cut, stav: data.stav, navrh: data.navrh || structuredClone(data.stav), navrhEdited: !!data.navrhEdited, selected: null });
@@ -2646,10 +2646,10 @@ $("#site-btn").onclick = () => {
 function loadUnderground() {
   // Only where a city publishes its networks (Prague, Brno): elsewhere no switch at all; asked only when switched on.
   const net = state.cut ? netAt(state.cut.city, state.cut.lat, state.cut.lon) : null, here = !!net;
-  if (here !== netInControl) { if (here) layersControl.addOverlay(netLayer, tr("Sítě pod zemí")); else layersControl.removeLayer(netLayer); netInControl = here; }
+  if (here !== netInControl) { if (here) layersControl.addOverlay(netLayer, tr("common.undergroundNetworks")); else layersControl.removeLayer(netLayer); netInControl = here; }
   $("#site-btn").hidden = !here || state.mode === "porovnat";
   $("#net-hint").hidden = !undergroundFor();
-  if (here) $("#net-hint").textContent = `${tr("Sítě pod zemí (ne v exportu); čárkovaně: obvyklá hloubka, v datech chybí.")} ${net.credit()}`;
+  if (here) $("#net-hint").textContent = `${tr("app.undergroundNetworksNotExports")} ${net.credit()}`;
   if (!siteOn() || !here || state.underground?.cut === state.cut) return;
   const cut = state.cut, b = (cut.bearing * Math.PI) / 180, span = cutSpan(cut);
   state.underground = { cut, items: null };
@@ -2792,7 +2792,7 @@ async function openLink(hash) {
   if (!state.stav || (!design.navrh && !design.stav)) return;
   try {
     const take = async (text, into) => {
-      const p = cleanProfile(await unpackProfile(text), into === "stav" ? tr("stav") : tr("návrh"));
+      const p = cleanProfile(await unpackProfile(text), into === "stav" ? tr("app.existing") : tr("app.proposal"));
       state[into] = { segments: p.segments, edges: { ...state.stav.edges, ...p.edges } };
     };
     if (design.stav) await take(design.stav, "stav");
@@ -2803,10 +2803,10 @@ async function openLink(hash) {
     render();
     // The address keeps the design (cutAt wrote the bare cut), so the link can be reloaded and passed on.
     history.replaceState(null, "", location.hash.split("&")[0] + hash.slice(hash.indexOf("&")));
-    status(tr("Otevřený návrh ze sdíleného odkazu."), "ok");
+    status(tr("app.openedProposalSharedLink"), "ok");
   } catch (err) {
     console.warn("odkaz", err);
-    status(tr("Návrh z odkazu se nepodařilo načíst (odkaz je asi poškozený), ukazuji ulici podle dat."), "error");
+    status(tr("app.proposalLinkCouldNot"), "error");
   }
 }
 // The mode kept over a change of language (the lang button) applies once the cut is there, from storage or a link.
@@ -2832,6 +2832,6 @@ $("#btn-share").onclick = async () => {
   let url = base;
   if (state.navrhEdited) url += "&navrh=" + (await packProfile(state.navrh));
   if (stavEdited) url += "&stav=" + (await packProfile(state.stav));
-  try { await navigator.clipboard.writeText(url); status(state.navrhEdited ? tr("Odkaz na návrh je ve schránce.") : tr("Odkaz na ulici je ve schránce (návrh zatím nemáte)."), "ok"); }
-  catch { try { prompt(tr("Zkopírujte odkaz:"), url); } catch { status(url, "ok"); } } // no prompt in some web views
+  try { await navigator.clipboard.writeText(url); status(state.navrhEdited ? tr("app.linkProposalCopiedClipboard") : tr("app.linkStreetCopiedClipboard"), "ok"); }
+  catch { try { prompt(tr("app.copyLink"), url); } catch { status(url, "ok"); } } // no prompt in some web views
 };

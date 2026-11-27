@@ -2,6 +2,7 @@
 // a 7 m carriageway (dark) between lighter sidewalks, OSM houses 8 m from the axis on both sides.
 import { test } from "node:test";
 import assert from "node:assert/strict";
+import { t } from "../app/public/i18n.js";
 import { orthoOsmPolys, osmAlong, osmRoad, besidePassport, estimateNote, trimToEnds, P } from "../app/public/ortho-osm.js";
 import { withBuildings } from "../app/public/gis.js";
 import { localFrame, deriveProfile } from "../app/public/derive.js";
@@ -231,7 +232,7 @@ test("ortofoto a OSM: samostatný chodník OSM přebije trávník ZBGIS až k do
 // The note under the street's name names the houses' real source (the backlog of 23. 11. 2026: "domy z OSM" in
 // Czechia, where the estimate's houses are RÚIAN's since 23. 11.).
 test("ortofoto a OSM: poznámka říká RÚIAN u domů z RÚIAN a OSM ve státě bez vlastních domů", () => {
-  const cs = (text, vars = {}) => text.replace(/\{(\w+)\}/g, (_, k) => vars[k]);
+  const cs = t; // i18n.js in Czech (no PROFILY_LANG)
   // OSM only (a state without buildings of its own).
   const plain = osm();
   const a = orthoOsmPolys({ osm: plain, frame, dir, way: plain.elements[0], st: image() });

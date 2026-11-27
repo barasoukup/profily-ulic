@@ -11,30 +11,30 @@ import base, { CZ_CODE } from "./default.js";
 // as Land guidelines and reports quote them (Lower Saxony's overview of ERA and VwV-StVO, DUH 2024 for EAR 23), said so.
 // Where no source was found, no warning (the hostile review of Germany).
 const DE_LANE_BY_GROUP = {
-  B: { min: 0, zaklad: 3.25, why: t("jízdní pruh hlavní ulice: vozovka 6,5 m pro potkávání autobusů, tedy asi 3,25 m (RASt 06 podle dopisu, kterým ji Bavorsko zavedlo, 2009)") },
+  B: { min: 0, zaklad: 3.25, why: t("country.de.laneMainStreet6") },
 };
 function limitsDE(s, segs, i) {
   const parking = [segs[i - 1], segs[i + 1]].find((x) => x?.type === "parkovani");
   switch (s.type) {
     case "chodnik": case "chodnik_kola":
-      return { min: 1.8, zaklad: 2.5, why: t("chodník: 2,5 m, nejméně 1,8 m (RASt 06 a EFA 2002 podle přehledu Dolního Saska)") };
+      return { min: 1.8, zaklad: 2.5, why: t("country.de.sidewalk25M") };
     case "stezka_sdilena":
-      return { min: 2.5, zaklad: 3, why: t("společná stezka pro chodce a cyklisty: min. 2,5 m, základ 3 m (VwV-StVO k Z 240, ERA 2010 podle přehledu Dolního Saska)") };
+      return { min: 2.5, zaklad: 3, why: t("country.de.sharedFootCyclePath") };
     case "pruh": case "pruh_piktokoridor":
       if (s.turn) return null;
       return DE_LANE_BY_GROUP[GROUP[s.roadClass ?? segs.find((x) => x.roadClass)?.roadClass]] || null;
     case "cyklopruh":
-      return parking ? { min: 1.85, zaklad: 2.6, why: t("cyklopruh vedle stání: 1,85 m a bezpečnostní odstup 0,75 m (ERA 2010 podle přehledu Dolního Saska)") }
-        : { min: 1.5, zaklad: 1.85, why: t("cyklopruh (Radfahrstreifen): min. 1,5 m, základ 1,85 m i s čarou (VwV-StVO, ERA 2010 podle přehledu Dolního Saska)") };
+      return parking ? { min: 1.85, zaklad: 2.6, why: t("country.de.cycleLaneBesideParking") }
+        : { min: 1.5, zaklad: 1.85, why: t("country.de.cycleLaneRadfahrstreifenMin") };
     case "ochranny_pruh":
-      return parking ? { min: 1.25, zaklad: 2.25, why: t("ochranný pruh vedle stání: 1,5 m a bezpečnostní odstup 0,75 m (ERA 2010 podle přehledu Dolního Saska)") }
-        : { min: 1.25, zaklad: 1.5, why: t("ochranný pruh (Schutzstreifen): min. 1,25 m, základ 1,5 m (ERA 2010 podle přehledu Dolního Saska)") };
+      return parking ? { min: 1.25, zaklad: 2.25, why: t("country.de.advisoryCycleLaneBeside") }
+        : { min: 1.25, zaklad: 1.5, why: t("country.de.advisoryCycleLaneSchutzstreifen") };
     case "cyklostezka":
-      return { min: 1.6, zaklad: 2, why: t("stezka pro cyklisty jednosměrná: min. 1,6 m, základ 2 m; obousměrná 2,5 a 3 m (ERA 2010 podle přehledu Dolního Saska)") };
+      return { min: 1.6, zaklad: 2, why: t("country.de.oneWayCycleTrack") };
     case "parkovani":
       if (s.orient === "sikme") return null;
-      return s.orient === "kolme" ? { min: 4.5, zaklad: 5.2, why: t("kolmé stání: hloubka 4,5 m a přesah 0,7 m nad obrubou (EAR 23 podle DUH 2024)") }
-        : { min: 2, zaklad: 2, why: t("podélné stání: 2 m (EAR 23 podle DUH 2024)") };
+      return s.orient === "kolme" ? { min: 4.5, zaklad: 5.2, why: t("country.de.perpendicularParking45") }
+        : { min: 2, zaklad: 2, why: t("country.de.parallelParking2M") };
     default:
       return null;
   }
@@ -88,7 +88,7 @@ export default {
   // drivable (the hostile review: a two-way 5.1 m roadway gave two lanes of 1.55 m).
   freeLane: 3.05,
   lawNeed: (oneway, lanes, minLane) => Math.max(3.05, minLane * Math.max(oneway ? 1 : 2, lanes)),
-  halfKerbNote: (free, need) => t("Stání napůl na chodníku z OSM: ve vozovce zůstává {free}, podle StVO § 12 a judikatury 3,05 m na projetí, s pruhy vedle stání aspoň {need}.", { free, need }),
+  halfKerbNote: (free, need) => t("country.de.parkingHalfSidewalkOsm", { free, need }),
   // The law's estimate on local streets as in Czechia (the universal judging, 17. 11. 2026: parking was missing in 15
   // of 34 German cuts; ?odhadstani=0 in app.js leaves it out).
   parkGuess: true,

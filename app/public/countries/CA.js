@@ -16,19 +16,19 @@ import { cycleTrackLimits } from "./cycletrack.js";
 function limitsCA(s, segs = [], i = -1) {
   switch (s.type) {
     case "chodnik":
-      return { min: 0, zaklad: 2.1, why: t("chodník: průchozí šířka nejméně 2,1 m (Toronto Complete Streets Guidelines 2017, odd. 4.3)") };
+      return { min: 0, zaklad: 2.1, why: t("country.ca.sidewalkClearWidthLeast") };
     case "cyklopruh": case "ochranny_pruh":
-      return { min: 0, zaklad: 1.5, why: t("cyklopruh: 1,6 m, nejméně 1,5 m (Toronto On-Street Bikeway Design Guidelines 2023, tab. 3.4)") };
+      return { min: 0, zaklad: 1.5, why: t("country.ca.cycleLane16") };
     case "cyklostezka":
-      return cycleTrackLimits(s, segs, i, { min: 0, zaklad: 1.5, why: t("jednosměrná cyklostezka: 2,1 m, nejméně 1,5 m (Toronto On-Street Bikeway Design Guidelines 2023, tab. 3.1)") },
-        { min: 0, zaklad: 2.4, why: t("obousměrná cyklostezka: 3,5 m, nejméně 2,4 m (Toronto On-Street Bikeway Design Guidelines 2023, tab. 3.2)") });
+      return cycleTrackLimits(s, segs, i, { min: 0, zaklad: 1.5, why: t("country.ca.oneWayCycleTrack") },
+        { min: 0, zaklad: 2.4, why: t("country.ca.twoWayCycleTrack") });
     case "bus": case "bus_cyklo":
-      return { min: 0, zaklad: 3.3, why: t("pruh pro autobusy: 3,3–3,5 m (Toronto Lane Widths Guideline 2025, tab. 11)") };
+      return { min: 0, zaklad: 3.3, why: t("country.ca.busLane35") };
     case "pruh": case "pruh_piktokoridor":
-      if (s.turn) return { min: 0, zaklad: 3, why: t("řadicí pruh: nejméně 3,0 m (Toronto Lane Widths Guideline 2025, tab. 6 a 7)") };
-      return { min: 0, zaklad: 3, why: t("jízdní pruh: 3,0 m, u obruby 3,3 m, při 60 km/h a víc u obruby 3,5 m (Toronto Lane Widths Guideline 2025, tab. 2 a 5)") };
+      if (s.turn) return { min: 0, zaklad: 3, why: t("country.ca.turnLaneLeast3") };
+      return { min: 0, zaklad: 3, why: t("country.ca.trafficLane30") };
     case "parkovani":
-      return s.orient === "kolme" || s.orient === "sikme" ? null : { min: 0, zaklad: 2, why: t("podélné stání: 2,0–2,4 m (Toronto Lane Widths Guideline 2025, tab. 12)") };
+      return s.orient === "kolme" || s.orient === "sikme" ? null : { min: 0, zaklad: 2, why: t("country.ca.parallelParking20") };
     default:
       return null;
   }
@@ -47,7 +47,7 @@ export default {
   // No width that must stay free beside a parked car was found (Ontario's Highway Traffic Act s. 170 and Toronto's Municipal
   // Code ch. 950 name none; NORMS.md), so the app's usual 3 m a direction and not their law.
   freeLane: 3,
-  halfKerbNote: (free, need) => t("Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Aplikace nechává {need}.", { free, need }),
+  halfKerbNote: (free, need) => t("common.parkingHalfSidewalkOsm", { free, need }),
   parkGuess: true,
   parkByCycleLane: true,
   roadClassFromOsm: true,

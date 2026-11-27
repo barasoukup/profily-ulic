@@ -16,27 +16,27 @@ const BESIDE_BIKE = new Set(["cyklopruh", "ochranny_pruh"]);
 function limitsFI(s, segs = [], i = -1) {
   switch (s.type) {
     case "chodnik":
-      return { min: 0, zaklad: 2, why: t("chodník: 2,5 m, v obytné ulici a vedle cyklostezky 2 m (helsinská příručka šířek uličního prostoru, 2014)") };
+      return { min: 0, zaklad: 2, why: t("country.fi.sidewalk25M") };
     case "chodnik_kola": case "stezka_sdilena":
-      return { min: 0, zaklad: 3, why: t("společná stezka pro chodce a cyklisty: nejméně 3–4,5 m podle provozu (příručka Väylä 18/2020, tab. 17)") };
+      return { min: 0, zaklad: 3, why: t("country.fi.sharedPathPedestriansCyclists") };
     case "cyklopruh": case "ochranny_pruh":
-      return { min: 0, zaklad: 1.5, why: t("cyklopruh: 1,75–2 m, na místní trase 1,5 m, krátce výjimečně 1,25 m (příručka Väylä 18/2020, tab. 14)") };
+      return { min: 0, zaklad: 1.5, why: t("country.fi.cycleLane175") };
     case "cyklostezka":
       // A half of a two-way track by the whole track (tab. 16); one-way, or without a direction, by tab. 15
       // (countries/cycletrack.js; the review of 24. 11. 2026).
-      return cycleTrackLimits(s, segs, i, { min: 0, zaklad: 1.5, why: t("jednosměrná stezka pro cyklisty: 2–2,5 m, na místní trase 1,5 m (příručka Väylä 18/2020, tab. 15)") },
-        { min: 0, zaklad: 2.5, why: t("obousměrná stezka pro cyklisty: 3–4 m, na místní trase 2,5 m (příručka Väylä 18/2020, tab. 16)") });
+      return cycleTrackLimits(s, segs, i, { min: 0, zaklad: 1.5, why: t("country.fi.oneWayCycleTrack") },
+        { min: 0, zaklad: 2.5, why: t("country.fi.twoWayCycleTrack") });
     case "bus":
-      return { min: 0, zaklad: 3.5, why: t("jízdní pruh na trase autobusu: 3,5 m (helsinská příručka šířek uličního prostoru, 2014)") };
+      return { min: 0, zaklad: 3.5, why: t("country.fi.laneBusRoute3") };
     case "bus_cyklo":
-      return { min: 0, zaklad: 4.5, why: t("pruh pro autobusy a cyklisty: 4,5 m (helsinská příručka šířek uličního prostoru, 2014)") };
+      return { min: 0, zaklad: 4.5, why: t("country.fi.busCycleLane4") };
     case "parkovani":
-      if (s.orient === "kolme") return { min: 0, zaklad: 5, why: t("kolmé stání: 5 m (helsinská příručka šířek uličního prostoru, 2014)") };
-      return s.orient === "sikme" ? null : { min: 0, zaklad: 2, why: t("podélné stání: 2 m (helsinská příručka šířek uličního prostoru, 2014)") };
+      if (s.orient === "kolme") return { min: 0, zaklad: 5, why: t("country.fi.perpendicularParking5M") };
+      return s.orient === "sikme" ? null : { min: 0, zaklad: 2, why: t("country.fi.parallelParking2M") };
     case "pruh": case "pruh_piktokoridor":
       // Only beside a cycle lane does the national guide give a lane's width (the national road standard was not read).
       return [segs[i - 1], segs[i + 1]].some((x) => BESIDE_BIKE.has(x?.type))
-        ? { min: 0, zaklad: 3, why: t("jízdní pruh vedle cyklopruhu: 3–3,25 m při 30–40 km/h, 3,25–3,5 m při 50–60 km/h (příručka Väylä 18/2020)") } : null;
+        ? { min: 0, zaklad: 3, why: t("country.fi.laneBesideCycleLane") } : null;
     default:
       return null;
   }
@@ -78,16 +78,16 @@ export default {
   // app keeps its convention of 3 m a direction (NORMS.md B1, the app's reading, for Bára). § 37 (2) 1: no parking on the
   // sidewalk; only the plate H13 allows it.
   freeLane: 3,
-  halfKerbNote: (free, need) => t("Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Ve Finsku je stání na chodníku zakázané (§ 37 zákona o silničním provozu), dovolit ho může jen dodatková tabulka; aplikace nechává {need}.", { free, need }),
+  halfKerbNote: (free, need) => t("country.fi.parkingHalfSidewalkOsm", { free, need }),
   parkGuess: true,
   parkByCycleLane: true,
   roadClassFromOsm: true,
   limits: limitsFI,
   // Väylä 18/2020 p. 61: a one-way street with cyclists both ways, without parking, 4.25 m of roadway (a guide: orange).
-  contraflow: (parked) => (parked ? null : { lo: 0, base: 4.25, why: t("jednosměrka s cyklisty v protisměru bez stání: vozovka 4,25 m (příručka Väylä 18/2020)") }),
+  contraflow: (parked) => (parked ? null : { lo: 0, base: 4.25, why: t("country.fi.oneWayStreetContraflow") }),
   // Helsinki's guide: a two-track tram lane in the street's middle 6.4 m, a separate bed 8 m (orange).
   tramBelt(belt, w) {
-    return w < 6.4 - 0.005 ? [{ level: "zaklad", text: t("Tramvajový pás {w} je užší než 6,4 m pro dvoukolejný tramvajový pruh (helsinská příručka šířek uličního prostoru, 2014).", { w: fmt(w) }) }] : [];
+    return w < 6.4 - 0.005 ? [{ level: "zaklad", text: t("country.fi.tramBeltWNarrower", { w: fmt(w) }) }] : [];
   },
   signs: { dir: "signs-FI", file: signFile, plate: () => null, label: signLabel, drawable: (x, seg) => !!signFile(x, seg) },
   bedOrtho: null,

@@ -26,20 +26,20 @@ function limitsCY(s, segs, i) {
     // The manual's footway widths are recommendations for new streets ("a guide to good practice only", which gives a
     // footpath 1.2 m): no red, the basic width orange (the review of 23. 11. 2026).
     case "chodnik": case "chodnik_kola":
-      return { min: 0, zaklad: mainStreet(s, segs) ? 2.5 : 2, why: t("chodník: 2 m u místních a obslužných ulic, 2,5 m u sběrných (příručka odboru veřejných prací Kypru, doporučení)") };
+      return { min: 0, zaklad: mainStreet(s, segs) ? 2.5 : 2, why: t("country.cy.sidewalk2MLocal") };
     case "cyklopruh":
-      return contraflowLane(s, segs, i) ? { min: 2, zaklad: 2, why: t("cyklopruh: 1,5 m, v protisměru 2 m (příručka odboru veřejných prací Kypru, doporučení)") }
-        : { min: 1.5, zaklad: 1.5, why: t("cyklopruh: 1,5 m, v protisměru 2 m (příručka odboru veřejných prací Kypru, doporučení)") };
+      return contraflowLane(s, segs, i) ? { min: 2, zaklad: 2, why: t("country.cy.cycleLane15") }
+        : { min: 1.5, zaklad: 1.5, why: t("country.cy.cycleLane15") };
     // A track without a direction is a two-way one (OSM's default): 3 m orange, 2 m red as one way.
     case "cyklostezka":
-      return { min: 2, zaklad: s.dir ? 2 : 3, why: t("stezka pro cyklisty: jednosměrná 2 m, obousměrná 3 m (příručka odboru veřejných prací Kypru, doporučení)") };
+      return { min: 2, zaklad: s.dir ? 2 : 3, why: t("country.cy.cycleTrackOneWay") };
     case "bus":
-      return { min: 3, zaklad: 3.5, why: t("vyhrazený pruh BUS: 3,5 m, nejméně 3 m (příručka odboru veřejných prací Kypru, doporučení)") };
+      return { min: 3, zaklad: 3.5, why: t("country.cy.busLane35") };
     case "bus_cyklo":
-      return { min: 3.5, zaklad: 4, why: t("společný pruh pro autobusy a cyklisty: 4 m, nejméně 3,5 m (příručka odboru veřejných prací Kypru, doporučení)") };
+      return { min: 3.5, zaklad: 4, why: t("country.cy.sharedBusCycleLane") };
     case "pruh": case "pruh_piktokoridor":
       if (s.turn) return null;
-      return { min: 0, zaklad: mainStreet(s, segs) ? 3.5 : 3, why: t("jízdní pruh: 3 m u obslužných ulic, 3,5 m u sběrných (příručka odboru veřejných prací Kypru, doporučení)") };
+      return { min: 0, zaklad: mainStreet(s, segs) ? 3.5 : 3, why: t("country.cy.trafficLane3M") };
     default:
       return null;
   }
@@ -79,7 +79,7 @@ export default {
   // elsewhere (NORMS.md B1; for Bára). Parking on the sidewalk is banned without exception (reg. 58(4) and 58(9)).
   freeLane: 3,
   // Art. 58(4) read in its text of 1984 (the consolidated one not opened; NORMS.md B2): said so.
-  halfKerbNote: (free, need) => t("Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Na Kypru je stání i zastavení na chodníku zakázané bez výjimky (předpis 66/1984, čl. 58 odst. 4 v původním znění; Kodex silničního provozu 2012); aplikace nechává {need}.", { free, need }),
+  halfKerbNote: (free, need) => t("country.cy.parkingHalfSidewalkOsm", { free, need }),
   parkGuess: true,
   parkByCycleLane: true,
   roadClassFromOsm: true,

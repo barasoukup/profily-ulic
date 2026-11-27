@@ -2,6 +2,9 @@
 // the whole Czech Republic (Bára 10. 11. 2026): a cut takes the city it lies in (cityAt, by the boundaries
 // of towns.json), anywhere else "cesko" (the national DTM of ČÚZK, RÚIAN and OSM). `city` is the city of
 // the current cut, changed in place by setCity, so modules read it at the time they need it.
+// The city's texts (server, dataName, dataShort, techMap, parkingSource, rulesHead, credit) are not here but in the
+// languages' files, city.<id>.<field> (locales/cs.json the Czech; i18n.js cityTexts): a town without its own takes its
+// state's (like). Here only what is no text: dataName and techMap null (no map to name), credit "" (nothing to credit).
 
 import { sourceCredits } from "./credits.js";
 import { TOWN_ART, TRAM, TROLLEY } from "./art.js";
@@ -25,23 +28,16 @@ const CITIES = {
   // Anywhere outside the cities above: the national DTM of ČÚZK (dmvs.js), RÚIAN houses, OSM.
   cesko: {
     id: "cesko",
-    server: "technické mapy ČÚZK",
     cover: "Českou republiku",
-    dataName: "Technická mapa ČÚZK",
     view: [49.8, 15.5],
     centre: null, // no inner town known: houses by RÚIAN and their block
     inCity: "v Česku",
     adjective: "české",
     mapLabel: "Mapa",
-    dataShort: "technické mapy ČÚZK, RÚIAN a OSM",
-    techMap: "technickou mapu ČÚZK",
-    parkingSource: "parkoviště z technické mapy",
-    rulesHead: "Šířky podle pražského Manuálu IPR (C.2), mimo Prahu orientačně:",
     art: "cesko",
     artLabel: "Ilustrace",
     artTitle: "Kreslit domy a mobiliář (vypnuto: ilustrace Streetmixu)",
     emptyImg: "praha/t3-inbound.svg",
-    credit: "technická mapa © {kraj}, IS DMVS ČÚZK, RÚIAN © ČÚZK, 2026 (CC BY 4.0, upraveno)",
     innerKm: 0, estateKm: 0.5,
     example: "49.907481, 16.442219",
     // Prague's furniture (copies in cesko/); the neutral tram and bus (generic/, profile.js).
@@ -49,9 +45,7 @@ const CITIES = {
   },
   praha: {
     id: "praha",
-    server: "IPR", // "Server … neodpovídá"
     cover: "Prahu", // "Data pokrývají jen …"
-    dataName: "Technická mapa IPR", // "… teď neodpovídá"
     view: [50.0817, 14.4176],
     // Old Town Square: the inner city of tenements versus the outer estates (derive.js centreKm).
     centre: [14.4208, 50.0875],
@@ -59,15 +53,10 @@ const CITIES = {
     inCity: "v Praze",
     adjective: "pražské",
     mapLabel: "Mapa Prahy",
-    dataShort: "IPR a OSM",
-    techMap: "technickou mapu IPR",
-    parkingSource: "úseky parkování TSK",
-    rulesHead: "Šířky podle Manuálu tvorby veřejných prostranství IPR (C.2):",
     art: "praha",
     artLabel: "Pražské ilustrace",
     artTitle: "Kreslit pražskými ilustracemi (vypnuto: ilustrace Streetmixu)",
     emptyImg: "praha/t3-inbound.svg",
-    credit: "data © IPR Praha (technická mapa, podlažnosti, vývoj zástavby), TSK hl. m. Prahy (parkování) a MHMP, Geoportál Praha (stromy, uliční úseky), CC BY 4.0, upraveno",
     // What only Prague's data have. roadOnPath: a paved path of the map under a street's axis is its roadway
     // (derive.js); slowServer: IPR's server is often overloaded (no timeout, the outage says so); paidZoneFile: the
     // boxes of the paid zones (data/zps.json, sources.js zps, maplayers.js); builtAgeTiles: IPR's "Vývoj zástavby"
@@ -80,47 +69,33 @@ const CITIES = {
   },
   brno: {
     id: "brno",
-    server: "města Brna", // "Server … neodpovídá"
     cover: "Brno", // "Data pokrývají jen …"
-    dataName: "Technická mapa města Brna", // "… teď neodpovídá"
     view: [49.1951, 16.6085],
     centre: [16.6085, 49.1951], // náměstí Svobody
     inCity: "v Brně",
     adjective: "brněnské",
     mapLabel: "Mapa Brna",
-    dataShort: "města Brna a OSM",
-    techMap: "technickou mapu Brna",
-    parkingSource: "úseky placeného stání (parkovanivbrne.cz)",
     // rules.js holds the widths of IPR's manual (mostly the ČSN values); Brno has no rules of its own in the app yet.
-    rulesHead: "Šířky podle pražského Manuálu IPR (C.2), pro Brno orientačně:",
     art: "brno",
     artLabel: "Brněnské ilustrace",
     artTitle: "Kreslit brněnskými ilustracemi (vypnuto: ilustrace Streetmixu)",
     emptyImg: "brno/t3-inbound.svg",
-    credit: "data © Statutární město Brno (technická mapa a MTVU; budovy a cykloopatření, data.brno.cz, CC BY 4.0, upraveno), parkování © parkovanivbrne.cz",
     // KAM gives floors and roofs but not the year of a house: RÚIAN's (app.js). Its own orthophoto for the lanes.
     ruianYear: true, laneOrtho: "brno",
     example: "49.195100, 16.608500",
   },
   jihlava: {
     id: "jihlava",
-    server: "města Jihlavy", // "Server … neodpovídá"
     cover: "Jihlavu", // "Data pokrývají jen …"
-    dataName: "Pasport komunikací Jihlavy", // "… teď neodpovídá"
     view: [49.3961, 15.5912],
     centre: [15.5912, 49.3961], // Masarykovo náměstí
     inCity: "v Jihlavě",
     adjective: "jihlavské",
     mapLabel: "Mapa Jihlavy",
-    dataShort: "města Jihlavy a OSM",
-    techMap: "pasport komunikací Jihlavy",
-    parkingSource: "parkovací místa (město Jihlava)",
-    rulesHead: "Šířky podle pražského Manuálu IPR (C.2), pro Jihlavu orientačně:",
     art: "jihlava",
     artLabel: "Jihlavské ilustrace",
     artTitle: "Kreslit jihlavskými ilustracemi (vypnuto: ilustrace Streetmixu)",
     emptyImg: "jihlava/trolleybus-inbound.svg",
-    credit: "data © Statutární město Jihlava (pasport komunikací, parkování CC BY-SA, mobiliář), RÚIAN a katastr © ČÚZK, 2026 (CC BY 4.0, upraveno)",
     // Old inner town (pitched-roof tenements) within innerKm of the centre, estates from estateKm (profile.js).
     innerKm: 0.7, estateKm: 1.6,
     example: "49.396100, 15.591200",
@@ -133,23 +108,16 @@ const CITIES = {
   },
   most: {
     id: "most",
-    server: "města Mostu", // "Server … neodpovídá"
     cover: "Most", // "Data pokrývají jen …"
-    dataName: "Technická mapa Mostu", // "… teď neodpovídá"
     view: [50.5030, 13.6363],
     centre: [13.6363, 50.5030], // 1. náměstí
     inCity: "v Mostě",
     adjective: "mostecké",
     mapLabel: "Mapa Mostu",
-    dataShort: "města Mostu a OSM",
-    techMap: "technickou mapu Mostu",
-    parkingSource: "parkoviště z technické mapy",
-    rulesHead: "Šířky podle pražského Manuálu IPR (C.2), pro Most orientačně:",
     art: "most",
     artLabel: "Mostecké ilustrace",
     artTitle: "Kreslit mosteckými ilustracemi (vypnuto: ilustrace Streetmixu)",
     emptyImg: "most/tram-inbound.svg",
-    credit: "data © Statutární město Most (objektová mapa a veřejné osvětlení, CC BY-SA; technická mapa), RÚIAN © ČÚZK, 2026 (CC BY 4.0, upraveno)",
     // Old inner town (pitched-roof tenements) within innerKm of the centre, estates from estateKm (profile.js).
     innerKm: 0, estateKm: 0.5,
     example: "50.503000, 13.636300",
@@ -157,23 +125,16 @@ const CITIES = {
   },
   opava: {
     id: "opava",
-    server: "města Opavy", // "Server … neodpovídá"
     cover: "Opavu", // "Data pokrývají jen …"
-    dataName: "Účelová mapa Opavy", // "… teď neodpovídá"
     view: [49.9387, 17.9026],
     centre: [17.9026, 49.9387], // Horní náměstí
     inCity: "v Opavě",
     adjective: "opavské",
     mapLabel: "Mapa Opavy",
-    dataShort: "města Opavy a OSM",
-    techMap: "technickou mapu Opavy",
-    parkingSource: "parkovací stání (město Opava)",
-    rulesHead: "Šířky podle pražského Manuálu IPR (C.2), pro Opavu orientačně:",
     art: "opava",
     artLabel: "Opavské ilustrace",
     artTitle: "Kreslit opavskými ilustracemi (vypnuto: ilustrace Streetmixu)",
     emptyImg: "opava/trolleybus-inbound.svg",
-    credit: "data © Statutární město Opava (účelová mapa, parkování, stromy, lavičky, zastávky), RÚIAN © ČÚZK, 2026 (CC BY 4.0, upraveno)",
     // Old inner town (pitched-roof tenements) within innerKm of the centre, estates from estateKm (profile.js).
     innerKm: 0.7, estateKm: 1.6,
     example: "49.938700, 17.902600",
@@ -181,23 +142,16 @@ const CITIES = {
   },
   pardubice: {
     id: "pardubice",
-    server: "technické mapy ČÚZK", // "Server … neodpovídá"
     cover: "Pardubice", // "Data pokrývají jen …"
-    dataName: "Technická mapa ČÚZK", // "… teď neodpovídá"
     view: [50.0383, 15.7791],
     centre: [15.7791, 50.0383], // Pernštýnské náměstí
     inCity: "v Pardubicích",
     adjective: "pardubické",
     mapLabel: "Mapa Pardubic",
-    dataShort: "technické mapy ČÚZK a OSM",
-    techMap: "technickou mapu ČÚZK",
-    parkingSource: "parkoviště z technické mapy",
-    rulesHead: "Šířky podle pražského Manuálu IPR (C.2), pro Pardubice orientačně:",
     art: "pardubice",
     artLabel: "Pardubické ilustrace",
     artTitle: "Kreslit pardubickými ilustracemi (vypnuto: ilustrace Streetmixu)",
     emptyImg: "pardubice/trolleybus-inbound.svg",
-    credit: "technická mapa © Pardubický kraj, IS DMVS ČÚZK, RÚIAN © ČÚZK, 2026 (CC BY 4.0, upraveno)",
     // Old inner town (pitched-roof tenements) within innerKm of the centre, estates from estateKm (profile.js).
     innerKm: 0.9, estateKm: 2,
     example: "50.038300, 15.779100",
@@ -206,23 +160,16 @@ const CITIES = {
   },
   plzen: {
     id: "plzen",
-    server: "města Plzně", // "Server … neodpovídá"
     cover: "Plzeň", // "Data pokrývají jen …"
-    dataName: "Technická mapa Plzně", // "… teď neodpovídá"
     view: [49.7477, 13.3776],
     centre: [13.3776, 49.7477], // náměstí Republiky
     inCity: "v Plzni",
     adjective: "plzeňské",
     mapLabel: "Mapa Plzně",
-    dataShort: "města Plzně a OSM",
-    techMap: "technickou mapu Plzně",
-    parkingSource: "parkoviště z technické mapy a placené zóny (město Plzeň)",
-    rulesHead: "Šířky podle pražského Manuálu IPR (C.2), pro Plzeň orientačně:",
     art: "plzen",
     artLabel: "Plzeňské ilustrace",
     artTitle: "Kreslit plzeňskými ilustracemi (vypnuto: ilustrace Streetmixu)",
     emptyImg: "plzen/tram-inbound.svg",
-    credit: "data © Statutární město Plzeň (technická mapa, budovy 3D, pasport zeleně a mobiliáře, parkovací zóny), RÚIAN © ČÚZK, 2026 (CC BY 4.0, upraveno)",
     // Old inner town (pitched-roof tenements) within innerKm of the centre, estates from estateKm (profile.js).
     innerKm: 1.3, estateKm: 3,
     bedPanels: true, // a tram bed without data is of panels (derive.js; Plzeň's data, A/B)
@@ -237,24 +184,17 @@ const CITIES = {
   },
   usti: {
     id: "usti",
-    server: "technické mapy ČÚZK", // "Server … neodpovídá"
     cover: "Ústí nad Labem", // "Data pokrývají jen …"
-    dataName: "Technická mapa ČÚZK", // "… teď neodpovídá"
     view: [50.6607, 14.0322],
     centre: [14.0322, 50.6607], // Mírové náměstí
     inCity: "v Ústí nad Labem",
     adjective: "ústecké",
     mapLabel: "Mapa Ústí",
-    dataShort: "technické mapy ČÚZK, města Ústí a OSM",
-    techMap: "technickou mapu ČÚZK",
-    parkingSource: "parkovací místa (město Ústí nad Labem)",
-    rulesHead: "Šířky podle pražského Manuálu IPR (C.2), pro Ústí orientačně:",
     // Its own vehicles (drawn after photos of Wikimedia Commons), Prague's furniture (copies in its folder).
     art: "usti",
     artLabel: "Ilustrace",
     artTitle: "Kreslit domy a mobiliář (vypnuto: ilustrace Streetmixu)",
     emptyImg: "praha/t3-inbound.svg",
-    credit: "technická mapa © Ústecký kraj, IS DMVS ČÚZK, parkovací místa © Statutární město Ústí nad Labem, RÚIAN © ČÚZK, 2026 (CC BY 4.0, upraveno)",
     // Old inner town (pitched-roof tenements) within innerKm of the centre, estates from estateKm (profile.js).
     innerKm: 0.7, estateKm: 1.5,
     example: "50.660700, 14.032200",
@@ -263,24 +203,17 @@ const CITIES = {
   },
   ostrava: {
     id: "ostrava",
-    server: "města Ostravy", // "Server … neodpovídá"
     cover: "Ostravu", // "Data pokrývají jen …"
-    dataName: "Technická mapa Ostravy", // "… teď neodpovídá"
     view: [49.8355, 18.2924],
     centre: [18.2924, 49.8355], // Masarykovo náměstí
     inCity: "v Ostravě",
     adjective: "ostravské",
     mapLabel: "Mapa Ostravy",
-    dataShort: "města Ostravy a OSM",
-    techMap: "technickou mapu Ostravy",
-    parkingSource: "úseky placeného stání (město Ostrava)",
-    rulesHead: "Šířky podle pražského Manuálu IPR (C.2), pro Ostravu orientačně:",
     // Its own vehicles (drawn after photos of Wikimedia Commons), Prague's furniture (copies in its folder).
     art: "ostrava",
     artLabel: "Ilustrace",
     artTitle: "Kreslit domy a mobiliář (vypnuto: ilustrace Streetmixu)",
     emptyImg: "praha/t3-inbound.svg",
-    credit: "data © Statutární město Ostrava (technická mapa – generalizace, osy tramvajových kolejí, úseky placeného stání), RÚIAN © ČÚZK, 2026 (CC BY 4.0, upraveno)",
     // Old inner town (pitched-roof tenements) within innerKm of the centre, estates from estateKm (profile.js).
     innerKm: 1.0, estateKm: 2.0,
     example: "49.835500, 18.292400",
@@ -289,24 +222,17 @@ const CITIES = {
   },
   "frydek-mistek": {
     id: "frydek-mistek",
-    server: "města Frýdku-Místku", // "Server … neodpovídá"
     cover: "Frýdek-Místek", // "Data pokrývají jen …"
-    dataName: "Pasport komunikací Frýdku-Místku", // "… teď neodpovídá"
     view: [49.6837, 18.3504],
     centre: [18.3504, 49.6837], // náměstí Svobody (Místek)
     inCity: "ve Frýdku-Místku",
     adjective: "frýdecko-místecké",
     mapLabel: "Mapa Frýdku-Místku",
-    dataShort: "města Frýdku-Místku, technické mapy ČÚZK a OSM",
-    techMap: "pasport komunikací Frýdku-Místku",
-    parkingSource: "parkoviště z technické mapy",
-    rulesHead: "Šířky podle pražského Manuálu IPR (C.2), pro Frýdek-Místek orientačně:",
     // No illustrations of its own yet: those of the rest of the country (Prague's furniture, the neutral vehicles of generic/).
     art: "cesko",
     artLabel: "Ilustrace",
     artTitle: "Kreslit domy a mobiliář (vypnuto: ilustrace Streetmixu)",
     emptyImg: "praha/t3-inbound.svg",
-    credit: "data © Statutární město Frýdek-Místek (pasport komunikací, zeleně, mobiliáře a osvětlení), technická mapa © Moravskoslezský kraj, IS DMVS ČÚZK, RÚIAN © ČÚZK, 2026 (CC BY 4.0, upraveno)",
     // Old inner town (pitched-roof tenements) within innerKm of the centre, estates from estateKm (profile.js).
     innerKm: 0.6, estateKm: 1.2,
     example: "49.683700, 18.350400",
@@ -315,24 +241,17 @@ const CITIES = {
   },
   karvina: {
     id: "karvina",
-    server: "města Karviné", // "Server … neodpovídá"
     cover: "Karvinou", // "Data pokrývají jen …"
-    dataName: "Pasport komunikací Karviné", // "… teď neodpovídá"
     view: [49.8542, 18.542],
     centre: [18.542, 49.8542], // Masarykovo náměstí (Fryštát)
     inCity: "v Karviné",
     adjective: "karvinské",
     mapLabel: "Mapa Karviné",
-    dataShort: "města Karviné, technické mapy ČÚZK a OSM",
-    techMap: "pasport komunikací Karviné",
-    parkingSource: "parkoviště z technické mapy",
-    rulesHead: "Šířky podle pražského Manuálu IPR (C.2), pro Karvinou orientačně:",
     // No illustrations of its own yet: those of the rest of the country (Prague's furniture, the neutral vehicles of generic/).
     art: "cesko",
     artLabel: "Ilustrace",
     artTitle: "Kreslit domy a mobiliář (vypnuto: ilustrace Streetmixu)",
     emptyImg: "praha/t3-inbound.svg",
-    credit: "data © Statutární město Karviná (pasport komunikací a zeleně, technická mapa, mobiliář, osvětlení), technická mapa © Moravskoslezský kraj, IS DMVS ČÚZK, RÚIAN © ČÚZK, 2026 (CC BY 4.0, upraveno)",
     // Old inner town (pitched-roof tenements) within innerKm of the centre, estates from estateKm (profile.js).
     innerKm: 0.5, estateKm: 1.0,
     example: "49.854200, 18.542000",
@@ -341,24 +260,17 @@ const CITIES = {
   },
   trebic: {
     id: "trebic",
-    server: "města Třebíče", // "Server … neodpovídá"
     cover: "Třebíč", // "Data pokrývají jen …"
-    dataName: "Pasport komunikací Třebíče", // "… teď neodpovídá"
     view: [49.215, 15.8799],
     centre: [15.8799, 49.215], // Karlovo náměstí
     inCity: "v Třebíči",
     adjective: "třebíčské",
     mapLabel: "Mapa Třebíče",
-    dataShort: "města Třebíče, technické mapy ČÚZK a OSM",
-    techMap: "pasport komunikací Třebíče",
-    parkingSource: "parkoviště z pasportu a technické mapy",
-    rulesHead: "Šířky podle pražského Manuálu IPR (C.2), pro Třebíč orientačně:",
     // No illustrations of its own yet: those of the rest of the country (Prague's furniture, the neutral vehicles of generic/).
     art: "cesko",
     artLabel: "Ilustrace",
     artTitle: "Kreslit domy a mobiliář (vypnuto: ilustrace Streetmixu)",
     emptyImg: "praha/t3-inbound.svg",
-    credit: "data © Město Třebíč (pasport komunikací, veřejné osvětlení, lavičky), technická mapa © Kraj Vysočina, IS DMVS ČÚZK, RÚIAN © ČÚZK, 2026 (CC BY 4.0, upraveno)",
     // Old inner town (pitched-roof tenements) within innerKm of the centre, estates from estateKm (profile.js).
     innerKm: 0.6, estateKm: 1.2,
     example: "49.215000, 15.879900",
@@ -367,24 +279,17 @@ const CITIES = {
   },
   prerov: {
     id: "prerov",
-    server: "města Přerova", // "Server … neodpovídá"
     cover: "Přerov", // "Data pokrývají jen …"
-    dataName: "Technická mapa Přerova", // "… teď neodpovídá"
     view: [49.4555, 17.451],
     centre: [17.451, 49.4555], // náměstí T. G. Masaryka
     inCity: "v Přerově",
     adjective: "přerovské",
     mapLabel: "Mapa Přerova",
-    dataShort: "města Přerova a OSM",
-    techMap: "technickou mapu Přerova",
-    parkingSource: "parkoviště z technické mapy",
-    rulesHead: "Šířky podle pražského Manuálu IPR (C.2), pro Přerov orientačně:",
     // No illustrations of its own yet: those of the rest of the country (Prague's furniture, the neutral vehicles of generic/).
     art: "cesko",
     artLabel: "Ilustrace",
     artTitle: "Kreslit domy a mobiliář (vypnuto: ilustrace Streetmixu)",
     emptyImg: "praha/t3-inbound.svg",
-    credit: "data © Statutární město Přerov (technická mapa, vektorové dlaždice), RÚIAN © ČÚZK, 2026 (CC BY 4.0, upraveno)",
     // Old inner town (pitched-roof tenements) within innerKm of the centre, estates from estateKm (profile.js).
     innerKm: 0.7, estateKm: 1.5,
     example: "49.455500, 17.451000",
@@ -399,92 +304,64 @@ const CITIES = {
 // map to fail. Prague's furniture and the neutral vehicles of generic/, as in "cesko".
 const abroad = (id, country, cover, inCity, adjective, view, example) => ({
   ...CITIES.cesko, id, like: "cesko", abroad: true, country, cover, inCity, adjective, view, example,
-  server: "OpenStreetMap", dataName: null, dataShort: "OSM", techMap: null,
-  parkingSource: "odhad podle pravidel",
-  rulesHead: "Šířky podle pražského Manuálu IPR (C.2), mimo Česko jen orientačně:",
+  dataName: null, techMap: null,
   credit: "",
   centre: null, innerKm: 0, estateKm: 0.5,
 });
 Object.assign(CITIES, {
   // The houses of ZBGIS (towns/slovakia.js); the orthophoto is credited where it was read (creditLines).
-  slovensko: { ...abroad("slovensko", "SK", "Slovensko", "na Slovensku", "slovenské", [48.7, 19.7], "48.146736, 17.106998"),
-    dataShort: "ZBGIS a OSM", credit: "budovy © GKÚ Bratislava (ZBGIS, CC BY 4.0)",
-    rulesHead: "Šířky podle slovenských předpisů (TP 117, TP 73 6110, TP 085, vyhl. 532/2002 Z. z.):" },
+  slovensko: abroad("slovensko", "SK", "Slovensko", "na Slovensku", "slovenské", [48.7, 19.7], "48.146736, 17.106998"),
   // Austria (Bára 16. 11. 2026): basemap.at's orthophoto and OSM (towns/austria.js).
-  austria: { ...abroad("austria", "AT", "Rakousko", "v Rakousku", "rakouské", [47.6, 14.1], "48.209900, 16.374800"),
-    dataShort: "basemap.at a OSM", rulesHead: "Šířky podle rakouských předpisů (RVS 03.02.13, Wiener Projektierungshandbuch):" },
+  austria: abroad("austria", "AT", "Rakousko", "v Rakousku", "rakouské", [47.6, 14.1], "48.209900, 16.374800"),
   // Germany (Bára 17. 11. 2026): the orthophotos of the Länder and OSM, the street surfaces of Berlin, Hamburg and
   // Aachen (towns/germany.js).
-  germany: { ...abroad("germany", "DE", "Německo", "v Německu", "německé", [51.1, 10.4], "52.516300, 13.377700"),
-    dataShort: "ortofot spolkových zemí a OSM", rulesHead: "Šířky podle německých předpisů (RASt 06, ERA 2010, VwV-StVO):" },
+  germany: abroad("germany", "DE", "Německo", "v Německu", "německé", [51.1, 10.4], "52.516300, 13.377700"),
   // Switzerland and Liechtenstein (Bára 17. 11. 2026): swisstopo's SWISSIMAGE and OSM, the official cadastral survey's
   // land cover (Amtliche Vermessung, geodienste.ch) where it has the street (towns/switzerland.js).
-  switzerland: { ...abroad("switzerland", "CH", "Švýcarsko", "ve Švýcarsku", "švýcarské", [46.8, 8.2], "47.372500, 8.539000"),
-    dataShort: "SWISSIMAGE a OSM", rulesHead: "Šířky podle švýcarských předpisů (normy VSS podle kantonálních a městských příruček):" },
-  liechtenstein: { ...abroad("liechtenstein", "LI", "Lichtenštejnsko", "v Lichtenštejnsku", "lichtenštejnské", [47.14, 9.55], "47.141000, 9.521500"),
-    dataShort: "SWISSIMAGE a OSM", rulesHead: "Šířky podle švýcarských předpisů (normy VSS podle kantonálních a městských příruček):" },
+  switzerland: abroad("switzerland", "CH", "Švýcarsko", "ve Švýcarsku", "švýcarské", [46.8, 8.2], "47.372500, 8.539000"),
+  liechtenstein: abroad("liechtenstein", "LI", "Lichtenštejnsko", "v Lichtenštejnsku", "lichtenštejnské", [47.14, 9.55], "47.141000, 9.521500"),
   // The Netherlands (Bára 20. 11. 2026): PDOK's orthophoto and OSM, the national large-scale topography (BGT) where it
   // has the street, the buildings of the BAG and 3D BAG (towns/netherlands.js).
-  netherlands: { ...abroad("netherlands", "NL", "Nizozemsko", "v Nizozemsku", "nizozemské", [52.2, 5.3], "52.372700, 4.893300"),
-    dataShort: "ortofota PDOK a OSM", credit: "budovy © Kadaster (BAG), 3D BAG © TU Delft, 3DGI (CC BY 4.0)",
-    rulesHead: "Šířky podle nizozemských doporučení (CROW podle příruček měst a provincií):" },
+  netherlands: abroad("netherlands", "NL", "Nizozemsko", "v Nizozemsku", "nizozemské", [52.2, 5.3], "52.372700, 4.893300"),
   // Belgium and Luxembourg (Bára 20. 11. 2026): the regions' orthophotos and OSM, in Flanders and Wallonia with the lines
   // of their large-scale maps for the kerbs (towns/belgium.js); Luxembourg the ACT's orthophoto and OSM.
-  belgium: { ...abroad("belgium", "BE", "Belgie", "v Belgii", "belgické", [50.6, 4.6], "50.846700, 4.352500"),
-    dataShort: "ortofot regionů a OSM", rulesHead: "Šířky podle belgických předpisů a vademek regionů:" },
-  luxembourg: { ...abroad("luxembourg", "LU", "Lucembursko", "v Lucembursku", "lucemburské", [49.7, 6.1], "49.611000, 6.130000"),
-    dataShort: "ortofota ACT a OSM", rulesHead: "Šířky podle lucemburských předpisů:" },
+  belgium: abroad("belgium", "BE", "Belgie", "v Belgii", "belgické", [50.6, 4.6], "50.846700, 4.352500"),
+  luxembourg: abroad("luxembourg", "LU", "Lucembursko", "v Lucembursku", "lucemburské", [49.7, 6.1], "49.611000, 6.130000"),
   // Poland (Bára 21. 11. 2026): GUGiK's orthophoto and OSM, Kraków's base map where it has the street (towns/poland.js).
-  poland: { ...abroad("poland", "PL", "Polsko", "v Polsku", "polské", [52.0, 19.4], "52.229700, 21.012200"),
-    dataShort: "ortofota GUGiK a OSM", rulesHead: "Šířky podle polských předpisů (nařízení o technických podmínkách veřejných cest 2022):" },
+  poland: abroad("poland", "PL", "Polsko", "v Polsku", "polské", [52.0, 19.4], "52.229700, 21.012200"),
   // France (Bára 22. 11. 2026): IGN's orthophoto and OSM, Paris's Plan de voirie where it has the street (towns/france.js).
-  france: { ...abroad("france", "FR", "Francie", "ve Francii", "francouzské", [46.6, 2.4], "48.856600, 2.352200"),
-    dataShort: "ortofota IGN a OSM", rulesHead: "Šířky podle francouzských předpisů a doporučení Cerema:" },
+  france: abroad("france", "FR", "Francie", "ve Francii", "francouzské", [46.6, 2.4], "48.856600, 2.352200"),
   // Cyprus (Bára 23. 11. 2026): the DLS orthophoto and buildings, OSM (towns/cyprus.js); traffic keeps left.
-  cyprus: { ...abroad("cyprus", "CY", "Kypr", "na Kypru", "kyperské", [35.1, 33.4], "35.170000, 33.360000"),
-    dataShort: "ortofota DLS a OSM", credit: "",
-    rulesHead: "Šířky podle doporučení kyperského odboru veřejných prací (příručka pro městské ulice):" },
+  cyprus: abroad("cyprus", "CY", "Kypr", "na Kypru", "kyperské", [35.1, 33.4], "35.170000, 33.360000"),
   // Italy (Bára 23. 11. 2026): only where an orthophoto has an open licence (Bolzano, Turin, Bologna, Modena); Bologna's
   // road areas (towns/italy.js).
-  italy: { ...abroad("italy", "IT", "Itálie", "v Itálii", "italské", [44.9, 10.4], "44.493800, 11.342600"),
-    dataShort: "otevřených ortofot a OSM", rulesHead: "Šířky podle italských předpisů:" },
+  italy: abroad("italy", "IT", "Itálie", "v Itálii", "italské", [44.9, 10.4], "44.493800, 11.342600"),
   // Estonia (Bára 23. 11. 2026): the Board's orthophoto, ETAK's buildings, OSM (towns/estonia.js).
-  estonia: { ...abroad("estonia", "EE", "Estonsko", "v Estonsku", "estonské", [58.7, 25.0], "59.437000, 24.753600"),
-    dataShort: "ortofota Maa- ja Ruumiamet a OSM", rulesHead: "Šířky podle estonských předpisů:" },
+  estonia: abroad("estonia", "EE", "Estonsko", "v Estonsku", "estonské", [58.7, 25.0], "59.437000, 24.753600"),
   // Slovenia (Bára 23. 11. 2026): the GURS orthophoto, the buildings of its cadastre, OSM (towns/slovenia.js).
-  slovenia: { ...abroad("slovenia", "SI", "Slovinsko", "ve Slovinsku", "slovinské", [46.1, 14.8], "46.051400, 14.505800"),
-    dataShort: "ortofota GURS a OSM", rulesHead: "Šířky podle slovinských předpisů:" },
+  slovenia: abroad("slovenia", "SI", "Slovinsko", "ve Slovinsku", "slovinské", [46.1, 14.8], "46.051400, 14.505800"),
   // Finland (Bára 23. 11. 2026): OSM, the towns' orthophotos (Helsinki, Espoo, Turku), Helsinki's register of public
   // areas, the buildings of Helsinki and Ryhti (towns/finland.js).
-  finland: { ...abroad("finland", "FI", "Finsko", "ve Finsku", "finské", [62.0, 25.5], "60.169500, 24.938000"),
-    dataShort: "OSM a ortofot měst", rulesHead: "Šířky podle finských doporučení (Väylä 18/2020, Helsinki 2014), nezávazné:" },
+  finland: abroad("finland", "FI", "Finsko", "ve Finsku", "finské", [62.0, 25.5], "60.169500, 24.938000"),
   // Denmark (Bára 23. 11. 2026): the spring orthophoto of GeoDanmark (with the app's token), OSM, the buildings of
   // Copenhagen and Aarhus (towns/denmark.js).
-  denmark: { ...abroad("denmark", "DK", "Dánsko", "v Dánsku", "dánské", [56.0, 10.5], "55.676100, 12.568300"),
-    dataShort: "ortofota GeoDanmark a OSM", rulesHead: "Šířky podle dánských doporučení (vejregler), nezávazné:" },
+  denmark: abroad("denmark", "DK", "Dánsko", "v Dánsku", "dánské", [56.0, 10.5], "55.676100, 12.568300"),
   // Lithuania (Bára 24. 11. 2026): OSM only (no orthophoto may be used), Vilnius's topographic areas (towns/lithuania.js).
-  lithuania: { ...abroad("lithuania", "LT", "Litva", "v Litvě", "litevské", [55.2, 23.9], "54.687200, 25.279700"),
-    dataShort: "OSM", rulesHead: "Šířky podle doporučení příruček ulic Vilniusu a Kaunasu, nezávazné:" },
+  lithuania: abroad("lithuania", "LT", "Litva", "v Litvě", "litevské", [55.2, 23.9], "54.687200, 25.279700"),
   // The USA (Bára 24. 11. 2026, phase 2): only the metro of Washington DC; DC's Planimetrics and DDOT's inventory, DC's
   // orthophoto, OSM (towns/usa.js).
-  usa: { ...abroad("usa", "US", "USA", "v USA", "americké", [38.9, -77.03], "38.897700, -77.036500"),
-    dataShort: "map měst a OSM", rulesHead: "Šířky podle DDOT (Design and Engineering Manual 2023), NYC Street Design Manual a NACTO, orientačně:" },
+  usa: abroad("usa", "US", "USA", "v USA", "americké", [38.9, -77.03], "38.897700, -77.036500"),
   // Canada (Bára 25. 11. 2026): only Toronto and its surroundings; Toronto's topographic mapping and orthophoto, OSM
   // (towns/canada.js).
-  canada: { ...abroad("canada", "CA", "Kanada", "v Kanadě", "kanadské", [43.7, -79.4], "43.658890, -79.416460"),
-    dataShort: "map Toronta a OSM", rulesHead: "Šířky podle příruček města Toronta, orientačně:" },
+  canada: abroad("canada", "CA", "Kanada", "v Kanadě", "kanadské", [43.7, -79.4], "43.658890, -79.416460"),
   // Malta (Bára 23. 11. 2026): the Planning Authority's orthophoto and OSM (towns/malta.js); traffic keeps left.
-  malta: { ...abroad("malta", "MT", "Malta", "na Maltě", "maltské", [35.9, 14.45], "35.898900, 14.514600"),
-    dataShort: "ortofota stavebního úřadu a OSM", rulesHead: "Šířky podle maltských předpisů a doporučení:" },
+  malta: abroad("malta", "MT", "Malta", "na Maltě", "maltské", [35.9, 14.45], "35.898900, 14.514600"),
   // Monaco (Bára 23. 11. 2026): IGN's French orthophoto and OSM (towns/monaco.js).
-  monaco: { ...abroad("monaco", "MC", "Monako", "v Monaku", "monacké", [43.738, 7.424], "43.738400, 7.424600"),
-    dataShort: "ortofota IGN a OSM", rulesHead: "Monako nemá předpisy šířek ulic, aplikace nevaruje:" },
+  monaco: abroad("monaco", "MC", "Monako", "v Monaku", "monacké", [43.738, 7.424], "43.738400, 7.424600"),
   // Spain (Bára 23. 11. 2026): IGN's PNOA orthophoto and OSM, Zaragoza's paving map where it has the street (towns/spain.js).
-  spain: { ...abroad("spain", "ES", "Španělsko", "ve Španělsku", "španělské", [40.2, -3.7], "40.416800, -3.703800"),
-    dataShort: "ortofota PNOA a OSM", rulesHead: "Šířky podle španělských předpisů a doporučení ministerstva dopravy:" },
+  spain: abroad("spain", "ES", "Španělsko", "ve Španělsku", "španělské", [40.2, -3.7], "40.416800, -3.703800"),
   // Portugal (Bára 23. 11. 2026): DGT's orthophotos and OSM (towns/portugal.js).
-  portugal: { ...abroad("portugal", "PT", "Portugalsko", "v Portugalsku", "portugalské", [39.6, -8.0], "38.722200, -9.139300"),
-    dataShort: "ortofota DGT a OSM", rulesHead: "Šířky podle portugalských předpisů a doporučení:" },
+  portugal: abroad("portugal", "PT", "Portugalsko", "v Portugalsku", "portugalské", [39.6, -8.0], "38.722200, -9.139300"),
   cizina: abroad("cizina", null, "cizinu", "v cizině", "zahraniční", [49.8, 15.5], "48.146736, 17.106998"),
 });
 // The rest of Slovakia and of Austria draws the state's own set (countries/<ISO>.js art).
@@ -513,11 +390,11 @@ const VIEW = { bratislava: [48.1440, 17.1100], kosice: [48.7190, 21.2580], zilin
 for (const id of STATE_TOWNS.SK) CITIES[id] = stateTown(id, "slovensko", VIEW[id]);
 for (const id of STATE_TOWNS.AT) CITIES[id] = stateTown(id, "austria", VIEW[id]);
 for (const id of STATE_TOWNS.US) CITIES[id] = stateTown(id, "usa", VIEW[id]);
-// Boston's metro: its data and its rules of width (countries/US.js limitsBoston), not DC's (i18n.js TEXT_ALIAS: the metro's texts are the city's).
-for (const id of ["boston", "bostonmetro"]) Object.assign(CITIES[id], { dataShort: "ortofota MassGIS a OSM", rulesHead: "Šířky podle Boston Complete Streets Guidelines (2013), orientačně:" });
+// Boston's metro: its data and its rules of width (countries/US.js limitsBoston), not DC's: its texts are Boston's
+// (city.boston.* in locales/<lang>.json; i18n.js TEXT_ALIAS).
 for (const id of STATE_TOWNS.CA) CITIES[id] = stateTown(id, "canada", VIEW[id]);
-// San Francisco (26. 11. 2026): its own surface map (towns/sanfrancisco.js) and its own norms (countries/US.js), not DC's.
-Object.assign(CITIES.sanfrancisco, { dataShort: "map San Franciska a OSM", rulesHead: "Šířky podle SFMTA (Sidewalk Widths) a NACTO, orientačně:" });
+// San Francisco (26. 11. 2026): its own surface map (towns/sanfrancisco.js) and its own norms (countries/US.js), not DC's
+// (its texts city.sanfrancisco.* in locales/<lang>.json).
 
 // Towns with no data of their own (the national DTM of ČÚZK, as "cesko"), only their own vehicles.
 const artTown = (id, inCity, adjective, art) => ({ ...CITIES.cesko, id, like: "cesko", inCity, adjective, art: id, artMap: { ...art, ...TOWN_ART } });
@@ -534,28 +411,29 @@ Object.assign(CITIES, {
 // the orthophoto where it was read (ortho.js), then the illustrations and the licences. src: the cut's
 // { region, dmvs, ortho } (app.js); art: the city's own illustrations are drawn. Two lines: data, then the rest.
 export function creditLines(c, src = {}, art = false) {
-  const kraj = src.region || t("kraje");
+  const kraj = src.region || t("cities.regions");
   // Abroad the city has no data of its own (credit ""): the line starts with OSM.
   // The credit starts with the word the line starts with ("data ©", "Daten ©", "Données ©"): said once, not
   // "Daten: Daten ©" (the Bulgarian critic, 17. 11. 2026).
-  const word = t("Data: {data}", { data: "" }).replace(/[\s:]+$/, "").toLowerCase();
+  const word = t("cities.data", { data: "" }).replace(/[\s:]+$/, "").toLowerCase();
   const own = (s) => (s.split(" ")[0].toLowerCase() === word || /^data$/i.test(s.split(" ")[0]) ? s.slice(s.indexOf(" ") + 1) : s);
-  const data = c.credit ? [t("Data: {data}", { data: own(c.credit).replace("{kraj}", kraj) })] : [];
-  if (src.dmvs && !c.credit.includes("IS DMVS")) data.push(t("technická mapa © {kraj}, IS DMVS ČÚZK", { kraj }));
-  if (src.dmvs && !c.credit.includes("RÚIAN")) data.push(t("RÚIAN © ČÚZK, 2026 (CC BY 4.0, upraveno)"));
+  const data = c.credit ? [t("cities.data", { data: own(c.credit).replace("{kraj}", kraj) })] : [];
+  if (src.dmvs && !c.credit.includes("IS DMVS")) data.push(t("cities.technicalMapKrajDmvs", { kraj }));
+  if (src.dmvs && !c.credit.includes("RÚIAN")) data.push(t("cities.ruianCuzk2026Cc"));
   // The sources that gave data to the cut, by their keys (credits.js).
   data.push(...sourceCredits(src));
-  data.push(data.length ? t("© přispěvatelé OpenStreetMap (ODbL)") : t("Data: {data}", { data: t("© přispěvatelé OpenStreetMap (ODbL)") }));
+  data.push(data.length ? t("cities.openstreetmapContributorsOdbl") : t("cities.data", { data: t("cities.openstreetmapContributorsOdbl") }));
   return [
     data.join(" · "),
-    (art ? t("Ilustrace © Streetmix, streetmix.net (CC BY-SA 4.0) a Bára Soukupová (MIT) · obrázek CC BY-SA 4.0 · ")
-      : t("Ilustrace © Streetmix, streetmix.net (CC BY-SA 4.0) · obrázek CC BY-SA 4.0 · "))
-      + t("licence: creativecommons.org/licenses/by/4.0, creativecommons.org/licenses/by-sa/4.0"),
+    (art ? t("cities.illustrationsStreetmixNetCc")
+      : t("cities.illustrationsStreetmixNetCcSa"))
+      + t("cities.licencesCreativecommonsOrgLicenses"),
   ];
 }
 
 export const CITY_IDS = Object.keys(CITIES);
-export const cityById = (id) => CITIES[id];
+// A city by its id with its texts in the page's language (before it is the current one; setCity adds the state).
+export const cityById = (id) => CITIES[id] && { ...CITIES[id], ...cityTexts(id, CITIES[id].like) };
 
 // The city of the current cut. globalThis.PROFILY_CITY lets a script (tools/build_og.mjs, the evaluation)
 // start in another city.
@@ -570,7 +448,7 @@ export function setCity(id) {
   // country: the state of the cut (ISO 3166-1: "CZ", "SK"; null elsewhere), for its data, norms and signs; the
   // language of the interface is the visitor's (i18n.js), not the place's.
   const c = { country: "CZ", ...(CITIES[id] || CITIES.cesko) };
-  // In English and Slovak the city's texts of en.js and sk.js (its name in sentences, its data, its credits).
+  // The city's texts in the page's language (locales/<lang>.json city.<id>.*: its name in sentences, its data, its credits).
   Object.assign(city, c, cityTexts(c.id, c.like));
   country = countryOf(city.country);
   return city;
@@ -658,10 +536,10 @@ function americanCoast(lat, lon, dist) {
 }
 // Where the app makes no profile (tools/build_states.mjs closed_*; Bára 23. 11. 2026): the message to show, or null.
 const CLOSED = {
-  closed_cy: () => t("Sever Kypru zatím nemáme: profily děláme jen na území, které spravuje Kyperská republika."),
-  closed_us: () => t("V USA zatím děláme profily jen ve Washingtonu (District of Columbia), v New Yorku, v San Franciscu a v Bostonu a okolí (okresy Suffolk, Middlesex a Norfolk)."),
-  closed_ca: () => t("V Kanadě zatím děláme profily jen v Torontu."),
-  closed_it: () => t("V Itálii děláme profily jen tam, kde má otevřenou licenci ortofoto nebo mapa povrchů: v Jižním Tyrolsku, Lombardii, Turíně, Bologni a Modeně."),
+  closed_cy: () => t("cities.closedCyprus"),
+  closed_us: () => t("cities.closedUsa"),
+  closed_ca: () => t("cities.closedCanada"),
+  closed_it: () => t("cities.closedItaly"),
 };
 export function closedAt(lat, lon) {
   if (!states || (bounds && within(bounds, lat, lon))) return null;
