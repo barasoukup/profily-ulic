@@ -1151,6 +1151,9 @@ export const LT = {
   "Značky": "Ženklai",
   "Dopravní značky": "Kelio ženklai",
   "Kreslit pod profilem řádek dopravních značek (i v exportu)": "Rodyti kelio ženklų eilę po profiliu (ir eksportuojant)",
+  "cyklopruh: 2 m, nejméně 1,5 m (britská příručka LTN 1/20, tab. 5-2; Malta vlastní normu nemá)": "dviračių juosta: 2 m, ne mažiau kaip 1,5 m (britų gairės LTN 1/20, 5-2 lent.; Malta neturi savo normos)",
+  "stezka pro cyklisty: jednosměrná 2 m, obousměrná 3 m (britská příručka LTN 1/20, tab. 5-2; Malta vlastní normu nemá)": "dviračių takas: vienkryptis 2 m, dvikryptis 3 m (britų gairės LTN 1/20, 5-2 lent.; Malta neturi savo normos)",
+  "vyhrazený pruh BUS: 4 m, nejméně 3 m (britská příručka Keeping Buses Moving, LTN 1/97; Malta vlastní normu nemá)": "autobusų juosta: 4 m, ne mažiau kaip 3 m (britų gairės Keeping Buses Moving, LTN 1/97; Malta neturi savo normos)",
 };
 
 // Elements of index.html replaced whole (data-i18n): the footer with its links.

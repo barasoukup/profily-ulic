@@ -1175,6 +1175,9 @@ export const PL = {
   "Značky": "Znaki",
   "Dopravní značky": "Znaki drogowe",
   "Kreslit pod profilem řádek dopravních značek (i v exportu)": "Rysuj rząd znaków drogowych pod przekrojem (także w eksporcie)",
+  "cyklopruh: 2 m, nejméně 1,5 m (britská příručka LTN 1/20, tab. 5-2; Malta vlastní normu nemá)": "pas rowerowy: 2 m, co najmniej 1,5 m (brytyjski poradnik LTN 1/20, tab. 5-2; Malta nie ma własnej normy)",
+  "stezka pro cyklisty: jednosměrná 2 m, obousměrná 3 m (britská příručka LTN 1/20, tab. 5-2; Malta vlastní normu nemá)": "droga dla rowerów: jednokierunkowa 2 m, dwukierunkowa 3 m (brytyjski poradnik LTN 1/20, tab. 5-2; Malta nie ma własnej normy)",
+  "vyhrazený pruh BUS: 4 m, nejméně 3 m (britská příručka Keeping Buses Moving, LTN 1/97; Malta vlastní normu nemá)": "pas autobusowy: 4 m, co najmniej 3 m (brytyjski poradnik Keeping Buses Moving, LTN 1/97; Malta nie ma własnej normy)",
 };
 
 // Elements of index.html replaced whole (data-i18n): the footer with its links.

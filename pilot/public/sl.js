@@ -1174,6 +1174,9 @@ export const SL = {
   "Značky": "Znaki",
   "Dopravní značky": "Prometni znaki",
   "Kreslit pod profilem řádek dopravních značek (i v exportu)": "Pod profilom nariši vrsto prometnih znakov (tudi pri izvozu)",
+  "cyklopruh: 2 m, nejméně 1,5 m (britská příručka LTN 1/20, tab. 5-2; Malta vlastní normu nemá)": "kolesarski pas: 2 m, najmanj 1,5 m (britanske smernice LTN 1/20, pregl. 5-2; Malta nima lastnega standarda)",
+  "stezka pro cyklisty: jednosměrná 2 m, obousměrná 3 m (britská příručka LTN 1/20, tab. 5-2; Malta vlastní normu nemá)": "kolesarska steza: enosmerna 2 m, dvosmerna 3 m (britanske smernice LTN 1/20, pregl. 5-2; Malta nima lastnega standarda)",
+  "vyhrazený pruh BUS: 4 m, nejméně 3 m (britská příručka Keeping Buses Moving, LTN 1/97; Malta vlastní normu nemá)": "rumeni pas za avtobuse: 4 m, najmanj 3 m (britanske smernice Keeping Buses Moving, LTN 1/97; Malta nima lastnega standarda)",
 };
 
 // Elements of index.html replaced whole (data-i18n): the footer with its links.

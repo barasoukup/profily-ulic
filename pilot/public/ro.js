@@ -1175,6 +1175,9 @@ export const RO = {
   "Značky": "Indicatoare",
   "Dopravní značky": "Indicatoare rutiere",
   "Kreslit pod profilem řádek dopravních značek (i v exportu)": "Desenează rândul de indicatoare rutiere sub profil (și la export)",
+  "cyklopruh: 2 m, nejméně 1,5 m (britská příručka LTN 1/20, tab. 5-2; Malta vlastní normu nemá)": "bandă pentru biciclete: 2 m, cel puțin 1,5 m (ghidul britanic LTN 1/20, tab. 5-2; Malta nu are normă proprie)",
+  "stezka pro cyklisty: jednosměrná 2 m, obousměrná 3 m (britská příručka LTN 1/20, tab. 5-2; Malta vlastní normu nemá)": "pistă pentru biciclete: unidirecțională 2 m, bidirecțională 3 m (ghidul britanic LTN 1/20, tab. 5-2; Malta nu are normă proprie)",
+  "vyhrazený pruh BUS: 4 m, nejméně 3 m (britská příručka Keeping Buses Moving, LTN 1/97; Malta vlastní normu nemá)": "bandă rezervată BUS: 4 m, cel puțin 3 m (ghidul britanic Keeping Buses Moving, LTN 1/97; Malta nu are normă proprie)",
 };
 
 // Elements of index.html replaced whole (data-i18n): the footer with its links.

@@ -1172,6 +1172,9 @@ export const EN = {
   "Značky": "Signs",
   "Dopravní značky": "Traffic signs",
   "Kreslit pod profilem řádek dopravních značek (i v exportu)": "Draw the row of traffic signs under the profile (also in exports)",
+  "cyklopruh: 2 m, nejméně 1,5 m (britská příručka LTN 1/20, tab. 5-2; Malta vlastní normu nemá)": "cycle lane: 2 m, at least 1.5 m (UK guidance LTN 1/20, table 5-2; Malta has no standard of its own)",
+  "stezka pro cyklisty: jednosměrná 2 m, obousměrná 3 m (britská příručka LTN 1/20, tab. 5-2; Malta vlastní normu nemá)": "cycle track: one-way 2 m, two-way 3 m (UK guidance LTN 1/20, table 5-2; Malta has no standard of its own)",
+  "vyhrazený pruh BUS: 4 m, nejméně 3 m (britská příručka Keeping Buses Moving, LTN 1/97; Malta vlastní normu nemá)": "bus lane: 4 m, at least 3 m (UK guidance Keeping Buses Moving, LTN 1/97; Malta has no standard of its own)",
 };
 
 // Elements of index.html replaced whole (data-i18n): the footer with its links.

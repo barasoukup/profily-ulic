@@ -1176,6 +1176,9 @@ export const ES = {
   "Značky": "Señales",
   "Dopravní značky": "Señales de tráfico",
   "Kreslit pod profilem řádek dopravních značek (i v exportu)": "Dibujar la fila de señales de tráfico bajo la sección (también al exportar)",
+  "cyklopruh: 2 m, nejméně 1,5 m (britská příručka LTN 1/20, tab. 5-2; Malta vlastní normu nemá)": "carril bici: 2 m, al menos 1,5 m (guía británica LTN 1/20, tabla 5-2; Malta no tiene norma propia)",
+  "stezka pro cyklisty: jednosměrná 2 m, obousměrná 3 m (britská příručka LTN 1/20, tab. 5-2; Malta vlastní normu nemá)": "vía ciclista: unidireccional 2 m, bidireccional 3 m (guía británica LTN 1/20, tabla 5-2; Malta no tiene norma propia)",
+  "vyhrazený pruh BUS: 4 m, nejméně 3 m (britská příručka Keeping Buses Moving, LTN 1/97; Malta vlastní normu nemá)": "carril BUS: 4 m, al menos 3 m (guía británica Keeping Buses Moving, LTN 1/97; Malta no tiene norma propia)",
 };
 
 // Elements of index.html replaced whole (data-i18n): the footer with its links.

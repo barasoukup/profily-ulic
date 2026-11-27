@@ -1175,6 +1175,9 @@ export const MT = {
   "Značky": "Sinjali",
   "Dopravní značky": "Sinjali tat-traffiku",
   "Kreslit pod profilem řádek dopravních značek (i v exportu)": "Pinġi r-ringiela tas-sinjali tat-traffiku taħt il-profil (anke fl-esportazzjoni)",
+  "cyklopruh: 2 m, nejméně 1,5 m (britská příručka LTN 1/20, tab. 5-2; Malta vlastní normu nemá)": "korsija tar-roti: 2 m, mill-inqas 1.5 m (gwida Brittanika LTN 1/20, tab. 5-2; Malta m'għandhiex standard tagħha)",
+  "stezka pro cyklisty: jednosměrná 2 m, obousměrná 3 m (britská příručka LTN 1/20, tab. 5-2; Malta vlastní normu nemá)": "mogħdija tar-roti: f'direzzjoni waħda 2 m, fiż-żewġ direzzjonijiet 3 m (gwida Brittanika LTN 1/20, tab. 5-2; Malta m'għandhiex standard tagħha)",
+  "vyhrazený pruh BUS: 4 m, nejméně 3 m (britská příručka Keeping Buses Moving, LTN 1/97; Malta vlastní normu nemá)": "korsija tal-karozzi tal-linja: 4 m, mill-inqas 3 m (gwida Brittanika Keeping Buses Moving, LTN 1/97; Malta m'għandhiex standard tagħha)",
 };
 
 // Elements of index.html replaced whole (data-i18n): the footer with its links.

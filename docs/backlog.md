@@ -123,8 +123,8 @@ Co rozhodne Bára, je označeno **(Bára)**.
   cyklisté ~~bez tabulky~~ (23. 11.: bez značky); zóna 30 nekreslit; pěší zóna jako „povinná pěší cesta“. Sever ostrova jako samostatný stát
   (zatím nemáme). Měření: chybí chodník 9×, stání 5×.
 - Malta **(Bára)**: ~~volná šířka DC15 (4,1 / 3 m), nebo 3 m na směr?~~ (23. 11.: v kódu větší z DC15 a 2,5 m na pruh);
-  ~~chodník 1,2 / 1,5 m?~~ (23. 11.: 1,2 m oranžově; Table 1A přečíst jako obraz); cyklo, BUS a pruhy bez
-  varování, nebo britské normy (LTN 1/20)?; podélné stání 2,4 m (standard parkovišť) zatím ne; zákaz stání jako II.D6
+  ~~chodník 1,2 / 1,5 m?~~ (23. 11.: 1,2 m oranžově; Table 1A přečíst jako obraz); ~~cyklo, BUS a pruhy bez
+  varování, nebo britské normy (LTN 1/20)?~~ (Bára 27. 11. 2026: britské, oranžově: cyklopruh 2 m, stezka 2 / 3 m, BUS 4 m; pruhy dál bez); podélné stání 2,4 m (standard parkovišť) zatím ne; zákaz stání jako II.D6
   „No waiting“. Výškový model 2018 (1 m, CC BY 4.0) by šel na výšky domů.
 - Itálie: další regiony, jak budou otevírat ortofota (Lombardie a Ligurie mají služby rozbité, Benátsko a Sardinie
   neodpovídají, Furlansko a Trento bez CORS, Apulie 2023 bez licence); plochy silnic Bologni rozdělit čarami obrub; dílčí

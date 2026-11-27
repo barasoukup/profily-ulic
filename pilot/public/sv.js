@@ -1174,6 +1174,9 @@ export const SV = {
   "Značky": "Skyltar",
   "Dopravní značky": "Vägmärken",
   "Kreslit pod profilem řádek dopravních značek (i v exportu)": "Rita raden av vägmärken under sektionen (även vid export)",
+  "cyklopruh: 2 m, nejméně 1,5 m (britská příručka LTN 1/20, tab. 5-2; Malta vlastní normu nemá)": "cykelfält: 2 m, minst 1,5 m (brittisk vägledning LTN 1/20, tab. 5-2; Malta har ingen egen norm)",
+  "stezka pro cyklisty: jednosměrná 2 m, obousměrná 3 m (britská příručka LTN 1/20, tab. 5-2; Malta vlastní normu nemá)": "cykelbana: enkelriktad 2 m, dubbelriktad 3 m (brittisk vägledning LTN 1/20, tab. 5-2; Malta har ingen egen norm)",
+  "vyhrazený pruh BUS: 4 m, nejméně 3 m (britská příručka Keeping Buses Moving, LTN 1/97; Malta vlastní normu nemá)": "bussfält: 4 m, minst 3 m (brittisk vägledning Keeping Buses Moving, LTN 1/97; Malta har ingen egen norm)",
 };
 
 // Elements of index.html replaced whole (data-i18n): the footer with its links.

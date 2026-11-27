@@ -1175,6 +1175,9 @@ export const NL = {
   "Značky": "Borden",
   "Dopravní značky": "Verkeersborden",
   "Kreslit pod profilem řádek dopravních značek (i v exportu)": "De rij verkeersborden onder het profiel tekenen (ook bij exporteren)",
+  "cyklopruh: 2 m, nejméně 1,5 m (britská příručka LTN 1/20, tab. 5-2; Malta vlastní normu nemá)": "fietsstrook: 2 m, minstens 1,5 m (Britse richtlijn LTN 1/20, tab. 5-2; Malta heeft geen eigen norm)",
+  "stezka pro cyklisty: jednosměrná 2 m, obousměrná 3 m (britská příručka LTN 1/20, tab. 5-2; Malta vlastní normu nemá)": "fietspad: eenrichting 2 m, tweerichting 3 m (Britse richtlijn LTN 1/20, tab. 5-2; Malta heeft geen eigen norm)",
+  "vyhrazený pruh BUS: 4 m, nejméně 3 m (britská příručka Keeping Buses Moving, LTN 1/97; Malta vlastní normu nemá)": "busstrook: 4 m, minstens 3 m (Britse richtlijn Keeping Buses Moving, LTN 1/97; Malta heeft geen eigen norm)",
 };
 
 // Elements of index.html replaced whole (data-i18n): the footer with its links.

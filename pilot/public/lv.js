@@ -1174,6 +1174,9 @@ export const LV = {
   "Značky": "Zīmes",
   "Dopravní značky": "Ceļa zīmes",
   "Kreslit pod profilem řádek dopravních značek (i v exportu)": "Zīmēt ceļa zīmju rindu zem profila (arī eksportā)",
+  "cyklopruh: 2 m, nejméně 1,5 m (britská příručka LTN 1/20, tab. 5-2; Malta vlastní normu nemá)": "velojosla: 2 m, vismaz 1,5 m (britu vadlīnijas LTN 1/20, 5-2. tab.; Maltai nav savas normas)",
+  "stezka pro cyklisty: jednosměrná 2 m, obousměrná 3 m (britská příručka LTN 1/20, tab. 5-2; Malta vlastní normu nemá)": "veloceliņš: vienvirziena 2 m, divvirzienu 3 m (britu vadlīnijas LTN 1/20, 5-2. tab.; Maltai nav savas normas)",
+  "vyhrazený pruh BUS: 4 m, nejméně 3 m (britská příručka Keeping Buses Moving, LTN 1/97; Malta vlastní normu nemá)": "autobusu josla: 4 m, vismaz 3 m (britu vadlīnijas Keeping Buses Moving, LTN 1/97; Maltai nav savas normas)",
 };
 
 // Elements of index.html replaced whole (data-i18n): the footer with its links.

@@ -1175,6 +1175,9 @@ export const GA = {
   "Značky": "Comharthaí",
   "Dopravní značky": "Comharthaí bóthair",
   "Kreslit pod profilem řádek dopravních značek (i v exportu)": "Tarraing an tsraith comharthaí bóthair faoin bpróifíl (san easpórtáil freisin)",
+  "cyklopruh: 2 m, nejméně 1,5 m (britská příručka LTN 1/20, tab. 5-2; Malta vlastní normu nemá)": "lána rothar: 2 m, 1.5 m ar a laghad (treoir na Breataine LTN 1/20, tábla 5-2; níl caighdeán dá cuid féin ag Málta)",
+  "stezka pro cyklisty: jednosměrná 2 m, obousměrná 3 m (britská příručka LTN 1/20, tab. 5-2; Malta vlastní normu nemá)": "raon rothar: aontreo 2 m, déthreo 3 m (treoir na Breataine LTN 1/20, tábla 5-2; níl caighdeán dá cuid féin ag Málta)",
+  "vyhrazený pruh BUS: 4 m, nejméně 3 m (britská příručka Keeping Buses Moving, LTN 1/97; Malta vlastní normu nemá)": "lána bus: 4 m, 3 m ar a laghad (treoir na Breataine Keeping Buses Moving, LTN 1/97; níl caighdeán dá cuid féin ag Málta)",
 };
 
 // Elements of index.html replaced whole (data-i18n): the footer with its links.

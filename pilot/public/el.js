@@ -1175,6 +1175,9 @@ export const EL = {
   "Značky": "Σήματα",
   "Dopravní značky": "Σήματα κυκλοφορίας",
   "Kreslit pod profilem řádek dopravních značek (i v exportu)": "Σχεδίαση της σειράς σημάτων κυκλοφορίας κάτω από τη διατομή (και στην εξαγωγή)",
+  "cyklopruh: 2 m, nejméně 1,5 m (britská příručka LTN 1/20, tab. 5-2; Malta vlastní normu nemá)": "ποδηλατολωρίδα: 2 m, τουλάχιστον 1,5 m (βρετανικός οδηγός LTN 1/20, πίν. 5-2· η Μάλτα δεν έχει δικό της πρότυπο)",
+  "stezka pro cyklisty: jednosměrná 2 m, obousměrná 3 m (britská příručka LTN 1/20, tab. 5-2; Malta vlastní normu nemá)": "ποδηλατόδρομος: μονόδρομος 2 m, διπλής κατεύθυνσης 3 m (βρετανικός οδηγός LTN 1/20, πίν. 5-2· η Μάλτα δεν έχει δικό της πρότυπο)",
+  "vyhrazený pruh BUS: 4 m, nejméně 3 m (britská příručka Keeping Buses Moving, LTN 1/97; Malta vlastní normu nemá)": "λεωφορειολωρίδα: 4 m, τουλάχιστον 3 m (βρετανικός οδηγός Keeping Buses Moving, LTN 1/97· η Μάλτα δεν έχει δικό της πρότυπο)",
 };
 
 // Elements of index.html replaced whole (data-i18n): the footer with its links.

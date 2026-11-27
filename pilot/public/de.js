@@ -1173,6 +1173,9 @@ export const DE = {
   "Značky": "Schilder",
   "Dopravní značky": "Verkehrszeichen",
   "Kreslit pod profilem řádek dopravních značek (i v exportu)": "Die Reihe der Verkehrszeichen unter dem Querschnitt zeichnen (auch im Export)",
+  "cyklopruh: 2 m, nejméně 1,5 m (britská příručka LTN 1/20, tab. 5-2; Malta vlastní normu nemá)": "Radfahrstreifen: 2 m, mindestens 1,5 m (britischer Leitfaden LTN 1/20, Tab. 5-2; Malta hat keine eigene Norm)",
+  "stezka pro cyklisty: jednosměrná 2 m, obousměrná 3 m (britská příručka LTN 1/20, tab. 5-2; Malta vlastní normu nemá)": "Radweg: Einrichtungs 2 m, Zweirichtungs 3 m (britischer Leitfaden LTN 1/20, Tab. 5-2; Malta hat keine eigene Norm)",
+  "vyhrazený pruh BUS: 4 m, nejméně 3 m (britská příručka Keeping Buses Moving, LTN 1/97; Malta vlastní normu nemá)": "Busfahrstreifen (BUS): 4 m, mindestens 3 m (britischer Leitfaden Keeping Buses Moving, LTN 1/97; Malta hat keine eigene Norm)",
 };
 
 // Elements of index.html replaced whole (data-i18n): the footer with its links.

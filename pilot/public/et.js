@@ -1151,6 +1151,9 @@ export const ET = {
   "Značky": "Märgid",
   "Dopravní značky": "Liiklusmärgid",
   "Kreslit pod profilem řádek dopravních značek (i v exportu)": "Joonista profiili alla liiklusmärkide rida (ka ekspordis)",
+  "cyklopruh: 2 m, nejméně 1,5 m (britská příručka LTN 1/20, tab. 5-2; Malta vlastní normu nemá)": "rattarada: 2 m, vähemalt 1,5 m (Briti juhend LTN 1/20, tabel 5-2; Maltal oma normi ei ole)",
+  "stezka pro cyklisty: jednosměrná 2 m, obousměrná 3 m (britská příručka LTN 1/20, tab. 5-2; Malta vlastní normu nemá)": "jalgrattatee: ühesuunaline 2 m, kahesuunaline 3 m (Briti juhend LTN 1/20, tabel 5-2; Maltal oma normi ei ole)",
+  "vyhrazený pruh BUS: 4 m, nejméně 3 m (britská příručka Keeping Buses Moving, LTN 1/97; Malta vlastní normu nemá)": "bussirada: 4 m, vähemalt 3 m (Briti juhend Keeping Buses Moving, LTN 1/97; Maltal oma normi ei ole)",
 };
 
 // Elements of index.html replaced whole (data-i18n): the footer with its links.

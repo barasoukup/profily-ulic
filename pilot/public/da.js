@@ -1174,6 +1174,9 @@ export const DA = {
   "Značky": "Skilte",
   "Dopravní značky": "Færdselstavler",
   "Kreslit pod profilem řádek dopravních značek (i v exportu)": "Vis rækken af færdselstavler under profilet (også i eksport)",
+  "cyklopruh: 2 m, nejméně 1,5 m (britská příručka LTN 1/20, tab. 5-2; Malta vlastní normu nemá)": "cykelbane: 2 m, mindst 1,5 m (britisk vejledning LTN 1/20, tab. 5-2; Malta har ingen egen norm)",
+  "stezka pro cyklisty: jednosměrná 2 m, obousměrná 3 m (britská příručka LTN 1/20, tab. 5-2; Malta vlastní normu nemá)": "cykelsti: ensrettet 2 m, dobbeltrettet 3 m (britisk vejledning LTN 1/20, tab. 5-2; Malta har ingen egen norm)",
+  "vyhrazený pruh BUS: 4 m, nejméně 3 m (britská příručka Keeping Buses Moving, LTN 1/97; Malta vlastní normu nemá)": "busbane: 4 m, mindst 3 m (britisk vejledning Keeping Buses Moving, LTN 1/97; Malta har ingen egen norm)",
 };
 
 // Elements of index.html replaced whole (data-i18n): the footer with its links.

@@ -1177,6 +1177,9 @@ export const FR = {
   "Značky": "Panneaux",
   "Dopravní značky": "Panneaux de signalisation",
   "Kreslit pod profilem řádek dopravních značek (i v exportu)": "Dessiner la rangée de panneaux sous le profil (aussi à l’export)",
+  "cyklopruh: 2 m, nejméně 1,5 m (britská příručka LTN 1/20, tab. 5-2; Malta vlastní normu nemá)": "bande cyclable : 2 m, au moins 1,5 m (guide britannique LTN 1/20, tab. 5-2 ; Malte n’a pas de norme propre)",
+  "stezka pro cyklisty: jednosměrná 2 m, obousměrná 3 m (britská příručka LTN 1/20, tab. 5-2; Malta vlastní normu nemá)": "piste cyclable : unidirectionnelle 2 m, bidirectionnelle 3 m (guide britannique LTN 1/20, tab. 5-2 ; Malte n’a pas de norme propre)",
+  "vyhrazený pruh BUS: 4 m, nejméně 3 m (britská příručka Keeping Buses Moving, LTN 1/97; Malta vlastní normu nemá)": "voie réservée BUS : 4 m, au moins 3 m (guide britannique Keeping Buses Moving, LTN 1/97 ; Malte n’a pas de norme propre)",
 };
 
 // Elements of index.html replaced whole (data-i18n): the footer with its links.

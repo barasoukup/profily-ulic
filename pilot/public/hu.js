@@ -1155,6 +1155,9 @@ export const HU = {
   "Značky": "Táblák",
   "Dopravní značky": "Közlekedési táblák",
   "Kreslit pod profilem řádek dopravních značek (i v exportu)": "A közlekedési táblák sorának rajzolása a keresztmetszet alá (exportban is)",
+  "cyklopruh: 2 m, nejméně 1,5 m (britská příručka LTN 1/20, tab. 5-2; Malta vlastní normu nemá)": "kerékpársáv: 2 m, legalább 1,5 m (brit LTN 1/20 útmutató, 5-2. táblázat; Máltának nincs saját szabványa)",
+  "stezka pro cyklisty: jednosměrná 2 m, obousměrná 3 m (britská příručka LTN 1/20, tab. 5-2; Malta vlastní normu nemá)": "kerékpárút: egyirányú 2 m, kétirányú 3 m (brit LTN 1/20 útmutató, 5-2. táblázat; Máltának nincs saját szabványa)",
+  "vyhrazený pruh BUS: 4 m, nejméně 3 m (britská příručka Keeping Buses Moving, LTN 1/97; Malta vlastní normu nemá)": "buszsáv: 4 m, legalább 3 m (brit Keeping Buses Moving útmutató, LTN 1/97; Máltának nincs saját szabványa)",
 };
 
 // Elements of index.html replaced whole (data-i18n): the footer with its links.

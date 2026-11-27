@@ -1175,6 +1175,9 @@ export const FI = {
   "Značky": "Merkit",
   "Dopravní značky": "Liikennemerkit",
   "Kreslit pod profilem řádek dopravních značek (i v exportu)": "Piirrä liikennemerkkien rivi profiilin alle (myös vientiin)",
+  "cyklopruh: 2 m, nejméně 1,5 m (britská příručka LTN 1/20, tab. 5-2; Malta vlastní normu nemá)": "pyöräkaista: 2 m, vähintään 1,5 m (brittiläinen ohje LTN 1/20, taul. 5-2; Maltalla ei ole omaa normia)",
+  "stezka pro cyklisty: jednosměrná 2 m, obousměrná 3 m (britská příručka LTN 1/20, tab. 5-2; Malta vlastní normu nemá)": "pyörätie: yksisuuntainen 2 m, kaksisuuntainen 3 m (brittiläinen ohje LTN 1/20, taul. 5-2; Maltalla ei ole omaa normia)",
+  "vyhrazený pruh BUS: 4 m, nejméně 3 m (britská příručka Keeping Buses Moving, LTN 1/97; Malta vlastní normu nemá)": "bussikaista: 4 m, vähintään 3 m (brittiläinen ohje Keeping Buses Moving, LTN 1/97; Maltalla ei ole omaa normia)",
 };
 
 // Elements of index.html replaced whole (data-i18n): the footer with its links.
