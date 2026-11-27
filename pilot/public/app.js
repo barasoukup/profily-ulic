@@ -78,8 +78,10 @@ translatePage();
 const PANO_LANGS = new Set(["cs", "de", "el", "en", "es", "fr", "it", "nl", "pl", "pt", "sk"]);
 
 const HALF = 40; // half-length of the cut used for reading the data (m)
-// A cut end dragged further out (a house set back from a wide road) reads that much more, up to MAX_HALF (m).
-const MAX_HALF = 70, HALF_PAD = 3;
+// A cut end dragged further out (a house set back from a wide road) reads that much more, up to MAX_HALF (m); 103 since
+// 27. 11. 2026 (Bára: only dragging reaches that far, a side up to 100 m; a new cut keeps its usual reach).
+const MAX_HALF = 103, HALF_PAD = 3;
+const OSM_RADIUS = 80; // OSM read round a new cut (m); a longer dragged side reads its reach and 10 m more
 const MIN_REACH = 3; // shortest profile side the user can drag the cut end to (m)
 const defaultReach = () => ({ left: MAX_REACH, right: MAX_REACH });
 const WIDE_REACH = 35;
@@ -590,7 +592,13 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wa
     await useCity(lat, lon);
     status(tr("Načítám data z OSM…"));
     let frame = localFrame(lat, lon);
-    let osm = keepWay && osmCache ? osmCache.osm : await sources.osm(lat, lon, 80);
+    const radius = Math.max(OSM_RADIUS, (reach ? Math.max(reach.left, reach.right) + HALF_PAD : 0) + 10);
+    if (keepWay && osmCache && osmCache.radius < radius) {
+      // A side dragged beyond what was read: read again, the street's way taken from the new data.
+      const more = await sources.osm(lat, lon, radius);
+      osmCache = { osm: more, way: more.elements?.find((e) => e.id === osmCache.way.id) || osmCache.way, radius };
+    }
+    let osm = keepWay && osmCache ? osmCache.osm : await sources.osm(lat, lon, radius);
     let near;
     if (keepWay && osmCache) {
       // Along the street, onto the ways that continue it (a bridge is a way of its own; derive.js dragAlong).
@@ -621,7 +629,7 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wa
       const r = (bearing * Math.PI) / 180;
       dir = [Math.sin(r), Math.cos(r)];
     }
-    osmCache = { osm, way: near.way };
+    osmCache = { osm, way: near.way, radius: keepWay && osmCache ? osmCache.radius : radius };
     // The usual reach for a new cut; a motorway, an expressway or a main street may reach WIDE_REACH on a side where the
     // street goes on beyond it (widerSides below; Bára: R1 in Banská Bystrica, the boulevards of Paris). A reach given or
     // kept stays as it is.
