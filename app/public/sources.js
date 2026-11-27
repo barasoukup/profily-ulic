@@ -7,7 +7,8 @@ import { STATIC } from "./config.js";
 import { city, country, MTVU_LABELS } from "./city.js";
 import { TILE, getJSON, query, envelope, osmTiles, insideRings, OSM_PACK } from "./gis.js";
 import { TOWNS } from "./towns/index.js";
-import { t, mark } from "./i18n.js";
+import { t, mark, text as textOf, place, ucfirst } from "./i18n.js";
+import { part } from "./data.js";
 export { events } from "./gis.js";
 
 import { MTVU, MTVU_FIELDS, TM_LINES, LINE_WHERE, TM_POINTS, POINT_WHERE, PARKOVANI, PARKING_LAYERS, parkingFields, PODLAZNOST, PODLAZNOST_FIELDS, podlaznostInfo } from "./queries.js";
@@ -43,6 +44,30 @@ export const mtvu = (bbox, tags, way) => (town() ? town().surfaces(bbox, tags, w
   ? query(MTVU, { ...envelope(bbox), outFields: MTVU_FIELDS })
   : getJSON(`/api/mtvu?bbox=${bbox}`)).then((json) => national(json, bbox), (err) => national({ features: [] }, bbox, err));
 
+// What did not answer, by the flag the town's module puts on the answer (towns/*.js), what it is called (data.js) and
+// whether the orthophoto helps the estimate (not in San Francisco, Vilnius and Lombardy: no orthophoto there).
+const MAP_DOWN = [
+  [(s) => s.chFailed, part("cadastralSurvey"), true],
+  [(s) => s.plFailed, part("surfaceMap", place("krakow")), true],
+  [(s) => s.fiFailed, part("surfaceMap", place("helsinki")), true],
+  [(s) => s.mapFailed === "dc", part("surfaceMap", place("washington")), true],
+  [(s) => s.mapFailed === "nyc", part("surfaceMap", place("newyork")), true],
+  [(s) => s.mapFailed === "boston", part("surfaceMap", place("boston")), true],
+  [(s) => s.mapFailed === "cambridge", part("surfaceMap", place("cambridge")), true],
+  [(s) => s.mapFailed === "toronto", part("surfaceMap", place("toronto")), true],
+  [(s) => s.mapFailed === "sf", part("surfaceMap", place("sanfrancisco")), false],
+  [(s) => s.ltFailed, part("surfaceMap", place("vilnius")), false],
+  [(s) => s.eeFailed, part("surfaceMap", place("tallinn")), true],
+  [(s) => s.itFailed === "lombardia", part("surfaceMap", place("lombardy")), false],
+  [(s) => s.itFailed, part("surfaceMap", place("bologna")), true],
+  [(s) => s.esFailed, part("surfaceMap", place("zaragoza")), true],
+  [(s) => s.frFailed, part("surfaceMap", place("paris")), true],
+  [(s) => s.beFailed, part("surfaceMap", "GRB"), true],
+  [(s) => s.nlFailed, part("surfaceMap", "BGT"), true],
+  [(s) => s.deFailed, part("surfaceMapAny"), true],
+  [(s) => s.atFailed, part("surfaceMap", place("wien")), true],
+];
+
 // The note is a key (mark): the cut keeps it so, app.js translates it when it shows it (a cut saved before 27. 11. 2026
 // keeps the Czech text: locales/legacy-cs-keys.json).
 // What a cut lacks because a source did not answer, from the settled requests of app.js cutAt (surfaces,
@@ -64,40 +89,18 @@ export function outage({ surfaces, lines, parking }, dataName = city.dataName, {
   const again = " " + t("common.tryClickingAgainMoment");
   const failed = !s;
   const empty = s && !s.features?.length;
-  // Outside the Czech Republic no technical map is asked (towns/slovakia.js): an estimate, and no outage.
-  // Vienna's map of surfaces did not answer (towns/austria.js): the estimate, said so.
-  // A German city's map of surfaces did not answer (towns/germany.js).
-  // Switzerland's and Liechtenstein's cadastral survey did not answer (towns/switzerland.js).
-  if (s?.chFailed) return { note: mark("note.cadastralSurveyDown"), text: t("sources.officialCadastralSurveyGeodienste") + again, error: true };
-  // The Netherlands' BGT did not answer (towns/netherlands.js).
-  // Kraków's base map did not answer (towns/poland.js).
-  if (s?.plFailed) return { note: mark("note.krakowMapDown"), text: t("sources.krakowSurfaceMapNot") + again, error: true };
-  // Paris's Plan de voirie did not answer (towns/france.js).
-  // Bologna's road areas did not answer (towns/italy.js).
-  if (s?.fiFailed) return { note: mark("note.helsinkiMapDown"), text: t("sources.helsinkiSurfaceMapNot") + again, error: true };
-  if (s?.mapFailed === "dc") return { note: mark("note.washingtonMapDown"), text: t("sources.washingtonSurfaceMapNot") + again, error: true };
-  if (s?.mapFailed === "nyc") return { note: mark("note.newYorkMapDown"), text: t("sources.newYorkSurfaceMap") + again, error: true };
-  // (Boston's and Cambridge's tiles missing from the site: the build failed at the deploy, clicking again will not help.)
-  if (s?.mapFailed === "boston" && s.mapMissing) return { note: mark("note.bostonMapDown"), text: t("sources.bostonSurfaceMapMissing"), error: true };
-  if (s?.mapFailed === "cambridge" && s.mapMissing) return { note: mark("note.cambridgeMapDown"), text: t("sources.cambridgeSurfaceMapMissing"), error: true };
-  if (s?.mapFailed === "boston") return { note: mark("note.bostonMapDown"), text: t("sources.bostonSurfaceMapDid") + again, error: true };
-  if (s?.mapFailed === "cambridge") return { note: mark("note.cambridgeMapDown"), text: t("sources.cambridgeSurfaceMapDid") + again, error: true };
-  if (s?.mapFailed === "toronto") return { note: mark("note.torontoMapDown"), text: t("sources.torontoSurfaceMapNot") + again, error: true };
-  // San Francisco's map did not answer (towns/sanfrancisco.js): no orthophoto there, the estimate from OSM.
-  if (s?.mapFailed === "sf") return { note: mark("note.sanFranciscoMapDown"), text: t("sources.sanFranciscoSurfaceMap") + again, error: true };
-  if (s?.ltFailed) return { note: mark("note.vilniusMapDown"), text: t("sources.vilniusSurfaceMapNot") + again, error: true };
-  if (s?.eeFailed) return { note: mark("note.tallinnMapDown"), text: t("sources.tallinnSurfaceMapNot") + again, error: true };
-  // Lombardy's DBT did not answer (towns/lombardy.js): no orthophoto there, the estimate from OSM.
-  if (s?.itFailed === "lombardia") return { note: mark("note.lombardyMapDown"), text: t("sources.lombardySurfaceMapNot") + again, error: true };
-  if (s?.itFailed) return { note: mark("note.bolognaMapDown"), text: t("sources.bolognaSurfaceMapNot") + again, error: true };
-  // Zaragoza's paving map did not answer (towns/spain.js).
-  if (s?.esFailed) return { note: mark("note.zaragozaMapDown"), text: t("sources.zaragozaSurfaceMapNot") + again, error: true };
-  if (s?.frFailed) return { note: mark("note.parisMapDown"), text: t("sources.parisSurfaceMapNot") + again, error: true };
-  // Flanders' GRB did not answer (towns/belgium.js).
-  if (s?.beFailed) return { note: mark("note.grbMapDown"), text: t("sources.grbSurfaceMapDigitaal") + again, error: true };
-  if (s?.nlFailed) return { note: mark("note.bgtMapDown"), text: t("sources.bgtSurfaceMapPdok") + again, error: true };
-  if (s?.deFailed) return { note: mark("note.cityMapDown"), text: t("sources.citySurfaceMapNot") + again, error: true };
-  if (s?.atFailed) return { note: mark("note.viennaMapDown"), text: t("sources.viennaSurfaceMapNot") + again, error: true };
+  // A map of surfaces that did not answer says so (MAP_DOWN: towns/*.js flags on the answer): the note after the street's
+  // name and the status line, the profile then an estimate from OSM and, where the state has one, the orthophoto.
+  const down = s && MAP_DOWN.find(([when]) => when(s));
+  if (down) {
+    const [, what, orthophoto] = down;
+    const name = ucfirst(textOf(what));
+    const estimate = t(orthophoto ? "sources.estimateOrthoOsm" : "sources.estimateOsm");
+    const noteKey = mark(orthophoto ? "note.mapDownOrthoOsm" : "note.mapDownOsm", { name: what });
+    // Boston's and Cambridge's tiles missing from the site: the build failed at the deploy, clicking again will not help.
+    if (s.mapMissing && ["boston", "cambridge"].includes(s.mapFailed)) return { note: noteKey, text: `${t("sources.missingOnSite", { name })} ${estimate}`, error: true };
+    return { note: noteKey, text: `${t("sources.notResponding", { name })} ${estimate}${again}`, error: true };
+  }
   if (s?.abroad) return { note: orthoEstimate ? mark("note.estimateOrthophotoOsm") : mark("note.onlyEstimateOsm"), text: t("sources.weHaveNoSurface"), error: false };
   const note = failed ? mark("note.mapDown")
     : s.fallback ? mark("note.surfacesCuzkTechnicalMap")

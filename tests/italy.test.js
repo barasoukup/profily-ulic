@@ -13,7 +13,7 @@ test("Itálie: jen oblasti s ortofotem s otevřenou licencí, jinde (i Vatikán 
   // Rome, Genoa (Liguria), Novara (Piedmont by the Ticino), Verona (Veneto), Bari, the Vatican, San Marino.
   for (const [lat, lon] of [[41.9028, 12.4964], [44.407, 8.934], [45.4469, 8.6218], [45.4384, 10.9916], [41.1171, 16.8719], [41.9029, 12.4534], [43.9356, 12.4473]]) {
     assert.equal(C.cityAt(lat, lon), "cizina", `${lat},${lon}`);
-    assert.match(C.closedAt(lat, lon) || "", /Itálii/, `bez profilu ${lat},${lon}`);
+    assert.match(C.closedAt(lat, lon) || "", /Itálie/, `bez profilu ${lat},${lon}`);
   }
   assert.equal(C.closedAt(44.494, 11.343), null, "Bologna");
   const L = await import("../app/public/lanes-ortho.js");
@@ -71,7 +71,7 @@ test("Itálie: hranice obcí ISTAT, ortofoto pokrývá celé území, kredit Tur
   for (const [lat, lon] of inside) assert.equal(C.cityAt(lat, lon), "italy", `uvnitř ${lat},${lon}`);
   for (const [lat, lon] of outside) {
     assert.equal(C.cityAt(lat, lon), "cizina", `venku ${lat},${lon}`);
-    assert.match(C.closedAt(lat, lon) || "", /Itálii/, `bez profilu ${lat},${lon}`);
+    assert.match(C.closedAt(lat, lon) || "", /Itálie/, `bez profilu ${lat},${lon}`);
   }
   const L = await import("../app/public/lanes-ortho.js");
   // Lombardy has the DBT, no orthophoto (towns/lombardy.js).

@@ -31,8 +31,11 @@ export function codeKeys() {
 // state's text): anything else would escape this test.
 const VARIABLE = {
   "app.js": ["tr(credit)", "tr(o.credit)", "tr(k)", 'tr(localStorage.getItem(BASE_KEY) || "")', 'tr(state.cut?.note || "")'],
-  "sources.js": ["t(country.linesMissing)"],
+  "sources.js": ["t(country.linesMissing)", 't(orthophoto ? "sources.estimateOrthoOsm" : "sources.estimateOsm")',
+    'mark(orthophoto ? "note.mapDownOrthoOsm" : "note.mapDownOsm", { name: what })'],
 };
+// The prefixes of keys the code builds from a name (data.js, credits.js, norms): ref("data." + kind), place(id).
+const COMPOSED = ["place.", "data.", "rules.head.", "parking.source."];
 // The page's keys: data-t, data-t-<attribute>, data-t-html.
 const PAGE = src("index.html");
 const pageKeys = () => [...PAGE.matchAll(/\sdata-t(?:-[\w-]+)?="([^"]+)"/g)].map((m) => m[1]);
@@ -75,9 +78,12 @@ test("žádný klíč, který aplikace nepoužívá", () => {
   for (const f of FILES) for (const m of src(f).matchAll(/"([a-z][A-Za-z0-9]*(?:\.[A-Za-z0-9-]+)+)"/g)) if (m[1] in CS) used.add(m[1]);
   // The cities' texts (i18n.js cityTexts), the map credits' words (i18n.js attribution).
   for (const k of Object.keys(CS)) if (/^(city|attribution)\./.test(k)) used.add(k);
+  // Keys the code composes (data.<kind>, place.<id>, rules.head.<kind> …, as ref("data." + kind)): listed by their prefix,
+  // not by switching this check off (Bára 27. 11. 2026).
+  for (const k of Object.keys(CS)) if (COMPOSED.some((p) => k.startsWith(p))) used.add(k);
   assert.deepEqual(Object.keys(CS).filter((k) => !used.has(k)), []);
-  // The old Czech sentences of saved cuts point at keys there are.
-  for (const [cs, k] of Object.entries(LEGACY)) assert.ok(k in CS, `${cs} → ${k}`);
+  // The old Czech sentences and keys of saved cuts point at keys there are (with the names they carry: "key|{json}").
+  for (const [old, k] of Object.entries(LEGACY)) assert.ok(k.split("|{")[0] in CS, `${old} → ${k}`);
 });
 
 test("index.html: český text a atributy jsou ty z cs.json", () => {
@@ -161,7 +167,8 @@ const KEEP_SK = /Géoplateforme|ČÚZK|RÚIAN|IPR|TSK|MHMP|Statutární město \
 const KEEP = /Géoplateforme|ČÚZK|ČSN|GKÚ|ÚGKK|Bára|RÚIAN|ÚAP|IPR|TSK|MHMP|Statutární město \S+|Město \S+|Geoportál Praha|hl\. m\. Prahy|[A-ZČŘŠŽÚ][a-zěščřžýáíéůú]+(?:ský|cký) kraj|Kraj Vysočina|Profily ulic|Plzeň|Plzni|Plzně|Třebíč|Břeclav|Přerov|Frýdek-Místek|Karviná|Ústí nad Labem|Ústí|Žilina|Banská Bystrica|Piešťany|Prešov|Košice|Dúbravka|Soukupová|Mapy\.com|\bSb\.|\bč\./g;
 // The texts the app says (not the footer, the cities' credits and the map credits' Czech: as before the keys, those
 // keep the offices' names).
-const said = (tab) => Object.entries(tab).filter(([k]) => !/^(html|city|attribution)\./.test(k));
+// The names of places (place.<id>) keep the letters of their own language, Czech ones too.
+const said = (tab) => Object.entries(tab).filter(([k]) => !/^(html|city|attribution|place)\./.test(k));
 
 test("slovenské texty jsou slovensky", () => {
   const czech = said(L.sk).filter(([, sk]) => /[ěřů]|\b(jsou|nebo|také|který|která|které)\b/i.test(sk.replace(KEEP_SK, "")));

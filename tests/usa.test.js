@@ -29,7 +29,7 @@ test("USA: District of Columbia je stát usa, zbytek USA zavřený (i okresy Mar
   for (const [lat, lon] of [[39.2904, -76.6122], [37.5407, -77.436], [40.7178, -74.0431], [40.9312, -73.8988], [40.7062, -73.6187],
     [38.9907, -77.0261], [38.9559, -76.9455], [38.8816, -77.091], [38.8048, -77.0469], [38.8462, -77.3064], [38.9187, -77.2311]]) {
     assert.equal(C.cityAt(lat, lon), "cizina", `${lat},${lon}`);
-    assert.match(C.closedAt(lat, lon) || "", /Washingtonu/);
+    assert.match(C.closedAt(lat, lon) || "", /Washington/);
   }
   assert.equal(C.countryOfCity("usa").code, "US");
 });
@@ -49,9 +49,9 @@ test("USA: mezi okresy ani na hranici DC nejsou díry, states.json nenese spole�
     if (C.cityAt(lat + dy, lon + dx) === "washington") assert.equal(C.closedAt(lat + dy, lon + dx), null, `${lat + dy},${lon + dx}`);
   }
   // The quays across the border have not the message of the USA (Windsor has Canada's, Nuevo Laredo none), Detroit and Laredo have.
-  assert.match(C.closedAt(42.3190, -83.0390) || "", /Torontu/);
+  assert.match(C.closedAt(42.3190, -83.0390) || "", /Toronto/);
   assert.equal(C.closedAt(27.4950, -99.5069), null);
-  for (const [lat, lon] of [[42.3314, -83.0458], [27.5064, -99.5075]]) assert.match(C.closedAt(lat, lon) || "", /Washingtonu/);
+  for (const [lat, lon] of [[42.3314, -83.0458], [27.5064, -99.5075]]) assert.match(C.closedAt(lat, lon) || "", /Washington/);
 });
 
 const loadWashington = async () => {

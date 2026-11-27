@@ -12,7 +12,8 @@ import { boxed, within, loadSkTowns, inSkTown } from "./places.js";
 import { countryOf, COUNTRIES } from "./countries/index.js";
 import { isLate } from "./late.js";
 export { loadSkTowns, inSkTown };
-import { t, cityTexts } from "./i18n.js";
+import { t } from "./i18n.js";
+import { cityTexts, CLOSED_TEXT } from "./data.js";
 
 // Labels of the MTVU codes, for Brno's surfaces (Prague's MTVU sends its own).
 export const MTVU_LABELS = {
@@ -535,15 +536,9 @@ function americanCoast(lat, lon, dist) {
   return best;
 }
 // Where the app makes no profile (tools/build_states.mjs closed_*; Bára 23. 11. 2026): the message to show, or null.
-const CLOSED = {
-  closed_cy: () => t("cities.closedCyprus"),
-  closed_us: () => t("cities.closedUsa"),
-  closed_ca: () => t("cities.closedCanada"),
-  closed_it: () => t("cities.closedItaly"),
-};
 export function closedAt(lat, lon) {
   if (!states || (bounds && within(bounds, lat, lon))) return null;
-  return CLOSED[stateEntry(lat, lon)]?.() ?? null;
+  return CLOSED_TEXT[stateEntry(lat, lon)]?.() ?? null;
 }
 export function cityAt(lat, lon) {
   if (!bounds) return city.id;

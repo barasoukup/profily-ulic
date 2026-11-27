@@ -43,7 +43,7 @@ test("co řezu chybí, aplikace řekne", () => {
 
   const down = outage({ surfaces: no(), lines: ok({ features: [] }), parking: ok({ features: [] }) });
   assert.equal(t(down.note), " · mapa povrchů neodpověděla, jen odhad");
-  assert.match(down.text, /^Technická mapa IPR teď neodpovídá \(server je přetížený\), profil je jen odhad z OSM/);
+  assert.match(down.text, /^Technická mapa \(IPR\) teď neodpovídá \(server je přetížený\), profil je jen odhad z OSM/);
   assert.ok(down.error);
 
   const stand = outage({ surfaces: ok({ features: [area], dmvs: true, fallback: true }), lines: ok({}), parking: ok({}) });

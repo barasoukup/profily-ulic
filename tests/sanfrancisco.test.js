@@ -14,7 +14,7 @@ test("San Francisco: město ve státě USA, okolí zůstává zavřené", async 
   assert.equal(C.cityAt(38.8977, -77.0365), "washington");
   assert.equal(C.countryOfCity("sanfrancisco").code, "US");
   // Daly City, Oakland, Sausalito, Berkeley: the closed USA, its message names San Francisco.
-  for (const p of [[37.6879, -122.4702], [37.8044, -122.2712], [37.8591, -122.4853], [37.8715, -122.273]]) assert.match(C.closedAt(...p) || "", /San Franciscu/, `${p}`);
+  for (const p of [[37.6879, -122.4702], [37.8044, -122.2712], [37.8591, -122.4853], [37.8715, -122.273]]) assert.match(C.closedAt(...p) || "", /San Francisco/, `${p}`);
   assert.equal(C.cityById("sanfrancisco").art, "sanfrancisco");
 });
 

@@ -81,15 +81,46 @@ const POINT = new Set(["en", "ga", "mt"]);
 const PCT_TIGHT = new Set(["en", "ga", "mt", "nl", "pl", "it", "pt", "ro", "el", "bg", "hu", "lv"]);
 const comma = () => !POINT.has(lang);
 
+// A value of a template that is a text of its own ({ k: key, v: vars }) is told by t() again, so a template takes
+// "mapa povrchů (Boston)" as one {name} and a saved note keeps what it names, not the words of a language.
+const fill = (s, vars) => s.replace(/\{(\w+)\}/g, (m, k) => (k in vars ? (vars[k] !== null && typeof vars[k] === "object" ? t(vars[k].k, vars[k].v) : vars[k]) : m));
+
 // The text of a key in the page's language, {name} filled from vars. A key it does not know (a text of the data, a
-// name) comes back as it is, a Czech sentence of a cut saved before the keys through LEGACY.
+// name) comes back as it is, a Czech sentence or a key of a cut saved before the keys through LEGACY. A note of a cut
+// with parameters is "key|{json}" (mark(key, vars)); what LEGACY points at may carry them too (a removed key of a note
+// that named its map: locales/legacy-cs-keys.json).
 export const t = (key, vars) => {
-  const s = DICT[key] ?? DICT[LEGACY[key]] ?? key;
-  return vars ? s.replace(/\{(\w+)\}/g, (m, k) => (k in vars ? vars[k] : m)) : s;
+  let k = key in DICT ? key : LEGACY[key] ?? key;
+  const bar = k.indexOf("|{");
+  if (bar > 0) {
+    try { vars = { ...JSON.parse(k.slice(bar + 1)), ...vars }; k = k.slice(0, bar); } catch { /* not a note: left as it is */ }
+  }
+  const s = DICT[k] ?? k;
+  return vars ? fill(s, vars) : s;
 };
 
-// A key to be translated later, by t(variable): only marks it for tests/i18n.test.js.
-export const mark = (key) => key;
+// A key to be translated later, by t(variable): only marks it for tests/i18n.test.js; with vars a note of a cut
+// ("key|{json}") that says what it names (docs/i18n-simplify.md).
+export const mark = (key, vars) => (vars ? `${key}|${JSON.stringify(vars)}` : key);
+
+// A text told later and in the language then: a key and its vars, for what a note keeps and for a template's {name}.
+export const ref = (k, v) => (v ? { k, v } : { k });
+export const text = (r) => t(r.k, r.v);
+// The name of a place in the page's language (the keys place.<id>: an exonym or another script where the language
+// has one: Wien, Wiedeń, Βιέννη; always the nominative, never declined: Bára 27. 11. 2026), as a text to tell later.
+export const place = (id) => ref(`place.${id}`);
+// The first letter of a text a capital, as the language writes it (a template's text stands in the middle of a
+// sentence, at its beginning only this makes it a capital).
+export const ucfirst = (s) => (s ? s.charAt(0).toLocaleUpperCase(lang) + s.slice(1) : s);
+// "A, B and C" as the language writes it (Intl.ListFormat); English when the browser has no list format of it.
+export const list = (items) => {
+  try { return new Intl.ListFormat(lang, { style: "long", type: "conjunction" }).format(items); } catch { return new Intl.ListFormat("en").format(items); }
+};
+// The name of a state (ISO 3166-1 alpha-2) in the page's language (Intl.DisplayNames, the short one: USA, JAV): not a key, no
+// translation to keep.
+export const countryName = (code) => {
+  try { return new Intl.DisplayNames(lang, { type: "region", style: "short" }).of(code) ?? code; } catch { return code; }
+};
 
 // A map layer's credit, written in Czech in the code ("technická mapa © Statutární město Brno"): its common words
 // replaced by the language's (attribution.*), in this order (longest first: "technická mapa" before "mapa ©").

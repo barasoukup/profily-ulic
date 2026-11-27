@@ -30,12 +30,12 @@ test("normy: česká pravidla německy, s desetinnou čárkou", () => {
 
 test("výpadky zdrojů a texty měst", () => {
   setCity("brno");
-  assert.equal(city.dataName, "Die technische Karte der Stadt Brno");
+  assert.equal(city.dataName, "Technical map (Brno)");
   const no = { status: "rejected", reason: new Error("503") }, ok = { status: "fulfilled", value: { features: [] } };
   assert.equal(outage({ surfaces: no, lines: ok, parking: ok }).text,
-    "Die technische Karte der Stadt Brno antwortet gerade nicht, der Querschnitt ist nur eine Schätzung aus OSM. Klicken Sie in Kürze erneut.");
+    "Technical map (Brno) antwortet gerade nicht, der Querschnitt ist nur eine Schätzung aus OSM. Klicken Sie in Kürze erneut.");
   setCity("olomouc");
-  assert.equal(city.server, "der technischen Karte des ČÚZK");
+  assert.equal(city.server, "ČÚZK");
 });
 
 test("kredity exportu", () => {

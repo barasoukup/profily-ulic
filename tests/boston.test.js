@@ -16,7 +16,7 @@ test("Boston: metro (Suffolk, Middlesex, Norfolk) v USA, město, Cambridge a oko
   assert.equal(C.cityAt(38.8977, -77.0365), "washington");
   assert.equal(C.countryOfCity("boston").code, "US");
   // Worcester, Providence and Salem (Essex County) are closed, with the message naming the metros (New York is a metro of its own).
-  for (const p of [[42.2626, -71.8023], [41.824, -71.4128], [42.5195, -70.8967]]) assert.match(C.closedAt(...p) || "", /Bostonu/, `${p}`);
+  for (const p of [[42.2626, -71.8023], [41.824, -71.4128], [42.5195, -70.8967]]) assert.match(C.closedAt(...p) || "", /Boston/, `${p}`);
   // Boston's texts in its metro too (i18n.js TEXT_ALIAS), the guidelines' head.
   C.setCity("bostonmetro");
   assert.match(C.city.rulesHead, /Boston Complete Streets/);

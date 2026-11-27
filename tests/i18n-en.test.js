@@ -28,15 +28,15 @@ test("normy: anglicky, s desetinnou tečkou", () => {
 
 test("výpadky zdrojů a texty měst", () => {
   setCity("brno");
-  assert.equal(city.dataName, "The Brno technical map");
+  assert.equal(city.dataName, "Technical map (Brno)");
   const no = { status: "rejected", reason: new Error("503") }, ok = { status: "fulfilled", value: { features: [] } };
   assert.equal(outage({ surfaces: no, lines: ok, parking: ok }).text,
-    "The Brno technical map is not responding right now, the profile is only an estimate from OSM. Try clicking again in a moment.");
+    "Technical map (Brno) is not responding right now, the profile is only an estimate from OSM. Try clicking again in a moment.");
   setCity("praha");
-  assert.match(outage({ surfaces: no, lines: ok, parking: ok }).text, /^The IPR technical map is not responding right now \(the server is overloaded\)/);
+  assert.match(outage({ surfaces: no, lines: ok, parking: ok }).text, /^Technical map \(IPR\) is not responding right now \(the server is overloaded\)/);
   // A town with only its own vehicles takes the national texts.
   setCity("olomouc");
-  assert.equal(city.server, "ČÚZK technical map");
+  assert.equal(city.server, "ČÚZK");
 });
 
 test("kredity exportu", () => {

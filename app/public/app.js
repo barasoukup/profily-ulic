@@ -55,7 +55,7 @@ import { ensurePlace, isLate, onAmerica } from "./late.js";
 import { log, logOn, sendReport, shortProfile } from "./log.js";
 import { setupAbout } from "./about.js";
 import { createDataLayers, PLOCHY_PANE } from "./maplayers.js";
-import { PASSPORT_NAMES, GREEN_PASSPORTS } from "./towns/passport-names.js";
+import { cutDataParts, dataText } from "./data.js";
 import { mountSearch } from "./search.js";
 // tr: t is a common name of a text or a type here.
 import { t as tr, mark, num, pct, numField, readNum, lang, LANGS, setLang, translatePage, attribution } from "./i18n.js";
@@ -1234,61 +1234,11 @@ function render() {
 }
 
 // Whose data the profile shows: the city's, and a town's passport when the cut took it (towns/passports.js; Bára:
-// the cut's information should say where its data come from).
-// The Slovak towns whose road passports a cut may take (towns/slovakia.js SK_TOWNS), by the town's name in the genitive.
-const SK_EDGES_TOWN = { nitra: "Nitra", piestany: "Piešťany", zvolen: "Zvolen", hlohovec: "Hlohovec", presov: "Prešov", "bratislava-tm": "Bratislava" };
-const SK_PASSPORT_TOWN = { bratislava: "Bratislava", presov: "Prešov", zilina: "Žilina", bystrica: "Banská Bystrica", kosice: "Košice", zvolen: "Zvolen" };
+// the cut's information should say where its data come from). The parts of the line are data.js cutDataParts.
 function cutData() {
-  // Vienna's map of surfaces (towns/austria.js).
-  if (state.cut?.sources?.atTown === "wien") return tr("app.surfaceMapViennaOsm");
-  const deTown = state.cut?.sources?.deTown;
-  if (deTown === "berlin") return tr("app.berlinStreetSurfaceMap");
-  if (deTown === "hamburg") return tr("app.hamburgStreetSurfaceMap");
-  if (deTown === "aachen") return tr("app.aachenStreetDatabaseOsm");
-  // Switzerland's and Liechtenstein's cadastral survey (towns/switzerland.js).
-  if (state.cut?.sources?.chAv) return tr("app.officialCadastralSurveySwissimage");
-  // The Netherlands' national large-scale topography (towns/netherlands.js).
-  if (state.cut?.sources?.nlBgt) return tr("app.bgtSurfaceMapPdok");
-  // Kraków's base map (towns/poland.js).
-  if (state.cut?.sources?.plTown === "krakow") return tr("app.krakowSurfaceMapGugik");
-  // Paris's Plan de voirie (towns/france.js).
-  if (state.cut?.sources?.frTown === "paris") return tr("app.parisSurfaceMapIgn");
-  // Bologna's road areas (towns/italy.js).
-  if (state.cut?.sources?.eeTown === "tallinn") return tr("app.tallinnSurfaceMapOrthophoto");
-  // Helsinki's register of public areas (towns/finland.js).
-  if (state.cut?.sources?.fiTown === "helsinki") return tr("app.helsinkiSurfaceMapOrthophoto");
-  // Vilnius's topographic areas (towns/lithuania.js).
-  if (state.cut?.sources?.ltTown === "vilnius") return tr("app.vilniusSurfaceMapOsm");
-  // DC's Planimetrics and DDOT's inventory (towns/usa.js).
-  if (state.cut?.sources?.cityMap === "dc") return tr("app.washingtonSurfaceMapDdot");
-  if (state.cut?.sources?.cityMap === "toronto") return tr("app.torontoSurfaceMapOrthophoto");
-  if (state.cut?.sources?.cityMap === "nyc") return tr("app.newYorkSurfaceMap");
-  if (state.cut?.sources?.cityMap === "sf") return tr("app.sanFranciscoSurfaceMap");
-  // Boston's and Cambridge's surface maps (towns/boston.js).
-  if (state.cut?.sources?.cityMap === "boston") return tr("app.bostonSurfaceMapMassgis");
-  if (state.cut?.sources?.cityMap === "cambridge") return tr("app.cambridgeSurfaceMapMassgis");
-  if (state.cut?.sources?.itTown === "bologna") return tr("app.bolognaSurfaceMapOrthophoto");
-  // Lombardy's DBT (towns/lombardy.js).
-  if (state.cut?.sources?.itTown === "lombardia") return tr("app.lombardySurfaceMapOsm");
-  // Zaragoza's paving map (towns/spain.js).
-  if (state.cut?.sources?.esTown === "zaragoza") return tr("app.zaragozaSurfaceMapPnoa");
-  // Flanders' road corridors and their division (towns/belgium.js).
-  if (state.cut?.sources?.beTown === "grb") return tr("app.grbSurfaceMapOrthophoto");
-  // Belgium's regional maps whose lines placed the kerbs (towns/belgium.js).
-  if (state.cut?.sources?.skEdges === "grb") return tr("app.linesGrbMapOrthophoto");
-  if (state.cut?.sources?.skEdges === "picc") return tr("app.linesPiccMapOrthophoto");
-  const sk = state.cut?.sources?.skTown, edges = SK_EDGES_TOWN[state.cut?.sources?.skEdges];
-  // The lines of a town's map that placed the kerbs (towns/slovakia.js EDGE_SOURCES; Bára: the data really used).
-  if (SK_PASSPORT_TOWN[sk] && edges === SK_PASSPORT_TOWN[sk]) return tr("app.roadInventoryMapTown", { town: edges });
-  if (SK_PASSPORT_TOWN[sk]) return tr("app.roadInventoryTownZbgis", { town: SK_PASSPORT_TOWN[sk] });
-  if (edges) return tr("app.mapTownZbgisOsm", { town: edges });
-  const id = state.cut?.sources?.passport;
-  // Where the state's orthophoto does not reach (Madeira, the Azores; Bára 27. 11. 2026), the state's line naming an
-  // orthophoto would be wrong: the profile is OSM's alone.
-  if (!PASSPORT_NAMES[id] && state.cut?.sources?.noOrtho && city.abroad && !state.cut?.sources?.ortho && !state.cut?.sources?.orthoCity) return "OSM";
-  if (!PASSPORT_NAMES[id]) return city.dataShort;
-  return GREEN_PASSPORTS.has(id) ? tr("app.greenInventoryTownTechnical", { town: PASSPORT_NAMES[id] })
-    : tr("app.roadInventoryTownTechnical", { town: PASSPORT_NAMES[id] });
+  const sources = state.cut?.sources;
+  const parts = cutDataParts(sources, { abroad: city.abroad, noOrtho: sources?.noOrtho });
+  return parts ? dataText(parts) : city.dataShort;
 }
 function draw() {
   document.title = state.stav && state.cut ? `${streetName(state.cut)} – ${tr("common.streetProfile")}` : tr("common.streetProfile");

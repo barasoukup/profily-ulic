@@ -28,7 +28,7 @@ export const UNUSED_EXPORTS = [
 ];
 
 export const LONG_FILES = {
-  "app/public/app.js": 2837,
+  "app/public/app.js": 2787,
   "app/public/derive.js": 3092,
   "app/public/lanes-ortho.js": 1207,
   "app/public/ortho-osm.js": 1478,
