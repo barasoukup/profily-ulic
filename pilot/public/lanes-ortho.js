@@ -596,7 +596,7 @@ function peaks(share, res, min = SHARE, minSpread = MIN_SPREAD) {
 // Is the line at t dashed: along it, at least three dashes (runs of paint from 0.8 m, gaps of 0.3 m closed; the
 // inner ones of about one length), with gaps from 1 m of about one length between them. A worn solid line breaks into short bits, one
 // hidden by parked cars into irregular pieces.
-function dashed(st, H, t, tan, k) {
+function lineOn(st, H, t, tan, k) {
   const { nt, nu, res, t0 } = st, i = Math.round((t - t0) / res - 0.5);
   const on = [];
   for (let j = 0; j < nu; j++) {
@@ -605,6 +605,10 @@ function dashed(st, H, t, tan, k) {
   }
   const close = Math.round(0.3 / res);
   for (let j = 0, last = -Infinity; j < nu; j++) if (on[j]) { if (j - last > 1 && j - last <= close) for (let q = last + 1; q < j; q++) on[q] = 1; last = j; }
+  return on;
+}
+function dashed(st, H, t, tan, k) {
+  const { nu, res } = st, on = lineOn(st, H, t, tan, k);
   const runs = [];
   for (let j = 0; j < nu;) { let q = j; while (q < nu && on[q] === on[j]) q++; runs.push({ on: on[j], len: (q - j) * res, inner: j > 0 && q < nu }); j = q; }
   const dash = runs.filter((r) => r.on && r.len >= 0.8).map((r) => r.len), gap = runs.filter((r) => !r.on && r.inner && r.len >= 1).map((r) => r.len);
@@ -612,8 +616,20 @@ function dashed(st, H, t, tan, k) {
   const even = (v) => { const m = v.reduce((a, x) => a + x, 0) / v.length; return Math.sqrt(v.reduce((a, x) => a + (x - m) ** 2, 0) / v.length) <= 0.45 * m; };
   return even(dash.slice(1, -1).length >= 2 ? dash.slice(1, -1) : dash) && even(gap);
 }
+// The rhythm of a line along the street (centreLine below): the share of its length with paint (gaps under 0.3 m
+// closed), the longest bare run (m) and the number of paint runs of 0.8 m or more.
+function lineRhythm(st, H, t, tan, k) {
+  const { nu, res } = st, on = lineOn(st, H, t, tan, k);
+  let sum = 0, gap = 0, longest = 0, dashes = 0, run = 0, runOn = 0;
+  for (let j = 0; j < nu; j++) {
+    sum += on[j];
+    if (on[j]) { gap = 0; runOn++; } else { gap++; longest = Math.max(longest, gap * res); if (runOn * res >= 0.8) dashes++; runOn = 0; }
+  }
+  if (runOn * res >= 0.8) dashes++;
+  return { fill: sum / nu, gap: longest, dashes };
+}
 // The lines of one carriageway [s, e]: one direction and bend for all of them (the sharpest share curve).
-function linesOf(st, H, s, e) {
+function linesOf(st, H, s, e, wantRhythm = false) {
   let best = null;
   for (let deg = -3; deg <= 3 + 1e-9; deg += 0.5) for (const k of CURVES) {
     const sh = shareCurve(st, H, s, e, Math.tan((deg * Math.PI) / 180), k);
@@ -627,7 +643,7 @@ function linesOf(st, H, s, e) {
   // more than WEAK of them is seen, so they only win where the lanes do not fit without them.
   const strong = best ? peaks(best.sh, st.res) : [];
   const weak = best ? peaks(best.sh, st.res, WEAK, 2).filter((m) => m.share < SHARE).map((m) => ({ ...m, weak: true })) : [];
-  const found = [...strong, ...weak].sort((a, b) => a.t - b.t).map((m) => ({ ...m, dashed: dashed(st, H, m.t, best.tan, best.k) }));
+  const found = [...strong, ...weak].sort((a, b) => a.t - b.t).map((m) => ({ ...m, dashed: dashed(st, H, m.t, best.tan, best.k), ...(wantRhythm && lineRhythm(st, H, m.t, best.tan, best.k)) }));
   if (!st.fine) return found;
   const top = Math.max(0, ...found.filter((m) => m.share >= LONG).map((m) => m.dl));
   return found.filter((m) => m.dl >= FAINT * top);
@@ -666,6 +682,32 @@ export function laneLines(st, H, s, e) {
   const out = chain.map((m) => m.t);
   out.solid = chain.map((m) => (m.weak || (m.dashed && m.share < DASHED_MAX) ? false : m.share >= EDGE_SHARE ? true : undefined));
   return out;
+}
+
+// ---------- the centre line of a two-way roadway ----------
+// Does the roadway [s, e] (the cut's t) have a line down the middle, and is it solid or dashed (Bára 27. 11. 2026: the
+// law of parking in Slovenia asks for it, ZPrCP čl. 65/4/12 and 65/4/10; countries/<ISO>.js centreLine)? The lines of
+// the carriageway as laneLines reads them, one in the middle part of it (not an edge line or the boundary of a
+// parking lane: 2.2 m from the kerbs; within a fifth of the width, at least 1.5 m, of the middle: a car parked on one
+// side moves the middle of the lanes).
+// Solid: paint along (nearly) all of its length; dashed: regular dashes and gaps, or a line with long bare runs.
+// Returns { found: false } (a roadway seen, no line), { found: true, kind: "solid" | "dashed" | null (not known which),
+// t, share, fill } or null (not known: no photo, the roadway outside it, a narrow one, ?off=stredcara).
+export const CENTRE = { edge: 2.2, near: 0.2, nearMin: 1.5, solidFill: 0.8, dashedFill: 0.65, minWidth: 4.5, seen: 0.6 };
+export function centreLine(st, s, e, H = null) {
+  if (!st || OFF("stredcara") || !(e - s >= CENTRE.minWidth)) return null;
+  if (s - 0.5 <= st.t0 || e + 0.5 >= st.t0 + st.nt * st.res) return null;
+  // The middle part must be seen: pixels of the photo along it.
+  const i0 = Math.max(0, Math.floor((s + CENTRE.edge - st.t0) / st.res)), i1 = Math.min(st.nt - 1, Math.floor((e - CENTRE.edge - st.t0) / st.res));
+  let n = 0, known = 0;
+  for (let j = 0; j < st.nu; j += 3) for (let i = i0; i <= i1; i += 3) { n++; if (!Number.isNaN(st.L[j * st.nt + i])) known++; }
+  if (!n || known < CENTRE.seen * n) return null;
+  H ??= brightMap(st);
+  const mid = (s + e) / 2, win = Math.max(CENTRE.nearMin, CENTRE.near * (e - s));
+  const c = linesOf(st, H, s, e, true).filter((m) => !m.weak && m.t > s + CENTRE.edge && m.t < e - CENTRE.edge && Math.abs(m.t - mid) <= win).sort((a, b) => b.share - a.share)[0];
+  if (!c) return { found: false };
+  const kind = c.dashed ? "dashed" : c.fill >= CENTRE.solidFill ? "solid" : c.fill <= CENTRE.dashedFill ? "dashed" : null;
+  return { found: true, kind, t: +c.t.toFixed(2), share: +c.share.toFixed(2), fill: +c.fill.toFixed(2), gap: +c.gap.toFixed(1), dashes: c.dashes, regular: c.dashed };
 }
 
 // ---------- parking on its own surface ----------
