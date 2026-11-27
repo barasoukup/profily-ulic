@@ -1120,10 +1120,11 @@ export function estimateNote(fb, tried, tr, list = (xs) => xs.join(" a ")) {
 // sidewalk; a stretch without lines wider than SIDEWALK_MAX a sidewalk by the street and the rest green or paving by
 // the image. All an estimate. polys: the surfaces as derive.js takes them (frame XY). P.off "beside": off (the A/B).
 const BESIDE_MAX = 15, WALK_REACH = 8, BESIDE_GREEN = 0.22, BARRIER = (t) => ["fence", "wall", "retaining_wall", "hedge"].includes(t.barrier);
-// A path for walkers and cyclists in one (C 9, or C 10 where segregated=yes): a footway or path with bicycle=designated, a
-// cycle way with foot=designated and not segregated, or segregated=no. One part along the street, not a cycle track
+// A path for walkers and cyclists in one (C 9): a footway or path with bicycle=designated and not segregated=yes (the
+// segregated one stays a cycle track as before: its two halves are not measured), a cycle way with foot=designated and not
+// segregated, or segregated=no. One part along the street, not a cycle track
 // (Brandenburger Straße in Leipzig: a path=sidewalk with oneway:bicycle=yes drew two cycle tracks; ?off=sdilena: as before).
-const OSM_SHARED = (t) => !P.off?.has("sdilena") && (["path", "footway"].includes(t.highway) ? t.bicycle === "designated"
+const OSM_SHARED = (t) => !P.off?.has("sdilena") && (["path", "footway"].includes(t.highway) ? t.bicycle === "designated" && t.segregated !== "yes"
   : t.highway === "cycleway" && (t.segregated === "no" || (t.foot === "designated" && t.segregated !== "yes")));
 const OSM_SIDEWALK = (t) => t.highway === "footway" && t.footway === "sidewalk";
 const OSM_CYCLEWAY = (t) => (t.highway === "cycleway" || (["path", "footway"].includes(t.highway) && t.bicycle === "designated"));

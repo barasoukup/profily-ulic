@@ -28,3 +28,22 @@ test("segregated=yes: stezka a chodník vedle sebe; obousměrná cycleway beze z
   const two = east({ highway: "cycleway", oneway: "no" }, false, 703).slice(-2);
   assert.deepEqual(two, ["cyklostezka<", "cyklostezka>"]);
 });
+
+// The estimate from the orthophoto and OSM (ortho-osm.js): a path beside the street, shared by walkers and cyclists, is a part like a sidewalk (702;
+// derive.js makes C 9 of it); one with segregated=yes stays a cycle track (703) as before.
+import { orthoOsmPolys } from "../pilot/public/ortho-osm.js";
+test("odhad z ortofota a OSM: sdílená cesta je chodníkový díl, segregated=yes zůstává cyklostezka", () => {
+  const frame = localFrame(50.08, 14.43), dir = [0, 1];
+  const ll = (x, y) => { const [lon, lat] = frame.toLonLat(x, y); return { lon, lat }; };
+  const t0 = -25, nt = 500, nu = 400, L = new Float32Array(nt * nu), G = new Float32Array(nt * nu), S = new Float32Array(nt * nu).fill(8);
+  for (let j = 0; j < nu; j++) for (let i = 0; i < nt; i++) L[j * nt + i] = (Math.abs(t0 + (i + 0.5) * 0.1) < 3.5 ? 90 : 150) + ((i * 7 + j * 13) % 11) - 5;
+  const st = { nt, nu, res: 0.1, t0, L, G, S, fine: true };
+  const house = (x0, x1) => ({ type: "area", id: 100 + x0, tags: { building: "yes" }, geometry: [ll(x0, -20), ll(x1, -20), ll(x1, 20), ll(x0, 20), ll(x0, -20)] });
+  const codes = (pathTags) => {
+    const els = [{ type: "way", id: 1, tags: { highway: "secondary" }, geometry: [ll(0, -60), ll(0, 60)] }, { type: "way", id: 2, tags: { highway: "path", bicycle: "designated", foot: "designated", ...pathTags }, geometry: [ll(5, -60), ll(5, 60)] }, house(8, 16), house(-16, -8)];
+    return orthoOsmPolys({ osm: { elements: els }, frame, dir, way: els[0], st }).filter((p) => /^(cyklostezka|stezka pro chodce a cyklisty) \(OSM\)/.test(p.label || "")).map((p) => p.code);
+  };
+  assert.deepEqual(codes({ segregated: "no" }), [702]);
+  assert.deepEqual(codes({}), [702]);
+  assert.deepEqual(codes({ segregated: "yes" }), [703]);
+});
