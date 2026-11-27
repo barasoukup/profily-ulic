@@ -63,6 +63,8 @@ function segment(s, i, segs, total) {
     case "tramvaj_v_pruhu": return ["streetcar", `${dir}|regular`];
     // The reserved lane and the separate bed both go as Streetmix's streetcar on a coloured lane; a grass bed on grass.
     case "tramvaj_pruh": case "tramvaj": return ["streetcar", `${dir}|${s.bed === "trava" ? "grass" : "colored"}`];
+    // Streetmix has no railway beside a street: a gravel median (the beds of rails are gravel).
+    case "railway": return ["divider", "median"];
     case "voda": return null;
     default: return ["sidewalk", "empty"];
   }

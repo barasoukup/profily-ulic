@@ -236,6 +236,7 @@ export const ET = {
   "Tramvaj v pruhu": "Tramm sõidurajal",
   "Tramvajový pruh": "Trammirada",
   "Tramvajové těleso": "Eraldatud trammitee",
+  "Železnice": "Raudtee",
   "Dělicí pás": "Eraldusriba",
   "Zpevněná plocha": "Kõvakattega ala",
   "Zahrádka restaurace": "Välikohvik",

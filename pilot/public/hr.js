@@ -243,6 +243,7 @@ export const HR = {
   "Tramvaj v pruhu": "Tramvaj u prometnoj traci",
   "Tramvajový pruh": "Tramvajska traka",
   "Tramvajové těleso": "Izdvojeni tramvajski pojas",
+  "Železnice": "Željeznica",
   "Dělicí pás": "Razdjelni pojas",
   "Zpevněná plocha": "Tvrda površina",
   "Zahrádka restaurace": "Ugostiteljska terasa",

@@ -243,6 +243,7 @@ export const SL = {
   "Tramvaj v pruhu": "Tramvaj v voznem pasu",
   "Tramvajový pruh": "Tramvajski pas",
   "Tramvajové těleso": "Ločena tramvajska proga",
+  "Železnice": "Železnica",
   "Dělicí pás": "Ločilni pas",
   "Zpevněná plocha": "Utrjena površina",
   "Zahrádka restaurace": "Gostinski vrt",

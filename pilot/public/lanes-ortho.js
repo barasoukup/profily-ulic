@@ -726,7 +726,7 @@ const why = (c, text) => globalThis.__lanesWhy?.push({ s: c.s, e: c.e, why: text
 const fail = (text) => { lastWhy = text; return null; };
 
 const CARRIAGE = (c) => c === 700 || c === 701 || c === 704 || (c >= 9700 && c < 9800);
-const RAISED = new Set(["chodnik", "chodnik_kola", "stezka_sdilena", "predzahradka", "zelen", "stromorad", "nastupiste", "cyklostezka", "tramvaj", "delici", "plocha", "zahradka", "voda", "zed", "nezname"]);
+const RAISED = new Set(["chodnik", "chodnik_kola", "stezka_sdilena", "predzahradka", "zelen", "stromorad", "nastupiste", "cyklostezka", "tramvaj", "railway", "delici", "plocha", "zahradka", "voda", "zed", "nezname"]);
 const BLOCK = new Set(["pruh", "krajnice"]);
 const SNAP = 0.6;
 const SHOULDER_MAX = 3.6; // a boundary of other parts (parking, bike lane…) moves to a line this near

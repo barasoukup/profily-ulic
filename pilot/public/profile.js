@@ -397,6 +397,23 @@ function drawTramBed(g, s, x, w, top, bedBefore, bedAfter) {
   if (!bedAfter) curb(x + w - 12);
 }
 
+// A railway beside the street (types.js railway; Bára 27. 11. 2026): a gravel bed all the way down with a track in each
+// stretch of 4 m of it (3 m for a narrow gauge), a pair of rails on sleepers at 1435 mm (1000 mm). No vehicle, no wires.
+export const railTracks = (s) => { const [bed, step] = s.narrow ? [3.5, 3] : [4.5, 4]; return Math.max(1, Math.round((s.width - (bed - step)) / step)); };
+function drawRailway(g, s, x, w, top) {
+  el("rect", { x, y: top, width: w, height: GROUND + 60 - top, fill: GRAVEL_BED }, g);
+  for (let v = top + 6; v < GROUND + 56; v += 8) {
+    for (let u = x + 4 + ((v / 8) % 2) * 4; u < x + w - 3; u += 9) el("circle", { cx: u, cy: v, r: 2, fill: GRAVEL_DOT }, g);
+  }
+  const n = railTracks(s), step = w / n, half = s.narrow ? 50 : 72;
+  for (let k = 0; k < n; k++) {
+    const c = x + step * (k + 0.5), sleeper = Math.min(s.narrow ? 200 : 260, step - 10);
+    for (let u = c - step / 2 + 20; u < c + step / 2 - 20; u += 60) el("rect", { x: u, y: top - 3, width: 24, height: 5, fill: "#6d5d4c" }, g);
+    el("rect", { x: c - sleeper / 2, y: top - 1, width: sleeper, height: 3, fill: "#6d5d4c" }, g);
+    for (const dx of [-half, half]) el("rect", { x: c + dx - 4, y: top - 14, width: 8, height: 14, fill: "#3d3b36" }, g);
+  }
+}
+
 export const ROADWAY = new Set(["pruh", "krajnice", "obsluzna", "pruh_piktokoridor", "bus", "bus_cyklo", "tramvaj_v_pruhu", "tramvaj_pruh", "cyklopruh", "ochranny_pruh", "parkovani"]);
 // The lanes the contact wires hang over: one each way (Bára, Olomoucká: not over every lane), the trolleybus's own
 // (a bus lane under the wires) where there is one, else the outer lane of that direction, the farthest from the
@@ -2643,6 +2660,7 @@ export function buildSvg(profile, opts = {}) {
     el("rect", { x: x + 4, y: GROUND + DROP + 104, width: Math.max(w - 8, 1), height: 14, fill: SOURCES[s.source]?.color || "#999" }, g);
     const cx = x + w / 2;
     const forward = s.dir !== "backward";
+    if (t.rails) drawRailway(g, s, x, w, top);
     if (t.bed) drawTramBed(g, s, x, w, top, TYPES[segs[i - 1]?.type]?.bed, TYPES[segs[i + 1]?.type]?.bed);
     // Under the part: drawn after the networks' earth (below), which would cover it.
     if (s.under) undersLater.push([s, x, w]);

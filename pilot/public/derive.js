@@ -2390,6 +2390,9 @@ export function deriveProfile({ center, dir, half, polys, osm, frame, way, track
       const parts = e0 - s0 > 5 ? [[s0, (s0 + e0) / 2, "forward"], [(s0 + e0) / 2, e0, "backward"]] : [[s0, e0, undefined]];
       for (const [a, b, d] of parts) segs.push({ type: "tramvaj", s: a, e: b, dir: d, bed: bed.kind, bedSource: bed.source, source: "dtm" });
       if (e0 < r.e) segs.push({ type: "zelen", s: e0, e: r.e, source: r.code === null ? "odhad" : "dtm" });
+    } else if (type === "railway") {
+      // A railway track of OSM beside the street (ortho-osm.js heavyRail): a gravel bed; a narrow gauge is drawn narrower.
+      segs.push({ type: "railway", s: r.s, e: r.e, source: "osm", ...(cross.some((c) => c.way.tags?.railway === "narrow_gauge" && c.t > r.s - 0.3 && c.t < r.e + 0.3) && { narrow: true }) });
     } else if (type === "cyklostezka") {
       segs.push(...cycleTrack(r, cross, dir));
     } else {
@@ -2517,6 +2520,7 @@ function toSegment(x) {
   if (x.wires) seg.wires = true;
   if (x.type === "tramvaj") { seg.bed = x.bed || "panely"; if (x.bedSource === "odhad") seg.bedGuess = true; }
   if (x.withBus) seg.withBus = true;
+  if (x.narrow) seg.narrow = true;
   if (x.permeable) seg.permeable = x.permeable;
   if (x.roadClass && LANE_TYPES.has(x.type)) seg.roadClass = x.roadClass;
   // Segments are reversed to screen order, so item positions flip too.

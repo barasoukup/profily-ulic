@@ -245,6 +245,7 @@ export const FR = {
   "Tramvaj v pruhu": "Tramway en site banal",
   "Tramvajový pruh": "Voie réservée au tramway",
   "Tramvajové těleso": "Plateforme tramway",
+  "Železnice": "Voie ferrée",
   "Dělicí pás": "Terre-plein",
   "Zpevněná plocha": "Surface revêtue",
   "Zahrádka restaurace": "Terrasse",

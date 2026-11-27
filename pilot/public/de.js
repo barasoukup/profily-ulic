@@ -243,6 +243,7 @@ export const DE = {
   "Tramvaj v pruhu": "Straßenbahn im Mischverkehr",
   "Tramvajový pruh": "Straßenbahnfahrstreifen",
   "Tramvajové těleso": "Besonderer Bahnkörper",
+  "Železnice": "Eisenbahn",
   "Dělicí pás": "Trennstreifen",
   "Zpevněná plocha": "Befestigte Fläche",
   "Zahrádka restaurace": "Außengastronomie",

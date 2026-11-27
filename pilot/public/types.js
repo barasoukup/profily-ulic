@@ -27,6 +27,10 @@ export const TYPES = {
   tramvaj_v_pruhu: { label: t("Tramvaj v pruhu"), color: "#736a55", sprite: "streetcar", tracks: true, directional: true },
   tramvaj_pruh: { label: t("Tramvajový pruh"), color: "#6f6a5e", sprite: "streetcar", tracks: true, directional: true, marked: true },
   tramvaj: { label: t("Tramvajové těleso"), color: "#a39d8c", sprite: "streetcar", tracks: true, directional: true, raised: true, bed: true },
+  // A railway on the ground beside the street (Bára 27. 11. 2026, Rudolfstraße in Linz: the track ran along the street
+  // and the profile left it out): a gravel bed with a pair of rails for each track (segment.tracks, narrow gauge
+  // segment.narrow). No vehicle and no overhead line: the picture is the bed only.
+  railway: { label: t("Železnice"), color: "#9a948a", raised: true, rails: true },
   delici: { label: t("Dělicí pás"), color: "#b4b2a9", raised: true },
   plocha: { label: t("Zpevněná plocha"), color: "#cfccc2", raised: true },
   zahradka: { label: t("Zahrádka restaurace"), color: "#d9c7a8", raised: true, sprite: "cafe" },
@@ -112,11 +116,17 @@ export const PARKING_POSITION = { on_kerb: t("na chodníku"), half_on_kerb: t("n
 
 export const DEFAULT_WIDTH = {
   chodnik: 2.5, chodnik_kola: 2.5, stezka_sdilena: 3, predzahradka: 2, zelen: 2, stromorad: 2, nastupiste: 3, cyklostezka: 2.5, cyklopruh: 1.5, ochranny_pruh: 1.5, pruh_piktokoridor: 3.25, parkovani: 2,
-  pruleh: 2, ryha: 1, nadrz: 4, pruh: 3, obsluzna: 3, bus: 3.5, bus_cyklo: 4.25, tramvaj_v_pruhu: 3.25, tramvaj_pruh: 3.5, tramvaj: 3.5, delici: 1.5, plocha: 2, zahradka: 3, voda: 5, zed: 0.5, nezname: 2, krajnice: 1,
+  pruleh: 2, ryha: 1, nadrz: 4, pruh: 3, obsluzna: 3, bus: 3.5, bus_cyklo: 4.25, tramvaj_v_pruhu: 3.25, tramvaj_pruh: 3.5, tramvaj: 3.5, railway: 4.5, delici: 1.5, plocha: 2, zahradka: 3, voda: 5, zed: 0.5, nezname: 2, krajnice: 1,
 };
 
 // MTVU code (CTVUK_KOD) to segment type.
+// The code of a railway track of OSM in the profile's runs (ortho-osm.js, derive.js): beside the MTVU codes.
+export const RAILWAY_CODE = 9810;
+// OSM railway values that are a track at ground level (not abandoned, disused or razed ones), the width of the bed for
+// a track of each (m) and the distance between two parallel tracks.
+export const RAIL_KINDS = { rail: [4.5, 4], light_rail: [4.5, 4], subway: [4.5, 4], narrow_gauge: [3.5, 3] };
 export function typeFromMtvu(code) {
+  if (code === RAILWAY_CODE) return "railway";
   if (code === 701 || code === 700) return "pruh";
   if (code === 702) return "chodnik";
   if (code === 703) return "cyklostezka";

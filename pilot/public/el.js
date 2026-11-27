@@ -243,6 +243,7 @@ export const EL = {
   "Tramvaj v pruhu": "Τραμ σε μικτή κυκλοφορία",
   "Tramvajový pruh": "Λωρίδα τραμ",
   "Tramvajové těleso": "Αποκλειστικός διάδρομος τραμ",
+  "Železnice": "Σιδηρόδρομος",
   "Dělicí pás": "Διαχωριστική νησίδα",
   "Zpevněná plocha": "Επιστρωμένη επιφάνεια",
   "Zahrádka restaurace": "Τραπεζοκαθίσματα",

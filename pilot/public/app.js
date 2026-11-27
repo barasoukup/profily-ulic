@@ -81,7 +81,7 @@ const MAX_HALF = 70, HALF_PAD = 3;
 const MIN_REACH = 3; // shortest profile side the user can drag the cut end to (m)
 const defaultReach = () => ({ left: MAX_REACH, right: MAX_REACH });
 const WIDE_REACH = 35;
-const WIDE_END = new Set(["plocha", "delici", "zelen", "stromorad", "chodnik", "tramvaj"]); // a median's or a promenade's parts
+const WIDE_END = new Set(["plocha", "delici", "zelen", "stromorad", "chodnik", "tramvaj", "railway"]); // a median's or a promenade's parts
 // A side of a new cut that may reach WIDE_REACH (evaluation/sjednoceni, Bára 25. 11. 2026: a rule of the data at the cut,
 // not of a state; it replaced the states' wideRoads and wideStreets: A/B of 112 cuts, 6 changed, better 4 : 2, Paris's
 // boulevards as before, the states without a map unchanged): a motorway or an expressway, or a main street ending at the reach in a median's, promenade's or
@@ -2288,6 +2288,7 @@ const PALETTE_GROUPS = [
   [tr("Pro cyklisty"), ["cyklopruh", "ochranny_pruh", "pruh_piktokoridor", "cyklostezka", "stezka_sdilena"]],
   [tr("Auta a autobusy"), ["pruh", "parkovani", "bus", "bus_cyklo", "obsluzna", "krajnice"]],
   [tr("Tramvaj"), ["tramvaj_v_pruhu", "tramvaj_pruh", "tramvaj"]],
+  [tr("Železnice"), ["railway"]],
   [tr("Zeleň a ostatní"), ["zelen", "stromorad", "predzahradka", "delici", "plocha", "zahradka", "zed"]],
   [tr("Hospodaření s vodou"), ["pruleh", "ryha", "nadrz", "voda"]],
 ];

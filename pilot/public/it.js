@@ -246,6 +246,7 @@ export const IT = {
   "Tramvaj v pruhu": "Tram in sede promiscua",
   "Tramvajový pruh": "Corsia tranviaria",
   "Tramvajové těleso": "Sede tranviaria propria",
+  "Železnice": "Ferrovia",
   "Dělicí pás": "Spartitraffico",
   "Zpevněná plocha": "Superficie pavimentata",
   "Zahrádka restaurace": "Dehors",

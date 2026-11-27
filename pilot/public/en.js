@@ -226,6 +226,7 @@ export const EN = {
   "Tramvaj v pruhu": "Tram in mixed traffic",
   "Tramvajový pruh": "Tram lane",
   "Tramvajové těleso": "Segregated tramway",
+  "Železnice": "Railway",
   "Dělicí pás": "Central reserve",
   "Zpevněná plocha": "Paved area",
   "Zahrádka restaurace": "Outdoor seating",

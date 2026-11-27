@@ -54,6 +54,7 @@ function surfaceOf(s) {
   if (GREEN.has(s.type)) return "propustne";
   if (WATER.has(s.type)) return "voda";
   if (OTHER.has(s.type)) return "jine";
+  if (s.type === "railway") return "castecne"; // a gravel bed lets the rain through
   if (s.type === "tramvaj") return ["trava", "strk"].includes(s.bed) ? "propustne" : "nepropustne";
   if (s.permeable === "nezpevneny") return "propustne";
   if (s.permeable) return "castecne";

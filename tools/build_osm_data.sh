@@ -40,7 +40,9 @@ export_layer() { # file layer where select
   "$OGR" -f GeoJSONSeq "$DIR/${NAME}_$1.geojsonl" "$PBF" "$2" -where "$3" -select "$4" -overwrite ${SPAT:+-spat $SPAT}
 }
 
-export_layer ways lines "highway IS NOT NULL OR railway IN ('tram', 'light_rail')" osm_id,name,highway,railway,other_tags
+# Railways on the ground beside streets too (Bára 27. 11. 2026: the profile's "železnice"); build_osm_tiles.mjs keeps of
+# rail, narrow_gauge and subway only the tracks at ground level near a road.
+export_layer ways lines "highway IS NOT NULL OR railway IN ('tram', 'light_rail', 'rail', 'narrow_gauge', 'subway')" osm_id,name,highway,railway,other_tags
 export_layer parking multipolygons "amenity = 'parking'" osm_id,osm_way_id,amenity,other_tags
 export_layer trees points "$(tag natural tree)" osm_id,other_tags
 export_layer treerows lines "$(tag natural tree_row)" osm_id,other_tags

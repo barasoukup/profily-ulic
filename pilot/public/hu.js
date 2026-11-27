@@ -239,6 +239,7 @@ export const HU = {
   "Tramvaj v pruhu": "Villamos a sávban",
   "Tramvajový pruh": "Villamossáv",
   "Tramvajové těleso": "Zárt villamospálya",
+  "Železnice": "Vasút",
   "Dělicí pás": "Elválasztó sáv",
   "Zpevněná plocha": "Burkolt felület",
   "Zahrádka restaurace": "Vendéglátóterasz",

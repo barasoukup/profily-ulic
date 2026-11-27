@@ -244,6 +244,7 @@ export const GA = {
   "Tramvaj v pruhu": "Tram i lána tráchta",
   "Tramvajový pruh": "Lána tram",
   "Tramvajové těleso": "Raon tram ar leith",
+  "Železnice": "Iarnród",
   "Dělicí pás": "Stiall deighilte",
   "Zpevněná plocha": "Limistéar pábháilte",
   "Zahrádka restaurace": "Suíocháin lasmuigh",

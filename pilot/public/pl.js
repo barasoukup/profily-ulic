@@ -244,6 +244,7 @@ export const PL = {
   "Tramvaj v pruhu": "Tramwaj w pasie ruchu",
   "Tramvajový pruh": "Pas tramwajowy",
   "Tramvajové těleso": "Wydzielone torowisko",
+  "Železnice": "Kolej",
   "Dělicí pás": "Pas dzielący",
   "Zpevněná plocha": "Powierzchnia utwardzona",
   "Zahrádka restaurace": "Ogródek gastronomiczny",

@@ -243,6 +243,7 @@ export const RO = {
   "Tramvaj v pruhu": "Tramvai în trafic mixt",
   "Tramvajový pruh": "Bandă de tramvai",
   "Tramvajové těleso": "Cale proprie de tramvai",
+  "Železnice": "Cale ferată",
   "Dělicí pás": "Fâșie despărțitoare",
   "Zpevněná plocha": "Suprafață pavată",
   "Zahrádka restaurace": "Terasă",
