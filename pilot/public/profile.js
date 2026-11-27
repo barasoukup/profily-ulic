@@ -2653,6 +2653,8 @@ export function buildSvg(profile, opts = {}) {
       if (!TYPES[segs[i - 1]?.type]?.tracks) el("rect", { x: x + 4, y: top - 3, width: 25, height: 4, fill: "#f2f0ea" }, g);
       if (!TYPES[segs[i + 1]?.type]?.tracks) el("rect", { x: x + w - 29, y: top - 3, width: 25, height: 4, fill: "#f2f0ea" }, g);
     }
+    // Hatching (V 13) read on the orthophoto: oblique stripes of paint in the top layer of the roadway.
+    if (s.hatched) for (let hx = x + 6; hx + 30 <= x + w - 4; hx += 40) el("polygon", { class: "hatch", points: `${hx},${top} ${hx + 16},${top} ${hx + 30},${top + 36} ${hx + 14},${top + 36}`, fill: "#f2f0ea", "fill-opacity": 0.8 }, g);
     if (t.tracks) {
       for (const dx of [-72, 72]) el("rect", { x: cx + dx - 6, y: top - 6, width: 12, height: 8, fill: "#3d3b36" }, g);
     }

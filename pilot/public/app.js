@@ -2,7 +2,7 @@ import { TYPES, SOURCES, DEFAULT_WIDTH, ITEMS, PARKING_USE, PARKING_POSITION, TR
 import { refloor } from "./floors.js";
 import { localFrame, nearestStreet, savedStreet, snapToWay, dragAlong, placeCut, centerOnStreet, mtvuPolygons, trackLines, techLines, esriPolygons, deriveProfile, splitTwoWayLane, capWideLanes, pedestrianZone, treePitsAsSidewalk, widenNarrowTrams, carveCycleways, carveTramTracks, lanesFromShoulders, trackAlongRoad, crossFromA, lawNeedFor, isOnewayTags, MAX_REACH } from "./derive.js";
 import { bedOrtho } from "./ortho.js";
-import { laneImage, applyLanes, SK_ORTHO, AT_ORTHO, CH_ORTHO, NL_ORTHO, BE_ORTHO, LU_ORTHO, PL_ORTHO, FR_ORTHO, ES_ORTHO, PT_ORTHO, PT_MAINLAND, ES_NOT_PNOA, CY_ORTHO, MT_ORTHO, IT_ORTHO, EE_ORTHO, SI_ORTHO, FI_ORTHO, US_ORTHO, CA_ORTHO, DK_ORTHO, DE_ORTHO, deWmsUrl, landsAt, landAt, orthoHereAt } from "./lanes-ortho.js";
+import { laneImage, applyLanes, HATCH_PARAMS, SK_ORTHO, AT_ORTHO, CH_ORTHO, NL_ORTHO, BE_ORTHO, LU_ORTHO, PL_ORTHO, FR_ORTHO, ES_ORTHO, PT_ORTHO, PT_MAINLAND, ES_NOT_PNOA, CY_ORTHO, MT_ORTHO, IT_ORTHO, EE_ORTHO, SI_ORTHO, FI_ORTHO, US_ORTHO, CA_ORTHO, DK_ORTHO, DE_ORTHO, deWmsUrl, landsAt, landAt, orthoHereAt } from "./lanes-ortho.js";
 import { dkToken } from "./keys.js";
 import { boxed as boxedPlace, within as withinPlace } from "./places.js";
 import { orthoOsmPolys, besidePassport, trimToEnds, estimateNote, outerGapsByImage, medianGapsByImage, deckSpans, bridgeRailings, P as ORTHO_P } from "./ortho-osm.js";
@@ -13,7 +13,7 @@ const AGAIN_M = 200;
 if (new URLSearchParams(location.search).get("stit") === "1") HOUSE_LOOKS.gables = true;
 import { aiCut, aiKerbs, aiSurface, aiParking, parkFromAi, parkSkip, lawKerbs, layLaw, lawUnsplits, widenLaw, aiReady, onAiProgress } from "./ai-kerbs.js";
 // ?off=… switches named parts of the estimate off (the A/B tests, evaluation/ortofoto-osm/regrese.mjs).
-{ const off = new URLSearchParams(location.search).get("off"); if (off) ORTHO_P.off = new Set(off.split(",")); }
+{ const off = new URLSearchParams(location.search).get("off"); if (off) { ORTHO_P.off = new Set(off.split(",")); HATCH_PARAMS.off = ORTHO_P.off.has("srafy"); } }
 // Tree pits as sidewalk (derive.js treePitsAsSidewalk): off, ?treepits=1 turns them on.
 if (new URLSearchParams(location.search).get("treepits") === "1") ORTHO_P.treepits = true;
 if (new URLSearchParams(location.search).get("axisroad") === "0") ORTHO_P.axisroad = false;
