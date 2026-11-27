@@ -243,6 +243,7 @@ export const PT = {
   "Tramvaj v pruhu": "Elétrico em via partilhada",
   "Tramvajový pruh": "Via reservada ao elétrico",
   "Tramvajové těleso": "Elétrico em sítio próprio",
+  "Železnice": "Ferrovia",
   "Dělicí pás": "Separador",
   "Zpevněná plocha": "Área pavimentada",
   "Zahrádka restaurace": "Esplanada",

@@ -244,6 +244,7 @@ export const FI = {
   "Tramvaj v pruhu": "Raitiovaunu sekaliikenteessä",
   "Tramvajový pruh": "Raitiovaunukaista",
   "Tramvajové těleso": "Erillinen raitiotie",
+  "Železnice": "Rautatie",
   "Dělicí pás": "Erotuskaista",
   "Zpevněná plocha": "Päällystetty alue",
   "Zahrádka restaurace": "Terassi",

@@ -38,6 +38,7 @@ export function cleanProfile(p, what = "profil") {
     for (const k of ["trolley", "wires"]) if (k in s && s[k] !== true) delete s[k];
     // A profile saved before the three kinds of tram (11/2026) has no bed on its tram belt: panels.
     if ("bed" in s && !(s.bed in TRAM_BEDS)) delete s.bed;
+    if ("narrow" in s && !(s.narrow === true && s.type === "railway")) delete s.narrow;
     for (const k of ["withBus", "bedGuess"]) if (k in s && s[k] !== true) delete s[k];
     if ("permeable" in s && s.permeable !== true && s.permeable !== "nezpevneny") delete s.permeable;
     // A rainwater object under the part (types.js HDV_UNDER), a known one on a part that may have it.
@@ -88,6 +89,7 @@ const FIELD_TYPES = {
   dir: Object.keys(TYPES).filter((k) => TYPES[k].directional), bikeDir: ["pruh", "pruh_piktokoridor"], turn: [...LANES, "tramvaj_v_pruhu"],
   orient: ["parkovani"], use: ["parkovani"], position: ["parkovani"], color: ["cyklopruh", "ochranny_pruh"],
   bed: Object.keys(TYPES).filter((k) => TYPES[k].bed), bedGuess: Object.keys(TYPES).filter((k) => TYPES[k].bed),
+  narrow: ["railway"],
   withBus: Object.keys(TYPES).filter((k) => TYPES[k].tracks), trolley: LANES, wires: LANES, roadClass: LANES,
   under: UNDER_TYPES, underSize: UNDER_TYPES, permeable: PERMEABLE_TYPES,
 };

@@ -244,6 +244,7 @@ export const NL = {
   "Tramvaj v pruhu": "Tram op rijstrook",
   "Tramvajový pruh": "Tramstrook",
   "Tramvajové těleso": "Vrije trambaan",
+  "Železnice": "Spoorweg",
   "Dělicí pás": "Scheidingsstrook",
   "Zpevněná plocha": "Verhard terrein",
   "Zahrádka restaurace": "Terras",

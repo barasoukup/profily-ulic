@@ -1,0 +1,3483 @@
+[
+ {
+  "jid": "j01",
+  "id": "CH-lausanne-257474928-8",
+  "country": "CH",
+  "town": "lausanne",
+  "name": "Avenue du Chablais",
+  "on": 0.5714285714285714,
+  "off": 0.3333333333333333,
+  "per": [
+   {
+    "on": {
+     "same": false,
+     "score": 0.4285714285714286,
+     "edits": [
+      "navíc cyklopruh",
+      "chodnik→delici",
+      "navíc pruh",
+      "navíc cyklostezka"
+     ],
+     "lanesA": 6,
+     "lanesB": 6,
+     "widthA": 29.3,
+     "widthB": 28.980000000000004
+    },
+    "off": {
+     "same": false,
+     "score": 0.16666666666666663,
+     "edits": [
+      "zeleznice→chodnik",
+      "chodnik→cyklopruh",
+      "chodnik→delici",
+      "navíc pruh",
+      "navíc cyklostezka"
+     ],
+     "lanesA": 6,
+     "lanesB": 6,
+     "widthA": 29.3,
+     "widthB": 24.64
+    },
+    "rail": true
+   },
+   {
+    "on": {
+     "same": false,
+     "score": 0.7142857142857143,
+     "edits": [
+      "navíc cyklopruh",
+      "navíc cyklostezka"
+     ],
+     "lanesA": 6,
+     "lanesB": 6,
+     "widthA": 30.099999999999998,
+     "widthB": 28.980000000000004
+    },
+    "off": {
+     "same": false,
+     "score": 0.5,
+     "edits": [
+      "zeleznice→chodnik",
+      "chodnik→cyklopruh",
+      "navíc cyklostezka"
+     ],
+     "lanesA": 6,
+     "lanesB": 6,
+     "widthA": 30.099999999999998,
+     "widthB": 24.64
+    },
+    "rail": true
+   }
+  ],
+  "judgesRail": 2,
+  "onRail": true,
+  "changed": true,
+  "parts": [
+   [
+    "cyklostezka",
+    2.05
+   ],
+   [
+    "pruh",
+    3.37
+   ],
+   [
+    "pruh",
+    2.73
+   ],
+   [
+    "delici",
+    2.45
+   ],
+   [
+    "pruh",
+    2.51
+   ],
+   [
+    "pruh",
+    2.51
+   ],
+   [
+    "pruh",
+    2.51
+   ],
+   [
+    "pruh",
+    2.51
+   ],
+   [
+    "cyklopruh",
+    1.5
+   ],
+   [
+    "chodnik",
+    2.35
+   ],
+   [
+    "railway",
+    4.49
+   ]
+  ],
+  "partsOff": [
+   [
+    "cyklostezka",
+    2.05
+   ],
+   [
+    "pruh",
+    3.37
+   ],
+   [
+    "pruh",
+    2.73
+   ],
+   [
+    "delici",
+    2.45
+   ],
+   [
+    "pruh",
+    2.51
+   ],
+   [
+    "pruh",
+    2.51
+   ],
+   [
+    "pruh",
+    2.51
+   ],
+   [
+    "pruh",
+    2.51
+   ],
+   [
+    "cyklopruh",
+    1.5
+   ],
+   [
+    "chodnik",
+    2.5
+   ],
+   [
+    "nezname",
+    0.1
+   ]
+  ]
+ },
+ {
+  "jid": "j03",
+  "id": "AT-wels-144321957-23",
+  "country": "AT",
+  "town": "wels",
+  "name": "Flugplatzstraße",
+  "on": 0.5142857142857142,
+  "off": 0.24285714285714283,
+  "per": [
+   {
+    "on": {
+     "same": false,
+     "score": 0.6,
+     "edits": [
+      "chodnik→pruh",
+      "pruh→cyklostezka"
+     ],
+     "lanesA": 2,
+     "lanesB": 2,
+     "widthA": 23.1,
+     "widthB": 29.45
+    },
+    "off": {
+     "same": false,
+     "score": 0.19999999999999996,
+     "edits": [
+      "zeleznice→pruh",
+      "chodnik→cyklostezka",
+      "chybí zelen",
+      "chybí pruh"
+     ],
+     "lanesA": 2,
+     "lanesB": 2,
+     "widthA": 23.1,
+     "widthB": 11.1
+    },
+    "rail": true
+   },
+   {
+    "on": {
+     "same": false,
+     "score": 0.4285714285714286,
+     "edits": [
+      "cyklostezka→zeleznice",
+      "chodnik→cyklostezka",
+      "chybí zelen",
+      "chybí zeleznice"
+     ],
+     "lanesA": 2,
+     "lanesB": 2,
+     "widthA": 35.5,
+     "widthB": 29.45
+    },
+    "off": {
+     "same": false,
+     "score": 0.2857142857142857,
+     "edits": [
+      "chybí cyklostezka",
+      "chybí zelen",
+      "chodnik→cyklostezka",
+      "chybí zelen",
+      "chybí zeleznice"
+     ],
+     "lanesA": 2,
+     "lanesB": 2,
+     "widthA": 35.5,
+     "widthB": 11.1
+    },
+    "rail": true
+   }
+  ],
+  "judgesRail": 2,
+  "onRail": true,
+  "changed": true,
+  "parts": [
+   [
+    "plocha",
+    5.25
+   ],
+   [
+    "zelen",
+    4.5
+   ],
+   [
+    "cyklostezka",
+    1.35
+   ],
+   [
+    "cyklostezka",
+    1.35
+   ],
+   [
+    "zelen",
+    1.6
+   ],
+   [
+    "pruh",
+    3.27
+   ],
+   [
+    "pruh",
+    3.53
+   ],
+   [
+    "zelen",
+    6.3
+   ],
+   [
+    "plocha",
+    1.35
+   ],
+   [
+    "railway",
+    4.5
+   ],
+   [
+    "plocha",
+    1.7
+   ],
+   [
+    "railway",
+    4.5
+   ]
+  ],
+  "partsOff": [
+   [
+    "plocha",
+    5.25
+   ],
+   [
+    "zelen",
+    4.5
+   ],
+   [
+    "cyklostezka",
+    1.35
+   ],
+   [
+    "cyklostezka",
+    1.35
+   ],
+   [
+    "zelen",
+    1.6
+   ],
+   [
+    "pruh",
+    3.27
+   ],
+   [
+    "pruh",
+    3.53
+   ],
+   [
+    "zelen",
+    6.3
+   ],
+   [
+    "plocha",
+    12.4
+   ]
+  ]
+ },
+ {
+  "jid": "j04",
+  "id": "SK-kosice-1171539659-6",
+  "country": "SK",
+  "town": "kosice",
+  "name": "Stromová",
+  "on": 0.5,
+  "off": 0.5,
+  "per": [
+   {
+    "on": {
+     "same": false,
+     "score": 0.5,
+     "edits": [
+      "chybí delici"
+     ],
+     "lanesA": 1,
+     "lanesB": 2,
+     "widthA": 7,
+     "widthB": 7.9
+    },
+    "off": {
+     "same": false,
+     "score": 0.5,
+     "edits": [
+      "chybí delici"
+     ],
+     "lanesA": 1,
+     "lanesB": 2,
+     "widthA": 7,
+     "widthB": 7.9
+    },
+    "rail": true
+   },
+   {
+    "on": {
+     "same": false,
+     "score": 0.5,
+     "edits": [
+      "chybí stani"
+     ],
+     "lanesA": 1,
+     "lanesB": 2,
+     "widthA": 6,
+     "widthB": 7.9
+    },
+    "off": {
+     "same": false,
+     "score": 0.5,
+     "edits": [
+      "chybí stani"
+     ],
+     "lanesA": 1,
+     "lanesB": 2,
+     "widthA": 6,
+     "widthB": 7.9
+    },
+    "rail": true
+   }
+  ],
+  "judgesRail": 2,
+  "onRail": false,
+  "changed": false,
+  "parts": [
+   [
+    "plocha",
+    3.7
+   ],
+   [
+    "pruh",
+    3.95
+   ],
+   [
+    "pruh",
+    3.95
+   ],
+   [
+    "zelen",
+    1.65
+   ]
+  ],
+  "partsOff": [
+   [
+    "plocha",
+    3.7
+   ],
+   [
+    "pruh",
+    3.95
+   ],
+   [
+    "pruh",
+    3.95
+   ],
+   [
+    "zelen",
+    1.65
+   ]
+  ]
+ },
+ {
+  "jid": "j05",
+  "id": "DE-aachen-5214473-23",
+  "country": "DE",
+  "town": "aachen",
+  "name": "Welkenrather Straße",
+  "on": 0.5833333333333334,
+  "off": 0.5833333333333334,
+  "per": [
+   {
+    "on": {
+     "same": false,
+     "score": 0.5,
+     "edits": [
+      "stani→chodnik",
+      "chybí stani"
+     ],
+     "lanesA": 2,
+     "lanesB": 2,
+     "widthA": 11.5,
+     "widthB": 13.82
+    },
+    "off": {
+     "same": false,
+     "score": 0.5,
+     "edits": [
+      "stani→chodnik",
+      "chybí stani"
+     ],
+     "lanesA": 2,
+     "lanesB": 2,
+     "widthA": 11.5,
+     "widthB": 13.82
+    },
+    "rail": true
+   },
+   {
+    "on": {
+     "same": false,
+     "score": 0.6666666666666667,
+     "edits": [
+      "stani→chodnik"
+     ],
+     "lanesA": 2,
+     "lanesB": 2,
+     "widthA": 15,
+     "widthB": 13.82
+    },
+    "off": {
+     "same": false,
+     "score": 0.6666666666666667,
+     "edits": [
+      "stani→chodnik"
+     ],
+     "lanesA": 2,
+     "lanesB": 2,
+     "widthA": 15,
+     "widthB": 13.82
+    },
+    "rail": true
+   }
+  ],
+  "judgesRail": 2,
+  "onRail": false,
+  "changed": false,
+  "parts": [
+   [
+    "zelen",
+    3.1
+   ],
+   [
+    "chodnik",
+    3.8
+   ],
+   [
+    "pruh",
+    4.1
+   ],
+   [
+    "pruh",
+    4.1
+   ],
+   [
+    "chodnik",
+    1.82
+   ]
+  ],
+  "partsOff": [
+   [
+    "zelen",
+    3.1
+   ],
+   [
+    "chodnik",
+    3.8
+   ],
+   [
+    "pruh",
+    4.1
+   ],
+   [
+    "pruh",
+    4.1
+   ],
+   [
+    "chodnik",
+    1.82
+   ]
+  ]
+ },
+ {
+  "jid": "j06",
+  "id": "DE-aachen-5338045-24",
+  "country": "DE",
+  "town": "aachen",
+  "name": "Bärenstraße",
+  "on": 0.6666666666666667,
+  "off": 0.6666666666666667,
+  "per": [
+   {
+    "on": {
+     "same": false,
+     "score": 0.6666666666666667,
+     "edits": [
+      "chybí stani"
+     ],
+     "lanesA": 2,
+     "lanesB": 2,
+     "widthA": 11.3,
+     "widthB": 12.9
+    },
+    "off": {
+     "same": false,
+     "score": 0.6666666666666667,
+     "edits": [
+      "chybí stani"
+     ],
+     "lanesA": 2,
+     "lanesB": 2,
+     "widthA": 11.3,
+     "widthB": 12.9
+    },
+    "rail": true
+   },
+   {
+    "on": {
+     "same": false,
+     "score": 0.6666666666666667,
+     "edits": [
+      "chybí stani"
+     ],
+     "lanesA": 2,
+     "lanesB": 2,
+     "widthA": 11.5,
+     "widthB": 12.9
+    },
+    "off": {
+     "same": false,
+     "score": 0.6666666666666667,
+     "edits": [
+      "chybí stani"
+     ],
+     "lanesA": 2,
+     "lanesB": 2,
+     "widthA": 11.5,
+     "widthB": 12.9
+    },
+    "rail": true
+   }
+  ],
+  "judgesRail": 2,
+  "onRail": true,
+  "changed": true,
+  "parts": [
+   [
+    "chodnik",
+    3.9
+   ],
+   [
+    "pruh",
+    4.5
+   ],
+   [
+    "pruh",
+    4.5
+   ],
+   [
+    "plocha",
+    3.4
+   ],
+   [
+    "railway",
+    4.5
+   ],
+   [
+    "plocha",
+    3.45
+   ],
+   [
+    "railway",
+    5.57
+   ]
+  ],
+  "partsOff": [
+   [
+    "chodnik",
+    3.9
+   ],
+   [
+    "pruh",
+    4.5
+   ],
+   [
+    "pruh",
+    4.5
+   ]
+  ]
+ },
+ {
+  "jid": "j07",
+  "id": "SK-zilina-1370703880-11",
+  "country": "SK",
+  "town": "zilina",
+  "name": "Mostná",
+  "on": 0.2916666666666667,
+  "off": 0.2916666666666667,
+  "per": [
+   {
+    "on": {
+     "same": false,
+     "score": 0.33333333333333337,
+     "edits": [
+      "chybí zeleznice",
+      "chybí pruh"
+     ],
+     "lanesA": 5,
+     "lanesB": 5,
+     "widthA": 30.9,
+     "widthB": 29.179999999999996
+    },
+    "off": {
+     "same": false,
+     "score": 0.33333333333333337,
+     "edits": [
+      "chybí zeleznice",
+      "chybí pruh"
+     ],
+     "lanesA": 5,
+     "lanesB": 5,
+     "widthA": 30.9,
+     "widthB": 29.179999999999996
+    },
+    "rail": true
+   },
+   {
+    "on": {
+     "same": false,
+     "score": 0.25,
+     "edits": [
+      "chybí zeleznice",
+      "chybí pruh",
+      "chybí chodnik"
+     ],
+     "lanesA": 5,
+     "lanesB": 5,
+     "widthA": 28.099999999999998,
+     "widthB": 29.179999999999996
+    },
+    "off": {
+     "same": false,
+     "score": 0.25,
+     "edits": [
+      "chybí zeleznice",
+      "chybí pruh",
+      "chybí chodnik"
+     ],
+     "lanesA": 5,
+     "lanesB": 5,
+     "widthA": 28.099999999999998,
+     "widthB": 29.179999999999996
+    },
+    "rail": true
+   }
+  ],
+  "judgesRail": 2,
+  "onRail": false,
+  "changed": false,
+  "parts": [
+   [
+    "obsluzna",
+    3.08
+   ],
+   [
+    "plocha",
+    10.7
+   ],
+   [
+    "krajnice",
+    1.12
+   ],
+   [
+    "pruh",
+    3.5
+   ],
+   [
+    "pruh",
+    2.7
+   ],
+   [
+    "pruh",
+    2.7
+   ],
+   [
+    "pruh",
+    3.5
+   ],
+   [
+    "krajnice",
+    1.88
+   ],
+   [
+    "nezname",
+    1.05
+   ],
+   [
+    "chodnik",
+    1.2
+   ],
+   [
+    "nezname",
+    0.5
+   ]
+  ],
+  "partsOff": [
+   [
+    "obsluzna",
+    3.08
+   ],
+   [
+    "plocha",
+    10.7
+   ],
+   [
+    "krajnice",
+    1.12
+   ],
+   [
+    "pruh",
+    3.5
+   ],
+   [
+    "pruh",
+    2.7
+   ],
+   [
+    "pruh",
+    2.7
+   ],
+   [
+    "pruh",
+    3.5
+   ],
+   [
+    "krajnice",
+    1.88
+   ],
+   [
+    "nezname",
+    1.05
+   ],
+   [
+    "chodnik",
+    1.2
+   ],
+   [
+    "nezname",
+    0.5
+   ]
+  ]
+ },
+ {
+  "jid": "j08",
+  "id": "CH-bern-691872488-8",
+  "country": "CH",
+  "town": "bern",
+  "name": "Südbahnhofstrasse",
+  "on": 0.4166666666666667,
+  "off": 0.4166666666666667,
+  "per": [
+   {
+    "on": {
+     "same": false,
+     "score": 0.5,
+     "edits": [
+      "zeleznice→stani"
+     ],
+     "lanesA": 2,
+     "lanesB": 1,
+     "widthA": 23.4,
+     "widthB": 6.6
+    },
+    "off": {
+     "same": false,
+     "score": 0.5,
+     "edits": [
+      "zeleznice→stani"
+     ],
+     "lanesA": 2,
+     "lanesB": 1,
+     "widthA": 23.4,
+     "widthB": 6.6
+    },
+    "rail": true
+   },
+   {
+    "on": {
+     "same": false,
+     "score": 0.33333333333333337,
+     "edits": [
+      "zeleznice→stani",
+      "chybí chodnik"
+     ],
+     "lanesA": 2,
+     "lanesB": 1,
+     "widthA": 30.5,
+     "widthB": 6.6
+    },
+    "off": {
+     "same": false,
+     "score": 0.33333333333333337,
+     "edits": [
+      "zeleznice→stani",
+      "chybí chodnik"
+     ],
+     "lanesA": 2,
+     "lanesB": 1,
+     "widthA": 30.5,
+     "widthB": 6.6
+    },
+    "rail": true
+   }
+  ],
+  "judgesRail": 2,
+  "onRail": false,
+  "changed": false,
+  "parts": [
+   [
+    "plocha",
+    8
+   ],
+   [
+    "krajnice",
+    2.1
+   ],
+   [
+    "pruh",
+    4.5
+   ],
+   [
+    "parkovani",
+    2.1
+   ],
+   [
+    "plocha",
+    14.7
+   ]
+  ],
+  "partsOff": [
+   [
+    "plocha",
+    8
+   ],
+   [
+    "krajnice",
+    2.1
+   ],
+   [
+    "pruh",
+    4.5
+   ],
+   [
+    "parkovani",
+    2.1
+   ],
+   [
+    "plocha",
+    14.7
+   ]
+  ]
+ },
+ {
+  "jid": "j09",
+  "id": "DE-frankfurt-44633399-5",
+  "country": "DE",
+  "town": "frankfurt",
+  "name": "Emser Brücke",
+  "on": 0.5,
+  "off": 0.5,
+  "per": [
+   {
+    "on": {
+     "same": false,
+     "score": 0.5,
+     "edits": [
+      "navíc delici",
+      "navíc pruh"
+     ],
+     "lanesA": 5,
+     "lanesB": 4,
+     "widthA": 29,
+     "widthB": 22.41
+    },
+    "off": {
+     "same": false,
+     "score": 0.5,
+     "edits": [
+      "navíc delici",
+      "navíc pruh"
+     ],
+     "lanesA": 5,
+     "lanesB": 4,
+     "widthA": 29,
+     "widthB": 22.41
+    },
+    "rail": true
+   },
+   {
+    "on": {
+     "same": false,
+     "score": 0.5,
+     "edits": [
+      "navíc delici",
+      "navíc pruh"
+     ],
+     "lanesA": 5,
+     "lanesB": 4,
+     "widthA": 21,
+     "widthB": 22.41
+    },
+    "off": {
+     "same": false,
+     "score": 0.5,
+     "edits": [
+      "navíc delici",
+      "navíc pruh"
+     ],
+     "lanesA": 5,
+     "lanesB": 4,
+     "widthA": 21,
+     "widthB": 22.41
+    },
+    "rail": true
+   }
+  ],
+  "judgesRail": 2,
+  "onRail": true,
+  "changed": true,
+  "parts": [
+   [
+    "railway",
+    2.42
+   ],
+   [
+    "plocha",
+    0.55
+   ],
+   [
+    "railway",
+    4.5
+   ],
+   [
+    "zelen",
+    5.15
+   ],
+   [
+    "pruh",
+    4.68
+   ],
+   [
+    "pruh",
+    4.23
+   ],
+   [
+    "delici",
+    0.5
+   ],
+   [
+    "pruh",
+    4.5
+   ],
+   [
+    "pruh",
+    4.5
+   ],
+   [
+    "krajnice",
+    1.4
+   ],
+   [
+    "chodnik",
+    2.6
+   ],
+   [
+    "plocha",
+    8.98
+   ]
+  ],
+  "partsOff": [
+   [
+    "zelen",
+    1.97
+   ],
+   [
+    "pruh",
+    4.68
+   ],
+   [
+    "pruh",
+    4.23
+   ],
+   [
+    "delici",
+    0.5
+   ],
+   [
+    "pruh",
+    4.5
+   ],
+   [
+    "pruh",
+    4.5
+   ],
+   [
+    "krajnice",
+    1.4
+   ],
+   [
+    "chodnik",
+    2.6
+   ],
+   [
+    "plocha",
+    8.98
+   ]
+  ]
+ },
+ {
+  "jid": "j10",
+  "id": "SK-zvolen-198967458-26",
+  "country": "SK",
+  "town": "zvolen",
+  "name": "Neresnická cesta",
+  "on": 1,
+  "off": 1,
+  "per": [
+   {
+    "on": {
+     "same": true,
+     "score": 1,
+     "edits": [],
+     "lanesA": 2,
+     "lanesB": 2,
+     "widthA": 7.4,
+     "widthB": 8.6
+    },
+    "off": {
+     "same": true,
+     "score": 1,
+     "edits": [],
+     "lanesA": 2,
+     "lanesB": 2,
+     "widthA": 7.4,
+     "widthB": 8.6
+    },
+    "rail": false
+   },
+   {
+    "on": {
+     "same": true,
+     "score": 1,
+     "edits": [],
+     "lanesA": 2,
+     "lanesB": 2,
+     "widthA": 8,
+     "widthB": 8.6
+    },
+    "off": {
+     "same": true,
+     "score": 1,
+     "edits": [],
+     "lanesA": 2,
+     "lanesB": 2,
+     "widthA": 8,
+     "widthB": 8.6
+    },
+    "rail": false
+   }
+  ],
+  "judgesRail": 0,
+  "onRail": false,
+  "changed": false,
+  "parts": [
+   [
+    "krajnice",
+    0.37
+   ],
+   [
+    "pruh",
+    3.6
+   ],
+   [
+    "pruh",
+    3.7
+   ],
+   [
+    "krajnice",
+    0.93
+   ]
+  ],
+  "partsOff": [
+   [
+    "krajnice",
+    0.37
+   ],
+   [
+    "pruh",
+    3.6
+   ],
+   [
+    "pruh",
+    3.7
+   ],
+   [
+    "krajnice",
+    0.93
+   ]
+  ]
+ },
+ {
+  "jid": "j11",
+  "id": "DE-frankfurt-312969824-4",
+  "country": "DE",
+  "town": "frankfurt",
+  "name": "Mainkai",
+  "on": 0.8,
+  "off": 0.8,
+  "per": [
+   {
+    "on": {
+     "same": false,
+     "score": 0.8,
+     "edits": [
+      "stani→chodnik"
+     ],
+     "lanesA": 2,
+     "lanesB": 2,
+     "widthA": 18.099999999999998,
+     "widthB": 16.07
+    },
+    "off": {
+     "same": false,
+     "score": 0.8,
+     "edits": [
+      "stani→chodnik"
+     ],
+     "lanesA": 2,
+     "lanesB": 2,
+     "widthA": 18.099999999999998,
+     "widthB": 16.07
+    },
+    "rail": true
+   },
+   {
+    "on": {
+     "same": false,
+     "score": 0.8,
+     "edits": [
+      "stani→chodnik"
+     ],
+     "lanesA": 2,
+     "lanesB": 2,
+     "widthA": 18.4,
+     "widthB": 16.07
+    },
+    "off": {
+     "same": false,
+     "score": 0.8,
+     "edits": [
+      "stani→chodnik"
+     ],
+     "lanesA": 2,
+     "lanesB": 2,
+     "widthA": 18.4,
+     "widthB": 16.07
+    },
+    "rail": false
+   }
+  ],
+  "judgesRail": 1,
+  "onRail": false,
+  "changed": false,
+  "parts": [
+   [
+    "zelen",
+    17.75
+   ],
+   [
+    "chodnik",
+    4.2
+   ],
+   [
+    "cyklopruh",
+    1.5
+   ],
+   [
+    "pruh",
+    3.42
+   ],
+   [
+    "pruh",
+    3.42
+   ],
+   [
+    "cyklopruh",
+    1.5
+   ],
+   [
+    "chodnik",
+    2.03
+   ]
+  ],
+  "partsOff": [
+   [
+    "zelen",
+    17.75
+   ],
+   [
+    "chodnik",
+    4.2
+   ],
+   [
+    "cyklopruh",
+    1.5
+   ],
+   [
+    "pruh",
+    3.42
+   ],
+   [
+    "pruh",
+    3.42
+   ],
+   [
+    "cyklopruh",
+    1.5
+   ],
+   [
+    "chodnik",
+    2.03
+   ]
+  ]
+ },
+ {
+  "jid": "j12",
+  "id": "PL-gdansk-176982127-28",
+  "country": "PL",
+  "town": "gdansk",
+  "name": "Przy Torze",
+  "on": 0.5,
+  "off": 0.5,
+  "per": [
+   {
+    "on": {
+     "same": false,
+     "score": 0.5,
+     "edits": [
+      "chybí zeleznice"
+     ],
+     "lanesA": 2,
+     "lanesB": 2,
+     "widthA": 21,
+     "widthB": 6.6
+    },
+    "off": {
+     "same": false,
+     "score": 0.5,
+     "edits": [
+      "chybí zeleznice"
+     ],
+     "lanesA": 2,
+     "lanesB": 2,
+     "widthA": 21,
+     "widthB": 6.6
+    },
+    "rail": true
+   },
+   {
+    "on": {
+     "same": false,
+     "score": 0.5,
+     "edits": [
+      "chybí zeleznice"
+     ],
+     "lanesA": 2,
+     "lanesB": 2,
+     "widthA": 21,
+     "widthB": 6.6
+    },
+    "off": {
+     "same": false,
+     "score": 0.5,
+     "edits": [
+      "chybí zeleznice"
+     ],
+     "lanesA": 2,
+     "lanesB": 2,
+     "widthA": 21,
+     "widthB": 6.6
+    },
+    "rail": true
+   }
+  ],
+  "judgesRail": 2,
+  "onRail": false,
+  "changed": true,
+  "parts": [
+   [
+    "zelen",
+    0.8
+   ],
+   [
+    "pruh",
+    3.3
+   ],
+   [
+    "pruh",
+    3.3
+   ],
+   [
+    "zelen",
+    2.03
+   ]
+  ],
+  "partsOff": [
+   [
+    "zelen",
+    0.65
+   ],
+   [
+    "pruh",
+    3.3
+   ],
+   [
+    "pruh",
+    3.3
+   ],
+   [
+    "zelen",
+    2.02
+   ]
+  ]
+ },
+ {
+  "jid": "j13",
+  "id": "DE-hamburg-516884622-5",
+  "country": "DE",
+  "town": "hamburg",
+  "name": "Am Moldauhafen",
+  "on": 0.25,
+  "off": 0.25,
+  "per": [
+   {
+    "on": {
+     "same": false,
+     "score": 0.25,
+     "edits": [
+      "chybí zeleznice",
+      "chybí zelen",
+      "chybí chodnik"
+     ],
+     "lanesA": 3,
+     "lanesB": 1,
+     "widthA": 39.1,
+     "widthB": 8.8
+    },
+    "off": {
+     "same": false,
+     "score": 0.25,
+     "edits": [
+      "chybí zeleznice",
+      "chybí zelen",
+      "chybí chodnik"
+     ],
+     "lanesA": 3,
+     "lanesB": 1,
+     "widthA": 39.1,
+     "widthB": 8.8
+    },
+    "rail": true
+   },
+   {
+    "on": {
+     "same": false,
+     "score": 0.25,
+     "edits": [
+      "chybí zeleznice",
+      "chybí zelen",
+      "chybí chodnik"
+     ],
+     "lanesA": 3,
+     "lanesB": 1,
+     "widthA": 40,
+     "widthB": 8.8
+    },
+    "off": {
+     "same": false,
+     "score": 0.25,
+     "edits": [
+      "chybí zeleznice",
+      "chybí zelen",
+      "chybí chodnik"
+     ],
+     "lanesA": 3,
+     "lanesB": 1,
+     "widthA": 40,
+     "widthB": 8.8
+    },
+    "rail": true
+   }
+  ],
+  "judgesRail": 2,
+  "onRail": false,
+  "changed": false,
+  "parts": [
+   [
+    "stromorad",
+    1.93
+   ],
+   [
+    "stromorad",
+    3
+   ],
+   [
+    "zelen",
+    1.87
+   ],
+   [
+    "nezname",
+    0.75
+   ],
+   [
+    "zelen",
+    12.26
+   ],
+   [
+    "stromorad",
+    3
+   ],
+   [
+    "stromorad",
+    3
+   ],
+   [
+    "zelen",
+    1.74
+   ],
+   [
+    "krajnice",
+    2.15
+   ],
+   [
+    "pruh",
+    4.5
+   ],
+   [
+    "krajnice",
+    2.15
+   ]
+  ],
+  "partsOff": [
+   [
+    "stromorad",
+    1.93
+   ],
+   [
+    "stromorad",
+    3
+   ],
+   [
+    "zelen",
+    1.87
+   ],
+   [
+    "nezname",
+    0.75
+   ],
+   [
+    "zelen",
+    12.26
+   ],
+   [
+    "stromorad",
+    3
+   ],
+   [
+    "stromorad",
+    3
+   ],
+   [
+    "zelen",
+    1.74
+   ],
+   [
+    "krajnice",
+    2.15
+   ],
+   [
+    "pruh",
+    4.5
+   ],
+   [
+    "krajnice",
+    2.15
+   ]
+  ]
+ },
+ {
+  "jid": "j14",
+  "id": "CZ-liberec-26249556-10",
+  "country": "CZ",
+  "town": "liberec",
+  "name": "Nákladní",
+  "on": 0.4285714285714286,
+  "off": 0.4285714285714286,
+  "per": [
+   {
+    "on": {
+     "same": false,
+     "score": 0.4285714285714286,
+     "edits": [
+      "zeleznice→chodnik",
+      "chybí zelen",
+      "chybí delici",
+      "chybí pruh"
+     ],
+     "lanesA": 8,
+     "lanesB": 5,
+     "widthA": 56.89999999999999,
+     "widthB": 27.019999999999996
+    },
+    "off": {
+     "same": false,
+     "score": 0.4285714285714286,
+     "edits": [
+      "zeleznice→chodnik",
+      "chybí zelen",
+      "chybí delici",
+      "chybí pruh"
+     ],
+     "lanesA": 8,
+     "lanesB": 5,
+     "widthA": 56.89999999999999,
+     "widthB": 27.019999999999996
+    },
+    "rail": true
+   },
+   {
+    "on": {
+     "same": false,
+     "score": 0.4285714285714286,
+     "edits": [
+      "zeleznice→chodnik",
+      "chybí zelen",
+      "chybí delici",
+      "chybí pruh"
+     ],
+     "lanesA": 6,
+     "lanesB": 5,
+     "widthA": 54.5,
+     "widthB": 27.019999999999996
+    },
+    "off": {
+     "same": false,
+     "score": 0.4285714285714286,
+     "edits": [
+      "zeleznice→chodnik",
+      "chybí zelen",
+      "chybí delici",
+      "chybí pruh"
+     ],
+     "lanesA": 6,
+     "lanesB": 5,
+     "widthA": 54.5,
+     "widthB": 27.019999999999996
+    },
+    "rail": true
+   }
+  ],
+  "judgesRail": 2,
+  "onRail": false,
+  "changed": false,
+  "parts": [
+   [
+    "pruh",
+    3.06
+   ],
+   [
+    "pruh",
+    3.06
+   ],
+   [
+    "pruh",
+    3.06
+   ],
+   [
+    "zelen",
+    0.55
+   ],
+   [
+    "zelen",
+    7
+   ],
+   [
+    "zelen",
+    1.15
+   ],
+   [
+    "pruh",
+    4.1
+   ],
+   [
+    "pruh",
+    3.64
+   ],
+   [
+    "chodnik",
+    1.4
+   ],
+   [
+    "plocha",
+    10.7
+   ],
+   [
+    "plocha",
+    3.55
+   ],
+   [
+    "plocha",
+    2.73
+   ]
+  ],
+  "partsOff": [
+   [
+    "pruh",
+    3.06
+   ],
+   [
+    "pruh",
+    3.06
+   ],
+   [
+    "pruh",
+    3.06
+   ],
+   [
+    "zelen",
+    0.55
+   ],
+   [
+    "zelen",
+    7
+   ],
+   [
+    "zelen",
+    1.15
+   ],
+   [
+    "pruh",
+    4.1
+   ],
+   [
+    "pruh",
+    3.64
+   ],
+   [
+    "chodnik",
+    1.4
+   ],
+   [
+    "plocha",
+    10.7
+   ],
+   [
+    "plocha",
+    3.55
+   ],
+   [
+    "plocha",
+    2.73
+   ]
+  ]
+ },
+ {
+  "jid": "j15",
+  "id": "AT-graz-107727073-12",
+  "country": "AT",
+  "town": "graz",
+  "name": "Friedhofgasse",
+  "on": 0.425,
+  "off": 0.45,
+  "per": [
+   {
+    "on": {
+     "same": false,
+     "score": 0.25,
+     "edits": [
+      "stani→zeleznice",
+      "pruh→zelen",
+      "stani→pruh"
+     ],
+     "lanesA": 2,
+     "lanesB": 2,
+     "widthA": 13.600000000000001,
+     "widthB": 16.9
+    },
+    "off": {
+     "same": false,
+     "score": 0.5,
+     "edits": [
+      "chybí stani",
+      "chybí stani"
+     ],
+     "lanesA": 2,
+     "lanesB": 2,
+     "widthA": 13.600000000000001,
+     "widthB": 10.24
+    },
+    "rail": true
+   },
+   {
+    "on": {
+     "same": false,
+     "score": 0.6,
+     "edits": [
+      "stani→zelen",
+      "chybí stani"
+     ],
+     "lanesA": 2,
+     "lanesB": 2,
+     "widthA": 26.5,
+     "widthB": 16.9
+    },
+    "off": {
+     "same": false,
+     "score": 0.4,
+     "edits": [
+      "chybí zeleznice",
+      "chybí stani",
+      "chybí stani"
+     ],
+     "lanesA": 2,
+     "lanesB": 2,
+     "widthA": 26.5,
+     "widthB": 10.24
+    },
+    "rail": true
+   }
+  ],
+  "judgesRail": 2,
+  "onRail": true,
+  "changed": true,
+  "parts": [
+   [
+    "chodnik",
+    2.3
+   ],
+   [
+    "pruh",
+    3.9
+   ],
+   [
+    "pruh",
+    3.9
+   ],
+   [
+    "zelen",
+    2.3
+   ],
+   [
+    "railway",
+    4.5
+   ],
+   [
+    "plocha",
+    0.7
+   ],
+   [
+    "railway",
+    4.5
+   ]
+  ],
+  "partsOff": [
+   [
+    "chodnik",
+    2.3
+   ],
+   [
+    "pruh",
+    3.97
+   ],
+   [
+    "pruh",
+    3.97
+   ],
+   [
+    "zelen",
+    1.88
+   ]
+  ]
+ },
+ {
+  "jid": "j16",
+  "id": "AT-salzburg-210355417-26",
+  "country": "AT",
+  "town": "salzburg",
+  "name": "Bergstraße",
+  "on": 1,
+  "off": 1,
+  "per": [
+   {
+    "on": {
+     "same": true,
+     "score": 1,
+     "edits": [],
+     "lanesA": 2,
+     "lanesB": 2,
+     "widthA": 5.8,
+     "widthB": 5.5
+    },
+    "off": {
+     "same": true,
+     "score": 1,
+     "edits": [],
+     "lanesA": 2,
+     "lanesB": 2,
+     "widthA": 5.8,
+     "widthB": 5.5
+    },
+    "rail": true
+   },
+   {
+    "on": {
+     "same": true,
+     "score": 1,
+     "edits": [],
+     "lanesA": 2,
+     "lanesB": 2,
+     "widthA": 6,
+     "widthB": 5.5
+    },
+    "off": {
+     "same": true,
+     "score": 1,
+     "edits": [],
+     "lanesA": 2,
+     "lanesB": 2,
+     "widthA": 6,
+     "widthB": 5.5
+    },
+    "rail": true
+   }
+  ],
+  "judgesRail": 2,
+  "onRail": true,
+  "changed": true,
+  "parts": [
+   [
+    "pruh",
+    2.75
+   ],
+   [
+    "pruh",
+    2.75
+   ],
+   [
+    "zelen",
+    4.1
+   ],
+   [
+    "railway",
+    9.1
+   ]
+  ],
+  "partsOff": [
+   [
+    "pruh",
+    2.75
+   ],
+   [
+    "pruh",
+    2.75
+   ],
+   [
+    "plocha",
+    0.65
+   ],
+   [
+    "zelen",
+    1.37
+   ]
+  ]
+ },
+ {
+  "jid": "j17",
+  "id": "AT-stpoelten-29307292-31",
+  "country": "AT",
+  "town": "stpoelten",
+  "name": "Leobersdorfer Bahnstraße",
+  "on": 0.33333333333333337,
+  "off": 0.33333333333333337,
+  "per": [
+   {
+    "on": {
+     "same": false,
+     "score": 0.33333333333333337,
+     "edits": [
+      "chybí stani",
+      "chybí chodnik"
+     ],
+     "lanesA": 2,
+     "lanesB": 2,
+     "widthA": 8.5,
+     "widthB": 6.4
+    },
+    "off": {
+     "same": false,
+     "score": 0.33333333333333337,
+     "edits": [
+      "chybí stani",
+      "chybí chodnik"
+     ],
+     "lanesA": 2,
+     "lanesB": 2,
+     "widthA": 8.5,
+     "widthB": 6.4
+    },
+    "rail": true
+   },
+   {
+    "on": {
+     "same": false,
+     "score": 0.33333333333333337,
+     "edits": [
+      "chybí stani",
+      "chybí chodnik"
+     ],
+     "lanesA": 2,
+     "lanesB": 2,
+     "widthA": 8.5,
+     "widthB": 6.4
+    },
+    "off": {
+     "same": false,
+     "score": 0.33333333333333337,
+     "edits": [
+      "chybí stani",
+      "chybí chodnik"
+     ],
+     "lanesA": 2,
+     "lanesB": 2,
+     "widthA": 8.5,
+     "widthB": 6.4
+    },
+    "rail": true
+   }
+  ],
+  "judgesRail": 2,
+  "onRail": true,
+  "changed": true,
+  "parts": [
+   [
+    "plocha",
+    1.65
+   ],
+   [
+    "pruh",
+    3.2
+   ],
+   [
+    "pruh",
+    3.2
+   ],
+   [
+    "plocha",
+    7.1
+   ],
+   [
+    "railway",
+    4.5
+   ],
+   [
+    "plocha",
+    0.4
+   ],
+   [
+    "railway",
+    6.83
+   ]
+  ],
+  "partsOff": [
+   [
+    "plocha",
+    1.65
+   ],
+   [
+    "pruh",
+    3.2
+   ],
+   [
+    "pruh",
+    3.2
+   ]
+  ]
+ },
+ {
+  "jid": "j18",
+  "id": "AT-dornbirn-32392813-23",
+  "country": "AT",
+  "town": "dornbirn",
+  "name": "Unter der Bahn",
+  "on": 0.6666666666666667,
+  "off": 0.6666666666666667,
+  "per": [
+   {
+    "on": {
+     "same": false,
+     "score": 0.33333333333333337,
+     "edits": [
+      "chybí zeleznice",
+      "chybí zelen"
+     ],
+     "lanesA": 1,
+     "lanesB": 1,
+     "widthA": 15.5,
+     "widthB": 3.4
+    },
+    "off": {
+     "same": false,
+     "score": 0.33333333333333337,
+     "edits": [
+      "chybí zeleznice",
+      "chybí zelen"
+     ],
+     "lanesA": 1,
+     "lanesB": 1,
+     "widthA": 15.5,
+     "widthB": 3.4
+    },
+    "rail": true
+   },
+   {
+    "on": {
+     "same": true,
+     "score": 1,
+     "edits": [],
+     "lanesA": 1,
+     "lanesB": 1,
+     "widthA": 3.5,
+     "widthB": 3.4
+    },
+    "off": {
+     "same": true,
+     "score": 1,
+     "edits": [],
+     "lanesA": 1,
+     "lanesB": 1,
+     "widthA": 3.5,
+     "widthB": 3.4
+    },
+    "rail": true
+   }
+  ],
+  "judgesRail": 2,
+  "onRail": true,
+  "changed": true,
+  "parts": [
+   [
+    "pruh",
+    3.4
+   ],
+   [
+    "plocha",
+    2.05
+   ],
+   [
+    "railway",
+    4.5
+   ],
+   [
+    "plocha",
+    0.75
+   ],
+   [
+    "railway",
+    4.5
+   ],
+   [
+    "plocha",
+    1.2
+   ],
+   [
+    "zelen",
+    7.1
+   ]
+  ],
+  "partsOff": [
+   [
+    "pruh",
+    3.4
+   ],
+   [
+    "plocha",
+    13
+   ],
+   [
+    "zelen",
+    7.1
+   ]
+  ]
+ },
+ {
+  "jid": "j19",
+  "id": "SK-presov-1547300476-25",
+  "country": "SK",
+  "town": "presov",
+  "name": "Zápotockého",
+  "on": 0,
+  "off": 0,
+  "per": [
+   {
+    "on": {
+     "same": false,
+     "score": 0,
+     "edits": [
+      "zeleznice→pruh",
+      "zelen→stani",
+      "pruh→chodnik"
+     ],
+     "lanesA": 2,
+     "lanesB": 1,
+     "widthA": 12.5,
+     "widthB": 9.100000000000001
+    },
+    "off": {
+     "same": false,
+     "score": 0,
+     "edits": [
+      "zeleznice→pruh",
+      "zelen→stani",
+      "pruh→chodnik"
+     ],
+     "lanesA": 2,
+     "lanesB": 1,
+     "widthA": 12.5,
+     "widthB": 9.100000000000001
+    },
+    "rail": true
+   },
+   {
+    "on": {
+     "same": false,
+     "score": 0,
+     "edits": [
+      "zeleznice→pruh",
+      "pruh→stani",
+      "navíc chodnik"
+     ],
+     "lanesA": 2,
+     "lanesB": 1,
+     "widthA": 9,
+     "widthB": 9.100000000000001
+    },
+    "off": {
+     "same": false,
+     "score": 0,
+     "edits": [
+      "zeleznice→pruh",
+      "pruh→stani",
+      "navíc chodnik"
+     ],
+     "lanesA": 2,
+     "lanesB": 1,
+     "widthA": 9,
+     "widthB": 9.100000000000001
+    },
+    "rail": true
+   }
+  ],
+  "judgesRail": 2,
+  "onRail": true,
+  "changed": true,
+  "parts": [
+   [
+    "chodnik",
+    2
+   ],
+   [
+    "parkovani",
+    2.4
+   ],
+   [
+    "pruh",
+    4.7
+   ],
+   [
+    "zelen",
+    4.4
+   ],
+   [
+    "plocha",
+    2.75
+   ],
+   [
+    "railway",
+    4.5
+   ],
+   [
+    "plocha",
+    6.86
+   ]
+  ],
+  "partsOff": [
+   [
+    "chodnik",
+    2
+   ],
+   [
+    "parkovani",
+    2.4
+   ],
+   [
+    "pruh",
+    4.7
+   ],
+   [
+    "zelen",
+    4.4
+   ],
+   [
+    "plocha",
+    14.11
+   ]
+  ]
+ },
+ {
+  "jid": "j21",
+  "id": "CZ-brno-52755296-21",
+  "country": "CZ",
+  "town": "brno",
+  "name": "Kulkova",
+  "on": 0.6666666666666667,
+  "off": 0.6666666666666667,
+  "per": [
+   {
+    "on": {
+     "same": false,
+     "score": 0.6666666666666667,
+     "edits": [
+      "navíc chodnik"
+     ],
+     "lanesA": 2,
+     "lanesB": 2,
+     "widthA": 10,
+     "widthB": 15.85
+    },
+    "off": {
+     "same": false,
+     "score": 0.6666666666666667,
+     "edits": [
+      "navíc chodnik"
+     ],
+     "lanesA": 2,
+     "lanesB": 2,
+     "widthA": 10,
+     "widthB": 15.85
+    },
+    "rail": true
+   },
+   {
+    "on": {
+     "same": false,
+     "score": 0.6666666666666667,
+     "edits": [
+      "navíc chodnik"
+     ],
+     "lanesA": 2,
+     "lanesB": 2,
+     "widthA": 10,
+     "widthB": 15.85
+    },
+    "off": {
+     "same": false,
+     "score": 0.6666666666666667,
+     "edits": [
+      "navíc chodnik"
+     ],
+     "lanesA": 2,
+     "lanesB": 2,
+     "widthA": 10,
+     "widthB": 15.85
+    },
+    "rail": true
+   }
+  ],
+  "judgesRail": 2,
+  "onRail": false,
+  "changed": false,
+  "parts": [
+   [
+    "chodnik",
+    2.56
+   ],
+   [
+    "krajnice",
+    0.46
+   ],
+   [
+    "pruh",
+    3.2
+   ],
+   [
+    "pruh",
+    3.28
+   ],
+   [
+    "chodnik",
+    6.35
+   ]
+  ],
+  "partsOff": [
+   [
+    "chodnik",
+    2.56
+   ],
+   [
+    "krajnice",
+    0.46
+   ],
+   [
+    "pruh",
+    3.2
+   ],
+   [
+    "pruh",
+    3.28
+   ],
+   [
+    "chodnik",
+    6.35
+   ]
+  ]
+ },
+ {
+  "jid": "j22",
+  "id": "AT-innsbruck-12837836-37",
+  "country": "AT",
+  "town": "innsbruck",
+  "name": "Dörrstraße",
+  "on": 0.6666666666666667,
+  "off": 0.6666666666666667,
+  "per": [
+   {
+    "on": {
+     "same": false,
+     "score": 0.6666666666666667,
+     "edits": [
+      "chybí stani"
+     ],
+     "lanesA": 2,
+     "lanesB": 2,
+     "widthA": 8.5,
+     "widthB": 8.08
+    },
+    "off": {
+     "same": false,
+     "score": 0.6666666666666667,
+     "edits": [
+      "chybí stani"
+     ],
+     "lanesA": 2,
+     "lanesB": 2,
+     "widthA": 8.5,
+     "widthB": 8.08
+    },
+    "rail": true
+   },
+   {
+    "on": {
+     "same": false,
+     "score": 0.6666666666666667,
+     "edits": [
+      "chybí stani"
+     ],
+     "lanesA": 2,
+     "lanesB": 2,
+     "widthA": 9.5,
+     "widthB": 8.08
+    },
+    "off": {
+     "same": false,
+     "score": 0.6666666666666667,
+     "edits": [
+      "chybí stani"
+     ],
+     "lanesA": 2,
+     "lanesB": 2,
+     "widthA": 9.5,
+     "widthB": 8.08
+    },
+    "rail": true
+   }
+  ],
+  "judgesRail": 2,
+  "onRail": false,
+  "changed": false,
+  "parts": [
+   [
+    "plocha",
+    12.55
+   ],
+   [
+    "zelen",
+    6.8
+   ],
+   [
+    "pruh",
+    2.85
+   ],
+   [
+    "pruh",
+    2.85
+   ],
+   [
+    "chodnik",
+    2.38
+   ]
+  ],
+  "partsOff": [
+   [
+    "plocha",
+    12.55
+   ],
+   [
+    "zelen",
+    6.8
+   ],
+   [
+    "pruh",
+    2.85
+   ],
+   [
+    "pruh",
+    2.85
+   ],
+   [
+    "chodnik",
+    2.38
+   ]
+  ]
+ },
+ {
+  "jid": "j23",
+  "id": "CZ-praha-591282879-9",
+  "country": "CZ",
+  "town": "praha",
+  "name": "Pod Děvínem",
+  "on": 0.16666666666666669,
+  "off": 0.16666666666666669,
+  "per": [
+   {
+    "on": {
+     "same": false,
+     "score": 0.33333333333333337,
+     "edits": [
+      "chybí chodnik",
+      "navíc chodnik"
+     ],
+     "lanesA": 2,
+     "lanesB": 1,
+     "widthA": 9.5,
+     "widthB": 9.45
+    },
+    "off": {
+     "same": false,
+     "score": 0.33333333333333337,
+     "edits": [
+      "chybí chodnik",
+      "navíc chodnik"
+     ],
+     "lanesA": 2,
+     "lanesB": 1,
+     "widthA": 9.5,
+     "widthB": 9.45
+    },
+    "rail": true
+   },
+   {
+    "on": {
+     "same": false,
+     "score": 0,
+     "edits": [
+      "zeleznice→pruh",
+      "navíc stani",
+      "navíc chodnik"
+     ],
+     "lanesA": 0,
+     "lanesB": 1,
+     "widthA": 11,
+     "widthB": 10.95
+    },
+    "off": {
+     "same": false,
+     "score": 0,
+     "edits": [
+      "zeleznice→pruh",
+      "navíc stani",
+      "navíc chodnik"
+     ],
+     "lanesA": 0,
+     "lanesB": 1,
+     "widthA": 11,
+     "widthB": 10.95
+    },
+    "rail": true
+   }
+  ],
+  "judgesRail": 2,
+  "onRail": false,
+  "changed": false,
+  "parts": [
+   [
+    "plocha",
+    13.8
+   ],
+   [
+    "stromorad",
+    1.23
+   ],
+   [
+    "chodnik",
+    3
+   ],
+   [
+    "parkovani",
+    1.95
+   ],
+   [
+    "pruh",
+    4.5
+   ],
+   [
+    "krajnice",
+    1.5
+   ]
+  ],
+  "partsOff": [
+   [
+    "plocha",
+    13.8
+   ],
+   [
+    "stromorad",
+    1.23
+   ],
+   [
+    "chodnik",
+    3
+   ],
+   [
+    "parkovani",
+    1.95
+   ],
+   [
+    "pruh",
+    4.5
+   ],
+   [
+    "krajnice",
+    1.5
+   ]
+  ]
+ },
+ {
+  "jid": "j24",
+  "id": "CH-lausanne-25526187-9",
+  "country": "CH",
+  "town": "lausanne",
+  "name": "A1a",
+  "on": 0.15476190476190477,
+  "off": 0.15476190476190477,
+  "per": [
+   {
+    "on": {
+     "same": false,
+     "score": 0.16666666666666663,
+     "edits": [
+      "chybí delici",
+      "chybí zeleznice",
+      "chybí delici",
+      "chybí pruh",
+      "chybí chodnik"
+     ],
+     "lanesA": 4,
+     "lanesB": 2,
+     "widthA": 40,
+     "widthB": 20
+    },
+    "off": {
+     "same": false,
+     "score": 0.16666666666666663,
+     "edits": [
+      "chybí delici",
+      "chybí zeleznice",
+      "chybí delici",
+      "chybí pruh",
+      "chybí chodnik"
+     ],
+     "lanesA": 4,
+     "lanesB": 2,
+     "widthA": 40,
+     "widthB": 20
+    },
+    "rail": true
+   },
+   {
+    "on": {
+     "same": false,
+     "score": 0.1428571428571429,
+     "edits": [
+      "chybí delici",
+      "chybí zeleznice",
+      "chybí delici",
+      "chybí stani",
+      "chybí pruh",
+      "chybí chodnik"
+     ],
+     "lanesA": 4,
+     "lanesB": 2,
+     "widthA": 44,
+     "widthB": 20
+    },
+    "off": {
+     "same": false,
+     "score": 0.1428571428571429,
+     "edits": [
+      "chybí delici",
+      "chybí zeleznice",
+      "chybí delici",
+      "chybí stani",
+      "chybí pruh",
+      "chybí chodnik"
+     ],
+     "lanesA": 4,
+     "lanesB": 2,
+     "widthA": 44,
+     "widthB": 20
+    },
+    "rail": true
+   }
+  ],
+  "judgesRail": 2,
+  "onRail": false,
+  "changed": false,
+  "parts": [
+   [
+    "zelen",
+    1.98
+   ],
+   [
+    "krajnice",
+    6.25
+   ],
+   [
+    "pruh",
+    3.75
+   ],
+   [
+    "pruh",
+    3.75
+   ],
+   [
+    "krajnice",
+    6.25
+   ],
+   [
+    "nezname",
+    0.85
+   ],
+   [
+    "zelen",
+    1.17
+   ]
+  ],
+  "partsOff": [
+   [
+    "zelen",
+    1.98
+   ],
+   [
+    "krajnice",
+    6.25
+   ],
+   [
+    "pruh",
+    3.75
+   ],
+   [
+    "pruh",
+    3.75
+   ],
+   [
+    "krajnice",
+    6.25
+   ],
+   [
+    "nezname",
+    0.85
+   ],
+   [
+    "zelen",
+    1.17
+   ]
+  ]
+ },
+ {
+  "jid": "j25",
+  "id": "CZ-plzen-30736559-12",
+  "country": "CZ",
+  "town": "plzen",
+  "name": "Dobřanská",
+  "on": 1,
+  "off": 1,
+  "per": [
+   {
+    "on": {
+     "same": true,
+     "score": 1,
+     "edits": [],
+     "lanesA": 2,
+     "lanesB": 2,
+     "widthA": 6,
+     "widthB": 6.4
+    },
+    "off": {
+     "same": true,
+     "score": 1,
+     "edits": [],
+     "lanesA": 2,
+     "lanesB": 2,
+     "widthA": 6,
+     "widthB": 6.4
+    },
+    "rail": true
+   },
+   {
+    "on": {
+     "same": true,
+     "score": 1,
+     "edits": [],
+     "lanesA": 2,
+     "lanesB": 2,
+     "widthA": 6,
+     "widthB": 6.4
+    },
+    "off": {
+     "same": true,
+     "score": 1,
+     "edits": [],
+     "lanesA": 2,
+     "lanesB": 2,
+     "widthA": 6,
+     "widthB": 6.4
+    },
+    "rail": true
+   }
+  ],
+  "judgesRail": 2,
+  "onRail": false,
+  "changed": false,
+  "parts": [
+   [
+    "krajnice",
+    0.32
+   ],
+   [
+    "pruh",
+    3.04
+   ],
+   [
+    "pruh",
+    3.04
+   ]
+  ],
+  "partsOff": [
+   [
+    "krajnice",
+    0.32
+   ],
+   [
+    "pruh",
+    3.04
+   ],
+   [
+    "pruh",
+    3.04
+   ]
+  ]
+ },
+ {
+  "jid": "j26",
+  "id": "DE-hamburg-25502230-10",
+  "country": "DE",
+  "town": "hamburg",
+  "name": "Veddeler Damm",
+  "on": 0.5833333333333334,
+  "off": 0.5833333333333334,
+  "per": [
+   {
+    "on": {
+     "same": false,
+     "score": 0.5,
+     "edits": [
+      "stani→chodnik"
+     ],
+     "lanesA": 2,
+     "lanesB": 3,
+     "widthA": 10.5,
+     "widthB": 28.349999999999998
+    },
+    "off": {
+     "same": false,
+     "score": 0.5,
+     "edits": [
+      "stani→chodnik"
+     ],
+     "lanesA": 2,
+     "lanesB": 3,
+     "widthA": 10.5,
+     "widthB": 28.349999999999998
+    },
+    "rail": true
+   },
+   {
+    "on": {
+     "same": false,
+     "score": 0.6666666666666667,
+     "edits": [
+      "chybí stani"
+     ],
+     "lanesA": 2,
+     "lanesB": 3,
+     "widthA": 11,
+     "widthB": 28.349999999999998
+    },
+    "off": {
+     "same": false,
+     "score": 0.6666666666666667,
+     "edits": [
+      "chybí stani"
+     ],
+     "lanesA": 2,
+     "lanesB": 3,
+     "widthA": 11,
+     "widthB": 28.349999999999998
+    },
+    "rail": true
+   }
+  ],
+  "judgesRail": 2,
+  "onRail": false,
+  "changed": false,
+  "parts": [
+   [
+    "krajnice",
+    6.2
+   ],
+   [
+    "pruh",
+    4.5
+   ],
+   [
+    "pruh",
+    4.5
+   ],
+   [
+    "pruh",
+    4.5
+   ],
+   [
+    "krajnice",
+    6.2
+   ],
+   [
+    "chodnik",
+    2.45
+   ]
+  ],
+  "partsOff": [
+   [
+    "krajnice",
+    6.2
+   ],
+   [
+    "pruh",
+    4.5
+   ],
+   [
+    "pruh",
+    4.5
+   ],
+   [
+    "pruh",
+    4.5
+   ],
+   [
+    "krajnice",
+    6.2
+   ],
+   [
+    "chodnik",
+    2.45
+   ]
+  ]
+ },
+ {
+  "jid": "j27",
+  "id": "PL-szczecin-25095824-12",
+  "country": "PL",
+  "town": "szczecin",
+  "name": "Edwarda Dembowskiego",
+  "on": 1,
+  "off": 1,
+  "per": [
+   {
+    "on": {
+     "same": true,
+     "score": 1,
+     "edits": [],
+     "lanesA": 1,
+     "lanesB": 1,
+     "widthA": 5.3,
+     "widthB": 7
+    },
+    "off": {
+     "same": true,
+     "score": 1,
+     "edits": [],
+     "lanesA": 1,
+     "lanesB": 1,
+     "widthA": 5.3,
+     "widthB": 7
+    },
+    "rail": false
+   },
+   {
+    "on": {
+     "same": true,
+     "score": 1,
+     "edits": [],
+     "lanesA": 1,
+     "lanesB": 1,
+     "widthA": 6,
+     "widthB": 7
+    },
+    "off": {
+     "same": true,
+     "score": 1,
+     "edits": [],
+     "lanesA": 1,
+     "lanesB": 1,
+     "widthA": 6,
+     "widthB": 7
+    },
+    "rail": false
+   }
+  ],
+  "judgesRail": 0,
+  "onRail": false,
+  "changed": false,
+  "parts": [
+   [
+    "parkovani",
+    2.5
+   ],
+   [
+    "pruh",
+    3.25
+   ],
+   [
+    "krajnice",
+    1.25
+   ],
+   [
+    "zelen",
+    2.02
+   ]
+  ],
+  "partsOff": [
+   [
+    "parkovani",
+    2.5
+   ],
+   [
+    "pruh",
+    3.25
+   ],
+   [
+    "krajnice",
+    1.25
+   ],
+   [
+    "zelen",
+    2.02
+   ]
+  ]
+ },
+ {
+  "jid": "j28",
+  "id": "DE-berlin-1469820116-5",
+  "country": "DE",
+  "town": "berlin",
+  "name": "Alice-Berend-Straße",
+  "on": 0.3392857142857143,
+  "off": 0.3392857142857143,
+  "per": [
+   {
+    "on": {
+     "same": false,
+     "score": 0.4285714285714286,
+     "edits": [
+      "chybí stani",
+      "zeleznice→chodnik",
+      "chybí pruh",
+      "chybí stani"
+     ],
+     "lanesA": 4,
+     "lanesB": 2,
+     "widthA": 43.9,
+     "widthB": 15.75
+    },
+    "off": {
+     "same": false,
+     "score": 0.4285714285714286,
+     "edits": [
+      "chybí stani",
+      "zeleznice→chodnik",
+      "chybí pruh",
+      "chybí stani"
+     ],
+     "lanesA": 4,
+     "lanesB": 2,
+     "widthA": 43.9,
+     "widthB": 15.75
+    },
+    "rail": true
+   },
+   {
+    "on": {
+     "same": false,
+     "score": 0.25,
+     "edits": [
+      "navíc chodnik",
+      "zeleznice→stani",
+      "pruh→chodnik"
+     ],
+     "lanesA": 6,
+     "lanesB": 2,
+     "widthA": 43.50000000000001,
+     "widthB": 15.75
+    },
+    "off": {
+     "same": false,
+     "score": 0.25,
+     "edits": [
+      "navíc chodnik",
+      "zeleznice→stani",
+      "pruh→chodnik"
+     ],
+     "lanesA": 6,
+     "lanesB": 2,
+     "widthA": 43.50000000000001,
+     "widthB": 15.75
+    },
+    "rail": true
+   }
+  ],
+  "judgesRail": 2,
+  "onRail": false,
+  "changed": false,
+  "parts": [
+   [
+    "zelen",
+    1.2
+   ],
+   [
+    "chodnik",
+    3
+   ],
+   [
+    "parkovani",
+    2
+   ],
+   [
+    "pruh",
+    2.7
+   ],
+   [
+    "pruh",
+    2.7
+   ],
+   [
+    "chodnik",
+    5.35
+   ]
+  ],
+  "partsOff": [
+   [
+    "zelen",
+    1.2
+   ],
+   [
+    "chodnik",
+    3
+   ],
+   [
+    "parkovani",
+    2
+   ],
+   [
+    "pruh",
+    2.7
+   ],
+   [
+    "pruh",
+    2.7
+   ],
+   [
+    "chodnik",
+    5.35
+   ]
+  ]
+ },
+ {
+  "jid": "j29",
+  "id": "PL-lodz-604205851-8",
+  "country": "PL",
+  "town": "lodz",
+  "name": "Maratońska",
+  "on": 1,
+  "off": 1,
+  "per": [
+   {
+    "on": {
+     "same": true,
+     "score": 1,
+     "edits": [],
+     "lanesA": 4,
+     "lanesB": 3,
+     "widthA": 12,
+     "widthB": 12.8
+    },
+    "off": {
+     "same": true,
+     "score": 1,
+     "edits": [],
+     "lanesA": 4,
+     "lanesB": 3,
+     "widthA": 12,
+     "widthB": 12.8
+    },
+    "rail": true
+   },
+   {
+    "on": {
+     "same": true,
+     "score": 1,
+     "edits": [],
+     "lanesA": 4,
+     "lanesB": 3,
+     "widthA": 12.4,
+     "widthB": 12.8
+    },
+    "off": {
+     "same": true,
+     "score": 1,
+     "edits": [],
+     "lanesA": 4,
+     "lanesB": 3,
+     "widthA": 12.4,
+     "widthB": 12.8
+    },
+    "rail": true
+   }
+  ],
+  "judgesRail": 2,
+  "onRail": false,
+  "changed": false,
+  "parts": [
+   [
+    "plocha",
+    8.02
+   ],
+   [
+    "zelen",
+    7.05
+   ],
+   [
+    "plocha",
+    0.65
+   ],
+   [
+    "krajnice",
+    1.87
+   ],
+   [
+    "pruh",
+    4.3
+   ],
+   [
+    "pruh",
+    2.9
+   ],
+   [
+    "pruh",
+    3.73
+   ],
+   [
+    "nezname",
+    0.85
+   ],
+   [
+    "zelen",
+    2.75
+   ],
+   [
+    "nezname",
+    3.6
+   ],
+   [
+    "chodnik",
+    2
+   ],
+   [
+    "nezname",
+    2.15
+   ]
+  ],
+  "partsOff": [
+   [
+    "plocha",
+    8.02
+   ],
+   [
+    "zelen",
+    7.05
+   ],
+   [
+    "plocha",
+    0.65
+   ],
+   [
+    "krajnice",
+    1.87
+   ],
+   [
+    "pruh",
+    4.3
+   ],
+   [
+    "pruh",
+    2.9
+   ],
+   [
+    "pruh",
+    3.73
+   ],
+   [
+    "nezname",
+    0.85
+   ],
+   [
+    "zelen",
+    2.75
+   ],
+   [
+    "nezname",
+    3.6
+   ],
+   [
+    "chodnik",
+    2
+   ],
+   [
+    "nezname",
+    2.15
+   ]
+  ]
+ },
+ {
+  "jid": "j30",
+  "id": "AT-linz-760917586-7",
+  "country": "AT",
+  "town": "linz",
+  "name": "Bahnhofstraße",
+  "on": 0.19999999999999996,
+  "off": 0.19999999999999996,
+  "per": [
+   {
+    "on": {
+     "same": false,
+     "score": 0.19999999999999996,
+     "edits": [
+      "zeleznice→pruh",
+      "navíc delici",
+      "navíc cyklostezka",
+      "navíc chodnik"
+     ],
+     "lanesA": 6,
+     "lanesB": 3,
+     "widthA": 52,
+     "widthB": 18.96
+    },
+    "off": {
+     "same": false,
+     "score": 0.19999999999999996,
+     "edits": [
+      "zeleznice→pruh",
+      "navíc delici",
+      "navíc cyklostezka",
+      "navíc chodnik"
+     ],
+     "lanesA": 6,
+     "lanesB": 3,
+     "widthA": 52,
+     "widthB": 18.96
+    },
+    "rail": true
+   },
+   {
+    "on": {
+     "same": false,
+     "score": 0.19999999999999996,
+     "edits": [
+      "zeleznice→pruh",
+      "navíc delici",
+      "navíc cyklostezka",
+      "navíc chodnik"
+     ],
+     "lanesA": 6,
+     "lanesB": 3,
+     "widthA": 51.6,
+     "widthB": 18.96
+    },
+    "off": {
+     "same": false,
+     "score": 0.19999999999999996,
+     "edits": [
+      "zeleznice→pruh",
+      "navíc delici",
+      "navíc cyklostezka",
+      "navíc chodnik"
+     ],
+     "lanesA": 6,
+     "lanesB": 3,
+     "widthA": 51.6,
+     "widthB": 18.96
+    },
+    "rail": true
+   }
+  ],
+  "judgesRail": 2,
+  "onRail": false,
+  "changed": false,
+  "parts": [
+   [
+    "chodnik",
+    1.65
+   ],
+   [
+    "cyklostezka",
+    1.25
+   ],
+   [
+    "cyklostezka",
+    1.25
+   ],
+   [
+    "pruh",
+    3.58
+   ],
+   [
+    "pruh",
+    4
+   ],
+   [
+    "krajnice",
+    1.03
+   ],
+   [
+    "delici",
+    1.8
+   ],
+   [
+    "pruh",
+    4.4
+   ]
+  ],
+  "partsOff": [
+   [
+    "chodnik",
+    1.65
+   ],
+   [
+    "cyklostezka",
+    1.25
+   ],
+   [
+    "cyklostezka",
+    1.25
+   ],
+   [
+    "pruh",
+    3.58
+   ],
+   [
+    "pruh",
+    4
+   ],
+   [
+    "krajnice",
+    1.03
+   ],
+   [
+    "delici",
+    1.8
+   ],
+   [
+    "pruh",
+    4.4
+   ]
+  ]
+ }
+]

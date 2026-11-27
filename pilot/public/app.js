@@ -5,7 +5,7 @@ import { bedOrtho } from "./ortho.js";
 import { laneImage, applyLanes, SK_ORTHO, AT_ORTHO, CH_ORTHO, NL_ORTHO, BE_ORTHO, LU_ORTHO, PL_ORTHO, FR_ORTHO, ES_ORTHO, PT_ORTHO, PT_MAINLAND, ES_NOT_PNOA, CY_ORTHO, MT_ORTHO, IT_ORTHO, EE_ORTHO, SI_ORTHO, FI_ORTHO, US_ORTHO, CA_ORTHO, DK_ORTHO, DE_ORTHO, deWmsUrl, landsAt, landAt, orthoHereAt } from "./lanes-ortho.js";
 import { dkToken } from "./keys.js";
 import { boxed as boxedPlace, within as withinPlace } from "./places.js";
-import { orthoOsmPolys, besidePassport, trimToEnds, estimateNote, outerGapsByImage, medianGapsByImage, deckSpans, bridgeRailings, P as ORTHO_P } from "./ortho-osm.js";
+import { orthoOsmPolys, edgeBeyond, besidePassport, trimToEnds, estimateNote, outerGapsByImage, medianGapsByImage, deckSpans, bridgeRailings, P as ORTHO_P } from "./ortho-osm.js";
 import { LOOKS as HOUSE_LOOKS } from "./house-looks.js";
 // A click this close to the cut shown (m) is placed exactly, not moved away from junctions (cutAt; Bára 27. 11. 2026).
 const AGAIN_M = 200;
@@ -14,6 +14,10 @@ if (new URLSearchParams(location.search).get("stit") === "1") HOUSE_LOOKS.gables
 import { aiCut, aiKerbs, aiSurface, aiParking, parkFromAi, parkSkip, lawKerbs, layLaw, lawUnsplits, widenLaw, aiReady, onAiProgress } from "./ai-kerbs.js";
 // ?off=… switches named parts of the estimate off (the A/B tests, evaluation/ortofoto-osm/regrese.mjs).
 { const off = new URLSearchParams(location.search).get("off"); if (off) ORTHO_P.off = new Set(off.split(",")); }
+// A side the user stretched beyond the usual reach goes on past the last path or sidewalk (ortho-osm.js stretch): on by
+// default, no measuring (Bára 27. 11. 2026: only a hand-stretched side, a deliberate act); ?dosah=0 off. (The random A/B of
+// 27. 11. 2026, 12 cuts at 32 m: better 0, worse 1, measured cuts nobody stretched.)
+ORTHO_P.stretchOn = new URLSearchParams(location.search).get("dosah") !== "0";
 // Tree pits as sidewalk (derive.js treePitsAsSidewalk): off, ?treepits=1 turns them on.
 if (new URLSearchParams(location.search).get("treepits") === "1") ORTHO_P.treepits = true;
 if (new URLSearchParams(location.search).get("axisroad") === "0") ORTHO_P.axisroad = false;
@@ -85,7 +89,7 @@ const OSM_RADIUS = 80; // OSM read round a new cut (m); a longer dragged side re
 const MIN_REACH = 3; // shortest profile side the user can drag the cut end to (m)
 const defaultReach = () => ({ left: MAX_REACH, right: MAX_REACH });
 const WIDE_REACH = 35;
-const WIDE_END = new Set(["plocha", "delici", "zelen", "stromorad", "chodnik", "tramvaj"]); // a median's or a promenade's parts
+const WIDE_END = new Set(["plocha", "delici", "zelen", "stromorad", "chodnik", "tramvaj", "railway"]); // a median's or a promenade's parts
 // A side of a new cut that may reach WIDE_REACH (evaluation/sjednoceni, Bára 25. 11. 2026: a rule of the data at the cut,
 // not of a state; it replaced the states' wideRoads and wideStreets: A/B of 112 cuts, 6 changed, better 4 : 2, Paris's
 // boulevards as before, the states without a map unchanged): a motorway or an expressway, or a main street ending at the reach in a median's, promenade's or
@@ -706,6 +710,12 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wa
         if (longer) { reach = { ...reach, ...longer }; args.reach = reach; result = deriveProfile(args); }
       }
     }
+    // A new cut goes on to the first building, wall or fence beyond its reach (up to 40 m, not across another street):
+    // ortho-osm.js edgeBeyond (Bára 27. 11. 2026). ?off=nastenu: the usual reach.
+    if (freshReach && ORTHO_P.edgeOn) {
+      const e = edgeBeyond({ osm, frame, dir, way: near.way, from: { A: reach.right, B: reach.left } });
+      if (e.A || e.B) { reach = { left: e.B ?? reach.left, right: e.A ?? reach.right }; args.reach = reach; result = deriveProfile(args); }
+    }
     // No surface of the street from the technical map (no answer, nothing here, nothing at the axis): the carriageway
     // read on the orthophoto near where OSM expects it, sidewalks to the OSM buildings (ortho-osm.js; Bára 15. 11.
     // 2026: better than OSM alone), all an estimate. The map's own surfaces, where there are any, stay behind it.
@@ -742,7 +752,7 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wa
       // the composition right in all four (Prague +13 and +12 m, Brno +2 and +18 m), the sidewalk metre by metre −1 pp
       // (sidewalks drawn up to the found house over green, a parking lane or a wrong kerb: the estimate's, not RÚIAN's).
       const houses = country.estimateBuildings === "ruian" && !ORTHO_P.off?.has("ruiandomy") ? await ruianOutlines(bbox).catch((err) => { console.warn("RÚIAN", err.message); return []; }) : [];
-      const fb = orthoOsmPolys({ ai, aiSurf, decks, osm: withBuildings(osm, houses, "first"), frame, dir, way: near.way, st: laneImg?.st, mapRuns: result.runs || [], edges: k.status === "fulfilled" ? k.value?.edges || [] : [], widths: k.status === "fulfilled" ? k.value?.widths || [] : [], areas: k.status === "fulfilled" ? k.value?.areas || [] : [], symbols: k.status === "fulfilled" ? k.value?.symbols || [] : [] });
+      const fb = orthoOsmPolys({ ai, aiSurf, decks, osm: withBuildings(osm, houses, "first"), frame, dir, way: near.way, st: laneImg?.st, mapRuns: result.runs || [], edges: k.status === "fulfilled" ? k.value?.edges || [] : [], widths: k.status === "fulfilled" ? k.value?.widths || [] : [], areas: k.status === "fulfilled" ? k.value?.areas || [] : [], symbols: k.status === "fulfilled" ? k.value?.symbols || [] : [], stretch: freshReach ? null : { A: reach.right > MAX_REACH + 0.5, B: reach.left > MAX_REACH + 0.5 }  });
       if (fb) {
         // A field or a forest of the map (100, 200) where the estimate finds houses and sidewalks is a map not yet
         // redrawn (a new estate: Devětsilová in Prague, MTVU's farmland): it goes behind the estimate (?off=staramapa).
@@ -2302,6 +2312,7 @@ const PALETTE_GROUPS = [
   [tr("Pro cyklisty"), ["cyklopruh", "ochranny_pruh", "pruh_piktokoridor", "cyklostezka", "stezka_sdilena"]],
   [tr("Auta a autobusy"), ["pruh", "parkovani", "bus", "bus_cyklo", "obsluzna", "krajnice"]],
   [tr("Tramvaj"), ["tramvaj_v_pruhu", "tramvaj_pruh", "tramvaj"]],
+  [tr("Železnice"), ["railway"]],
   [tr("Zeleň a ostatní"), ["zelen", "stromorad", "predzahradka", "delici", "plocha", "zahradka", "zed"]],
   [tr("Hospodaření s vodou"), ["pruleh", "ryha", "nadrz", "voda"]],
 ];

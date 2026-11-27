@@ -243,6 +243,7 @@ export const DA = {
   "Tramvaj v pruhu": "Sporvogn i vognbane",
   "Tramvajový pruh": "Sporvognsbane",
   "Tramvajové těleso": "Eget sportracé",
+  "Železnice": "Jernbane",
   "Dělicí pás": "Skillerabat",
   "Zpevněná plocha": "Befæstet areal",
   "Zahrádka restaurace": "Udeservering",

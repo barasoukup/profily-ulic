@@ -2141,8 +2141,18 @@ export function deriveProfile({ center, dir, half, polys, osm, frame, way, track
   const roadMin = Math.min(ref, ...road.map((r) => r.s)), roadMax = Math.max(ref, ...road.map((r) => r.e));
   // A fence along a building's façade (within FENCE_AT_FACADE of it) leaves the building as the edge.
   const nearL = edges.left === "budova" ? FENCE_AT_FACADE : 0.05, nearR = edges.right === "budova" ? FENCE_AT_FACADE : 0.05;
-  const fenceL = byHand.L ? Infinity : Math.min(Infinity, ...fenceTs.filter((t) => t > roadMax + 0.3 && t < runs[hi].e - nearL));
-  const fenceR = byHand.R ? -Infinity : Math.max(-Infinity, ...fenceTs.filter((t) => t < roadMin - 0.3 && t > runs[lo].s + nearR));
+  // A side the user dragged to a reach of his own (not the default, beyond the fence too) is his: the fence does not end it (Bára
+  // 27. 11. 2026, Palackého třída in Pardubice: the cut's end at 19.9 m, the map's fence 6 m off, a sidewalk and the house
+  // behind it; the fence is drawn as an item and the profile goes on to the reach). ?off=rucniplot: the fence ends it as before.
+  // A railing at the kerb (within RAIL_KERB of the outermost carriageway, the map's sidewalk or paved area behind it: Jahnova in
+  // Pardubice, the technical map codes the railing that parts the sidewalk from the roadway as a fence) is no edge of the
+  // street: the profile goes on past it. A fence round a garden or a yard (green or other land behind it) stays the edge.
+  // ?off=zabradli: as before.
+  const RAIL_KERB = 1, BEHIND = new Set([702, 703, 1003]);
+  const railing = (t, sg) => !ORTHO_P.off?.has("zabradli") && Math.abs(t - (sg > 0 ? roadMax : roadMin)) <= RAIL_KERB + 0.3 && [0.3, 1.2].some((d) => BEHIND.has(runs.find((r) => sg * (r.e - (t + sg * d)) > 0 && sg * (r.s - (t + sg * d)) <= 0)?.code));
+  const fenceAway = (side) => !ORTHO_P.off?.has("rucniplot") && handSet(reach?.[side]);
+  const fenceL = byHand.L || fenceAway("left") ? Infinity : Math.min(Infinity, ...fenceTs.filter((t) => t > roadMax + 0.3 && t < runs[hi].e - nearL && !railing(t, 1)));
+  const fenceR = byHand.R || fenceAway("right") ? -Infinity : Math.max(-Infinity, ...fenceTs.filter((t) => t < roadMin - 0.3 && t > runs[lo].s + nearR && !railing(t, -1)));
 
   // A run cut by the reach is kept whole when little of it is left out, and dropped when
   // little of it is inside, so the profile does not end in a sliver.
@@ -2390,6 +2400,9 @@ export function deriveProfile({ center, dir, half, polys, osm, frame, way, track
       const parts = e0 - s0 > 5 ? [[s0, (s0 + e0) / 2, "forward"], [(s0 + e0) / 2, e0, "backward"]] : [[s0, e0, undefined]];
       for (const [a, b, d] of parts) segs.push({ type: "tramvaj", s: a, e: b, dir: d, bed: bed.kind, bedSource: bed.source, source: "dtm" });
       if (e0 < r.e) segs.push({ type: "zelen", s: e0, e: r.e, source: r.code === null ? "odhad" : "dtm" });
+    } else if (type === "railway") {
+      // A railway track of OSM beside the street (ortho-osm.js heavyRail): a gravel bed; a narrow gauge is drawn narrower.
+      segs.push({ type: "railway", s: r.s, e: r.e, source: "osm", ...(cross.some((c) => c.way.tags?.railway === "narrow_gauge" && c.t > r.s - 0.3 && c.t < r.e + 0.3) && { narrow: true }) });
     } else if (type === "cyklostezka") {
       segs.push(...cycleTrack(r, cross, dir));
     } else {
@@ -2517,6 +2530,7 @@ function toSegment(x) {
   if (x.wires) seg.wires = true;
   if (x.type === "tramvaj") { seg.bed = x.bed || "panely"; if (x.bedSource === "odhad") seg.bedGuess = true; }
   if (x.withBus) seg.withBus = true;
+  if (x.narrow) seg.narrow = true;
   if (x.permeable) seg.permeable = x.permeable;
   if (x.roadClass && LANE_TYPES.has(x.type)) seg.roadClass = x.roadClass;
   // Segments are reversed to screen order, so item positions flip too.

@@ -290,6 +290,7 @@ export const SK = {
   "Tramvaj v pruhu": "Električka v pruhu",
   "Tramvajový pruh": "Električkový pruh",
   "Tramvajové těleso": "Električkové teleso",
+  "Železnice": "Železnica",
   "Dělicí pás": "Deliaci pás",
   "Zpevněná plocha": "Spevnená plocha",
   "Zahrádka restaurace": "Letná terasa",

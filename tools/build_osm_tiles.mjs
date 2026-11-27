@@ -50,6 +50,11 @@ const WATER = (t) => t.natural === "water" || t.water !== undefined || ["reservo
 const GREEN = (t) => ["grass", "meadow", "village_green", "flowerbed", "forest", "orchard", "recreation_ground"].includes(t.landuse) || ["park", "garden"].includes(t.leisure) || ["grass", "grassland", "scrub", "wood", "heath"].includes(t.natural);
 const roadTiles = new Set();
 const dropWay = (t, coords) => DROP_HW.has(t.highway) || (PATHS.has(t.highway) && !(t.highway === "cycleway") && !nearRoad(coords));
+// Railways (Bára 27. 11. 2026, the profile's "železnice"): the tracks of rail, narrow_gauge and subway only at ground
+// level (no tunnel, no layer below 0) and near a road (as the paths): the rest of a country's tracks is no part of a
+// street. A bridge is kept (a street under it: the profile reads its level). Tram and light_rail stay as before.
+const RAIL_KEEP = new Set(["rail", "narrow_gauge", "subway"]);
+const dropRail = (t, coords) => RAIL_KEEP.has(t.railway) && !t.highway && ((t.tunnel && t.tunnel !== "no") || Number(t.layer) < 0 || Number(t.level) < 0 || !nearRoad(coords));
 
 const tileOf = (x, y) => [Math.floor(x / TILE), Math.floor(y / TILE)];
 // Tiles touched by a segment's bounding box.
@@ -109,6 +114,7 @@ for (const src of sources) {
     const g = f.geometry;
     const line_ = g.type === "LineString" || g.type === "MultiLineString";
     if (line_ && all.highway && dropWay(all, g.type === "LineString" ? g.coordinates : g.coordinates.flat())) continue;
+    if (line_ && all.railway && dropRail(all, g.type === "LineString" ? g.coordinates : g.coordinates.flat())) continue;
     const building = !!all.building && (g.type === "Polygon" || g.type === "MultiPolygon");
     if (building && !hasLevels(all) && !nearRoad(g.type === "Polygon" ? g.coordinates[0] : g.coordinates.flatMap((pl) => pl[0]), BUILDING_NEAR)) continue;
     // Buildings under the ground (a garage under a yard: layer < 0, location=underground) are no facades.

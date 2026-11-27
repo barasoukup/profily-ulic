@@ -243,6 +243,7 @@ export const SV = {
   "Tramvaj v pruhu": "Spårvagn i blandtrafik",
   "Tramvajový pruh": "Spårvagnskörfält",
   "Tramvajové těleso": "Spårväg på egen banvall",
+  "Železnice": "Järnväg",
   "Dělicí pás": "Skiljeremsa",
   "Zpevněná plocha": "Hårdgjord yta",
   "Zahrádka restaurace": "Uteservering",

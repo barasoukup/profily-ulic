@@ -236,6 +236,7 @@ export const BG = {
   "Tramvaj v pruhu": "Трамвай в общата лента",
   "Tramvajový pruh": "Трамвайна лента",
   "Tramvajové těleso": "Обособено трамвайно трасе",
+  "Železnice": "Железопътна линия",
   "Dělicí pás": "Разделителна ивица",
   "Zpevněná plocha": "Площ с настилка",
   "Zahrádka restaurace": "Лятна градина",

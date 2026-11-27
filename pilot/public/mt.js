@@ -243,6 +243,7 @@ export const MT = {
   "Tramvaj v pruhu": "Tramm fit-traffiku",
   "Tramvajový pruh": "Korsija tat-tramm",
   "Tramvajové těleso": "Binarji separati tat-tramm",
+  "Železnice": "Ferrovija",
   "Dělicí pás": "Strixxa diviżorja",
   "Zpevněná plocha": "Żona pavimentata",
   "Zahrádka restaurace": "Imwejjed ta' barra",

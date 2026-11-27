@@ -243,6 +243,7 @@ export const LV = {
   "Tramvaj v pruhu": "Tramvajs kopējā joslā",
   "Tramvajový pruh": "Tramvaja josla",
   "Tramvajové těleso": "Atdalīts tramvaja ceļš",
+  "Železnice": "Dzelzceļš",
   "Dělicí pás": "Sadalošā josla",
   "Zpevněná plocha": "Cietā seguma laukums",
   "Zahrádka restaurace": "Āra kafejnīca",

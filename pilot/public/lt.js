@@ -236,6 +236,7 @@ export const LT = {
   "Tramvaj v pruhu": "Tramvajus bendroje juostoje",
   "Tramvajový pruh": "Tramvajų juosta",
   "Tramvajové těleso": "Atskiras tramvajaus kelias",
+  "Železnice": "Geležinkelis",
   "Dělicí pás": "Skiriamoji juosta",
   "Zpevněná plocha": "Kietosios dangos plotas",
   "Zahrádka restaurace": "Lauko kavinė",

@@ -243,6 +243,7 @@ export const ES = {
   "Tramvaj v pruhu": "Carril con tranvía",
   "Tramvajový pruh": "Carril tranvía",
   "Tramvajové těleso": "Plataforma tranviaria",
+  "Železnice": "Ferrocarril",
   "Dělicí pás": "Mediana",
   "Zpevněná plocha": "Superficie pavimentada",
   "Zahrádka restaurace": "Terraza",
