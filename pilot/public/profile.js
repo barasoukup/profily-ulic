@@ -576,8 +576,11 @@ function drawItem(g, it, x, top, right) {
       for (let k = 0; k < 3; k++) line({ x: x - 30, y: top - 140 + k * 45, width: 60, height: 5, fill: "#6b6a65" });
       return;
     case "zabradli":
-      line({ x: x - 3, y: top - 100, width: 6, height: 100, fill: "#55534d" });
-      line({ x: x - 40, y: top - 100, width: 80, height: 6, fill: "#55534d" });
+      // A railing seen along the street: its post 1.1 m high, the handrail on top and a rail halfway (on a bridge's edge
+      // it.f is 0 or 1; drawn just inside the part).
+      line({ x: x - 3, y: top - 110, width: 6, height: 110, fill: "#55534d" });
+      line({ x: x - 9, y: top - 116, width: 18, height: 10, rx: 4, fill: "#55534d" });
+      line({ x: x - 7, y: top - 58, width: 14, height: 6, fill: "#55534d" });
       return;
     case "oporna_zed":
       line({ x: x - 15, y: top - 120, width: 30, height: 120, fill: "#a39e92" });
@@ -2709,6 +2712,8 @@ export function buildSvg(profile, opts = {}) {
       }
       // A stop post at the platform's edge stays on the platform (it is 50 cm wide).
       if (it.kind === "oznacnik") ix = Math.min(Math.max(ix, x + 30), x + w - 30);
+      // A railing at a part's edge (a bridge's, ortho-osm.js bridgeRailings) stands just inside it.
+      if (it.kind === "zabradli") ix = Math.min(Math.max(ix, x + 10), x + w - 10);
       // A lamp reaches over the nearest roadway, not over the grass (Bára, VMO Dobrovského); in a median between
       // two roadways it lights both (Wilsonova): its arms reach over both sides.
       if (it.kind === "lampa") {

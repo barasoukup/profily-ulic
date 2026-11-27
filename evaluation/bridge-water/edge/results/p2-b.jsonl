@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "Y", "jistota": "vysoka", "why": "Uzky most (cca 10,5 m) bez chodniku sirokych 3,6 a 6 m; Y odpovida."}
+{"n": 2, "verdict": "X", "jistota": "nizka", "why": "Vlevo od tri pruhu je pas okraje cca 2 m, X ho ma, Y ne."}
+{"n": 3, "verdict": "Y", "jistota": "nizka", "why": "Vlevo od pruhu je okraj mostovky cca 2-3 m, Y ho zachycuje jako nezname."}
+{"n": 4, "verdict": "stejne", "jistota": "nizka", "why": "Stejne slozeni, X lepe vpravo, Y vlevo; rozdily jen v desitkach cm."}
+{"n": 5, "verdict": "stejne", "jistota": "nizka", "why": "Stejne slozeni i pruhy, lisi se jen sirka krajnich pasu."}
+{"n": 6, "verdict": "stejne", "jistota": "nizka", "why": "Vozovka shodna, rozdil jen zelen vlevo mimo okraj ulice, ktera se nehodnoti."}
+{"n": 7, "verdict": "X", "jistota": "stredni", "why": "Na rampe nejsou chodniky, jen obruba a zabradli; chodnik 2,5 m v Y je spatne."}
+{"n": 8, "verdict": "X", "jistota": "nizka", "why": "X ma okraj mostovky na obou stranach, Y vlevo zadny."}
+{"n": 9, "verdict": "Y", "jistota": "nizka", "why": "Oba chodniky na mostu jsou kolem 2,5 m, jak ma Y."}
+{"n": 10, "verdict": "Y", "jistota": "nizka", "why": "Vozovka 3 pruhy zabira cca 16 m mezi okraji, X pridava 14 m plochy vlevo, kterou ortofoto nepotvrzuje."}

@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "Y", "jistota": "nizka", "why": "Deska mostu asi 11 m, chodníky po obou stranách kolem 2 m; Y (2,5+6+2,5=11) sedí o něco líp než X (10,3)."}
+{"n": 2, "verdict": "stejne", "jistota": "nizka", "why": "Stejné složení, rozdíl jen 0,05-0,3 m v šířkách cyklostezek; ortofoto ani fotka nerozliší."}
+{"n": 3, "verdict": "Y", "jistota": "nizka", "why": "Ortofoto ukazuje za dvěma pruhy a středem ještě zelený ostrůvek se stromy a další jízdní pruh vpravo, které X vynechává."}
+{"n": 4, "verdict": "stejne", "jistota": "nizka", "why": "Stejné pruhy; chodníky se liší jen o 0,2-0,5 m, vlevo vychází spíš Y, vpravo spíš X."}
+{"n": 5, "verdict": "nejde", "jistota": "vysoka", "why": "Ortofoto je prázdné bílé, fotka ukazuje jiné místo; rozdíl (plocha 8,9 vs 2,31) nelze ověřit."}
+{"n": 6, "verdict": "Y", "jistota": "nizka", "why": "Stejné složení; šířka mostu ~12,2 m a chodníky ~3 m na každé straně vychází o málo lépe u Y."}
+{"n": 7, "verdict": "Y", "jistota": "nizka", "why": "Deska mostu ~11 m široká; Y (11,1) sedí, X (13,25) přesahuje okraj mostu."}
+{"n": 8, "verdict": "X", "jistota": "nizka", "why": "Vozovka s ostrůvkem ~21,5 m; okraje X (1,1 vlevo) odpovídají úzkému lemu líp než Y (1,98), celkem X blíž."}
+{"n": 9, "verdict": "Y", "jistota": "nizka", "why": "Deska mostu ~11 m, úzké chodníky; Y (11,2) sedí lépe než X (12)."}
+{"n": 10, "verdict": "Y", "jistota": "stredni", "why": "Mostovka viaduktu ~20,7 m s okrajovými lemy; Y (19,8 s okraji) sedí lépe než X (15,9 bez okrajů)."}

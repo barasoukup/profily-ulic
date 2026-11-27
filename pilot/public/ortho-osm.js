@@ -79,6 +79,77 @@ export function osmAlong(elements, tu, wayId, half = 45) {
 // The level of a way: its layer, or −1 in a tunnel and 1 on a bridge without one. Ways of another level than the
 // clicked street (a road in a tunnel under it, tracks on a bridge over it) do not limit or widen it.
 const levelOf = (t) => Number(t.layer) || (t.tunnel && t.tunnel !== "no" ? -1 : t.bridge && t.bridge !== "no" ? 1 : 0);
+export const onBridge = (t) => !!t?.bridge && t.bridge !== "no" && levelOf(t) > 0;
+
+// ---------- the deck of a bridge ----------
+// Where the cut runs over a bridge deck OSM maps as its outline (man_made=bridge; tools/build_osm_tiles.mjs keeps the
+// decks since 26. 11. 2026, cut by tiles: the pieces of one deck join again here): the stretches [s, e] of the cut's
+// line on a deck (t as derive.js, from the cut's centre). Only for a street on a bridge (onBridge), only decks of its
+// level (a deck without a layer counts), and only when a deck holds the street's axis (else OSM's deck and its street
+// do not agree and nothing is decided by it). Returns { spans, axis } or null. ?off=mostdeska: none (as before).
+const DECK_GAP = 0.1; // m: pieces of one deck (cut by tiles) closer than this join
+export function deckSpans(elements, frame, dir, way) {
+  if (P.off?.has("mostdeska") || !onBridge(way?.tags)) return null;
+  const normal = [-dir[1], dir[0]];
+  const tu = (lon, lat) => { const [x, y] = frame.toXY(lon, lat); return [x * normal[0] + y * normal[1], x * dir[0] + y * dir[1]]; };
+  const level = levelOf(way.tags);
+  let axis = null;
+  const raw = [];
+  for (const el of elements || []) {
+    if (el.type === "way" && el.id === way.id) {
+      for (const x of crossT(el.geometry.map((p) => tu(p.lon, p.lat)), 60)) if (axis === null || Math.abs(x.t) < Math.abs(axis)) axis = x.t;
+      continue;
+    }
+    if (el.type !== "area" || el.tags?.man_made !== "bridge") continue;
+    if (el.tags.layer !== undefined && Number(el.tags.layer) !== level) continue;
+    const rings = [el.geometry, ...(el.holes || [])].map((r) => { const g = r.map((p) => tu(p.lon, p.lat)); return [...g, g[0]]; });
+    const ts = rings.flatMap((r) => crossT(r, 60).map((x) => x.t)).sort((a, b) => a - b);
+    for (let i = 0; i + 1 < ts.length; i += 2) if (ts[i + 1] - ts[i] > 0.05) raw.push({ s: ts[i], e: ts[i + 1] });
+  }
+  if (axis === null || !raw.length) return null;
+  raw.sort((a, b) => a.s - b.s);
+  const spans = [];
+  for (const r of raw) { const l = spans.at(-1); if (l && r.s <= l.e + DECK_GAP) l.e = Math.max(l.e, r.e); else spans.push({ ...r }); }
+  if (!spans.some((x) => x.s <= axis && axis <= x.e)) return null;
+  return { spans, axis };
+}
+// The deck stretch holding t (within tol), or null.
+export const deckAt = (decks, t, tol = 0) => decks?.spans.find((x) => x.s - tol <= t && t <= x.e + tol) || null;
+// A stretch [a, b] of the cut less the decks: the pieces of it off them (the ground beside or between the decks). The
+// water beside the outer deck ends the street at the deck's edge too (derive.js): keeping only the gap between two decks
+// lost 6 of the blind A/B's wins for 2 of its losses (evaluation/bridge-water/edge/ZPRAVA.md).
+export const offDecks = (a, b, decks) => {
+  let out = [[a, b]];
+  for (const d of decks?.spans || []) out = out.flatMap(([x, y]) => (d.e <= x || d.s >= y ? [[x, y]] : [...(d.s > x ? [[x, d.s]] : []), ...(d.e < y ? [[d.e, y]] : [])]));
+  return out;
+};
+
+// A railing at the outer edge of a street on a bridge (Bára 26. 11. 2026: "ideálně dokreslila do profilu zábradlí"):
+// an item "zabradli" at the outer side of the outermost part, where the profile ends at the deck's edge (ends.deck,
+// or within RAIL_NEAR of it), or, with no deck mapped, where it ends in open space after a sidewalk or cycle track
+// (derive.js ends a street on a bridge behind its outer sidewalk). Not where a building, a fence or water ends it, nor
+// where a railing is already drawn there. result: deriveProfile's (segments left to right from extent[1] down to
+// extent[0]); way: the clicked street; decks: deckSpans; ends: orthoOsmPolys' ends. Returns the sides given one.
+// ?off=zabradli: none.
+const RAIL_NEAR = 1.0, RAIL_PARTS = new Set(["chodnik", "chodnik_kola", "stezka_sdilena", "cyklostezka", "zelen", "plocha", "nastupiste"]);
+export function bridgeRailings(result, way, decks, ends) {
+  const out = [];
+  if (P.off?.has("zabradli") || !onBridge(way?.tags) || !result?.extent || !result.segments?.length) return out;
+  const segs = result.segments;
+  for (const [side, edgeKey, seg, f, t] of [["B", "left", segs[0], 0, result.extent[1]], ["A", "right", segs.at(-1), 1, result.extent[0]]]) {
+    const edge = result.edges?.[edgeKey];
+    if (edge && edge !== "volno") continue;
+    if ((seg.items || []).some((it) => it.kind === "zabradli" && Math.abs(it.f - f) < 0.25)) continue;
+    const sg = side === "A" ? -1 : 1;
+    const d = decks && deckAt(decks, t - sg * 0.5), edgeT = ends?.deck?.[side] ?? (d ? (sg > 0 ? d.e : d.s) : null);
+    const atDeck = edgeT !== null && Math.abs(edgeT - t) <= RAIL_NEAR;
+    const noDeck = !decks && RAIL_PARTS.has(seg.type);
+    if (!atDeck && !noDeck) continue;
+    (seg.items ||= []).push({ kind: "zabradli", f, bridge: true });
+    out.push(side);
+  }
+  return out;
+}
 const sameLevel = (w, o) => levelOf(w.tags) === levelOf(o.own.tags);
 
 // ---------- the carriageway OSM implies ----------
@@ -436,6 +507,12 @@ const PIECE_GREEN = 0.35, AREA_GREEN = 0.2;
 const WALK_MIN = 1.0, WALK_WIN = 1.0, WALK_SAT = 8, WALK_LIGHT = 100, AI_RUN = 1.0, AI_SNAP = 0.6, SPLIT_MIN = 1.5;
 
 const BACK_MIN = 2; // m: the shortest run of green or paving the image may give behind everything else
+// m: a deck edge nearer the kerb (or inside the roadway) does not end the street: OSM drew the roadway only, or roughly
+// (e-18, e-13: sidewalks of 0.34 and 0.82 m left)
+const DECK_MIN = 1.0;
+// m: the axis of the street's other carriageway on a deck of its own at most this far past the kerb (Route des Jeunes,
+// e-43: its twin 35 m off, beyond a motorway's two decks, is not the same cross-section)
+const TWIN_DECK = 20;
 const LAST_WALK = 15, LAST_NONE = 2; // m: the next thing of the street at most this far on; with none, this past the kerb
 const ALONG = 10, SIDEWALK = 2.5, SIDEWALK_MAX = 6, REST_MAX = 12, HOUSE = 5, GREEN_AREA = 0.1; // evaluation/ortofoto-osm/zelen.mjs: on ČÚZK 12.5 cm 67 % (Prague) and 82 % (Brno) of the metres right
 const STREET = /^(motorway|trunk|primary|secondary|tertiary|unclassified|residential|living_street|service|pedestrian|road)(_link)?$/;
@@ -476,7 +553,7 @@ function canopyMask(st, osm, tu) {
 
 // ai: the kerbs a trained model read (ai-kerbs.js; ?ai=1, Bára 18. 11. 2026), a function of the axis (t of the
 // clicked way) giving { A, B } or null: they replace the carriageway's kerbs found here, within OSM's limits.
-export function orthoOsmPolys({ osm, frame, dir, way, st, mapRuns = [], edges = [], widths = [], areas = [], symbols = [], ai = null, aiSurf = null }) {
+export function orthoOsmPolys({ osm, frame, dir, way, st, mapRuns = [], edges = [], widths = [], areas = [], symbols = [], ai = null, aiSurf = null, decks = null }) {
   if (!way || !STREET.test(way.tags?.highway || "")) return null;
   const normal = [-dir[1], dir[0]];
   const tu = (lon, lat) => { const [x, y] = frame.toXY(lon, lat); return [x * normal[0] + y * normal[1], x * dir[0] + y * dir[1]]; };
@@ -616,10 +693,19 @@ export function orthoOsmPolys({ osm, frame, dir, way, st, mapRuns = [], edges = 
   // carriageways and over its sidewalks); derive.js ends the street behind its outer sidewalk, as with surface maps.
   // ?off=mostvoda: as before.
   const overGround = levelOf(o.own.tags) > 0 && o.own.tags.bridge && o.own.tags.bridge !== "no" && !P.off?.has("mostvoda");
+  // With the bridge's deck mapped (deckSpans) only what lies under the deck goes: water or green beside it or between
+  // two decks of one bridge (Vilnius, w-9 of evaluation/bridge-water/blind) stays.
   for (const el of o.greens) {
-    if (overGround && Number(el.tags.layer || 0) < levelOf(o.own.tags) && (WATER(el.tags) || GREEN(el.tags))) continue;
-    const rings = [el.geometry, ...(el.holes || [])].map((r) => r.map((g) => frame.toXY(g.lon, g.lat)));
     const [code, label] = GREEN(el.tags) ? [401, "zeleň (OSM)"] : ["allotments", "cemetery"].includes(el.tags.landuse) ? [300, "zahrady (OSM)"] : [501, "voda (OSM)"];
+    if (overGround && Number(el.tags.layer || 0) < levelOf(o.own.tags) && (WATER(el.tags) || GREEN(el.tags))) {
+      if (!decks) continue;
+      const rings = [el.geometry, ...(el.holes || [])].map((r) => { const g = r.map((q) => tu(q.lon, q.lat)); return [...g, g[0]]; });
+      // All the crossings, however far (a river's piece reaches far beyond the cut: an odd count would lose it).
+      const ts = rings.flatMap((r) => crossT(r, Infinity).map((x) => x.t)).sort((a, b) => a - b);
+      for (let i = 0; i + 1 < ts.length; i += 2) for (const [a, b] of offDecks(Math.max(ts[i], -60), Math.min(ts[i + 1], 60), decks)) if (b - a >= DECK_MIN) polys.push(rect(code, label, a, b));
+      continue;
+    }
+    const rings = [el.geometry, ...(el.holes || [])].map((r) => r.map((g) => frame.toXY(g.lon, g.lat)));
     polys.push({ code, label, guess: true, orthoOsm: true, rings, bbox: bboxOf(rings[0]) });
   }
   // A stretch without a sidewalk (past SIDEWALK_MAX, or all of it where OSM says there is none): greenery where the image
@@ -911,6 +997,33 @@ export function orthoOsmPolys({ osm, frame, dir, way, st, mapRuns = [], edges = 
       polys.push(r.g ? rect(401, "zeleň (ortofoto)", a, b) : rect(1003, "zpevněná plocha (odhad)", a, b));
     }
   }
+  // A street on a bridge ends at the edge of its deck (Bára 26. 11. 2026: "pokud je to na mostě, tak bych to ukončila
+  // hranicí té plochy"): the deck holding the outermost kerb on each side, its edge at least DECK_MIN beyond the kerb (a
+  // narrower deck than the roadway is OSM's mistake), a hard end wherever the side would reach past it (trimToEnds).
+  // ends.deck: the sides so ended (bridgeRailings). ?off=mostdeska: none (deckSpans gives null).
+  // The other carriageway of the street on a deck of its own (two bridges side by side, the gap between them: e-12, e-36
+  // of evaluation/bridge-water/edge) belongs to the street: the end is that deck's edge. Such a carriageway: a road of
+  // the street's level within 40 m, of its name or ref (one of them unnamed: of its class, both one-way; Autoroute des
+  // Cigognes and its unnamed twin, M 35 both). A soft end (nothing of OSM beyond the kerb, trimToEnds reaches out to the
+  // street's own last part) stays soft, only never past the deck (cap). A road of another name on the next deck (a
+  // motorway's slip road beside N579a, e-12) is not the street's.
+  const own = o.own.tags;
+  const sameStreet = (w) => STREET.test(w.tags.highway || "") && sameLevel(w, o) && Math.abs(w.t - o.own.t) < 40 &&
+    ((own.name && w.tags.name === own.name) || (own.ref && w.tags.ref === own.ref) || ((!own.name || !w.tags.name) && w.tags.highway === own.highway && ONEWAY(w.tags) && ONEWAY(own)));
+  if (decks && overGround) for (const [side, sg] of [["A", -1], ["B", 1]]) {
+    const kerbT = (k2 && side === pSide ? k2 : k)[side];
+    let d = deckAt(decks, kerbT, 0.3);
+    if (!d) continue;
+    for (const w of o.ways.filter((x) => sg * (x.t - kerbT) > 0 && sg * (x.t - kerbT) <= TWIN_DECK && sameStreet(x))) {
+      const d2 = deckAt(decks, w.t);
+      if (d2 && sg * ((sg < 0 ? d2.s : d2.e) - (sg < 0 ? d.s : d.e)) > 0) d = d2;
+    }
+    const edge = sg < 0 ? d.s : d.e;
+    if (sg * (edge - kerbT) < DECK_MIN) continue;
+    if (ends.soft?.[side]) (ends.cap ??= {})[side] = edge;
+    else if (ends[side] === null || sg * (ends[side] - edge) > 0) ends[side] = edge;
+    (ends.deck ??= {})[side] = edge;
+  }
   polys.ends = ends;
   // Whether a line of the town's map decided a kerb or a sidewalk's edge (the credits).
   polys.edges = !!edgeUsed;
@@ -1194,6 +1307,9 @@ export function trimToEnds(result, ends) {
       if (ends.soft.B && e > hi) hi = e;
     }
   }
+  // Never past the edge of a bridge's deck (orthoOsmPolys ends.cap).
+  if (ends.cap?.A !== undefined) lo = Math.max(lo, ends.cap.A);
+  if (ends.cap?.B !== undefined) hi = Math.min(hi, ends.cap.B);
   if (lo <= result.extent[0] + 0.05 && hi >= result.extent[1] - 0.05) return result;
   // segments run from extent[1] (B, the profile's left) down to extent[0].
   let t = result.extent[1];

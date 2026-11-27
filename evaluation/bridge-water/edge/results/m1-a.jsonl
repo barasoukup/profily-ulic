@@ -1,0 +1,12 @@
+{"n": 1, "A": 0, "B": 0, "jistota": "stredni", "why": "estakáda bez chodníku, jen krajnice a svodidla, fotka bez chodníku"}
+{"n": 2, "A": 0, "B": 3.0, "jistota": "nizka", "why": "vpravo oddělená stezka s obrubou a zábradlím, vlevo jen krajnice a svodidlo"}
+{"n": 3, "A": 2.4, "B": 1.8, "jistota": "nizka", "why": "vlevo světlý pás s zábradlím, vpravo červeně značená stezka u zábradlí podle fotky"}
+{"n": 4, "A": 1.2, "B": 1.0, "jistota": "nizka", "why": "úzké okraje mostu při zábradlí nad potokem, fotka od jinud"}
+{"n": 5, "A": 0, "B": 0, "jistota": "nizka", "why": "vlevo svodidlo u vozovky, vpravo za krajnicí zeleň a schodiště, chodník řez neprotíná"}
+{"n": 6, "A": 2.0, "B": 1.6, "jistota": "stredni", "why": "světlé pásy po obou stranách mostu, na fotce vpravo dlážděný chodník"}
+{"n": 7, "A": 0, "B": 2.5, "jistota": "nizka", "why": "vlevo zeď rampy bez chodníku, vpravo světlý pás před zábradlím nad dálnicí"}
+{"n": 8, "A": 0, "B": 0, "jistota": "stredni", "why": "silniční most přes řeku, jen úzké římsy, fotka bez chodníku"}
+{"n": 9, "A": 0, "B": 1.2, "jistota": "nizka", "why": "vlevo betonová zídka, vpravo úzká římsa s zábradlím podle fotky"}
+{"n": 10, "A": null, "B": null, "jistota": "nizka", "why": "nadjezd bez fotek, na ortofotu se neodliší chodník od vozovky"}
+{"n": 11, "A": 0, "B": 1.5, "jistota": "nizka", "why": "vlevo obruba a parapet, vpravo zvýšený chodník se zábradlím podle fotky"}
+{"n": 12, "A": 1.8, "B": 2.0, "jistota": "nizka", "why": "světlé pásy za okrajovou čarou po obou stranách mostu"}

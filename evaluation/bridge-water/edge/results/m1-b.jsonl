@@ -1,0 +1,12 @@
+{"n": 1, "A": 0, "B": 0, "jistota": "stredni", "why": "rychlostní silnice, svodidla, žádný chodník"}
+{"n": 2, "A": 1.5, "B": 2.5, "jistota": "nizka", "why": "světlé pásy při okrajích mostu; vpravo vyvýšená stezka"}
+{"n": 3, "A": 2.5, "B": 1.5, "jistota": "nizka", "why": "pás vlevo ~2,5 m, vpravo užší s červenými značkami"}
+{"n": 4, "A": 1.0, "B": 0.8, "jistota": "nizka", "why": "úzké okraje mostu přes potok"}
+{"n": 5, "A": 1.0, "B": 1.0, "jistota": "nizka", "why": "úzké okraje nadjezdu, špatně čitelné ve stínu"}
+{"n": 6, "A": 2.0, "B": 1.5, "jistota": "nizka", "why": "světlé pásy při okrajích mostu přes vodu"}
+{"n": 7, "A": 0, "B": 3.0, "jistota": "nizka", "why": "vpravo široký světlý pás, vlevo jen okraj"}
+{"n": 8, "A": 0, "B": 0, "jistota": "stredni", "why": "úzký silniční most na venkově bez chodníku"}
+{"n": 9, "A": 1.5, "B": 1.5, "jistota": "nizka", "why": "úzké pásy při okrajích mostu, zábradlí"}
+{"n": 10, "A": null, "B": null, "jistota": "nizka", "why": "celé světlé těleso nadjezdu bez rozlišení chodníků"}
+{"n": 11, "A": 1.3, "B": 1.5, "jistota": "nizka", "why": "úzké pásy při okrajích mostu s zábradlím"}
+{"n": 12, "A": 1.8, "B": 2.0, "jistota": "stredni", "why": "pásy při okrajích mostu za obrubou"}

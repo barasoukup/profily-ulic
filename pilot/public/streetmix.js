@@ -68,11 +68,16 @@ function segment(s, i, segs, total) {
   }
 }
 
+// A railing item at a part's outer side (f 0: its left, 1: its right; within a quarter of the part).
+const railed = (s, f) => !!s?.items?.some((it) => it.kind === "zabradli" && Math.abs((it.f ?? 0.5) - f) < 0.25);
+
 function boundary(kind, info) {
   const floors = Math.max(1, Math.min(20, info?.levels || 4));
   switch (kind) {
     case "budova": return { variant: floors > 4 ? "narrow" : "residential", floors, elevation: CURB };
-    case "stavba": case "plot": return { variant: "fence", floors: 1, elevation: CURB };
+    // A railing at the street's outer edge (a bridge's, ortho-osm.js bridgeRailings): Streetmix has no railing item, its
+    // fence boundary is the nearest.
+    case "stavba": case "plot": case "zabradli": return { variant: "fence", floors: 1, elevation: CURB };
     case "voda": return { variant: "waterfront", floors: 1, elevation: CURB };
     case "zahrada": case "zelen": return { variant: "grass", floors: 1, elevation: CURB };
     default: return { variant: "parking-lot", floors: 1, elevation: CURB };
@@ -112,8 +117,8 @@ export function toStreetmix(profile, name, src = {}) {
     skybox: "day",
     weather: null,
     boundary: {
-      left: { id: rid(), ...boundary(profile.edges?.left, profile.edges?.leftInfo) },
-      right: { id: rid(), ...boundary(profile.edges?.right, profile.edges?.rightInfo) },
+      left: { id: rid(), ...boundary(railed(segs[0], 0) ? "zabradli" : profile.edges?.left, profile.edges?.leftInfo) },
+      right: { id: rid(), ...boundary(railed(segs.at(-1), 1) ? "zabradli" : profile.edges?.right, profile.edges?.rightInfo) },
     },
     segments,
     editCount: 0,
