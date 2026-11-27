@@ -39,6 +39,10 @@ http.createServer(async (req, res) => {
       res.writeHead(200, { "Content-Type": "text/javascript; charset=utf-8", "Cache-Control": "no-cache" });
       return res.end(await fs.readFile(path.join(HERE, "harness.js")));
     }
+    if (url.pathname === "/__replay/layers.js") {
+      res.writeHead(200, { "Content-Type": "text/javascript; charset=utf-8", "Cache-Control": "no-cache" });
+      return res.end(await fs.readFile(path.join(HERE, "layers.js")));
+    }
     if (url.pathname === "/__replay/sample") {
       const name = safe(url.searchParams.get("name") || "sample");
       res.writeHead(200, { "Content-Type": "application/json" });
@@ -80,7 +84,11 @@ http.createServer(async (req, res) => {
     const r = await fetch(`http://localhost:${APP}${url.pathname}${url.search}`, { method: req.method, headers: req.headers.range ? { range: req.headers.range } : {} });
     const headers = Object.fromEntries([...r.headers].filter(([k]) => !["content-encoding", "content-length", "transfer-encoding", "connection"].includes(k)));
     let buf = Buffer.from(await r.arrayBuffer());
-    if (url.pathname === "/" || url.pathname === "/index.html") buf = Buffer.from(page(buf.toString("utf8")));
+    if (url.pathname === "/" || url.pathname === "/index.html") {
+      // ?layers=1 (layers.js): the app's own CSP stays, the script of the base maps' check comes before app.js.
+      const html = buf.toString("utf8");
+      buf = Buffer.from(url.searchParams.get("layers") ? html.replace('<script type="module" src="app.js"></script>', '<script type="module" src="/__replay/layers.js"></script>\n  <script type="module" src="app.js"></script>') : page(html));
+    }
     res.writeHead(r.status, headers);
     res.end(buf);
   } catch (e) {

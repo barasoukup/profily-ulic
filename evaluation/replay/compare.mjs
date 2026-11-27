@@ -51,5 +51,8 @@ for (const id of a) {
     for (const k of bad.slice(0, 4)) console.log(`   ${k} ${where(text(x[k]) ?? "", text(y[k]) ?? "")}`);
   }
 }
+// A run that found no street anywhere would compare equal to itself: how many cuts of each run have a profile.
+const stats = (run) => { let ok = 0, no = 0, fail = 0, miss = 0; for (const id of ids(run)) { const o = read(run, id); if (o.failed) fail++; else if (o.stav) ok++; else no++; if (o.misses?.length) miss++; } return `${ok} s profilem, ${no} bez, ${fail} spadlo, ${miss} s chybějící odpovědí`; };
+console.log(`${A}: ${stats(A)}\n${B}: ${stats(B)}`);
 console.log(`${A} → ${B}: ${same} stejně, ${diff} jinak${missing.length ? `, ${missing.length} chybí v ${B}` : ""}${diff ? " · " + Object.entries(count).map(([k, n]) => `${k} ${n}`).join(", ") : ""}`);
 process.exitCode = diff || missing.length ? 1 : 0;

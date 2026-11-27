@@ -66,7 +66,10 @@ function answerFor(key) {
     served.set(k, n + 1);
     return mine[Math.min(n, mine.length - 1)];
   }
-  return all.find((e) => !e.error && e.status < 500) || all[0];
+  // (of the same recording first: its sample's name before the colon; the common folder holds several, e.g. with the
+  // packs' index of different times)
+  const good = (e) => !e.error && e.status < 500, group = cutId.split(":")[0] + ":";
+  return all.find((e) => good(e) && e.cut.startsWith(group)) || all.find(good) || all[0];
 }
 const bodies = new Map();
 const bodyOf = (sha) => bodies.get(sha) || (bodies.set(sha, native(`/__replay/body/${sha}`).then((r) => r.arrayBuffer())), bodies.get(sha));

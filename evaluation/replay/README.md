@@ -12,11 +12,16 @@ Co jde v Node, hlídá `tables.mjs`.
 ## Postup
 
 1. `node evaluation/replay/server.mjs` (nebo spuštění „replay-arch“ z `.claude/launch.json`): aplikace na portu 5290,
-   před ní nahrávač na http://localhost:5190. Mapové dlaždice se nenačítají (CSP), aby stovky řezů nezatěžovaly
-   servery dlaždic.
+   před ní nahrávač na http://localhost:5190 (jiný port: `node evaluation/replay/server.mjs 5390`, aplikace o 100 výš).
+   Mapové dlaždice se nenačítají (CSP), aby stovky řezů nezatěžovaly servery dlaždic.
 2. Nahrání (jednou, živě): `http://localhost:5190/?replay=record&run=rec-cs&lang=cs&osm=balik`. Odpovědi jsou
-   v `data/index.jsonl` a `data/bodies/` (data třetích stran, git je ignoruje).
-3. Přehrání: `?replay=play&run=<jméno>&lang=cs` (a `sk`, `en`, `de`; přepínače aplikace jako `&wien=0` fungují).
+   v `data/replay/index.jsonl` a `data/replay/bodies/` **hlavního repa** (`/Users/barasoukupova/streetdesign/data/replay/`,
+   `paths.mjs`; data třetích stran, git je ignoruje; `REPLAY_DATA=<složka>` jinam), výstupy běhů v `data/replay/out/<běh>/`.
+   Jedna složka pro všechny pracovní kopie, žádný symlink. Nahrávky jiných pracovních kopií se do ní přenesou
+   `node evaluation/replay/import.mjs <…/evaluation/replay/data>` (těla jednou podle hashe, řez z prvního zdroje, který ho má;
+   nic se v cizích složkách nemění). Nahrávky se pozná podle jména řezu `vzorek:id` (`sample:5`, `ax-west:185`, `holdout:7`).
+3. Přehrání: `?replay=play&run=<jméno>&lang=cs&osm=balik` (bez `osm=balik` se ptá na jiné dlaždice, než jaké jsou nahrané, a
+   každý řez skončí „Tady jsem žádnou ulici nenašla“; `compare.mjs` proto píše, kolik řezů má profil) (a `sk`, `en`, `de`; přepínače aplikace jako `&wien=0` fungují).
    Dotaz, který nahrávka nemá, selže jako výpadek sítě a je v `misses` (změněný dotaz je změna).
 4. Výchozí stav: přehrání kódu před změnou (`ROOT=<kopie commitu> node evaluation/replay/server.mjs 5192`),
    po změně totéž nad novým kódem a `node evaluation/replay/compare.mjs <výchozí> <nové>`.
