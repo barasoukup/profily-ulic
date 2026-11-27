@@ -94,6 +94,9 @@ export default {
   // a one-way carriageway of two or more lanes. A centre line is read from OSM (two lanes or more, lane_markings not
   // "no"): a street without a lanes tag gets no estimate.
   freeLane: 3,
+  // The centre line is read on the orthophoto (lanes-ortho.js centreLine, Bára 27. 11. 2026), OSM's lanes below only where
+  // the photo does not say.
+  centreLine: { required: true, solid: true },
   parkOnRoadway: (tags, oneway, lanes) => (oneway ? lanes < 2 : Number(tags.lanes) >= 2 && tags.lane_markings !== "no"),
   halfKerbNote: (free, need) => t("Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Ve Slovinsku smí auto stát na chodníku jen tam, kde to dovolí značka, a chodcům musí zůstat aspoň 1,6 m chodníku dál od vozovky (čl. 65 zákona o pravidlech silničního provozu); aplikace nechává {need}.", { free, need }),
   parkGuess: true,

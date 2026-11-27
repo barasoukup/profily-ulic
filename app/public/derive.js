@@ -4,6 +4,7 @@ import { typeFromMtvu, isBuilding, isMinorStructure, DEFAULT_WIDTH, PERMEABLE_TY
 import { city, country } from "./city.js";
 import { t, num } from "./i18n.js";
 import { P as ORTHO_P, partnerReach } from "./ortho-osm.js";
+import { centreLine } from "./lanes-ortho.js";
 
 const STEP = 0.05; // sampling step along the cut (m)
 const MIN_RUN = 0.3; // runs narrower than this merge into a neighbour (m)
@@ -1024,7 +1025,14 @@ function splitRoadway(run, ctx) {
     const need = lawNeedFor(oneway, lanesTotal);
     // A state whose law keeps cars off some roadways altogether (countries/<ISO>.js parkOnRoadway; Slovenia: none on a
     // two-way street without a centre line, none on a one-way carriageway of two lanes).
-    const lawful = country.parkOnRoadway ? country.parkOnRoadway(tags, oneway, lanesTotal) : true;
+    let lawful = country.parkOnRoadway ? country.parkOnRoadway(tags, oneway, lanesTotal) : true;
+    // The centre line, read on the orthophoto, in the place of OSM's count of lanes (countries/<ISO>.js centreLine; Bára
+    // 27. 11. 2026, ?off=stredcara: as before; no photo, a tram in the roadway: not known, the rule above stands). centre.required: a
+    // two-way roadway has no parking without one (Slovenia, ZPrCP čl. 65/4/12); centre.solid: where the line is solid
+    // the free width is measured to it, not to the opposite kerb (čl. 65/4/10).
+    const cl = country.centreLine && !oneway && !trams.length && ctx.lanesImage ? centreLine(ctx.lanesImage, run.s, run.e) : null;
+    if (cl && country.centreLine.required) lawful = cl.found;
+    const solidAt = cl?.found && cl.kind === "solid" && country.centreLine.solid ? cl.t : null;
     const lo = trams.length ? Math.min(...trams) - RAIL_HALF : Infinity, hi = trams.length ? Math.max(...trams) + RAIL_HALF : -Infinity;
     // Keeping left (Cyprus, Malta) cars stand along the kerb on the driver's left: on a one-way street that kerb is tried
     // first (the estimate is no part of the data, so it may sit there; review of 23. 11. 2026).
@@ -1036,9 +1044,9 @@ function splitRoadway(run, ctx) {
       // Switzerland (countries/CH.js parkByCycleLane: VRV Art. 19 Abs. 2): no parking on the roadway beside a cycle lane.
       if (!country.parkByCycleLane && edge.some((x) => x.side === side && (x.type === "cyklopruh" || x.type === "ochranny_pruh"))) continue;
       const rest = width - edge.reduce((a, x) => a + x.w, 0) - GUESS_PARK_W;
-      if (rest < need - 1e-6) continue;
       // The car's outer side, from the curb strips of this side and the strip itself.
       const own = edge.filter((x) => x.side === side).reduce((a, x) => a + x.w, 0) + GUESS_PARK_W;
+      if (solidAt !== null ? (side === "R" ? solidAt - (s + own) : (e - own) - solidAt) < lawLane() - 1e-6 : rest < need - 1e-6) continue;
       const railGap = side === "R" ? lo - (s + own) : (e - own) - hi;
       if (railGap < LAW_RAIL - 1e-6) continue;
       edge.push({ side, type: "parkovani", w: GUESS_PARK_W, orient: "podelne", source: "odhad" });
@@ -2534,7 +2542,7 @@ export function deriveProfile({ center, dir, half, polys, osm, frame, way, track
       // fwd: the roadway's traffic runs along the cut's direction (undefined: not known); signs.js, a one-way roadway of a divided street.
       roads.push({ s: r.s, e: r.e, tags, fwd: ownAxis ? ownAxis.along !== (tags.oneway === "-1") : undefined });
       const noCars = carsBanned(tags), toBus = noCars && transitAllowed(tags);
-      segs.push(...splitRoadway(r, { guessPark, osmParkGive, tags, trams: inside, dirAt, lanesTotal, along: ownAxis ? (ownAxis.along !== (tags.oneway === "-1")) : true, single: new Set(axes.map((a) => a.id)).size === 1, parked, sides: sideTagsLR, kerbOpen, kerbBare, inZps, axesOneway: axes.every((a) => a.oneway), axes, axisInside: here.length > 0, divided, roadClass }).map((x) => ({ ...x, mtvu: r.code, ...(noCars && x.type === "pruh" && (toBus ? { type: "bus" } : { noCar: true })),
+      segs.push(...splitRoadway(r, { guessPark, osmParkGive, lanesImage, tags, trams: inside, dirAt, lanesTotal, along: ownAxis ? (ownAxis.along !== (tags.oneway === "-1")) : true, single: new Set(axes.map((a) => a.id)).size === 1, parked, sides: sideTagsLR, kerbOpen, kerbBare, inZps, axesOneway: axes.every((a) => a.oneway), axes, axisInside: here.length > 0, divided, roadClass }).map((x) => ({ ...x, mtvu: r.code, ...(noCars && x.type === "pruh" && (toBus ? { type: "bus" } : { noCar: true })),
         // Bus lanes carry trolleybuses; so does the lane of a zone closed to cars but open to public transport
         // (třída Míru in Pardubice: motor_vehicle=delivery, psv=yes).
         trolley: trolley && (x.type === "bus" || x.type === "bus_cyklo" || toBus || (x.type === "pruh" && transitOnly(tags))),

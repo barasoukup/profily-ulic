@@ -4,7 +4,7 @@
 import fs from "node:fs";
 import path from "node:path";
 
-const HERE = path.dirname(new URL(import.meta.url).pathname), OUT = path.join(HERE, "data", "out");
+const HERE = path.dirname(new URL(import.meta.url).pathname), OUT = process.env.OUT || path.join(HERE, "data", "out");
 const args = process.argv.slice(2), opt = (k) => args.find((a) => a.startsWith(`--${k}=`))?.slice(k.length + 3);
 const [A, B, S] = args.filter((a) => !a.startsWith("--"));
 const sample = S ? JSON.parse(fs.readFileSync([path.join(HERE, `${S}.json`), path.join(HERE, "..", "replay", `${S}.json`)].find((f) => fs.existsSync(f)), "utf8")) : [];
