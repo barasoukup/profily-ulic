@@ -129,8 +129,8 @@ Co rozhodne Bára, je označeno **(Bára)**.
 - Itálie: další regiony, jak budou otevírat ortofota (Lombardie a Ligurie mají služby rozbité, Benátsko a Sardinie
   neodpovídají, Furlansko a Trento bez CORS, Apulie 2023 bez licence); plochy silnic Bologni rozdělit čarami obrub; dílčí
   nálety Emilie-Romagny 2023–26 (CC BY 4.0) zapojit podle jejich pokrytí.
-  **(Bára)**: chodník 0,9, nebo 1,5 m?; ~~pruh podle kategorie silnice?~~ (23. 11.: podle třídy z OSM 3,25 / 3 / 2,75 m);
-  jednosměrka II.349, nebo II.348?
+  ~~**(Bára)**: chodník 0,9, nebo 1,5 m?; pruh podle kategorie silnice?; jednosměrka II.349, nebo II.348?~~ Bára 27. 11. 2026:
+  chodník červeně pod 0,9, oranžově pod 1,5 m; jednosměrka II.349 (obojí už platí v `countries/IT.js`); pruh podle třídy z OSM.
 - ~~Itálie **(Bára)**: kredit Turína „© Città di Torino (CC BY 4.0)“ je výklad; podmínky geoportálu chtějí znění „Base
   cartografica realizzata da …, integrata con … della Città di Torino reperiti sul Geoportale del Comune di Torino“: přepsat?~~
   (Bára 23. 11. 2026: ano, kredit, mapa i patička ve znění Geoportálu)
