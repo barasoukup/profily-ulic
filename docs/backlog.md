@@ -119,7 +119,7 @@ Co rozhodne Bára, je označeno **(Bára)**.
   jako JPEG místo PNG (`app.js`). Kypr i Malta: `streetmix.js` neposílá `leftHandTraffic`.~~ (26. 11. 2026: průhledný
   pixel = NaN, víc než polovina neznámá = žádný obraz, „cy“ v kontrole prázdna; XML místo obrazu = výpadek (`askImage`; od 26. 11. 2026 po nepřátelské recenzi „bez snímku“, viz níže);
   podklad Malty uvnitř JPEG, u pobřeží PNG jako Slovinsko; `leftHandTraffic` z `country.leftHand`; `tests/ortho-tiles.test.js`)
-- Kypr **(Bára)**: ~~chodník 2 / 2,5 m (doporučení)~~ (23. 11.: bez červené, oranžově podle třídy ulice); 3 m na směr vedle stání; jednosměrka: stát jen vlevo?; protisměrní
+- Kypr **(Bára)**: ~~chodník 2 / 2,5 m (doporučení)~~ (23. 11.: bez červené, oranžově podle třídy ulice); 3 m na směr vedle stání; ~~jednosměrka: stát jen vlevo?~~ (Bára 27. 11. 2026: ne, po obou stranách, kde se vejde – sdílené pravidlo, už platí); protisměrní
   cyklisté ~~bez tabulky~~ (23. 11.: bez značky); zóna 30 nekreslit; pěší zóna jako „povinná pěší cesta“. Sever ostrova jako samostatný stát
   (zatím nemáme). Měření: chybí chodník 9×, stání 5×.
 - Malta **(Bára)**: ~~volná šířka DC15 (4,1 / 3 m), nebo 3 m na směr?~~ (23. 11.: v kódu větší z DC15 a 2,5 m na pruh);
