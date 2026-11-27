@@ -14,6 +14,7 @@ if (new URLSearchParams(location.search).get("stit") === "1") HOUSE_LOOKS.gables
 import { aiCut, aiKerbs, aiSurface, aiParking, parkFromAi, parkSkip, lawKerbs, layLaw, lawUnsplits, widenLaw, aiReady, onAiProgress } from "./ai-kerbs.js";
 // ?off=… switches named parts of the estimate off (the A/B tests, evaluation/ortofoto-osm/regrese.mjs).
 { const off = new URLSearchParams(location.search).get("off"); if (off) ORTHO_P.off = new Set(off.split(",")); }
+if (new URLSearchParams(location.search).get("partner80") === "1") ORTHO_P.partner80 = true;
 // Tree pits as sidewalk (derive.js treePitsAsSidewalk): off, ?treepits=1 turns them on.
 if (new URLSearchParams(location.search).get("treepits") === "1") ORTHO_P.treepits = true;
 if (new URLSearchParams(location.search).get("axisroad") === "0") ORTHO_P.axisroad = false;
@@ -657,8 +658,8 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wa
     const bbox = [Math.min(...lons) - pad, Math.min(...lats) - pad, Math.max(...lons) + pad, Math.max(...lats) + pad].join(",");
     let polys = [], tracks = [];
     const zone = sources.zps(clat, clon).catch(() => undefined);
-    // The image reaches the other carriageway of a street of two one-way ones too (50–80 m apart; ?off=partner80: ±25 m).
-    const orthoHalf = ORTHO_P.off?.has("partner80") ? ORTHO_HALF : Math.max(ORTHO_HALF, Math.min(41, partnerGap(osm, frame, near) / 2 + 12));
+    // With ?partner80=1 the image reaches the other carriageway of a street of two one-way ones too (50–80 m apart).
+    const orthoHalf = !ORTHO_P.partner80 ? ORTHO_HALF : Math.max(ORTHO_HALF, Math.min(41, partnerGap(osm, frame, near) / 2 + 12));
     const [m, k, pk, z, o, li] = await Promise.allSettled([
       // The zone file is local (and loaded once), so knowing the zone first costs nothing.
       sources.mtvu(bbox, near.way.tags, near.way), sources.linie(bbox), zone.then((inZone) => sources.parkovani(bbox, inZone)), zone,

@@ -239,9 +239,10 @@ export function limits(o, axis) {
 // The other carriageway of a street of two one-way ones (Suché mýto in Bratislava; Bára 16. 11. 2026): the nearest
 // one-way street way of the same level and name (unnamed: of the same class), 4 to 35 m from the clicked one. Its
 // kerbs are read as the clicked one's; the strip between them is a median.
-// How far the other carriageway of a street of two one-way ones may lie: 80 m (Bára 27. 11. 2026, Paseo de la Casa de
-// Campo in Madrid: the two roadways about 50 m apart, a park between; 35 m / 40 m before; ?off=partner80: as before).
-export const partnerReach = (before) => (P.off?.has("partner80") ? before : 80);
+// How far the other carriageway of a street of two one-way ones may lie: 35 m / 40 m (`before`); 80 m with ?partner80=1
+// (Bára 27. 11. 2026, Paseo de la Casa de Campo in Madrid). Off by default: the blind A/B of 43 changed cuts of 72 (two
+// judges, only the aerial) gave 24 : 28 for 80 m, no gain (evaluation/sjednoceni/amiens-far).
+export const partnerReach = (before) => (P.partner80 ? 80 : before);
 export function partnerOf(o) {
   const own = o.own, tg = own.tags;
   if (!ONEWAY(tg)) return null;
