@@ -1,0 +1,884 @@
+{
+ "rows": [
+  {
+   "id": "E01",
+   "osm": 138555631,
+   "probe": [
+    15.851633999999999,
+    50.255444
+   ],
+   "mapillary": "1448581312162282",
+   "pano": false,
+   "dist": 11.6,
+   "off": 8.7,
+   "tags": {
+    "height": "4.6",
+    "building": "house"
+   },
+   "h": 4.6,
+   "old": 1,
+   "now": 1,
+   "changed": false
+  },
+  {
+   "id": "E02",
+   "osm": 50565837,
+   "probe": [
+    15.849421999999999,
+    50.21685599999999
+   ],
+   "mapillary": "2975269872787852",
+   "pano": false,
+   "dist": 17.3,
+   "off": 11.8,
+   "tags": {
+    "height": "20",
+    "building": "apartments"
+   },
+   "h": 20,
+   "old": 6,
+   "now": 5,
+   "changed": true
+  },
+  {
+   "id": "E03",
+   "osm": 732272368,
+   "probe": [
+    13.931030000000002,
+    50.55492400000001
+   ],
+   "mapillary": "1506357097046973",
+   "pano": false,
+   "dist": 17.8,
+   "off": 0,
+   "tags": {
+    "height": "15",
+    "building": "yes"
+   },
+   "h": 15,
+   "old": 4,
+   "now": 4,
+   "changed": false
+  },
+  {
+   "id": "E04",
+   "osm": 893551617,
+   "probe": [
+    14.469831666666664,
+    50.13059333333333
+   ],
+   "mapillary": "1544534250596223",
+   "pano": false,
+   "dist": 7.9,
+   "off": -11.7,
+   "tags": {
+    "height": "3",
+    "building": "yes"
+   },
+   "h": 3,
+   "old": 1,
+   "now": 1,
+   "changed": false
+  },
+  {
+   "id": "E05",
+   "osm": 50326386,
+   "probe": [
+    16.279034666666664,
+    49.55820000000001
+   ],
+   "mapillary": "375727727128749",
+   "pano": false,
+   "dist": 19.7,
+   "off": -2.8,
+   "tags": {
+    "height": "28",
+    "building": "civic"
+   },
+   "h": 28,
+   "old": 8,
+   "now": 8,
+   "changed": false
+  },
+  {
+   "id": "E06",
+   "osm": 52002071,
+   "probe": [
+    15.864355714285713,
+    50.30015428571429
+   ],
+   "mapillary": "471571532376461",
+   "pano": true,
+   "dist": 14,
+   "off": 112.2,
+   "tags": {
+    "height": "4.1",
+    "building": "house"
+   },
+   "h": 4.1,
+   "old": 1,
+   "now": 1,
+   "changed": false
+  },
+  {
+   "id": "E07",
+   "osm": 44527287,
+   "probe": [
+    15.5572275,
+    50.7790825
+   ],
+   "mapillary": "1884031332207225",
+   "pano": true,
+   "dist": 14.8,
+   "off": -153.7,
+   "tags": {
+    "height": "24",
+    "building": "yes"
+   },
+   "h": 24,
+   "old": 7,
+   "now": 7,
+   "changed": false
+  },
+  {
+   "id": "E08",
+   "osm": 9113695,
+   "probe": [
+    14.430157,
+    50.107696000000004
+   ],
+   "mapillary": "1745316386237109",
+   "pano": true,
+   "dist": 10.5,
+   "off": -96.2,
+   "tags": {
+    "height": "8",
+    "building": "yes"
+   },
+   "h": 8,
+   "old": 2,
+   "now": 2,
+   "changed": false
+  },
+  {
+   "id": "E09",
+   "osm": 114930679,
+   "probe": [
+    14.415194,
+    50.11771
+   ],
+   "mapillary": "1215597579663243",
+   "pano": false,
+   "dist": 25.9,
+   "off": -4.5,
+   "tags": {
+    "height": "6",
+    "building": "house"
+   },
+   "h": 6,
+   "old": 2,
+   "now": 2,
+   "changed": false
+  },
+  {
+   "id": "E10",
+   "osm": 28282381,
+   "probe": [
+    14.459296874999994,
+    50.0691425
+   ],
+   "mapillary": "518394981152553",
+   "pano": true,
+   "dist": 13.4,
+   "off": 176,
+   "tags": {
+    "height": "10",
+    "building": "civic"
+   },
+   "h": 10,
+   "old": 3,
+   "now": 2,
+   "changed": true
+  },
+  {
+   "id": "E11",
+   "osm": 443238530,
+   "probe": [
+    14.18821727272727,
+    49.939712727272735
+   ],
+   "mapillary": "659033962824530",
+   "pano": true,
+   "dist": 24.4,
+   "off": -75,
+   "tags": {
+    "height": "53",
+    "building": "civic"
+   },
+   "h": 53,
+   "old": 15,
+   "now": 17,
+   "changed": true
+  },
+  {
+   "id": "E12",
+   "osm": 50584224,
+   "probe": [
+    15.849354000000002,
+    50.23595600000001
+   ],
+   "mapillary": "186949126650801",
+   "pano": false,
+   "dist": 20.6,
+   "off": -9.9,
+   "tags": {
+    "height": "5.8",
+    "building": "industrial"
+   },
+   "h": 5.8,
+   "old": 2,
+   "now": 1,
+   "changed": true
+  },
+  {
+   "id": "E13",
+   "osm": 1354331816,
+   "probe": [
+    15.4401325,
+    49.557317499999996
+   ],
+   "mapillary": "152464513525280",
+   "pano": false,
+   "dist": 25.6,
+   "off": 8.3,
+   "tags": {
+    "height": "33",
+    "building": "yes"
+   },
+   "h": 33,
+   "old": 9,
+   "now": 10,
+   "changed": true
+  },
+  {
+   "id": "E14",
+   "osm": 9113694,
+   "probe": [
+    14.431897142857142,
+    50.108068571428575
+   ],
+   "mapillary": "1266154361242099",
+   "pano": true,
+   "dist": 12.9,
+   "off": 74.1,
+   "tags": {
+    "height": "40",
+    "building": "yes"
+   },
+   "h": 40,
+   "old": 11,
+   "now": 12,
+   "changed": true
+  },
+  {
+   "id": "E15",
+   "osm": 177849755,
+   "probe": [
+    15.866746000000001,
+    50.301648
+   ],
+   "mapillary": "1019270289744005",
+   "pano": true,
+   "dist": 16.9,
+   "off": 98.6,
+   "tags": {
+    "height": "13",
+    "building": "apartments"
+   },
+   "h": 13,
+   "old": 4,
+   "now": 3,
+   "changed": true
+  },
+  {
+   "id": "E16",
+   "osm": 51780887,
+   "probe": [
+    15.862088,
+    50.195837999999995
+   ],
+   "mapillary": "399371467846130",
+   "pano": false,
+   "dist": 17.5,
+   "off": 30.1,
+   "tags": {
+    "height": "13.7",
+    "building": "house"
+   },
+   "h": 13.7,
+   "old": 4,
+   "now": 3,
+   "changed": true
+  },
+  {
+   "id": "E17",
+   "osm": 455777827,
+   "probe": [
+    14.415648,
+    50.07225
+   ],
+   "mapillary": "1237940171628257",
+   "pano": false,
+   "dist": 13.1,
+   "off": -4.2,
+   "tags": {
+    "height": "16",
+    "building": "yes"
+   },
+   "h": 16,
+   "old": 5,
+   "now": 4,
+   "changed": true
+  },
+  {
+   "id": "E18",
+   "osm": 481986568,
+   "probe": [
+    14.420712941176468,
+    50.08698411764707
+   ],
+   "mapillary": "1022095821657956",
+   "pano": false,
+   "dist": 16.8,
+   "off": 3.7,
+   "tags": {
+    "height": "16",
+    "building": "yes"
+   },
+   "h": 16,
+   "old": 5,
+   "now": 4,
+   "changed": true
+  },
+  {
+   "id": "E19",
+   "osm": 77783,
+   "probe": [
+    14.356584500000002,
+    50.08491024999999
+   ],
+   "mapillary": "464742961483773",
+   "pano": false,
+   "dist": 18,
+   "off": 5.6,
+   "tags": {
+    "height": "20",
+    "building": "yes"
+   },
+   "h": 20,
+   "old": 6,
+   "now": 5,
+   "changed": true
+  },
+  {
+   "id": "E20",
+   "osm": 30619195,
+   "probe": [
+    14.413487499999999,
+    50.085435
+   ],
+   "mapillary": "435051665851202",
+   "pano": true,
+   "dist": 14.5,
+   "off": 137.8,
+   "tags": {
+    "height": "36",
+    "building": "yes"
+   },
+   "h": 36,
+   "old": 10,
+   "now": 11,
+   "changed": true
+  },
+  {
+   "id": "E21",
+   "osm": 50564992,
+   "probe": [
+    15.837768,
+    50.208614
+   ],
+   "mapillary": "162833869131112",
+   "pano": false,
+   "dist": 21.9,
+   "off": 19.5,
+   "tags": {
+    "height": "9.6",
+    "building": "hotel"
+   },
+   "h": 9.6,
+   "old": 3,
+   "now": 2,
+   "changed": true
+  },
+  {
+   "id": "E22",
+   "osm": 1592829,
+   "probe": [
+    13.731880434782605,
+    50.1058647826087
+   ],
+   "mapillary": "1019165672652746",
+   "pano": false,
+   "dist": 21.2,
+   "off": -11.9,
+   "tags": {
+    "height": "46",
+    "building": "residential"
+   },
+   "h": 46,
+   "old": 13,
+   "now": 14,
+   "changed": true
+  },
+  {
+   "id": "E23",
+   "osm": 51996078,
+   "probe": [
+    15.930327142857143,
+    50.36040142857143
+   ],
+   "mapillary": "880734582506761",
+   "pano": false,
+   "dist": 24.8,
+   "off": 15.6,
+   "tags": {
+    "height": "10",
+    "building": "house"
+   },
+   "h": 10,
+   "old": 3,
+   "now": 2,
+   "changed": true
+  },
+  {
+   "id": "E24",
+   "osm": 29169641,
+   "probe": [
+    14.28656130434783,
+    50.099300000000014
+   ],
+   "mapillary": "443459478511222",
+   "pano": false,
+   "dist": 23.8,
+   "off": 19.5,
+   "tags": {
+    "height": "10",
+    "building": "yes"
+   },
+   "h": 10,
+   "old": 3,
+   "now": 2,
+   "changed": true
+  },
+  {
+   "id": "E25",
+   "osm": 210551078,
+   "probe": [
+    15.8153034375,
+    50.433302499999996
+   ],
+   "mapillary": "1104008666777854",
+   "pano": false,
+   "dist": 16.1,
+   "off": -7.5,
+   "tags": {
+    "height": "20",
+    "building": "civic"
+   },
+   "h": 20,
+   "old": 6,
+   "now": 5,
+   "changed": true
+  },
+  {
+   "id": "E26",
+   "osm": 523473684,
+   "probe": [
+    12.929763499999998,
+    49.440453999999995
+   ],
+   "mapillary": "804711553525007",
+   "pano": false,
+   "dist": 21.2,
+   "off": 3.1,
+   "tags": {
+    "height": "56",
+    "building": "civic"
+   },
+   "h": 56,
+   "old": 16,
+   "now": 18,
+   "changed": true
+  },
+  {
+   "id": "E27",
+   "osm": 61830483,
+   "probe": [
+    15.834532857142856,
+    50.209127619047614
+   ],
+   "mapillary": "292281549182920",
+   "pano": false,
+   "dist": 6.7,
+   "off": 29.5,
+   "tags": {
+    "height": "13.3",
+    "building": "residential"
+   },
+   "h": 13.3,
+   "old": 4,
+   "now": 3,
+   "changed": true
+  },
+  {
+   "id": "E28",
+   "osm": 52002093,
+   "probe": [
+    15.866084,
+    50.299784
+   ],
+   "mapillary": "498632859549972",
+   "pano": true,
+   "dist": 18.9,
+   "off": -80,
+   "tags": {
+    "height": "13",
+    "building": "apartments"
+   },
+   "h": 13,
+   "old": 4,
+   "now": 3,
+   "changed": true
+  },
+  {
+   "id": "E29",
+   "osm": 50564041,
+   "probe": [
+    15.859084000000001,
+    50.19913799999999
+   ],
+   "mapillary": "813308489301348",
+   "pano": false,
+   "dist": 11.8,
+   "off": 8,
+   "tags": {
+    "height": "16.1",
+    "building": "apartments"
+   },
+   "h": 16.1,
+   "old": 5,
+   "now": 4,
+   "changed": true
+  },
+  {
+   "id": "E30",
+   "osm": 50564947,
+   "probe": [
+    15.835956000000001,
+    50.21083600000001
+   ],
+   "mapillary": "511321866895128",
+   "pano": false,
+   "dist": 15.5,
+   "off": 26.8,
+   "tags": {
+    "height": "12.4",
+    "building": "residential"
+   },
+   "h": 12.4,
+   "old": 4,
+   "now": 3,
+   "changed": true
+  },
+  {
+   "id": "E31",
+   "osm": 1132256469,
+   "probe": [
+    14.401034705882358,
+    50.08070823529412
+   ],
+   "mapillary": "1527712691527418",
+   "pano": true,
+   "dist": 13.9,
+   "off": -44.5,
+   "tags": {
+    "height": "10",
+    "building": "yes"
+   },
+   "h": 10,
+   "old": 3,
+   "now": 2,
+   "changed": true
+  },
+  {
+   "id": "E32",
+   "osm": 106310335,
+   "probe": [
+    15.864181764705885,
+    50.29842176470589
+   ],
+   "mapillary": "1263641114995687",
+   "pano": true,
+   "dist": 14.1,
+   "off": -87.2,
+   "tags": {
+    "height": "10",
+    "building": "school"
+   },
+   "h": 10,
+   "old": 3,
+   "now": 2,
+   "changed": true
+  },
+  {
+   "id": "E33",
+   "osm": 9113973,
+   "probe": [
+    14.42991862068965,
+    50.10513413793105
+   ],
+   "mapillary": "874216368177570",
+   "pano": true,
+   "dist": 9.2,
+   "off": -86.6,
+   "tags": {
+    "height": "10",
+    "building": "residential"
+   },
+   "h": 10,
+   "old": 3,
+   "now": 2,
+   "changed": true
+  },
+  {
+   "id": "E34",
+   "osm": 49944290,
+   "probe": [
+    14.471935,
+    48.97761499999999
+   ],
+   "mapillary": "1208379853813362",
+   "pano": false,
+   "dist": 24.5,
+   "off": -8.2,
+   "tags": {
+    "height": "16.6",
+    "building": "yes"
+   },
+   "h": 16.6,
+   "old": 5,
+   "now": 4,
+   "changed": true
+  },
+  {
+   "id": "E35",
+   "osm": 50343570,
+   "probe": [
+    15.841226,
+    50.198381999999995
+   ],
+   "mapillary": "1880827206177941",
+   "pano": false,
+   "dist": 20.1,
+   "off": -10.7,
+   "tags": {
+    "height": "5.7",
+    "building": "industrial"
+   },
+   "h": 5.7,
+   "old": 2,
+   "now": 1,
+   "changed": true
+  },
+  {
+   "id": "E36",
+   "osm": 59491100,
+   "probe": [
+    13.454603000000002,
+    49.170083
+   ],
+   "mapillary": "1173620793759210",
+   "pano": false,
+   "dist": 16.3,
+   "off": -30.1,
+   "tags": {
+    "height": "9.30",
+    "building": "residential"
+   },
+   "h": 9.3,
+   "old": 3,
+   "now": 2,
+   "changed": true
+  },
+  {
+   "id": "E37",
+   "osm": 182426772,
+   "probe": [
+    15.837033333333336,
+    50.21052666666667
+   ],
+   "mapillary": "945913708144544",
+   "pano": false,
+   "dist": 25.1,
+   "off": -5.5,
+   "tags": {
+    "height": "12.5",
+    "building": "residential"
+   },
+   "h": 12.5,
+   "old": 4,
+   "now": 3,
+   "changed": true
+  },
+  {
+   "id": "E38",
+   "osm": 482529255,
+   "probe": [
+    14.421233000000004,
+    50.078209
+   ],
+   "mapillary": "1429346705336051",
+   "pano": false,
+   "dist": 20.7,
+   "off": -31.6,
+   "tags": {
+    "height": "49",
+    "building": "yes"
+   },
+   "h": 49,
+   "old": 14,
+   "now": 15,
+   "changed": true
+  },
+  {
+   "id": "E39",
+   "osm": 491400693,
+   "probe": [
+    14.489886499999997,
+    50.10361949999999
+   ],
+   "mapillary": "1052988189401001",
+   "pano": true,
+   "dist": 13.2,
+   "off": -172.8,
+   "tags": {
+    "height": "10",
+    "building": "yes"
+   },
+   "h": 10,
+   "old": 3,
+   "now": 2,
+   "changed": true
+  },
+  {
+   "id": "E40",
+   "osm": 1132256447,
+   "probe": [
+    14.393432941176476,
+    50.08328504201679
+   ],
+   "mapillary": "3982274415419821",
+   "pano": true,
+   "dist": 12.8,
+   "off": -78.6,
+   "tags": {
+    "height": "10",
+    "building": "yes"
+   },
+   "h": 10,
+   "old": 3,
+   "now": 2,
+   "changed": true
+  },
+  {
+   "id": "E41",
+   "osm": 371491465,
+   "probe": [
+    14.42831,
+    50.11385
+   ],
+   "mapillary": "2332723310424826",
+   "pano": true,
+   "dist": 14,
+   "off": -36.7,
+   "tags": {
+    "height": "10",
+    "building": "yes"
+   },
+   "h": 10,
+   "old": 3,
+   "now": 2,
+   "changed": true
+  },
+  {
+   "id": "E42",
+   "osm": 93378738,
+   "probe": [
+    14.143798970588238,
+    49.303689264705866
+   ],
+   "mapillary": "950710112350582",
+   "pano": false,
+   "dist": 8.5,
+   "off": 18.5,
+   "tags": {
+    "height": "20",
+    "building": "civic"
+   },
+   "h": 20,
+   "old": 6,
+   "now": 5,
+   "changed": true
+  },
+  {
+   "id": "E43",
+   "osm": 1175034425,
+   "probe": [
+    14.430063600000006,
+    50.08511819999998
+   ],
+   "mapillary": "1610661220162248",
+   "pano": false,
+   "dist": 23.5,
+   "off": 10.5,
+   "tags": {
+    "height": "32",
+    "building": "yes"
+   },
+   "h": 32,
+   "old": 9,
+   "now": 10,
+   "changed": true
+  },
+  {
+   "id": "E44",
+   "osm": 50565813,
+   "probe": [
+    15.850154285714284,
+    50.21718142857143
+   ],
+   "mapillary": "952063722061555",
+   "pano": false,
+   "dist": 21,
+   "off": 5.6,
+   "tags": {
+    "height": "20",
+    "building": "apartments"
+   },
+   "h": 20,
+   "old": 6,
+   "now": 5,
+   "changed": true
+  }
+ ]
+}

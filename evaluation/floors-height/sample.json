@@ -1,0 +1,916 @@
+{
+ "rows": [
+  {
+   "id": "F01",
+   "street": "Bowden Street",
+   "probe": [
+    -79.35323202897763,
+    43.67579772212737
+   ],
+   "mapillary": "892521034657697",
+   "pano": false,
+   "dist": 15,
+   "off": 3.1,
+   "tags": {
+    "building": "detached"
+   },
+   "subtype": "Building Outline",
+   "h": 10.66,
+   "old": 3,
+   "now": 3,
+   "changed": false
+  },
+  {
+   "id": "F02",
+   "street": "Shaw Street",
+   "probe": [
+    -79.42574788068728,
+    43.668098755768234
+   ],
+   "mapillary": "1212609377706861",
+   "pano": true,
+   "dist": 15.1,
+   "off": -19,
+   "tags": {
+    "building": "yes"
+   },
+   "subtype": "Building Outline",
+   "h": 7.82,
+   "old": 2,
+   "now": 2,
+   "changed": false
+  },
+  {
+   "id": "F03",
+   "street": "South Kingslea Drive",
+   "probe": [
+    -79.49594753223064,
+    43.64182749442176
+   ],
+   "mapillary": "503519270800924",
+   "pano": false,
+   "dist": 15,
+   "off": 28.1,
+   "tags": {
+    "building": "detached"
+   },
+   "subtype": "Building Outline",
+   "h": 5.13,
+   "old": 1,
+   "now": 1,
+   "changed": false
+  },
+  {
+   "id": "F04",
+   "street": "Cosburn Avenue",
+   "probe": [
+    -79.31122518769345,
+    43.69699848138876
+   ],
+   "mapillary": "1676232459732257",
+   "pano": true,
+   "dist": 17.9,
+   "off": 106.2,
+   "tags": {
+    "building": "house"
+   },
+   "subtype": "Building Outline",
+   "h": 7.33,
+   "old": 2,
+   "now": 2,
+   "changed": false
+  },
+  {
+   "id": "F05",
+   "street": "Perth Avenue",
+   "probe": [
+    -79.44995454445012,
+    43.66010868419865
+   ],
+   "mapillary": "1772140736981469",
+   "pano": true,
+   "dist": 14.1,
+   "off": 120.2,
+   "tags": {
+    "building": "house"
+   },
+   "subtype": "Building Outline",
+   "h": 9.45,
+   "old": 2,
+   "now": 2,
+   "changed": false
+  },
+  {
+   "id": "F06",
+   "street": "Sherbourne Street",
+   "probe": [
+    -79.37150107284556,
+    43.66019808853537
+   ],
+   "mapillary": "1420597605732227",
+   "pano": true,
+   "dist": 14.1,
+   "off": 79.7,
+   "tags": {
+    "building": "yes"
+   },
+   "subtype": "Building Outline",
+   "h": 13.11,
+   "old": 3,
+   "now": 3,
+   "changed": false
+  },
+  {
+   "id": "F07",
+   "street": "Montrose Avenue",
+   "probe": [
+    -79.418983861419,
+    43.65750971528804
+   ],
+   "mapillary": "687523317394141",
+   "pano": true,
+   "dist": 18.4,
+   "off": -94,
+   "tags": {
+    "building": "yes"
+   },
+   "subtype": "Building Outline",
+   "h": 8.8,
+   "old": 2,
+   "now": 2,
+   "changed": false
+  },
+  {
+   "id": "F08",
+   "street": "Channel Avenue",
+   "probe": [
+    -79.35577264148722,
+    43.631852533896414
+   ],
+   "mapillary": "1410153686010643",
+   "pano": false,
+   "dist": 22.6,
+   "off": -3.6,
+   "tags": {
+    "building": "house"
+   },
+   "subtype": "Building Outline",
+   "h": 5.31,
+   "old": 1,
+   "now": 1,
+   "changed": false
+  },
+  {
+   "id": "F09",
+   "street": "Gillard Avenue",
+   "probe": [
+    -79.32751673460218,
+    43.681114022788385
+   ],
+   "mapillary": "2866272670424855",
+   "pano": true,
+   "dist": 14.8,
+   "off": 56,
+   "tags": {
+    "building": "detached"
+   },
+   "subtype": "Building Outline",
+   "h": 7.16,
+   "old": 2,
+   "now": 2,
+   "changed": false
+  },
+  {
+   "id": "F10",
+   "street": "Inglewood Drive",
+   "probe": [
+    -79.38432419591943,
+    43.688338311189305
+   ],
+   "mapillary": "2289138701694600",
+   "pano": true,
+   "dist": 14.6,
+   "off": -111.9,
+   "tags": {
+    "building": "yes"
+   },
+   "subtype": "Building Outline",
+   "h": 11.15,
+   "old": 3,
+   "now": 3,
+   "changed": false
+  },
+  {
+   "id": "F11",
+   "street": "Huntingwood Drive",
+   "probe": [
+    -79.29979070545438,
+    43.79078529006282
+   ],
+   "mapillary": "1129418955304038",
+   "pano": true,
+   "dist": 18.1,
+   "off": 96.4,
+   "tags": {
+    "building": "detached"
+   },
+   "subtype": "Building Outline",
+   "h": 6.39,
+   "old": 1,
+   "now": 2,
+   "changed": true
+  },
+  {
+   "id": "F12",
+   "street": "Perth Avenue",
+   "probe": [
+    -79.4474238381587,
+    43.65557728378794
+   ],
+   "mapillary": "1723597385211077",
+   "pano": true,
+   "dist": 16.4,
+   "off": -100.6,
+   "tags": {
+    "building": "residential"
+   },
+   "subtype": "Building Outline",
+   "h": 7,
+   "old": 1,
+   "now": 2,
+   "changed": true
+  },
+  {
+   "id": "F13",
+   "street": "Leavey Court",
+   "probe": [
+    -79.37475343103684,
+    43.79846362225687
+   ],
+   "mapillary": "1870652377669204",
+   "pano": true,
+   "dist": 25.1,
+   "off": 69.5,
+   "tags": {
+    "building": "semidetached_house"
+   },
+   "subtype": "Building Outline",
+   "h": 6.71,
+   "old": 1,
+   "now": 2,
+   "changed": true
+  },
+  {
+   "id": "F14",
+   "street": "Jasper Avenue",
+   "probe": [
+    -79.48298998189385,
+    43.68323638411473
+   ],
+   "mapillary": "484042429688688",
+   "pano": false,
+   "dist": 15.1,
+   "off": -26.4,
+   "tags": {
+    "building": "terrace"
+   },
+   "subtype": "Building Outline",
+   "h": 6.34,
+   "old": 1,
+   "now": 2,
+   "changed": true
+  },
+  {
+   "id": "F15",
+   "street": "Evans Avenue",
+   "probe": [
+    -79.48576253112724,
+    43.658594170150465
+   ],
+   "mapillary": "965620196219855",
+   "pano": true,
+   "dist": 16,
+   "off": 73.8,
+   "tags": {
+    "building": "house"
+   },
+   "subtype": "Building Outline",
+   "h": 6.42,
+   "old": 1,
+   "now": 2,
+   "changed": true
+  },
+  {
+   "id": "F16",
+   "street": "Warden Avenue",
+   "probe": [
+    -79.28376319801833,
+    43.717756721692496
+   ],
+   "mapillary": "520383585649796",
+   "pano": false,
+   "dist": 18.7,
+   "off": 31.1,
+   "tags": {
+    "building": "industrial"
+   },
+   "subtype": "Building Outline",
+   "h": 9.38,
+   "old": 2,
+   "changed": true
+  },
+  {
+   "id": "F17",
+   "street": "",
+   "probe": [
+    -79.34884532350644,
+    43.69674561672491
+   ],
+   "mapillary": "2495246997515337",
+   "pano": true,
+   "dist": 21,
+   "off": 100,
+   "tags": {
+    "building": "detached"
+   },
+   "subtype": "Building Outline",
+   "h": 6.08,
+   "old": 1,
+   "now": 2,
+   "changed": true
+  },
+  {
+   "id": "F18",
+   "street": "Islington Avenue",
+   "probe": [
+    -79.5060172003527,
+    43.602073751594425
+   ],
+   "mapillary": "935455407241582",
+   "pano": false,
+   "dist": 22,
+   "off": -29.4,
+   "tags": {
+    "building": "industrial"
+   },
+   "subtype": "Building Outline",
+   "h": 11.33,
+   "old": 3,
+   "changed": true
+  },
+  {
+   "id": "F19",
+   "street": "Humberline Drive",
+   "probe": [
+    -79.61841418619048,
+    43.73395144997592
+   ],
+   "mapillary": "251499483386693",
+   "pano": false,
+   "dist": 22.3,
+   "off": 31.6,
+   "tags": {
+    "building": "detached"
+   },
+   "subtype": "Building Outline",
+   "h": 6.84,
+   "old": 1,
+   "now": 2,
+   "changed": true
+  },
+  {
+   "id": "F20",
+   "street": "McRae Drive",
+   "probe": [
+    -79.36729844809344,
+    43.70752832987946
+   ],
+   "mapillary": "373482013981940",
+   "pano": false,
+   "dist": 21.7,
+   "off": 25.4,
+   "tags": {
+    "building": "yes"
+   },
+   "subtype": "Building Outline",
+   "h": 7.09,
+   "old": 1,
+   "now": 2,
+   "changed": true
+  },
+  {
+   "id": "F21",
+   "street": "Conlins Road",
+   "probe": [
+    -79.18549176463245,
+    43.794293918178575
+   ],
+   "mapillary": "1537901604281660",
+   "pano": true,
+   "dist": 17.6,
+   "off": 99.4,
+   "tags": {
+    "building": "detached"
+   },
+   "subtype": "Building Outline",
+   "h": 6.88,
+   "old": 1,
+   "now": 2,
+   "changed": true
+  },
+  {
+   "id": "F22",
+   "street": "Keele Street",
+   "probe": [
+    -79.48482281492578,
+    43.73703650133471
+   ],
+   "mapillary": "1128270694318959",
+   "pano": false,
+   "dist": 25.4,
+   "off": 27.4,
+   "tags": {
+    "building": "yes"
+   },
+   "subtype": "Building Outline",
+   "h": 6.6,
+   "old": 1,
+   "now": 2,
+   "changed": true
+  },
+  {
+   "id": "F23",
+   "street": "Finch Avenue East",
+   "probe": [
+    -79.23367083990458,
+    43.81526098059249
+   ],
+   "mapillary": "195681772272620",
+   "pano": false,
+   "dist": 22.3,
+   "off": 14.9,
+   "tags": {
+    "building": "industrial"
+   },
+   "subtype": "Building Outline",
+   "h": 7.64,
+   "old": 2,
+   "changed": true
+  },
+  {
+   "id": "F24",
+   "street": "Dane Avenue",
+   "probe": [
+    -79.45054263784665,
+    43.717344219547755
+   ],
+   "mapillary": "940140516744901",
+   "pano": false,
+   "dist": 24.5,
+   "off": -30.9,
+   "tags": {
+    "building": "detached"
+   },
+   "subtype": "Building Outline",
+   "h": 6.91,
+   "old": 1,
+   "now": 2,
+   "changed": true
+  },
+  {
+   "id": "F25",
+   "street": "Scarborough Heights Boulevard",
+   "probe": [
+    -79.22714551279486,
+    43.72128020151509
+   ],
+   "mapillary": "3063195057216878",
+   "pano": true,
+   "dist": 14,
+   "off": 63.5,
+   "tags": {
+    "building": "detached"
+   },
+   "subtype": "Building Outline",
+   "h": 6.48,
+   "old": 1,
+   "now": 2,
+   "changed": true
+  },
+  {
+   "id": "F26",
+   "street": "Torrens Avenue",
+   "probe": [
+    -79.35502309546297,
+    43.690414630232105
+   ],
+   "mapillary": "2600843490254604",
+   "pano": true,
+   "dist": 10,
+   "off": 128.4,
+   "tags": {
+    "building": "yes"
+   },
+   "subtype": "Building Outline",
+   "h": 6.76,
+   "old": 1,
+   "now": 2,
+   "changed": true
+  },
+  {
+   "id": "F27",
+   "street": "Cleveland Street",
+   "probe": [
+    -79.37792088488963,
+    43.701360364042266
+   ],
+   "mapillary": "528096061933068",
+   "pano": false,
+   "dist": 22.5,
+   "off": -24.1,
+   "tags": {
+    "building": "house"
+   },
+   "subtype": "Building Outline",
+   "h": 6.05,
+   "old": 1,
+   "now": 2,
+   "changed": true
+  },
+  {
+   "id": "F28",
+   "street": "Treerun Avenue",
+   "probe": [
+    -79.31023403251965,
+    43.815876140638544
+   ],
+   "mapillary": "1856867521598319",
+   "pano": true,
+   "dist": 17.6,
+   "off": -84.8,
+   "tags": {
+    "building": "detached"
+   },
+   "subtype": "Building Outline",
+   "h": 6.68,
+   "old": 1,
+   "now": 2,
+   "changed": true
+  },
+  {
+   "id": "F29",
+   "street": "Shaughnessy Boulevard",
+   "probe": [
+    -79.35365097292753,
+    43.77897174858183
+   ],
+   "mapillary": "1843045646561232",
+   "pano": true,
+   "dist": 20.6,
+   "off": -83.4,
+   "tags": {
+    "building": "detached"
+   },
+   "subtype": "Building Outline",
+   "h": 6.68,
+   "old": 1,
+   "now": 2,
+   "changed": true
+  },
+  {
+   "id": "F30",
+   "street": "Eileen Avenue",
+   "probe": [
+    -79.4950352201197,
+    43.669818073189305
+   ],
+   "mapillary": "826122723218177",
+   "pano": true,
+   "dist": 14.8,
+   "off": 46.5,
+   "tags": {
+    "building": "detached"
+   },
+   "subtype": "Building Outline",
+   "h": 6.25,
+   "old": 1,
+   "now": 2,
+   "changed": true
+  },
+  {
+   "id": "F31",
+   "street": "First Street",
+   "probe": [
+    -79.49856312962017,
+    43.601981234639844
+   ],
+   "mapillary": "1872852800290300",
+   "pano": true,
+   "dist": 19.4,
+   "off": -88.5,
+   "tags": {
+    "building": "retail"
+   },
+   "subtype": "Building Outline",
+   "h": 6.89,
+   "old": 1,
+   "now": 2,
+   "changed": true
+  },
+  {
+   "id": "F32",
+   "street": "Aldburn Road",
+   "probe": [
+    -79.43626443868949,
+    43.702041226495076
+   ],
+   "mapillary": "25119671397649805",
+   "pano": true,
+   "dist": 25.9,
+   "off": -63.6,
+   "tags": {
+    "building": "detached"
+   },
+   "subtype": "Building Outline",
+   "h": 6.7,
+   "old": 1,
+   "now": 2,
+   "changed": true
+  },
+  {
+   "id": "F33",
+   "street": "Wellington Street West",
+   "probe": [
+    -79.39009686475684,
+    43.64493169802136
+   ],
+   "mapillary": "712221626691064",
+   "pano": false,
+   "dist": 23.4,
+   "off": 2.1,
+   "tags": {
+    "building": "service"
+   },
+   "subtype": "Building Outline",
+   "h": 8.78,
+   "old": 2,
+   "changed": true
+  },
+  {
+   "id": "F34",
+   "street": "McCulley Street",
+   "probe": [
+    -79.14385141630767,
+    43.78087941839505
+   ],
+   "mapillary": "2788274701388379",
+   "pano": false,
+   "dist": 15.1,
+   "off": 7,
+   "tags": {
+    "building": "detached"
+   },
+   "subtype": "Building Outline",
+   "h": 6.07,
+   "old": 1,
+   "now": 2,
+   "changed": true
+  },
+  {
+   "id": "F35",
+   "street": "Havenbrook Boulevard",
+   "probe": [
+    -79.35147930935557,
+    43.768643400984374
+   ],
+   "mapillary": "741587548854596",
+   "pano": true,
+   "dist": 12.3,
+   "off": 61.3,
+   "tags": {
+    "building": "detached"
+   },
+   "subtype": "Building Outline",
+   "h": 6.14,
+   "old": 1,
+   "now": 2,
+   "changed": true
+  },
+  {
+   "id": "F36",
+   "street": "Bernice Crescent",
+   "probe": [
+    -79.49963334649499,
+    43.66673081474652
+   ],
+   "mapillary": "807920411619059",
+   "pano": true,
+   "dist": 10.4,
+   "off": 28.9,
+   "tags": {
+    "building": "detached"
+   },
+   "subtype": "Building Outline",
+   "h": 6.72,
+   "old": 1,
+   "now": 2,
+   "changed": true
+  },
+  {
+   "id": "F37",
+   "street": "Eglinton Avenue West",
+   "probe": [
+    -79.4172992330464,
+    43.702932313827446
+   ],
+   "mapillary": "667238476461708",
+   "pano": true,
+   "dist": 13.8,
+   "off": 83.9,
+   "tags": {
+    "building": "train_station"
+   },
+   "subtype": "Building Outline",
+   "h": 7.44,
+   "old": 2,
+   "changed": true
+  },
+  {
+   "id": "F38",
+   "street": "Robina Avenue",
+   "probe": [
+    -79.43903347608192,
+    43.69030449361751
+   ],
+   "mapillary": "1077431387966140",
+   "pano": true,
+   "dist": 11.6,
+   "off": 42.8,
+   "tags": {
+    "building": "house"
+   },
+   "subtype": "Building Outline",
+   "h": 6.06,
+   "old": 1,
+   "now": 2,
+   "changed": true
+  },
+  {
+   "id": "F39",
+   "street": "Cambridge Avenue",
+   "probe": [
+    -79.36028950738259,
+    43.67694797942654
+   ],
+   "mapillary": "1079166337900592",
+   "pano": true,
+   "dist": 13.7,
+   "off": 37.9,
+   "tags": {
+    "building": "semidetached_house"
+   },
+   "subtype": "Building Outline",
+   "h": 6.8,
+   "old": 1,
+   "now": 2,
+   "changed": true
+  },
+  {
+   "id": "F40",
+   "street": "Shorncliffe Road",
+   "probe": [
+    -79.54106851456264,
+    43.624180295080805
+   ],
+   "mapillary": "825219751762771",
+   "pano": false,
+   "dist": 22.9,
+   "off": -7.4,
+   "tags": {
+    "building": "industrial"
+   },
+   "subtype": "Building Outline",
+   "h": 12.32,
+   "old": 3,
+   "changed": true
+  },
+  {
+   "id": "F41",
+   "street": "Huntingwood Drive",
+   "probe": [
+    -79.30164428471377,
+    43.79032261567811
+   ],
+   "mapillary": "3012774708906753",
+   "pano": true,
+   "dist": 21.9,
+   "off": 109.6,
+   "tags": {
+    "building": "detached"
+   },
+   "subtype": "Building Outline",
+   "h": 6.61,
+   "old": 1,
+   "now": 2,
+   "changed": true
+  },
+  {
+   "id": "F42",
+   "street": "Albion Road",
+   "probe": [
+    -79.63309208243955,
+    43.747291775914775
+   ],
+   "mapillary": "540498413783168",
+   "pano": false,
+   "dist": 15.5,
+   "off": 30.8,
+   "tags": {
+    "building": "industrial"
+   },
+   "subtype": "Building Outline",
+   "h": 6.56,
+   "old": 1,
+   "changed": true
+  },
+  {
+   "id": "F43",
+   "street": "Petworth Crescent",
+   "probe": [
+    -79.28794071001401,
+    43.799789111177354
+   ],
+   "mapillary": "1567598835162964",
+   "pano": true,
+   "dist": 16.3,
+   "off": 96.6,
+   "tags": {
+    "building": "detached"
+   },
+   "subtype": "Building Outline",
+   "h": 6.52,
+   "old": 1,
+   "now": 2,
+   "changed": true
+  },
+  {
+   "id": "F44",
+   "street": "Scarborough Heights Boulevard",
+   "probe": [
+    -79.22795554537527,
+    43.721780964290005
+   ],
+   "mapillary": "1837778427575970",
+   "pano": true,
+   "dist": 21.5,
+   "off": 99.2,
+   "tags": {
+    "building": "detached"
+   },
+   "subtype": "Building Outline",
+   "h": 6.21,
+   "old": 1,
+   "now": 2,
+   "changed": true
+  },
+  {
+   "id": "F45",
+   "street": "Royal York Road",
+   "probe": [
+    -79.51514669163562,
+    43.65520284250864
+   ],
+   "mapillary": "1370216594654133",
+   "pano": true,
+   "dist": 18.8,
+   "off": 112.6,
+   "tags": {
+    "building": "detached"
+   },
+   "subtype": "Building Outline",
+   "h": 6.11,
+   "old": 1,
+   "now": 2,
+   "changed": true
+  },
+  {
+   "id": "F46",
+   "street": "Howden Road",
+   "probe": [
+    -79.28972672408376,
+    43.75181337885156
+   ],
+   "mapillary": "138208615016030",
+   "pano": false,
+   "dist": 25.8,
+   "off": 27.1,
+   "tags": {
+    "building": "industrial"
+   },
+   "subtype": "Building Outline",
+   "h": 7.42,
+   "old": 2,
+   "changed": true
+  }
+ ]
+}
