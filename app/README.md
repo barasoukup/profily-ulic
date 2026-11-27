@@ -21,9 +21,9 @@ Statická data, která web dostane při nasazení, si lokálně vyrobíte takto 
 | dlaždice OSM celé ČR | `NAME=cz tools/build_osm_data.sh data/osm/cz.osm.pbf app/data/osm-tiles` | `app/data/osm-tiles` |
 | hranice zón placeného stání v Praze | `node tools/build_zps.mjs` | `app/data/zps.json` |
 | otevřená data Prahy (stromy, zákaz stání, třídy ulic) | `node tools/build_praha_opendata.mjs` | `app/data/praha/opendata` |
-| vývoj zástavby Prahy | `node tools/build_vyvoj.mjs` | `app/data/vyvoj` |
-| placené stání v Brně | `node tools/build_parkovani_brno.mjs app/data/brno` | `app/data/brno/parkovani` |
-| zóny placeného stání v Plzni | `node tools/build_zony_plzen.mjs` | `app/data/plzen/zony.json` |
+| vývoj zástavby Prahy | `node tools/build_built_up_age.mjs` | `app/data/vyvoj` |
+| placené stání v Brně | `node tools/build_parking_brno.mjs app/data/brno` | `app/data/brno/parkovani` |
+| zóny placeného stání v Plzni | `node tools/build_zones_plzen.mjs` | `app/data/plzen/zony.json` |
 
 Server je vydává pod `data/…`, stejně jako web.
 
@@ -593,7 +593,7 @@ podlaží, celkem, příznak nové budovy), v Brně z Průzkumu budov KAM, v Plz
 užší a tmavší. Osmnáct vzhledů domu (činžák se šikmou střechou, měšťanský dům na náměstí, sorela, zděný bytový dům 50.–60. let, poválečný bytový dům, škola, kostel, garáž, funkcionalistický činžák, panelák, moderní
 bytový dům, kancelářská budova, městský dům, vila, rodinný dům 60.–80. let, nový rodinný dům, venkovský dům štítem do
 ulice, hala; Bára 16. 11. 2026, nové kreslené na základě starších v `profile.js` `BASE_STYLE`) se volí podle tvaru bloku z OSM, údajů o domě a stáří zástavby: v Praze z vrstvy IPR *Vývoj zástavby*
-(statické dlaždice z `tools/build_vyvoj.mjs`), jinde z roku dokončení v RÚIAN (do 1919 a 1946–57 šikmá střecha,
+(statické dlaždice z `tools/build_built_up_age.mjs`), jinde z roku dokončení v RÚIAN (do 1919 a 1946–57 šikmá střecha,
 1948–57 sorela, 1958–69 zděný bytový dům do 5 podlaží (i deska), jinak od 1955 panelová éra, od 1996 moderní dům;
 v Praze a Brně rok, zdi a využití domu z RÚIAN ČÚZK dalším dotazem při kliknutí, podlaží dál z IPR a KAM; stáří
 zástavby IPR zůstává v Praze pro domy, u kterých RÚIAN rok nemá). Vnitřní město a sídliště podle vzdálenosti od centra má každé město
@@ -654,7 +654,7 @@ stáním u vozovky a s počtem pruhů z OSM ≥ 2 se dělí na dva pruhy už od 
   mapy UMPS (`PUBLIC/opendata_umps`, jeden dotaz `identify`). Kódy linií mají stejnou soustavu jako IPR
   s předponou (`brnoLineCode`: 1255010 → 55010);
 - parkování: aktuální úseky placeného stání z mapy parkovanivbrne.cz, stažené při nasazení do dlaždic
-  (`tools/build_parkovani_brno.mjs`, `data/brno/parkovani/`); export na data.brno.cz je starší. Oblasti
+  (`tools/build_parking_brno.mjs`, `data/brno/parkovani/`); export na data.brno.cz je starší. Oblasti
   rezidentního parkování se nepoužívají (ohraničují celé čtvrti, i ulice bez placeného stání): kde u řezu
   úsek není, profil stání odhadne;
 - cyklopruhy, piktokoridory a protisměr: Cykloopatření – zrealizovaná (data.brno.cz), jen kde OSM nic neříká;
@@ -729,7 +729,7 @@ Služby města (`gis.jihlava-city.cz`, CORS povolený):
   jeden dotaz na asi 45 vrstev ploch a linií), 3D budovy s výškou okapu a hřebene (`GIS_3D_budovy`), stromy,
   lavičky, stojany a sloupky z pasportů, ortofoto 2024. Služby jsou 12 m vedle OSM: dotazy s 1623, kde to vrstva
   nepřijme, posun vstupu. Osy kolejí město nezveřejňuje (z OSM), tramvajová tělesa jsou výchozí z panelů.
-  Zóny placeného stání z otevřených dat (CC0, `tools/build_zony_plzen.mjs` při nasazení): podél čáry zóny se
+  Zóny placeného stání z otevřených dat (CC0, `tools/build_zones_plzen.mjs` při nasazení): podél čáry zóny se
   u obrub nakreslí stání 2 m jako odhad. Kontrola 50 řezů: `evaluation/plzen/ZPRAVA.md`.
 
 ### Pasporty dalších měst (16. 11. 2026)
@@ -795,7 +795,7 @@ Připojená po srovnání s celostátní DTM ČÚZK nad ortofotem (`evaluation/<
   Kde neodpoví ani ČÚZK, je profil odhad z OSM s poznámkou „technická mapa neodpověděla“. Výpadek linií
   (koleje, ploty, svahy), parkování a otevřených dat Prahy aplikace také řekne („Chybí data parkovacích stání
   (server neodpověděl)“, `sources.js` `outage`), jinak by ulice vypadala jako bez tramvaje nebo bez aut.
-  Testy: `tests/vypadky.test.js`; týdenní kontrola živých služeb viz Publikace.
+  Testy: `tests/outages.test.js`; týdenní kontrola živých služeb viz Publikace.
 - Pardubice (`towns/pardubice.js`) nemají vlastní služby, mají jen vlastní ilustrace. Kontrola 49 řezů:
   `evaluation/pardubice/ZPRAVA.md`.
 

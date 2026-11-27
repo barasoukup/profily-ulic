@@ -85,7 +85,7 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
   dům, kancelář, městský dům, vila, rodinný dům 60.–80. let, nový rodinný dům, venkovský dům štítem do ulice, hala).
   Paneláků bylo moc: kontrola proti RÚIAN `evaluation/budovy-panel/ZPRAVA.md`, Street View 25 domů v `k-foceni.md`. Plochá střecha se rozlišuje podle tvaru bloku z OSM, IPR „nová budova“
   (pole ve stávajícím dotazu na Podlažnosti) a stáří zástavby (IPR Vývoj zástavby, statické dlaždice
-  z `tools/build_vyvoj.mjs` při nasazení; Bára 8. 11. 2026: plošná vrstva je výchozí odhad, který
+  z `tools/build_built_up_age.mjs` při nasazení; Bára 8. 11. 2026: plošná vrstva je výchozí odhad, který
   přebijí údaje o domě).
 - Vzhled domu čte všechny budovy OSM ve všech státech (`?off=vsedomy`; `evaluation/all-buildings/ZPRAVA.md`, Bára 25. 11. 2026);
   sada mobiliáře smí mít lampu do 5 m (`lamp-post-top`). Rakousko ve všech kolech 19 : 18, výjimka není.

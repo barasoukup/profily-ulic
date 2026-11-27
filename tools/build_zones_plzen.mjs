@@ -3,7 +3,7 @@
 // Přednádraží, Roudná) or „Vyhrazené stání“. The city publishes them only as a zip (GeoJSON in WGS 84,
 // within about 1 m of the OSM axes), so the file is fetched once per deploy and cut down here (Bára).
 // towns/plzen.js turns the lines into parking strips along the curbs of the roadway.
-//   node tools/build_zony_plzen.mjs [out dir]   (default app/data/plzen)
+//   node tools/build_zones_plzen.mjs [out dir]   (default app/data/plzen)
 //   → zony.json  {"date": "2026-10-06", "lines": [[name, [[lon, lat], …]], …]}
 import fs from "node:fs";
 import os from "node:os";

@@ -11,8 +11,8 @@ ne čistá výhra: zůstává zapnuté jako dosud, **rozhodne Bára** (oddíl 5)
 ## 1. Odkaz: `#rez=lat,lon,azimut,vlevo,vpravo,cesta`
 Cesta OSM je šesté číslo. Čtou ho `share.js` (`cutHash`, `parseCutHash`, `sameCut`), `derive.js savedStreet`, `app.js` (otevření, vložená
 poloha, změna adresy otevřené stránky, obnovení z úložiště a po změně jazyka); `designParams` (`&navrh=`, `&stav=`), „O aplikaci“
-(`about.js`, jen prvních část adresy), přesměrování `build_root_site.mjs` a `city_site.mjs` berou adresu celou a nemění se; `logging/hlaseni.mjs`
-a `upravy.mjs` cestu vypisují. **Worker se měnit nemusí**: `CUT_PATH` pustí jen číslice, čárky, tečky a minus, nový odkaz mezi ně patří
+(`about.js`, jen prvních část adresy), přesměrování `build_root_site.mjs` a `city_site.mjs` berou adresu celou a nemění se; `logging/reports.mjs`
+a `edits.mjs` cestu vypisují. **Worker se měnit nemusí**: `CUT_PATH` pustí jen číslice, čárky, tečky a minus, nový odkaz mezi ně patří
 (test); stará otevřená stránka šesté číslo přeskočí. Cesta, která už není, je pod zemí, dál než 40 m nebo končí víc než 5 m před
 řezem: nejbližší ulice jako dřív. Směr podél cesty se bere z té cesty. Ověřeno v aplikaci: všech 10 z 226 řezů, které se chytaly jiné
 vozovky, dostalo svou cestu a tentýž profil; starý odkaz a odkaz s neexistující cestou jako dřív; `?lang=sk`.
@@ -28,7 +28,7 @@ Vedlejší nález: azimut je v odkazu zaokrouhlený na celé stupně, profil z o
    dají víc pruhů než pravidla, se pruhy pravidel vrátí, když se do nich vejde víc zákonných pruhů, které model nevyloučil. fr-toulouse-2
    (dvě slabé čáry, stání se vejde i tak) zůstává, stejně obousměrky (nl-schiedam-5).
    Cena proti dnešku (N před opravami) na oficiálních bodech: at-graz-4 60 → 100 %, pt-braga-8 71 → 86 % (pruhy hůř); es-valencia-4 hůř.
-Testy: `tests/park-ai.test.js`, `pravidla.test.js`, `share.test.js`, `saved-cut.test.js`, `logging.test.js`, `root-site.test.js`.
+Testy: `tests/park-ai.test.js`, `rules-2026-11.test.js`, `share.test.js`, `saved-cut.test.js`, `logging.test.js`, `root-site.test.js`.
 
 ## 3. Nový vzorek (kód zmrazen na 7af8747, potom vzorek; kód se už neměnil)
 `sample.mjs` (semínko 20261125 + 909): místní ulice v deseti státech, kandidáti dál než 150 m od každého z 42 831 bodů v JSON souborech

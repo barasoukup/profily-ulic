@@ -2,7 +2,7 @@
 // sections (úseky OPS) are current, unlike the export on data.brno.cz (2/2024), which misses whole areas
 // brought in since (e.g. 8-02 Spodní, 9-01 Dunajská). The map loads one data file (mapdata.o.js) that
 // does not allow other pages to read it, so it is fetched once per deploy and cut down here (Bára).
-//   node tools/build_parkovani_brno.mjs <out dir>
+//   node tools/build_parking_brno.mjs <out dir>
 //   → parkovani/<ix>_<iy>.json  sections and special stalls as ArcGIS JSON polygons with KIND (useky,
 //                    zasobovani, specialni), in 0.005° tiles like the OSM tiles
 import fs from "node:fs";
@@ -11,7 +11,7 @@ import path from "node:path";
 const MAP = "https://www.parkovanivbrne.cz/mapa/";
 const outDir = process.argv[2];
 if (!outDir) {
-  console.error("použití: node tools/build_parkovani_brno.mjs <výstup>");
+  console.error("použití: node tools/build_parking_brno.mjs <výstup>");
   process.exit(1);
 }
 

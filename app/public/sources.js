@@ -386,7 +386,7 @@ async function brnoOsm(lat, lon, radius) {
 }
 
 // Paid parking of Brno: the current sections of the parkovanivbrne.cz map, fetched at deploy time into
-// tiles (tools/build_parkovani_brno.mjs; the map's file does not let other pages read it).
+// tiles (tools/build_parking_brno.mjs; the map's file does not let other pages read it).
 const parkTiles = new Map();
 async function brnoParkovani(bbox) {
   const [x0, y0, x1, y1] = bbox.split(",").map(Number);
@@ -461,7 +461,7 @@ async function iprParking(bbox, inZone) {
 }
 
 // Is the point within ZPS_RADIUS of a paid parking zone? The zones' bounding boxes are a file made
-// once by tools/build_zps.mjs (Brno: tools/build_parkovani_brno.mjs) (data/zps.json, on the web built at deploy time), so a click never asks
+// once by tools/build_zps.mjs (Brno: tools/build_parking_brno.mjs) (data/zps.json, on the web built at deploy time), so a click never asks
 // IPR. Without the file the answer is unknown (undefined) and the profile falls back to TSK sections.
 const ZPS_RADIUS = 100; // m
 let zpsBoxes;
@@ -478,7 +478,7 @@ export async function zps(lat, lon) {
 }
 
 // When the area around a point was first built up, from IPR's "Vývoj zástavby" (built-up area in
-// 1840, 1880, 1920, 1950, 1970, 1990, 2010), cut into static tiles by tools/build_vyvoj.mjs, so a
+// 1840, 1880, 1920, 1950, 1970, 1990, 2010), cut into static tiles by tools/build_built_up_age.mjs, so a
 // click never asks IPR. Returns the earliest year whose area contains the point, AFTER_2010 when
 // the point lies in none (built later), undefined when there is no tile (data missing).
 export const AFTER_2010 = 2020;

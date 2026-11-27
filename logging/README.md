@@ -19,7 +19,7 @@ kliknutí na nic nečeká, a když Worker neodpoví, nic se nestane.
   1 000 znaků) spolu s řezem a profilem, jak je na stránce, a profilem, jak ho aplikace při té návštěvě sestavila
   (chybí u profilu obnoveného nebo načteného ze souboru). V okně je
   upozornění, ať nepíše osobní údaje. Hlášení smaže na požádání Bára (`DELETE FROM events WHERE id = …`);
-  výpis `hlaseni.mjs` se nikam nesdílí.
+  výpis `reports.mjs` se nikam nesdílí.
 
 - **zprávy z okna „O aplikaci“** (od 24. 11. 2026, `POST /contact`, tabulka `contacts`): text (nejvýš 3 000 znaků),
   nepovinný e-mail pro odpověď a, když ho návštěvník přiloží, odkaz na řez (`#rez=…`, jen z našich adres), k tomu jazyk
@@ -94,9 +94,9 @@ Potřebuješ účet na cloudflare.com (stačí bezplatný) a Node. Všechny př�
   ```bash
   npx wrangler d1 execute profily-ulic-log --remote --command "SELECT date(ts,'+1 hour') den, detail, count(*), count(DISTINCT session) FROM events WHERE kind='bez_ulice' GROUP BY 1, 2 ORDER BY 1"
   ```
-- **Hlášení chyb** (tlačítko „Nahlásit chybu“ pod profilem): `node hlaseni.mjs` vypíše posledních 50 hlášení
-  (nebo `node hlaseni.mjs 200`) s textem, odkazem na řez a profilem, jak ho aplikace sestavila.
-- **Co lidé opravují a navrhují:** `node upravy.mjs` (nebo `node upravy.mjs oprava`, `node upravy.mjs navrh`) vypíše
+- **Hlášení chyb** (tlačítko „Nahlásit chybu“ pod profilem): `node reports.mjs` vypíše posledních 50 hlášení
+  (nebo `node reports.mjs 200`) s textem, odkazem na řez a profilem, jak ho aplikace sestavila.
+- **Co lidé opravují a navrhují:** `node edits.mjs` (nebo `node edits.mjs oprava`, `node edits.mjs navrh`) vypíše
   každý záznam úprav jako seznam změn (i s odkazem `#rez=`) a nakonec nejčastější změny.
 - Přehled dotazů a spotřeby je i v nástěnce Cloudflare (Workers & Pages, D1).
 

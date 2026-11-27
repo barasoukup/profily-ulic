@@ -37,7 +37,7 @@ v profilu jako 704); technická mapa vodorovné značení nemá. Otevřená data
 bez počtu a druhu stání. Profil proto bere stání z parkovišť technické mapy, z OSM (1 273 ploch `parking=street_side`,
 značky `parking:left/right/both` jen na 1 % ulic) a mimo ně z odhadu.
 
-Zóny placeného stání (připojeno 9. 11. 2026): `tools/build_zony_plzen.mjs` stáhne zip zón (při nasazení) do
+Zóny placeného stání (připojeno 9. 11. 2026): `tools/build_zones_plzen.mjs` stáhne zip zón (při nasazení) do
 `data/zony.json`; linie leží na ose ulice (medián 1 m od OSM, datum v pořádku). Podél obrubníků vozovky technické mapy,
 ve které linie leží, vznikne pás podélného stání 2,0 m: u obou obrubníků, když zbude 3,0 m (jednosměrka) nebo 5,0 m
 (obousměrka, 2 × 2,5 m) pro provoz, u jednoho (vpravo ve směru jízdy), když se vejde jen jeden pás, jinak žádný.

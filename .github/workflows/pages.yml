@@ -85,7 +85,7 @@ jobs:
       - name: Built-up area by period
         continue-on-error: true
         timeout-minutes: 10
-        run: node tools/build_vyvoj.mjs site-vyvoj
+        run: node tools/build_built_up_age.mjs site-vyvoj
       # Prague's open data (Geoportál Praha, CC BY 4.0): trees and tree rows, TSK's no-parking sections and
       # street classes, downloaded once per deploy from opendata.geoportalpraha.cz into small tiles
       # (data/praha/opendata, about 6 MB), never on a click. When the download fails, the tiles of the last
@@ -125,7 +125,7 @@ jobs:
           mkdir -p site-brno/data
           # Paid parking from the parkovanivbrne.cz map (current, unlike the 2/2024 export on data.brno.cz);
           # when the map does not answer, the files of the last good deploy.
-          if node tools/build_parkovani_brno.mjs site-brno/data; then
+          if node tools/build_parking_brno.mjs site-brno/data; then
             mkdir -p data/parkovani-brno-last && cp -R site-brno/data/parkovani data/parkovani-brno-last/
           elif [ -d data/parkovani-brno-last/parkovani ]; then
             echo "::warning::parkovanivbrne.cz did not answer, using the parking of an earlier deploy"
@@ -148,7 +148,7 @@ jobs:
         timeout-minutes: 5
         run: |
           mkdir -p site-plzen/data
-          if node tools/build_zony_plzen.mjs site-plzen/data; then
+          if node tools/build_zones_plzen.mjs site-plzen/data; then
             mkdir -p data/zony-plzen-last && cp site-plzen/data/zony.json data/zony-plzen-last/
           elif [ -f data/zony-plzen-last/zony.json ]; then
             echo "::warning::opendata.plzen.eu did not answer, using the zones of an earlier deploy"

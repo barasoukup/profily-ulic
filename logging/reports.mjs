@@ -1,6 +1,6 @@
 // The visitors' reports of badly built cuts (kind "hlaseni", the button "Nahlásit chybu"): newest first, each with
 // what it is about, the visitor's text, a link to the cut and the profile the app built there.
-// Run from logging/ (wrangler signed in to Bára's account):  node hlaseni.mjs [počet]
+// Run from logging/ (wrangler signed in to Bára's account):  node reports.mjs [počet]
 import { execFileSync } from "node:child_process";
 
 const limit = Math.max(1, Math.min(500, +process.argv[2] || 50));

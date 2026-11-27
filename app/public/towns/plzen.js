@@ -119,7 +119,7 @@ async function osm(lat, lon, radius) {
 
 // Parking: the parking areas of the technical map are among the surfaces (704); the city's layer of
 // parking places (GIS_Doprava) holds car parks off the street only, and Plzeň publishes no stalls. What
-// it publishes are its paid parking zones (open data, CC0; tools/build_zony_plzen.mjs → data/plzen/zony.json):
+// it publishes are its paid parking zones (open data, CC0; tools/build_zones_plzen.mjs → data/plzen/zony.json):
 // lines along the street axes, each with the zone's name or „Vyhrazené stání“. A zone says that people pay
 // there, not where the cars stand: its streets get strips of parallel parking (2.0 m) along the curbs of
 // the roadway the line runs in, as an estimate, where the technical map or OSM has no parking already.

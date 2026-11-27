@@ -30,7 +30,7 @@ async function getJSON(url) {
   }
 }
 
-// The app's sources.vyvoj() on the local tiles (app/data/vyvoj, built by tools/build_vyvoj.mjs).
+// The app's sources.vyvoj() on the local tiles (app/data/vyvoj, built by tools/build_built_up_age.mjs).
 async function vyvoj(lat, lon) {
   const k = `${Math.floor(lon / 0.01)}_${Math.floor(lat / 0.01)}`;
   let polys;

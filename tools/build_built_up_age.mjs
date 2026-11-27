@@ -1,7 +1,7 @@
 // Downloads IPR's "Vývoj zástavby v Praze v letech 1840–2010" (built-up area in 1840, 1880, 1920,
 // 1950, 1970, 1990 and 2010; URK_CUR_URK_VYVOJZASTAVBY_P, CC BY) once and cuts it into tiles, so
 // the app finds the age of the area around a building without asking IPR on a click.
-//   node tools/build_vyvoj.mjs [out-dir]   (default app/data/vyvoj)
+//   node tools/build_built_up_age.mjs [out-dir]   (default app/data/vyvoj)
 // Output: <out-dir>/<ix>_<iy>.json (TILE degrees, as the OSM tiles) with [[year, [rings]], …]
 // for every polygon whose bounding box touches the tile. © IPR Praha.
 import fs from "node:fs";

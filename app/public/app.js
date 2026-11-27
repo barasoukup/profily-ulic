@@ -2413,7 +2413,7 @@ $("#btn-fix").onclick = () => {
 };
 
 // Reporting a badly built cut (Bára): what is wrong, in the visitor's words, with the cut and its profile as the
-// app built it (and as corrected, if the visitor corrected it), into the log (kind "hlaseni", logging/hlaseni.mjs).
+// app built it (and as corrected, if the visitor corrected it), into the log (kind "hlaseni", logging/reports.mjs).
 // [value in the log, label]
 const REPORT_WHAT = [["šířky", tr("šířky")], ["pruhy", tr("pruhy")], ["chodník", tr("chodník")], ["parkování", tr("parkování")], ["tramvaj", tr("tramvaj")],
   ["cyklisté", tr("cyklisté")], ["zeleň a stromy", tr("zeleň a stromy")], ["domy", tr("domy")], ["značky", tr("značky")], ["jiné", tr("jiné")]];
