@@ -232,7 +232,7 @@ Co rozhodne Bára, je označeno **(Bára)**.
   5 : 10); dělicí pás 21 m (b-14) otevřený; parkoviště Bostonu (BTD
   MunicipalParkingLots jsou jen městská).
   Nebo mapu jen pro místní ulice (nový vzorek). Ve všech variantách nejčastěji chybí stání (mapy ho nemají; BTD má značení
-  `Cartegraph_BTD_readonly` LongMarkings a ParkingMeters, nezkoumáno). **(Bára)** licence Street Edges (PDDL z položky celé
+  `Cartegraph_BTD_readonly` LongMarkings a ParkingMeters, nezkoumáno). ~~**(Bára)**~~ (Bára 27. 11. 2026: spolehnout se na PDDL portálu, uvádět zdroj) licence Street Edges (PDDL z položky celé
   podkladové mapy). Podlaží budov Bostonu neměřená. Somerville, Brookline, Newton bez otevřené mapy povrchů (jen odhad).
 
 ## Státy a pravidla
