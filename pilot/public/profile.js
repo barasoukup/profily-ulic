@@ -1150,7 +1150,7 @@ function drawPrahaBuilding(g, x, side, surface, info, chosen) {
     };
     if (luck === 4) { leaf(d, d + w / 2); leaf(d + w / 2, d + w); return; } // closed
     const lw = Math.min(w / 2, 48), lf = Math.min(lw, d - 20); // the front leaf stays on the wall
-    if (lf > 14) leaf(d - 8 - lf, d - 8);
+    if (lf >= lw) leaf(d - 8 - lf, d - 8); // a whole leaf or none (never one cut by the corner)
     leaf(d + w + 8, d + w + 8 + lw);
   };
   // A canopy over a door on the side wall, seen from the front: a slab, its shadow, two brackets.
@@ -1399,6 +1399,11 @@ function drawPrahaBuilding(g, x, side, surface, info, chosen) {
     const z = (d) => top + 12 + Math.min(d, ridge) * P - Math.max(0, d - ridge) * P;
     // Chimney first (the roof hides its foot), then the gable up to the roof, then a thick tiled slab.
     const dc = small ? RIDGE + 50 : EDGE - 80;
+    if (kind === "typovy") { // a second chimney, well inside the slope (its foot under the tiles, clear of the roof's edge)
+      const d2 = EDGE - 230;
+      box(d2 - 22, d2 + 22, top, z(d2) + 90, "#c46a4b");
+      box(d2 - 30, d2 + 30, z(d2) + 80, z(d2) + 92, "#8d4a34");
+    }
     if (kind !== "kostel") { // a church has no chimney
       box(dc - 24, dc + 24, top, z(dc) + 100, "#c46a4b");
       box(dc - 32, dc + 32, z(dc) + 90, z(dc) + 102, "#8d4a34");
@@ -1445,8 +1450,6 @@ function drawPrahaBuilding(g, x, side, surface, info, chosen) {
       for (let zr = top + 40; zr < z(Math.min(ridge, EDGE)) - 30; zr += 34) box((zr - top - 12) / P + 8, EDGE, zr, zr + 4, tile[1], { "fill-opacity": 0.35 });
     } else if (kind === "typovy") { // rows of tiles and a second chimney
       for (let zr = top + 40; zr < z(Math.min(ridge, EDGE)) - 30; zr += 34) box((zr - top - 12) / P + 8, EDGE, zr, zr + 4, tile[1], { "fill-opacity": 0.35 });
-      box(EDGE - 200, EDGE - 160, z(EDGE - 180) - 10, z(EDGE - 180) + 90, "#c46a4b");
-      box(EDGE - 206, EDGE - 154, z(EDGE - 180) + 82, z(EDGE - 180) + 94, "#8d4a34");
     }
     else if (kind === "vila" || kind === "sorela" || kind === "mestan") { // a hipped roof: rows of tiles on the slope, a dormer with its little gable
       for (let zr = top + 40; zr < z(Math.min(ridge, EDGE)) - 30; zr += 34) {
