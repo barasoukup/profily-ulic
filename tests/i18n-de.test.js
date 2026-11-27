@@ -30,17 +30,17 @@ test("normy: česká pravidla německy, s desetinnou čárkou", () => {
 
 test("výpadky zdrojů a texty měst", () => {
   setCity("brno");
-  assert.equal(city.dataName, "Technical map (Brno)");
+  assert.equal(city.dataName, "Technische Karte (Brünn)");
   const no = { status: "rejected", reason: new Error("503") }, ok = { status: "fulfilled", value: { features: [] } };
   assert.equal(outage({ surfaces: no, lines: ok, parking: ok }).text,
-    "Technical map (Brno) antwortet gerade nicht, der Querschnitt ist nur eine Schätzung aus OSM. Klicken Sie in Kürze erneut.");
+    "Technische Karte (Brünn) antwortet gerade nicht, der Querschnitt ist nur eine Schätzung aus OSM. Klicken Sie in Kürze erneut.");
   setCity("olomouc");
   assert.equal(city.server, "ČÚZK");
 });
 
 test("kredity exportu", () => {
   const [data, art] = creditLines(setCity("cesko"), { region: "Pardubický kraj", ortho: true });
-  assert.equal(data, "Daten: technische Karte © Pardubický kraj, IS DMVS ČÚZK, RÚIAN © ČÚZK, 2026 (CC BY 4.0, bearbeitet) · Luftbild © ČÚZK, 2025 (CC BY 4.0) · © OpenStreetMap-Mitwirkende (ODbL)");
+  assert.equal(data, "Daten: Technische Karte © Pardubický kraj, IS DMVS ČÚZK, RÚIAN © ČÚZK, 2026 (CC BY 4.0, bearbeitet) · Luftbild © ČÚZK, 2025 (CC BY 4.0) · © OpenStreetMap-Mitwirkende (ODbL)");
   assert.match(art, /^Illustrationen © Streetmix/);
   // The city's credit starts with "Daten ©": said once (the Bulgarian critic, 17. 11. 2026).
   assert.match(creditLines(setCity("praha"))[0], /^Daten: © IPR Praha/);

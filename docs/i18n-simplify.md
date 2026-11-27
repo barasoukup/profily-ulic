@@ -169,3 +169,13 @@ Z 683 klíčů ve skupinách 1–8 se asi **380** dnešních textů změní vidi
 2. Normy: úroveň A hned, úroveň B po ukázce na 10 řádcích (doporučuji), nebo A natrvalo?
 3. Závorka za druhovým slovem (`mapa povrchů (Boston)`) je v pořádku také v dlouhých větách (výpadek zdroje)?
 4. Kredity v jazyce stránky (včetně slovenských zdrojů: „pasport komunikací © mesto Košice“) místo originální řeči zdroje?
+
+## Rozhodnutí Báry 27. 11. 2026 a stav provedení (krok 2)
+
+1. Jména měst jsou klíče `place.<id>` ve všech 24 jazycích (exonyma a písmo: Wien, Wiedeń, řečtina, bulharština), neskloňují se, vždy 1. pád.
+2. Normy hned na úroveň B: strukturované hodnoty (`norm-text.js`: pravidlo `rule.<id>`, slova `norm.min/std/rec/exc/tight/twoWay/depth`, místo ve zdroji `norm.table/page/chapter…`). Provedeno u **40 ze 244 řádků**, které jsou čisté hodnoty se jmény zdrojů. Zbylých ~200 má podmínky („při 50 km/h“, „u obruby“) nebo zdroj s českým textem („příručka Paříže 2023“); jejich převod chce slovník podmínek a zdrojů (asi 45 zdrojů, desítky podmínek) a počet klíčů by u norem nesnížil. Zůstávají jako `country.<ISO>.*`.
+3. Závorka se jménem za druhovým slovem platí všude (`data.js`, `sources.notResponding` + odhad, poznámky).
+4. Kredity v jazyce stránky (`credit-text.js`, `credits.what.*`), držitel, produkt a licence zůstávají vlastním jménem.
+
+Mechanika: `i18n.js` má `ucfirst`, `list` (Intl.ListFormat), `countryName` (Intl.DisplayNames, krátký tvar), `ref`/`text`/`place`; hodnota šablony `{k, v}` se překládá znovu. Poznámka řezu s parametry je `klíč|{json}` (`mark(klíč, vars)`), `legacy-cs-keys.json` vede staré české věty i odstraněné klíče `note.*MapDown` na `note.mapDownOrthoOsm|{…}` (nebo `…Osm`) se jménem. Klíče skládané v kódu hlídá `tests/i18n.test.js` seznamem prefixů `COMPOSED`.
+Nedodělané skupiny z tabulky: 7 (stání napůl na chodníku), 9 (velká/malá písmena, 10 dvojic), 10, popis stránky `page.streetCrossSections*` (meta v `index.html` je statická čeština).
