@@ -46,7 +46,7 @@
  "app.cycling": "Ciclistas",
  "app.cyclistsDir": "ciclistas {dir}",
  "app.cyclistsLane": "Ciclistas en el carril",
- "app.data": "Datos {data}",
+ "app.data": "Datos: {data}",
  "app.dataCouldNotLoaded": "No se han podido cargar los datos ({error}). Vuelva a hacer clic dentro de un momento.",
  "app.dataUnderTheirSources": "Datos según sus fuentes (CC BY 4.0, ODbL 1.0 y otras, véanse las fuentes); la sección con ilustraciones de Streetmix bajo CC BY-SA 4.0. Fuentes y licencias: https://github.com/barasoukup/profily-ulic/blob/main/LICENCE-A-ZDROJE.md",
  "app.delete": "Eliminar",

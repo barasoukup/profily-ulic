@@ -46,7 +46,7 @@
  "app.cycling": "Biciklisti",
  "app.cyclistsDir": "biciklisti {dir}",
  "app.cyclistsLane": "Biciklisti u traci",
- "app.data": "Podaci {data}",
+ "app.data": "Podaci: {data}",
  "app.dataCouldNotLoaded": "Podaci se nisu mogli učitati ({error}). Pokušajte ponovno kliknuti malo kasnije.",
  "app.dataUnderTheirSources": "Podaci pod licencijama svojih izvora (CC BY 4.0, ODbL 1.0 i druge, vidi izvore); profil s ilustracijama Streetmixa pod CC BY-SA 4.0. Izvori i licencije: https://github.com/barasoukup/profily-ulic/blob/main/LICENCE-A-ZDROJE.md",
  "app.delete": "Izbriši",

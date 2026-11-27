@@ -46,7 +46,7 @@
  "app.cycling": "Għaċ-ċiklisti",
  "app.cyclistsDir": "ċiklisti {dir}",
  "app.cyclistsLane": "Ċiklisti fil-korsija",
- "app.data": "Data {data}",
+ "app.data": "Data: {data}",
  "app.dataCouldNotLoaded": "Id-data ma setgħetx titgħabba ({error}). Erġa' kklikkja wara ftit.",
  "app.dataUnderTheirSources": "Data skont il-liċenzji tas-sorsi tagħha (CC BY 4.0, ODbL 1.0 u oħrajn, ara s-sorsi); il-profil bl-illustrazzjonijiet ta' Streetmix taħt CC BY-SA 4.0. Sorsi u liċenzji: https://github.com/barasoukup/profily-ulic/blob/main/LICENCE-A-ZDROJE.md",
  "app.delete": "Ħassar",

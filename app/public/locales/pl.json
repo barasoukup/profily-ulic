@@ -46,7 +46,7 @@
  "app.cycling": "Ruch rowerowy",
  "app.cyclistsDir": "rowery {dir}",
  "app.cyclistsLane": "Rowery na pasie",
- "app.data": "Dane {data}",
+ "app.data": "Dane: {data}",
  "app.dataCouldNotLoaded": "Nie udało się wczytać danych ({error}). Kliknij ponownie za chwilę.",
  "app.dataUnderTheirSources": "Dane na licencjach ich źródeł (CC BY 4.0, ODbL 1.0 i inne, zob. źródła); profil z ilustracjami Streetmix na licencji CC BY-SA 4.0. Źródła i licencje: https://github.com/barasoukup/profily-ulic/blob/main/LICENCE-A-ZDROJE.md",
  "app.delete": "Usuń",

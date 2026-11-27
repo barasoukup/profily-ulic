@@ -46,7 +46,7 @@
  "app.cycling": "Pre cyklistov",
  "app.cyclistsDir": "cyklisti {dir}",
  "app.cyclistsLane": "Cyklisti v pruhu",
- "app.data": "Údaje {data}",
+ "app.data": "Údaje: {data}",
  "app.dataCouldNotLoaded": "Údaje sa nepodarilo načítať ({error}). Skúste kliknúť znova o chvíľu.",
  "app.dataUnderTheirSources": "Údaje podľa zdrojov (CC BY 4.0, ODbL 1.0 a ďalšie, pozri zdroje); profil s ilustráciami Streetmixu pod CC BY-SA 4.0. Zdroje a licencie: https://github.com/barasoukup/profily-ulic/blob/main/LICENCE-A-ZDROJE.md",
  "app.delete": "Zmazať",

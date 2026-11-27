@@ -46,7 +46,7 @@
  "app.cycling": "Kolesarji",
  "app.cyclistsDir": "kolesarji {dir}",
  "app.cyclistsLane": "Kolesarji v pasu",
- "app.data": "Podatki {data}",
+ "app.data": "Podatki: {data}",
  "app.dataCouldNotLoaded": "Podatkov ni bilo mogoče naložiti ({error}). Čez nekaj trenutkov kliknite znova.",
  "app.dataUnderTheirSources": "Podatki pod licencami svojih virov (CC BY 4.0, ODbL 1.0 in druge, glejte vire); profil z ilustracijami Streetmix pod CC BY-SA 4.0. Viri in licence: https://github.com/barasoukup/profily-ulic/blob/main/LICENCE-A-ZDROJE.md",
  "app.delete": "Izbriši",

@@ -46,7 +46,7 @@
  "app.cycling": "Jalgratturid",
  "app.cyclistsDir": "jalgratturid {dir}",
  "app.cyclistsLane": "Jalgratturid sõidurajal",
- "app.data": "{data} andmed",
+ "app.data": "Andmed: {data}",
  "app.dataCouldNotLoaded": "Andmeid ei õnnestunud laadida ({error}). Proovige mõne aja pärast uuesti klõpsata.",
  "app.dataUnderTheirSources": "Andmed vastavalt allikate litsentsidele (CC BY 4.0, ODbL 1.0 jt, vt allikad); profiil koos Streetmixi illustratsioonidega litsentsiga CC BY-SA 4.0. Allikad ja litsentsid: https://github.com/barasoukup/profily-ulic/blob/main/LICENCE-A-ZDROJE.md",
  "app.delete": "Kustuta",

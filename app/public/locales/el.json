@@ -46,7 +46,7 @@
  "app.cycling": "Ποδηλάτες",
  "app.cyclistsDir": "ποδηλάτες {dir}",
  "app.cyclistsLane": "Ποδηλάτες στη λωρίδα",
- "app.data": "Δεδομένα {data}",
+ "app.data": "Δεδομένα: {data}",
  "app.dataCouldNotLoaded": "Δεν ήταν δυνατή η φόρτωση των δεδομένων ({error}). Κάντε ξανά κλικ σε λίγο.",
  "app.dataUnderTheirSources": "Δεδομένα με τις άδειες των πηγών τους (CC BY 4.0, ODbL 1.0 και άλλες, βλ. πηγές)· η διατομή με εικονογραφήσεις του Streetmix υπό CC BY-SA 4.0. Πηγές και άδειες: https://github.com/barasoukup/profily-ulic/blob/main/LICENCE-A-ZDROJE.md",
  "app.delete": "Διαγραφή",

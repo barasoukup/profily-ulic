@@ -46,7 +46,7 @@
  "app.cycling": "Radverkehr",
  "app.cyclistsDir": "Radverkehr {dir}",
  "app.cyclistsLane": "Radverkehr im Fahrstreifen",
- "app.data": "Daten {data}",
+ "app.data": "Daten: {data}",
  "app.dataCouldNotLoaded": "Die Daten konnten nicht geladen werden ({error}). Klicken Sie in Kürze erneut.",
  "app.dataUnderTheirSources": "Daten unter den Lizenzen ihrer Quellen (CC BY 4.0, ODbL 1.0 und weitere, siehe Quellen); der Querschnitt mit Streetmix-Illustrationen unter CC BY-SA 4.0. Quellen und Lizenzen: https://github.com/barasoukup/profily-ulic/blob/main/LICENCE-A-ZDROJE.md",
  "app.delete": "Löschen",

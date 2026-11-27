@@ -46,7 +46,7 @@
  "app.cycling": "Dviratininkams",
  "app.cyclistsDir": "dviratininkai {dir}",
  "app.cyclistsLane": "Dviratininkai juostoje",
- "app.data": "{data} duomenys",
+ "app.data": "Duomenys: {data}",
  "app.dataCouldNotLoaded": "Duomenų įkelti nepavyko ({error}). Po kurio laiko spustelėkite dar kartą.",
  "app.dataUnderTheirSources": "Duomenys pagal šaltinių licencijas (CC BY 4.0, ODbL 1.0 ir kitos, žr. šaltinius); profilis su Streetmix iliustracijomis – pagal CC BY-SA 4.0. Šaltiniai ir licencijos: https://github.com/barasoukup/profily-ulic/blob/main/LICENCE-A-ZDROJE.md",
  "app.delete": "Pašalinti",

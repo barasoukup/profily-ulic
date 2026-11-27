@@ -46,7 +46,7 @@
  "app.cycling": "Velosipēdisti",
  "app.cyclistsDir": "velosipēdisti {dir}",
  "app.cyclistsLane": "Velosipēdisti joslā",
- "app.data": "{data} dati",
+ "app.data": "Dati: {data}",
  "app.dataCouldNotLoaded": "Datus neizdevās ielādēt ({error}). Pēc brīža noklikšķiniet vēlreiz.",
  "app.dataUnderTheirSources": "Dati saskaņā ar to avotu licencēm (CC BY 4.0, ODbL 1.0 un citas, sk. avotus); šķērsprofils ar Streetmix ilustrācijām saskaņā ar CC BY-SA 4.0. Avoti un licences: https://github.com/barasoukup/profily-ulic/blob/main/LICENCE-A-ZDROJE.md",
  "app.delete": "Dzēst",

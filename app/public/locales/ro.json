@@ -46,7 +46,7 @@
  "app.cycling": "Bicicliști",
  "app.cyclistsDir": "bicicliști {dir}",
  "app.cyclistsLane": "Bicicliști pe bandă",
- "app.data": "Date {data}",
+ "app.data": "Date: {data}",
  "app.dataCouldNotLoaded": "Datele nu au putut fi încărcate ({error}). Faceți clic din nou peste puțin timp.",
  "app.dataUnderTheirSources": "Date sub licențele surselor lor (CC BY 4.0, ODbL 1.0 și altele, vezi sursele); profilul cu ilustrații Streetmix sub CC BY-SA 4.0. Surse și licențe: https://github.com/barasoukup/profily-ulic/blob/main/LICENCE-A-ZDROJE.md",
  "app.delete": "Ștergere",

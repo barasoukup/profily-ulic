@@ -46,7 +46,7 @@
  "app.cycling": "Fietsers",
  "app.cyclistsDir": "fietsers {dir}",
  "app.cyclistsLane": "Fietsers op de rijstrook",
- "app.data": "Gegevens {data}",
+ "app.data": "Gegevens: {data}",
  "app.dataCouldNotLoaded": "De gegevens konden niet worden geladen ({error}). Probeer het zo meteen opnieuw.",
  "app.dataUnderTheirSources": "Gegevens onder de licenties van hun bronnen (CC BY 4.0, ODbL 1.0 en andere, zie bronnen); het profiel met illustraties van Streetmix onder CC BY-SA 4.0. Bronnen en licenties: https://github.com/barasoukup/profily-ulic/blob/main/LICENCE-A-ZDROJE.md",
  "app.delete": "Verwijderen",
