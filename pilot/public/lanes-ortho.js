@@ -736,6 +736,8 @@ const CARRIAGE = (c) => c === 700 || c === 701 || c === 704 || (c >= 9700 && c <
 const RAISED = new Set(["chodnik", "chodnik_kola", "stezka_sdilena", "predzahradka", "zelen", "stromorad", "nastupiste", "cyklostezka", "tramvaj", "delici", "plocha", "zahradka", "voda", "zed", "nezname"]);
 const BLOCK = new Set(["pruh", "krajnice"]);
 const SNAP = 0.6;
+// ?off=<switch>,<switch>: a rule of this file off for the comparison (the same parameter as app.js ORTHO_P.off).
+const OFF = (k) => { try { return new URLSearchParams(globalThis.location?.search || "").get("off")?.split(",").includes(k) ?? false; } catch { return false; } };
 const SHOULDER_MAX = 3.6; // a boundary of other parts (parking, bike lane…) moves to a line this near
 
 // result: deriveProfile's { segments, runs, extent }; img: laneImage(). Returns the number of carriageways changed
@@ -862,7 +864,11 @@ function measured(w, c, lines, solid = [], fine = true) {
     const ruled = (side === "s" ? w.parts[0] : w.parts.at(-1)).seg.type === "krajnice", end = side === "s" ? list[0] : list.at(-1);
     const line = side === "s" ? lines.indexOf(end.e) : lines.indexOf(end.s);
     const more = list.filter((p) => p.kind === "pruh").length > had;
-    if (ruled && end.kind === "pruh" && ((solid[line] === true && end.w <= LANE_MAX) || (solid[line] === undefined && more && end.w <= SHOULDER_MAX))) end.kind = "krajnice";
+    // Never the roadway's last lane: of two pieces behind solid lines the first becomes the shoulder and the other stays the lane
+    // (Výškovická in Ostrava: a lane and a hatched strip, both made shoulders and the roadway left without a lane;
+    // Bára 27. 11. 2026; ?off=jedenpruh).
+    const lastLane = !OFF("jedenpruh") && list.filter((p) => p.kind === "pruh").length <= 1;
+    if (ruled && end.kind === "pruh" && !lastLane && ((solid[line] === true && end.w <= LANE_MAX) || (solid[line] === undefined && more && end.w <= SHOULDER_MAX))) end.kind = "krajnice";
   }
   // The profile's roadway against the map's: the difference to the shoulder the rules had on that side (or a new
   // one, from 1 m), else to the outer lanes evenly.
