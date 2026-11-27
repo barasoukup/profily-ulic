@@ -4,17 +4,17 @@
 // the outputs of a replay are compared with those of the recording by compare.mjs.
 //   node evaluation/replay/server.mjs [port]          → http://localhost:5190/?replay=record&run=rec&lang=cs
 // ROOT=<checkout>: serve another checkout's app (e.g. to replay the old code); the recordings stay in this folder.
-// Everything recorded (third-party data) stays in evaluation/replay/data/ (git ignores it).
+// Everything recorded (third-party data) stays in data/replay/ of the main repository (paths.mjs, git ignores it).
 import http from "node:http";
 import fs from "node:fs/promises";
 import { createReadStream } from "node:fs";
 import path from "node:path";
 import crypto from "node:crypto";
 import { spawn } from "node:child_process";
+import { DATA } from "./paths.mjs";
 
 const HERE = path.dirname(new URL(import.meta.url).pathname);
 const ROOT = process.env.ROOT || path.join(HERE, "..", "..");
-const DATA = path.join(HERE, "data");
 const PORT = Number(process.argv[2] || process.env.PORT || 5190), APP = PORT + 100; // the app 100 ports up (next to other replays)
 
 // The app's own server (static files, /api/*, data/*) on the next port.

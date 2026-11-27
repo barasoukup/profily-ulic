@@ -7,7 +7,7 @@
 import fs from "node:fs";
 import path from "node:path";
 
-const OUT = path.join(path.dirname(new URL(import.meta.url).pathname), "data", "out");
+import { OUT } from "./paths.mjs";
 const args = process.argv.slice(2), opt = (k) => args.find((a) => a.startsWith(`--${k}=`))?.slice(k.length + 3);
 const [A, B] = args.filter((a) => !a.startsWith("--"));
 const only = opt("field")?.split(","), ignore = (opt("ignore") || "").split(",").filter(Boolean), SHOW = Number(opt("show") ?? 8);

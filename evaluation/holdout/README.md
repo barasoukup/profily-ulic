@@ -9,7 +9,7 @@ AI); sem se sahá jen při rozhodnutí, jestli změnu nasadit.
   secondary), třetina tertiary, třetina místních; nikde blíž než 60 m k bodu, který jsme kdy použili (regrese, záchranná
   síť, AI). `aiTrained`: model obrub se na městě učil (Praha, Vídeň, Berlín, Hamburk), čísla AI tam nejsou test.
 - Nahrávka: aplikace řeže každý bod přes nahrávač záchranné sítě (`evaluation/replay/server.mjs`, odpovědi zdrojů v
-  `evaluation/replay/data/`, git je ignoruje), lehký záznam (`&light=1`: profil a plochy podél řezu). Režim `fill`
+  `data/replay/` hlavního repa, git je ignoruje), lehký záznam (`&light=1`: profil a plochy podél řezu). Režim `fill`
   vezme nahranou odpověď a živě se ptá jen na to, co chybí, takže služby měst (i IPR) se ptají jednou.
   - pravda: `?replay=fill&run=hold-map&sample=holdout&light=1&lang=cs&osm=balik` (mapy měst; řezy, kde mapa pod
     osou nic nemá a profil je odhad, se nepočítají),
