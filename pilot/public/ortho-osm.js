@@ -660,12 +660,13 @@ export function orthoOsmPolys({ osm, frame, dir, way, st, mapRuns = [], edges = 
     if (P.off?.has("osmbike")) break;
     const out = k2 && side === pSide, kerb = out ? k2[side] : k[side], f = o.facade[side];
     for (const w of o.ways.filter((x) => OSM_CYCLEWAY(x.tags) && sameLevel(x, o) && sg * (x.t - kerb) > 0.5 && (f === null || sg * (f - x.t) > 0.3))) {
-      const width = num(w.tags.width) || (w.tags.oneway === "yes" ? 2 : 2.5);
+      const width = num(w.tags.width) || (["yes", "-1"].includes(OSM_SHARED(w.tags) ? w.tags["oneway:bicycle"] ?? w.tags.oneway : w.tags.oneway) ? 2 : 2.5);
       const lo = edgeT.filter((t) => t < w.t - 0.3 && t > w.t - width / 2 - 0.5).at(-1) ?? w.t - width / 2;
       const hi = edgeT.filter((t) => t > w.t + 0.3 && t < w.t + width / 2 + 0.5)[0] ?? w.t + width / 2;
       const clip = (t) => (sg < 0 ? Math.min(Math.max(t, f ?? -Infinity), kerb) : Math.max(Math.min(t, f ?? Infinity), kerb));
       const [a, b] = [clip(lo), clip(hi)];
-      if (b - a >= 0.8) polys.push(rect(703, "cyklostezka (OSM)", a, b));
+      // A path shared with walkers is a sidewalk-like part (702: derive.js sidewalkUse makes it C 9 / C 10), not a cycle track.
+      if (b - a >= 0.8) polys.push(OSM_SHARED(w.tags) ? rect(702, "stezka pro chodce a cyklisty (OSM)", a, b) : rect(703, "cyklostezka (OSM)", a, b));
     }
   }
   polys.areas = 0;
@@ -956,7 +957,7 @@ export function orthoOsmPolys({ osm, frame, dir, way, st, mapRuns = [], edges = 
       polys.push(green ? rect(401, "zeleň (ortofoto)", ...span(x, y)) : rect(1003, "zpevněná plocha (odhad)", ...span(x, y)));
     };
     for (const w of chain[side]) {
-      const kind = w.tags.railway === "tram" ? [705, "tramvajové těleso (OSM)", TRACK_HALF] : w.tags.highway === "cycleway" ? [703, "cyklostezka (OSM)", 1.3]
+      const kind = w.tags.railway === "tram" ? [705, "tramvajové těleso (OSM)", TRACK_HALF] : w.tags.highway === "cycleway" && !OSM_SHARED(w.tags) ? [703, "cyklostezka (OSM)", 1.3]
         : STREET.test(w.tags.highway || "") ? (P.off?.has("soubezna") ? null : [701, "vozovka (OSM, souběžná)", 3]) : [702, "chodník (OSM, zvlášť)", SIDEWALK / 2];
       if (!kind) break;
       const a = w.t - sg * kind[2], b = w.t + sg * kind[2];
@@ -1119,8 +1120,13 @@ export function estimateNote(fb, tried, tr, list = (xs) => xs.join(" a ")) {
 // sidewalk; a stretch without lines wider than SIDEWALK_MAX a sidewalk by the street and the rest green or paving by
 // the image. All an estimate. polys: the surfaces as derive.js takes them (frame XY). P.off "beside": off (the A/B).
 const BESIDE_MAX = 15, WALK_REACH = 8, BESIDE_GREEN = 0.22, BARRIER = (t) => ["fence", "wall", "retaining_wall", "hedge"].includes(t.barrier);
+// A path for walkers and cyclists in one (C 9, or C 10 where segregated=yes): a footway or path with bicycle=designated, a
+// cycle way with foot=designated and not segregated, or segregated=no. One part along the street, not a cycle track
+// (Brandenburger Straße in Leipzig: a path=sidewalk with oneway:bicycle=yes drew two cycle tracks; ?off=sdilena: as before).
+const OSM_SHARED = (t) => !P.off?.has("sdilena") && (["path", "footway"].includes(t.highway) ? t.bicycle === "designated"
+  : t.highway === "cycleway" && (t.segregated === "no" || (t.foot === "designated" && t.segregated !== "yes")));
 const OSM_SIDEWALK = (t) => t.highway === "footway" && t.footway === "sidewalk";
-const OSM_CYCLEWAY = (t) => t.highway === "cycleway" || (["path", "footway"].includes(t.highway) && t.bicycle === "designated");
+const OSM_CYCLEWAY = (t) => (t.highway === "cycleway" || (["path", "footway"].includes(t.highway) && t.bicycle === "designated"));
 const inRing = (r, x, y) => { let c = false; for (let i = 0, j = r.length - 1; i < r.length; j = i++) { const [xi, yi] = r[i], [xj, yj] = r[j]; if (yi > y !== yj > y && x < ((xj - xi) * (y - yi)) / (yj - yi) + xi) c = !c; } return c; };
 // max: how far beyond the last surface the end may lie (countries/<ISO>.js besideMax; Germany 25 m for Aachen's front
 // gardens of 15–18 m, A/B of 17. 11. 2026; else BESIDE_MAX).
