@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "Y", "jistota": "nizka", "why": "v ortofotu 2+2 pruhy se stredovym pasem (koleje); Y ma vic pruhu, zadny neodpovida presne"}
+{"n": 2, "verdict": "stejne", "jistota": "nizka", "why": "profily se lisi jen zelen/delici u stredoveho ostruvku se stromy"}
+{"n": 3, "verdict": "Y", "jistota": "stredni", "why": "za vozovkou je siroka travnata plocha a ~5 m sedy pas (obsluzna), co ma jen Y"}
+{"n": 4, "verdict": "Y", "jistota": "stredni", "why": "streda je travnaty pas se stromy, tedy zelen, ne delici"}
+{"n": 5, "verdict": "X", "jistota": "stredni", "why": "za vozovkou travnata plocha ~16 m a pak ~5 m pas (obsluzna), co ma jen X"}
+{"n": 6, "verdict": "X", "jistota": "vysoka", "why": "mezi vozovkami je travnaty pas, tedy zelen, ne delici"}
+{"n": 7, "verdict": "Y", "jistota": "stredni", "why": "stredovy pas je osazeny strom/zelen, ne delici"}
+{"n": 8, "verdict": "Y", "jistota": "stredni", "why": "stredovy pas se stromy je zelen"}
+{"n": 9, "verdict": "stejne", "jistota": "nizka", "why": "Y konci hlavni ulici, X pridava vedlejsi sikmou ulici (a trávu jako delici); nelze rozhodnout"}
+{"n": 10, "verdict": "Y", "jistota": "nizka", "why": "pruhu je celkem asi 7, X jen 4; zadny nezna stredovy pas a cyklostezky nejsou videt"}

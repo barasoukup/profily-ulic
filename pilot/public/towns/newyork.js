@@ -134,7 +134,7 @@ export const NYC_MAP = {
   prepare: (runs, { tags, cycleTracks }) => {
     islandsBeside(runs);
     if (!off("kerbbays")) kerbBays(runs);
-    if (!WALKED.has(tags?.highway) && !off("roadtracks")) osmTracks(runs, cycleTracks());
+    if (!WALKED.has(tags?.highway) && !off("roadtracks")) osmTracks(runs, cycleTracks(), 1.8, !off("trackaxis"));
   },
   extra: (bbox) => (nycSignsOn() ? signsIn(bbox).catch(() => null) : undefined),
   adjust: (runs, { c, tags, wayAlong, extra }) => {

@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "X", "jistota": "stredni", "why": "Středový pás je na ortofotu i fotce travnatý, zelen sedí lépe než dělicí pás."}
+{"n": 2, "verdict": "X", "jistota": "stredni", "why": "Kolem tramvajového tělesa je tráva a na fotce travnatý pás, zelen lépe než delici."}
+{"n": 3, "verdict": "X", "jistota": "nizka", "why": "Na fotce jsou vidět tři jízdní pruhy (dva v jednom směru, jeden v druhém), X má tři pruhy, Y jen dva."}
+{"n": 4, "verdict": "X", "jistota": "stredni", "why": "Široký střed je osázený zelení, zelen odpovídá lépe než delici."}
+{"n": 5, "verdict": "X", "jistota": "vysoka", "why": "Střed 14,7 m je travnatý se stromy, zelen odpovídá."}
+{"n": 6, "verdict": "Y", "jistota": "stredni", "why": "Středový pás je osázený stromy a keři, tedy zelen, ne dělicí pás."}
+{"n": 7, "verdict": "X", "jistota": "nizka", "why": "Střed je zpevněný ostrůvek se zastávkou, delici sedí lépe než zelen; ostatní složení stejné."}
+{"n": 8, "verdict": "Y", "jistota": "stredni", "why": "Středový pás je pás keřů a zeleně, zelen odpovídá lépe."}
+{"n": 9, "verdict": "X", "jistota": "stredni", "why": "Dvě trojice pruhů s travnatým středem sedí, cyklostezky v Y na ortofotu ani fotkách nejsou."}
+{"n": 10, "verdict": "X", "jistota": "vysoka", "why": "Střed je travnatý se stromy, zelen a stromorad odpovídají, delici ne."}

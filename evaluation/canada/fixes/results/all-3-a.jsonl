@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "X", "jistota": "nizka", "why": "stejné pruhy a šířky, střední pásy jsou travnaté (zelen) i na fotkách; delici je jen drobně horší"}
+{"n": 2, "verdict": "stejne", "jistota": "nizka", "why": "totéž složení i šířky, rozdíl jen zelen/delici u pásu, který je travnatý"}
+{"n": 3, "verdict": "X", "jistota": "nizka", "why": "vozovka je široká se středním pásem, X má aspoň víc pruhů a skutečné krajnice; Y s krajnicí 3,4 m je nesmysl"}
+{"n": 4, "verdict": "stejne", "jistota": "nizka", "why": "stejné složení a šířky; osázený ostrov je zeleň, ale zároveň dělicí ostrov"}
+{"n": 5, "verdict": "X", "jistota": "stredni", "why": "široký střední pás s trávou a stromy je zelen, ne dělicí prvek"}
+{"n": 6, "verdict": "Y", "jistota": "stredni", "why": "střední pás je zvýšený osázený stromy, tedy zelen"}
+{"n": 7, "verdict": "X", "jistota": "nizka", "why": "střed je zpevněný ostrov se zastávkou, ne zeleň, delici sedí lépe"}
+{"n": 8, "verdict": "Y", "jistota": "stredni", "why": "střední pás je trávník s keři, zelen"}
+{"n": 9, "verdict": "X", "jistota": "stredni", "why": "na ortofotu ani na fotkách nejsou žádné dvě cyklostezky vlevo, jen chodník; střed je holý pás"}
+{"n": 10, "verdict": "X", "jistota": "stredni", "why": "široký trávník se stromy uprostřed je zelen se stromořadím, ne dělicí pás"}

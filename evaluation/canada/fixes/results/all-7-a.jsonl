@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "Y", "jistota": "vysoka", "why": "středový pás je tráva, ne dělicí pás"}
+{"n": 2, "verdict": "X", "jistota": "vysoka", "why": "travnatý střed s obrubou"}
+{"n": 3, "verdict": "X", "jistota": "stredni", "why": "široký travnatý střed s obrubou, ne dělicí pás"}
+{"n": 4, "verdict": "X", "jistota": "nizka", "why": "čtyři pruhy začínají u A jako v ortofotu; Y přidává pruhy a dělicí pás vlevo, které tam nejsou"}
+{"n": 5, "verdict": "X", "jistota": "vysoka", "why": "střed je travnatý pás se zelení"}
+{"n": 6, "verdict": "X", "jistota": "vysoka", "why": "jen dva pruhy, vpravo tráva a svah bez další vozovky"}
+{"n": 7, "verdict": "X", "jistota": "stredni", "why": "střed tvoří zelený pás se stromem, ne dělicí pás"}
+{"n": 8, "verdict": "Y", "jistota": "stredni", "why": "ulice začíná obrubou se stáním, vlevo je park mimo ulici"}
+{"n": 9, "verdict": "Y", "jistota": "stredni", "why": "vlevo je ostrůvek a obslužná vozovka se šipkami, X je vynechává"}
+{"n": 10, "verdict": "Y", "jistota": "nizka", "why": "vpravo za obrubou je plocha křižovatky, ne další vozovka; X přidává zbytečné pruhy"}

@@ -52,15 +52,31 @@ export function islandsBeside(runs) {
 // A map without its medians: a gap between two roadways is the median (9950), with tram tracks in it (tracks: their t) a
 // tram bed 705 as far as BED_SIDE beyond the outer axes, what stays beside it the median (Toronto's Spadina Avenue; The
 // Queensway, whose cut stands in the median beside the bed).
-const BED_SIDE = 1.6, GAP_MEDIAN = 30; // m; a wider gap is two streets
-export function gapsBetweenRoads(runs, tracks = []) {
+// The fixes of the lost A/B pairs (evaluation/canada/losses/FIXES.md), shared by every map that calls this (Toronto, Boston),
+// each by its switch in opts (?off=gapsortho, gapswide):
+// - byImage: the median marked so (medianGap) for the orthophoto to tell a lawn (green 401) from paving (ortho-osm.js
+//   medianGapsByImage; Markham Road, Overlea Boulevard: grass strips drawn as medians);
+// - streets(): the OSM ways for cars across the cut ([{ t, name, ref }]): a gap wider than GAP_NARROW is a median only
+//   between two roadways of one street (the same name or ref on both sides, tram tracks or a way in it; Highway 27, Lake Shore Boulevard by the
+//   Gardiner's ramp: 20 m of lawn to another road made a median).
+const BED_SIDE = 1.6, GAP_MEDIAN = 30, GAP_NARROW = 10; // m; a wider gap is two streets
+export function gapsBetweenRoads(runs, tracks = [], { byImage = false, streets = null } = {}) {
+  const ways = streets && runs.some((r, i) => r.gap && r.e - r.s > GAP_NARROW && i > 0) ? streets() : null;
+  const one = (a, b) => {
+    const at = (r) => ways.filter((w) => w.t >= r.s - 1 && w.t <= r.e + 1);
+    const A = at(a), B = at(b);
+    return A.some((x) => B.some((y) => (x.name && x.name === y.name) || (x.ref && x.ref === y.ref)));
+  };
   for (let i = runs.length - 2; i > 0; i--) {
     const r = runs[i];
     if (!r.gap || r.e - r.s > GAP_MEDIAN || runs[i - 1].code !== 701 || runs[i + 1].code !== 701) continue;
     const on = tracks.filter((t) => t > r.s - 0.5 && t < r.e + 0.5);
-    if (!on.length) { r.code = 9950; continue; }
+    // (Tram tracks in it, or a way of the street drawn in its middle: one street.)
+    if (ways && r.e - r.s > GAP_NARROW && !on.length && !ways.some((w) => w.t > r.s && w.t < r.e) && !one(runs[i - 1], runs[i + 1])) continue;
+    const mark = byImage ? { medianGap: true } : {};
+    if (!on.length) { r.code = 9950; Object.assign(r, mark); continue; }
     const s = Math.max(r.s, Math.min(...on) - BED_SIDE), e = Math.min(r.e, Math.max(...on) + BED_SIDE);
-    runs.splice(i, 1, ...[{ code: 9950, s: r.s, e: s }, { code: 705, s, e }, { code: 9950, s: e, e: r.e }].filter((x) => x.e - x.s > (x.code === 705 ? 0 : 0.5)));
+    runs.splice(i, 1, ...[{ code: 9950, s: r.s, e: s, ...mark }, { code: 705, s, e }, { code: 9950, s: e, e: r.e, ...mark }].filter((x) => x.e - x.s > (x.code === 705 ? 0 : 0.5)));
     // (A rest of half a metre at most is the bed's.)
     const bed = runs.find((x) => x.code === 705 && x.s === s);
     if (s - r.s <= 0.5) bed.s = r.s;
@@ -182,7 +198,9 @@ export function carveTrack(runs, at, place, w, t) {
 // A map older than the cycle tracks (Toronto's of 2021): a track OSM has as a way of its own in the map's carriageway is cut
 // out at its kerb or in its middle, as wide as OSM says or 1.8 m; one OSM only tags on the road (cycleway:<side>=track)
 // at that side's kerb (kerb: "lo", "hi"; University Avenue), unless the map has a track there.
-export function osmTracks(runs, tracks, width = 1.8) {
+// mark (?off=trackaxis; Toronto, Boston, New York): the tracks cut out marked so (carvedTrack): derive.js counts a way's axis under one as the roadway's beside it
+// (Finch Avenue West: a track at the kerb over the axis of the way of three lanes left the roadway one lane; ?off=trackaxis).
+export function osmTracks(runs, tracks, width = 1.8, mark = false) {
   const done = [];
   for (const { t: at0, kerb, w = width } of tracks) {
     const at = carriageway(runs);
@@ -192,7 +210,12 @@ export function osmTracks(runs, tracks, width = 1.8) {
     if (t < lo - 0.3 || t > hi + 0.3 || runs.some((r) => r.code === 703 && r.s <= t && r.e >= t)) continue;
     const place = trackPlace(t, lo, hi, w);
     if (done.includes(place)) continue;
-    if (carveTrack(runs, at, place, Math.min(3.5, Math.max(1.2, w)), t)) { done.push(place); runs.sort((x, y) => x.s - y.s); }
+    const before = new Set(runs);
+    if (carveTrack(runs, at, place, Math.min(3.5, Math.max(1.2, w)), t)) {
+      done.push(place);
+      if (mark) for (const r of runs) if (!before.has(r) && r.code === 703) r.carvedTrack = true;
+      runs.sort((x, y) => x.s - y.s);
+    }
   }
   return done;
 }
@@ -257,7 +280,10 @@ export function planimetricCut(d, answers, osmElements, bbox, tags = null, { way
   const runs = d.runs ? d.runs(answers, c) : runsAlong(d.layers.map((l, i) => [l.code, answers[i]]), c);
   tags ||= c.tags;
   const street = [-c.dir[1], c.dir[0]], along = way ? alongOf(way, c, street) : true;
+  const car = (el) => el.tags?.highway && !WALKED.has(el.tags.highway) && !/^(service|track)$/.test(el.tags.highway);
   d.prepare?.(runs, { tags, osmAreas: () => osmAreasAlong(osmElements, c), tracks: () => parallelsAt(osmElements, c, (el) => /^(tram|light_rail)$/.test(el.tags.railway)),
+    // (The ways for cars across the cut.)
+    streets: () => (osmElements || []).filter((el) => el.tags && car(el)).flatMap((el) => parallelsAt([el], c, () => true).map((t) => ({ t, name: el.tags.name || "", ref: el.tags.ref || "" }))),
     cycleTracks: () => [...(osmElements || []).filter((el) => el.tags && el.id !== way?.id && isTrack(el))
       .flatMap((el) => parallelsAt([el], c, () => true).map((t) => ({ t, w: parseFloat(el.tags.width) || (el.tags.oneway === "yes" ? undefined : 3) }))),
       // (Of a street of two carriageways the other one's too, University Avenue.)
@@ -271,7 +297,7 @@ export function planimetricCut(d, answers, osmElements, bbox, tags = null, { way
   const junction = !!at && (at.features || []).some((f) => d.junction.test(f.attributes || {}) && f.geometry?.rings
     && inRings(f.geometry.rings.map((r) => r.map(([lon, lat]) => [(lon - c.lon0) * c.kx, (lat - c.lat0) * c.ky])), 0, 0));
   const back = ([x, y]) => [x / c.kx + c.lon0, y / c.ky + c.lat0];
-  const features = runs.map((r) => ({ attributes: { code: r.code, ...(r.outer && { OUTER_GAP: 1 }), ...(r.fromOsm && { FROM_OSM: 1 }), ...(r.orient && { ORIENT: r.orient }) }, geometry: { rings: [[[r.s, -1], [r.e, -1], [r.e, 1], [r.s, 1], [r.s, -1]]
+  const features = runs.map((r) => ({ attributes: { code: r.code, ...(r.outer && { OUTER_GAP: 1 }), ...(r.medianGap && { MEDIAN_GAP: 1 }), ...(r.carvedTrack && { CARVED_TRACK: 1 }), ...(r.fromOsm && { FROM_OSM: 1 }), ...(r.orient && { ORIENT: r.orient }) }, geometry: { rings: [[[r.s, -1], [r.e, -1], [r.e, 1], [r.s, 1], [r.s, -1]]
     .map(([t, u]) => back([c.dir[0] * t + street[0] * u, c.dir[1] * t + street[1] * u]))] } }));
   return { features, junction, ...more };
 }

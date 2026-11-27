@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "X", "jistota": "nizka", "why": "křižovatka s kolejemi a více pruhy; X má více pruhů, Y tři pruhy s velkými krajnicemi"}
+{"n": 2, "verdict": "stejne", "jistota": "nizka", "why": "střed je úzký zvýšený pás, delici i zelen možné"}
+{"n": 3, "verdict": "Y", "jistota": "stredni", "why": "střední pás je zelený s obrubami"}
+{"n": 4, "verdict": "Y", "jistota": "vysoka", "why": "široký trávník mezi vozovkami"}
+{"n": 5, "verdict": "Y", "jistota": "stredni", "why": "střední ostrov je osázený zelení"}
+{"n": 6, "verdict": "nejde", "jistota": "nizka", "why": "vozovka ve stínu mostu, nelze určit pruhy"}
+{"n": 7, "verdict": "Y", "jistota": "nizka", "why": "ortofoto ukazuje čtyři pruhy, X i Y nesedí, Y má aspoň počet pruhů"}
+{"n": 8, "verdict": "X", "jistota": "stredni", "why": "střed je osázený stromem a keři, ne dělicí pás"}
+{"n": 9, "verdict": "Y", "jistota": "vysoka", "why": "střed je trávník se stromy"}
+{"n": 10, "verdict": "Y", "jistota": "stredni", "why": "střed je pás se stromy a zelení"}

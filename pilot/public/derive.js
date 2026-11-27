@@ -562,6 +562,8 @@ export function mtvuPolygons(json, frame) {
       passport: f.attributes.PASPORT === 1, // a town's passport (gis.js asPassport)
       ...(f.attributes.ORIENT && { orient: f.attributes.ORIENT }), // a planimetric map's parking with its orientation (towns/sanfrancisco.js)
       outerGap: f.attributes.OUTER_GAP === 1, // a gap of a planimetric map beyond the outer sidewalk (towns/planimetrics.js outerGaps)
+      medianGap: f.attributes.MEDIAN_GAP === 1, // a planimetric map's gap between two roadways taken as the median (towns/planimetrics.js gapsBetweenRoads)
+      carvedTrack: f.attributes.CARVED_TRACK === 1, // a cycle track cut out of a planimetric map's roadway (towns/planimetrics.js osmTracks)
       rings,
       bbox: bboxOf(rings.flat()),
       lonlat: f.geometry.rings.map((r) => r.map(([lon, lat]) => [lat, lon])),
@@ -574,18 +576,18 @@ function classify(center, normal, half, polys) {
   const runs = [];
   for (let t = -half; t <= half + 1e-9; t += STEP) {
     const x = center[0] + normal[0] * t, y = center[1] + normal[1] * t;
-    let code = null, orient, use, guess, free = false;
+    let code = null, orient, use, guess, carved, free = false;
     for (const p of polys) {
       const [x0, y0, x1, y1] = p.bbox;
       if (x < x0 || x > x1 || y < y0 || y > y1) continue;
       // A no-parking part of a TSK section (a driveway, a crossing): the section has no stall there.
       if (p.code === NO_PARKING) { if (!free && inside(p.rings, x, y)) free = true; continue; }
       if (free && (isTskParking(p.code) || p.code === OSM_PARKING)) continue;
-      if (inside(p.rings, x, y)) { code = p.code; orient = p.orient; use = p.use; guess = p.guess; break; }
+      if (inside(p.rings, x, y)) { code = p.code; orient = p.orient; use = p.use; guess = p.guess; carved = p.carvedTrack; break; }
     }
     const last = runs[runs.length - 1];
     if (last && last.code === code && !!last.guess === !!guess) last.e = t + STEP / 2;
-    else runs.push({ code, orient, use, guess, s: t - STEP / 2, e: t + STEP / 2 });
+    else runs.push({ code, orient, use, guess, s: t - STEP / 2, e: t + STEP / 2, ...(carved && { carved: true }) });
   }
   runs[0].s = -half;
   runs[runs.length - 1].e = half;
@@ -2219,8 +2221,12 @@ export function deriveProfile({ center, dir, half, polys, osm, frame, way, track
     const type = typeFromMtvu(r.code);
     if (r.code === 701 || r.code === 700) {
       const inRun = (t) => t > r.s && t < r.e;
+      // (A cycle track a planimetric map's roadway had cut out at its side, towns/planimetrics.js osmTracks: an axis under it
+      // is this roadway's.)
+      const carvedBy = kept.filter((k) => k.carved && (Math.abs(k.e - r.s) < 0.15 || Math.abs(k.s - r.e) < 0.15));
+      const onRoad = (t) => inRun(t) || carvedBy.some((k) => t > k.s && t < k.e);
       // OSM road axes in this carriageway: each lane takes the direction of the nearest one.
-      const here = cross.filter((c) => inRun(c.t) && c.way.tags?.highway && !MINOR.has(c.way.tags.highway));
+      const here = cross.filter((c) => onRoad(c.t) && c.way.tags?.highway && !MINOR.has(c.way.tags.highway));
       // A roadway surface crossed only by a track, service road or footway is an access way,
       // not a street with lanes (e.g. a sidewalk that cars may occasionally use).
       const minor = cross.filter((c) => inRun(c.t) && MINOR.has(c.way.tags?.highway));

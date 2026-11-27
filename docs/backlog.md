@@ -328,6 +328,9 @@ Co rozhodne Bára, je označeno **(Bára)**.
 - ~~San Francisco: varování chodníku pod 10 ft i v uličkách; citace „SFMTA, Sidewalk Widths 2014“~~ (26. 11. 2026: ulička
   6 ft, jiná obslužná bez varování, citace Better Streets Plan v datech studie AECOM). Zbývá: průmyslové ulice (8 ft) aplikace
   nepozná, dlaždice OSM nemají `landuse` (platí jim 10 ft).
+- Boston: `?off=gapswide` (mezera nad 10 m mezi vozovkami s jiným jménem jsou dvě ulice) uřízne souběžnou obslužnou
+  komunikaci, kterou posuzovatelé k ulici počítají (Soldiers Field Road, bdual-29, -30, -41); Boston 3 : 5, neprůkazné,
+  opravy zůstaly zapnuté (`evaluation/canada/losses/FIXES.md`). Výjimka jen s vlastním měřením.
 
 ## Po nasazení (Bára 26. 11. 2026, v tomto pořadí, každé zvlášť a bez jiných změn)
 - Přestavba překladů: klíče jako jména (ne české věty), věty skládané z kousků (výčty míst a kreditů přes

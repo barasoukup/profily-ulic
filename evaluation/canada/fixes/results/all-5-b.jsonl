@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "Y", "jistota": "nizka", "why": "čtyři jízdní pruhy a kolejový pás uprostřed; Y má pruhů víc, ani jeden střed nevystihuje"}
+{"n": 2, "verdict": "stejne", "jistota": "nizka", "why": "pás se stromy mezi tramvají a vozovkou je zeleň i dělicí pás, rozdíl je jen v názvu"}
+{"n": 3, "verdict": "Y", "jistota": "stredni", "why": "vpravo za zelení je zpevněná cesta/obslužná, kterou má jen Y"}
+{"n": 4, "verdict": "Y", "jistota": "vysoka", "why": "střed je široký travnatý pás se stromy, tedy zeleň"}
+{"n": 5, "verdict": "X", "jistota": "stredni", "why": "vpravo za travnatým pásem je cesta, kterou má jen X"}
+{"n": 6, "verdict": "X", "jistota": "vysoka", "why": "středový pás je tráva, ne dělicí pás"}
+{"n": 7, "verdict": "Y", "jistota": "stredni", "why": "středový ostrůvek je osázený se stromem, tedy zeleň"}
+{"n": 8, "verdict": "Y", "jistota": "stredni", "why": "střední pás se stromy je zeleň"}
+{"n": 9, "verdict": "X", "jistota": "stredni", "why": "řez dále protíná boční ulici s parkováním a chodník na pravé straně, což má jen X"}
+{"n": 10, "verdict": "Y", "jistota": "nizka", "why": "široká vozovka s mnoha pruhy; Y má počet pruhů blíž, šířky pruhů kolem 3 m"}
