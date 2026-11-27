@@ -30,6 +30,7 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
   licence: `LICENCE-A-ZDROJE.md`.
 
 ## Pravidla od Báry (dodržuj)
+- Pravidla psaní kódu, testů a hlídací testy: `docs/coding-guidelines.md` (před úpravou kódu si je přečti).
 - **Nepushuj na GitHub, dokud Bára neřekne, že jsou změny odladěné.** Commituj lokálně a testuj
   na localhostu.
 - Služby IPR smíme používat (Bára 10. 11. 2026 zrušila zákaz), **ale ohleduplně**: co jde, stáhnout jednou
