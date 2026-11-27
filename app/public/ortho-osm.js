@@ -398,7 +398,7 @@ export const roadLike = (cols, ref, i) => cols.green[i] < P.greenMax && Math.abs
 // beyond each strong line near where OSM expects the kerb (the edge line, V 4). Score: the edge (saturating) + alpha ×
 // the share of road-like columns between the axis and it − gamma × that share in the metre beyond it − beta ×
 // ((distance − expected) / sigma)²; expected = OSM's reach on that side. Returns { A, B, why: { A, B } } or null.
-// edges: where the lines of a town's technical map (an edge of a kerb, of a sidewalk; towns/slovensko.js) cross the
+// edges: where the lines of a town's technical map (an edge of a kerb, of a sidewalk; towns/slovakia.js) cross the
 // cut: each is a candidate too, mapBonus better than an edge of the image alone.
 export function kerbs(cols, axis, lim, road, lines = [], edges = []) {
   const ref = roadRef(cols, axis), out = {}, why = {};
@@ -557,9 +557,9 @@ const STREET = /^(motorway|trunk|primary|secondary|tertiary|unclassified|residen
 // frame: derive.js localFrame of the cut (its centre is [0, 0]); dir: the street's direction in it; way: the clicked
 // OSM way; st: laneImage's image (null or blank: the kerbs where OSM expects them). Returns the polygons (as derive.js
 // mtvuPolygons, with .kerbs and .image: whether the orthophoto found a kerb) or null.
-// edges: lines of a town's technical map ([[lon, lat], …]), towns/slovensko.js: candidates for the kerbs and the outer
+// edges: lines of a town's technical map ([[lon, lat], …]), towns/slovakia.js: candidates for the kerbs and the outer
 // edge of a sidewalk.
-// widths: centre lines of roads with their width (ZBGIS Cesta, towns/slovensko.js: { path, w }): where one crosses the
+// widths: centre lines of roads with their width (ZBGIS Cesta, towns/slovakia.js: { path, w }): where one crosses the
 // cut by the street's axis it gives the carriageway OSM would only guess (no width tag).
 // areas: surfaces of a national map beside the street (ZBGIS car parks and lawns: MTVU features in WGS 84), after the
 // carriageway and the houses, before OSM's green; not one under the axis (a lawn the street crosses on the map).
@@ -1281,7 +1281,7 @@ export function besidePassport({ osm, frame, dir, way, st, edges = [], symbols =
   const bboxOf = (pts) => [Math.min(...pts.map((p) => p[0])), Math.min(...pts.map((p) => p[1])), Math.max(...pts.map((p) => p[0])), Math.max(...pts.map((p) => p[1]))];
   const rect = (code, label, s, e) => { const ring = [xy(s, -ALONG), xy(e, -ALONG), xy(e, ALONG), xy(s, ALONG), xy(s, -ALONG)]; return { code, label, guess: true, orthoOsm: true, rings: [ring], bbox: bboxOf(ring), span: [Math.min(s, e), Math.max(s, e)] }; };
   const LABEL = { 401: "zeleň (technická mapa)", 702: "chodník (technická mapa)", 1003: "zpevněná plocha (technická mapa)", 603: "dvůr (technická mapa)", 704: "parkoviště (technická mapa)" };
-  // The national map's lawns and car parks (ZBGIS, towns/slovensko.js) say what a piece is where they cover its middle
+  // The national map's lawns and car parks (ZBGIS, towns/slovakia.js) say what a piece is where they cover its middle
   // (front gardens: their image is as green as the paving, 0.12–0.32 against 0.04–0.20).
   const zb = P.off?.has("besidezbgis") ? [] : areas.map((f) => ({ code: f.attributes?.CTVUK_KOD, rings: (f.geometry?.rings || []).map((r) => r.map(([lo, la]) => frame.toXY(lo, la))) })).filter((f) => f.rings.length);
   const zbAt = (t) => { const [x, y] = xy(t, 0); return zb.find((f) => inRing(f.rings[0], x, y))?.code ?? null; };

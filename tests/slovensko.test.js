@@ -1,4 +1,4 @@
-// The Slovak module (app/public/towns/slovensko.js, the review of Slovakia 16. 11. 2026): the towns' passports and
+// The Slovak module (app/public/towns/slovakia.js, the review of Slovakia 16. 11. 2026): the towns' passports and
 // map lines by place, ZBGIS's widths and areas, the towns' illustrations; no network (PROFILY_SK, no fetch).
 import { test } from "node:test";
 import assert from "node:assert/strict";
@@ -6,7 +6,7 @@ import fs from "node:fs";
 
 globalThis.PROFILY_SK = { pasport: "0", zbgis: "0", hrany: "0" };
 const C = await import("../app/public/city.js");
-const SK = await import("../app/public/towns/slovensko.js");
+const SK = await import("../app/public/towns/slovakia.js");
 const read = (f) => fs.readFileSync(new URL(`../app/public/${f}`, import.meta.url), "utf8");
 
 test("pasporty měst: Bratislava, Žilina, Banská Bystrica, Košice, Zvolen jen na přání; Prešov jen stromy (vrstvy uzavřel)", () => {

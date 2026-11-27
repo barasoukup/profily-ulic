@@ -16,7 +16,7 @@
 import { osmTiles, getJSON, asMtvu, asPassport } from "../gis.js";
 import { MTVU_LABELS } from "../city.js";
 import { inArea } from "../places.js";
-import { osmAreas } from "./slovensko.js";
+import { osmAreas } from "./slovakia.js";
 
 const param = (k) => (typeof location === "undefined" ? globalThis.PROFILY_DE?.[k] ?? null : new URLSearchParams(location.search).get(k));
 // The territories of the cities' maps (places.js inArea; the services are empty outside the city anyway).

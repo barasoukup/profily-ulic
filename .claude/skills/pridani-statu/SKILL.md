@@ -11,7 +11,7 @@ na stát → město → zdroje (`docs/architecture-countries.md`, 16. 11. 2026).
 na stát (`country === "SK"`, `city.country || "CZ"` …). Vzorový kód:
 - `app/public/countries/SK.js`, `AT.js` (normy, značky, zákon o stání, ortofoto, ilustrace měst, vzhled domů, hledání),
   `default.js` (česká pravidla pro místo mimo známé státy a výchozí hodnoty všech vlastností), `index.js` (seznam);
-- `app/public/towns/slovensko.js` (pasporty, čáry map, ZBGIS), `towns/austria.js` (mapa povrchů Vídně FMZK, značky
+- `app/public/towns/slovakia.js` (pasporty, čáry map, ZBGIS), `towns/austria.js` (mapa povrchů Vídně FMZK, značky
   Salcburku): zdroje se svým územím (`AREAS`, `places.js inArea`), `towns/index.js placeAt`;
 - `credits.js` (kredit každého zdroje pod klíčem), `ortho-osm.js`, `site.js` (NETS), `search-sk.js`, `search-at.js`,
   `search-photon.js`.
@@ -21,7 +21,7 @@ Zprávy jsou v `evaluation/slovensko/` a `evaluation/austria/` (ZPRAVA, NORMY, Z
 ## Pravidla, která platí po celou dobu
 
 - **Názvy v kódu a souborech anglicky** (Bára 16. 11. 2026): `towns/austria.js`, id státu `austria`, `signs-AT/`,
-  `evaluation/austria/`. Stávající české názvy (`slovensko.js`, `znacky/`, `cesko`) zůstávají.
+  `evaluation/austria/`. Stávající české názvy dat (`cesko`, `slovensko`) zůstávají.
 - **Jazyk a stát nemíchat:**
   - Jazyk rozhraní: ISO 639-1 malými písmeny (24 jazyků EU: cs, sk, en, de, fr…), týká se jen textů (`i18n.js`, `<jazyk>.js`).
   - Stát řezu: ISO 3166-1 velkými (CZ, SK, AT). Řídí `city.country`, data, normy, zákony, značky a ilustrace.

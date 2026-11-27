@@ -5,7 +5,7 @@ varianta je s pasportem) a je neprůkazné. Kód zmrazený: větev `canada` a1e5
 
 ## Co by uživatel bez pasportu dostal
 
-Aplikace nemá pro české pasporty přepínač (`?pasport=0` je jen slovenský, `towns/slovensko.js`); `evaluation/ab.mjs` počítá
+Aplikace nemá pro české pasporty přepínač (`?pasport=0` je jen slovenský, `towns/slovakia.js`); `evaluation/ab.mjs` počítá
 variantu „bez“ v Node bez odhadu z ortofota (`ortho-osm.js`), tedy ne to, co dostane uživatel. Proto se sbíralo **ve stránce
 aplikace** (`../bridge-water/blind/collect.js`, `?osm=balik`, výchozí nastavení): „s pasportem“ normálně, „bez pasportu“
 se stejnou stránkou, jen dotazy na služby obou pasportů (`services5.arcgis.com/8F7J7ODVYrBts9AD`,

@@ -57,15 +57,15 @@ export const SOURCE_CREDITS = {
     // Germany: the orthophoto of the Land (lanes-ortho.js DE_ORTHO, "de-BY" …), with the credit the Land asks for.
     ...Object.fromEntries(Object.entries(DE_ORTHO).map(([land, o]) => [`de-${land}`, () => t("ortofoto {who}", { who: o.credit })])),
   },
-  // Bratislava's technical map (towns/slovensko.js, ?tm=1).
+  // Bratislava's technical map (towns/slovakia.js, ?tm=1).
   skTm: { true: () => t("technická mapa © Hlavné mesto SR Bratislava") },
-  // A Slovak town's passport where the cut took its surfaces (towns/slovensko.js SK_TOWNS).
+  // A Slovak town's passport where the cut took its surfaces (towns/slovakia.js SK_TOWNS).
   skTown: {
     bratislava: () => t("pasport komunikácií © Hlavné mesto SR Bratislava a MČ Dúbravka, © EUROSENSE SLOVAKIA, s.r.o."), presov: () => t("pasport dopravy a zelene © mesto Prešov (CC BY 4.0)"),
     zilina: () => t("pasport komunikácií © mesto Žilina"), bystrica: () => t("pasport komunikácií © mesto Banská Bystrica"), kosice: () => t("pasport komunikácií © mesto Košice"),
     zvolen: () => t("komunikácie a spevnené plochy © mesto Zvolen"),
   },
-  // The lines of a town's map that placed the kerbs (towns/slovensko.js EDGE_SOURCES).
+  // The lines of a town's map that placed the kerbs (towns/slovakia.js EDGE_SOURCES).
   skEdges: {
     nitra: () => t("kresba © mesto Nitra"), piestany: () => t("kresba © mesto Piešťany"), zvolen: () => t("kresba © mesto Zvolen"), hlohovec: () => t("polohopis © mesto Hlohovec"),
     presov: () => t("hranice druhov pozemkov © mesto Prešov (CC BY 4.0)"), "bratislava-tm": () => t("technická mapa © Hlavné mesto SR Bratislava"),
@@ -163,7 +163,7 @@ export const SOURCE_CREDITS = {
   nlBgt: { true: () => t("mapa povrchů BGT © Kadaster a správci BGT (PDOK, CC0)") },
   // Amsterdam's parking spaces (towns/netherlands.js).
   amsParking: { true: () => t("parkovací místa © Gemeente Amsterdam") },
-  // ZBGIS's roads, car parks and lawns in the estimate (towns/slovensko.js).
+  // ZBGIS's roads, car parks and lawns in the estimate (towns/slovakia.js).
   zbgis: { true: () => t("cesty, parkoviská a tráva © GKÚ Bratislava (ZBGIS, CC BY 4.0)") },
   // The carriageway's kerbs read by the AI model (ai-kerbs.js, ?ai=1): the surface maps and OSM it learnt on.
   aiKerbs: { true: () => t("obruby vozovky: model AI učený na mapách povrchů {who}", { who: "© IPR Praha, Stadt Wien – data.wien.gv.at (CC BY 4.0), Geoportal Berlin (dl-de/zero-2-0), Freie und Hansestadt Hamburg (dl-de/by-2-0)" }) },

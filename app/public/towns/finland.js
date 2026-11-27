@@ -20,7 +20,7 @@
 import { osmTiles, getJSON, asMtvu, asPassport } from "../gis.js";
 import { MTVU_LABELS } from "../city.js";
 import { inArea } from "../places.js";
-import { osmAreas } from "./slovensko.js";
+import { osmAreas } from "./slovakia.js";
 import { HELSINKI_RINGS } from "./finland-helsinki.js";
 
 const param = (k) => (typeof location === "undefined" ? globalThis.PROFILY_FI?.[k] ?? null : new URLSearchParams(location.search).get(k));

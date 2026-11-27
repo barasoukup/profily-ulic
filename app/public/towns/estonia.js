@@ -12,7 +12,7 @@
 import { osmTiles, getJSON, asMtvu, asPassport } from "../gis.js";
 import { MTVU_LABELS } from "../city.js";
 import { inArea } from "../places.js";
-import { osmAreas } from "./slovensko.js";
+import { osmAreas } from "./slovakia.js";
 
 const param = (k) => (typeof location === "undefined" ? globalThis.PROFILY_EE?.[k] ?? null : new URLSearchParams(location.search).get(k));
 export const TALLINN_MAP = "https://gis.tallinn.ee/arcgis/rest/services/tar_maakate/MapServer";

@@ -32,7 +32,7 @@ Server je vydává pod `data/…`, stejně jako web.
 Přepínač měst není. Město se bere podle místa řezu (`city.js`: `cityAt` podle hranic obcí z RÚIAN v `towns.json`,
 `node tools/build_towns.mjs`; `setCity`). Moduly čtou `city` až při použití, takže zdroje dat, ilustrace (načtou se
 při prvním řezu ve městě), texty i uvedení zdrojů v exportu sedí na místo řezu. Mimo města s vlastními zdroji platí
-„cesko“ (`towns/cesko.js`: celostátní technická mapa ČÚZK, domy z RÚIAN, dlaždice OSM, pražský mobiliář a vozidla
+„cesko“ (`towns/czechia.js`: celostátní technická mapa ČÚZK, domy z RÚIAN, dlaždice OSM, pražský mobiliář a vozidla
 Streetmixu). Bývalé stránky `/<město>/` přesměrují na `/?mesto=<město>` i s řezem v odkazu
 (`tools/city_site.mjs`, `tools/build_city_site.mjs`; místní server totéž).
 
@@ -51,7 +51,7 @@ Struktura je všude stejná: stát → město → zdroje (`docs/architecture-cou
   `states.json`, ne jen obdélník) a kredit se ukáže, jen když výhled stát zasahuje; vrstvy měst mají prstence města.
   Hledání se RÚIAN ptá napřed jen nad Českem, jinde až když místní služby nic nenašly. Hlídá `tests/cz-only.test.js`.
 - **Město** je záznam v `city.js` (a modul `towns/<město>.js`, má-li vlastní zdroje); co nemá svého (ortofoto, značky,
-  normy), dědí od státu. Zbytek státu je město `cesko`, `slovensko`, `austria`, mimo státy `cizina` (`towns/cizina.js`).
+  normy), dědí od státu. Zbytek státu je město `cesko`, `slovensko`, `austria`, mimo státy `cizina` (`towns/abroad.js`).
   Slovenská a rakouská města a Washington (`city.js STATE_TOWNS`: Bratislava, Košice … Vídeň, Graz …) jsou města podle hranic
   (`towns-sk.json`, `towns-at.json`, `towns-us.json`, `tools/build_towns_sk.mjs`, `build_towns_at.mjs`, `build_towns_us.mjs`); texty, zdroje a normy mají od zbytku
   státu, ilustrace své, má-li je stát nakreslené (`countries/<ISO>.js art`), jinak státu.
@@ -79,7 +79,7 @@ logu pokrývají všechny státy (nový Worker musí nasadit Bára).
 
 Mimo města platí stát řezu (`states.json` z `node tools/build_states.mjs`: Česko z RÚIAN, Slovensko ze ZBGIS ÚGKK SR,
 asi 30 m): „cesko“, „slovensko“, jinde „cizina“ (okraje výřezů OSM za hranicí). Bez `states.json` je všechno mimo
-města „cesko“ jako dřív. Mimo Česko (`towns/slovensko.js`, `city.abroad`) se aplikace neptá technické mapy ČÚZK ani
+města „cesko“ jako dřív. Mimo Česko (`towns/slovakia.js`, `city.abroad`) se aplikace neptá technické mapy ČÚZK ani
 RÚIAN (DMVS za hranicí odpovídá bez CORS a vypadalo to jako výpadek). Profil je odhad z OSM a ortofota
 (`ortho-osm.js`) a pasportů měst, kde je mají; hláška „Technickou mapu tu zatím nemáme, profil je odhad.“ pod
 názvem (nadpis je jen ulice).

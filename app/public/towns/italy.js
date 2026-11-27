@@ -13,7 +13,7 @@
 import { osmTiles, getJSON, asMtvu, asPassport } from "../gis.js";
 import { MTVU_LABELS } from "../city.js";
 import { inArea } from "../places.js";
-import { osmAreas } from "./slovensko.js";
+import { osmAreas } from "./slovakia.js";
 import { surfaces as lombardySurfaces, AREAS as LOMBARDY_AREAS } from "./lombardy.js";
 
 const param = (k) => (typeof location === "undefined" ? globalThis.PROFILY_IT?.[k] ?? null : new URLSearchParams(location.search).get(k));

@@ -1,5 +1,5 @@
 // Ústí nad Labem: the surfaces as anywhere in the Czech Republic (the national DTM of ČÚZK, nearly
-// complete in the Ústí region, dmvs.js via towns/cesko.js), plus the town's parking places from its GIS
+// complete in the Ústí region, dmvs.js via towns/czechia.js), plus the town's parking places from its GIS
 // (mapy.usti.cz, ArcGIS Enterprise, CORS): Doprava/Parkovaci_zony_UL layer 3 "Parkovací místo", one polygon
 // per row of stalls, kept current (AKTUALIZACE 2026), about 435 rows in and around the paid zones of the
 // centre. DOPRAVNI_ZNACENI: 0 podélné, 1 kolmé, 2 šikmé, 3 parkovací pruh, 4 vyhrazené, 5 ZTP,

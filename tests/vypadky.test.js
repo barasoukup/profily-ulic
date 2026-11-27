@@ -182,7 +182,7 @@ test("mimo Česko se technické mapy ČÚZK neptá a neříká, že neodpovídá
   setCity("slovensko");
   // Without the towns' passports (?pasport=0): no request leaves the test.
   globalThis.PROFILY_SK = { pasport: "0", zbgis: "0", hrany: "0" };
-  const { sources } = await import("../app/public/towns/slovensko.js");
+  const { sources } = await import("../app/public/towns/slovakia.js");
   const s = await sources.surfaces("17.1,48.14,17.11,48.15");
   delete globalThis.PROFILY_SK;
   // The national DTM is not tried (sources.js national): nothing to fail.
@@ -195,7 +195,7 @@ test("mimo Česko se technické mapy ČÚZK neptá a neříká, že neodpovídá
 });
 
 test("domy na Slovensku: druh a výška ze ZBGIS", async () => {
-  const { zbgisBuilding } = await import("../app/public/towns/slovensko.js");
+  const { zbgisBuilding } = await import("../app/public/towns/slovakia.js");
   // Suché mýto 6, Bratislava (identify 15. 11. 2026).
   const b = zbgisBuilding({ results: [{ layerId: 41, attributes: { "Typ, účel využitia budovy": "Administratívna budova", "Výška nad povrchom (m)": "27,8", "Plocha (m²)": "633,9888" } }] });
   assert.deepEqual([b.cornice, b.fromHeight, b.area, b.kind, b.house], [8, true, 634, undefined, undefined]);
@@ -205,7 +205,7 @@ test("domy na Slovensku: druh a výška ze ZBGIS", async () => {
 });
 
 test("domy ZBGIS: vzhled paneláku jen bytovým domům, jiné užití jako kanceláře", async () => {
-  const { zbgisType } = await import("../app/public/towns/slovensko.js");
+  const { zbgisType } = await import("../app/public/towns/slovakia.js");
   assert.equal(zbgisType("Bytový dom"), "apartments");
   assert.equal(zbgisType("Administratívna budova"), "office");
   assert.equal(zbgisType("Hotel"), "commercial");

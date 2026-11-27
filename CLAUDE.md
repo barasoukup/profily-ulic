@@ -232,7 +232,7 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
 ## Slovensko (větev slovensko, 15.–16. 11. 2026)
 - Stát řezu ze `states.json` (`tools/build_states.mjs`: ČR z RÚIAN, SR ze ZBGIS): `cesko`, `slovensko`, jinde `cizina`;
   `city.country` je ISO 3166-1 („CZ“, „SK“, mimo ně null), jazyk rozhraní je nezávislý (Bára).
-  Mimo Česko (`towns/slovensko.js`, `city.abroad`) žádné dotazy na DMVS, RÚIAN ani ortofoto ČÚZK; profil je odhad
+  Mimo Česko (`towns/slovakia.js`, `city.abroad`) žádné dotazy na DMVS, RÚIAN ani ortofoto ČÚZK; profil je odhad
   z OSM a ortofota.
 - ZBGIS ÚGKK SR (CC BY 4.0, GKÚ Bratislava; `/query` vrací 503, funguje identify/find/export/dlaždice): ortofoto
   `Ortofoto_hres` (asi 10 cm, s vyvážením barev, jinak asfalt vypadá jako tráva), budovy (druh, výška), hledání
@@ -246,7 +246,7 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
 - Značky (Bára 15. 11. 2026): C 10a ukazuje chodce na jejich straně (dál od vozovky, při „Otočit“ se prohodí, bez dat
   jako vzor: chodci vpravo); IZ 10a Sdílená zóna jen podle `traffic_sign` v OSM; C 7a Stezka pro chodce na pěší cestě;
   E 13 „Mimo dopravní obsluhy“ (2. pád, gramaticky správně).
-- Pasporty měst (Bára 16. 11. 2026, `towns/slovensko.js` SK_TOWNS, jen ve větvi `slovensko`): Bratislava (magistrát:
+- Pasporty měst (Bára 16. 11. 2026, `towns/slovakia.js` SK_TOWNS, jen ve větvi `slovensko`): Bratislava (magistrát:
   chodníky, vozovky, parkoviště; MČ Dúbravka), Žilina a Banská Bystrica
   (T-MAPY PaKom); jen kde má pasport plochu pod středem řezu, kolem budovy, zeleň a voda z OSM; `?pasport=0` vypne.
   A/B 115 řezů: lépe 28, hůř 7 (`evaluation/slovensko/ab/ZPRAVA.md`). Technická mapa Bratislavy (čáry + značky ploch)

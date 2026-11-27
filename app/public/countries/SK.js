@@ -1,5 +1,5 @@
 // Slovakia (SK; Bára 15.–16. 11. 2026): what differs from the Czech rules of countries/default.js. Its towns' data are
-// towns/slovensko.js.
+// towns/slovakia.js.
 import { t, mark } from "../i18n.js";
 import { GROUP } from "../norms.js";
 import { TOWN_ART, TRAM, TROLLEY, czechFurniture } from "../art.js";

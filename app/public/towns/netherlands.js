@@ -14,7 +14,7 @@
 // a BGT that does not answer: the estimate, with a note.
 import { osmTiles, getJSON, asMtvu, asPassport } from "../gis.js";
 import { MTVU_LABELS } from "../city.js";
-import { osmAreas } from "./slovensko.js";
+import { osmAreas } from "./slovakia.js";
 
 const param = (k) => (typeof location === "undefined" ? globalThis.PROFILY_NL?.[k] ?? null : new URLSearchParams(location.search).get(k));
 

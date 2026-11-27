@@ -1,7 +1,7 @@
 # České Budějovice: zdroje města a A/B s DTM ČÚZK (10. 11. 2026)
 
 **Výsledek: nic nepřipojeno.** Město nezveřejňuje plochy ulic (vozovka, chodník) a to, co zveřejňuje, profil
-nezlepší. Budějovice dál běží na celostátní DTM ČÚZK (`towns/cesko.js`) s vlastními vozidly (`artTown`).
+nezlepší. Budějovice dál běží na celostátní DTM ČÚZK (`towns/czechia.js`) s vlastními vozidly (`artTown`).
 
 ## Co je k mání
 

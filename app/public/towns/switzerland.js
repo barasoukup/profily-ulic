@@ -14,7 +14,7 @@
 // a note.
 import { osmTiles, getJSON, asMtvu, asPassport } from "../gis.js";
 import { MTVU_LABELS } from "../city.js";
-import { osmAreas } from "./slovensko.js";
+import { osmAreas } from "./slovakia.js";
 import { CANTONS } from "../credits.js";
 
 const param = (k) => (typeof location === "undefined" ? globalThis.PROFILY_CH?.[k] ?? null : new URLSearchParams(location.search).get(k));

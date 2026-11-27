@@ -43,7 +43,7 @@ Bez nálezu:
 
 ### 1. Mimo polygon `italy` aplikace Itálii dál pokrývá, jen jako „cizinu“ s českými pravidly (ověřeno z kódu)
 - **Kde:** `tools/countries.mjs:56` (pět dílů Geofabriku = celá Itálie, 2,1 GB PBF), `app/public/osmpack.js:217–223`
-  (balík se vybírá jen podle polohy dlaždice), `app/public/towns/cizina.js:1` („cizina“ = okraje výřezů OSM, profil
+  (balík se vybírá jen podle polohy dlaždice), `app/public/towns/abroad.js:1` („cizina“ = okraje výřezů OSM, profil
   z OSM), `app/public/search-photon.js:10` (`IT: [6.6, 35.4, 18.6, 47.1]`), `tests/italy.test.js:12`.
 - **Co je špatně:** Bářino pravidlo zní „jen oblasti s otevřeným ortofotem“. Polygon to splňuje, ale balíky OSM ne. Po
   nasazení `it_no`, `it_ne`, `it_c`, `it_s`, `it_i` bude kliknutí v Římě, Miláně, Neapoli, **ve Vatikánu** (leží

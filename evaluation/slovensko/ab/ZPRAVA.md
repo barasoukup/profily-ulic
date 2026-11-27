@@ -26,7 +26,7 @@ pak „zapoj i ty linie technické mapy“. Větev `slovensko`, nic na `main`.
 - **Opravená chyba:** v Banské Bystrici spadlo čtení pruhů z ortofota (`lanes-ortho.js`, když se všechny kousky
   slily). Platí i pro Česko.
 
-## Zdroje (towns/slovensko.js)
+## Zdroje (towns/slovakia.js)
 
 | Město | Zdroj | Co dává | CORS | Licence |
 |---|---|---|---|---|
@@ -133,7 +133,7 @@ nehodnotila.
 
 # ZBGIS: šířky vozovek, parkoviště a tráva (16. 11. 2026, třetí kolo)
 
-**Co se zapojilo** (`towns/slovensko.js` zbgisAt, `ortho-osm.js` widths a areas; `?zbgis=0` vypne):
+**Co se zapojilo** (`towns/slovakia.js` zbgisAt, `ortho-osm.js` widths a areas; `?zbgis=0` vypne):
 - Jeden dotaz identify na ZBGIS za řez (vrstvy 22 Cesta, 61 Parkovisko, 70 Tráva, 78 Úžitková zeleň).
 - Šířka cesty („Celková využiteľná šírka cesty v m“) z osy, která protíná řez do 4 m od osy ulice, dává odhadu očekávanou
   šířku vozovky (místo počtu pruhů × šířka). Jen kde OSM nemá `width`.

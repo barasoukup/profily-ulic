@@ -4,7 +4,7 @@ import { inArea } from "../places.js";
 // The towns whose page asks the town's own GIS on a click (all but Prague and Brno): each module gives
 // the data sources and base maps (see towns/jihlava.js). The town's texts are in city.js, its site in
 // tools/cities.mjs.
-import * as cesko from "./cesko.js";
+import * as czechia from "./czechia.js";
 import * as jihlava from "./jihlava.js";
 import * as most from "./most.js";
 import * as opava from "./opava.js";
@@ -16,7 +16,7 @@ import * as frydekMistek from "./frydek-mistek.js";
 import * as karvina from "./karvina.js";
 import * as trebic from "./trebic.js";
 import * as prerov from "./prerov.js";
-import * as slovensko from "./slovensko.js";
+import * as slovakia from "./slovakia.js";
 import * as austria from "./austria.js";
 import * as germany from "./germany.js";
 import * as switzerland from "./switzerland.js";
@@ -36,18 +36,18 @@ import * as slovenia from "./slovenia.js";
 import * as finland from "./finland.js";
 import * as denmark from "./denmark.js";
 import * as lithuania from "./lithuania.js";
-import * as cizina from "./cizina.js";
+import * as abroad from "./abroad.js";
 
-export const TOWNS = { cesko, jihlava, most, opava, pardubice, plzen, usti, ostrava, "frydek-mistek": frydekMistek, karvina, trebic, prerov,
+export const TOWNS = { cesko: czechia, jihlava, most, opava, pardubice, plzen, usti, ostrava, "frydek-mistek": frydekMistek, karvina, trebic, prerov,
   // Towns with only their own vehicles: the national data.
-  olomouc: cesko, liberec: cesko, hradec: cesko, budejovice: cesko, zlin: cesko,
+  olomouc: czechia, liberec: czechia, hradec: czechia, budejovice: czechia, zlin: czechia,
   // Slovakia, Austria, Germany, Switzerland, Liechtenstein, the Netherlands, Belgium and Luxembourg: their national and towns' sources; elsewhere OSM only.
-  slovensko, austria, germany, switzerland, liechtenstein: switzerland, netherlands, belgium, luxembourg, poland, france, spain, portugal, monaco, cyprus, malta, italy, estonia, slovenia, finland, denmark, lithuania, cizina };
+  slovensko: slovakia, austria, germany, switzerland, liechtenstein: switzerland, netherlands, belgium, luxembourg, poland, france, spain, portugal, monaco, cyprus, malta, italy, estonia, slovenia, finland, denmark, lithuania, cizina: abroad };
 
 // Where a point lies (docs/architecture-countries.md): its state (ISO code), its city (towns.json, else the rest of the
 // state), its illustrations (city.js art: its own set or its state's), and the
 // sources with a territory of their own that have it (each module's AREAS).
-// The other cities of a state take their state's sources (Bratislava, Vienna…: towns/slovensko.js, towns/austria.js).
+// The other cities of a state take their state's sources (Bratislava, Vienna…: towns/slovakia.js, towns/austria.js).
 // (Every module's AREAS; the switches of the sources, ?pasport=0, ?tm=1…, are not considered: where a source could answer.)
 let AREAS = [];
 const complete = () => {

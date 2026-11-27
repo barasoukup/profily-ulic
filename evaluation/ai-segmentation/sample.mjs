@@ -8,7 +8,7 @@ import fs from "node:fs";
 import { setCity, sources } from "./labels-lib.mjs";
 const germany = await import("../../app/public/towns/germany.js");
 const { FMZK, fmzkCode, WIEN_WFS } = await import("../../app/public/towns/austria.js");
-const { SK_TOWNS } = await import("../../app/public/towns/slovensko.js");
+const { SK_TOWNS } = await import("../../app/public/towns/slovakia.js");
 
 const OUT = new URL("../../../../../data/ai-seg/patches/", import.meta.url); // the main checkout's data/
 const HALF = 32; // m: a patch of 64 m (320 px of 20 cm)

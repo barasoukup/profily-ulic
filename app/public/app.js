@@ -1235,7 +1235,7 @@ function render() {
 
 // Whose data the profile shows: the city's, and a town's passport when the cut took it (towns/passports.js; Bára:
 // the cut's information should say where its data come from).
-// The Slovak towns whose road passports a cut may take (towns/slovensko.js SK_TOWNS), by the town's name in the genitive.
+// The Slovak towns whose road passports a cut may take (towns/slovakia.js SK_TOWNS), by the town's name in the genitive.
 const SK_EDGES_TOWN = { nitra: "Nitra", piestany: "Piešťany", zvolen: "Zvolen", hlohovec: "Hlohovec", presov: "Prešov", "bratislava-tm": "Bratislava" };
 const SK_PASSPORT_TOWN = { bratislava: "Bratislava", presov: "Prešov", zilina: "Žilina", bystrica: "Banská Bystrica", kosice: "Košice", zvolen: "Zvolen" };
 function cutData() {
@@ -1278,7 +1278,7 @@ function cutData() {
   if (state.cut?.sources?.skEdges === "grb") return tr("čar mapy GRB, ortofota a OSM");
   if (state.cut?.sources?.skEdges === "picc") return tr("čar mapy PICC, ortofota a OSM");
   const sk = state.cut?.sources?.skTown, edges = SK_EDGES_TOWN[state.cut?.sources?.skEdges];
-  // The lines of a town's map that placed the kerbs (towns/slovensko.js EDGE_SOURCES; Bára: the data really used).
+  // The lines of a town's map that placed the kerbs (towns/slovakia.js EDGE_SOURCES; Bára: the data really used).
   if (SK_PASSPORT_TOWN[sk] && edges === SK_PASSPORT_TOWN[sk]) return tr("pasportu komunikací a mapy města {town}, ZBGIS a OSM", { town: edges });
   if (SK_PASSPORT_TOWN[sk]) return tr("pasportu komunikací města {town}, ZBGIS a OSM", { town: SK_PASSPORT_TOWN[sk] });
   if (edges) return tr("mapy města {town}, ZBGIS a OSM", { town: edges });

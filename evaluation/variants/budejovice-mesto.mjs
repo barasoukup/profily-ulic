@@ -3,7 +3,7 @@
 // on ArcGIS Online (services9.arcgis.com/8svDug0pVvBQzXWS, CORS *): the lawns of its green passport
 // (GP_TRAVNIK, Melies 2008–2018, 8 925 polygons), its benches (GB_PASPORT_LAVICKY, 2 962 points, kept current)
 // and its paid parking sections (GL_PARKUSEKY, lines; variant budejovice-stani). This variant: the national DTM
-// as now (towns/cesko.js), the town's lawns only where the DTM leaves a blank inside the area it has drawn
+// as now (towns/czechia.js), the town's lawns only where the DTM leaves a blank inside the area it has drawn
 // (towns/overlay.js "under"; in the DTM's blank quarters the profile stays the OSM estimate: lawns alone are
 // no profile), and the benches where OSM has none within 3 m.
 //   CITY=budejovice VARIANTS=city,budejovice-mesto,budejovice-stani CACHE=disk ONLY=… node evaluation/ab.mjs

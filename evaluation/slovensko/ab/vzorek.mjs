@@ -1,5 +1,5 @@
 // The sample of the A/B test of the Slovak towns' passports (Bára 16. 11. 2026): random points (fixed seed) within
-// 1.5 km of the centre of each town whose passport the app asks (towns/slovensko.js SK_TOWNS), Dúbravka apart (its
+// 1.5 km of the centre of each town whose passport the app asks (towns/slovakia.js SK_TOWNS), Dúbravka apart (its
 // borough passport). The app snaps each to the nearest street (cutAt). Written to vzorek.json for sber.js.
 //   node evaluation/slovensko/ab/vzorek.mjs
 import fs from "node:fs";

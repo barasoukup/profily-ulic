@@ -20,7 +20,7 @@
 import { osmTiles, getJSON, asMtvu, asPassport } from "../gis.js";
 import { MTVU_LABELS } from "../city.js";
 import { inArea } from "../places.js";
-import { osmAreas } from "./slovensko.js";
+import { osmAreas } from "./slovakia.js";
 
 const param = (k) => (typeof location === "undefined" ? globalThis.PROFILY_LT?.[k] ?? null : new URLSearchParams(location.search).get(k));
 // Vilnius's map off by default (?vilnius=1 turns it on; Bára 24. 11. 2026), the GRPK's houses on (?grpk=0 leaves them out).

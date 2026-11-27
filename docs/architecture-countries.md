@@ -17,7 +17,7 @@ Soupis z větve `austria` (podmínky na stát nebo id města mimo modul města):
 | `city.js` | 22 | `abroad()`, `SK_ART`+`SK_ART_BOX`, `AT_ART`+`AT_ART_BOX`, `creditLines` s výčtem všech zdrojů všech států |
 | `signs.js` | 15 | složka značek, čísla, dodatkové tabulky, co se smí kreslit: vše `if CZ / SK / AT` |
 | `sources.js` | 8 | Brno, Praha (přetížený server), `["slovensko","austria"]` |
-| `towns/slovensko.js` | 7 | modul se sám hlídá `city.id !== "slovensko"` |
+| `towns/slovakia.js` | 7 | modul se sám hlídá `city.id !== "slovensko"` |
 | `rules.js` | 6 | `limitsSK`, `limitsAT`, pravidlo tramvajového pásu jinak pro AT a SK |
 | `profile.js` | 6 | vzhled domů AT, Praha `iprKind`, cizina bez centra |
 | `derive.js` | 5 | volný pruh 2,6 m v AT, paragraf zákona o stání CZ/SK/AT, třída silnice z OSM v AT |
@@ -29,7 +29,7 @@ Co z toho plyne:
    vyjmenovávat a snadno se něco vynechá (CSP, smyčky v `pages.yml`, kredit).
 2. **Stát a město se pletou.** `slovensko` a `austria` jsou zapsané jako „města“ (`CITIES`), `cizina` používá modul
    Slovenska. Bratislava, Košice, Vídeň, Graz a Linz proto nejsou města, ale „boxy ilustrací“ (`SK_ART_BOX`,
-   `AT_ART_BOX`), „boxy pasportů“ (`townAt` v `towns/slovensko.js`) a box FMZK (`inWien`). Totéž místo se určuje
+   `AT_ART_BOX`), „boxy pasportů“ (`townAt` v `towns/slovakia.js`) a box FMZK (`inWien`). Totéž místo se určuje
    třemi nebo čtyřmi různými kódy.
 3. **Kredit je jeden velký výčet** (`creditLines`) všech zdrojů všech států. Každý nový zdroj se do něj dopisuje ručně.
 4. **Načítá se všechno najednou:** všechny jazyky (`en.js`, `sk.js`, `de.js`, po 780 řádcích) a moduly všech měst
@@ -166,7 +166,7 @@ Líně už dnes (a dál) jen zdroje měst a hledání.
    mimo `countries/` žádné `country === `, `["SK","AT"].includes`, `city.country || "CZ"`,
    `["slovensko","austria"].includes(city.id)`, `id === "austria"`. `tests/i18n.test.js` čte i `countries/`.
 4. **`placeAt` a zdroje s územím** (beze změny výsledků): pryč `skArtAt`, `atArtAt`, `inWien`, `townAt`, guardy
-   `city.id !== "slovensko"` v `towns/slovensko.js`; zdroje dostanou území.
+   `city.id !== "slovensko"` v `towns/slovakia.js`; zdroje dostanou území.
 4b. **Města všude** (změna chování, schvaluje Bára): hranice obcí SK a AT, Bratislava, Košice, Žilina, Banská
    Bystrica, Prešov, Vídeň, Graz, Linz jako města s texty ze sady státu; log `city` po městech + `country`.
 5. **`tools/countries.mjs`** pro `pages.yml`, test CSP; zkušební sestavení, `_site` stejné.
@@ -205,7 +205,7 @@ Kroky 0–6 commitnuté po jednom, 4b (Bára 16. 11. 2026) po nich. Odchylky od 
   20, Brno 30, za hranicemi 5. České řezy mimo Prahu a Brno až po odstávce DMVS.
 - Pohled Porovnat se porovnává bez kreseb (rozvržení měří popisky v okně a není opakovatelné); kresby hlídá export.
 - Ortofoto pruhů: stát `laneOrtho`, město ho přepíše (`praha` ipr, `brno`, `plzen`), `BY_CITY` je pryč.
-- „Cizina“ má vlastní prázdné zdroje (`towns/cizina.js`), proto mohly z `towns/slovensko.js` zmizet podmínky na id města.
+- „Cizina“ má vlastní prázdné zdroje (`towns/abroad.js`), proto mohly z `towns/slovakia.js` zmizet podmínky na id města.
 - Vzhledy domů: stát má `houseLook` (Rakousko bez paneláku); seznam vzhledů, které stát smí nabízet v Návrhu (`looks`),
   zatím ne: dnes se nabízí všude stejný katalog a jeho omezení by bylo změnou chování.
 - `site.js NETS` a `passports.json` mají území už dnes (box, hranice), do `placeAt` zatím nevstupují.

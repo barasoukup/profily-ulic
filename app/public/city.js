@@ -395,7 +395,7 @@ const CITIES = {
 
 // Outside the Czech Republic (Bára 15. 11. 2026): Slovakia, whose OSM tiles the app has, and anywhere else
 // ("cizina": the margins of the OSM extracts beyond the borders). No technical map, no RÚIAN: the profile is the
-// estimate from OSM and the orthophoto (ortho-osm.js), the houses are OSM's (towns/slovensko.js). dataName null: no
+// estimate from OSM and the orthophoto (ortho-osm.js), the houses are OSM's (towns/slovakia.js). dataName null: no
 // map to fail. Prague's furniture and the neutral vehicles of generic/, as in "cesko".
 const abroad = (id, country, cover, inCity, adjective, view, example) => ({
   ...CITIES.cesko, id, like: "cesko", abroad: true, country, cover, inCity, adjective, view, example,
@@ -406,7 +406,7 @@ const abroad = (id, country, cover, inCity, adjective, view, example) => ({
   centre: null, innerKm: 0, estateKm: 0.5,
 });
 Object.assign(CITIES, {
-  // The houses of ZBGIS (towns/slovensko.js); the orthophoto is credited where it was read (creditLines).
+  // The houses of ZBGIS (towns/slovakia.js); the orthophoto is credited where it was read (creditLines).
   slovensko: { ...abroad("slovensko", "SK", "Slovensko", "na Slovensku", "slovenské", [48.7, 19.7], "48.146736, 17.106998"),
     dataShort: "ZBGIS a OSM", credit: "budovy © GKÚ Bratislava (ZBGIS, CC BY 4.0)",
     rulesHead: "Šířky podle slovenských předpisů (TP 117, TP 73 6110, TP 085, vyhl. 532/2002 Z. z.):" },
@@ -494,7 +494,7 @@ for (const c of Object.values(CITIES)) if (c.abroad && c.country) { c.art = c.id
 // The Slovak and Austrian cities (step 4b of docs/architecture-countries.md; Bára 16. 11. 2026: cities everywhere, as
 // Brno): by their boundaries (towns-sk.json from ZBGIS, towns-at.json from GISCO's LAU, towns-us.json of DC, towns-ca.json of Toronto), everything else of their
 // state's rest (texts, sources, orthophoto), only the illustrations their own where the state has a set of the town
-// (else the state's). Their sources keep their own territories (towns/slovensko.js, towns/austria.js AREAS).
+// (else the state's). Their sources keep their own territories (towns/slovakia.js, towns/austria.js AREAS).
 const LATE_ART = new Set(["washington", "boston", "bostonmetro", "newyork", "toronto", "sanfrancisco"]); // their states' sets come later (late.js)
 const stateTown = (id, state, view) => ({ ...CITIES[state], id, like: state, view, art: LATE_ART.has(id) || COUNTRIES[CITIES[state].country].art[id] ? id : state });
 export const STATE_TOWNS = {
