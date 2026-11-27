@@ -6,6 +6,7 @@
 // from the local OSM pack (pilot/data/osm-pack), as evaluation/slovensko/kontrola/vzorek-ulice.mjs.
 //   node evaluation/replay/sample.mjs   → sample.json
 import fs from "node:fs";
+import path from "node:path";
 import { PackSet } from "../../pilot/public/osmpack.js";
 import { mergePieces, TILE } from "../../pilot/public/osmtile.js";
 
@@ -67,6 +68,33 @@ if (process.argv[2] === "cz") {
   cz.forEach((p, i) => (p.id = i + 1));
   fs.writeFileSync(new URL("sample-cz.json", HERE), JSON.stringify(cz, null, 0).replace(/\},\{/g, "},\n{"));
   console.log(cz.length, "řezů");
+  process.exit(0);
+}
+
+// The other states (step 3 of docs/code-health-plan.md, 27. 11. 2026): 12 cuts of each from the points that exist already
+// (the universal measurement and the A/B samples of the states, evaluation/axisroad-check/ax-*.json), round-robin over the
+// towns, only those whose answers the common recording has (data/replay/index.jsonl, imported by import.mjs): no new
+// request to a service. Each cut keeps the name it has in that recording (`rec`).
+//   node evaluation/replay/sample.mjs states   → sample-states.json
+if (process.argv[2] === "states") {
+  const { DATA } = await import("./paths.mjs");
+  const recorded = new Set(fs.readFileSync(path.join(DATA, "index.jsonl"), "utf8").split("\n").filter(Boolean).map((l) => JSON.parse(l).cut));
+  const AX = new URL("../axisroad-check/", import.meta.url);
+  const rows = [];
+  for (const f of fs.readdirSync(AX).filter((f) => /^ax-.*\.json$/.test(f)).sort())
+    for (const p of JSON.parse(fs.readFileSync(new URL(f, AX)))) { const rec = `${f.slice(0, -5)}:${p.id}`; if (recorded.has(rec)) rows.push({ ...p, rec }); }
+  const STATES = ["DE", "CH", "LI", "NL", "BE", "LU", "PL", "FR", "MC", "ES", "PT", "CY", "MT", "IT", "EE", "SI", "FI", "DK", "LT", "US", "CA"], N = 12, out = [], seen = new Set();
+  for (const c of STATES) {
+    const towns = {};
+    for (const p of rows.filter((p) => p.country === c && p.src !== "ctl")) { const k = `${p.lat},${p.lon}`; if (seen.has(k)) continue; seen.add(k); (towns[p.town || "-"] ||= []).push(p); }
+    const lists = Object.keys(towns).sort().map((t) => towns[t]), pick = [];
+    for (let i = 0; pick.length < N && lists.some((l) => l.length); i++)
+      for (const l of lists) { if (pick.length >= N) break; if (l.length) pick.push(l.splice(Math.floor((l.length * ((i * 0.37) % 1))), 1)[0]); }
+    out.push(...pick.map((p) => ({ country: c, town: p.town, lat: p.lat, lon: p.lon, street: p.src, rec: p.rec })));
+  }
+  out.forEach((p, i) => (p.id = i + 1));
+  fs.writeFileSync(new URL("sample-states.json", HERE), JSON.stringify(out, null, 0).replace(/\},\{/g, "},\n{"));
+  console.log(out.length, "řezů", JSON.stringify(out.reduce((a, p) => ((a[p.country] = (a[p.country] || 0) + 1), a), {})));
   process.exit(0);
 }
 

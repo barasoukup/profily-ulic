@@ -12,9 +12,10 @@ kód větve `canada`. Kroky přijdou po nasazení, po přestavbě překladů a p
 - Největší funkce: `profile.js drawPrahaBuilding` 1 245 ř. (34 větví podle vzhledu), `derive.js deriveProfile` 617 ř.
   a 20 argumentů, `app.js cutAt` 400 ř., `ortho-osm.js orthoOsmPolys` 459 ř.; `app.js` má 101 řádků přes 160 znaků.
 - Vypínače: asi 150 (README jmenuje 46). 66 klíčů `?off=`, z toho 27 nezmíněných nikde; 12 parametrů aplikace;
-  asi 55 vypínačů zdrojů měst čtených 23 kopiemi funkce `param`; 14 parametrů pokusů `ortho-osm.js P` nenastavuje nic
+  asi 55 vypínačů zdrojů měst čtených 23 kopiemi funkce `param`; 13 parametrů pokusů `ortho-osm.js P` nenastavuje nic
   (`walkYellow`, `walkEdge`, `split6`, `splitMin`, `walkMode`, `walkSat`, `walkDiff`, `walkLight`, `walkShadow`,
-  `aiSnap`, `aiSnapMin`, `aiWalkMax`, `expScale`, `panoramaFromPosition`) – mrtvé větve.
+  `aiSnap`, `aiSnapMin`, `aiWalkMax`, `expScale`) – mrtvé větve (`panoramaFromPosition` je metoda API Mapy.com, ne pokus;
+  oprava podle recenze Fable 27. 11. 2026).
 - Stát mimo `countries/`: `app.js` asi 260 řádků vrstev ortofota po státech, `lanes-ortho.js` větve podle zdroje,
   `house-looks.js` 12× `iso ===`, `search.js` řetěz deseti hledačů, `sources.js isBrno()`.
 - Duplicity: `towns/` `inRings` 18×, `param` 23×, `memo`/`cached` 12×, `ringsOf` 8×; `countries/` `signFile` 21×,
@@ -25,55 +26,72 @@ kód větve `canada`. Kroky přijdou po nasazení, po přestavbě překladů a p
   leží v jiných pracovních kopiích; podkladové vrstvy nehlídá nic.
 - Žádný linter, formatter ani `.editorconfig`; bez bundleru – záměr, zachovat.
 
-## Kroky (podle přínosu a rizika; S do půl dne, M asi den, L 2–3 dny)
+## Kroky v pořadí provedení (po recenzi Fable 27. 11. 2026; S do půl dne, M asi den, L 2–3 dny)
 
-1. **Rozšířit a zachránit přehrávku** (M): 10–20 řezů každého chybějícího státu, nahrávky do git-ignorovaného
-   `data/replay/` hlavního repa, tabulka podkladových vrstev. Podmínka kroků 6–13; nahrávat ohleduplně.
-2. **Zkrátit `CLAUDE.md` na asi 120 řádků** (M): pravidla, provoz, postupy, mapa dokumentace; státy do
-   `docs/countries/<ISO>.md`, rozhodnutí do `docs/decisions.md`; jen přesouvat.
-3. **ESLint jen na chyby a `.editorconfig`** (S), v `npm test`, bez přeformátování.
-4. **Registr vypínačů `flags.js`** (M): adresa čtená jednou, záznam s druhem, výchozí hodnotou, popisem, datem a měřením;
-   test, že každý vypínač má záznam; `docs/switches.md` generovaný z registru.
-5. **Smazat prohrané pokusy** (S–M): jistě 14 mrtvých `P.*`; ostatní vypnuté pokusy podle Báry (`P.cars`, `?auta`,
-   `P.areaGreen`, `?treepits`, `?otherstreet`, `?chodnik`, `?vypln`, `?tm`, `?outergaps`, `?sirka`, `?fietsstrook`,
-   `?amspark`, `?sfosmpark`, `?ilots`, `?bologna`, `?vilnius`, `?krakow`…); u 27 nepoužívaných `?off=` jen vypínač.
-6. **Společní pomocníci pro `towns/`** (M): `inside`, `ringsOf`, `cachedBy`, dotaz s limitem; asi 300–400 řádků méně.
-7. **Registr ortofot** (L): `ortho/<zdroj>.js` jednoho tvaru; `app.js` staví vrstvy smyčkou.
-8. **Registr hledání** (M): `{ id, looksLike, find }`, pořadí podle státu, bez cyklu modulů; nejdřív test dnešního chování.
-9. **Vzhled domů podle státu do `countries/`** (S–M).
-10. **Rozdělit `profile.js`** (M–L): `draw/buildings/` s tabulkou vzhled → funkce, `svg`, `items`, `signs`, `water`, `editor`.
-11. **Rozdělit `derive.js`** (L): jen přesuny, `deriveProfile` na pojmenované fáze, fáze na commit.
-12. **Rozdělit `app.js`** (L): podle jeho šesti oddílů; `cutAt` bez DOM, aby šel přehrávat v Node.
-13. **`ortho-osm.js`, `lanes-ortho.js`** (M): `P` na konstanty a vypínače, `orthoOsmPolys` na fáze.
-14. **`evaluation/`: knihovna a archiv** (L): `evaluation/lib/` (vzorek, sběr, A/B, skóre, šablona zprávy); živé nástroje
-    převést, jednorázové pokusy beze změny do `evaluation/archive/` (zprávy zůstávají jako doklady rozhodnutí).
-15. **`tools/` a workflow** (M): jeden `build_boundaries.mjs`, sloučit `city_site`, kroky měst z `pages.yml` do
+Krok 1 je první věc po nasazení, před přestavbou překladů, přejmenováním `pilot` → `app` i úklidem `.claude/worktrees/`
+(nahrávky leží v pracovních kopiích). Od kroku 5 platí: každý commit = přehrání před a po a `compare.mjs` s 0 rozdíly,
+výsledek ve zprávě commitu. Povinné jádro: 1–8, 9 a 11–13a; ostatní podle chuti, plán jde zastavit v půli.
+
+1. **Přehrávka jako záchranná síť** (L): odstranit nahodilost (počkat na načtení ikon před exportem SVG; dvě přehrání
+   téhož kódu = 0 rozdílů); 10–20 řezů každého chybějícího státu (21 států), nahrávky do git-ignorovaného
+   `data/replay/` hlavního repa (přesunout i ty z pracovních kopií), tabulka podkladových vrstev; nahrávat ohleduplně.
+2. **ESLint jen na chyby a `.editorconfig`** (S–M): `devDependencies` + `package-lock.json`, `npm ci` v jobu `test`;
+   pravidla `no-undef`, `no-unused-vars`, `no-unreachable`, `no-dupe-keys`, cykly importů (případně vlastní
+   `tools/check_imports.mjs` bez závislosti, poslouží i kroku 4); `npm run check` rekurzivně přes všechny složky.
+3. **Pravidla psaní kódu `docs/coding-guidelines.md`** (S; dřív krok 19): asi stránka – z Google/Airbnb pojmenování
+   a délka funkcí, z Ousterhouta malé moduly s jasným rozhraním, z Test Desiderata a Testing Library testy chování;
+   pravidla projektu (anglické názvy, jazyk ≠ stát, sdílený kód bez výjimek pro město, vypínač a A/B u změny odhadu,
+   malé vzorky, bez bundleru a TypeScriptu, popisné commity). Pravidla o délce a pojmenování platí pro nový a přesouvaný
+   kód, stávající se kvůli nim nepřepisuje; u každého pravidla, čím se hlídá (ESLint, test kroku 4, úsudek recenzenta).
+   `CLAUDE.md` na ni odkáže.
+4. **Hlídací testy architektury** (S) v jednom `tests/architecture.test.js`: žádná podmínka na stát mimo `countries/`,
+   žádný nepoužitý export, strop velikosti souboru a funkce; seznam dnešních výjimek, který se smí jen zkracovat.
+5. **`CLAUDE.md` a `pilot/README.md`** (M): nejdřív vypsat všechna pravidla a zákazy (věty s „Bára:“, „nikdy“, „vždy“,
+   „před nasazením“) do jednoho oddílu a ten nechat celý; přesouvat jen popis stavu (státy do `docs/countries/<ISO>.md`,
+   rozhodnutí do `docs/decisions.md`, README podle témat do `docs/`). Cíl asi 200 řádků; každý řádek původního souboru
+   dohledatelný v novém umístění.
+6. **Smazat prohrané pokusy** (S–M; Bára 27. 11. 2026: smazat všechny vypnuté pokusy kromě map povrchů `?krakow`,
+   `?bologna`, `?vilnius`, které zůstanou vypnuté pro další pokus): 13 mrtvých `P.*` (`walkYellow`, `walkEdge`, `split6`, `splitMin`, `walkMode`,
+   `walkSat`, `walkDiff`, `walkLight`, `walkShadow`, `aiSnap`, `aiSnapMin`, `aiWalkMax`, `expScale`; ne
+   `panoramaFromPosition`, to je metoda API Mapy.com); před smazáním grep jména v celém repu. Ostatní vypnuté pokusy podle
+   Báry (`P.cars`, `?auta`, `P.areaGreen`, `?treepits`, `?otherstreet`, `?chodnik`, `?vypln`, `?tm`, `?outergaps`,
+   `?outerosm`, `?nycsigns`, `?sirka`, `?fietsstrook`, `?amspark`, `?sfosmpark`, `?ilots`, `?bologna`, `?vilnius`,
+   `?krakow`…). U 28 nezmíněných `?off=` zůstane výchozí chování, smaže se jen vypnutá větev; komentář s měřením do
+   `docs/decisions.md`.
+7. **Registr vypínačů `flags.js`** (M): adresa čtená jednou (nahradí 22 kopií `param`), záznam s druhem, výchozí
+   hodnotou, popisem, datem a měřením; test, že každý vypínač má záznam; `docs/switches.md` generovaný z registru.
+8. **Společní pomocníci pro `towns/`** (M): `inside`, `ringsOf`, `cachedBy`, dotaz s limitem (`param` řeší krok 7).
+9. **Úklid testů** (M; Bára 27. 11. 2026): společná příprava dat do `tests/helpers/`; testy po státech
+   (`belgium.test.js`…) na jednu tabulku přes `countries/`; co testuje totéž víckrát, sloučit. Hlídací testy kroku 4 jsou
+   povolená výjimka z „testovat chování“. Před a po `node --test --experimental-test-coverage`: pokrytí řádků `derive.js`,
+   `signs.js`, `rules.js`, `ortho-osm.js` nesmí klesnout, čas nezhoršit (dnes asi 6 s). Před dělením velkých souborů.
+10. **Smlouvy modulů a verze modulů** (S–M): JSDoc `@typedef` pro díl profilu, `country`, `town`, `source` v jednom
+    souboru, test smlouvy pro `towns/` po vzoru `tests/countries.test.js`; `deriveProfile` s jedním objektem argumentů
+    `{ geometry, sources, options }`. Při nasazení import mapa s `?v=<commit>` pro všechny moduly (generuje nástroj
+    webu, bez bundleru), aby návštěvník nedostal směs starých a nových modulů; aspoň hláška „načtěte stránku znovu“ při
+    chybě importu v `errors.js`.
+11. **Rozdělit `profile.js`** (L): `draw/buildings/` s tabulkou vzhled → funkce, `svg`, `items`, `signs`, `water`, `editor`.
+12. **Rozdělit `derive.js`** (L): jen přesuny, `deriveProfile` na pojmenované fáze, fáze na commit.
+13. **`app.js`**: 13a rozdělit podle oddílů, jen přesuny (L); 13b jádro `cutAt` bez DOM, přehrávka v Node (L, samostatně,
+    s přehráním všech států) – jediný skutečný refaktor plánu, zlevní každé další měření.
+14. **`ortho-osm.js`, `lanes-ortho.js`** (M): `P` na konstanty a vypínače, `orthoOsmPolys` na fáze.
+15. **Registr ortofot** (L): `ortho/<zdroj>.js` jednoho tvaru; `app.js` staví vrstvy smyčkou.
+16. **Registr hledání** (M): `{ id, looksLike, find }`, pořadí podle státu, bez cyklu modulů; nejdřív test dnešního chování.
+17. **Vzhled domů podle státu do `countries/`** (S): zbývá 10 podmínek v `house-looks.js`.
+18. **Měření s malými vzorky** (S hned, knihovna s krokem 19; Bára 27. 11. 2026): `docs/measuring.md` – výběr dotčených
+    řezů predikátem nad nahranými vstupy přehrávky (krok 1) nebo uloženými vstupy sběračů, slepé A/B jen na nich
+    (20–40), pevná kontrolní sada v gitu (`evaluation/lib/control.json`, 30–50), nikdy celý vzorek v prohlížeči.
+19. **`evaluation/`: knihovna a archiv** (M): `evaluation/lib/` (vzorek, sběr, A/B, skóre, šablona zprávy); přesun
+    jednorázových pokusů do `evaluation/archive/` jedním commitem spolu s přejmenováním českých složek z backlogu (odkazy
+    se lámou jen jednou); historii gitu nepřepisovat, nové obrázky z měření do gitu nepřidávat.
+20. **`tools/` a workflow** (M): jeden `build_boundaries.mjs`, sloučit `city_site`, kroky měst z `pages.yml` do
     `tools/build_site.mjs`; ověření `diff -r` sestaveného webu.
-16. **Hlídací testy** (S, průběžně): žádná podmínka na stát mimo `countries/`, žádný nepoužitý export, strop velikosti
-    souboru a funkce, který se smí jen snižovat.
 
-17. **Projít testy a zrušit zbytečné** (M; Bára 27. 11. 2026): testy smazaných pokusů pryč spolu s pokusy (krok 5);
-    společná příprava dat do `tests/helpers/` místo kopií v každém souboru; testy, které hlídají jen vnitřní podobu
-    kódu, ne chování, přepsat nebo smazat; co testuje totéž víckrát, sloučit. Cíl: méně řádků, stejné pokrytí chování,
-    pod 10 s.
-18. **Jednotný postup měření s malými vzorky** (S; Bára 27. 11. 2026: „jen vybrat ty ulice, na které to může mít vliv“):
-    do `evaluation/lib/` (krok 14) a `docs/measuring.md`: nejdřív bez prohlížeče najít řezy, kterých se oprava může
-    dotknout, slepé A/B jen na nich (asi 20–40) a malá kontrolní sada (30–50), která se nesmí změnit; nikdy celý vzorek
-    v prohlížeči jen kvůli zjištění, co se změnilo.
-
-19. **Vlastní pravidla psaní kódu `docs/coding-guidelines.md`** (S; Bára 27. 11. 2026), asi na stránku, udělat hned po
-    kroku 3 (ESLint), ať se jimi řídí všechny další kroky: z Google/Airbnb JavaScript Style Guide pojmenování a délka
-    funkcí, z *A Philosophy of Software Design* (Ousterhout) malé moduly s jasným rozhraním a jedna věc na jednom místě,
-    z Test Desiderata (Kent Beck) a zásad Testing Library testy chování (rychlé, nezávislé, selžou jen při skutečné
-    chybě); k tomu pravidla projektu: anglické názvy, jazyk ≠ stát, sdílený kód bez výjimek pro jedno město, vypínač
-    a A/B u každé změny odhadu, měření na malých vzorcích (krok 18), bez bundleru a TypeScriptu, zprávy commitů
-    popisné jako dosud. `CLAUDE.md` na ni odkáže, aby ji dostal každý agent.
-
-Odhad: 1–6 asi 4–5 dní, 7–9 asi 4 dny, 10–13 asi 7–9 dní, 14–16 asi 4 dny, 17–19 asi 2–3 dny.
+Odhad celkem 28–32 dní (Fable: původních 21–25 bylo asi o třetinu optimistických).
 
 ## Co nedělat
 
 Bundler, TypeScript, framework; přepisovat logiku měřených pravidel (jen přesuny); přejmenovávat česká id v datech
 uložených řezů a logu (`chodnik`, `pruh`, `cesko`) bez zpětné kompatibility; Prettier na celý kód (nanejvýš jedním
 commitem nakonec s `.git-blame-ignore-revs`); plošně rozbíjet sdílený objekt `city`; mazat zprávy z měření; víc kroků
-najednou nebo souběžně s novým státem.
+najednou nebo souběžně s novým státem. Výjimka z „jen přesuny“ je pouze krok 13b.

@@ -4,17 +4,17 @@
 // the outputs of a replay are compared with those of the recording by compare.mjs.
 //   node evaluation/replay/server.mjs [port]          → http://localhost:5190/?replay=record&run=rec&lang=cs
 // ROOT=<checkout>: serve another checkout's app (e.g. to replay the old code); the recordings stay in this folder.
-// Everything recorded (third-party data) stays in evaluation/replay/data/ (git ignores it).
+// Everything recorded (third-party data) stays in data/replay/ of the main repository (paths.mjs, git ignores it).
 import http from "node:http";
 import fs from "node:fs/promises";
 import { createReadStream } from "node:fs";
 import path from "node:path";
 import crypto from "node:crypto";
 import { spawn } from "node:child_process";
+import { DATA } from "./paths.mjs";
 
 const HERE = path.dirname(new URL(import.meta.url).pathname);
 const ROOT = process.env.ROOT || path.join(HERE, "..", "..");
-const DATA = path.join(HERE, "data");
 const PORT = Number(process.argv[2] || process.env.PORT || 5190), APP = PORT + 100; // the app 100 ports up (next to other replays)
 
 // The app's own server (static files, /api/*, data/*) on the next port.
@@ -38,6 +38,10 @@ http.createServer(async (req, res) => {
     if (url.pathname === "/__replay/harness.js") {
       res.writeHead(200, { "Content-Type": "text/javascript; charset=utf-8", "Cache-Control": "no-cache" });
       return res.end(await fs.readFile(path.join(HERE, "harness.js")));
+    }
+    if (url.pathname === "/__replay/layers.js") {
+      res.writeHead(200, { "Content-Type": "text/javascript; charset=utf-8", "Cache-Control": "no-cache" });
+      return res.end(await fs.readFile(path.join(HERE, "layers.js")));
     }
     if (url.pathname === "/__replay/sample") {
       const name = safe(url.searchParams.get("name") || "sample");
@@ -80,7 +84,11 @@ http.createServer(async (req, res) => {
     const r = await fetch(`http://localhost:${APP}${url.pathname}${url.search}`, { method: req.method, headers: req.headers.range ? { range: req.headers.range } : {} });
     const headers = Object.fromEntries([...r.headers].filter(([k]) => !["content-encoding", "content-length", "transfer-encoding", "connection"].includes(k)));
     let buf = Buffer.from(await r.arrayBuffer());
-    if (url.pathname === "/" || url.pathname === "/index.html") buf = Buffer.from(page(buf.toString("utf8")));
+    if (url.pathname === "/" || url.pathname === "/index.html") {
+      // ?layers=1 (layers.js): the app's own CSP stays, the script of the base maps' check comes before app.js.
+      const html = buf.toString("utf8");
+      buf = Buffer.from(url.searchParams.get("layers") ? html.replace('<script type="module" src="app.js"></script>', '<script type="module" src="/__replay/layers.js"></script>\n  <script type="module" src="app.js"></script>') : page(html));
+    }
     res.writeHead(r.status, headers);
     res.end(buf);
   } catch (e) {

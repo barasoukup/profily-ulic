@@ -7,7 +7,7 @@
 import fs from "node:fs";
 import path from "node:path";
 
-const OUT = path.join(path.dirname(new URL(import.meta.url).pathname), "data", "out");
+import { OUT } from "./paths.mjs";
 const args = process.argv.slice(2), opt = (k) => args.find((a) => a.startsWith(`--${k}=`))?.slice(k.length + 3);
 const [A, B] = args.filter((a) => !a.startsWith("--"));
 const only = opt("field")?.split(","), ignore = (opt("ignore") || "").split(",").filter(Boolean), SHOW = Number(opt("show") ?? 8);
@@ -42,6 +42,8 @@ for (const id of a) {
   // Porovnat as the page shows it: its drawings are laid out by measuring the labels in the window (not repeatable), so
   // only its titles and list of changes count; the drawings are those of the export (svg, svgNavrh).
   for (const o of [x, y]) if (typeof o.compare === "string") o.compare = o.compare.replace(/<svg[\s\S]*?<\/svg>/g, "<svg/>");
+  // A failure's stack names ports and lines of the harness: its message (first line) is what counts.
+  for (const o of [x, y]) if (typeof o.failed === "string") o.failed = o.failed.split("\n")[0];
   const bad = keys.filter((k) => text(x[k]) !== text(y[k]));
   if (!bad.length) { same++; continue; }
   diff++;
@@ -51,5 +53,8 @@ for (const id of a) {
     for (const k of bad.slice(0, 4)) console.log(`   ${k} ${where(text(x[k]) ?? "", text(y[k]) ?? "")}`);
   }
 }
+// A run that found no street anywhere would compare equal to itself: how many cuts of each run have a profile.
+const stats = (run) => { let ok = 0, no = 0, fail = 0, miss = 0; for (const id of ids(run)) { const o = read(run, id); if (o.failed) fail++; else if (o.stav) ok++; else no++; if (o.misses?.length) miss++; } return `${ok} s profilem, ${no} bez, ${fail} spadlo, ${miss} s chybějící odpovědí`; };
+console.log(`${A}: ${stats(A)}\n${B}: ${stats(B)}`);
 console.log(`${A} → ${B}: ${same} stejně, ${diff} jinak${missing.length ? `, ${missing.length} chybí v ${B}` : ""}${diff ? " · " + Object.entries(count).map(([k, n]) => `${k} ${n}`).join(", ") : ""}`);
 process.exitCode = diff || missing.length ? 1 : 0;

@@ -1,5 +1,5 @@
 // The hold-out set measured (Bára 19. 11. 2026, steps 1 and 2 of evaluation/ortofoto/LITERATURA-2.md): runs of the
-// replay (evaluation/replay/data/out/<run>) of the same cuts, one with the cities' maps (the truth: the surfaces along
+// replay (data/replay/out/<run> of the main repository) of the same cuts, one with the cities' maps (the truth: the surfaces along
 // the cut, MTVU codes) and any number with the estimate (?mapa=0 and switches). Per city and pooled:
 //   - composition metre by metre (roadway, parking, sidewalk, green, tram bed, other, unknown; buildings left out),
 //     all of it and beyond the kerbs; parking counted as roadway (the maps lack most parking in the roadway),
@@ -11,7 +11,7 @@
 import fs from "node:fs";
 import path from "node:path";
 
-const OUT = path.join(path.dirname(new URL(import.meta.url).pathname), "..", "replay", "data", "out");
+import { OUT } from "../replay/paths.mjs";
 const [TRUTH, ...RUNS] = process.argv.slice(2);
 const read = (run) => Object.fromEntries(fs.readdirSync(path.join(OUT, run)).filter((f) => /^\d+\.json$/.test(f)).map((f) => [f.slice(0, -5), JSON.parse(fs.readFileSync(path.join(OUT, run, f), "utf8"))]));
 

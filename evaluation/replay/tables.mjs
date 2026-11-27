@@ -2,14 +2,15 @@
 // state of a cut, computed in Node for every city and every language, so that the rebuild can be checked to change
 // none of it. The composed city, the credit lines, the outage notes, the traffic signs of each state, the width
 // rules of each state, the look of houses, the city and illustrations of a point, a saved cut loaded again.
-//   node evaluation/replay/tables.mjs <name>        → data/tables/<name>.<lang>.json for cs, sk, en, de
+//   node evaluation/replay/tables.mjs <name>        → data/replay/tables/<name>.<lang>.json for cs, sk, en, de
 //   node evaluation/replay/tables.mjs <A> <B>       → compares two snapshots (exit 1 when they differ)
 import fs from "node:fs";
 import path from "node:path";
 import { spawnSync } from "node:child_process";
+import { DATA } from "./paths.mjs";
 
 const HERE = path.dirname(new URL(import.meta.url).pathname);
-const DIR = path.join(HERE, "data", "tables");
+const DIR = path.join(DATA, "tables");
 const LANGS = ["cs", "sk", "en", "de"];
 const [A, B] = process.argv.slice(2);
 

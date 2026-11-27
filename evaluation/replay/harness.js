@@ -5,7 +5,7 @@
 // always the current ones. Then every cut of the sample is made as a click, and what the visitor would see is
 // written to data/out/<run>/<id>.json: the profile, the status line, the export SVG with and without the
 // illustrations, the credits, the city, the design's warnings and the editor of each part, a saved file reloaded.
-//   ?replay=record|play|fill &run=<name> &sample=<file without .json> &from=&to= &lang=cs|sk|en|de (+ any switch of the app)
+//   ?replay=record|play|fill &run=<name> &sample=<file without .json> &from=&to= &pause=<ms> &lang=cs|sk|en|de (+ any switch of the app)
 const P = new URLSearchParams(location.search);
 const MODE = P.get("replay"), RUN = P.get("run") || MODE, SAMPLE = P.get("sample") || "sample";
 const FROM = Number(P.get("from") || 0), TO = Number(P.get("to") || Infinity);
@@ -24,11 +24,13 @@ const headerOf = (init, name) => {
   const k = Object.keys(h).find((x) => x.toLowerCase() === name);
   return k ? h[k] : null;
 };
+// A time in the request (the Dutch BGT's datetime=now) would never match the recording: the key without it.
+const stamp = (k) => k.replace(/([?&]datetime=)[^&\s]*/g, "$1NOW");
 const keyOf = (u, init) => {
   const range = headerOf(init, "range"), b = init?.body;
   // The app's own server by its path only (the recording and a replay may be served on other ports).
   const where = u.origin === location.origin ? `SELF${u.pathname}${u.search}` : u.href;
-  return `${(init?.method || "GET").toUpperCase()} ${where}${range ? ` R:${range}` : ""}${typeof b === "string" ? ` B:${b}` : ""}`;
+  return stamp(`${(init?.method || "GET").toUpperCase()} ${where}${range ? ` R:${range}` : ""}${typeof b === "string" ? ` B:${b}` : ""}`);
 };
 const hex = (buf) => [...new Uint8Array(buf)].map((x) => x.toString(16).padStart(2, "0")).join("");
 const KEEP = ["content-type", "content-range", "etag", "accept-ranges"];
@@ -48,7 +50,7 @@ async function loadIndex() {
   for (const line of text.split("\n")) {
     if (!line) continue;
     const e = JSON.parse(line);
-    e.key = e.key.replace(/^(\w+ )http:\/\/localhost:\d+/, "$1SELF"); // recorded before the keys dropped the port
+    e.key = stamp(e.key.replace(/^(\w+ )http:\/\/localhost:\d+/, "$1SELF")); // recorded before the keys dropped the port
     if (!index.has(e.key)) index.set(e.key, []);
     index.get(e.key).push(e);
   }
@@ -58,20 +60,34 @@ async function loadIndex() {
 function answerFor(key) {
   const all = index.get(key);
   if (!all) return null;
-  const mine = all.filter((e) => e.cut === cutId);
+  let mine = all.filter((e) => e.cut === cutId);
+  // What ?replay=fill asked live in this cut (fill: 1) replaces the old answers of the same request that were errors:
+  // the app was given the live one at once (an old 503 first would have it retry or give up).
+  if (mine.some((e) => e.fill)) mine = mine.filter((e) => e.fill);
   if (mine.length) {
     const k = `${cutId}|${key}`, n = served.get(k) || 0;
     served.set(k, n + 1);
     return mine[Math.min(n, mine.length - 1)];
   }
-  return all.find((e) => !e.error && e.status < 500) || all[0];
+  // (of the same recording first: its sample's name before the colon; the common folder holds several, e.g. with the
+  // packs' index of different times)
+  const good = (e) => !e.error && e.status < 500, group = cutId.split(":")[0] + ":";
+  return all.find((e) => good(e) && e.cut.startsWith(group)) || all.find(good) || all[0];
 }
 const bodies = new Map();
 const bodyOf = (sha) => bodies.get(sha) || (bodies.set(sha, native(`/__replay/body/${sha}`).then((r) => r.arrayBuffer())), bodies.get(sha));
 
 window.fetch = async (input, init = {}) => {
   const u = new URL(typeof input === "string" || input instanceof URL ? String(input) : input.url, location.href);
-  if (!isData(u) || !MODE) { pending++; try { return await native(input, init); } finally { done(); } }
+  // The app's own files: the whole body is read before the request counts as done (settle() would otherwise find the
+  // page quiet while an icon's text is still on its way: the sign that missed the export, README "Známá nahodilost").
+  if (!isData(u) || !MODE) {
+    pending++;
+    try {
+      const r = await native(input, init), buf = await r.arrayBuffer();
+      return new Response(r.status === 204 || r.status === 304 ? null : buf, { status: r.status, statusText: r.statusText, headers: r.headers });
+    } finally { done(); }
+  }
   const key = keyOf(u, init), signal = init.signal;
   pending++;
   try {
@@ -89,11 +105,11 @@ window.fetch = async (input, init = {}) => {
     // Record: asked with the app's signal (an answer it gave up on is cancelled, as in the app), the whole body read.
     let got;
     try { const r = await native(input, init); got = { r, buf: await r.arrayBuffer() }; }
-    catch (err) { recorded.push({ key, cut: cutId, error: errorOf(err) }); throw err; }
+    catch (err) { recorded.push({ key, cut: cutId, error: errorOf(err), ...(MODE === "fill" ? { fill: 1 } : {}) }); throw err; }
     const { r, buf } = got;
     const sha = hex(await crypto.subtle.digest("SHA-1", buf));
     const headers = Object.fromEntries(KEEP.map((h) => [h, r.headers.get(h)]).filter(([, v]) => v !== null));
-    recorded.push({ key, cut: cutId, status: r.status, statusText: r.statusText, headers, sha });
+    recorded.push({ key, cut: cutId, status: r.status, statusText: r.statusText, headers, sha, ...(MODE === "fill" ? { fill: 1 } : {}) });
     if (!uploaded.has(sha)) { uploaded.add(sha); await native(`/__replay/body/${sha}`, { method: "POST", body: buf }); }
     return new Response(r.status === 204 || r.status === 304 ? null : buf, { status: r.status, statusText: r.statusText, headers });
   } finally {
@@ -182,7 +198,7 @@ async function main() {
   const sample = (await native(`/__replay/sample?name=${SAMPLE}`).then((r) => r.json())).filter((p) => p.id >= FROM && p.id <= TO);
   const t0 = Date.now();
   for (const [n, p] of sample.entries()) {
-    cutId = `${SAMPLE}:${p.id}`;
+    cutId = p.rec || `${SAMPLE}:${p.id}`; // p.rec: the cut as another recording named it (sample-states.json)
     misses.length = 0; notes.length = 0;
     H.progress = `${n + 1}/${sample.length} ${cutId}`;
     let out;
@@ -199,6 +215,8 @@ async function main() {
     if ((MODE === "record" || MODE === "fill") && recorded.length) {
       await native("/__replay/index", { method: "POST", body: JSON.stringify(recorded.splice(0)) });
     }
+    // &pause=<ms> (recording only): a pause after each cut (geodienste.ch: 10 WFS requests a minute).
+    if (MODE !== "play" && P.get("pause")) await sleep(Number(P.get("pause")));
   }
   H.progress = `done ${sample.length} in ${Math.round((Date.now() - t0) / 1000)} s`;
   await native(`/__replay/out?run=${RUN}&id=_done`, { method: "POST", body: JSON.stringify({ progress: H.progress, mode: MODE, sample: SAMPLE, lang: P.get("lang"), search: location.search }) });
