@@ -52,7 +52,16 @@ kód větve `canada`. Kroky přijdou po nasazení, po přestavbě překladů a p
 16. **Hlídací testy** (S, průběžně): žádná podmínka na stát mimo `countries/`, žádný nepoužitý export, strop velikosti
     souboru a funkce, který se smí jen snižovat.
 
-Odhad: 1–6 asi 4–5 dní, 7–9 asi 4 dny, 10–13 asi 7–9 dní, 14–16 asi 4 dny.
+17. **Projít testy a zrušit zbytečné** (M; Bára 27. 11. 2026): testy smazaných pokusů pryč spolu s pokusy (krok 5);
+    společná příprava dat do `tests/helpers/` místo kopií v každém souboru; testy, které hlídají jen vnitřní podobu
+    kódu, ne chování, přepsat nebo smazat; co testuje totéž víckrát, sloučit. Cíl: méně řádků, stejné pokrytí chování,
+    pod 10 s.
+18. **Jednotný postup měření s malými vzorky** (S; Bára 27. 11. 2026: „jen vybrat ty ulice, na které to může mít vliv“):
+    do `evaluation/lib/` (krok 14) a `docs/measuring.md`: nejdřív bez prohlížeče najít řezy, kterých se oprava může
+    dotknout, slepé A/B jen na nich (asi 20–40) a malá kontrolní sada (30–50), která se nesmí změnit; nikdy celý vzorek
+    v prohlížeči jen kvůli zjištění, co se změnilo.
+
+Odhad: 1–6 asi 4–5 dní, 7–9 asi 4 dny, 10–13 asi 7–9 dní, 14–16 asi 4 dny, 17–18 asi 2 dny.
 
 ## Co nedělat
 
