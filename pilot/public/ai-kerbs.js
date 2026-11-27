@@ -12,6 +12,7 @@
 // lines 3 m apart; the carriageway is the run nearest the axis (gaps to 0.6 m bridged, within 4 m of it), as
 // evaluation/ai-segmentation/compare.py measured it.
 import { orthoPatch } from "./lanes-ortho.js";
+import { P } from "./ortho-osm.js";
 
 const HALF = 41.6, PX = 416, R = 6378137;
 const MEAN = [0.485, 0.456, 0.406], STD = [0.229, 0.224, 0.225];
@@ -214,6 +215,7 @@ export function aiParking(cut) {
 export const PARK = { on: 0.4, off: 0.2, minW: 1.6, laneLeft: 2.75, road: 3 };
 const ROADISH = new Set(["pruh", "pruh_piktokoridor", "bus", "bus_cyklo", "tramvaj_v_pruhu", "tramvaj_pruh", "krajnice", "cyklopruh", "ochranny_pruh", "obsluzna", "parkovani"]);
 const KERBSIDE = new Set(["chodnik", "plocha", "zelen"]);
+const MEDIAN_GREEN = new Set(["zelen", "stromorad", "delici"]);
 const r2 = (x) => Math.round(x * 100) / 100;
 function stallOf(w) {
   if (w < 3.2) return { orient: "podelne", width: Math.min(Math.max(w, 2), 2.5) };
@@ -278,6 +280,11 @@ export function parkFromAi(result, pAt, skip = {}) {
     if (sg < 0 ? skip.hi : skip.lo) continue;
     const out = k + sg, L = lay(), kerb = sg < 0 ? L[k].e : L[k].s, dirIn = sg < 0 ? -1 : 1;
     if (ROADISH.has(segs[out]?.type)) continue;
+    // A kerb towards a median of green between two roadways: no cars stand there, in the roadway nor on the lawn (Bára
+    // 27. 11. 2026, Avenue de l'Europe in Amiens: a 4.4 m row "half on the sidewalk" over the median, the model at 0.5
+    // across lane and lawn; the orthophoto shows two lanes and grass; ortho-osm.js has no cars at a median kerb either).
+    // ?off=parkmedian: as before.
+    if (MEDIAN_GREEN.has(segs[out]?.type) && ROADISH.has(segs[out + sg]?.type) && !P.off?.has("parkmedian")) continue;
     let a = reach(kerb, dirIn), b = reach(kerb, -dirIn);
     const N = segs[out];
     // Cars cannot stand in a row of trees or beyond the profile: what reaches there counts to the roadway (the kerb is
@@ -324,7 +331,11 @@ export function parkFromAi(result, pAt, skip = {}) {
       X.width = r2(X.width - fromX);
       if (need > 0) {
         const n = Math.max(1, Math.min(lanes.length, Math.floor((total - need) / PARK.laneLeft + 1e-9))), each = r2((total - need) / n);
-        lanes.forEach((x, q) => { if (q < n) { x.width = q === n - 1 ? r2(total - need - each * (n - 1)) : each; if (n === 1 && lanes.length > 1) delete x.dir; } });
+        // The one lane left of a two-way run goes both ways; of a one-way carriageway's lanes (all one direction) it keeps
+        // its direction (Bára 27. 11. 2026, Avenue de l'Europe in Amiens: the lane read "↑↓" and the sign pointed the wrong
+        // way; ?off=parkdir: as before).
+        const oneDir = new Set(lanes.map((x) => x.dir ?? "forward")).size === 1 && !P.off?.has("parkdir");
+        lanes.forEach((x, q) => { if (q < n) { x.width = q === n - 1 ? r2(total - need - each * (n - 1)) : each; if (n === 1 && lanes.length > 1 && !oneDir) delete x.dir; } });
         for (const x of lanes.slice(n)) segs.splice(segs.indexOf(x), 1);
       }
     }

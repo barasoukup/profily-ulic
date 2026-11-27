@@ -3,7 +3,7 @@
 import { typeFromMtvu, isBuilding, isMinorStructure, DEFAULT_WIDTH, PERMEABLE_TYPES } from "./types.js";
 import { city, country } from "./city.js";
 import { t, num } from "./i18n.js";
-import { P as ORTHO_P } from "./ortho-osm.js";
+import { P as ORTHO_P, partnerReach } from "./ortho-osm.js";
 
 const STEP = 0.05; // sampling step along the cut (m)
 const MIN_RUN = 0.3; // runs narrower than this merge into a neighbour (m)
@@ -146,6 +146,31 @@ export function nearestStreet(osm, frame, p, name = null) {
     if (!best || score < best.score) best = { ...c, score, way: el, pts };
   }
   return best;
+}
+
+// A click on a promenade between the two carriageways of a street (Bára 27. 11. 2026, Unter den Linden in Berlin: the
+// cut took the footway down the middle, 2 m of paving, not the street): a footway, path, pedestrian way or cycleway
+// with a one-way carriageway of one name on each side of it, driving opposite ways, both along it, within PARTNER_REACH
+// of it, is the street's middle: the nearer carriageway is the cut's way (centerOnStreet then centres the cut on the
+// street). ?off=promenade: as before.
+const PROMENADE = new Set(["footway", "path", "pedestrian", "cycleway"]);
+export function streetAround(osm, frame, near, p = [0, 0]) {
+  if (!near?.way || ORTHO_P.off?.has("promenade") || !PROMENADE.has(near.way.tags?.highway) || ["sidewalk", "crossing"].includes(near.way.tags.footway)) return near;
+  const sides = {};
+  for (const el of osm.elements || []) {
+    if (!isStreet(el) || MINOR.has(el.tags.highway) || !el.tags.name || !isOnewayTags(el.tags)) continue;
+    const pts = el.geometry.map((g) => frame.toXY(g.lon, g.lat)), c = closestOnPolyline(pts, near.point);
+    if (!c.point || c.d > PARTNER_REACH || Math.abs(c.dir[0] * near.dir[0] + c.dir[1] * near.dir[1]) < 0.7) continue;
+    const side = Math.sign((c.point[0] - near.point[0]) * near.dir[1] - (c.point[1] - near.point[1]) * near.dir[0]);
+    if (!side) continue;
+    const drive = el.tags.oneway === "-1" ? -1 : 1, d = [c.dir[0] * drive, c.dir[1] * drive];
+    const slot = (sides[el.tags.name] ||= {});
+    if (!slot[side] || c.d < slot[side].c.d) slot[side] = { c, d, el, pts };
+  }
+  const pairs = Object.values(sides).filter((q) => q[1] && q[-1] && q[1].d[0] * q[-1].d[0] + q[1].d[1] * q[-1].d[1] < 0);
+  if (!pairs.length) return near;
+  const q = pairs.sort((a, b) => a[1].c.d + a[-1].c.d - b[1].c.d - b[-1].c.d)[0], w = q[1].c.d <= q[-1].c.d ? q[1] : q[-1];
+  return { ...w.c, score: w.c.d, way: w.el, pts: w.pts };
 }
 
 // The street of a saved cut (the way in its link, share.js cutHash) at the frame's origin, as nearestStreet gives it, or
@@ -411,7 +436,7 @@ function partnerJunctions(osm, frame, near) {
     partners.add(el.id);
     for (const g of el.geometry) {
       const q = nearestOnLine(near.pts, frame.toXY(g.lon, g.lat));
-      if (q && q.dist <= PARTNER_REACH) at.set(key(g), q.p);
+      if (q && q.dist <= partnerReach(PARTNER_REACH)) at.set(key(g), q.p);
     }
   }
   return ways.filter((el) => !partners.has(el.id) && el.tags.name !== name && (!MINOR.has(el.tags.highway) || (el.tags.highway === "service" && !NOT_JUNCTION_SERVICE.has(el.tags.service))))
@@ -1816,7 +1841,7 @@ function dualPartner(cross, way, half) {
 
 // On a dual carriageway the cut centre moves from the clicked carriageway to the middle of the
 // street (the tram belt or median between the two), so the cut shows the whole street.
-export function centerOnStreet(osm, frame, near, half = 40) {
+export function centerOnStreet(osm, frame, near, half = partnerReach(40)) {
   const normal = [-near.dir[1], near.dir[0]];
   const cross = crossings(osm, frame, near.point, normal, half);
   const partner = dualPartner(cross, near.way, half);
@@ -1824,6 +1849,13 @@ export function centerOnStreet(osm, frame, near, half = 40) {
   const own = cross.find((c) => c.way.id === near.way.id)?.t ?? 0;
   const m = (own + partner.t) / 2;
   return { ...near, point: [near.point[0] + normal[0] * m, near.point[1] + normal[1] * m] };
+}
+
+// The distance between the cut's carriageway and the other one of its street (0: none), for the orthophoto to reach it.
+export function partnerGap(osm, frame, near) {
+  const normal = [-near.dir[1], near.dir[0]], half = partnerReach(40), cross = crossings(osm, frame, near.point, normal, half);
+  const partner = dualPartner(cross, near.way, half), own = cross.find((c) => c.way.id === near.way.id);
+  return partner && own ? Math.abs(partner.t - own.t) : 0;
 }
 
 // Main entry: returns {segments (screen left → right), edges, runs}.

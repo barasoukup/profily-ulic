@@ -1,6 +1,6 @@
 import { TYPES, partLabel, SOURCES, DEFAULT_WIDTH, ITEMS, PARKING_USE, PARKING_POSITION, TRAM_BEDS, TURN_CHOICES, HDV_UNDER, UNDER_TYPES, PERMEABLE_TYPES, SURFACES, LAMP_HEIGHTS, underSize } from "./types.js";
 import { refloor } from "./floors.js";
-import { localFrame, nearestStreet, savedStreet, snapToWay, dragAlong, placeCut, centerOnStreet, mtvuPolygons, trackLines, techLines, esriPolygons, deriveProfile, splitTwoWayLane, capWideLanes, pedestrianZone, treePitsAsSidewalk, widenNarrowTrams, carveCycleways, carveTramTracks, lanesFromShoulders, trackAlongRoad, crossFromA, lawNeedFor, isOnewayTags, MAX_REACH } from "./derive.js";
+import { streetAround, partnerGap, localFrame, nearestStreet, savedStreet, snapToWay, dragAlong, placeCut, centerOnStreet, mtvuPolygons, trackLines, techLines, esriPolygons, deriveProfile, splitTwoWayLane, capWideLanes, pedestrianZone, treePitsAsSidewalk, widenNarrowTrams, carveCycleways, carveTramTracks, lanesFromShoulders, trackAlongRoad, crossFromA, lawNeedFor, isOnewayTags, MAX_REACH } from "./derive.js";
 import { bedOrtho } from "./ortho.js";
 import { laneImage, applyLanes, HATCH_PARAMS, SK_ORTHO, AT_ORTHO, CH_ORTHO, NL_ORTHO, BE_ORTHO, LU_ORTHO, PL_ORTHO, FR_ORTHO, ES_ORTHO, PT_ORTHO, PT_MAINLAND, ES_NOT_PNOA, CY_ORTHO, MT_ORTHO, IT_ORTHO, EE_ORTHO, SI_ORTHO, FI_ORTHO, US_ORTHO, CA_ORTHO, DK_ORTHO, DE_ORTHO, deWmsUrl, landsAt, landAt, orthoHereAt } from "./lanes-ortho.js";
 import { dkToken } from "./keys.js";
@@ -18,6 +18,7 @@ import { aiCut, aiKerbs, aiSurface, aiParking, parkFromAi, parkSkip, lawKerbs, l
 // default, no measuring (Bára 27. 11. 2026: only a hand-stretched side, a deliberate act); ?dosah=0 off. (The random A/B of
 // 27. 11. 2026, 12 cuts at 32 m: better 0, worse 1, measured cuts nobody stretched.)
 ORTHO_P.stretchOn = new URLSearchParams(location.search).get("dosah") !== "0";
+if (new URLSearchParams(location.search).get("partner80") === "1") ORTHO_P.partner80 = true;
 // Tree pits as sidewalk (derive.js treePitsAsSidewalk): off, ?treepits=1 turns them on.
 if (new URLSearchParams(location.search).get("treepits") === "1") ORTHO_P.treepits = true;
 if (new URLSearchParams(location.search).get("axisroad") === "0") ORTHO_P.axisroad = false;
@@ -609,7 +610,7 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wa
       near = dragAlong(osm, frame, osmCache.way, [0, 0]);
     } else {
       // The street the link names, if it is still there (derive.js savedStreet), else the nearest one.
-      near = (wantWay && savedStreet(osm, frame, wantWay)) || nearestStreet(osm, frame, [0, 0], wantName);
+      near = streetAround(osm, frame, (wantWay && savedStreet(osm, frame, wantWay)) || nearestStreet(osm, frame, [0, 0], wantName));
       // A click lands the cut away from junctions and crossings; a dragged cut stays where it is put, a saved one (a link,
       // a pasted position with its azimuth) exactly where it was saved. Only the first click in an area is moved (Bára
       // 27. 11. 2026): a click within AGAIN_M of the cut shown lands where it is, only snapped onto the street and between
@@ -661,6 +662,8 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wa
     const bbox = [Math.min(...lons) - pad, Math.min(...lats) - pad, Math.max(...lons) + pad, Math.max(...lats) + pad].join(",");
     let polys = [], tracks = [];
     const zone = sources.zps(clat, clon).catch(() => undefined);
+    // With ?partner80=1 the image reaches the other carriageway of a street of two one-way ones too (50–80 m apart).
+    const orthoHalf = !ORTHO_P.partner80 ? ORTHO_HALF : Math.max(ORTHO_HALF, Math.min(41, partnerGap(osm, frame, near) / 2 + 12));
     const [m, k, pk, z, o, li] = await Promise.allSettled([
       // The zone file is local (and loaded once), so knowing the zone first costs nothing.
       sources.mtvu(bbox, near.way.tags, near.way), sources.linie(bbox), zone.then((inZone) => sources.parkovani(bbox, inZone)), zone,
@@ -669,7 +672,7 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wa
       // The state's orthophoto (countries/<ISO>.js bedOrtho; Slovakia its own, elsewhere abroad none: ČÚZK's is blank there).
       bedOrtho({ osm, frame, dir, half, source: country.bedOrtho }),
       // One image of the orthophoto across the whole cut for the road markings (lanes-ortho.js).
-      LANES_ORTHO ? laneImage({ frame, dir, t0: -Math.min(half, ORTHO_HALF), t1: Math.min(half, ORTHO_HALF), source: city.laneOrtho || country.laneOrtho }) : null,
+      LANES_ORTHO ? laneImage({ frame, dir, t0: -Math.min(half, orthoHalf), t1: Math.min(half, orthoHalf), source: city.laneOrtho || country.laneOrtho }) : null,
     ]);
     const ortho = o.status === "fulfilled" ? o.value : null;
     // A surface map's inventory of the street may correct the way's tags (towns/usa.js: DDOT's lane count and bike lanes),

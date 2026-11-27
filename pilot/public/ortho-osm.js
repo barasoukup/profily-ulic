@@ -273,11 +273,15 @@ export function limits(o, axis) {
 // The other carriageway of a street of two one-way ones (Suché mýto in Bratislava; Bára 16. 11. 2026): the nearest
 // one-way street way of the same level and name (unnamed: of the same class), 4 to 35 m from the clicked one. Its
 // kerbs are read as the clicked one's; the strip between them is a median.
+// How far the other carriageway of a street of two one-way ones may lie: 35 m / 40 m (`before`); 80 m with ?partner80=1
+// (Bára 27. 11. 2026, Paseo de la Casa de Campo in Madrid). Off by default: the blind A/B of 43 changed cuts of 72 (two
+// judges, only the aerial) gave 24 : 28 for 80 m, no gain (evaluation/sjednoceni/amiens-far).
+export const partnerReach = (before) => (P.partner80 ? 80 : before);
 export function partnerOf(o) {
   const own = o.own, tg = own.tags;
   if (!ONEWAY(tg)) return null;
   const same = (w) => (tg.name ? w.tags.name === tg.name : String(w.tags.highway).replace("_link", "") === String(tg.highway).replace("_link", ""));
-  const c = o.ways.filter((w) => STREET.test(w.tags.highway || "") && (P.off?.has("railpair") || !w.tags.railway) && ONEWAY(w.tags) && sameLevel(w, o) && same(w) && Math.abs(w.t - own.t) > 4 && Math.abs(w.t - own.t) < 35);
+  const c = o.ways.filter((w) => STREET.test(w.tags.highway || "") && (P.off?.has("railpair") || !w.tags.railway) && ONEWAY(w.tags) && sameLevel(w, o) && same(w) && Math.abs(w.t - own.t) > 4 && Math.abs(w.t - own.t) < partnerReach(35));
   // Of the same class first (Bára 18. 11. 2026, Košická in Bratislava: the one-lane residential side road 8.5 m off
   // was taken for the other carriageway of the primary 9.9 m off, which then was left out; ?off=pairclass: nearest).
   const cls = (w) => String(w.tags.highway).replace("_link", "");
