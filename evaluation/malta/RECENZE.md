@@ -2,7 +2,7 @@
 
 Rozsah: `countries/MT.js`, `towns/malta.js`, `signs-MT/`, `evaluation/malta/`, jízda vlevo v `derive.js`
 (`leftHand`, `mirrorLeftHand`), `lanes-ortho.js` (`MT_ORTHO`), `search-photon.js`, `credits.js`, `city.js`,
-`index.html`, `LICENCE-A-ZDROJE.md`, `app/README.md`, `tests/malta.test.js`, `staty.json`. HEAD `84140de` (větev
+`index.html`, `LICENCE-A-ZDROJE.md`, `app/README.md`, `tests/malta.test.js`, `states.json`. HEAD `84140de` (větev
 `estonia`). Žádný existující soubor jsem neměnil, nic necommitoval. Nálezy o jízdě vlevo jsou společné s Kyprem
 (`evaluation/cyprus/RECENZE.md`), tady jen stručně.
 
@@ -129,7 +129,7 @@ z nálezu 4 naopak zakotvuje (počet pruhů se ignoruje).
 - `lanes:bus` na jednosměrce „od pravé obruby“ (`derive.js:904–905`); maltský pruh je vlevo (README `signs-MT`:
   „Pruh je vlevo od čáry“).
 - Žluté čáry u obrub (Part IV C(vii), místo značek II.D6 a II.D7) může měření z ortofota číst jako vodicí čáry.
-- Hranice s výsostnými vodami (`staty.json` „malta“, jeden prstenec) dává stát MT i na moři; neškodí, v logu ale
+- Hranice s výsostnými vodami (`states.json` „malta“, jeden prstenec) dává stát MT i na moři; neškodí, v logu ale
   budou řezy „MT“ z trajektových tras, pokud tam OSM má cestu.
 - Balík OSM `mt` jen na R2 (`tools/countries.mjs:54`); zda ho workflow postaví před nasazením sám, jsem neověřoval.
 

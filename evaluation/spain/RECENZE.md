@@ -1,7 +1,7 @@
 # Nepřátelská recenze státu Španělsko (ES), 23. 11. 2026
 
 Rozsah: `countries/ES.js`, `towns/spain.js`, `search-es.js`, `signs-ES/`, `evaluation/spain/`, části `lanes-ortho.js`,
-`signs.js`, `derive.js`, `credits.js`, `app.js`, `index.html`, `tools/countries.mjs`, `tools/build_staty.mjs`,
+`signs.js`, `derive.js`, `credits.js`, `app.js`, `index.html`, `tools/countries.mjs`, `tools/build_states.mjs`,
 `tests/spain.test.js`, `LICENCE-A-ZDROJE.md`, `app/README.md`. Větev `estonia`, HEAD `84140de`. Žádný soubor kromě
 této zprávy jsem neměnil.
 
@@ -77,7 +77,7 @@ Náprava: `living_street` s rychlostí 20 nebo bez rychlosti (čl. 50.1 a: plata
 
 ### 3. Ulice na pobřeží a v přístavech padají do „ciziny“ (závažné)
 
-Hranice GISCO 1 : 1 M zjednodušená na 30 m (`tools/build_staty.mjs:91`) řeže nábřeží. Z 94 975 úseků ulic lokálního
+Hranice GISCO 1 : 1 M zjednodušená na 30 m (`tools/build_states.mjs:91`) řeže nábřeží. Z 94 975 úseků ulic lokálního
 balíku (11 měst) jich `cityAt` dá 221 do `cizina`, například: Passeig de Joan de Borbó, Passeig del Mare Nostrum a Moll
 d'Espanya (Barcelona), Paseo Sir John Moore a Rúa Julio Portela Ceballos (A Coruña), Avenida de Los Cambulloneros a
 Calle Marina (Las Palmas), Paseo de Levante (Málaga), ulice v přístavu Palmy a Valencie. La Restinga na El Hierru

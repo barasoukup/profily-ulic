@@ -6,14 +6,14 @@
 // state.cut.sources (and, for the footer's short line, app.js cutData).
 // No import of city.js (it imports this).
 import { t } from "./i18n.js";
-import { PASSPORT_NAMES, GREEN_PASSPORTS } from "./towns/pasporty-names.js";
+import { PASSPORT_NAMES, GREEN_PASSPORTS } from "./towns/passport-names.js";
 import { DE_ORTHO, TO_ORTHO_WHO } from "./lanes-ortho.js";
 
 // The cantons (and Liechtenstein, FL in the survey) by their code in Switzerland's cadastral survey (towns/switzerland.js).
 export const CANTONS = ["AG", "AI", "AR", "BE", "BL", "BS", "FR", "GE", "GL", "GR", "JU", "LU", "NE", "NW", "OW", "SG", "SH", "SO", "SZ", "TG", "TI", "UR", "VD", "VS", "ZG", "ZH", "FL", "LI"];
 
 export const SOURCE_CREDITS = {
-  // A Czech town's passport over the DTM (towns/pasporty.js).
+  // A Czech town's passport over the DTM (towns/passports.js).
   passport: Object.fromEntries(Object.keys(PASSPORT_NAMES).map((id) => [id, () => (GREEN_PASSPORTS.has(id)
     ? t("pasport zeleně © {town}", { town: PASSPORT_NAMES[id] })
     : t("pasport komunikací © {town}", { town: PASSPORT_NAMES[id] }))])),

@@ -22,7 +22,7 @@ globalThis.fetch = async (url, o) => {
   return new Response(t, { status: r.status });
 };
 const C = await import("../../../app/public/city.js"), json = async (f) => JSON.parse(await fs.readFile(new URL(f, import.meta.url), "utf8"));
-C.loadBounds(await json("../../../app/public/mesta.json")); await import("../../../app/public/america.js"); C.loadStates({ ...await json("../../../app/public/staty.json"), ...await json("../../../app/public/staty-america.json") }); C.loadTowns(await json("../../../app/public/mesta-us.json"));
+C.loadBounds(await json("../../../app/public/towns.json")); await import("../../../app/public/america.js"); C.loadStates({ ...await json("../../../app/public/states.json"), ...await json("../../../app/public/states-america.json") }); C.loadTowns(await json("../../../app/public/towns-us.json"));
 const U = await import("../../../app/public/towns/usa.js");
 for (const s of await json("sample.json")) {
   const b = (s.bearing * Math.PI) / 180, half = 40, pad = 0.0004, kx = 111320 * Math.cos((s.lat * Math.PI) / 180);

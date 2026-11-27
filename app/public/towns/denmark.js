@@ -1,4 +1,4 @@
-// Denmark (Bára 23. 11. 2026): the state of a cut inside staty.json's "denmark" (with Bornholm). No surface map of the
+// Denmark (Bára 23. 11. 2026): the state of a cut inside states.json's "denmark" (with Bornholm). No surface map of the
 // streets exists as polygons (evaluation/denmark/ZDROJE.md 2): the profile is the estimate from OSM and the spring
 // orthophoto of GeoDanmark (lanes-ortho.js "dk", with the app's token; without it OSM alone, said so). Its own sources:
 // - Copenhagen (Københavns Kommune's WFS wfs-kbhkort.kk.dk/k101, CORS *, no key; asked only inside its box):

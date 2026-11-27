@@ -17,7 +17,7 @@ const sample = new Map(JSON.parse(await fs.readFile(path.join(PILOT, "sample.jso
 const judged = (await Promise.all((await fs.readdir(path.join(PILOT, "results"))).filter((f) => /^u-.*\.jsonl$/.test(f)).map((f) => fs.readFile(path.join(PILOT, "results", f), "utf8"))))
   .join("\n").split("\n").filter(Boolean).map((l) => JSON.parse(l));
 const LANE = ["pruh", "pruh_piktokoridor", "obsluzna", "bus", "bus_cyklo", "tramvaj_v_pruhu"];
-// The app as it stays (tree pits off, ?jamky=1; the DC line fixed in staty.json): collected again into us-meas2.json.
+// The app as it stays (tree pits off, ?jamky=1; the DC line fixed in states.json): collected again into us-meas2.json.
 const meas2 = path.join(HERE, "..", "universal", "data", "us-meas2.json");
 const def = await fs.readFile(meas2, "utf8").then((t) => new Map(JSON.parse(t).filter((r) => r.parts?.length).map((r) => [r.id, r])), () => variant("def"));
 const withPits = variant("def");

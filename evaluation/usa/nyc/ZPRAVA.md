@@ -5,9 +5,9 @@ Kód zmrazený před vzorkem: 18945f8 (větev `na-newyork` z `canada` 10882aa). 
 
 ## Co je zapojené
 
-- Stát `usa` má od teď dvě metra (`tools/build_staty.mjs METROS`): Washington a **New York City, pět obvodů** (TIGERweb).
+- Stát `usa` má od teď dvě metra (`tools/build_states.mjs METROS`): Washington a **New York City, pět obvodů** (TIGERweb).
   Okolní okresy (New Jersey, Westchester, Nassau) nejsou: nemají mapu povrchů a okolí Washingtonu a Toronta bez mapy
-  dalo jen 51 %; zůstávají v `closed_us` s hláškou. Město `newyork` v `mesta-us.json`.
+  dalo jen 51 %; zůstávají v `closed_us` s hláškou. Město `newyork` v `towns-us.json`.
 - **Mapa povrchů:** NYC Planimetric Database 2022 (NYC OTI) z organizace NYCmaps na ArcGIS Online (vozovky, chodníky, náměstí,
   ostrůvky, parkoviště, budovy; CORS *) přes společný adaptér `towns/planimetrics.js` (`towns/newyork.js`, `?nyc=0`).
 - **Domy:** z obrysů budov téže služby (výška střechy → podlaží, rok, garáž; `?nychouse=0`). PLUTO nebylo třeba.

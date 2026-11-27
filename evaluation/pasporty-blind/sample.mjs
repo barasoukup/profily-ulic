@@ -1,5 +1,5 @@
-// The blind re-measurement of the passports of Šlapanice and Kuřim (towns/pasporty.js; 26. 11. 2026): random points on
-// the OSM streets inside each town's passport boundary (app/public/pasporty.json), weighted by length (every metre of
+// The blind re-measurement of the passports of Šlapanice and Kuřim (towns/passports.js; 26. 11. 2026): random points on
+// the OSM streets inside each town's passport boundary (app/public/passports.json), weighted by length (every metre of
 // a street the same chance), from the local OSM pack of Czechia; seed 20261126; at least 60 m from each other, 15 m
 // from a way's end and 100 m from the old sample (evaluation/<town>/data/samples.json of the A/B of 26. 11.).
 // Roads that a click cuts: trunk … living_street, pedestrian, service (not driveways, parking aisles).
@@ -12,7 +12,7 @@ const { mergePieces, TILE } = await import(W + "/app/public/osmtile.js");
 const idx = JSON.parse(fs.readFileSync(W + "/app/data/osm-pack/index.json", "utf8"));
 const fd = fs.openSync(W + "/app/data/osm-pack/" + idx.files.cz, "r");
 const pack = new Pack(async (s, e) => { const b = Buffer.alloc(e - s + 1); fs.readSync(fd, b, 0, b.length, s); return { bytes: new Uint8Array(b.buffer, b.byteOffset, b.length) }; });
-const BOUNDS = JSON.parse(fs.readFileSync(W + "/app/public/pasporty.json", "utf8"));
+const BOUNDS = JSON.parse(fs.readFileSync(W + "/app/public/passports.json", "utf8"));
 const OLD_DIR = process.env.OLD_DIR || "/Users/barasoukupova/streetdesign/.claude/worktrees/canada/evaluation";
 const N = Number(process.argv[2] || 80);
 const ROAD = /^(trunk|primary|secondary|tertiary|unclassified|residential|living_street|pedestrian|service)$/;

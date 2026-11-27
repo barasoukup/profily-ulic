@@ -1,7 +1,7 @@
 # Nepřátelská recenze státu Portugalsko (PT), 23. 11. 2026
 
 Rozsah: `countries/PT.js`, `towns/portugal.js`, `signs-PT/`, `evaluation/portugal/`, části `lanes-ortho.js`, `app.js`,
-`signs.js`, `credits.js`, `search-photon.js`, `index.html`, `city.js`, `tools/countries.mjs`, `tools/build_staty.mjs`,
+`signs.js`, `credits.js`, `search-photon.js`, `index.html`, `city.js`, `tools/countries.mjs`, `tools/build_states.mjs`,
 `tests/portugal.test.js`, `LICENCE-A-ZDROJE.md`, `app/README.md`. Větev `estonia`, HEAD `84140de`. Žádný soubor kromě
 této zprávy jsem neměnil.
 
@@ -32,7 +32,7 @@ Bez nálezu:
 
 ### 1. Lisabonské nábřeží a další pobřežní ulice padají do „ciziny“ (závažné)
 
-Hranice GISCO 1 : 1 M zjednodušená na 30 m (`tools/build_staty.mjs:93`) řeže břeh Teja a přístavy. Z 37 496 úseků ulic
+Hranice GISCO 1 : 1 M zjednodušená na 30 m (`tools/build_states.mjs:93`) řeže břeh Teja a přístavy. Z 37 496 úseků ulic
 lokálního balíku jich `cityAt` dá 69 do `cizina`: Cais do Sodré, Avenida da Ribeira das Naus, Campo das Cebolas, Rua
 da Alfândega, Rua Cais de Santarém, Rua do Terreiro do Trigo, Avenida Infante Dom Henrique (Lisabon), Avenida Sá
 Carneiro a Rotunda Harvey Foster (Funchal), Parque Urbano de Albarquel (Setúbal). Řez tam nemá portugalské normy,

@@ -23,7 +23,7 @@ Bára 24. 11. 2026: „mapa povrchů je pro nás lepší než ortofoto, vezmi ne
   `otherConstraints` „Dati di proprietà di Regione Lombardia“. Stejně „Carta Base da DBT“ a výřezy DBT na
   dati.lombardia.it (Edifici da DBT, Creative Commons Attribution 4.0). Kredit v aplikaci: „mapa povrchů (Database
   Topografico) © Regione Lombardia (CC BY 4.0)“.
-- Hranice Lombardie pro `staty.json`: „Limiti amministrativi Regione Lombardia 2020 con aggiornamenti DbT/PGT“
+- Hranice Lombardie pro `states.json`: „Limiti amministrativi Regione Lombardia 2020 con aggiornamenti DbT/PGT“
   (dati.lombardia.it `b7fb-r6ie`, CC0 1.0), `tools/lombardy-border.json` (zjednodušeno na 5 m; s Campione d'Italia,
   exklávami u Piemontu a dírami v Oltrepò).
 
@@ -59,7 +59,7 @@ Arsizio po 2. A = `?lombardia=0` (odhad z OSM, bez ortofota), B = s DBT. Lokáln
 - Opraveno během A/B: kolejové těleso jen s tramvají z OSM (dřív nádraží v Brescii jako tramvaj s nástupišti), krytá
   galerie (Galleria del Toro) už nepřebíjí budovy (zůstalo 55 m „chodníku“ v řezu podél galerie, mil14).
 
-**Rozhodnutí: zapnuto** (B lépe 7 : 3 podle fotek, stání a skutečné šířky ploch). Lombardie je v `staty.json`
+**Rozhodnutí: zapnuto** (B lépe 7 : 3 podle fotek, stání a skutečné šířky ploch). Lombardie je v `states.json`
 otevřená; zbytek Itálie dál `closed_it`.
 
 ## Otevřené

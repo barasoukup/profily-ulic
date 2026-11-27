@@ -2,7 +2,7 @@
 // out of it).
 // The region's box (Regione Lombardia's boundary of 2020, CC0, dati.lombardia.it b7fb-r6ie; tools/lombardy-border.json).
 export const LOMBARDY_BOX = [8.49, 44.67, 11.44, 46.64];
-// Inside the Italian part of staty.json (towns/italy.js is asked only there) the box overlaps only South Tyrol and
+// Inside the Italian part of states.json (towns/italy.js is asked only there) the box overlaps only South Tyrol and
 // Modena's northern exclaves. South Tyrol touches Lombardy from the Stelvio (10.45, 46.53) to the Cevedale (10.62, 46.45):
 // there the shared border (tools/lombardy-border.json, about 300 m), west of it South Tyrol lies north of 46.6, east of
 // it (to 10.65) south of 46.44 and further east south of 46 there is no South Tyrol (Lombardy ends at 45.85 there); Modena lies south of 44.85 east of 10.4, Lombardy north of it. Every vertex

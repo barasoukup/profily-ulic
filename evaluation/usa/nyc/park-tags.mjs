@@ -6,7 +6,7 @@ globalThis.location = { search: "?osm=balik", href: SITE, origin: SITE };
 const native = globalThis.fetch;
 globalThis.fetch = (url, o) => (/^https?:/.test(String(url?.url || url)) ? native(url, o) : native(new URL(String(url), SITE + "/"), o));
 const C = await import("../../../app/public/city.js"), json = async (f) => JSON.parse(await fs.readFile(new URL(f, import.meta.url), "utf8"));
-C.loadBounds(await json("../../../app/public/mesta.json")); await import("../../../app/public/america.js"); C.loadStates({ ...await json("../../../app/public/staty.json"), ...await json("../../../app/public/staty-america.json") }); C.loadTowns(await json("../../../app/public/mesta-us.json"));
+C.loadBounds(await json("../../../app/public/towns.json")); await import("../../../app/public/america.js"); C.loadStates({ ...await json("../../../app/public/states.json"), ...await json("../../../app/public/states-america.json") }); C.loadTowns(await json("../../../app/public/towns-us.json"));
 const U = await import("../../../app/public/towns/usa.js");
 const pts = await json(process.argv[2] || "sample-all.json");
 let tagged = 0;

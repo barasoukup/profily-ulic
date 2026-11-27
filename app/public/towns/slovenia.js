@@ -1,4 +1,4 @@
-// Slovenia (Bára 23. 11. 2026): the state of a cut inside staty.json's "slovenia". No surface map of the streets is
+// Slovenia (Bára 23. 11. 2026): the state of a cut inside states.json's "slovenia". No surface map of the streets is
 // published (evaluation/slovenia/ZDROJE.md 2): the profile is the estimate from OSM and GURS's orthophoto DOF025
 // (lanes-ortho.js "si"). The houses:
 // - the buildings of the cadastre (Kataster nepremičnin, GURS WFS wfs-si-gurs-kn, layer STAVBE; CORS *, CC BY 4.0

@@ -245,7 +245,7 @@ export async function baTechMap(bbox, fetched = null) {
 // Bratislava's technical map: the city's box (not cut to its boundary).
 const inBa = (lon, lat) => inArea({ box: SK_TOWNS.bratislava.box }, lon, lat);
 
-// By the town's box and, where mesta-sk.json has it, its boundary (Bratislava's box reached Šamorín and Svätý Jur).
+// By the town's box and, where towns-sk.json has it, its boundary (Bratislava's box reached Šamorín and Svätý Jur).
 const townAt = (lon, lat) => Object.entries(SK_TOWNS).find(([id, t]) => (!t.optIn || param(t.optIn) === "1") && inArea({ box: t.box, town: id }, lon, lat))?.[0] ?? null;
 
 // The OSM areas around a box as MTVU features: buildings (they come first: a sidewalk may run under an arcade), and
@@ -407,6 +407,6 @@ export const AREAS = {
 };
 
 // The overview map of the About dialog (tools/build_coverage.mjs): where this module's own map of the street surfaces
-// answers: the towns' passports that are on by default (their AREAS, each town's boundary in mesta-sk.json); the lines of
+// answers: the towns' passports that are on by default (their AREAS, each town's boundary in towns-sk.json); the lines of
 // the towns' maps (kresba) are no map of surfaces, Bratislava's technical map is off (?tm=1).
 export const SURFACE_MAPS = Object.entries(SK_TOWNS).filter(([, t]) => t.own && !t.optIn).map(([id]) => `${id}-pasport`);

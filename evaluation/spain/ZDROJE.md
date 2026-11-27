@@ -104,7 +104,7 @@ Katalánské, galicijské a baskické názvy jsou v CartoCiudad v kastilské pod
 (Katalánsko 262 MB, Andalusie 189 MB) se po zabalení vejdou pod 512 MB (podle poměru ČR: 1,39 GB dlaždic z ~0,8 GB pbf,
 spíš těsně; ověřit při stavbě). Ceutu a Melillu lze přidat k Andalusii, nebo jako dva malé díly.
 
-**Hranice** (neověřeno dotazem, podle postupu Francie v `tools/build_staty.mjs`): `gisco("ES")` z
+**Hranice** (neověřeno dotazem, podle postupu Francie v `tools/build_states.mjs`): `gisco("ES")` z
 `CNTR_RG_01M_2024_4326.geojson` (Eurostat GISCO 1 : 1 M, © EuroGeographics). Obsahuje pevninu, Baleáry, Kanáry, Ceutu a
 Melillu; Andorra (AD) a Gibraltar (GI) jsou samostatné státy GISCO, takže do Španělska nepatří. **Llívia** je ve
 Francii díra (`gisco("FR", true)`) a ve Španělsku má být vlastním vnějším prstencem: ověřit, že ji `gisco("ES")` vrací

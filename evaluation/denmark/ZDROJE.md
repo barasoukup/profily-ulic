@@ -154,7 +154,7 @@ Vzhled domů: `house-looks.js` už má `nordicLook("DK")` (dánský cihlový či
   (hustá data z importů budov a adres). Faerské ostrovy (`europe/faroe-islands`) a Grónsko (`north-america/greenland`)
   jsou zvlášť. Balík `dk`: odhadem asi 180 MB (poměr jako u Estonska 124,8 → 45 MB), **pod 512 MB, bez dělení**; jen R2.
 - Hranice: `gisco("DK")` (GISCO CNTR 1 : 1 M, Faerské ostrovy a Grónsko mají vlastní kódy FO, GL; neověřeno, soubor
-  60 MB jsem nestahovala). V `tools/build_staty.mjs` a `tools/countries.mjs` Dánsko zatím není.
+  60 MB jsem nestahovala). V `tools/build_states.mjs` a `tools/countries.mjs` Dánsko zatím není.
 
 ---
 

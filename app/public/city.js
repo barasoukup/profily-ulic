@@ -1,6 +1,6 @@
 // What differs between the cities the app knows: data sources, map, wording, illustrations. One page for
 // the whole Czech Republic (Bára 10. 11. 2026): a cut takes the city it lies in (cityAt, by the boundaries
-// of mesta.json), anywhere else "cesko" (the national DTM of ČÚZK, RÚIAN and OSM). `city` is the city of
+// of towns.json), anywhere else "cesko" (the national DTM of ČÚZK, RÚIAN and OSM). `city` is the city of
 // the current cut, changed in place by setCity, so modules read it at the time they need it.
 
 import { sourceCredits } from "./credits.js";
@@ -492,7 +492,7 @@ Object.assign(CITIES, {
 for (const c of Object.values(CITIES)) if (c.abroad && c.country) { c.art = c.id; delete c.artMap; }
 
 // The Slovak and Austrian cities (step 4b of docs/architecture-countries.md; Bára 16. 11. 2026: cities everywhere, as
-// Brno): by their boundaries (mesta-sk.json from ZBGIS, mesta-at.json from GISCO's LAU, mesta-us.json of DC, mesta-ca.json of Toronto), everything else of their
+// Brno): by their boundaries (towns-sk.json from ZBGIS, towns-at.json from GISCO's LAU, towns-us.json of DC, towns-ca.json of Toronto), everything else of their
 // state's rest (texts, sources, orthophoto), only the illustrations their own where the state has a set of the town
 // (else the state's). Their sources keep their own territories (towns/slovensko.js, towns/austria.js AREAS).
 const LATE_ART = new Set(["washington", "boston", "bostonmetro", "newyork", "toronto", "sanfrancisco"]); // their states' sets come later (late.js)
@@ -501,7 +501,7 @@ export const STATE_TOWNS = {
   SK: ["bratislava", "kosice", "zilina", "bystrica", "presov", "nitra", "trnava", "trencin", "martin", "poprad", "piestany", "hlohovec", "zvolen"],
   AT: ["wien", "graz", "linz", "salzburg", "innsbruck"],
   // Boston (Bára 26. 11. 2026): the city (its acorn lamp, its surface map) before its metro (the MBTA's bus and tram,
-  // MassGIS's orthophoto, Boston's guidelines); mesta-us.json has both, in this order.
+  // MassGIS's orthophoto, Boston's guidelines); towns-us.json has both, in this order.
   US: ["washington", "newyork", "sanfrancisco", "boston", "bostonmetro"],
   CA: ["toronto"],
 };
@@ -577,29 +577,29 @@ export function setCity(id) {
 }
 setCity(globalThis.PROFILY_CITY || "praha");
 
-// The city a point lies in, by the boundaries of the cities (mesta.json, tools/build_mesta.mjs); elsewhere its
+// The city a point lies in, by the boundaries of the cities (towns.json, tools/build_towns.mjs); elsewhere its
 // state (below). Before the file has loaded (or without it) the current city.
 let bounds = null;
 export const loadBounds = (json) => { bounds = Object.entries(json).map(([id, rings]) => boxed(id, rings)); };
-// The states (staty.json, tools/build_staty.mjs): the Czech Republic (RÚIAN) and Slovakia; a point in neither is
+// The states (states.json, tools/build_states.mjs): the Czech Republic (RÚIAN) and Slovakia; a point in neither is
 // "cizina". Without the file (or before it has loaded) a point outside the cities is "cesko", as before.
 let states = null;
-// The land borders of a state of COAST whose neighbours are abroad (staty.json land_<id>: lines, not rings; Bára
+// The land borders of a state of COAST whose neighbours are abroad (states.json land_<id>: lines, not rings; Bára
 // 24. 11. 2026): its vertices, and the lines.
 let land = {};
 const LAND = /^land_/;
-// More rings of a state over its own (staty.json "<id>+<what>": Narva and Valga by the Estonian cadastre, Helsinki and
+// More rings of a state over its own (states.json "<id>+<what>": Narva and Valga by the Estonian cadastre, Helsinki and
 // Espoo with their sea, Ydre Nordhavn; the reviews of 24. 11. 2026): an entry of their own, since the rings of one entry
 // count by parity (places.js inside), read as <id>.
 const PLUS = /\+.*$/;
 export const loadStates = (json) => { land = {}; states = []; addStates(json); };
-// (staty-america.json joins it: late.js.)
+// (states-america.json joins it: late.js.)
 export const addStates = (json) => {
   const entries = Object.entries(json);
   Object.assign(land, Object.fromEntries(entries.filter(([id]) => LAND.test(id)).map(([id, lines]) => [id.slice(5), { lines, at: new Set(lines.flat().map((p) => p.join())) }])));
   states = [...(states || []), ...entries.filter(([id]) => !LAND.test(id)).map(([id, rings]) => ({ ...boxed(id, rings), id: id.replace(PLUS, "") }))];
 };
-// The cities of the other states (mesta-sk.json, mesta-at.json, mesta-us.json; STATE_TOWNS): within their state, else its rest.
+// The cities of the other states (towns-sk.json, towns-at.json, towns-us.json; STATE_TOWNS): within their state, else its rest.
 let towns = [];
 export const loadTowns = (json) => { loadSkTowns(json); towns = [...towns.filter((b) => !(b.id in (json || {}))), ...Object.entries(json || {}).filter(([id]) => CITIES[id]).map(([id, rings]) => boxed(id, rings))]; };
 // The state entry of a point: the first ring it lies in; on a coast (GISCO's 1 : 1 M ring cuts off quays and ports: the
@@ -637,7 +637,7 @@ function stateEntry(lat, lon) {
   }
   return best || americanCoast(lat, lon, dist);
 }
-// The coasts of the USA and Canada, whose messages' rings are drawn to a kilometre or three (staty-america.json: Halifax, Juneau,
+// The coasts of the USA and Canada, whose messages' rings are drawn to a kilometre or three (states-america.json: Halifax, Juneau,
 // the Battery and the Ferry Building had no message: the review of 25. 11. 2026): the nearest ring within AMERICAN_COAST,
 // not near the line with Mexico (MEXICO: a rough one; Nuevo Laredo is no place of the USA).
 const AMERICAN_COAST = 6000, NEAR_MEXICO = 40000;
@@ -656,7 +656,7 @@ function americanCoast(lat, lon, dist) {
   }
   return best;
 }
-// Where the app makes no profile (tools/build_staty.mjs closed_*; Bára 23. 11. 2026): the message to show, or null.
+// Where the app makes no profile (tools/build_states.mjs closed_*; Bára 23. 11. 2026): the message to show, or null.
 const CLOSED = {
   closed_cy: () => t("Sever Kypru zatím nemáme: profily děláme jen na území, které spravuje Kyperská republika."),
   closed_us: () => t("V USA zatím děláme profily jen ve Washingtonu (District of Columbia), v New Yorku, v San Franciscu a v Bostonu a okolí (okresy Suffolk, Middlesex a Norfolk)."),

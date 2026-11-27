@@ -44,7 +44,7 @@ export const TOWNS = { cesko, jihlava, most, opava, pardubice, plzen, usti, ostr
   // Slovakia, Austria, Germany, Switzerland, Liechtenstein, the Netherlands, Belgium and Luxembourg: their national and towns' sources; elsewhere OSM only.
   slovensko, austria, germany, switzerland, liechtenstein: switzerland, netherlands, belgium, luxembourg, poland, france, spain, portugal, monaco, cyprus, malta, italy, estonia, slovenia, finland, denmark, lithuania, cizina };
 
-// Where a point lies (docs/architecture-countries.md): its state (ISO code), its city (mesta.json, else the rest of the
+// Where a point lies (docs/architecture-countries.md): its state (ISO code), its city (towns.json, else the rest of the
 // state), its illustrations (city.js art: its own set or its state's), and the
 // sources with a territory of their own that have it (each module's AREAS).
 // The other cities of a state take their state's sources (Bratislava, Vienna…: towns/slovensko.js, towns/austria.js).

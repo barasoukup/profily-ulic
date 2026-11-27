@@ -54,13 +54,13 @@ je oddělený od státu; klíčem překladu je česká věta a test `tests/i18n.
 Bára 16. 11. 2026: struktura má být jednotná, státy a města všude. Bratislava, Košice, Vídeň, Graz jsou města
 jako Brno. Fablova námitka se týkala zdrojů, ne měst: pokrytí zdroje nemá vždy tvar města (čáry Nitry a Zvolena
 jen na kusu města, pasport Dúbravky jen v městské části, sítě Košic, značky Salzburgu, české pasporty
-v `pasporty.json`). Proto tři vrstvy:
+v `passports.json`). Proto tři vrstvy:
 
 ```
 místo řezu (lat, lon)
   └─ placeAt(lat, lon) → { country: "SK", city: "bratislava", sources: ["bratislava-pasport", "dubravka", …] }
-       1. stát podle polygonu (staty.json)          ← vždy první: box Bratislavy zasahuje do AT a HU
-       2. město podle hranice obce: CZ RÚIAN (mesta.json jako dnes), SK ZBGIS, AT hranice obcí Statistik Austria;
+       1. stát podle polygonu (states.json)          ← vždy první: box Bratislavy zasahuje do AT a HU
+       2. město podle hranice obce: CZ RÚIAN (towns.json jako dnes), SK ZBGIS, AT hranice obcí Statistik Austria;
           jinde „zbytek státu“ (cesko, slovensko, austria, cizina)
        3. zdroje města nebo státu, které mají data v místě řezu: výchozí území zdroje = hranice jeho města,
           vlastní hranice jen kde je jiná (kus města, městská část)
@@ -69,7 +69,7 @@ místo řezu (lat, lon)
 - **Město** (obec s hranicí): jméno, centrum (vzhled domů), vlastní ilustrace nad sadou státu (vozidla, mobiliář), seznam zdrojů. Patří do státu, z něj dědí
   všechno, co nemá vlastní (texty, ortofoto, značky, normy).
 - **Zdroj**: modul s dotazy, územím, kreditem (klíč) a vypínačem (`?pasport=0`…). Dnešní `SK_ART_BOX`,
-  `AT_ART_BOX`, `inWien`, `townAt`, `EDGE_SOURCES`, `site.js NETS`, `pasporty.json` se převedou na města a zdroje.
+  `AT_ART_BOX`, `inWien`, `townAt`, `EDGE_SOURCES`, `site.js NETS`, `passports.json` se převedou na města a zdroje.
 - **Texty**: město zdědí sadu textů svého státu a doplní jen své jméno (v pádech, kde ho věta potřebuje) a vlastní
   zdroje; žádné úplné sady pro každé město ve čtyřech jazycích.
 - **Log**: u řezu v Bratislavě bude `city: "bratislava"` místo `slovensko` a přibude `country`. Je to změna
@@ -160,7 +160,7 @@ Líně už dnes (a dál) jen zdroje měst a hledání.
 1. **Levné a nezávislé:** `city.id === "praha"` / `"brno"` → vlastnosti města (`fix.roadOnPath`, `slowServer`,
    `builtAge`, vrstva v `maplayers`); smazat nepoužívaný `storeSuffix`.
 2. **Kredit u zdroje** a `validate.js` podle seznamu zdrojů a států: `cleanSources` propustí klíče všech zdrojů
-   (dnes zahazuje `skTown`, `atTown`, `zbgis`, `skEdges`, `sk`, `at`), `cleanCut` bere meze ze `staty.json`
+   (dnes zahazuje `skTown`, `atTown`, `zbgis`, `skEdges`, `sk`, `at`), `cleanCut` bere meze ze `states.json`
    / `bounds` států (dnes jen 48–52° s. š., 12–19° v. d.). Obě chyby jsou živé, viz níže.
 3. **`countries/CZ.js`, `SK.js`, `AT.js`, `default.js`** (až po sloučení `austria` a `jihlava-pasport`). Kontrola:
    mimo `countries/` žádné `country === `, `["SK","AT"].includes`, `city.country || "CZ"`,
@@ -208,4 +208,4 @@ Kroky 0–6 commitnuté po jednom, 4b (Bára 16. 11. 2026) po nich. Odchylky od 
 - „Cizina“ má vlastní prázdné zdroje (`towns/cizina.js`), proto mohly z `towns/slovensko.js` zmizet podmínky na id města.
 - Vzhledy domů: stát má `houseLook` (Rakousko bez paneláku); seznam vzhledů, které stát smí nabízet v Návrhu (`looks`),
   zatím ne: dnes se nabízí všude stejný katalog a jeho omezení by bylo změnou chování.
-- `site.js NETS` a `pasporty.json` mají území už dnes (box, hranice), do `placeAt` zatím nevstupují.
+- `site.js NETS` a `passports.json` mají území už dnes (box, hranice), do `placeAt` zatím nevstupují.

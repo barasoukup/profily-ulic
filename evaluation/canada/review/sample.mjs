@@ -9,7 +9,7 @@ import { localFrame, nearestStreet, placeCut as place, snapToWay } from "../../.
 import { inside } from "../../../app/public/places.js";
 import { isTrack } from "../../../app/public/towns/planimetrics.js";
 const read = async (f) => JSON.parse(await fs.readFile(new URL(f, import.meta.url), "utf8")).valueOf();
-const P = "../../../app/public/", far = await read(`${P}staty-america.json`), DC = (await read(`${P}mesta-us.json`)).washington, TO = (await read(`${P}mesta-ca.json`)).toronto;
+const P = "../../../app/public/", far = await read(`${P}states-america.json`), DC = (await read(`${P}towns-us.json`)).washington, TO = (await read(`${P}towns-ca.json`)).toronto;
 const AREA = { dc: [DC], toronto: [TO], usout: [far.usa, DC], caout: [far.canada, TO] };
 const within = (k, lon, lat) => inside(AREA[k][0], lon, lat) && !(AREA[k][1] && inside(AREA[k][1], lon, lat));
 const list = (x) => (Array.isArray(x) ? x : x.rows || []);

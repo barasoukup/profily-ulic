@@ -341,7 +341,7 @@ Co rozhodne Bára, je označeno **(Bára)**.
 - ~~Ortofoto `askImage`: XML výjimka WMS jako výpadek, regex pustil `image/svg+xml`, 30 opakování po 429 naráz, nezahozené tělo~~
   (26. 11. 2026).
 - ~~`osmpack.js PackSet`: index znovu i po timeoutu, a pro každý selhaný balík zvlášť~~ (26. 11. 2026: jen po 404, nejvýš jednou za řez).
-- ~~Texty: Krakov v patičce bez „jen s ?krakow=1“; Chotěboř v PASPORTY-AB.md a `pasporty.js`; Kuřim jako „pasport komunikací“;
+- ~~Texty: Krakov v patičce bez „jen s ?krakow=1“; Chotěboř v PASPORTY-AB.md a `passports.js`; Kuřim jako „pasport komunikací“;
   New York „(NYC Open Data)“, ač se čte z NYCmaps~~ (26. 11. 2026).
 - ~~San Francisco: varování chodníku pod 10 ft i v uličkách; citace „SFMTA, Sidewalk Widths 2014“~~ (26. 11. 2026: ulička
   6 ft, jiná obslužná bez varování, citace Better Streets Plan v datech studie AECOM). Zbývá: průmyslové ulice (8 ft) aplikace

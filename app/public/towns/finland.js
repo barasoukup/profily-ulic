@@ -1,4 +1,4 @@
-// Finland (Bára 23. 11. 2026): the state of a cut inside staty.json's "finland" (with Åland). There is no national
+// Finland (Bára 23. 11. 2026): the state of a cut inside states.json's "finland" (with Åland). There is no national
 // orthophoto without a key (evaluation/finland/ZDROJE.md 1): the profile is the estimate from OSM, with the town's own
 // orthophoto in Helsinki, Espoo and Turku (lanes-ortho.js "fi"). Its own sources:
 // - Helsinki's register of public areas YLRE (Yleisten alueiden rekisteri, kartta.hel.fi WFS, CORS *, CC BY 4.0 on HRI

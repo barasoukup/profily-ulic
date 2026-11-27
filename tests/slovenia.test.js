@@ -6,8 +6,8 @@ import fs from "node:fs";
 
 test("Slovinsko: stát řezu a sousedé u hranice", async () => {
   const C = await import("../app/public/city.js");
-  C.loadBounds(JSON.parse(fs.readFileSync(new URL("../app/public/mesta.json", import.meta.url), "utf8")));
-  C.loadStates(JSON.parse(fs.readFileSync(new URL("../app/public/staty.json", import.meta.url), "utf8")));
+  C.loadBounds(JSON.parse(fs.readFileSync(new URL("../app/public/towns.json", import.meta.url), "utf8")));
+  C.loadStates(JSON.parse(fs.readFileSync(new URL("../app/public/states.json", import.meta.url), "utf8")));
   // Ljubljana, Maribor, Koper, Nova Gorica, Šentilj, Obrežje, Piran
   for (const [lat, lon] of [[46.0514, 14.5058], [46.558, 15.646], [45.548, 13.73], [45.956, 13.648], [46.681, 15.65], [45.849, 15.682], [45.528, 13.568]]) assert.equal(C.cityAt(lat, lon), "slovenia", `${lat},${lon}`);
   // Gorizia, Trieste, Spielfeld, Bregana, Zagreb, Umag

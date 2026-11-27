@@ -13,7 +13,7 @@ const { placeCut } = await import("../../../usa-dc/lib.mjs");
 const COUNT = Number(process.argv[2] || 40);
 const read = async (f) => JSON.parse(await fs.readFile(new URL(f, import.meta.url), "utf8"));
 const OLD = [...await read("../fresh.json"), ...await read("../fixes/sample.json"), ...await read("../curb/fresh.json").catch(() => [])];
-const SF = (await read("../../../../app/public/mesta-us.json")).sanfrancisco;
+const SF = (await read("../../../../app/public/towns-us.json")).sanfrancisco;
 const KIND = { trunk: "arterial", primary: "arterial", secondary: "arterial", tertiary: "collector", residential: "local", unclassified: "local", living_street: "local" };
 let seed = 20261127;
 const rnd = () => ((seed = (seed * 1664525 + 1013904223) >>> 0) / 2 ** 32);

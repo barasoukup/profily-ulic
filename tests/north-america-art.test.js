@@ -9,7 +9,7 @@ const read = (f) => JSON.parse(fs.readFileSync(new URL(`../app/public/${f}`, imp
 test("USA kreslí severoamerický mobiliář, Washington svůj označník, společnou lampu a do 5 m svůj glóbus", async () => {
   const C = await import("../app/public/city.js");
   const P = await import("../app/public/profile.js");
-  C.loadBounds(read("mesta.json")); C.loadStates(({ ...read("staty.json"), ...read("staty-america.json") })); C.loadTowns(read("mesta-us.json"));
+  C.loadBounds(read("towns.json")); C.loadStates(({ ...read("states.json"), ...read("states-america.json") })); C.loadTowns(read("towns-us.json"));
   // The White House is Washington; Silver Spring and Arlington are the closed USA since 26. 11. 2026 (the District only).
   assert.equal(C.cityAt(38.8977, -77.0365), "washington");
   for (const [lat, lon] of [[38.9907, -77.0261], [38.8816, -77.091]]) assert.equal(C.cityAt(lat, lon), "cizina");

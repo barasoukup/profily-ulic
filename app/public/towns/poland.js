@@ -1,4 +1,4 @@
-// Poland (Bára 21. 11. 2026): the state of a cut inside staty.json's "poland". The national BDOT10k and the counties'
+// Poland (Bára 21. 11. 2026): the state of a cut inside states.json's "poland". The national BDOT10k and the counties'
 // base maps are not served openly with CORS (evaluation/poland/ZDROJE.md): the profile is the estimate from OSM and
 // GUGiK's orthophoto (lanes-ortho.js "pl"), except where a city publishes its surfaces:
 // - Kraków: the city's base map MJO (msip.um.krakow.pl, ArcGIS, CORS for the origin asking): roadways (Jezdnia),

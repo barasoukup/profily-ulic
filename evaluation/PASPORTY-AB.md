@@ -1,9 +1,9 @@
 # A/B pasportů měst (připraveno 15. 11. 2026, spustit po odstávce DMVS)
 
-Zdroje našlo vlákno „Slovensko“ (13.–15. 11. 2026). Od 16. 11. 2026 jsou v aplikaci (`app/public/towns/pasporty.js`,
+Zdroje našlo vlákno „Slovensko“ (13.–15. 11. 2026). Od 16. 11. 2026 jsou v aplikaci (`app/public/towns/passports.js`,
 Bára: do konce odstávky je to lepší než odhad), test je dodatečný: „city“ je aplikace s pasportem města (jinde
 technická mapa ČÚZK, jako moduly Karviné a Třebíče), varianta `variants/bez-pasportu-mest.mjs` aplikace bez něj
-(jen technická mapa ČÚZK, RÚIAN, OSM). Kde pasport nevyhraje, z `pasporty.js` vyřadit. Technická mapa ČÚZK (IS DMVS i DTM krajů) má od 12. do 18. 11. 2026
+(jen technická mapa ČÚZK, RÚIAN, OSM). Kde pasport nevyhraje, z `passports.js` vyřadit. Technická mapa ČÚZK (IS DMVS i DTM krajů) má od 12. do 18. 11. 2026
 odstávku kvůli přechodu na JVF DTM 1.5.0.2, plný provoz má být 19. 11. Bez ní by „city“ byl jen odhad z OSM.
 
 | Město | Zdroj | Vzorek |
@@ -60,8 +60,8 @@ ve frontě `polite.mjs` (16 GetFeatureInfo DMVS na řez), a řez se pak lišil p
 | roudnice | 54 | 11 | 9 | 0 | 2 | 0 | vyřadit |
 
 V aplikaci zůstávají Rožnov, Šlapanice a Kuřim (Chotěboř vyhrála, ale Bára ji 26. 11. 2026 vyřadila: vrstva leží na soukromém
-účtu organizace „ArcGIS Demo portál“, ne města, `evaluation/licence/ZPRAVA.md`). Vyřazené jsou z `towns/pasporty.js` i z `pasporty.json`, jejich
-servery z CSP (`gis.chomutov.cz`, `gis.sumperk.cz`, `services1.arcgis.com`). Jména zůstala v `pasporty-names.js`, aby
+účtu organizace „ArcGIS Demo portál“, ne města, `evaluation/licence/ZPRAVA.md`). Vyřazené jsou z `towns/passports.js` i z `passports.json`, jejich
+servery z CSP (`gis.chomutov.cz`, `gis.sumperk.cz`, `services1.arcgis.com`). Jména zůstala v `passport-names.js`, aby
 uložený nebo exportovaný řez s jejich pasportem neztratil kredit.
 
 Co se ukázalo:

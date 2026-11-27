@@ -1,5 +1,5 @@
 // Italy (IT; Bára 23. 11. 2026): what differs from the Czech rules of countries/default.js. Only where an orthophoto has
-// an open licence (staty.json "italy"). Its sources are towns/italy.js (Bologna's road areas and buildings), the open
+// an open licence (states.json "italy"). Its sources are towns/italy.js (Bologna's road areas and buildings), the open
 // orthophotos lanes-ortho.js "it". Sources, norms and signs: evaluation/italy/ (ZDROJE.md, NORMY.md).
 import { t } from "../i18n.js";
 import { GROUP } from "../norms.js";

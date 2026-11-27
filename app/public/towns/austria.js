@@ -1,4 +1,4 @@
-// Austria (Bára 16. 11. 2026): the state of a cut inside staty.json's Austria. As in Slovakia, no Czech technical map,
+// Austria (Bára 16. 11. 2026): the state of a cut inside states.json's Austria. As in Slovakia, no Czech technical map,
 // RÚIAN or ČÚZK orthophoto is asked: the profile is the estimate from OSM and basemap.at's orthophoto (app.js,
 // ortho-osm.js, lanes-ortho.js "at"), the houses are OSM's. Cities' own data come with their A/B tests
 // (evaluation/austria/).

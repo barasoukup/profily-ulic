@@ -93,7 +93,7 @@ bruke Norge i Bilder“, neověřeno u Kartverketu). Pro nás to neplatí.
 
 **Hranice GISCO** (`CNTR_RG_01M_2024_4326.geojson`, ověřeno, CORS `*`): `NO` 4 199 polygonů, 51 687 vrcholů, 4,51–31,16° v. d.,
 57,96–71,18° s. š. (pevnina s ostrovy, **bez Svalbardu**); Svalbard a Jan Mayen jsou zvlášť jako `SJ` (176 polygonů).
-`tools/build_staty.mjs` Norsko zatím nemá.
+`tools/build_states.mjs` Norsko zatím nemá.
 
 ## 6. Zvláštnosti
 

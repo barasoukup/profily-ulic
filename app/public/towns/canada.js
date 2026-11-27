@@ -1,5 +1,5 @@
-// Canada (Bára 25. 11. 2026): the state of a cut inside staty.json's "canada", Toronto and the municipalities around it. Outside
-// the City of Toronto the estimate from OSM (and nothing else). In Toronto (its boundary, mesta-ca.json, and 30 m beyond it
+// Canada (Bára 25. 11. 2026): the state of a cut inside states.json's "canada", Toronto and the municipalities around it. Outside
+// the City of Toronto the estimate from OSM (and nothing else). In Toronto (its boundary, towns-ca.json, and 30 m beyond it
 // for the streets along the line, Steeles Avenue: AREAS.toronto):
 // - the city's topographic mapping (gis.toronto.ca cot_geospatial3/MapServer: 3 edge of road, 6 sidewalks, 13 parking lots,
 //   2 building outlines, polygons read from aerial photos; CORS for the origin asking; Open Government Licence – Toronto) as

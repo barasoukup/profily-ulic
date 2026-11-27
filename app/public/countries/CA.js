@@ -1,5 +1,5 @@
 // Canada (CA; Bára 25. 11. 2026): what differs from the Czech rules of countries/default.js. Only Toronto and the
-// municipalities around it are covered (staty.json "canada"; the rest of Canada is closed_ca); its sources are towns/canada.js
+// municipalities around it are covered (states.json "canada"; the rest of Canada is closed_ca); its sources are towns/canada.js
 // (the City of Toronto's topographic mapping as the surface map), the orthophoto Toronto's current year (lanes-ortho.js
 // "ca", only over the city). Sources and norms: evaluation/canada/ (NORMY.md).
 import { t } from "../i18n.js";
@@ -42,7 +42,7 @@ const toronto = { ...northAmericaFurniture, ...NORTH_AMERICA_VEHICLES.toronto, .
 export default {
   ...base,
   code: "CA",
-  // Toronto and its surroundings (staty.json "canada", the OSM pack ca_on_toronto).
+  // Toronto and its surroundings (states.json "canada", the OSM pack ca_on_toronto).
   bounds: LATE_BOUNDS.CA,
   // No width that must stay free beside a parked car was found (Ontario's Highway Traffic Act s. 170 and Toronto's Municipal
   // Code ch. 950 name none; NORMY.md), so the app's usual 3 m a direction and not their law.

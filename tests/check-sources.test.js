@@ -22,8 +22,8 @@ test("kontrola zdrojů: každá mapa povrchů má bod, plochy se žádají jen t
 });
 
 test("kontrola zdrojů: bod mapy leží v jejím modulu", () => {
-  C.loadBounds(read("mesta.json")); C.loadStates(read("staty.json")); C.loadSkTowns(read("mesta-sk.json"));
-  C.loadTowns(read("mesta-sk.json")); C.loadTowns(read("mesta-at.json"));
+  C.loadBounds(read("towns.json")); C.loadStates(read("states.json")); C.loadSkTowns(read("towns-sk.json"));
+  C.loadTowns(read("towns-sk.json")); C.loadTowns(read("towns-at.json"));
   for (const p of PLAN.filter((x) => x.key)) {
     assert.equal(TOWNS[C.cityAt(...p.at)], TOWNS[p.id], p.key);
     const b = TOWNS[p.id].AREAS?.[p.key]?.box;

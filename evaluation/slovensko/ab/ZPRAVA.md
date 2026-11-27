@@ -290,8 +290,8 @@ Neopraveno, na rozhodnutí nebo na později:
 - **Licence služeb slovenských měst:** Bára 16. 11. rozhodla, že se citují jako MTVU v Praze.
 - **Boxy místo hranic měst:**
   - Bratislava se ptá i v okolních obcích;
-  - lepší by byly hranice obcí ze ZBGIS v `mesta.json`.
-- **`staty.json` zjednodušený na asi 30 m:** ulice v pásu u hranice můžou spadnout do „cizina“. Lepší by bylo
+  - lepší by byly hranice obcí ze ZBGIS v `towns.json`.
+- **`states.json` zjednodušený na asi 30 m:** ulice v pásu u hranice můžou spadnout do „cizina“. Lepší by bylo
   vyrobit ho s menším posunem.
 - **Hledání (`search-sk.js`):** u adresy se stahují všechny stejnojmenné ulice v SR. Lepší by byl filtr podle obce.
 - **Úřední názvy slovenských značek:** chce to tabulku podle vyhl. 30/2020 Z. z.

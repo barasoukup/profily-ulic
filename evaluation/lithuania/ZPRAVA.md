@@ -3,9 +3,9 @@
 Bára 24. 11. 2026: mapy povrchů jsou lepší než ortofota, vzít nejslibnější a jít. Podklady `ZDROJE.md`, `NORMY.md`.
 
 ## Zapojené
-- **Stát** `lithuania` (LT): `app/public/countries/LT.js`, `towns/lithuania.js`, hranice GISCO v `staty.json`
-  (`tools/build_staty.mjs`, za polskou PRG), pobřeží 400 m jen u moře (`city.js` COAST; od 24. 11. ne podél hranic na souši,
-  `staty.json` `land_lithuania`), OSM balík `lt` (`tools/countries.mjs`, jen R2;
+- **Stát** `lithuania` (LT): `app/public/countries/LT.js`, `towns/lithuania.js`, hranice GISCO v `states.json`
+  (`tools/build_states.mjs`, za polskou PRG), pobřeží 400 m jen u moře (`city.js` COAST; od 24. 11. ne podél hranic na souši,
+  `states.json` `land_lithuania`), OSM balík `lt` (`tools/countries.mjs`, jen R2;
   lokálně výřez Vilniusu, Kaunasu, Klaipėdy, Šiauliů, Panevėžysu a Alytusu, 10 MB).
 - **Bez ortofota:** NŽT jen k prohlížení na geoportálu (nepoužito; úřadům jsme nepsaly). `laneOrtho: "none"`, mimo
   Vilnius „jen odhad z OSM“.

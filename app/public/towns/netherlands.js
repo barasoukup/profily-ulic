@@ -1,4 +1,4 @@
-// The Netherlands (Bára 20. 11. 2026): the state of a cut inside staty.json's "netherlands". As in Switzerland, no
+// The Netherlands (Bára 20. 11. 2026): the state of a cut inside states.json's "netherlands". As in Switzerland, no
 // Czech technical map, RÚIAN or ČÚZK orthophoto is asked: the profile is the estimate from OSM and PDOK's orthophoto
 // (app.js, ortho-osm.js, lanes-ortho.js "nl"), unless the national large-scale topography has the street.
 // - BGT (Basisregistratie Grootschalige Topografie, PDOK OGC API Features, CORS *, CC0 1.0): every municipality's,

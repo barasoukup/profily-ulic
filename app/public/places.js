@@ -1,5 +1,5 @@
 // Which area a point lies in: rings of boundaries ([[lon, lat], …] per ring) with their boxes, and the Slovak towns'
-// boundaries (tools/build_towns_sk.mjs, mesta-sk.json). No import of city.js (the states' modules use it, city.js
+// boundaries (tools/build_towns_sk.mjs, towns-sk.json). No import of city.js (the states' modules use it, city.js
 // imports them).
 export const inside = (rings, x, y) => {
   let c = false;
@@ -18,15 +18,15 @@ export const within = (list, lat, lon) => list.find((b) => lon >= b.box[0] && lo
 // box then).
 let skTowns = null;
 export const loadSkTowns = (json) => { skTowns = { ...skTowns, ...Object.fromEntries(Object.entries(json || {}).map(([id, rings]) => [id, boxed(id, rings)])) }; };
-// (The cities of the other states join them: city.js loadTowns, mesta-at.json, mesta-us.json.)
+// (The cities of the other states join them: city.js loadTowns, towns-at.json, towns-us.json.)
 export const inSkTown = (id, lon, lat) => {
   const b = skTowns?.[id];
   if (!b) return undefined;
   return lon >= b.box[0] && lon <= b.box[2] && lat >= b.box[1] && lat <= b.box[3] && inside(b.rings, lon, lat);
 };
 
-// The territory of a source, a set of illustrations or a city that is not one of mesta.json (docs/architecture-countries.md,
-// step 4): a box [lon0, lat0, lon1, lat1] and, where mesta-sk.json or mesta-us.json has the town's boundary, the town (the box cut to it;
+// The territory of a source, a set of illustrations or a city that is not one of towns.json (docs/architecture-countries.md,
+// step 4): a box [lon0, lat0, lon1, lat1] and, where towns-sk.json or towns-us.json has the town's boundary, the town (the box cut to it;
 // without the file the box alone).
 // near: metres beyond the town's boundary that still count (a street along the boundary: Washington's Southern Avenue).
 export const inArea = (area, lon, lat) => lon >= area.box[0] && lon <= area.box[2] && lat >= area.box[1] && lat <= area.box[3]

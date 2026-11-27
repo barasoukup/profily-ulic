@@ -1,4 +1,4 @@
-// Switzerland and Liechtenstein (Bára 17. 11. 2026): the states of a cut inside staty.json's "switzerland" and
+// Switzerland and Liechtenstein (Bára 17. 11. 2026): the states of a cut inside states.json's "switzerland" and
 // "liechtenstein". As in Austria and Germany, no Czech technical map, RÚIAN or ČÚZK orthophoto is asked: the profile is
 // the estimate from OSM and swisstopo's SWISSIMAGE (app.js, ortho-osm.js, lanes-ortho.js "ch"), unless the official
 // cadastral survey has the street.

@@ -1,5 +1,5 @@
-// San Francisco (Bára 26. 11. 2026): the City and County of San Francisco in the state "usa" (staty-america.json, the metro
-// table of tools/build_staty.mjs), the city by its boundary (mesta-us.json "sanfrancisco") and 30 m beyond it. The city has
+// San Francisco (Bára 26. 11. 2026): the City and County of San Francisco in the state "usa" (states-america.json, the metro
+// table of tools/build_states.mjs), the city by its boundary (towns-us.json "sanfrancisco") and 30 m beyond it. The city has
 // no planimetric polygons of its roadways that a browser can read (the basemap of services.sfgov.org does not answer from
 // outside), so the surface map is put together from three open layers along the cut (towns/planimetrics.js, d.runs):
 // - the right of way (DataSF "Right of Way Polygons", h8n7-e4ns, 2014; SODA with CORS; PDDL): the street between the

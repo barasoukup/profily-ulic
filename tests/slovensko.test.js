@@ -17,7 +17,7 @@ test("pasporty měst: Bratislava, Žilina, Banská Bystrica, Košice, Zvolen jen
 });
 
 test("čáry map měst podle místa a hranic měst (mimo hranici Nitry nic)", () => {
-  C.loadSkTowns(JSON.parse(read("mesta-sk.json")));
+  C.loadSkTowns(JSON.parse(read("towns-sk.json")));
   assert.equal(SK.edgeSourceAt(18.084, 48.309)?.id, "nitra");
   assert.equal(SK.edgeSourceAt(17.832, 48.594)?.id, "piestany");
   assert.equal(SK.edgeSourceAt(18.17, 48.36), null, "v boxu Nitry, ale za její hranicí");

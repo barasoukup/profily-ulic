@@ -22,7 +22,7 @@ Větev `slovensko-rezy`, vyzkoušeno na localhostu (`?osm=balik`, dlaždice OSM 
 
 | | dřív | teď |
 |---|---|---|
-| Stát řezu | mimo města vždy „cesko“ | `staty.json` (Česko z RÚIAN, Slovensko ze ZBGIS, asi 30 m, 236 kB, gzip asi 65 kB): `cesko`, `slovensko`, `cizina` |
+| Stát řezu | mimo města vždy „cesko“ | `states.json` (Česko z RÚIAN, Slovensko ze ZBGIS, asi 30 m, 236 kB, gzip asi 65 kB): `cesko`, `slovensko`, `cizina` |
 | Dotazy při kliknutí na Slovensku | DMVS ČÚZK (bez CORS, „neodpovídá“), RÚIAN, ortofoto ČÚZK (prázdné) | jen dlaždice OSM, ortofoto ZBGIS (4–12 dlaždic, cache na den), 2× identify budovy ZBGIS |
 | Hláška | „Technická mapa ČÚZK teď neodpovídá, profil je jen odhad z OSM“ (červeně) | „Mimo Česko technickou mapu nemáme, profil je jen odhad.“ + věta o ortofotu, u názvu „· mimo Česko, jen odhad z OSM“ |
 | Záznam řezů | `city: "cesko"` | `city: "slovensko"` / `"cizina"` |

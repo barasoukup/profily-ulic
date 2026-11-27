@@ -11,10 +11,10 @@ const OUT = process.argv[2], WANT = Number(process.argv[3] || 40);
 globalThis.document ??= { createElementNS: () => ({}) };
 const C = await imp("city.js"), D = await imp("derive.js"), P = await imp("profile.js"), US = await imp("towns/canada.js");
 await imp("america.js");
-C.loadTowns(JSON.parse(fs.readFileSync(path.join(PUB, "mesta-ca.json"))));
+C.loadTowns(JSON.parse(fs.readFileSync(path.join(PUB, "towns-ca.json"))));
 C.setCity("toronto");
 const { decodeTile, mergePieces } = await imp("osmtile.js"), { inside } = await imp("places.js");
-const T = JSON.parse(fs.readFileSync(path.join(PUB, "mesta-ca.json"))).toronto, TILES = path.join(HERE, "data/osm-tiles");
+const T = JSON.parse(fs.readFileSync(path.join(PUB, "towns-ca.json"))).toronto, TILES = path.join(HERE, "data/osm-tiles");
 const all = mergePieces(fs.readdirSync(TILES).filter((f) => /^-?\d+_-?\d+\.json$/.test(f)).sort().map((f) => decodeTile(fs.readFileSync(path.join(TILES, f), "utf8"))));
 const ROAD = /^(primary|secondary|tertiary|residential|unclassified|living_street)$/;
 const data = { ways: all.filter((w) => w.type === "way" && ROAD.test(w.tags?.highway) && inside(T, w.geometry[0].lon, w.geometry[0].lat)).sort((a, b) => a.id - b.id).map((w) => ({ name: w.tags.name || "", g: w.geometry.map((p) => [p.lon, p.lat]) })),

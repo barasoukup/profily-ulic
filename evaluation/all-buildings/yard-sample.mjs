@@ -14,7 +14,7 @@ globalThis.document = { createElementNS: (_, n) => new N(n) };
 const ser = (n) => n.name + JSON.stringify(n.attrs).replace(/(cut|pc|lamp)\d+/g, "$1") + n.text + n.children.map(ser).join("");
 const { Pack } = await imp("osmpack.js"), D = await imp("derive.js"), P = await imp("profile.js"), C = await imp("city.js"), S = await imp("sources.js"), O = await imp("ortho-osm.js");
 const read = (f) => JSON.parse(fs.readFileSync(path.join(PUB, f)));
-C.loadBounds(read("mesta.json")); C.loadStates(read("staty.json")); C.loadSkTowns?.(read("mesta-sk.json")); C.loadTowns?.(read("mesta-at.json"));
+C.loadBounds(read("towns.json")); C.loadStates(read("states.json")); C.loadSkTowns?.(read("towns-sk.json")); C.loadTowns?.(read("towns-at.json"));
 const src = fs.readFileSync(path.join(HERE, "../universal/sample.mjs"), "utf8");
 const TOWNS = new Function(`return ${src.slice(src.indexOf("{", src.indexOf("export const TOWNS")), src.indexOf("\n};") + 2)}`)();
 // The towns of the app (Prague, Brno) whose register is not the state's are left out.

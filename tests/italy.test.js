@@ -6,8 +6,8 @@ import fs from "node:fs";
 
 test("Itálie: jen oblasti s ortofotem s otevřenou licencí, jinde (i Vatikán a San Marino) bez profilu", async () => {
   const C = await import("../app/public/city.js");
-  C.loadBounds(JSON.parse(fs.readFileSync(new URL("../app/public/mesta.json", import.meta.url), "utf8")));
-  C.loadStates(JSON.parse(fs.readFileSync(new URL("../app/public/staty.json", import.meta.url), "utf8")));
+  C.loadBounds(JSON.parse(fs.readFileSync(new URL("../app/public/towns.json", import.meta.url), "utf8")));
+  C.loadStates(JSON.parse(fs.readFileSync(new URL("../app/public/states.json", import.meta.url), "utf8")));
   // Lombardy by its DBT (Milan, Campione d'Italia inside Switzerland).
   for (const [lat, lon] of [[44.4949, 11.3426], [44.6471, 10.9252], [45.0703, 7.6869], [46.4983, 11.3548], [46.6713, 11.159], [45.4642, 9.19], [45.6950, 9.67], [45.9690, 8.9710]]) assert.equal(C.cityAt(lat, lon), "italy", `${lat},${lon}`);
   // Rome, Genoa (Liguria), Novara (Piedmont by the Ticino), Verona (Veneto), Bari, the Vatican, San Marino.
@@ -61,8 +61,8 @@ test("Itálie: ortofoto Turína a Modeny i v severních exklávách Modeny", asy
 // the Geoportale's wording.
 test("Itálie: hranice obcí ISTAT, ortofoto pokrývá celé území, kredit Turína", async () => {
   const C = await import("../app/public/city.js");
-  C.loadBounds(JSON.parse(fs.readFileSync(new URL("../app/public/mesta.json", import.meta.url), "utf8")));
-  const staty = JSON.parse(fs.readFileSync(new URL("../app/public/staty.json", import.meta.url), "utf8"));
+  C.loadBounds(JSON.parse(fs.readFileSync(new URL("../app/public/towns.json", import.meta.url), "utf8")));
+  const staty = JSON.parse(fs.readFileSync(new URL("../app/public/states.json", import.meta.url), "utf8"));
   C.loadStates(staty);
   const inside = [[45.1387, 7.66514], [45.09861, 7.7503], [45.0192, 7.59288], [44.72488, 10.89973], [44.62863, 10.99276], [44.61059, 10.82662],
     [44.5509, 11.3758], [44.4444, 11.35468], [44.49141, 11.26779], [44.73113, 10.8926], [44.74047, 10.89281]];

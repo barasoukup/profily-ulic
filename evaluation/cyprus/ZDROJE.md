@@ -111,11 +111,11 @@ Kde data o Zelené linii a základnách jsou (fakta, bez rozhodnutí):
 - Pokrytí dlaždic 2019 a vrstvy budov BU3 končí na Zelené linii (ověřeno, viz výše).
 - Vrstva „Cyprus Outline“ ve službě 2019 je celý ostrov („REPUBLIC OF CYPRUS“, 9 249 km²), ne pokrytí.
 
-`tools/build_staty.mjs` by stačilo `cyprus: () => gisco("CY")`; sever je pak „CY“ a dostane tytéž zdroje, ale
+`tools/build_states.mjs` by stačilo `cyprus: () => gisco("CY")`; sever je pak „CY“ a dostane tytéž zdroje, ale
 ortofoto DLS i budovy tam nic nevrátí (404, bílý obraz, prázdný dotaz), takže zbude odhad z OSM bez ortofota.
 
 **Jak to dopadlo (recenze 23. 11. 2026):** aplikace bere hranici republiky z OSM (`tools/cyprus-border.json`), sever
-(`staty.json` `closed_cy`) profil nedělá a hlásí to. Hranice OSM **nárazníkovou zónu OSN zčásti zahrnuje**: Pyla
+(`states.json` `closed_cy`) profil nedělá a hlásí to. Hranice OSM **nárazníkovou zónu OSN zčásti zahrnuje**: Pyla
 (35,0142, 33,6925), Mammari (35,1756, 33,2051), Deneia (35,1664, 33,1464) a letiště Nikósie (35,1528, 33,2773) jsou
 stát „cyprus“; ortofoto 2019 tam vrací 404, profil je odhad z OSM (s kyperskými normami). Vyříznout zónu by šlo z čar
 DLS Topography vrstvy 2 (sestavit polygon); zatím ne.

@@ -143,7 +143,7 @@ a univerzální měření, i18n (angličtina existuje), export.
 | jamky stromů | mezera u obruby užší než asi 1,2 m v cihlovém chodníku jako chodník se stromy, ne zeleň (ověřit na ortofotu, dataset DDOT Urban Forestry) | malé, A/B |
 | ortofoto | `lanes-ortho.js` DC 2025 (Web Mercator `export`, CORS) pro pruhy a odhad, `ortho.mjs` pro měření | asi 20 řádků |
 | hledání | US Census Geocoder (bez CORS, JSONP nebo náš Worker) nebo Photon (už je, `search-photon.js`); DC MAR 2 chce klíč | 40–80 řádků |
-| hranice | `staty.json` US (Census TIGER, public domain) a DC jako město (`mesta-us.json`) | skript jako `build_towns_at.mjs`, asi 60 řádků |
+| hranice | `states.json` US (Census TIGER, public domain) a DC jako město (`towns-us.json`) | skript jako `build_towns_at.mjs`, asi 60 řádků |
 | OSM balík | DC 7,4 MB. Metro DC (DC, Montgomery, Prince George's, Arlington, Alexandria, Fairfax) asi 5× víc, **odhad 30–50 MB** na R2. Výřez osmiem z Geofabriku `maryland` (218 MB) a `virginia` (430 MB) | řádek v `tools/countries.mjs`, job ve workflow |
 | CSP | `maps2.dcgis.dc.gov`, `imagery.dcgis.dc.gov`, geokodér; `tests/csp.test.js` | několik řádků |
 | texty | kredity „DC GIS / OCTO (CC BY 4.0)“, „DDOT“, jméno města a státu, poznámky; vše přes `t()` × 24 jazyků | asi 15 textů |

@@ -3,11 +3,11 @@
 // built once per deploy, never a request to the cities on a click: their roadways are a few polygons of the whole city
 // each, megabytes for any box). Elsewhere in the metro (Somerville, Brookline, Newton …) the estimate from the
 // orthophoto and OSM. towns/usa.js asks the map whose area holds the cut.
-// - Boston (its boundary, mesta-us.json "boston", and 30 m beyond it; AREAS.boston; Open Data Commons PDDL 1.0, City of
+// - Boston (its boundary, towns-us.json "boston", and 30 m beyond it; AREAS.boston; Open Data Commons PDDL 1.0, City of
 //   Boston): Street Edges of the City of Boston Basemap (basemap_IPS 15: RD-PAVED and RD-UNPAVED the roadway 701,
 //   RD-TRAF-ISLAND a traffic island or median 9950, RD-ALLEY an alley 1003, the runway left out), the Sidewalk Inventory
 //   (OpenData 0) 702, the buildings of the basemap (basemap_IPS 16) 601. ?boston=0 leaves it out.
-// - Cambridge (mesta-us.json "cambridge", 30 m beyond it; City of Cambridge GIS, PDDL 1.0): Roads (RD-PAVED, RD-BRIDGE,
+// - Cambridge (towns-us.json "cambridge", 30 m beyond it; City of Cambridge GIS, PDDL 1.0): Roads (RD-PAVED, RD-BRIDGE,
 //   RD-UNPAVED 701, RD-TRAF-ISLAND 9950, RD-ALLEY 1003), Sidewalks (702; TREE-WELL green 401), Driveways 1003, Parking
 //   Lots 1003 (a bay at the kerb 704), Buildings 601. ?cambridge=0 leaves it out.
 // Both maps as Toronto's: an island with no roadway on both sides is land beside the street (islandsBeside); a gap between

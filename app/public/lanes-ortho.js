@@ -62,8 +62,8 @@ export const PT_ORTHO = {
   "pt-18": ptWms("https://cartografia.dgterritorio.gov.pt/wms/ortos2018", "Ortos2018-RGB"),
   "pt-sat": ptWms("https://ortos.dgterritorio.gov.pt/wms/ortosat2023", "ortoSat2023-CorVerdadeira"),
 };
-// The mainland's box (staty.json "portugal": the mainland ring and the Berlengas): DGT has no photo on Madeira and the
-// Azores, so they are not asked there (the review of 23. 11. 2026). Melilla's box (staty.json "spain"): PNOA has a
+// The mainland's box (states.json "portugal": the mainland ring and the Berlengas): DGT has no photo on Madeira and the
+// Azores, so they are not asked there (the review of 23. 11. 2026). Melilla's box (states.json "spain"): PNOA has a
 // Pléiades Neo image © Airbus DS there under a licence not yet cleared (evaluation/spain/ZDROJE.md 1): not read there.
 export const PT_MAINLAND = [-9.6, 36.9, -6.1, 42.2];
 export const ES_NOT_PNOA = [[-2.98, 35.26, -2.92, 35.33]];
@@ -84,7 +84,7 @@ export const MT_ORTHO = (b, w, h, format = "image/jpeg") => `https://malta.cover
 // (flown in collaboration with AGEA under the monitoring plan; the province's metadata license it CC BY 4.0, Bára
 // 23. 11. 2026: use it). AGEA's own layers (the rest of Italy) are for institutional use only. All WMS in EPSG:3857 with
 // CORS. Modena's box reaches 44.75 for the town's two northern exclaves (the review of 23. 11. 2026) and 10.77 for its
-// western edge by ISTAT's border (tools/build_staty.mjs).
+// western edge by ISTAT's border (tools/build_states.mjs).
 // Turin's credit in the wording the Geoportale del Comune di Torino requires (its "Licenze d'uso", Bára 23. 11. 2026):
 // "Base cartografica realizzata da [Licenziatario], integrata con [Livelli informativi o Servizi][data] della Città di
 // Torino reperiti sul Geoportale del Comune di Torino", in Italian in every language, after "ortofoto {who}".
@@ -166,18 +166,18 @@ export const FI_ORTHO = {
 export const fiOrthoAt = (lon, lat) => Object.keys(FI_ORTHO).filter((k) => { const [x0, y0, x1, y1] = FI_ORTHO[k].box; return lon >= x0 && lon <= x1 && lat >= y0 && lat <= y1; });
 // The USA (Bára 24. 11. 2026, phase 2): DC's orthophoto of 2025 (OCTO, Ortho2025_WebMercator, a tile cache in Web Mercator
 // to level 23, 7.5 cm at level 21; flown 27. 3. 2025, 8 cm; CORS for the origin asking; CC BY 4.0 by opendata.dc.gov,
-// "Office of the Chief Technology Officer"), read through its export in Web Mercator, only inside the District (mesta-us.json) and 60 m beyond it (the cache is white
+// "Office of the Chief Technology Officer"), read through its export in Web Mercator, only inside the District (towns-us.json) and 60 m beyond it (the cache is white
 // farther out). Elsewhere in the
 // metro (Maryland, Virginia) no orthophoto yet: the estimate from OSM.
 export const DC_ORTHO = "https://maps2.dcgis.dc.gov/dcgis/rest/services/DCGIS_DATA/Ortho2025_WebMercator/MapServer";
 const agsExport = (service) => (b, w, h, format = "image/jpeg") => `${service}/export?${new URLSearchParams({ bbox: b.join(","), bboxSR: 3857, imageSR: 3857, size: `${w},${h}`, format: format === "image/png" ? "png32" : "jpg", ...(format === "image/png" && { transparent: "true" }), f: "image" })}`;
 // New York City (26. 11. 2026): the orthophoto of the State of New York of 2024 (NYS ITS Geospatial Services, the 2024 flight
 // over the five boroughs, 0.5 ft; a tile cache in Web Mercator to level 19, its export finer; CORS for the origin asking; "available
-// at no cost", no licence stated: gis.ny.gov), only inside the city (mesta-us.json) and 30 m beyond it.
+// at no cost", no licence stated: gis.ny.gov), only inside the city (towns-us.json) and 30 m beyond it.
 export const NYS_ORTHO = "https://orthos.its.ny.gov/arcgis/rest/services/wms/2024/MapServer";
 // Boston's metro (Bára 26. 11. 2026): MassGIS's spring orthophoto of 2025 (15 cm, a tile cache in Web Mercator to level
 // 23 on ArcGIS Online, read at level 20 as {z}/{y}/{x}; CORS for the origin asking; "No restrictions apply to these data …
-// Acknowledgement of MassGIS would be appreciated", the item's licence), over the metro (mesta-us.json "bostonmetro").
+// Acknowledgement of MassGIS would be appreciated", the item's licence), over the metro (towns-us.json "bostonmetro").
 export const MA_ORTHO = "https://tiles.arcgis.com/tiles/hGdibHYSPO59RG1h/arcgis/rest/services/Massachusetts_Aerial_Imagery_2025/MapServer/tile";
 export const US_ORTHO = {
   "us-dc": { box: [-77.12, 38.79, -76.909, 38.997], town: "washington", near: 60, res: 0.1, url: agsExport(DC_ORTHO), credit: "ortofoto © DC Office of the Chief Technology Officer, 2025 (CC BY 4.0)" },
@@ -186,7 +186,7 @@ export const US_ORTHO = {
 };
 // Canada (Bára 25. 11. 2026): the City of Toronto's orthophoto of the current year (cot_ortho; 2025, 8 cm, a tile cache in Web
 // Mercator to level 23; CORS for the origin asking; Open Government Licence – Toronto by the catalogue's "Web Map Services"),
-// read as DC's, only inside the city (mesta-ca.json) and 30 m beyond it. Around the city no orthophoto yet.
+// read as DC's, only inside the city (towns-ca.json) and 30 m beyond it. Around the city no orthophoto yet.
 export const CA_ORTHO = {
   "ca-tor": { box: [-79.645, 43.575, -79.11, 43.86], town: "toronto", near: 30, res: 0.1, url: agsExport("https://gis.toronto.ca/arcgis/rest/services/basemap/cot_ortho/MapServer"), credit: "ortofoto © City of Toronto, 2025 (Open Government Licence – Toronto)" },
 };

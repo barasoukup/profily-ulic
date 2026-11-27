@@ -56,8 +56,8 @@ test("Kypr: jízda vlevo, značky a normy", async () => {
 
 test("Kypr: stát podle hranic (sever bez profilu, nárazníková zóna podle hranice OSM)", async () => {
   const C = await import("../app/public/city.js");
-  C.loadBounds(JSON.parse(fs.readFileSync(new URL("../app/public/mesta.json", import.meta.url), "utf8")));
-  C.loadStates(JSON.parse(fs.readFileSync(new URL("../app/public/staty.json", import.meta.url), "utf8")));
+  C.loadBounds(JSON.parse(fs.readFileSync(new URL("../app/public/towns.json", import.meta.url), "utf8")));
+  C.loadStates(JSON.parse(fs.readFileSync(new URL("../app/public/states.json", import.meta.url), "utf8")));
   assert.equal(C.cityAt(35.17, 33.36), "cyprus"); // Nicosia, the south
   assert.equal(C.cityAt(34.68, 33.045), "cyprus"); // Limassol
   assert.equal(C.cityAt(34.585, 32.985), "cyprus"); // Akrotiri (a British base)

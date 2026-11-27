@@ -104,7 +104,7 @@ Kresby jsou zdaleka nejdražší. Proto:
 
 ## 1. Stát a jeho modul
 
-1. **Hranice:** `tools/build_staty.mjs` → `app/public/staty.json`.
+1. **Hranice:** `tools/build_states.mjs` → `app/public/states.json`.
    - Národní služba, zjednodušeno asi na 30 m. Když je vypnutá (BEV WFS), Eurostat GISCO 1 : 1 M (`CNTR_RG_01M_2024_4326`)
      s kreditem „© EuroGeographics“.
    - **Pořadí států rozhoduje:** přesné hranice (CZ, SK) první, hrubší až za nimi, aby bod u hranice dostal ten přesný.
@@ -249,7 +249,7 @@ Agent nezapisuje do repozitáře, výsledek dává do scratchpadu.
 | Značky ploch technické mapy | `lines().symbols` → druh kousku mezi čarami | — |
 | Katastr dopravních značek | `lines().atSigns` → tagy cesty (`parking:<side>:restriction`) podle strany značky, do 25 m od řezu | značky na začátku úseku (zóny, rychlosti) řez dál od nich nevidí |
 | Sítě | `site.js NETS` | hloubku nemá skoro nikdo; výšky terénu ČÚZK jen v Česku |
-| Hranice měst | `tools/build_towns_sk.mjs` → `mesta-sk.json` (okresy velkých měst, jinak obec); území zdroje `{ box, town }` přes `places.js inArea` | obdélníky braly sousední obce (Šamorín jako Bratislava) |
+| Hranice měst | `tools/build_towns_sk.mjs` → `towns-sk.json` (okresy velkých měst, jinak obec); území zdroje `{ box, town }` přes `places.js inArea` | obdélníky braly sousední obce (Šamorín jako Bratislava) |
 | Kredit | klíč zdroje v `state.cut.sources` (`app.js`) a řádek v `credits.js SOURCE_CREDITS` (`creditLines` i `validate.js` ho pak znají), patičky ve všech jazycích, `LICENCE-A-ZDROJE.md` | klíč, ne hotová věta (uložený soubor a změna jazyka) |
 
 Služba, která odpoví skutečnou 4xx nebo chybou ArcGIS se jménem špatného pole, se neopakuje (`gis.js err.refused`).

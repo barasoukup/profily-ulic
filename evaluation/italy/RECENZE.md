@@ -1,7 +1,7 @@
 # Nepřátelská recenze balíku Itálie (IT), 23. 11. 2026
 
 Rozsah: `countries/IT.js`, `towns/italy.js`, `signs-IT/`, `evaluation/italy/`, části `lanes-ortho.js` („it“),
-`tools/build_staty.mjs`, `staty.json`, `search-photon.js`, `credits.js`, `sources.js`, `index.html`, `tools/countries.mjs`,
+`tools/build_states.mjs`, `states.json`, `search-photon.js`, `credits.js`, `sources.js`, `index.html`, `tools/countries.mjs`,
 `logging/worker.js`, `LICENCE-A-ZDROJE.md`, `app/README.md`, `tests/italy.test.js`. Větev `estonia`, HEAD `84140de`.
 Žádný jiný soubor jsem neměnil, nic jsem necommitoval.
 
@@ -12,7 +12,7 @@ Co jsem ověřil:
   (karty katalogu Regione Emilia-Romagna). Všechny čtyři výslovně CC BY 4.0. U Bolzana viz ale nález 2.
 - Licence datových sad Bologni přes API portálu: `aree-stradali` i `c_a944ctc_edifici_pl` mají `license: CC BY 4.0`,
   vydavatel „Comune di Bologna – SIT“.
-- Polygon `italy` ve `staty.json`: 7 kruhů (Bolzano, Turín + 1 exkláva, Bologna, Modena + 2 exklávy). Řím, Milán, Bari,
+- Polygon `italy` ve `states.json`: 7 kruhů (Bolzano, Turín + 1 exkláva, Bologna, Modena + 2 exklávy). Řím, Milán, Bari,
   Vatikán ani San Marino v něm nejsou; kódy LAU `IT_001272`, `IT_037006`, `IT_036023` jsou Turín, Bologna, Modena.
 - Pokrytí: 28 snímků WMS 80 × 80 m asi 300 m uvnitř hranice Turína (9), Bologni (11) a Modeny (8): všude skutečný snímek
   (10–25 kB), žádný prázdný. CORS u všech tří serverů pro `Origin: https://streetspace.eu` funguje.
@@ -130,7 +130,7 @@ Bez nálezu:
 ## Drobné
 
 ### 10. Dvě exklávy Modeny jsou v polygonu, ale mimo obdélník ortofota
-`staty.json` má kruhy Modeny na 44,7286–44,7350 a 44,7372–44,7421° s. š., `IT_ORTHO["it-mo"].box` končí na 44,73
+`states.json` má kruhy Modeny na 44,7286–44,7350 a 44,7372–44,7421° s. š., `IT_ORTHO["it-mo"].box` končí na 44,73
 (`lanes-ortho.js:77`). `itOrthoAt` tam vrátí `[]`, ač WMS snímek má (ověřeno v 10,8935; 44,7395: 12 kB). Oprava: horní
 mez 44,75.
 

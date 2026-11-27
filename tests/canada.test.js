@@ -8,8 +8,8 @@ const read = (f) => JSON.parse(fs.readFileSync(new URL(`../app/public/${f}`, imp
 
 test("Kanada: Toronto a okolí, zbytek Kanady s hláškou, hranice s USA u Windsoru a Niagary", async () => {
   const C = await import("../app/public/city.js");
-  const staty = ({ ...read("staty.json"), ...read("staty-america.json") });
-  C.loadBounds(read("mesta.json")); C.loadStates(staty); C.loadTowns(read("mesta-us.json")); C.loadTowns(read("mesta-ca.json"));
+  const staty = ({ ...read("states.json"), ...read("states-america.json") });
+  C.loadBounds(read("towns.json")); C.loadStates(staty); C.loadTowns(read("towns-us.json")); C.loadTowns(read("towns-ca.json"));
   assert.ok(JSON.stringify(staty.canada).length < 10_000);
   assert.ok(JSON.stringify(staty.closed_ca).length < 150_000);
   // Downtown, the islands; Mississauga, Markham, Pickering, north of Steeles Avenue: since 26. 11. 2026 Toronto is the
@@ -68,7 +68,7 @@ test("Toronto: domy podle výšky obrysu", async () => {
 
 test("Severní Amerika se načítá, až když tam řez nebo mapa je (late.js)", async () => {
   const L = await import("../app/public/late.js");
-  const staty = read("staty.json"), far = read("staty-america.json");
+  const staty = read("states.json"), far = read("states-america.json");
   assert.deepEqual(Object.keys(far).sort(), ["canada", "closed_ca", "closed_us", "usa"]);
   assert.ok(!Object.keys(staty).some((id) => id in far));
   // Every place of America is in the box (Alaska's islands beyond 170° W aside), none of Europe's.

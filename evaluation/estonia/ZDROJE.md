@@ -135,7 +135,7 @@ odhadem kolem 45 MB.
 
 **Hranice GISCO** (**ověřeno**: `EE-region-01m-4326-2024.geojson`, 104 KB, CORS `*`): 52 polygonů, 2 527 vrcholů, obdélník
 21,77–28,21° v. d., 57,51–59,68° s. š.: pevnina (40 774 km²), Saaremaa, Hiiumaa, Muhu, Vormsi, Naissaar, Kihnu…
-i **Ruhnu** (23,21; 57,78); 25 ostrůvků pod 1 km². `tools/build_staty.mjs` už má `estonia: () => gisco("EE")`.
+i **Ruhnu** (23,21; 57,78); 25 ostrůvků pod 1 km². `tools/build_states.mjs` už má `estonia: () => gisco("EE")`.
 Rozlišení 1 : 1 M u Narvy a Peipsi stačí na „stát řezu“; ortofoto mimo hranici vrací prázdno nebo modrou.
 
 ---
@@ -179,7 +179,7 @@ Rozlišení 1 : 1 M u Narvy a Peipsi stačí na „stát řezu“; ortofoto mimo
 | Budovy (rok, podlaží, materiál) | EHR `livekluster.ehr.ee` | ověřeno, nedokumentované API | `*` | neuvedena | Nepoužívat bez souhlasu; ptát se o výpis |
 | Hledání | In-ADS `aks.geoportaal.ee/inaks/inaadress/gazetteer` | ověřeno, ulice i domy | `*` | neuvedena | **Použít** (stará adresa přesměrovává bez CORS) |
 | OSM | Geofabrik `estonia` 124,8 MB | ověřeno | - | ODbL | Jeden balík `ee` |
-| Hranice | GISCO `EE` (52 polygonů i Ruhnu) | ověřeno | `*` | © EuroGeographics | Už v `build_staty.mjs` |
+| Hranice | GISCO `EE` (52 polygonů i Ruhnu) | ověřeno | `*` | © EuroGeographics | Už v `build_states.mjs` |
 | Lotyšsko ortofoto | LĢIA open (do 2008, prázdné), LVM GEO (klíč) | ověřeno nedostupné | - | - | Zatím ne |
 | Litva ortofoto | geoportal.lt `ORT_recent` (2025) | ověřeno, 3857, asi 0,3–0,5 m | echo | jen po souhlasu NŽT | Podklad mapy po domluvě; pruhy ne |
 

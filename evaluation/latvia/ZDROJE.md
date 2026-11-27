@@ -99,7 +99,7 @@ uličního prostoru (uliční čáry `Sarkanas_linijas`), cyklotrasy a zóny ryc
 - **Geofabrik** (**ověřeno** 23. 11. 2026, HEAD): `europe/latvia/latvia-latest.osm.pbf` → `latvia-261122.osm.pbf`,
   **141 853 252 B = 141,9 MB**, bez podoblastí. **Dělit pod 512 MB netřeba**, jeden balík `lv` (po zabalení odhadem
   kolem 50 MB, odhad podle Estonska 125 MB → 45 MB).
-- Hranice: GISCO `CNTR_RG_01M_2024_4326` (stejně jako ostatní státy v `tools/build_staty.mjs`); soubor GISCO odpovídá s
+- Hranice: GISCO `CNTR_RG_01M_2024_4326` (stejně jako ostatní státy v `tools/build_states.mjs`); soubor GISCO odpovídá s
   CORS `*` (ověřena dostupnost NUTS 0 souboru, samotný polygon LV neprohlížen).
 
 ## 6. Zvláštnosti

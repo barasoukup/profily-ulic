@@ -106,7 +106,7 @@ Kredit pro Göteborg: „Ortofoto Göteborgs Stad (CC0)“ (CC0 kredit nevyžadu
   (Content-Length 1 011 339 249). Index Geofabriku **nemá žádné podoblasti Švédska** (rodičem `sweden` není nic).
   Nad limitem 512 MB na balík: nutné vlastní rozřezání (osmium extract podle polygonů krajů nebo obdélníků), např.
   Götaland / Svealand / Norrland, případně Stockholmský kraj zvlášť; jen na R2.
-- **Hranice**: `tools/build_staty.mjs` Švédsko zatím nemá; GISCO `SE` jako u Estonska (neověřeno pro SE: ostrovy Gotland,
+- **Hranice**: `tools/build_states.mjs` Švédsko zatím nemá; GISCO `SE` jako u Estonska (neověřeno pro SE: ostrovy Gotland,
   Öland, souostroví). Citlivé hranice: žádné sporné; Haparanda–Tornio je souvislé město přes hranici s Finskem
   (řez u hranice může padnout do Finska), Øresund most do Dánska.
 

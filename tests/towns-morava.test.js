@@ -26,7 +26,7 @@ test("pasport komunikací Frýdku-Místku na kódy MTVU", () => {
 
 test("řez v moravských městech dostane své město", async () => {
   const C = await import("../app/public/city.js");
-  C.loadBounds(JSON.parse(fs.readFileSync(new URL("../app/public/mesta.json", import.meta.url), "utf8")));
+  C.loadBounds(JSON.parse(fs.readFileSync(new URL("../app/public/towns.json", import.meta.url), "utf8")));
   assert.equal(C.cityAt(49.8355, 18.2924), "ostrava");
   assert.equal(C.cityAt(49.6837, 18.3504), "frydek-mistek");
   assert.equal(C.cityAt(49.8542, 18.542), "karvina");

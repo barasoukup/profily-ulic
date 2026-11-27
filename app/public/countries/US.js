@@ -1,5 +1,5 @@
 // The USA (US; Bára 24. 11. 2026, phase 2 of the North America pilot): what differs from the Czech rules of
-// countries/default.js. Only the metros of the OSM packs are covered (staty-america.json "usa"; the rest of the
+// countries/default.js. Only the metros of the OSM packs are covered (states-america.json "usa"; the rest of the
 // USA is closed_us): Washington DC, New York City (26. 11. 2026, towns/newyork.js, evaluation/usa/nyc/), San Francisco
 // (26. 11. 2026, towns/sanfrancisco.js, evaluation/usa/sf/) and Boston (26. 11. 2026, towns/boston.js: the surface maps of
 // Boston and Cambridge, evaluation/usa/boston/);
@@ -143,7 +143,7 @@ const boston = { ...bostonmetro, "lamp-post-top": "lamp-acorn-left" };
 export default {
   ...base,
   code: "US",
-  // The metros of Washington, New York, San Francisco and Boston (staty-america.json "usa", the OSM packs us_dc, us_nyc,
+  // The metros of Washington, New York, San Francisco and Boston (states-america.json "usa", the OSM packs us_dc, us_nyc,
   // us_sf and us_bos).
   bounds: LATE_BOUNDS.US,
   // The International Fire Code 503.2.1 (adopted by DC with its supplement, 12 DCMR H): a fire apparatus access road

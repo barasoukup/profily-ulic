@@ -138,7 +138,7 @@ Kaupunkiympäristö (ne pozemky jiných úřadů a soukromé plochy, podle popis
 zabalením).
 
 **Hranice GISCO** (ověřeno: `FI-region-01m-4326-2024.geojson`, CORS `*`): 2 875 polygonů (ostrovy), 27 536 vrcholů,
-19,26–31,59° v. d., 59,74–70,09° s. š., **Åland je uvnitř**. V `tools/build_staty.mjs` Finsko zatím není.
+19,26–31,59° v. d., 59,74–70,09° s. š., **Åland je uvnitř**. V `tools/build_states.mjs` Finsko zatím není.
 
 ---
 
@@ -176,4 +176,4 @@ zabalením).
 | Budovy celostátně | Ryhti `open_building` (body) | ověřeno | `*` | CC BY 4.0 | **použít** s obrysy z OSM |
 | Hledání | Ryhti `open_address` + Photon | ověřeno (Ryhti) | `*` | CC BY 4.0 (Ryhti), ODbL (Photon) | Photon, Ryhti doplňkově |
 | OSM | Geofabrik `finland` 778 MB | ověřeno | — | ODbL | jeden balík `fi` |
-| Hranice | GISCO `FI` | ověřeno | `*` | © EuroGeographics | přidat do `build_staty.mjs` |
+| Hranice | GISCO `FI` | ověřeno | `*` | © EuroGeographics | přidat do `build_states.mjs` |

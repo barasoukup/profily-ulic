@@ -3,7 +3,7 @@
 //   node evaluation/pasporty-blind/pick.mjs
 import fs from "node:fs";
 const here = (f) => new URL(f, import.meta.url).pathname;
-const sample = JSON.parse(fs.readFileSync(here("sample.json"), "utf8")), rows = new Map(JSON.parse(fs.readFileSync(here("../universal/data/m1126-pasporty.json"), "utf8")).map((r) => [r.id, r]));
+const sample = JSON.parse(fs.readFileSync(here("sample.json"), "utf8")), rows = new Map(JSON.parse(fs.readFileSync(here("../universal/data/m1126-passports.json"), "utf8")).map((r) => [r.id, r]));
 const differs = (a, b) => a.parts.length !== b.parts.length || a.parts.some(([t, w], i) => t !== b.parts[i][0] || Math.abs(w - b.parts[i][1]) >= 0.2);
 let seed = 20261127;
 const rnd = () => ((seed = (seed * 16807) % 2147483647) / 2147483647);

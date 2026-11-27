@@ -16,7 +16,7 @@ nebo nový kód?**
 | zapojení v aplikaci (`app`, `city`, `lanes-ortho`, `credits`, `sources`, `search*`, `art`) | asi +60 −37 | seznamy a klíče |
 | nástroje (hranice, pokrytí, kontrola zdrojů, balík) | +44 | z toho `closed_ca` a StatCan asi 35 |
 | 24 jazyků | +529 −138 | 15 vět norem a kreditů, patička, 5 vět s výčtem míst |
-| `staty.json` | +133 kB (2,51 → 2,64 MB) | z toho `canada` 5 kB, zbytek hláška `closed_ca` |
+| `states.json` | +133 kB (2,51 → 2,64 MB) | z toho `canada` 5 kB, zbytek hláška `closed_ca` |
 
 **Bez dalších pravidel by Toronto bylo popis**: samotné vrstvy jsou 15 řádků. Nový kód si vyžádaly tři vlastnosti jeho mapy: nemá střední
 pásy a tramvajová tělesa (`gapsBetweenRoads`), má zálivy stání mezi parkovišti (`kerbBays`) a je z roku 2021, starší než cyklostezky
@@ -28,7 +28,7 @@ Washington se nezměnil: 100 řezů (40 A/B + 60 čerstvých) přes `sources` m�
 
 ## Co je v aplikaci
 
-- **Stát CA** (`countries/CA.js`): Toronto, Mississauga, Brampton, Vaughan, Richmond Hill, Markham a Pickering (`staty.json` `canada`,
+- **Stát CA** (`countries/CA.js`): Toronto, Mississauga, Brampton, Vaughan, Richmond Hill, Markham a Pickering (`states.json` `canada`,
   hranice Statistics Canada 2021); zbytek Kanady `closed_ca` (u Windsoru, Niagary, Fort Erie, Sarnie testováno proti `closed_us`).
 - **Mapa povrchů Toronta** (`towns/canada.js`): `cot_geospatial3` 3 vozovka a křižovatky, 6 chodníky, 13 parkoviště, 2 budovy (vše
   **polygony**); `?toronto=0`. Ortofoto `cot_ortho` (2025, 8 cm) pro pruhy, model a podklad; stání nemá mapa ani inventář.

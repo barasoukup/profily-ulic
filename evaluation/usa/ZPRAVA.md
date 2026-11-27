@@ -4,7 +4,7 @@ Bára schválila 24. 11. 2026 („Fáze 2 s mapou Washingtonu“). Pilot fáze 1
 
 ## Co je v aplikaci
 
-- **Stát US** (`app/public/countries/US.js`): jen metro Washingtonu (`staty.json` `usa`: DC, Montgomery, Prince George's,
+- **Stát US** (`app/public/countries/US.js`): jen metro Washingtonu (`states.json` `usa`: DC, Montgomery, Prince George's,
   Arlington, Fairfax County a city, Falls Church, Alexandria; hranice okresů TIGERweb, sloučené v jeden obrys a pak zjednodušené na 10 m), zbytek USA
   `closed_us` s hláškou. Normy DDOT a NACTO jen oranžově (`NORMY.md`), stání 3 m na směr, bez značek, bez paneláků,
   hledání Photon; od 25. 11. 2026 severoamerické domy, mobiliář a Metrobus (`../north-america-art/`).
@@ -87,7 +87,7 @@ jen 2 : 0 : 1; zbylých 6 : 2 jsou řezy, na kterých se ladilo, takže to důka
 ## Opravy po cestě
 
 - dc-8-3 (Southern Avenue, hranice DC): zjednodušené hranice okresů nechaly na společných hranicích mezery a bod padl do
-  `closed_us`. `usa` byla proto nezjednodušená (`staty.json` 3,43 MB); od 25. 11. se okresy nejdřív sloučí (společné hrany se
+  `closed_us`. `usa` byla proto nezjednodušená (`states.json` 3,43 MB); od 25. 11. se okresy nejdřív sloučí (společné hrany se
   vyruší) a pak zjednoduší: 2,51 MB (`estonia` 2,29). Testy v `tests/usa.test.js` (celá hranice DC).
 - Kredit ortofota i tam, kde ho čtou jen jamky stromů.
 

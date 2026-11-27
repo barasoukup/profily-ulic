@@ -23,8 +23,8 @@ test("Švýcarsko: druhy úředního vyměřování na kódy MTVU, vypínač ?av
 
 test("Švýcarsko a Lichtenštejnsko: stát podle hranic swisstopo, u hranic sousedé", async () => {
   const C = await import("../app/public/city.js");
-  C.loadBounds(JSON.parse(fs.readFileSync(new URL("../app/public/mesta.json", import.meta.url), "utf8")));
-  C.loadStates(JSON.parse(fs.readFileSync(new URL("../app/public/staty.json", import.meta.url), "utf8")));
+  C.loadBounds(JSON.parse(fs.readFileSync(new URL("../app/public/towns.json", import.meta.url), "utf8")));
+  C.loadStates(JSON.parse(fs.readFileSync(new URL("../app/public/states.json", import.meta.url), "utf8")));
   assert.equal(C.cityAt(47.3725, 8.539), "switzerland"); // Zürich
   assert.equal(C.cityAt(46.2044, 6.1432), "switzerland"); // Genève
   assert.equal(C.cityAt(46.0037, 8.9511), "switzerland"); // Lugano

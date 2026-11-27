@@ -181,7 +181,7 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
 
 ## Jedna stránka pro celou ČR (Bára 10. 11. 2026)
 - Žádný přepínač měst: město se pozná podle místa řezu (`city.js` `cityAt`, hranice obcí z RÚIAN v
-  `app/public/mesta.json`, `node tools/build_mesta.mjs`), mimo naše města platí „cesko“ (technická mapa ČÚZK,
+  `app/public/towns.json`, `node tools/build_towns.mjs`), mimo naše města platí „cesko“ (technická mapa ČÚZK,
   RÚIAN, OSM, pražský mobiliář a vozidla Streetmixu). Zdroje dat, ilustrace a texty se mění s městem řezu.
 - Podkladové mapy: Mapa, Ortofoto, Technická mapa, OpenStreetMap; v každé jsou vrstvy měst omezené na jejich území.
 - Staré adresy `/brno/`, `/jihlava/`… přesměrují na `/?mesto=…` i s řezem v odkazu. Data měst v `data/brno/`, `data/plzen/`.
@@ -230,7 +230,7 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
   (zabalené 281 MB). Popis v `app/README.md` (Dlaždice OSM).
 
 ## Slovensko (větev slovensko, 15.–16. 11. 2026)
-- Stát řezu ze `staty.json` (`tools/build_staty.mjs`: ČR z RÚIAN, SR ze ZBGIS): `cesko`, `slovensko`, jinde `cizina`;
+- Stát řezu ze `states.json` (`tools/build_states.mjs`: ČR z RÚIAN, SR ze ZBGIS): `cesko`, `slovensko`, jinde `cizina`;
   `city.country` je ISO 3166-1 („CZ“, „SK“, mimo ně null), jazyk rozhraní je nezávislý (Bára).
   Mimo Česko (`towns/slovensko.js`, `city.abroad`) žádné dotazy na DMVS, RÚIAN ani ortofoto ČÚZK; profil je odhad
   z OSM a ortofota.
@@ -270,7 +270,7 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
 ## Rakousko (větev austria, Bára 16. 11. 2026, rozpracované, nenasazené)
 - Názvy v kódu a souborech anglicky (Bára 16. 11. 2026): stát `austria` (`country` AT), `towns/austria.js`,
   `signs-AT/`, `evaluation/austria/`. Stávající české názvy zůstávají.
-- Hranice z Eurostat GISCO 1 : 1 M v `staty.json` (BEV WFS je vypnutá); Česko a Slovensko mají přednost.
+- Hranice z Eurostat GISCO 1 : 1 M v `states.json` (BEV WFS je vypnutá); Česko a Slovensko mají přednost.
 - OSM: výřez Geofabrik `austria`, balík `at` jen na R2 (na Pages by se nevešel 1 GB), workflow staví cz, sk, at.
 - Ortofoto basemap.at (`bmaporthofoto30cm`, Web Mercator do z20, CORS, CC BY 4.0) pro pruhy, obruby a podklad.
 - Vídeň: Flächen-Mehrzweckkarte (FMZK, data.wien.gv.at WFS 2.0, CC BY 4.0 „Stadt Wien – data.wien.gv.at“) jako plochy
@@ -304,7 +304,7 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
   přehrání před a po, tabulky ve 4 jazycích). České řezy mimo Prahu a Brno nahrát po odstávce DMVS (od 19. 11.).
 - Krok 4b (Bára 16. 11. 2026): města všude. Slovenská (Bratislava, Košice, Žilina, B. Bystrica, Prešov, Nitra, Trnava,
   Trenčín, Martin, Poprad, Piešťany, Hlohovec, Zvolen) a rakouská (Vídeň, Graz, Linz, Salcburk, Innsbruck) jsou města jako
-  Brno, podle hranic obcí (`mesta-sk.json` ze ZBGIS, `mesta-at.json` z obcí LAU Eurostatu GISCO 2024 = Statistik Austria,
+  Brno, podle hranic obcí (`towns-sk.json` ze ZBGIS, `towns-at.json` z obcí LAU Eurostatu GISCO 2024 = Statistik Austria,
   `tools/build_towns_at.mjs`; soubor Statistik Austria na open data už není). Texty, zdroje a normy mají od zbytku státu,
   ilustrace svoje (bez vlastní sady státu). Log má vedle `city` i `country` (ISO); D1 potřebuje
   `ALTER TABLE events ADD COLUMN country TEXT` a nový Worker (nasadit musí Bára, `logging/README.md`). Opraveno zároveň:
@@ -313,7 +313,7 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
 ## Německo (Bára 17. 11. 2026, přeneseno na přestavbu států, nenasazené)
 - Stát `germany` (`country` DE): `countries/DE.js` (normy, značky, zákon o stání, ortofota zemí, domy, hledání),
   `towns/germany.js` (mapy povrchů měst), `signs-DE/`, `evaluation/germany/` (ZDROJE, NORMY, RECENZE, ab/). Hranice GISCO 1 : 1 M za Českem,
-  Slovenskem a Rakouskem (`node tools/build_staty.mjs germany` přestaví jen Německo).
+  Slovenskem a Rakouskem (`node tools/build_states.mjs germany` přestaví jen Německo).
 - OSM: Německo po 16 zemích (výřezy Geofabriku, balíky `de_by`, `de_nw` … jen na R2, každý pod 512 MB), každá země svůj job
   v `osm-tiles.yml` (`tools/countries.mjs` parts); index má obdélník dlaždic každého balíku.
 - Ortofoto všech 16 spolkových zemí (WMS v EPSG:3857 s CORS, `lanes-ortho.js DE_ORTHO`), země řezu podle `laender.json`
@@ -336,7 +336,7 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
 ## Švýcarsko a Lichtenštejnsko (větev switzerland, 17. 11. 2026, nenasazené)
 - Státy `switzerland` (CH) a `liechtenstein` (LI): `countries/CH.js`, `LI.js` (švýcarská pravidla s lichtenštejnskými čísly
   článků), `towns/switzerland.js`, `signs-CH/`, `evaluation/switzerland/` (ZDROJE, NORMY, RECENZE, ab/). Hranice
-  swissBOUNDARIES3D swisstopo v `staty.json` hned za Českem a Slovenskem (Büsingen a Campione jsou díry).
+  swissBOUNDARIES3D swisstopo v `states.json` hned za Českem a Slovenskem (Büsingen a Campione jsou díry).
 - Ortofoto SWISSIMAGE 10 cm (WMTS z20, `lanes-ortho.js` `ch`, dlaždice `{z}/{x}/{y}`), i pro Lichtenštejnsko.
 - Plochy z úředního vyměřování (Amtliche Vermessung, `LCSF`) přes WFS geodienste.ch, všechny kantony, které ho sdílejí,
   i Lichtenštejnsko; Vaud (Lausanne) a Luzern ne. Jen když je pod středem řezu vozovka, chodník nebo dráha (ne
@@ -385,7 +385,7 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
 
 ## Polsko (větev poland z belgium, Bára 21. 11. 2026, nenasazené)
 - Stát `poland` (PL): `countries/PL.js`, `towns/poland.js`, `search-pl.js`, `signs-PL/`, `evaluation/poland/`. Hranice z PRG
-  GUGiK (přesná, ve `staty.json` před Rakouskem a Německem; GISCO dávalo Německu pás Zgorzelce a Słubic).
+  GUGiK (přesná, ve `states.json` před Rakouskem a Německem; GISCO dávalo Německu pás Zgorzelce a Słubic).
 - Ortofoto GUGiK (celostátní, WMS HighResolution), hledání GUGiK UUG (PRG, „město, ulice číslo“), mapa povrchů Krakova
   (MJO). BDOT10k zamčený (401), Varšava, Vratislav, Gdaňsk, Poznaň bez otevřených služeb.
 - Normy RMI 2022 (závazné), buspruh, stání a tramvaj z nezávazných WR-D. Stání odhadem jako LU (zákon šířku nemá).
@@ -446,7 +446,7 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
 
 ## Monako (větev monaco z portugal, Bára 23. 11. 2026, nenasazené)
 - Stát `monaco` (MC): `countries/MC.js` (Francie + monacký Code de la route), `towns/monaco.js`, hranice z OSM
-  (`tools/monaco-border.json`, v `staty.json` před Francií), OSM balík `mc` (jen R2; **workflow OSM tiles se `states: mc`**).
+  (`tools/monaco-border.json`, v `states.json` před Francií), OSM balík `mc` (jen R2; **workflow OSM tiles se `states: mc`**).
 - Ortofoto IGN, odhad z OSM; stání jen z OSM (čl. 31: jen na vyznačených místech), bez norem šířek (Monako je nemá),
   značky francouzské kresby bez čísel, jen ty, které monacký kodex zná (bez zóny 30, zone de rencontre, voie verte, dálnice;
   Bára 23. 11. 2026). Měření nemá smysl (8 bodů: schody, pěší cesty, moře; fotky jen u 2).
@@ -536,7 +536,7 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
 ## Litva (větev estonia, Bára 24. 11. 2026, nenasazené)
 - Stát `lithuania` (LT): `countries/LT.js`, `towns/lithuania.js`, `signs-LT/`, `evaluation/lithuania/` (ZDROJE, NORMY, ZPRAVA,
   ab/). Hranice GISCO za polskou PRG; OSM balík `lt` (jen R2).
-- Pobřeží 400 m (LT, FI, DK) jen u moře (Bára 24. 11. 2026): úseky hranic na souši (`staty.json` `land_*`, čáry GISCO bez
+- Pobřeží 400 m (LT, FI, DK) jen u moře (Bára 24. 11. 2026): úseky hranic na souši (`states.json` `land_*`, čáry GISCO bez
   příznaku pobřeží) se nepočítají a bod blíž hranici než pobřeží státu nepatří (300 m v Lotyšsku, Bělorusku, Rusku, Švédsku ne).
 - **Žádné ortofoto** (Bára 24. 11.: ortofoto NŽT je jen k prohlížení na geoportálu, nepoužívat, úřadům nepsat):
   `laneOrtho: "none"`, mimo Vilnius jen odhad z OSM.
@@ -570,14 +570,14 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
 
 ## USA (Washington) (větev usa, Bára 24. 11. 2026, nenasazené)
 - Fáze 2 pilotu Severní Ameriky („Fáze 2 s mapou Washingtonu“): stát `usa` (US), `countries/US.js`, `towns/usa.js`,
-  `evaluation/usa/` (ZPRAVA, NORMY, ab/), pilot `evaluation/usa-dc/`. Jen metro Washingtonu (`staty.json` `usa`: DC a
+  `evaluation/usa/` (ZPRAVA, NORMY, ab/), pilot `evaluation/usa-dc/`. Jen metro Washingtonu (`states.json` `usa`: DC a
   sousední okresy Marylandu a Virginie z TIGERweb, sloučené v jeden obrys a až pak zjednodušené), zbytek USA `closed_us`
   s hláškou. OSM balík `us_dc` (DC + Maryland + Virginie oříznuté na metro, 86 MB, jen R2; **workflow OSM tiles se
   `states: us`**, `osm-tiles.yml` umí výřezy spojené „+“ s obdélníkem za „@“).
 - DC: mapa povrchů Planimetrics 2023 (CC BY 4.0, čtená podél řezu jako GRB, `hasStreet` jako Vilnius; `?dc=0`), inventář
   DDOT Roadway SubBlock (počet pruhů jako OSM `lanes` přes `wayTags`, stání u obrub, cyklopruhy, odhad stání tam vypnutý;
   `?ddot=0`), uličky planimetrie jako plochy `service=alley`, ortofoto DC 2025 jen nad Districtem (a 60 m za ním). Mimo DC jen odhad z OSM.
-  **Po nepřátelské recenzi 25. 11. 2026** (926de8d): DC je District podle hranice (`mesta-us.json`, 60 m za ní), strany z inventáře
+  **Po nepřátelské recenzi 25. 11. 2026** (926de8d): DC je District podle hranice (`towns-us.json`, 60 m za ní), strany z inventáře
   podle cesty řezu, chráněná cyklostezka tam, kde ji má OSM (Pennsylvania Avenue uprostřed), řez v ploše „Intersection“ to řekne,
   `RPPSIDE` není strana stání, výpadek inventáře se ohlásí.
   **Čerstvé měření** (`evaluation/usa/fresh/ZPRAVA.md`, 60 náhodných řezů podle délky sítě, zmrazený kód, dva slepí posuzovatelé,
@@ -590,7 +590,7 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
   3 : 4), počet pruhů 20 proti 19 z 33, strany stání 49 proti 45 ze 73: **neprůkazné, zůstává zapnutý** (rozhodne Bára). Kliknutí ve Washingtonu a
   Torontu (46 a 46, z toho 13 uliček): po opravě uličky (`74fcb46`) žádná ulička přes 15 m. Jiná ulice šikmo v profilu se jen ohlásí (křižovatka);
   ukončení profilu před ní je remíza 13 : 10 (Evropa 9 : 10), vypnuté (`?otherstreet=1`; `?off=otherstreet` vypne i hlášku; sdílené).
-- **Severní Amerika se načítá až na místě** (`late.js`, `america.js`, `staty-america.json`; `usa`, `canada` a `closed_*` už nejsou ve `staty.json`): start v Evropě
+- **Severní Amerika se načítá až na místě** (`late.js`, `america.js`, `states-america.json`; `usa`, `canada` a `closed_*` už nejsou ve `states.json`): start v Evropě
   o 11 kB gzip víc než `estonia` (dřív o 161). Nové věci obou států přidávej tam, ne do statických importů (hlídá `tests/canada.test.js`).
 - Normy DDOT DEM 2023 (aplikace cituje bez čísel tabulek, neověřená), Bicycle Facility Design Guide 2020 a NACTO jen oranžově; stání 3 m na směr (IFC 503.2.1,
   18 DCMR § 2405); bez řádku značek; bez paneláků; hledání Photon.
@@ -603,8 +603,8 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
 - Před nasazením: R2 balík `us_dc`, nový Worker logu (Bára).
 
 ## New York (větev na-newyork z canada, 26. 11. 2026, nenasazené)
-- Druhé metro státu `usa`: pět obvodů New Yorku (`tools/build_staty.mjs` tabulka `METROS` `dc`, `nyc` z TIGERweb; Boston a San
-  Francisco se přidají řádkem), město `newyork` v `mesta-us.json` (`tools/build_towns_us.mjs`). New Jersey, Westchester a Nassau ne.
+- Druhé metro státu `usa`: pět obvodů New Yorku (`tools/build_states.mjs` tabulka `METROS` `dc`, `nyc` z TIGERweb; Boston a San
+  Francisco se přidají řádkem), město `newyork` v `towns-us.json` (`tools/build_towns_us.mjs`). New Jersey, Westchester a Nassau ne.
 - Mapa povrchů NYC Planimetric Database 2022 (NYC OTI, NYCmaps na ArcGIS Online; „Limited to use defined by OTI“ bez zveřejněných podmínek, Bára 26. 11. 2026:
   používat, tatáž data jsou otevřená na NYC Open Data) přes `planimetrics.js` (`towns/newyork.js`,
   `?nyc=0`), domy z obrysů budov téže služby (`?nychouse=0`), ortofoto NYS 2024, normy Street Design Manual jen oranžově
@@ -618,8 +618,8 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
 - Před nasazením: workflow OSM tiles se `states: us` (postaví `us_dc` i `us_nyc`), licence NYCmaps a ortofota NYS (Bára).
 
 ## San Francisco (větev na-sanfrancisco, 26. 11. 2026, nenasazené)
-- Další metro státu `usa`: City and County of San Francisco (TIGERweb 06075; `tools/build_staty.mjs` tabulka `METROS` `dc`, `nyc`,
-  `sf`, další metra jako řádky), hranice města v `mesta-us.json` (`tools/build_towns_us.mjs`); okolní okresy `closed_us`.
+- Další metro státu `usa`: City and County of San Francisco (TIGERweb 06075; `tools/build_states.mjs` tabulka `METROS` `dc`, `nyc`,
+  `sf`, další metra jako řádky), hranice města v `towns-us.json` (`tools/build_towns_us.mjs`); okolní okresy `closed_us`.
   OSM balík `us_sf` (Geofabrik norcal oříznutý na město, 7,6 MB, jen R2; **workflow OSM tiles se `states: us`**).
 - Mapa povrchů `towns/sanfrancisco.js` (`?sf=0`) složená podél řezu (`planimetrics.js` s vlastním `runs`): uliční prostor
   DataSF (2014) = chodník, mezi krajními obrubami SFMTA vozovka, budovy DataSF jen mimo uliční prostor (posun 1,4 m);
@@ -634,16 +634,16 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
   1 z 290 řezů, dalších 3 566 ve 24 státech beze změny: zapnuto, Bára 27. 11. 2026, `?axisroad=0` vypne).
 
 ## Boston (větev na-boston, 26. 11. 2026, nenasazené)
-- Další metro státu `usa`: okresy Suffolk, Middlesex, Norfolk (`tools/build_staty.mjs METROS`, další metro = řádek), OSM balík
+- Další metro státu `usa`: okresy Suffolk, Middlesex, Norfolk (`tools/build_states.mjs METROS`, další metro = řádek), OSM balík
   `us_bos`; města `boston`, `bostonmetro` (celé metro: MBTA autobus a tramvaj, ortofoto MassGIS 2025, normy Boston Complete
-  Streets Guidelines 2013 jen oranžově) a `cambridge` (jen území mapy) v `mesta-us.json`; v Bostonu lampa acorn.
+  Streets Guidelines 2013 jen oranžově) a `cambridge` (jen území mapy) v `towns-us.json`; v Bostonu lampa acorn.
 - Mapy povrchů Bostonu (Street Edges, Sidewalk Inventory, budovy s podlažími) a Cambridge (PDDL), `towns/boston.js`: vozovky jsou
   polygony přes celé město, proto statické dlaždice `data/us-plan` stavěné jednou týdně při nasazení
   (`tools/build_planimetrics_us.mjs`, `pages.yml`), při kliknutí žádný dotaz; `?boston=0`, `?cambridge=0`, `?bostonhouse=0`.
 - Čerstvé měření 60 řezů (`evaluation/usa/boston/ZPRAVA.md`): A/B mapa : odhad 27 : 21 (p 0,47; místní 13 : 4, tepny 8 : 15),
   univerzální 69 % s mapou, 68 % bez, 72 % jen OSM. Mapa zapnutá, **rozhodne Bára** (tepny: mezera mezi polygony je zeleň i na
   parkovišti a náměstí). Washington 100 řezů beze změny, regrese beze změny.
-- Přegenerovat: `node tools/build_staty.mjs usa && node tools/build_towns_us.mjs && node tools/build_coverage.mjs`.
+- Přegenerovat: `node tools/build_states.mjs usa && node tools/build_towns_us.mjs && node tools/build_coverage.mjs`.
   Před nasazením workflow OSM tiles se `states: us` (nebo `us_bos`).
 - Mezery za vnějším chodníkem (26. 11., `evaluation/usa/boston/outer/ZPRAVA.md`, `planimetrics.js outerGaps`, `ortho-osm.js
   outerGapsByImage`): domy a parkoviště z OSM, zbytek ortofotem (MassGIS je bez listí, zeleň podle žlutosti a sytosti). A/B 52
@@ -653,7 +653,7 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
 ## Severní Amerika: rozhodnutí 26.–27. 11. 2026 (Bára)
 - USA a Kanada kvůli prestiži, ne kvůli rozsahu: jen území, které kryjí dobré a dostupné zdroje. Washington jen District
   of Columbia, Toronto jen město; New York (5 obvodů), San Francisco a Boston s metrem (MassGIS ortofoto 15 cm zdarma)
-  zůstávají. Okolní okresy a obce jsou zavřené s hláškou (`tools/build_staty.mjs` METROS, GTA; hranice nafouknuté o 60 m,
+  zůstávají. Okolní okresy a obce jsou zavřené s hláškou (`tools/build_states.mjs` METROS, GTA; hranice nafouknuté o 60 m,
   `grow`, aby ulice po hranici nebyla napůl zavřená); okolí DC jen při ověřené licenci Maryland Six Inch.
 - Stání v NYC, Bostonu a SF je jen „odhad“, ne „podle zákona“. Pět pravidel (DDOT, mapgaps, roadtracks, kerbbays,
   torontohouse) zůstává; opravy z rozboru proher jen obecné: mezery mezi vozovkami a stezka přes osu (`?off=gapsortho`,
@@ -675,7 +675,7 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
 
 ## Společné pro státy (Bára 23. 11. 2026)
 - Sever Kypru a Itálie mimo otevřená ortofota (i se San Marinem a Vatikánem) profil nedostanou, aplikace to řekne
-  (`city.js closedAt`, `staty.json` `closed_*`).
+  (`city.js closedAt`, `states.json` `closed_*`).
 - Pobřeží: Španělsko, Portugalsko, Monako a Francie platí do 400 m za hranicí GISCO (nábřeží, přístavy); Gibraltar a Andorra
   zůstávají cizinou.
 - Jízda vlevo je zabudovaná přímo v pravidlech (`derive.js`), profil se nezrcadlí.
@@ -765,12 +765,12 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
   Magdaleny), Slovensko jen při zájmu.
 
 ## Pasporty dalších měst (Bára 16. 11. 2026, A/B 26. 11. 2026)
-- Komunikace Rožnova p. R. (`towns/pasporty.js`, hranice `pasporty.json`) nad DTM ČÚZK
+- Komunikace Rožnova p. R. (`towns/passports.js`, hranice `passports.json`) nad DTM ČÚZK
   ve „cesko“; pasport bez ploch v okolí nechá řez DTM. A/B po odstávce DMVS (`evaluation/PASPORTY-AB.md`, výsledky):
   vyřazené Chomutov (bez pasportu lépe 33 : 8), Šumperk (4 : 4), Litoměřice (6 : 5), zeleň Prachatic (2 : 1) a Roudnice
   (9 : 0); Chotěboř vyhrála (4 : 1), ale vyřazená kvůli licenci (vrstva na soukromém účtu „ArcGIS Demo portál“, ne
   města; Bára 26. 11. 2026); Šlapanice vyřazené po slepém A/B na nových řezech 12 : 12 (Bára 26. 11. 2026,
-  `evaluation/pasporty-blind/ZPRAVA.md`; i z kreditu), Kuřim (osy zimní údržby se šířkou) po témže A/B 14 : 16 (taky i z kreditu); jména v `pasporty-names.js` zůstala kvůli kreditu uložených řezů. Nápad: vozovku pasportu ořezat na kus pod osou.
+  `evaluation/pasporty-blind/ZPRAVA.md`; i z kreditu), Kuřim (osy zimní údržby se šířkou) po témže A/B 14 : 16 (taky i z kreditu); jména v `passport-names.js` zůstala kvůli kreditu uložených řezů. Nápad: vozovku pasportu ořezat na kus pod osou.
 
 ## Po odstávce DMVS (ověřeno 26. 11. 2026)
 - DMVS i WFS krajů po přechodu na JVF DTM 1.5 fungují (Komenského ve Vysokém Mýtě, `tools/check_sources.mjs` česká

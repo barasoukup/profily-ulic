@@ -145,8 +145,8 @@ test("Španělsko: značky (S-11 / R-101 podle směru, R-301, autopista a autov�
 
 test("Španělsko: stát podle hranic (ostrovy, Ceuta, Melilla, Llívia)", async () => {
   const C = await import("../app/public/city.js");
-  C.loadBounds(JSON.parse(fs.readFileSync(new URL("../app/public/mesta.json", import.meta.url), "utf8")));
-  C.loadStates(JSON.parse(fs.readFileSync(new URL("../app/public/staty.json", import.meta.url), "utf8")));
+  C.loadBounds(JSON.parse(fs.readFileSync(new URL("../app/public/towns.json", import.meta.url), "utf8")));
+  C.loadStates(JSON.parse(fs.readFileSync(new URL("../app/public/states.json", import.meta.url), "utf8")));
   assert.equal(C.cityAt(40.4168, -3.7038), "spain"); // Madrid
   assert.equal(C.cityAt(41.3874, 2.1686), "spain"); // Barcelona
   assert.equal(C.cityAt(39.5696, 2.6502), "spain"); // Palma

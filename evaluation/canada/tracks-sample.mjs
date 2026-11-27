@@ -7,7 +7,7 @@ import { isTrack } from "../../app/public/towns/planimetrics.js";
 const DATA = new URL("data/osm-tiles/", import.meta.url).pathname;
 process.env.OSM_TILES = DATA;
 const { placeCut } = await import("../usa-dc/lib.mjs");
-const T = JSON.parse(await fs.readFile(new URL("../../app/public/mesta-ca.json", import.meta.url), "utf8")).toronto;
+const T = JSON.parse(await fs.readFile(new URL("../../app/public/towns-ca.json", import.meta.url), "utf8")).toronto;
 let seed = 20261127; const rnd = () => ((seed = (seed * 1664525 + 1013904223) >>> 0) / 2 ** 32);
 const tiles = await Promise.all((await fs.readdir(DATA)).filter((f) => /^-?\d+_-?\d+\.json$/.test(f)).sort().map(async (f) => decodeTile(await fs.readFile(DATA + f, "utf8"))));
 const ways = mergePieces(tiles).filter((w) => w.type === "way" && w.tags && isTrack(w) && w.tags.highway === "cycleway" && inside(T, w.geometry[0].lon, w.geometry[0].lat)).sort((a, b) => a.id - b.id);

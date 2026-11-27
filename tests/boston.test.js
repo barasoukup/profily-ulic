@@ -9,7 +9,7 @@ const read = (f) => JSON.parse(fs.readFileSync(new URL(`../app/public/${f}`, imp
 
 test("Boston: metro (Suffolk, Middlesex, Norfolk) v USA, město, Cambridge a okolí; Washington beze změny", async () => {
   const C = await import("../app/public/city.js");
-  C.loadBounds(read("mesta.json")); C.loadStates({ ...read("staty.json"), ...read("staty-america.json") }); C.loadTowns(read("mesta-us.json"));
+  C.loadBounds(read("towns.json")); C.loadStates({ ...read("states.json"), ...read("states-america.json") }); C.loadTowns(read("towns-us.json"));
   // City Hall, Dorchester, East Boston; Cambridge, Somerville, Brookline, Newton, Quincy, Lowell; Washington's White House.
   for (const p of [[42.3603, -71.0578], [42.3016, -71.0676], [42.375, -71.039]]) assert.equal(C.cityAt(...p), "boston", `${p}`);
   for (const p of [[42.3736, -71.1097], [42.3876, -71.0995], [42.3318, -71.1212], [42.337, -71.209], [42.2529, -71.0023], [42.6334, -71.3162]]) assert.equal(C.cityAt(...p), "bostonmetro", `${p}`);

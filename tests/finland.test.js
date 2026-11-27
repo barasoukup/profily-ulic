@@ -9,8 +9,8 @@ const fixture = (f) => JSON.parse(fs.readFileSync(new URL(`./fixtures/${f}`, imp
 
 test("Finsko: stát řezu, Alandy a sousedé u hranice", async () => {
   const C = await import("../app/public/city.js");
-  C.loadBounds(JSON.parse(fs.readFileSync(new URL("../app/public/mesta.json", import.meta.url), "utf8")));
-  C.loadStates(JSON.parse(fs.readFileSync(new URL("../app/public/staty.json", import.meta.url), "utf8")));
+  C.loadBounds(JSON.parse(fs.readFileSync(new URL("../app/public/towns.json", import.meta.url), "utf8")));
+  C.loadStates(JSON.parse(fs.readFileSync(new URL("../app/public/states.json", import.meta.url), "utf8")));
   // Helsinki, Suomenlinna, the quay of the Market Square, Mariehamn (Åland), Tornio, Oulu, Utsjoki, Vaalimaa, Imatra, Karigasniemi
   for (const [lat, lon] of [[60.1695, 24.938], [60.1455, 24.988], [60.1673, 24.9545], [60.0973, 19.9348], [65.8481, 24.1466], [65.0121, 25.4651],
     [69.9078, 27.0281], [60.585, 27.84], [61.1717, 28.7614], [69.3986, 25.8442]]) assert.equal(C.cityAt(lat, lon), "finland", `${lat},${lon}`);

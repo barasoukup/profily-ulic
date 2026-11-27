@@ -28,7 +28,7 @@ známého rozměru vedle, ne z normy.
 
 Rostliny zelených střech, průlehu a nádrže a kolo u stojanu jsou z pražské sady.
 
-Zapojeno: USA i Washington společná sada, Washington (hranice DC, `mesta-us.json`) svou lampu do 5 m, označník a přístřešek s ním
+Zapojeno: USA i Washington společná sada, Washington (hranice DC, `towns-us.json`) svou lampu do 5 m, označník a přístřešek s ním
 (střecha kratší o 20 cm, aby tabule nezasahovala do jejího okraje). Nezapojené (města v aplikaci zatím nejsou): `newyork/`,
 `toronto/`, `boston/`, `sanfrancisco/`.
 

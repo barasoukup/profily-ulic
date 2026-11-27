@@ -99,7 +99,7 @@ v patičce jsou, Sársko zůstává neověřené (nález 8).
    Judikatura říká 3,05 m. Do věty dát 3,05 m, 5 m nechat jen odhadu. (Odvozeno z kódu, větu jsem na řezu nevyvolal.)
 10. **`laender.json` (334 kB) se stahuje i českým uživatelům:** obdélník německé vrstvy sahá po 15,1° v. d. (Praha,
     Plzeň, Ústí), první dlaždice podkladu Ortofoto tam soubor načte a pro každou dlaždici počítá 9 × 16 testů bodu
-    v mnohoúhelníku. Nejdřív zkusit hrubou hranici Německa ze `staty.json`.
+    v mnohoúhelníku. Nejdřív zkusit hrubou hranici Německa ze `states.json`.
 11. **Německé ortofoto selže potichu, když se nenačte `laender.json`** (`lanes-ortho.js:110`): `.catch(() => [])` vrátí
     „žádný snímek“ bez výpadku, profil je jen z OSM a poznámka o ortofotu chybí. Chybu poslat dál jako `outage`.
     Když první země visí do konce časového limitu, druhá se nezkusí (`left < 500`).

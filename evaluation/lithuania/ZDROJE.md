@@ -131,7 +131,7 @@ v národní TIIIS jen s přihlášením (bez atributů, zákaz ukládání). **M
 
 - **Geofabrik** (**ověřeno** 23. 11. 2026): `europe/lithuania/lithuania-latest.osm.pbf` → `lithuania-261122.osm.pbf`,
   **224 393 161 B (224,4 MB)**, bez podoblastí. Jeden balík `lt`, dělení pod 512 MB netřeba.
-- Hranice: GISCO `LT` jako u ostatních (`tools/build_staty.mjs` `gisco("LT")`); neověřováno dotazem.
+- Hranice: GISCO `LT` jako u ostatních (`tools/build_states.mjs` `gisco("LT")`); neověřováno dotazem.
 
 ## 6. Ostatní
 

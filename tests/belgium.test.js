@@ -71,8 +71,8 @@ test("Belgie: region podle hranic NUTS 1 (ortofoto a čáry jen svého regionu)"
 
 test("Belgie a Lucembursko: stát podle hranic", async () => {
   const C = await import("../app/public/city.js");
-  C.loadBounds(JSON.parse(fs.readFileSync(new URL("../app/public/mesta.json", import.meta.url), "utf8")));
-  C.loadStates(JSON.parse(fs.readFileSync(new URL("../app/public/staty.json", import.meta.url), "utf8")));
+  C.loadBounds(JSON.parse(fs.readFileSync(new URL("../app/public/towns.json", import.meta.url), "utf8")));
+  C.loadStates(JSON.parse(fs.readFileSync(new URL("../app/public/states.json", import.meta.url), "utf8")));
   assert.equal(C.cityAt(50.8467, 4.3525), "belgium"); // Brussels
   assert.equal(C.cityAt(51.0543, 3.7174), "belgium"); // Ghent
   assert.equal(C.cityAt(50.6326, 5.5797), "belgium"); // Liège

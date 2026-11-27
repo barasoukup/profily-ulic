@@ -55,17 +55,17 @@ test("mapa: vrstvy českých, slovenských a rakouských služeb jen na svém ú
   assert.match(app, /const cuzkOrtho = \(\) => new CzWms\("https:\/\/ags\.cuzk\.gov\.cz[^]*?\.\.\.czBounds\(\)/);
   assert.match(app, /const dmvsWms = \(layer, opts = \{\}\) => new CzWms\([^]*?\.\.\.czBounds\(\)/);
   // A city's box carries its rings (credit only where the view reaches the city).
-  assert.match(app, /const within = \(id\) => \(MESTA\?\.\[id\]\?\.length \? \{ bounds: boundsOf\(MESTA\[id\]\) \} : \{\}\)/);
+  assert.match(app, /const within = \(id\) => \(TOWN_BOUNDS\?\.\[id\]\?\.length \? \{ bounds: boundsOf\(TOWN_BOUNDS\[id\]\) \} : \{\}\)/);
   // Every tile layer asking a Czech service (or Slovakia's, Austria's) names its area: Czechia, a city or a state's rings.
   const hosts = /cuzk\.gov\.cz|praha\.eu|tiles\.arcgis\.com\/tiles\/SBTXIEUGWbqzUecw|gis\.brno\.cz|\$\{GS\}|SK_ORTHO|AT_ORTHO/;
   const layers = app.split("\n").map((line, i) => [line, i]).filter(([line]) => /tileLayer|new [A-Z]\w*\(|ArcgisExport\(/.test(line) && hosts.test(line));
   assert.ok(layers.length >= 6, `${layers.length}`);
   for (const [line, i] of layers) {
     const block = app.split("\n").slice(i, i + 4).join("\n");
-    assert.match(block, /czBounds\(\)|within\("|boundsOf\(STATY\./, `řádek ${i + 1}: ${line.trim().slice(0, 90)}`);
+    assert.match(block, /czBounds\(\)|within\("|boundsOf\(STATES\./, `řádek ${i + 1}: ${line.trim().slice(0, 90)}`);
   }
-  assert.match(app, /const Sk = keptInside\(L\.TileLayer, STATY\.slovensko\)/);
-  assert.match(app, /const At = keptInside\(L\.TileLayer, STATY\.austria\)/);
+  assert.match(app, /const Sk = keptInside\(L\.TileLayer, STATES\.slovensko\)/);
+  assert.match(app, /const At = keptInside\(L\.TileLayer, STATES\.austria\)/);
 });
 
 test("hledání: RÚIAN napřed jen v Česku, jinde až když nic nenašlo nic jiného", () => {

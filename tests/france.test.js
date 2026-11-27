@@ -46,8 +46,8 @@ test("Francie: budovy a šířky BD TOPO", async () => {
 
 test("Francie: stát podle hranic", async () => {
   const C = await import("../app/public/city.js");
-  C.loadBounds(JSON.parse(fs.readFileSync(new URL("../app/public/mesta.json", import.meta.url), "utf8")));
-  C.loadStates(JSON.parse(fs.readFileSync(new URL("../app/public/staty.json", import.meta.url), "utf8")));
+  C.loadBounds(JSON.parse(fs.readFileSync(new URL("../app/public/towns.json", import.meta.url), "utf8")));
+  C.loadStates(JSON.parse(fs.readFileSync(new URL("../app/public/states.json", import.meta.url), "utf8")));
   assert.equal(C.cityAt(48.8566, 2.3522), "france"); // Paris
   assert.equal(C.cityAt(48.5734, 7.7521), "france"); // Strasbourg
   assert.equal(C.cityAt(41.9192, 8.7386), "france"); // Ajaccio

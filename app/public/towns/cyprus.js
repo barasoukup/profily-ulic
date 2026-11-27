@@ -1,4 +1,4 @@
-// Cyprus (Bára 23. 11. 2026): the state of a cut inside staty.json's "cyprus" (GISCO's island). No city publishes its
+// Cyprus (Bára 23. 11. 2026): the state of a cut inside states.json's "cyprus" (GISCO's island). No city publishes its
 // street surfaces: the profile is the estimate from OSM and the DLS orthophoto (lanes-ortho.js "cy"). The buildings of
 // the DLS (INSPIRE BU3, CC BY 4.0): floors, height and type (the roof type is not read). In the north and on the British bases the DLS has nothing (the
 // estimate from OSM alone). Sources: evaluation/cyprus/ZDROJE.md.

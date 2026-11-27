@@ -191,7 +191,7 @@ Bez nálezu:
     italské dotazy (Genève, Lausanne, Lugano, „rue“, „via“), když mapa neukazuje Švýcarsko.
 16. **`app/public/zz-pts.json`** (neverzovaný seznam bodů vzorku) leží ve složce, která se nasazuje. Nepřidat do
     commitu, smazat.
-17. **`staty.json`** narostl ze 404 na 514 kB (čte ho každý při startu). Švýcarsko je před Rakouskem a Německem a
+17. **`states.json`** narostl ze 404 na 514 kB (čte ho každý při startu). Švýcarsko je před Rakouskem a Německem a
     hranice je zjednodušená asi na 30 m oběma směry: ulice těsně za čárou v Kostnici nebo Weilu může vyjít jako CH.
     U 44 zkoušených míst se to nestalo.
 18. **Atribuce vrstvy** (`app.js:207`): „ortofoto SWISSIMAGE © swisstopo“ nejde přes `tr()` (německá vrstva ano).

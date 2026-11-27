@@ -1,15 +1,15 @@
 // The coasts and land borders of Estonia, Slovenia, Finland and Denmark (the reviews of 24. 11. 2026): harbours, quays,
 // bridges and towns on a border river that GISCO's 1 : 1 M ring cuts off are the state's, a point beyond a land border
-// is not (city.js stateEntry, tools/build_staty.mjs: COAST, land_*, the extra rings "<id>+<what>").
+// is not (city.js stateEntry, tools/build_states.mjs: COAST, land_*, the extra rings "<id>+<what>").
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
 
 const read = (f) => JSON.parse(fs.readFileSync(new URL(`../app/public/${f}`, import.meta.url), "utf8"));
-const staty = read("staty.json");
+const staty = read("states.json");
 async function city(states = staty) {
   const C = await import("../app/public/city.js");
-  C.loadBounds(read("mesta.json"));
+  C.loadBounds(read("towns.json"));
   C.loadStates(states);
   return C;
 }

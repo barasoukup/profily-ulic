@@ -17,7 +17,7 @@ const TILES = process.env.OSM_TILES;
 if (!TILES) throw new Error("OSM_TILES=…/tiles-us_nyc");
 // Where the code was tried (Amsterdam Avenue, Queens Boulevard twice, Broadway at 72nd Street).
 const OLD = [[40.781041, -73.97986], [40.7365, -73.877], [40.74366, -73.922988], [40.7785, -73.9819]].map(([lat, lon]) => ({ lat, lon }));
-const NYC = (await read("../../../app/public/mesta-us.json")).newyork;
+const NYC = (await read("../../../app/public/towns-us.json")).newyork;
 const KIND = { motorway: "motorway", motorway_link: "motorway", trunk: "arterial", trunk_link: "arterial", primary: "arterial", primary_link: "arterial", secondary: "arterial", secondary_link: "arterial",
   tertiary: "collector", tertiary_link: "collector", residential: "local", unclassified: "local", living_street: "local", service: "service" };
 const NOT = new Set(["driveway", "parking_aisle", "drive-through", "emergency_access"]);

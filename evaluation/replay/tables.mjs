@@ -49,7 +49,7 @@ const V = await imp("validate.js");
 const SRC = await imp("sources.js");
 const PRO = await imp("profile.js");
 const { TYPES } = await imp("types.js");
-const { PASSPORT_NAMES } = await imp("towns/pasporty-names.js");
+const { PASSPORT_NAMES } = await imp("towns/passport-names.js");
 const out = {};
 const safe = (f) => { try { return f(); } catch (e) { return `ERROR ${e.message}`; } };
 const json = (v) => JSON.parse(JSON.stringify(v ?? null));
@@ -73,12 +73,12 @@ for (const id of CITY_IDS) { const c = setCity(id); if (c.view) points.push(c.vi
 points.push([48.144, 17.11], [48.719, 21.258], [48.998, 21.24], [49.223, 18.74], [48.736, 19.146], [48.312, 18.087], [48.2085, 16.3731], [47.0707, 15.4395],
   [48.3059, 14.2862], [47.8, 13.045], [47.2654, 11.3927], [48.17, 17.06], [48.2, 16.2], [48.25, 16.5]);
 const place = () => Object.fromEntries(points.map(([lat, lon]) => [`${lat},${lon}`, [cityAt(lat, lon), skArtAt(lat, lon), atArtAt(lat, lon)].join("|")]));
-loadBounds(read("mesta.json"));
+loadBounds(read("towns.json"));
 out.placeNoStates = place();
-loadStates(read("staty.json"));
+loadStates(read("states.json"));
 out.placeNoSkTowns = place();
-loadSkTowns(read("mesta-sk.json"));
-if (C.loadTowns) { C.loadTowns(read("mesta-sk.json")); try { C.loadTowns(read("mesta-at.json")); } catch {} }
+loadSkTowns(read("towns-sk.json"));
+if (C.loadTowns) { C.loadTowns(read("towns-sk.json")); try { C.loadTowns(read("towns-at.json")); } catch {} }
 out.place = place();
 
 // The credit lines of every city with every source a cut may name, alone and a few together, with the city's art or not.

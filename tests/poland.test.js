@@ -34,8 +34,8 @@ test("Polsko: hledání GUGiK UUG", async () => {
 
 test("Polsko: stát podle hranic", async () => {
   const C = await import("../app/public/city.js");
-  C.loadBounds(JSON.parse(fs.readFileSync(new URL("../app/public/mesta.json", import.meta.url), "utf8")));
-  C.loadStates(JSON.parse(fs.readFileSync(new URL("../app/public/staty.json", import.meta.url), "utf8")));
+  C.loadBounds(JSON.parse(fs.readFileSync(new URL("../app/public/towns.json", import.meta.url), "utf8")));
+  C.loadStates(JSON.parse(fs.readFileSync(new URL("../app/public/states.json", import.meta.url), "utf8")));
   assert.equal(C.cityAt(52.2297, 21.0122), "poland"); // Warszawa
   assert.equal(C.cityAt(50.0614, 19.9383), "poland"); // Kraków
   assert.equal(C.cityAt(49.7477, 18.6262), "cesko"); // Český Těšín

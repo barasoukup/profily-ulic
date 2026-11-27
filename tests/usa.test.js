@@ -5,11 +5,11 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
 import "../app/public/america.js";
-const STATY = { ...JSON.parse(fs.readFileSync(new URL("../app/public/staty.json", import.meta.url), "utf8")), ...JSON.parse(fs.readFileSync(new URL("../app/public/staty-america.json", import.meta.url), "utf8")) };
+const STATY = { ...JSON.parse(fs.readFileSync(new URL("../app/public/states.json", import.meta.url), "utf8")), ...JSON.parse(fs.readFileSync(new URL("../app/public/states-america.json", import.meta.url), "utf8")) };
 
 test("USA: District of Columbia je stát usa, zbytek USA zavřený (i okresy Marylandu a Virginie)", async () => {
   const C = await import("../app/public/city.js");
-  C.loadBounds(JSON.parse(fs.readFileSync(new URL("../app/public/mesta.json", import.meta.url), "utf8")));
+  C.loadBounds(JSON.parse(fs.readFileSync(new URL("../app/public/towns.json", import.meta.url), "utf8")));
   C.loadStates(STATY);
   // The White House; on the DC line (Southern Avenue, dc-8-3): simplified county rings left a gap there.
   for (const [lat, lon] of [[38.8977, -77.0365], [38.8436094, -76.9725878]]) {
@@ -17,7 +17,7 @@ test("USA: District of Columbia je stát usa, zbytek USA zavřený (i okresy Mar
     assert.equal(C.closedAt(lat, lon), null);
   }
   // New York City (26. 11. 2026): the city of the state, its five boroughs (Manhattan, Queens, the Bronx, Staten Island, Brooklyn).
-  C.loadTowns(JSON.parse(fs.readFileSync(new URL("../app/public/mesta-us.json", import.meta.url), "utf8")));
+  C.loadTowns(JSON.parse(fs.readFileSync(new URL("../app/public/towns-us.json", import.meta.url), "utf8")));
   for (const [lat, lon] of [[40.7128, -74.006], [40.7282, -73.7949], [40.8448, -73.8648], [40.5795, -74.1502], [40.6782, -73.9442]]) {
     assert.equal(C.cityAt(lat, lon), "newyork", `${lat},${lon}`);
     assert.equal(C.closedAt(lat, lon), null);
@@ -34,16 +34,16 @@ test("USA: District of Columbia je stát usa, zbytek USA zavřený (i okresy Mar
   assert.equal(C.countryOfCity("usa").code, "US");
 });
 
-test("USA: mezi okresy ani na hranici DC nejsou díry, staty.json nenese společné hranice dvakrát", async () => {
+test("USA: mezi okresy ani na hranici DC nejsou díry, states.json nenese společné hranice dvakrát", async () => {
   const C = await import("../app/public/city.js");
   const staty = STATY;
-  const us = JSON.parse(fs.readFileSync(new URL("../app/public/mesta-us.json", import.meta.url), "utf8"));
+  const us = JSON.parse(fs.readFileSync(new URL("../app/public/towns-us.json", import.meta.url), "utf8"));
   // (Four metros since 26. 11. 2026: Washington, New York, San Francisco, Boston; about 60 kB.)
   assert.ok(JSON.stringify(staty.usa).length < 75_000, `${JSON.stringify(staty.usa).length} B`);
-  C.loadBounds(JSON.parse(fs.readFileSync(new URL("../app/public/mesta.json", import.meta.url), "utf8")));
+  C.loadBounds(JSON.parse(fs.readFileSync(new URL("../app/public/towns.json", import.meta.url), "utf8")));
   C.loadStates(staty);
   // Round each point of the District's ring, nothing of the District is closed (the state's ring is grown by 60 m,
-  // tools/build_staty.mjs grow: a street along the line).
+  // tools/build_states.mjs grow: a street along the line).
   C.loadTowns(us);
   for (const [lon, lat] of us.washington[0]) for (const [dx, dy] of [[0, 0], [4e-4, 0], [-4e-4, 0], [0, 3e-4], [0, -3e-4]]) {
     if (C.cityAt(lat + dy, lon + dx) === "washington") assert.equal(C.closedAt(lat + dy, lon + dx), null, `${lat + dy},${lon + dx}`);
@@ -56,7 +56,7 @@ test("USA: mezi okresy ani na hranici DC nejsou díry, staty.json nenese společ
 
 const loadWashington = async () => {
   const C = await import("../app/public/city.js");
-  C.loadTowns(JSON.parse(fs.readFileSync(new URL("../app/public/mesta-us.json", import.meta.url), "utf8")));
+  C.loadTowns(JSON.parse(fs.readFileSync(new URL("../app/public/towns-us.json", import.meta.url), "utf8")));
   return C;
 };
 test("USA: DC je District, ne obdélník (ortofoto, mapa povrchů, město)", async () => {

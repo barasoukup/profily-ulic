@@ -109,7 +109,7 @@ jako ostatní nové státy.
 
 **Hranice** (**ověřeno**: `CNTR_RG_01M_2024_4326.geojson`, `CNTR_ID` „PT“): 41 polygonů, pevnina (15; -9,52 až -6,19,
 36,96 až 42,15), Madeira s Porto Santo a Selvagens (15; -17,26 až -15,86, 30,03 až 33,13), Azory (11; -31,27 až -25,01,
-36,93 až 39,73). `tools/build_staty.mjs` už má `portugal: () => gisco("PT")` (bez filtru, ostrovy zůstanou). Pro
+36,93 až 39,73). `tools/build_states.mjs` už má `portugal: () => gisco("PT")` (bez filtru, ostrovy zůstanou). Pro
 rozlišení ortofota (pevnina / Madeira / Azory) stačí obdélníky výše; ostrovy Azor po jednom kvůli endpointům.
 
 ---
@@ -129,7 +129,7 @@ rozlišení ortofota (pevnina / Madeira / Azory) stačí obdélníky výše; ost
 | Stání | Lisboa EMEL (úseky s orientací), Porto (ulice, místa), Cascais (plochy) | ověřeno | ne | CC BY-SA / CC0 / CC BY | Statické soubory při nasazení |
 | BUS pruhy | Porto `corredores-bus` | ověřeno | ne | CC0 | Statický soubor; jinde OSM |
 | OSM | Geofabrik `portugal` 409 MB (i ostrovy) | ověřeno | - | ODbL | Jeden balík `pt` na R2 |
-| Hranice | GISCO `PT` (pevnina, Madeira, Azory) | ověřeno | - | © EuroGeographics | už v `build_staty.mjs` |
+| Hranice | GISCO `PT` (pevnina, Madeira, Azory) | ověřeno | - | © EuroGeographics | už v `build_states.mjs` |
 
 **Doporučení:** Portugalsko jako Francie mimo Paříž: odhad z OSM a ortofota DGT **Ortos 2025** (25 cm, celá pevnina, CC BY,
 CORS), na Madeiře 10cm ortofoto IRIG (CORS, licenci ověřit), na Azorech 10cm ortofoto jen jako podklad mapy (bez CORS).

@@ -10,7 +10,7 @@ globalThis.document = { createElementNS: (_, n) => new N(n) };
 export const { Pack, PackSet } = await imp("osmpack.js");
 export const D = await imp("derive.js"), P = await imp("profile.js"), C = await imp("city.js"), S = await imp("sources.js"), O = await imp("ortho-osm.js");
 const read = (f) => JSON.parse(fs.readFileSync(path.join(PUB, f)));
-C.loadBounds(read("mesta.json")); C.loadStates(read("staty.json")); C.loadSkTowns?.(read("mesta-sk.json")); C.loadTowns?.(read("mesta-at.json"));
+C.loadBounds(read("towns.json")); C.loadStates(read("states.json")); C.loadSkTowns?.(read("towns-sk.json")); C.loadTowns?.(read("towns-at.json"));
 // OSM from the R2 packs (the app's ?osm=r2), ranges read over HTTP; the whole state, villages too.
 const PS = new PackSet(["https://data.streetspace.eu/osm"], { timeout: 60000 });
 export async function elements(iso, lat, lon, r) {

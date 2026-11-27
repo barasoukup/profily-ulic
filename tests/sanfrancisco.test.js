@@ -8,7 +8,7 @@ const read = (f) => JSON.parse(fs.readFileSync(new URL(`../app/public/${f}`, imp
 
 test("San Francisco: město ve státě USA, okolí zůstává zavřené", async () => {
   const C = await import("../app/public/city.js");
-  C.loadBounds(read("mesta.json")); C.loadStates({ ...read("staty.json"), ...read("staty-america.json") }); C.loadTowns(read("mesta-us.json"));
+  C.loadBounds(read("towns.json")); C.loadStates({ ...read("states.json"), ...read("states-america.json") }); C.loadTowns(read("towns-us.json"));
   // Market Street, the Ferry Building, the Mission, Treasure Island; Washington stays itself.
   for (const p of [[37.7848, -122.4071], [37.7955, -122.3937], [37.7599, -122.4148], [37.8235, -122.3706]]) assert.equal(C.cityAt(...p), "sanfrancisco", `${p}`);
   assert.equal(C.cityAt(38.8977, -77.0365), "washington");
@@ -100,7 +100,7 @@ test("San Francisco: výpadek pravidel obrub (SFMTA 56) se hlásí, oříznutá 
 
 test("San Francisco: chodník podle typu ulice (ulička 6 ft, jiná obslužná bez varování), citace Better Streets Plan v datech SFMTA", async () => {
   const C = await import("../app/public/city.js");
-  C.loadBounds(read("mesta.json")); C.loadStates({ ...read("staty.json"), ...read("staty-america.json") }); C.loadTowns(read("mesta-us.json"));
+  C.loadBounds(read("towns.json")); C.loadStates({ ...read("states.json"), ...read("states-america.json") }); C.loadTowns(read("towns-us.json"));
   const US = (await import("../app/public/countries/US.js")).default;
   const sf = C.cityById("sanfrancisco"), walk = { type: "chodnik", width: 2 };
   const street = US.limits(walk, [walk], 0, sf);

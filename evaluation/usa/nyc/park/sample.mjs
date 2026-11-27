@@ -14,7 +14,7 @@ if (!TILES) throw new Error("OSM_TILES=…/tiles-us_nyc");
 // Where the code was tried (Amsterdam Avenue, Queens Boulevard twice, Broadway at 72nd Street).
 // (and the points of the signs' development: Bedford Avenue, Hudson Street, East 79th Street, Avenue M)
 const OLD = [[40.781041, -73.97986], [40.7365, -73.877], [40.74366, -73.922988], [40.7785, -73.9819], [40.680114, -73.95326], [40.730032, -74.006873], [40.775209, -73.959475], [40.61798, -73.960352]].map(([lat, lon]) => ({ lat, lon }));
-const NYC = (await read("../../../../app/public/mesta-us.json")).newyork;
+const NYC = (await read("../../../../app/public/towns-us.json")).newyork;
 const KIND = { motorway: "motorway", motorway_link: "motorway", trunk: "arterial", trunk_link: "arterial", primary: "arterial", primary_link: "arterial", secondary: "arterial", secondary_link: "arterial",
   tertiary: "collector", tertiary_link: "collector", residential: "local", unclassified: "local", living_street: "local", service: "service" };
 const NOT = new Set(["driveway", "parking_aisle", "drive-through", "emergency_access"]);

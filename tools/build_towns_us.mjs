@@ -1,7 +1,7 @@
 // The boundaries of the American cities the app has illustrations or a surface map of (as build_towns_sk.mjs and
 // build_towns_at.mjs; Bára 25. 11. 2026): a few queries at build time, none on a click. Written into
-// app/public/mesta-us.json (city.js loadTowns), kept in the repository; staty-america.json first:
-//   node tools/build_staty.mjs usa && node tools/build_towns_us.mjs
+// app/public/towns-us.json (city.js loadTowns), kept in the repository; states-america.json first:
+//   node tools/build_states.mjs usa && node tools/build_towns_us.mjs
 // A further city is a line of TOWNS.
 //   washington: the District of Columbia from DC's own service (DCGIS "DC Boundary", CC BY 4.0), simplified by the service
 //     to about 20 m;
@@ -11,7 +11,7 @@
 //   sanfrancisco: the incorporated place of TIGERweb (GEOID 0667000, the same line as the City and County, with its water
 //     and the Farallon Islands; public domain; 26. 11. 2026);
 //   boston, cambridge (Bára 26. 11. 2026): TIGERweb's incorporated places, the areas of their surface maps (towns/boston.js);
-//   bostonmetro: the metro of Boston as staty-america.json has it (tools/build_staty.mjs METROS), the area of its buses and
+//   bostonmetro: the metro of Boston as states-america.json has it (tools/build_states.mjs METROS), the area of its buses and
 //     orthophoto (countries/US.js art, lanes-ortho.js us-ma). The city (boston) comes before its metro.
 import fs from "node:fs";
 
@@ -26,7 +26,7 @@ async function rings(url, where, n = null, offset = "0.0002") {
   if (!j.features?.length || (n && j.features.length !== n)) throw new Error(`${url}: ${j.features?.length} hranic`);
   return j.features.flatMap((f) => f.geometry.rings);
 }
-// Areas with common boundaries merged to their outline: the edges two of them share cancel out (as build_staty.mjs).
+// Areas with common boundaries merged to their outline: the edges two of them share cancel out (as build_states.mjs).
 function outline(list) {
   const key = (p) => `${p[0].toFixed(5)},${p[1].toFixed(5)}`, at = new Map(), edges = new Map();
   for (const r of list) for (let i = 1; i < r.length; i++) {
@@ -83,11 +83,11 @@ for (const [id, make] of Object.entries(TOWNS)) {
   out[id] = await make();
   console.log(id, out[id].map((r) => r.length), "bodů");
 }
-// The metro of Boston: the ring of staty-america.json's "usa" that holds Boston's city hall.
-const states = JSON.parse(fs.readFileSync(new URL("../app/public/staty-america.json", import.meta.url), "utf8"));
+// The metro of Boston: the ring of states-america.json's "usa" that holds Boston's city hall.
+const states = JSON.parse(fs.readFileSync(new URL("../app/public/states-america.json", import.meta.url), "utf8"));
 const inRing = (r, x, y) => { let c = false; for (let i = 0, k = r.length - 1; i < r.length; k = i++) { const [xi, yi] = r[i], [xk, yk] = r[k]; if (yi > y !== yk > y && x < ((xk - xi) * (y - yi)) / (yk - yi) + xi) c = !c; } return c; };
 const metro = states.usa.filter((r) => inRing(r, -71.0578, 42.3603));
-if (!metro.length) throw new Error("staty-america.json: metro Bostonu chybí (nejdřív node tools/build_staty.mjs usa)");
+if (!metro.length) throw new Error("states-america.json: metro Bostonu chybí (nejdřív node tools/build_states.mjs usa)");
 out.bostonmetro = metro;
 console.log("bostonmetro", metro.map((r) => r.length), "bodů");
-fs.writeFileSync(new URL("../app/public/mesta-us.json", import.meta.url), JSON.stringify(out));
+fs.writeFileSync(new URL("../app/public/towns-us.json", import.meta.url), JSON.stringify(out));

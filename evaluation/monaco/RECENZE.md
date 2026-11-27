@@ -1,7 +1,7 @@
 # Nepřátelská recenze státu Monako (MC), 23. 11. 2026
 
 Rozsah: `countries/MC.js` (nad `FR.js`), `towns/monaco.js`, `evaluation/monaco/PRAVIDLA.md`, `tools/monaco-border.json`,
-`tools/build_staty.mjs`, `staty.json`, části `app.js`, `signs.js`, `search-photon.js`, `index.html`, `city.js`,
+`tools/build_states.mjs`, `states.json`, části `app.js`, `signs.js`, `search-photon.js`, `index.html`, `city.js`,
 `tests/monaco.test.js`, `LICENCE-A-ZDROJE.md`, `app/README.md`. Větev `estonia`, HEAD `84140de`. Žádný soubor kromě
 této zprávy jsem neměnil.
 
@@ -31,7 +31,7 @@ Bez nálezu:
 
 ### 1. Hranice: 2 % monackých ulic nejsou Monako a pás Beausoleil není nikde (závažné)
 
-Hranice z OSM má 602 bodů, `build_staty.mjs:87` ji zjednoduší na 30 m jako velké státy. V `staty.json` zbylo 55 bodů a
+Hranice z OSM má 602 bodů, `build_states.mjs:87` ji zjednoduší na 30 m jako velké státy. V `states.json` zbylo 55 bodů a
 druhý prstenec se zhroutil na úsečku (`[[7.434,43.7456],[7.4347,43.7459],[7.434,43.7456]]`, nulová plocha). Stát měří
 kolem 2 km² a místy je široký 300 m.
 

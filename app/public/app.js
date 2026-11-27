@@ -55,7 +55,7 @@ import { ensurePlace, isLate, onAmerica } from "./late.js";
 import { log, logOn, sendReport, shortProfile } from "./log.js";
 import { setupAbout } from "./about.js";
 import { createDataLayers, PLOCHY_PANE } from "./maplayers.js";
-import { PASSPORT_NAMES, GREEN_PASSPORTS } from "./towns/pasporty-names.js";
+import { PASSPORT_NAMES, GREEN_PASSPORTS } from "./towns/passport-names.js";
 import { mountSearch } from "./search.js";
 // tr: t is a common name of a text or a type here.
 import { t as tr, num, pct, numField, readNum, lang, LANGS, setLang, translatePage, attribution } from "./i18n.js";
@@ -135,18 +135,18 @@ const cutEnds = (f, normal, reach) => [
 // far the data was searched (Bára); a profile only estimated from OSM has no ends, so the reach shows.
 const cutSpan = (cut) => cut?.span || cut?.reach || defaultReach();
 const STORE = "streetdesign-pilot" + (LANES_ORTHO ? "" : "-bez-orto"); // the last cut (Prague's key from the time of one page per city); ?orto=0 its own
-// The boundaries of the cities with their own sources (tools/build_mesta.mjs): a cut takes its city by them.
-const statyJson = fetch("staty.json").then((r) => (r.ok ? r.json() : null), () => null);
+// The boundaries of the cities with their own sources (tools/build_towns.mjs): a cut takes its city by them.
+const statesJson = fetch("states.json").then((r) => (r.ok ? r.json() : null), () => null);
 // The boundaries of the Slovak and Austrian cities (tools/build_towns_sk.mjs, build_towns_at.mjs; the American and Canadian ones come with a cut there, late.js): the city of a cut
 // and the territories of the Slovak towns' sources. Without them those cuts are their state's rest.
-const townsJson = Promise.all(["mesta-sk.json", "mesta-at.json"].map((f) => fetch(f).then((r) => (r.ok ? r.json() : null), () => null)));
-const MESTA = await fetch("mesta.json").then((r) => (r.ok ? r.json() : null), () => null);
+const townsJson = Promise.all(["towns-sk.json", "towns-at.json"].map((f) => fetch(f).then((r) => (r.ok ? r.json() : null), () => null)));
+const TOWN_BOUNDS = await fetch("towns.json").then((r) => (r.ok ? r.json() : null), () => null);
 // Without the file every cut keeps the current city (rather than all becoming "cesko").
-if (MESTA) loadBounds(MESTA); else console.warn("mesta.json se nenačetl: město se podle polohy nepozná");
-// The states (tools/build_staty.mjs): a cut outside the cities is in Czechia, in Slovakia or elsewhere (city.js cityAt).
+if (TOWN_BOUNDS) loadBounds(TOWN_BOUNDS); else console.warn("towns.json se nenačetl: město se podle polohy nepozná");
+// The states (tools/build_states.mjs): a cut outside the cities is in Czechia, in Slovakia or elsewhere (city.js cityAt).
 // Loaded with the cities' file (both before the first cut, a linked one included).
-const STATY = await statyJson;
-if (STATY) loadStates(STATY); else console.warn("staty.json se nenačetl: stát se podle polohy nepozná");
+const STATES = await statesJson;
+if (STATES) loadStates(STATES); else console.warn("states.json se nenačetl: stát se podle polohy nepozná");
 {
   const [sk, ...rest] = await townsJson;
   if (sk) { loadSkTowns(sk); loadTowns(sk); }
@@ -221,7 +221,7 @@ const ArcgisExport = L.TileLayer.extend({
 });
 const BIG_TILES = { tileSize: 512, zoomOffset: -1 };
 // One set of base maps for the whole Czech Republic (Bára: one page, no city switch): each kind of map
-// is the national layer with the cities' own on top, each limited to its city (mesta.json).
+// is the national layer with the cities' own on top, each limited to its city (towns.json).
 const DMVS = "https://dmvs.cuzk.gov.cz/api/wms";
 const osmLayer = (opacity = 1) => L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", { maxZoom: 21, maxNativeZoom: 19, opacity, attribution: `© <a href="https://www.openstreetmap.org/copyright">${tr("přispěvatelé OpenStreetMap")}</a>` });
 // A blank tile: what a layer kept to its area draws beyond it (nothing is asked of its server there).
@@ -243,9 +243,9 @@ const keptInside = (Base, rings) => Base.extend({
 // The box of a state's or region's rings ([lon, lat]); the rings stay with it, so that its credit shows only where the
 // view reaches the area itself, not just its box (Poland's box covers Prague: creditCities).
 const boundsOf = (rings) => { const pts = rings.flat(), xs = pts.map((q) => q[0]), ys = pts.map((q) => q[1]); const b = L.latLngBounds([Math.min(...ys), Math.min(...xs)], [Math.max(...ys), Math.max(...xs)]); b.rings = rings; return b; };
-// Czechia's rings (staty.json): ČÚZK's orthophoto and the DMVS load tiles and credit themselves only there
+// Czechia's rings (states.json): ČÚZK's orthophoto and the DMVS load tiles and credit themselves only there
 // (Bára 26. 11. 2026: San Francisco said "ortofoto © ČÚZK", and the tiles were asked of ČÚZK all over the world).
-const CZ_RINGS = STATY?.cesko || [];
+const CZ_RINGS = STATES?.cesko || [];
 const czBounds = () => (CZ_RINGS.length ? { bounds: boundsOf(CZ_RINGS) } : {});
 const CzWms = CZ_RINGS.length ? keptInside(L.TileLayer.WMS, CZ_RINGS) : L.TileLayer.WMS;
 const cuzkOrtho = () => new CzWms("https://ags.cuzk.gov.cz/arcgis1/services/ORTOFOTO/MapServer/WMSServer", {
@@ -258,7 +258,7 @@ const dmvsWms = (layer, opts = {}) => new CzWms(`${DMVS}/${layer}`, {
 });
 // The box of a city from its boundary, its rings with it (its credit only where the view reaches the city): its layers
 // load tiles only there.
-const within = (id) => (MESTA?.[id]?.length ? { bounds: boundsOf(MESTA[id]) } : {});
+const within = (id) => (TOWN_BOUNDS?.[id]?.length ? { bounds: boundsOf(TOWN_BOUNDS[id]) } : {});
 const kinds = { map: [osmLayer()], ortho: [cuzkOrtho()], tech: [osmLayer(0.5), dmvsWms("dtm_zps_plochy_bar", { minZoom: 16, transparent: false })], lines: [dmvsWms("dtm_zps_linie_body", { minZoom: 17, opacity: 0.9 })] };
 // Prague: IPR's pre-rendered map in Web Mercator on ArcGIS Online (fast, a CDN) and the lines of its technical map.
 kinds.map.push(L.tileLayer("https://tiles.arcgis.com/tiles/SBTXIEUGWbqzUecw/arcgis/rest/services/MTVU_WGS84/MapServer/tile/{z}/{y}/{x}", {
@@ -273,27 +273,27 @@ kinds.map.push(new ArcgisExport("", { service: "https://gis.brno.cz/ags3/rest/se
 kinds.ortho.push(L.tileLayer("https://gis.brno.cz/ags1/rest/services/OMI/OMI_basemaps_ortofoto_2025_wgs/MapServer/tile/{z}/{y}/{x}", {
   maxZoom: 21, maxNativeZoom: 21, attribution: "ortofoto 2025 © Statutární město Brno", ...within("brno"),
 }));
-// Slovakia: the ZBGIS orthophoto of ÚGKK SR (tiles in Web Mercator to level 19), only there (staty.json).
-if (STATY?.slovensko) {
-  const Sk = keptInside(L.TileLayer, STATY.slovensko);
+// Slovakia: the ZBGIS orthophoto of ÚGKK SR (tiles in Web Mercator to level 19), only there (states.json).
+if (STATES?.slovensko) {
+  const Sk = keptInside(L.TileLayer, STATES.slovensko);
   kinds.ortho.push(new Sk(`${SK_ORTHO}/tile/{z}/{y}/{x}`, {
-    maxZoom: 21, maxNativeZoom: 19, attribution: "ortofoto © GKÚ Bratislava, NLC (ZBGIS)", bounds: boundsOf(STATY.slovensko),
+    maxZoom: 21, maxNativeZoom: 19, attribution: "ortofoto © GKÚ Bratislava, NLC (ZBGIS)", bounds: boundsOf(STATES.slovensko),
   }));
 }
-// Austria: basemap.at's orthophoto (Web Mercator to level 20), only there (staty.json; its box covers Bratislava).
-if (STATY?.austria) {
-  const At = keptInside(L.TileLayer, STATY.austria);
+// Austria: basemap.at's orthophoto (Web Mercator to level 20), only there (states.json; its box covers Bratislava).
+if (STATES?.austria) {
+  const At = keptInside(L.TileLayer, STATES.austria);
   kinds.ortho.push(new At(`${AT_ORTHO}/{z}/{y}/{x}.jpeg`, {
     // Level 20 only in some towns: 19 everywhere (zoomed in beyond it).
-    maxZoom: 21, maxNativeZoom: 19, attribution: "ortofoto © basemap.at", bounds: boundsOf(STATY.austria),
+    maxZoom: 21, maxNativeZoom: 19, attribution: "ortofoto © basemap.at", bounds: boundsOf(STATES.austria),
   }));
 }
 // Switzerland and Liechtenstein: swisstopo's SWISSIMAGE (WMTS {z}/{x}/{y}, Web Mercator to level 20), only there.
-if (STATY?.switzerland) {
-  const pts = [...STATY.switzerland, ...(STATY.liechtenstein || [])].flat(), xs = pts.map((q) => q[0]), ys = pts.map((q) => q[1]);
+if (STATES?.switzerland) {
+  const pts = [...STATES.switzerland, ...(STATES.liechtenstein || [])].flat(), xs = pts.map((q) => q[0]), ys = pts.map((q) => q[1]);
   // Beyond the border swisstopo answers with a coarse satellite image (Vorarlberg, the hostile review): a tile whose
   // corners and centre all lie outside Switzerland and Liechtenstein is left empty, so basemap.at or a Land shows.
-  const swiss = [boxedPlace("CH", STATY.switzerland), ...(STATY.liechtenstein ? [boxedPlace("LI", STATY.liechtenstein)] : [])];
+  const swiss = [boxedPlace("CH", STATES.switzerland), ...(STATES.liechtenstein ? [boxedPlace("LI", STATES.liechtenstein)] : [])];
   const ChOrtho = L.TileLayer.extend({
     getTileUrl(coords) {
       const size = this.getTileSize();
@@ -311,9 +311,9 @@ if (STATY?.switzerland) {
 }
 // The Netherlands: PDOK's Luchtfoto (Actueel_orthoHR, 8 cm, WMTS {z}/{x}/{y} in Web Mercator to level 21), only there:
 // beyond the border PDOK answers with a blank tile, so a tile wholly outside the Netherlands is left empty.
-if (STATY?.netherlands) {
-  const pts = STATY.netherlands.flat(), xs = pts.map((q) => q[0]), ys = pts.map((q) => q[1]);
-  const dutch = [boxedPlace("NL", STATY.netherlands)];
+if (STATES?.netherlands) {
+  const pts = STATES.netherlands.flat(), xs = pts.map((q) => q[0]), ys = pts.map((q) => q[1]);
+  const dutch = [boxedPlace("NL", STATES.netherlands)];
   const NlOrtho = L.TileLayer.extend({
     getTileUrl(coords) {
       const size = this.getTileSize();
@@ -356,61 +356,61 @@ const retryOnce = (layer, ms = 2500) => layer.on("tileerror", ({ tile }) => {
 // Luxembourg first, Belgium's regions over it (each answers transparent or nothing outside itself; the hostile review:
 // a white tile of one hid its neighbour). Each region's layer asks only for tiles over that region
 // (regions-be.json, loaded once).
-if (STATY?.luxembourg) {
-  const Lu = insideOnly([boxedPlace("LU", STATY.luxembourg)]);
-  kinds.ortho.push(new Lu(`${LU_ORTHO}/{z}/{x}/{y}.jpeg`, { maxZoom: 21, maxNativeZoom: 21, attribution: tr("ortofoto © ACT Luxembourg (geoportail.lu, CC0)"), bounds: boundsOf(STATY.luxembourg) }));
+if (STATES?.luxembourg) {
+  const Lu = insideOnly([boxedPlace("LU", STATES.luxembourg)]);
+  kinds.ortho.push(new Lu(`${LU_ORTHO}/{z}/{x}/{y}.jpeg`, { maxZoom: 21, maxNativeZoom: 21, attribution: tr("ortofoto © ACT Luxembourg (geoportail.lu, CC0)"), bounds: boundsOf(STATES.luxembourg) }));
 }
-if (STATY?.belgium) {
+if (STATES?.belgium) {
   const reg = await fetch(new URL("./regions-be.json", import.meta.url)).then((r) => r.json()).catch(() => null);
   const add = (codes, url, credit) => {
-    const places = reg ? codes.map((c) => boxedPlace(`BE-${c}`, reg[c])) : [boxedPlace("BE", STATY.belgium)];
+    const places = reg ? codes.map((c) => boxedPlace(`BE-${c}`, reg[c])) : [boxedPlace("BE", STATES.belgium)];
     const R = insideOnly(places);
-    kinds.ortho.push(new R("", { bboxUrl: url, maxZoom: 21, attribution: tr(credit), bounds: boundsOf(reg ? codes.flatMap((c) => reg[c]) : STATY.belgium) }));
+    kinds.ortho.push(new R("", { bboxUrl: url, maxZoom: 21, attribution: tr(credit), bounds: boundsOf(reg ? codes.flatMap((c) => reg[c]) : STATES.belgium) }));
   };
   add(["wal"], (b, w, h) => BE_ORTHO.wal.url(b, w, h, "image/png"), "ortofoto © SPW (Service public de Wallonie, CC BY 4.0)");
   add(["vl", "bru"], (b, w, h) => BE_ORTHO.vl.url(b, w, h, "image/png"), "ortofoto: Bron: Luchtopnamen Digitaal Vlaanderen (Modellicentie gratis hergebruik v1.0)");
 }
 // Poland: GUGiK's orthophoto (WMS in Web Mercator), only for tiles over Poland, transparent where it has no photo (it has
 // some up to about 1 km beyond the border, so at the border its tiles cover the Czech ones there: the hostile review).
-if (STATY?.poland) {
-  const Pl = insideOnly([boxedPlace("PL", STATY.poland)]);
-  kinds.ortho.push(new Pl("", { bboxUrl: (b, w, h) => `${PL_ORTHO(b, w, h, "image/png")}&TRANSPARENT=TRUE`, maxZoom: 21, attribution: tr("ortofoto © GUGiK (Geoportal.gov.pl)"), bounds: boundsOf(STATY.poland) }));
+if (STATES?.poland) {
+  const Pl = insideOnly([boxedPlace("PL", STATES.poland)]);
+  kinds.ortho.push(new Pl("", { bboxUrl: (b, w, h) => `${PL_ORTHO(b, w, h, "image/png")}&TRANSPARENT=TRUE`, maxZoom: 21, attribution: tr("ortofoto © GUGiK (Geoportal.gov.pl)"), bounds: boundsOf(STATES.poland) }));
 }
 // France: IGN's orthophoto (WMS in Web Mercator), only inside France (the service is white beyond it).
-if (STATY?.france) {
-  const Fr = insideOnly([boxedPlace("FR", STATY.france)]);
-  kinds.ortho.push(new Fr("", { bboxUrl: (b, w, h) => `${FR_ORTHO(b, w, h, "image/png")}&TRANSPARENT=TRUE`, maxZoom: 21, attribution: tr("ortofoto © IGN (Géoplateforme)"), bounds: boundsOf(STATY.france) }));
+if (STATES?.france) {
+  const Fr = insideOnly([boxedPlace("FR", STATES.france)]);
+  kinds.ortho.push(new Fr("", { bboxUrl: (b, w, h) => `${FR_ORTHO(b, w, h, "image/png")}&TRANSPARENT=TRUE`, maxZoom: 21, attribution: tr("ortofoto © IGN (Géoplateforme)"), bounds: boundsOf(STATES.france) }));
 }
 // Cyprus: the DLS orthophoto of 2019 (tiles), only over the area of the Republic and the British bases.
-if (STATY?.cyprus) {
-  const Cy = insideOnly([boxedPlace("CY", STATY.cyprus)]);
-  kinds.ortho.push(new Cy(`${CY_ORTHO}/{z}/{y}/{x}`, { maxZoom: 21, maxNativeZoom: 21, attribution: tr("ortofoto © DLS Kypr"), bounds: boundsOf(STATY.cyprus) }));
+if (STATES?.cyprus) {
+  const Cy = insideOnly([boxedPlace("CY", STATES.cyprus)]);
+  kinds.ortho.push(new Cy(`${CY_ORTHO}/{z}/{y}/{x}`, { maxZoom: 21, maxNativeZoom: 21, attribution: tr("ortofoto © DLS Kypr"), bounds: boundsOf(STATES.cyprus) }));
 }
 // Italy: the open orthophotos, each only over its own box and inside Italy's covered area.
-if (STATY?.italy) {
-  const It = insideOnly([boxedPlace("IT", STATY.italy)]);
+if (STATES?.italy) {
+  const It = insideOnly([boxedPlace("IT", STATES.italy)]);
   for (const o of Object.values(IT_ORTHO)) {
     const [x0, y0, x1, y1] = o.box;
     kinds.ortho.push(new It("", { bboxUrl: (b, w, h) => `${o.url(b, w, h, "image/png")}&TRANSPARENT=TRUE`, maxZoom: 21, attribution: o.who ? tr("ortofoto {who}", { who: o.who }) : tr(o.credit), bounds: L.latLngBounds([y0, x0], [y1, x1]) }));
   }
 }
 // Estonia: the Board's orthophoto tiles (TMS: the y axis flipped), only over Estonia (dark beyond).
-if (STATY?.estonia) {
-  const Ee = insideOnly([boxedPlace("EE", STATY.estonia)]);
-  kinds.ortho.push(new Ee(`${EE_ORTHO}/{z}/{x}/{y}.jpg`, { tms: true, maxZoom: 21, maxNativeZoom: 18, attribution: tr("ortofoto © Maa- ja Ruumiamet, nálet 2024 (stav dlaždic 11/2026)"), bounds: boundsOf(STATY.estonia) }));
+if (STATES?.estonia) {
+  const Ee = insideOnly([boxedPlace("EE", STATES.estonia)]);
+  kinds.ortho.push(new Ee(`${EE_ORTHO}/{z}/{x}/{y}.jpg`, { tms: true, maxZoom: 21, maxNativeZoom: 18, attribution: tr("ortofoto © Maa- ja Ruumiamet, nálet 2024 (stav dlaždic 11/2026)"), bounds: boundsOf(STATES.estonia) }));
 }
 // Slovenia: GURS's orthophoto DOF025 (WMS in Web Mercator), only over Slovenia (beyond it the server hangs and gives 504).
-if (STATY?.slovenia) {
-  const Si = insideOnly([boxedPlace("SI", STATY.slovenia)]);
+if (STATES?.slovenia) {
+  const Si = insideOnly([boxedPlace("SI", STATES.slovenia)]);
   // The review of 24. 11. 2026 (RECENZE-SI 3): a tile of z9 over the whole state and some of z18 were 504 after 30 s, so the
   // layer starts at z14 (below it the other basemaps), a tile wholly inside Slovenia is a JPEG (PNG takes GURS twice as
   // long; transparent only at the border) and a failed tile is asked once more.
-  kinds.ortho.push(retryOnce(new Si("", { bboxUrl: (b, w, h, inside) => inside ? SI_ORTHO(b, w, h) : `${SI_ORTHO(b, w, h, "image/png")}&TRANSPARENT=TRUE`, minZoom: 14, maxZoom: 21, attribution: tr("ortofoto DOF025 © Geodetska uprava RS (CC BY 4.0)"), bounds: boundsOf(STATY.slovenia) })));
+  kinds.ortho.push(retryOnce(new Si("", { bboxUrl: (b, w, h, inside) => inside ? SI_ORTHO(b, w, h) : `${SI_ORTHO(b, w, h, "image/png")}&TRANSPARENT=TRUE`, minZoom: 14, maxZoom: 21, attribution: tr("ortofoto DOF025 © Geodetska uprava RS (CC BY 4.0)"), bounds: boundsOf(STATES.slovenia) })));
 }
 // Finland: the towns' own orthophotos (lanes-ortho.js FI_ORTHO: Helsinki, Espoo, Turku), each only over its town's box
 // and inside Finland (none elsewhere: the national one needs a personal key).
-if (STATY?.finland) {
-  const Fi = insideOnly([boxedPlace("FI", STATY.finland)]);
+if (STATES?.finland) {
+  const Fi = insideOnly([boxedPlace("FI", STATES.finland)]);
   for (const o of Object.values(FI_ORTHO).reverse()) {
     const [x0, y0, x1, y1] = o.box;
     kinds.ortho.push(new Fi("", { bboxUrl: (b, w, h) => o.url(b, w, h, "image/png"), maxZoom: 21, attribution: tr(o.credit), bounds: L.latLngBounds([y0, x0], [y1, x1]) }));
@@ -418,39 +418,39 @@ if (STATY?.finland) {
 }
 // Denmark: GeoDanmark's spring orthophoto through Dataforsyningen (WMTS, lanes-ortho.js DK_ORTHO), only over Denmark and
 // only with the app's token (keys.js; without it no layer, the map keeps the others).
-if (STATY?.denmark && dkToken()) {
-  const Dk = insideOnly([boxedPlace("DK", STATY.denmark)]);
-  kinds.ortho.push(new Dk(DK_ORTHO("{z}", "{x}", "{y}"), { maxZoom: 21, maxNativeZoom: 20, attribution: tr("ortofoto: Indeholder data fra Styrelsen for Dataforsyning og Infrastruktur, Ortofoto forår, WMTS-tjeneste"), bounds: boundsOf(STATY.denmark) }));
+if (STATES?.denmark && dkToken()) {
+  const Dk = insideOnly([boxedPlace("DK", STATES.denmark)]);
+  kinds.ortho.push(new Dk(DK_ORTHO("{z}", "{x}", "{y}"), { maxZoom: 21, maxNativeZoom: 20, attribution: tr("ortofoto: Indeholder data fra Styrelsen for Dataforsyning og Infrastruktur, Ortofoto forår, WMTS-tjeneste"), bounds: boundsOf(STATES.denmark) }));
 }
 // Malta: the Planning Authority's orthophoto of 2018 (in degrees: lanes-ortho.js MT_ORTHO), only over Malta; a JPEG
 // inside the islands, a transparent PNG only on a tile across the coast (as Slovenia; the review of Malta).
-if (STATY?.malta) {
-  const Mt = insideOnly([boxedPlace("MT", STATY.malta)]);
-  kinds.ortho.push(new Mt("", { bboxUrl: (b, w, h, inside) => (inside ? MT_ORTHO(b, w, h) : `${MT_ORTHO(b, w, h, "image/png")}&TRANSPARENT=TRUE`), maxZoom: 21, attribution: tr("ortofoto © Planning Authority Malta (CC BY 4.0)"), bounds: boundsOf(STATY.malta) }));
+if (STATES?.malta) {
+  const Mt = insideOnly([boxedPlace("MT", STATES.malta)]);
+  kinds.ortho.push(new Mt("", { bboxUrl: (b, w, h, inside) => (inside ? MT_ORTHO(b, w, h) : `${MT_ORTHO(b, w, h, "image/png")}&TRANSPARENT=TRUE`), maxZoom: 21, attribution: tr("ortofoto © Planning Authority Malta (CC BY 4.0)"), bounds: boundsOf(STATES.malta) }));
 }
 // Monaco: IGN's orthophoto covers it too.
-if (STATY?.monaco) {
-  const Mc = insideOnly([boxedPlace("MC", STATY.monaco)]);
-  kinds.ortho.push(new Mc("", { bboxUrl: (b, w, h) => `${FR_ORTHO(b, w, h, "image/png")}&TRANSPARENT=TRUE`, maxZoom: 21, attribution: tr("ortofoto © IGN (Géoplateforme)"), bounds: boundsOf(STATY.monaco) }));
+if (STATES?.monaco) {
+  const Mc = insideOnly([boxedPlace("MC", STATES.monaco)]);
+  kinds.ortho.push(new Mc("", { bboxUrl: (b, w, h) => `${FR_ORTHO(b, w, h, "image/png")}&TRANSPARENT=TRUE`, maxZoom: 21, attribution: tr("ortofoto © IGN (Géoplateforme)"), bounds: boundsOf(STATES.monaco) }));
 }
-if (STATY?.spain) {
+if (STATES?.spain) {
   // Not over Melilla (PNOA's image there is Airbus's under a licence not cleared; Bára 23. 11. 2026, lanes-ortho.js
   // ES_NOT_PNOA): its ring left out of the area drawn.
   const notPnoa = (r) => ES_NOT_PNOA.some(([x0, y0, x1, y1]) => r.every(([x, y]) => x >= x0 && x <= x1 && y >= y0 && y <= y1));
-  const Es = insideOnly([boxedPlace("ES", STATY.spain.filter((r) => !notPnoa(r)))]);
-  kinds.ortho.push(new Es("", { bboxUrl: (b, w, h) => `${ES_ORTHO(b, w, h, "image/png")}&TRANSPARENT=TRUE`, maxZoom: 21, attribution: tr("ortofoto PNOA © IGN (CC BY 4.0)"), bounds: boundsOf(STATY.spain) }));
+  const Es = insideOnly([boxedPlace("ES", STATES.spain.filter((r) => !notPnoa(r)))]);
+  kinds.ortho.push(new Es("", { bboxUrl: (b, w, h) => `${ES_ORTHO(b, w, h, "image/png")}&TRANSPARENT=TRUE`, maxZoom: 21, attribution: tr("ortofoto PNOA © IGN (CC BY 4.0)"), bounds: boundsOf(STATES.spain) }));
 }
 // Portugal: DGT's flight of 2025 (the whole mainland; the review of 23. 11. 2026: three stacked layers tripled the
 // requests), only over the mainland (Madeira and the Azores have no DGT photo).
-if (STATY?.portugal) {
-  const Pt = insideOnly([boxedPlace("PT", STATY.portugal)]);
+if (STATES?.portugal) {
+  const Pt = insideOnly([boxedPlace("PT", STATES.portugal)]);
   const [x0, y0, x1, y1] = PT_MAINLAND;
   kinds.ortho.push(new Pt("", { bboxUrl: (b, w, h) => `${PT_ORTHO["pt-25"](b, w, h, "image/png")}&TRANSPARENT=TRUE`, maxZoom: 21, attribution: tr("ortofoto © DGT"), bounds: [[y0, x0], [y1, x1]] }));
 }
 // Germany: the orthophoto of each Land (lanes-ortho.js DE_ORTHO), a tile from the WMS of the Land its centre lies in
 // (laender.json, loaded when the first tile in Germany is drawn).
-if (STATY?.germany) {
-  const pts = STATY.germany.flat(), xs = pts.map((q) => q[0]), ys = pts.map((q) => q[1]);
+if (STATES?.germany) {
+  const pts = STATES.germany.flat(), xs = pts.map((q) => q[0]), ys = pts.map((q) => q[1]);
   const DeOrtho = L.GridLayer.extend({
     createTile(coords, done) {
       const size = this.getTileSize(), R = 6378137, span = (2 * Math.PI * R) / 2 ** coords.z;
@@ -481,7 +481,7 @@ if (STATY?.germany) {
     },
   });
   kinds.ortho.push(new DeOrtho({ maxZoom: 21, minZoom: 12, attribution: tr("ortofoto © spolkové země Německa (GeoBasis-DE)"),
-    bounds: Object.assign(L.latLngBounds([Math.min(...ys), Math.min(...xs)], [Math.max(...ys), Math.max(...xs)]), { rings: STATY.germany }) }));
+    bounds: Object.assign(L.latLngBounds([Math.min(...ys), Math.min(...xs)], [Math.max(...ys), Math.max(...xs)]), { rings: STATES.germany }) }));
 }
 // The towns (towns/<id>.js maps): their orthophoto, technical map and lines, each kept to the town.
 for (const [id, t] of Object.entries(TOWNS)) {
@@ -515,7 +515,7 @@ function creditCities() {
 }
 map.on("moveend layeradd layerremove", creditCities);
 // North America, when the map or a cut is there (late.js): the cities' orthophotos (lanes-ortho.js US_ORTHO, CA_ORTHO), each
-// only over its city (mesta-us.json, mesta-ca.json).
+// only over its city (towns-us.json, towns-ca.json).
 onAmerica((towns) => {
   for (const o of [...Object.values(US_ORTHO), ...Object.values(CA_ORTHO)]) if (towns[o.town]) {
     const Own = insideOnly([boxedPlace(o.town, towns[o.town])]);
@@ -1233,7 +1233,7 @@ function render() {
   }
 }
 
-// Whose data the profile shows: the city's, and a town's passport when the cut took it (towns/pasporty.js; Bára:
+// Whose data the profile shows: the city's, and a town's passport when the cut took it (towns/passports.js; Bára:
 // the cut's information should say where its data come from).
 // The Slovak towns whose road passports a cut may take (towns/slovensko.js SK_TOWNS), by the town's name in the genitive.
 const SK_EDGES_TOWN = { nitra: "Nitra", piestany: "Piešťany", zvolen: "Zvolen", hlohovec: "Hlohovec", presov: "Prešov", "bratislava-tm": "Bratislava" };

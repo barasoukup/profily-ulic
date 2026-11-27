@@ -27,7 +27,7 @@ u hranic (21 hraničních měst DE/AT správně), `signs.js` nečte jazyk, CSP m
   Innsbruck a Klagenfurt (pod 48°).
 - **Jak zopakovat:** `node -e 'import("./app/public/validate.js").then(({cleanCut})=>console.log(cleanCut({lat:52.5163,lon:13.3777,bearing:0})))'`
   → `null`. V aplikaci: řez v Berlíně, F5.
-- **Oprava:** meze podle států ve `staty.json` (nebo 45–56° a 5–23°), `sources` rozšířit o všechny klíče, které čte
+- **Oprava:** meze podle států ve `states.json` (nebo 45–56° a 5–23°), `sources` rozšířit o všechny klíče, které čte
   `creditLines`, s kontrolou hodnot; test pro Berlín, Košice, Graz.
 
 ### 2. Zákonný odhad stání v Německu dělá z obousměrné ulice dva pruhy po 1,55 m
@@ -74,7 +74,7 @@ u hranic (21 hraničních měst DE/AT správně), `signs.js` nečte jazyk, CSP m
   na velkém souboru, jiná verze formátu u státu, jehož job selhal a zůstal starý soubor) shodí celé R2 a `this.at++`
   přepne natrvalo na Pages, kde jsou jen `cz` a `sk`. Pages vrací pro Německo prázdno bez chyby, takže se už nikdy
   nevrátí na R2 a uživatel vidí „ulici jsem nenašla“. Chyba německého balíku tak přepne na zálohu i české uživatele.
-- **Oprava:** číst jen balík státu řezu (podle `staty.json` nebo `head.extent`), chybu jednoho balíku nebrat jako chybu
+- **Oprava:** číst jen balík státu řezu (podle `states.json` nebo `head.extent`), chybu jednoho balíku nebrat jako chybu
   místa, a když záloha stát nemá, zkusit příště znovu R2 a říct, že data nejsou dostupná.
 
 ### 7. Zúžení stání z OSM (`OSM_PARK_MIN`) platí i pro přesné vozovky v Česku a dává červená varování

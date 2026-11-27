@@ -1,7 +1,7 @@
 // The boundaries of the cities the app knows (RÚIAN obce from ČÚZK, simplified to about 20 m), so a cut
 // takes the data sources, illustrations and texts of the city it lies in (city.js cityAt); anywhere else
-// in the Czech Republic it is "cesko". Written into app/public/mesta.json and kept in the repository
-// (a few kB; boundaries change rarely): node tools/build_mesta.mjs
+// in the Czech Republic it is "cesko". Written into app/public/towns.json and kept in the repository
+// (a few kB; boundaries change rarely): node tools/build_towns.mjs
 import fs from "node:fs";
 
 const OBEC = "https://ags.cuzk.gov.cz/arcgis/rest/services/RUIAN/Prohlizeci_sluzba_nad_daty_RUIAN/MapServer/12/query";
@@ -23,4 +23,4 @@ for (const [id, kod] of Object.entries(CODES)) {
   out[id] = f.geometry.rings;
   console.log(id, f.attributes.nazev, f.geometry.rings.reduce((a, r) => a + r.length, 0), "bodů");
 }
-fs.writeFileSync(new URL("../app/public/mesta.json", import.meta.url), JSON.stringify(out));
+fs.writeFileSync(new URL("../app/public/towns.json", import.meta.url), JSON.stringify(out));

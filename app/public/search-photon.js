@@ -21,7 +21,7 @@ const NATIVE = new Set(["CH", "LI", "BE", "LU", "PL", "PT", "MC", "CY", "MT", "I
 // whole USA would answer a "Main Street" with places almost all outside the metros. So one query with the box of the metro
 // the query names (its city or a borough), else of the one the map's centre is in, else of the nearest to it; the box's
 // places outside the metro are dropped by closedAt (New Jersey in New York's). Boxes from the metros' rings
-// (staty-america.json, tools/build_staty.mjs METROS).
+// (states-america.json, tools/build_states.mjs METROS).
 export const METROS = {
   US: {
     dc: { box: [-77.54, 38.54, -76.67, 39.35], names: ["washington", "d\\.? ?c\\.?", "arlington", "alexandria", "bethesda", "silver spring"] },

@@ -54,8 +54,8 @@ test("Malta: jízda vlevo, značky, normy, zákon o stání", async () => {
 
 test("Malta: stát podle hranic (Malta, Gozo, Comino)", async () => {
   const C = await import("../app/public/city.js");
-  C.loadBounds(JSON.parse(fs.readFileSync(new URL("../app/public/mesta.json", import.meta.url), "utf8")));
-  C.loadStates(JSON.parse(fs.readFileSync(new URL("../app/public/staty.json", import.meta.url), "utf8")));
+  C.loadBounds(JSON.parse(fs.readFileSync(new URL("../app/public/towns.json", import.meta.url), "utf8")));
+  C.loadStates(JSON.parse(fs.readFileSync(new URL("../app/public/states.json", import.meta.url), "utf8")));
   assert.equal(C.cityAt(35.8989, 14.5146), "malta"); // Valletta
   assert.equal(C.cityAt(36.0443, 14.2397), "malta"); // Victoria, Gozo
   assert.equal(C.cityAt(36.0128, 14.3368), "malta"); // Comino

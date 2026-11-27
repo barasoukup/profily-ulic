@@ -93,7 +93,7 @@ Bonus (pro „Sítě pod zemí“, ne teď): `wfs-si-gurs-kgi` `LINIJE` vrací v
 |---|---|---|---|
 | **GURS `wfs-si-gurs-kn` `SI.GURS.KN:NASLOVI_HS`** (domovní čísla s bodem) | **ověřeno**: CORS `*`, GeoJSON v EPSG:4326, 1 s; pole `ULICA_NAZIV`, `HS_STEVILKA`, `HS_DODATEK`, `NASELJE_NAZIV`, `OBCINA_NAZIV`, **`*_NAZIV_DJ`** (dvojjazyčný název v italské a maďarské oblasti) | filtr CQL `ULICA_NAZIV LIKE 'Trubarjeva%'` funguje (ověřeno na `REGISTER_NASLOVOV`), ale je to přesná shoda na začátek řetězce, bez fulltextu a bez tolerance diakritiky | **použitelné s podmínkou**: jako RÚIAN (ulice + číslo), na volný text nestačí |
 | GURS `wfs-si-gurs-rn` `SI.GURS.RN:REGISTER_NASLOVOV` | **ověřeno**: CORS `*`, bez geometrie, souřadnice `E`, `N` v D96/TM (EPSG:3794) | – | spíš `NASLOVI_HS` |
-| GURS `wfs-si-gurs-rpe` (`OBCINE`, `NASELJA`, `ULICE`, `CETRTNE_SKUPNOSTI`…) | **ověřeno** (capabilities, CORS `*`) | hranice obcí pro `mesta-si.json`, ulice s geometrií | pro hranice měst a hledání ulic |
+| GURS `wfs-si-gurs-rpe` (`OBCINE`, `NASELJA`, `ULICE`, `CETRTNE_SKUPNOSTI`…) | **ověřeno** (capabilities, CORS `*`) | hranice obcí pro `towns-si.json`, ulice s geometrií | pro hranice měst a hledání ulic |
 | **Photon** (komoot) | **ověřeno**: „Trubarjeva cesta Ljubljana“ → ulice v Lublani, CORS `*` | ODbL | **záloha / hlavní volný text** |
 
 ---
@@ -105,7 +105,7 @@ Bonus (pro „Sítě pod zemí“, ne teď): `wfs-si-gurs-kgi` `LINIJE` vrací v
 120–150 MB podle poměru u Česka; neověřeno).
 
 **Hranice GISCO** (**ověřeno**: `NUTS_RG_01M_2024_4326_LEVL_0.geojson`, CORS `*`): Slovinsko jeden polygon,
-1 154 vrcholů, obdélník 13,38–16,60° v. d., 45,42–46,88° s. š. `tools/build_staty.mjs` Slovinsko zatím nemá. Státní
+1 154 vrcholů, obdélník 13,38–16,60° v. d., 45,42–46,88° s. š. `tools/build_states.mjs` Slovinsko zatím nemá. Státní
 hranici má i GURS (Evidenca državne meje, CC BY 4.0; nedotazováno).
 
 ---
@@ -140,7 +140,7 @@ hranici má i GURS (Evidenca državne meje, CC BY 4.0; nedotazováno).
 | Hledání | GURS `NASLOVI_HS` (CQL) + Photon | ověřeno | `*` | CC BY 4.0 / ODbL | Photon na volný text, GURS na přesnou adresu |
 | Hranice měst | GURS `wfs-si-gurs-rpe` `OBCINE` | ověřeno (capabilities) | `*` | CC BY 4.0 | statický soubor při nasazení |
 | OSM | Geofabrik `slovenia` 314,7 MB | ověřeno | – | ODbL | jeden balík `si` |
-| Hranice státu | GISCO `SI` | ověřeno | `*` | © EuroGeographics | doplnit do `build_staty.mjs` |
+| Hranice státu | GISCO `SI` | ověřeno | `*` | © EuroGeographics | doplnit do `build_states.mjs` |
 | Sítě (později) | GURS `wfs-si-gurs-kgi` `LINIJE` (3D) | ověřeno | `*` | CC BY 4.0 | kandidát pro ◍ Sítě mimo Prahu |
 
 Neověřeno: rok a přesné rozlišení ortofota v jednotlivých městech; význam kódů `vrsta_pov` DRSI a `GJI_ATR1_SIFRA`;

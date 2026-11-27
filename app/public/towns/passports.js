@@ -1,6 +1,6 @@
 // The road passports of towns without a city module of their own (found 13.–15. 11. 2026, in the app from
-// 16. 11. 2026). Anywhere else in the Czech Republic ("cesko"), a cut inside one of these towns (pasporty.json,
-// tools/build_pasporty.mjs) takes the passport's surfaces and the national DTM of ČÚZK elsewhere, as the towns'
+// 16. 11. 2026). Anywhere else in the Czech Republic ("cesko"), a cut inside one of these towns (passports.json,
+// tools/build_passports.mjs) takes the passport's surfaces and the national DTM of ČÚZK elsewhere, as the towns'
 // modules do (towns/overlay.js overDmvs); a passport with nothing in the box leaves the DTM alone (withPassports):
 //   roznov: T-MAPY PaKom WFS (ms:pk-pov), as Karviná;
 // The A/B test after the DMVS outage (26. 11. 2026, evaluation/PASPORTY-AB.md: the app with the passport against
@@ -14,9 +14,9 @@
 import { asMtvu, asPassport, insideRings } from "../gis.js";
 import { MTVU_LABELS } from "../city.js";
 import { overDmvs, tmapyWfs } from "./overlay.js";
-export { PASSPORT_NAMES } from "./pasporty-names.js";
+export { PASSPORT_NAMES } from "./passport-names.js";
 
-// RÚIAN codes of the towns (tools/build_pasporty.mjs); their names in pasporty-names.js.
+// RÚIAN codes of the towns (tools/build_passports.mjs); their names in passport-names.js.
 export const PASSPORT_CODES = { roznov: 544841 };
 // The hosts the page asks (index.html CSP, tests/city.test.js).
 export const PASSPORT_HOSTS = ["https://mapy.roznov.cz"];
@@ -38,10 +38,10 @@ export async function passport(id, bbox) {
   return none();
 }
 
-// The town of a point (pasporty.json, loaded once; in Node, as the evaluation runs, from the file).
+// The town of a point (passports.json, loaded once; in Node, as the evaluation runs, from the file).
 let bounds;
 async function loadBounds() {
-  const url = new URL("../pasporty.json", import.meta.url);
+  const url = new URL("../passports.json", import.meta.url);
   try {
     bounds = url.protocol === "file:" ? JSON.parse((await import("node:fs")).readFileSync(url, "utf8")) : await fetch(url).then((r) => r.json());
   } catch { bounds = {}; }

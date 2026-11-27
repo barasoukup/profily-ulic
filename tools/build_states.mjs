@@ -1,5 +1,5 @@
 // The boundaries of the states the app has OSM tiles of (Bára 15. 11. 2026), so a cut outside the cities of
-// mesta.json takes its state (city.js cityAt): "cesko" (RÚIAN Stát, ČÚZK), "slovensko" (ZBGIS of ÚGKK SR, layer
+// towns.json takes its state (city.js cityAt): "cesko" (RÚIAN Stát, ČÚZK), "slovensko" (ZBGIS of ÚGKK SR, layer
 // Slovenská republika), "austria" (Eurostat GISCO 2024, 1 : 1 000 000, © EuroGeographics; the BEV's WFS is off, Bára
 // 16. 11. 2026), "germany" (GISCO as Austria, Bára 17. 11. 2026), "netherlands" (GISCO, the European part; 20. 11. 2026), "belgium" and "luxembourg" (GISCO, 20. 11. 2026), "poland" (the national PRG of GUGiK, exact, before Austria and Germany; 21. 11. 2026), "france" (GISCO, metropolitan; 22. 11. 2026), "spain" (GISCO with the islands, Ceuta, Melilla; 23. 11. 2026), "portugal" (GISCO with Madeira and the Azores; 23. 11. 2026), "slovenia" (GISCO, 23. 11. 2026), "finland" (GISCO with Åland, 23. 11. 2026), "denmark" (GISCO with Bornholm, without the Faroes and Greenland, 23. 11. 2026), "switzerland" and "liechtenstein" (swisstopo's
 // A state's land borders (GISCO's boundary lines, COAS_FLAG "F"; LEFT_URI and RIGHT_URI are ISO 3166-1 alpha-3).
@@ -12,9 +12,9 @@ async function giscoLand(iso3) {
 }
 // swissBOUNDARIES3D through api3.geo.admin.ch, open data "© swisstopo", 17. 11. 2026); a point in none is "cizina". The
 // order matters: Czechia, Slovakia, Switzerland and Liechtenstein first (their borders are exact, GISCO's coarser), so a
-// point by their border with Austria or Germany takes theirs (Büsingen and Campione are holes of Switzerland's ring). Simplified to about 30 m, written into app/public/staty.json and kept in the repository
-// (boundaries change rarely): node tools/build_staty.mjs, or node tools/build_staty.mjs germany for one state (the
-// others stay as they are in staty.json).
+// point by their border with Austria or Germany takes theirs (Büsingen and Campione are holes of Switzerland's ring). Simplified to about 30 m, written into app/public/states.json and kept in the repository
+// (boundaries change rarely): node tools/build_states.mjs, or node tools/build_states.mjs germany for one state (the
+// others stay as they are in states.json).
 import fs from "node:fs";
 
 const CZ = "https://ags.cuzk.gov.cz/arcgis/rest/services/RUIAN/Prohlizeci_sluzba_nad_daty_RUIAN/MapServer/19/query";
@@ -119,7 +119,7 @@ async function swiss(iso) {
 //       have no surface map of the app, so they stay the closed USA (Bára decides).
 //   boston: Suffolk (Boston, Chelsea, Revere, Winthrop), Middlesex (Cambridge, Somerville, Newton …) and Norfolk
 //       (Brookline, Quincy …) in Massachusetts (the pack us_bos, Bára 26. 11. 2026; tools/build_towns_us.mjs takes the
-//       metro's ring from staty-america.json as "bostonmetro").
+//       metro's ring from states-america.json as "bostonmetro").
 const METROS = {
   dc: ["11001"],
   nyc: ["36005", "36047", "36061", "36081", "36085"],
@@ -315,12 +315,12 @@ const BUILD = {
   // Canada beyond Toronto's surroundings (25. 11. 2026), as the USA's: the same line at Windsor and Niagara.
   closed_ca: async () => closedFar(await gisco("CA"), CA_BORDER, 0.05, 0.02),
 };
-const file = new URL("../app/public/staty.json", import.meta.url);
+const file = new URL("../app/public/states.json", import.meta.url);
 const only = process.argv.slice(2);
 // North America's entries have a file of their own, asked for only when a cut or the map is there (app/public/late.js).
-const AMERICA = /^(closed_)?(usa?|canada|ca)$/, farFile = new URL("../app/public/staty-america.json", import.meta.url);
+const AMERICA = /^(closed_)?(usa?|canada|ca)$/, farFile = new URL("../app/public/states-america.json", import.meta.url);
 const old = only.length ? { ...JSON.parse(fs.readFileSync(file, "utf8")), ...JSON.parse(fs.readFileSync(farFile, "utf8")) } : {};
-// The order of BUILD is the order of staty.json (city.js cityAt takes the first state a point lies in).
+// The order of BUILD is the order of states.json (city.js cityAt takes the first state a point lies in).
 const out = {};
 for (const id of Object.keys(BUILD)) out[id] = !only.length || only.includes(id) ? await BUILD[id]() : old[id];
 for (const [id, r] of Object.entries(out)) console.log(id, r.length, "kruhů,", r.reduce((a, x) => a + x.length, 0), "bodů");

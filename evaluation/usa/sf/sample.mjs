@@ -13,7 +13,7 @@ const HERE = path.dirname(new URL(import.meta.url).pathname), read = async (f) =
 const TRIED = [[37.7612, -122.4216], [37.7848, -122.4071], [37.78195, -122.40975], [37.759, -122.4191], [37.76, -122.4148], [37.757, -122.425], [37.7577, -122.4154], [37.7546, -122.419], [37.7816, -122.41], [37.7838, -122.4075]
 ].map(([lat, lon]) => ({ lat, lon }));
 const OLD = TRIED;
-const DC = (await read("../../../app/public/mesta-us.json")).sanfrancisco;
+const DC = (await read("../../../app/public/towns-us.json")).sanfrancisco;
 const KIND = { motorway: "motorway", motorway_link: "motorway", trunk: "arterial", trunk_link: "arterial", primary: "arterial", primary_link: "arterial", secondary: "arterial", secondary_link: "arterial",
   tertiary: "collector", tertiary_link: "collector", residential: "local", unclassified: "local", living_street: "local", service: "service" };
 const NOT = new Set(["driveway", "parking_aisle", "drive-through", "emergency_access"]);

@@ -1,4 +1,4 @@
-// Italy (Bára 23. 11. 2026): the state of a cut inside staty.json's "italy", which is only where an orthophoto or a
+// Italy (Bára 23. 11. 2026): the state of a cut inside states.json's "italy", which is only where an orthophoto or a
 // surface map has an open licence (the province of Bolzano, Turin, Bologna, Modena; Lombardy by its DBT since 24. 11. 2026,
 // towns/lombardy.js; evaluation/italy/ZDROJE.md). The profile is the estimate from OSM and that orthophoto
 // (lanes-ortho.js "it"), except in Lombardy (the DBT's surfaces, no orthophoto) and Bologna:

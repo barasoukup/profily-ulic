@@ -10,8 +10,8 @@ const fixture = (f) => JSON.parse(fs.readFileSync(new URL(`./fixtures/${f}`, imp
 
 test("Dánsko: stát řezu, Bornholm, přístavy a sousedé u hranice", async () => {
   const C = await import("../app/public/city.js");
-  C.loadBounds(JSON.parse(fs.readFileSync(new URL("../app/public/mesta.json", import.meta.url), "utf8")));
-  C.loadStates(JSON.parse(fs.readFileSync(new URL("../app/public/staty.json", import.meta.url), "utf8")));
+  C.loadBounds(JSON.parse(fs.readFileSync(new URL("../app/public/towns.json", import.meta.url), "utf8")));
+  C.loadStates(JSON.parse(fs.readFileSync(new URL("../app/public/states.json", import.meta.url), "utf8")));
   // Rådhuspladsen, Nyhavn, Islands Brygge, Aarhus, Odense, Aalborg, Rønne (Bornholm), Skagen, Padborg, Kruså, Esbjerg, Helsingør
   for (const [lat, lon] of [[55.6761, 12.5685], [55.6798, 12.591], [55.664, 12.577], [56.1567, 10.2108], [55.3959, 10.3883], [57.0488, 9.9217],
     [55.1009, 14.7066], [57.7209, 10.5839], [54.8256, 9.3612], [54.8506, 9.4053], [55.4765, 8.4594], [56.0361, 12.6136]]) assert.equal(C.cityAt(lat, lon), "denmark", `${lat},${lon}`);

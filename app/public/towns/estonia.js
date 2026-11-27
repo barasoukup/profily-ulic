@@ -1,4 +1,4 @@
-// Estonia (Bára 23. 11. 2026): the state of a cut inside staty.json's "estonia". The profile is the estimate from OSM
+// Estonia (Bára 23. 11. 2026): the state of a cut inside states.json's "estonia". The profile is the estimate from OSM
 // and the Land and Spatial Development Board's orthophoto (lanes-ortho.js "ee"), except in Tallinn:
 // - Tallinn's surface map (the city's base map, gis.tallinn.ee tar_maakate, ArcGIS 11.5, CORS echo): roadways, sidewalks
 //   and paths, drivable yards and car parks, shoulders, other paved areas, lawns, flower beds, yards (one request a layer;

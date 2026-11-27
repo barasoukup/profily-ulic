@@ -5,7 +5,7 @@
 import fs from "node:fs";
 const set = process.argv[2];
 const SETS = {
-  // The nine Czech towns with a passport (towns/pasporty.js, pasporty.json), 14 candidates each.
+  // The nine Czech towns with a passport (towns/passports.js, passports.json), 14 candidates each.
   pasporty: { seed: 20261124 + 7, n: 14, r: 1300, ring: "pasporty", places: { chomutov: [50.4606, 13.4178], sumperk: [49.9653, 16.9706], roznov: [49.4585, 18.143],
     litomerice: [50.5335, 14.1318], chotebor: [49.7207, 15.6702], slapanice: [49.1679, 16.7272], kurim: [49.2985, 16.5314], prachatice: [49.0128, 13.9975], roudnice: [50.4253, 14.2616] } },
   // Slovakia's towns (the law's parking estimate, countries/SK.js parkGuess), 9 candidates each within 2 km.

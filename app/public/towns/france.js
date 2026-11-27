@@ -1,4 +1,4 @@
-// France (Bára 22. 11. 2026): the state of a cut inside staty.json's "france" (metropolitan France and Corsica). No
+// France (Bára 22. 11. 2026): the state of a cut inside states.json's "france" (metropolitan France and Corsica). No
 // Czech technical map, RÚIAN or ČÚZK orthophoto is asked: the profile is the estimate from OSM and IGN's orthophoto
 // (lanes-ortho.js "fr"), except where a city publishes its street surfaces:
 // - Paris: the city's Plan de voirie (opendata.paris.fr, Opendatasoft API, CORS *, ODbL): roadways (chaussées),

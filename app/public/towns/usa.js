@@ -1,9 +1,9 @@
 // The USA (Bára 24. 11. 2026, phase 2 of the North America pilot; evaluation/usa-dc/ZPRAVA.md, evaluation/usa/): the state
-// of a cut inside staty.json's "usa", the metros of Washington DC, New York City (towns/newyork.js), San Francisco (its
+// of a cut inside states.json's "usa", the metros of Washington DC, New York City (towns/newyork.js), San Francisco (its
 // own map: towns/sanfrancisco.js, asked by sources.surfaces and podlaznost where it has the place) and Boston (Bára
 // 26. 11. 2026: Boston's and Cambridge's surface maps in towns/boston.js, picked below by the place). Outside the cities'
 // maps the estimate from OSM (in Boston's metro with MassGIS's orthophoto). In
-// DC (the District by its boundary, mesta-us.json, and 60 m beyond it for the streets along the line; AREAS.dc):
+// DC (the District by its boundary, towns-us.json, and 60 m beyond it for the streets along the line; AREAS.dc):
 // - DC Planimetrics 2023 (OCTO, maps2.dcgis.dc.gov DCGIS_DATA/Planimetrics_2023/MapServer, layers 10 Roads, 11 Sidewalks,
 //   1 Building Footprints; CORS for the origin asking; CC BY 4.0, "DC GIS / Office of the Chief Technology Officer") as
 //   the surface map: the kinds read along the cut every 0.1 m (as Flanders' GRB, towns/belgium.js) and handed on as
@@ -60,7 +60,7 @@ export const dcOn = () => param("dc") !== "0";
 export const ddotOn = () => param("ddot") !== "0";
 export const DC_PLAN = "https://maps2.dcgis.dc.gov/dcgis/rest/services/DCGIS_DATA/Planimetrics_2023/MapServer";
 export const DC_SUBBLOCK = "https://maps2.dcgis.dc.gov/dcgis/rest/services/DCGIS_DATA/Transportation_WebMercator/MapServer/162";
-// The District by its boundary (mesta-us.json "washington", tools/build_towns_us.mjs: simplified to 20 m), the box only
+// The District by its boundary (towns-us.json "washington", tools/build_towns_us.mjs: simplified to 20 m), the box only
 // a first test; 60 m beyond it, since Western, Eastern and Southern Avenue run along the line.
 // New York City (26. 11. 2026): towns/newyork.js.
 export const AREAS = { dc: { box: [-77.121, 38.79, -76.908, 38.997], town: "washington", near: 60 }, nyc: NYC_AREA, ...SF_AREAS };

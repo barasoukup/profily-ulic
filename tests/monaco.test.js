@@ -5,8 +5,8 @@ import fs from "node:fs";
 
 test("Monako: stát podle hranic OSM, francouzské ortofoto, bez odhadu stání a bez norem šířek", async () => {
   const C = await import("../app/public/city.js");
-  C.loadBounds(JSON.parse(fs.readFileSync(new URL("../app/public/mesta.json", import.meta.url), "utf8")));
-  C.loadStates(JSON.parse(fs.readFileSync(new URL("../app/public/staty.json", import.meta.url), "utf8")));
+  C.loadBounds(JSON.parse(fs.readFileSync(new URL("../app/public/towns.json", import.meta.url), "utf8")));
+  C.loadStates(JSON.parse(fs.readFileSync(new URL("../app/public/states.json", import.meta.url), "utf8")));
   assert.equal(C.cityAt(43.7447, 7.4310), "monaco"); // Monte-Carlo
   assert.equal(C.cityAt(43.7310, 7.4190), "monaco"); // Monaco-Ville
   // The review of 23. 11. 2026: Mareterra (reclaimed land beyond GISCO's coast) and the Boulevard du Général Leclerc

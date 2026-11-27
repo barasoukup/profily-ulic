@@ -6,8 +6,8 @@ import fs from "node:fs";
 
 test("Litva: stát řezu, pobřeží, sousedé mimo", async () => {
   const C = await import("../app/public/city.js");
-  C.loadBounds(JSON.parse(fs.readFileSync(new URL("../app/public/mesta.json", import.meta.url), "utf8")));
-  C.loadStates(JSON.parse(fs.readFileSync(new URL("../app/public/staty.json", import.meta.url), "utf8")));
+  C.loadBounds(JSON.parse(fs.readFileSync(new URL("../app/public/towns.json", import.meta.url), "utf8")));
+  C.loadStates(JSON.parse(fs.readFileSync(new URL("../app/public/states.json", import.meta.url), "utf8")));
   // Vilnius, Kaunas, Klaipėda (the port), Šiauliai, Panevėžys, Alytus, Nida on the Curonian Spit.
   for (const [lat, lon] of [[54.6872, 25.2797], [54.897, 23.9262], [55.7075, 21.1335], [55.9349, 23.3137], [55.7348, 24.3575], [54.3964, 24.0459], [55.3036, 21.0065]]) assert.equal(C.cityAt(lat, lon), "lithuania", `${lat},${lon}`);
   // Riga, Minsk, Kaliningrad, Suwałki (Poland), Daugavpils.
@@ -15,11 +15,11 @@ test("Litva: stát řezu, pobřeží, sousedé mimo", async () => {
 });
 
 // The coast's 400 m only by the sea (Bára 24. 11. 2026): a harbour and the sea off the beach stay the state's, a cut
-// 300 m beyond a land border does not (city.js stateEntry, staty.json land_*).
+// 300 m beyond a land border does not (city.js stateEntry, states.json land_*).
 test("Pobřeží: tolerance 400 m jen u moře, ne u hranice na souši (LT, FI, DK)", async () => {
   const C = await import("../app/public/city.js");
-  const staty = JSON.parse(fs.readFileSync(new URL("../app/public/staty.json", import.meta.url), "utf8"));
-  C.loadBounds(JSON.parse(fs.readFileSync(new URL("../app/public/mesta.json", import.meta.url), "utf8")));
+  const staty = JSON.parse(fs.readFileSync(new URL("../app/public/states.json", import.meta.url), "utf8"));
+  C.loadBounds(JSON.parse(fs.readFileSync(new URL("../app/public/towns.json", import.meta.url), "utf8")));
   // Outside the state's ring (GISCO's ring alone does not take them), within 400 m of the sea coast.
   const sea = [["lithuania", 55.64922, 21.16001], ["lithuania", 55.84707, 21.0545], ["finland", 60.1316, 24.99252], ["denmark", 55.68931, 12.60393]];
   for (const [st, lat, lon] of sea) {

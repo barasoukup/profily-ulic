@@ -5,9 +5,9 @@ měřicí skripty).
 
 ## Co je zapojené
 
-- **Území:** City and County of San Francisco (TIGERweb, GEOID 06075, i s vodou zálivu a Farallony) v `staty-america.json`
-  `usa`; `tools/build_staty.mjs` má tabulku `METROS = { dc, sf }` (každé metro sloučené zvlášť, washingtonský obrys bajt po
-  bajtu stejný). Hranice města (TIGERweb Incorporated Places 0667000) v `mesta-us.json` `sanfrancisco`. Okolní okresy
+- **Území:** City and County of San Francisco (TIGERweb, GEOID 06075, i s vodou zálivu a Farallony) v `states-america.json`
+  `usa`; `tools/build_states.mjs` má tabulku `METROS = { dc, sf }` (každé metro sloučené zvlášť, washingtonský obrys bajt po
+  bajtu stejný). Hranice města (TIGERweb Incorporated Places 0667000) v `towns-us.json` `sanfrancisco`. Okolní okresy
   (San Mateo, Marin, Alameda) mapu povrchů nemají, zůstávají `closed_us` s hláškou, která teď San Francisco jmenuje.
 - **OSM:** balík `us_sf` (Geofabrik `north-america/us/california/norcal`, 660 MB, oříznutý na −122,54…−122,34, 37,68…37,84),
   lokálně 7,6 MB (`app/data/osm-pack/us_sf-novy.posm`). Na R2 ještě není.

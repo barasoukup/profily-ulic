@@ -1,4 +1,4 @@
-// Portugal (Bára 23. 11. 2026): the state of a cut inside staty.json's "portugal" (with Madeira and the Azores). No Czech
+// Portugal (Bára 23. 11. 2026): the state of a cut inside states.json's "portugal" (with Madeira and the Azores). No Czech
 // technical map, RÚIAN or ČÚZK orthophoto is asked: the profile is the estimate from OSM and DGT's orthophotos
 // (lanes-ortho.js "pt": the aerial of 2025, else 2021, else 2018, else the satellite mosaic of 2023; only on the mainland,
 // Madeira and the Azores have none of them: there OSM alone). Sources and what was looked for: evaluation/portugal/ZDROJE.md.

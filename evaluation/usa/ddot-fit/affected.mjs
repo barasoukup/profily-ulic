@@ -23,8 +23,8 @@ globalThis.fetch = async (url, o) => {
 };
 const json = async (f) => JSON.parse(await fs.readFile(new URL(f, import.meta.url), "utf8"));
 const C = await import("../../../app/public/city.js");
-C.loadBounds(await json("../../../app/public/mesta.json")); await import("../../../app/public/america.js");
-C.loadStates({ ...await json("../../../app/public/staty.json"), ...await json("../../../app/public/staty-america.json") }); C.loadTowns(await json("../../../app/public/mesta-us.json"));
+C.loadBounds(await json("../../../app/public/towns.json")); await import("../../../app/public/america.js");
+C.loadStates({ ...await json("../../../app/public/states.json"), ...await json("../../../app/public/states-america.json") }); C.loadTowns(await json("../../../app/public/towns-us.json"));
 const U = await import("../../../app/public/towns/usa.js");
 const files = process.env.SAMPLES ? process.env.SAMPLES.split(",") : ["../ab/sample.json", "../fresh/sample.json", "../arterials/sample.json", "../../canada/review/sample.json", "../../canada/fresh.json", "../../canada/dev.json"];
 const seen = new Set(), [x0, y0, x1, y1] = U.AREAS.dc.box;

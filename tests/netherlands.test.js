@@ -84,8 +84,8 @@ test("Nizozemsko: hledání PDOK Locatieserver", async () => {
 
 test("Nizozemsko: stát podle hranic, sousedé", async () => {
   const C = await import("../app/public/city.js");
-  C.loadBounds(JSON.parse(fs.readFileSync(new URL("../app/public/mesta.json", import.meta.url), "utf8")));
-  C.loadStates(JSON.parse(fs.readFileSync(new URL("../app/public/staty.json", import.meta.url), "utf8")));
+  C.loadBounds(JSON.parse(fs.readFileSync(new URL("../app/public/towns.json", import.meta.url), "utf8")));
+  C.loadStates(JSON.parse(fs.readFileSync(new URL("../app/public/states.json", import.meta.url), "utf8")));
   assert.equal(C.cityAt(52.3727, 4.8933), "netherlands"); // Amsterdam
   assert.equal(C.cityAt(51.9225, 4.4792), "netherlands"); // Rotterdam
   assert.equal(C.cityAt(50.8514, 5.6910), "netherlands"); // Maastricht

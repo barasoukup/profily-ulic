@@ -1,8 +1,8 @@
 // The overview map of the About dialog (Bára 24. 11. 2026): where the app has a surface map of the street areas, where
 // an orthophoto and OSM, where OSM alone, and what is left out. Built from the modules themselves, so a new source shows
-// without a hand list: the states of staty.json, each state's orthophoto (countries/<ISO>.js laneOrtho, lanes-ortho.js
+// without a hand list: the states of states.json, each state's orthophoto (countries/<ISO>.js laneOrtho, lanes-ortho.js
 // for the partial ones), each source module's SURFACE_MAPS (towns/*.js: "all", ids of its AREAS, keys of the boundary
-// files, "-<NUTS 3>" left out) and the boundaries of the towns (mesta*.json, pasporty.json, regions-*.json). Simplified
+// files, "-<NUTS 3>" left out) and the boundaries of the towns (mesta*.json, passports.json, regions-*.json). Simplified
 // to about 500 m and written into app/public/coverage.json (tests/coverage.test.js checks it is up to date):
 //   node tools/build_coverage.mjs            (offline; the NUTS 3 areas a module leaves out come from tools/coverage-nuts3.json)
 //   node tools/build_coverage.mjs --fetch    (first fetches those NUTS 3 areas and the towns' LAU from Eurostat GISCO,
@@ -10,7 +10,7 @@
 //   node tools/build_coverage.mjs --lau=<LAU_RG_01M_2024_4326.geojson downloaded before>   (the towns' LAU only)
 // A town whose map is a box of its module's AREAS (Berlin, Kraków, Paris…) is drawn by its municipality's boundary
 // (LAU_TOWNS, kept in tools/coverage-lau.json) cut to that box, not as the box (the review of 24. 11. 2026).
-// Each feature: { c: "surface" | "ortho" | "osm", id } (no feature: not covered, closed_* and foreign_* too), a Polygon whose rings are read even-odd (as staty.json
+// Each feature: { c: "surface" | "ortho" | "osm", id } (no feature: not covered, closed_* and foreign_* too), a Polygon whose rings are read even-odd (as states.json
 // and city.js inside: islands and holes alike); the features are drawn in order, later over earlier.
 import fs from "node:fs";
 import { pathToFileURL } from "node:url";
@@ -105,9 +105,9 @@ export async function buildCoverage({ nuts = readJson(NUTS_FILE), lau = readJson
   await import(new URL("america.js", PUB)); // North America's modules (late.js)
   const { COUNTRIES } = await import(new URL("countries/index.js", PUB));
   const { countryOfCity, cityById } = await import(new URL("city.js", PUB));
-  const STATY = { ...json("staty.json"), ...json("staty-america.json") };
-  const BOUNDS = Object.assign({}, ...["mesta.json", "mesta-sk.json", "mesta-at.json", "mesta-us.json", "mesta-ca.json", "pasporty.json", "regions-be.json", "regions-es.json"].map(json));
-  // (Not a state's extra rings either, "<id>+<what>": tools/build_staty.mjs.)
+  const STATY = { ...json("states.json"), ...json("states-america.json") };
+  const BOUNDS = Object.assign({}, ...["towns.json", "towns-sk.json", "towns-at.json", "towns-us.json", "towns-ca.json", "passports.json", "regions-be.json", "regions-es.json"].map(json));
+  // (Not a state's extra rings either, "<id>+<what>": tools/build_states.mjs.)
   const states = Object.keys(STATY).filter((id) => !/^(land|foreign|closed)_|\+/.test(id));
   const problems = [];
 

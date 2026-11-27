@@ -77,7 +77,7 @@ export const COUNTRIES = {
   // us_nyc (26. 11. 2026): New York City, Geofabrik's New York (500 MB of PBF, in a folder of its own since Geofabrik moved
   // the states) cut to the box of the five boroughs (locally 44 MB). us_sf (26. 11. 2026): San Francisco, Geofabrik's
   // Northern California (660 MB of PBF) cut to the city's box and 1 km round it (locally 7.6 MB). us_bos (26. 11. 2026):
-  // Boston, Geofabrik's Massachusetts (312 MB of PBF) cut to the box of the metro's three counties (tools/build_staty.mjs
+  // Boston, Geofabrik's Massachusetts (312 MB of PBF) cut to the box of the metro's three counties (tools/build_states.mjs
   // METROS). Only on R2. A further metro is a further part.
   us: { iso: "US", geofabrik: "north-america/us/district-of-columbia", pages: false, parts: {
     us_dc: "north-america/us/district-of-columbia+north-america/us/maryland+north-america/us/virginia@-77.14,38.78,-76.90,39.01",

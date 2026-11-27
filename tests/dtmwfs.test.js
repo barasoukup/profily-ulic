@@ -1,5 +1,5 @@
 // The regions' DTM read as polygons from their WFS (app/public/dtmwfs.js): the GML of MapServer, the region of
-// a cut by kraje.json, the box in S-JTSK.
+// a cut by regions-cz.json, the box in S-JTSK.
 import { test } from "node:test";
 import assert from "node:assert/strict";
 

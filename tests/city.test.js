@@ -75,7 +75,7 @@ test("bývalé stránky měst přesměrují i s řezem", () => {
 });
 test("město podle polohy řezu", async () => {
   const C = await import("../app/public/city.js");
-  C.loadBounds(JSON.parse(read("mesta.json")));
+  C.loadBounds(JSON.parse(read("towns.json")));
   assert.equal(C.cityAt(50.0875, 14.4208), "praha");
   assert.equal(C.cityAt(49.1951, 16.6085), "brno");
   assert.equal(C.cityAt(50.503, 13.6363), "most");
@@ -86,8 +86,8 @@ test("město podle polohy řezu", async () => {
 });
 test("stát podle polohy řezu: Česko, Slovensko, Rakousko, Německo, cizina", async () => {
   const C = await import("../app/public/city.js");
-  C.loadBounds(JSON.parse(read("mesta.json")));
-  C.loadStates(JSON.parse(read("staty.json")));
+  C.loadBounds(JSON.parse(read("towns.json")));
+  C.loadStates(JSON.parse(read("states.json")));
   assert.equal(C.cityAt(49.907481, 16.442219), "cesko"); // Česká Třebová
   assert.equal(C.cityAt(49.7477, 18.6262), "cesko"); // Český Těšín, Hlavní třída (the border is the Olza)
   assert.equal(C.cityAt(48.146736, 17.106998), "slovensko"); // Bratislava, Suché mýto
@@ -115,9 +115,9 @@ test("stát podle polohy řezu: Česko, Slovensko, Rakousko, Německo, cizina", 
   C.setCity("praha");
 });
 
-// The towns' passports (towns/pasporty.js): the page may ask their servers, a point takes its town.
+// The towns' passports (towns/passports.js): the page may ask their servers, a point takes its town.
 test("pasporty měst: CSP, město podle polohy, převod typů", async () => {
-  const { PASSPORT_HOSTS, passportAt, codes } = await import("../app/public/towns/pasporty.js");
+  const { PASSPORT_HOSTS, passportAt, codes } = await import("../app/public/towns/passports.js");
   const connect = read("index.html").match(/connect-src [^;]*/)[0];
   for (const host of PASSPORT_HOSTS) assert.ok(connect.includes(host), host);
   assert.equal(await passportAt(18.1431, 49.4583), "roznov");
@@ -135,7 +135,7 @@ test("pasporty měst: CSP, město podle polohy, převod typů", async () => {
 
 // A passport that answers with nothing (as Jihlava's on 16. 11. 2026) leaves the box to the national DTM.
 test("pasport bez ploch: plochy jen z technické mapy ČÚZK", async () => {
-  const { withPassports } = await import("../app/public/towns/pasporty.js");
+  const { withPassports } = await import("../app/public/towns/passports.js");
   const dtm = { features: [{ attributes: { CTVUK_KOD: 701 } }], region: "DTM" };
   const native = globalThis.fetch;
   globalThis.fetch = async () => new Response(JSON.stringify({ features: [] }));
@@ -144,13 +144,13 @@ test("pasport bez ploch: plochy jen z technické mapy ČÚZK", async () => {
   } finally { globalThis.fetch = native; }
 });
 
-test("slovenská města podle hranic ze ZBGIS (mesta-sk.json): Šamorín ani Svätý Jur nejsou Bratislava", async () => {
+test("slovenská města podle hranic ze ZBGIS (towns-sk.json): Šamorín ani Svätý Jur nejsou Bratislava", async () => {
   const C = await import("../app/public/city.js");
-  C.loadSkTowns(JSON.parse(read("mesta-sk.json")));
-  // The city of a point and its illustrations (step 4b: the Slovak towns are cities, mesta-sk.json).
-  C.loadBounds(JSON.parse(read("mesta.json")));
-  C.loadStates(JSON.parse(read("staty.json")));
-  C.loadTowns(JSON.parse(read("mesta-sk.json")));
+  C.loadSkTowns(JSON.parse(read("towns-sk.json")));
+  // The city of a point and its illustrations (step 4b: the Slovak towns are cities, towns-sk.json).
+  C.loadBounds(JSON.parse(read("towns.json")));
+  C.loadStates(JSON.parse(read("states.json")));
+  C.loadTowns(JSON.parse(read("towns-sk.json")));
   const skArtAt = (lat, lon) => C.cityById(C.cityAt(lat, lon)).art;
   assert.equal(skArtAt(48.1467, 17.107), "bratislava"); // Suché mýto
   assert.equal(skArtAt(48.1905, 17.0243), "bratislava"); // Dúbravka
@@ -166,11 +166,11 @@ test("slovenská města podle hranic ze ZBGIS (mesta-sk.json): Šamorín ani Sv�
 test("placeAt: stát, město, ilustrace a zdroje s vlastním územím", async () => {
   const C = await import("../app/public/city.js");
   const { placeAt } = await import("../app/public/towns/index.js");
-  C.loadBounds(JSON.parse(read("mesta.json")));
-  C.loadStates(JSON.parse(read("staty.json")));
-  C.loadSkTowns(JSON.parse(read("mesta-sk.json")));
-  C.loadTowns(JSON.parse(read("mesta-sk.json")));
-  C.loadTowns(JSON.parse(read("mesta-at.json")));
+  C.loadBounds(JSON.parse(read("towns.json")));
+  C.loadStates(JSON.parse(read("states.json")));
+  C.loadSkTowns(JSON.parse(read("towns-sk.json")));
+  C.loadTowns(JSON.parse(read("towns-sk.json")));
+  C.loadTowns(JSON.parse(read("towns-at.json")));
   // Step 4b: the Slovak and Austrian cities by their boundaries, with their own illustrations and their state's sources.
   assert.deepEqual(placeAt(48.1467, 17.107), { country: "SK", city: "bratislava", art: "bratislava", sources: ["bratislava-pasport", "bratislava-tm"] });
   assert.deepEqual(placeAt(48.309, 18.084), { country: "SK", city: "nitra", art: "nitra", sources: ["nitra-kresba"] });

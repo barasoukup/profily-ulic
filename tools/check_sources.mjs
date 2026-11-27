@@ -47,9 +47,9 @@ const sources = await import("../app/public/sources.js");
 const { TOWNS } = await import("../app/public/towns/index.js");
 // The boundaries, as app.js loads them (a source asks in which town or state its box lies).
 const json = (f) => { const u = new URL(`../app/public/${f}`, import.meta.url); return fs.existsSync(u) ? JSON.parse(fs.readFileSync(u, "utf8")) : null; };
-cityModule.loadBounds(json("mesta.json"));
-cityModule.loadStates({ ...json("staty.json"), ...json("staty-america.json") });
-if (json("mesta-sk.json")) cityModule.loadSkTowns(json("mesta-sk.json"));
+cityModule.loadBounds(json("towns.json"));
+cityModule.loadStates({ ...json("states.json"), ...json("states-america.json") });
+if (json("towns-sk.json")) cityModule.loadSkTowns(json("towns-sk.json"));
 for (const f of fs.readdirSync(new URL("../app/public/", import.meta.url)).filter((f) => /^mesta-[a-z]{2}\.json$/.test(f))) cityModule.loadTowns(json(f));
 
 const only = process.argv.slice(2);

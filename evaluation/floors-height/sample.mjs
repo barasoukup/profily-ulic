@@ -11,7 +11,7 @@ const imp = (f) => import(pathToFileURL(path.join(PUB, f)));
 const OUT = process.argv[2], CHANGED = Number(process.argv[3] || 36), KEEP = Number(process.argv[4] || 10);
 fs.mkdirSync(OUT, { recursive: true });
 const { decodeTile, mergePieces } = await imp("osmtile.js"), { inside } = await imp("places.js"), F = await imp("floors.js");
-const T = JSON.parse(fs.readFileSync(path.join(PUB, "mesta-ca.json"))).toronto, TILES = process.env.TILES;
+const T = JSON.parse(fs.readFileSync(path.join(PUB, "towns-ca.json"))).toronto, TILES = process.env.TILES;
 const all = mergePieces(fs.readdirSync(TILES).filter((f) => /^-?\d+_-?\d+\.json$/.test(f)).sort().map((f) => decodeTile(fs.readFileSync(path.join(TILES, f), "utf8"))));
 const ROAD = /^(primary|secondary|tertiary|residential|unclassified|living_street)$/;
 const ways = all.filter((w) => w.type === "way" && ROAD.test(w.tags?.highway) && inside(T, w.geometry[0].lon, w.geometry[0].lat)).sort((a, b) => a.id - b.id).map((w) => ({ name: w.tags.name || "", g: w.geometry.map((p) => [p.lon, p.lat]) }));

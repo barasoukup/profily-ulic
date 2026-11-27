@@ -2,14 +2,14 @@
 
 Rozsah: `countries/CY.js`, `towns/cyprus.js`, `signs-CY/`, `evaluation/cyprus/`, jízda vlevo v `derive.js`
 (`leftHand`, `mirrorLeftHand`), `lanes-ortho.js` („cy“), `search-photon.js`, `credits.js`, `city.js`, `index.html`,
-`LICENCE-A-ZDROJE.md`, `app/README.md`, `tests/cyprus.test.js`, `tests/derive.test.js`, `staty.json` a
+`LICENCE-A-ZDROJE.md`, `app/README.md`, `tests/cyprus.test.js`, `tests/derive.test.js`, `states.json` a
 `tools/cyprus-border.json`. HEAD `84140de` (větev `estonia`). Žádný existující soubor jsem neměnil, nic necommitoval.
 
 Co jsem ověřil:
 - `npm test`: 353 testů, 0 chyb.
 - `deriveProfile` a `splitTwoWayLane` na umělých ulicích s `country.leftHand = true` (odbočovací pruhy, `bus:lanes`,
   dvě jednosměrné osy v jedné vozovce, dělená silnice, odhad stání). Výstupy jsou u nálezů.
-- Bod v polygonu `staty.json` „cyprus“ (původní i zjednodušený) pro 20 míst; souřadnice Pyly, Mammari, Deneie a
+- Bod v polygonu `states.json` „cyprus“ (původní i zjednodušený) pro 20 míst; souřadnice Pyly, Mammari, Deneie a
   letiště Nikósie z Photonu (4 dotazy).
 - Licence 16 souborů na Wikimedia Commons (jeden dotaz API `extmetadata`): souhlasí se `signs-licence.json`.
 - Vykreslení 12 SVG ze `signs-CY/` a porovnání s mapováním v `CY.js`.
@@ -89,7 +89,7 @@ vlevo je vnější okraj po řidičově levici. Umělá dělená silnice (pás 2
 dokazovat bodem 35,045 N, 33,712 E s komentářem „Pyla“. Ten bod leží 3,5 km severně od Pyly u Pergamosu (sever).
 Skutečná Pyla (35,0142 N, 33,6925 E; i těžiště katastru 35,0031 N, 33,6994 E podle Photonu), Mammari (35,1756 N,
 33,2051 E), Deneia (35,1664 N, 33,1464 E) i mezinárodní letiště Nikósie v chráněné oblasti OSN (35,1528 N,
-33,2773 E) leží **uvnitř** polygonu `staty.json` „cyprus“ (původní `tools/cyprus-border.json` i zjednodušený).
+33,2773 E) leží **uvnitř** polygonu `states.json` „cyprus“ (původní `tools/cyprus-border.json` i zjednodušený).
 Hranice OSM tedy nárazníkovou zónu aspoň zčásti zahrnuje. Podle `ZDROJE.md` tam dlaždice ortofota 2019 vracejí 404
 (Pyla), takže řez je odhad z OSM s kyperskými normami a hlavičkou „na Kypru“.
 
@@ -172,7 +172,7 @@ neověřilo nic kromě jednoho testu pomocné funkce. Oprava: zpráva s tabulkou
   (`NORMY.md` A3: „nearside“).
 - Žluté čáry u obrub (zákaz stání, `NORMY.md` B3) může měření z ortofota číst jako vodicí čáry a kreslit úzké
   krajnice. Na vzorku jsem to nezkoušel.
-- Hranice je zjednodušená na 0,0003° (asi 30 m, `tools/build_staty.mjs:15`). V Nikósii se původní a zjednodušený
+- Hranice je zjednodušená na 0,0003° (asi 30 m, `tools/build_states.mjs:15`). V Nikósii se původní a zjednodušený
   polygon liší na ploše asi 6 ha; ulice těsně u linie mohou padnout na špatnou stranu. Čtyři body u Ledry vyšly
   shodně.
 - Balík OSM `cy` je jen na R2 (`tools/countries.mjs:52`, `pages: false`); jestli ho workflow před nasazením postaví

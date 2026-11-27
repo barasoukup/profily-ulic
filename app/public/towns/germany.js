@@ -1,4 +1,4 @@
-// Germany (Bára 17. 11. 2026): the state of a cut inside staty.json's Germany. As in Austria, no Czech technical map,
+// Germany (Bára 17. 11. 2026): the state of a cut inside states.json's Germany. As in Austria, no Czech technical map,
 // RÚIAN or ČÚZK orthophoto is asked: the profile is the estimate from OSM and the orthophoto of the Land (app.js,
 // ortho-osm.js, lanes-ortho.js), the houses are OSM's. Cities' own maps of street surfaces where they have them
 // (Bára: "ortofoto je minimum, ne optimum"), each with its A/B test (evaluation/germany/ab/):

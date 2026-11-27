@@ -1,4 +1,4 @@
-// Lithuania (Bára 24. 11. 2026): the state of a cut inside staty.json's "lithuania". The national orthophoto of the
+// Lithuania (Bára 24. 11. 2026): the state of a cut inside states.json's "lithuania". The national orthophoto of the
 // NŽT is licensed for viewing on geoportal.lt only (evaluation/lithuania/ZDROJE.md 1): no orthophoto at all, the profile
 // is the estimate from OSM, except in Vilnius:
 // - Vilnius's topographic areas 1 : 500 (gis.vplanas.lt, Vilnius_basemap_LKS_su_rajonu layer 13 TEDR_PRLOTAI_P_500,

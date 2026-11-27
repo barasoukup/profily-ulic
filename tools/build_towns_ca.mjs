@@ -1,6 +1,6 @@
 // The boundaries of the Canadian cities the app has a surface map of (as build_towns_us.mjs; Bára 25. 11. 2026): Toronto,
 // Statistics Canada's census subdivision of 2021 (the digital boundary file, with the lake; Statistics Canada Open Licence).
-// One query at build time, none on a click. Written into app/public/mesta-ca.json, kept in the repository:
+// One query at build time, none on a click. Written into app/public/towns-ca.json, kept in the repository:
 // node tools/build_towns_ca.mjs
 import fs from "node:fs";
 
@@ -10,4 +10,4 @@ const j = await (await fetch(`${CSD}?${q}`, { headers: { "User-Agent": "profily-
 if (!j.features?.length) throw new Error("hranice Toronta se nenačetla");
 const out = { toronto: j.features.flatMap((f) => f.geometry.rings) };
 console.log("toronto", out.toronto.map((r) => r.length), "bodů");
-fs.writeFileSync(new URL("../app/public/mesta-ca.json", import.meta.url), JSON.stringify(out));
+fs.writeFileSync(new URL("../app/public/towns-ca.json", import.meta.url), JSON.stringify(out));

@@ -12,7 +12,7 @@ z prohlížeče to funguje stejně; „bez CORS“ = hlavička chybí (obrázek 
 > ve spolupráci s AGEA v rámci monitorovacího plánu** (pole `lineage` záznamu provincie); vlastníkem záznamu je
 > provincie a licenci dává výslovně CC BY 4.0 (`useLimitation`, `otherConstraints`), Bára 23. 11. 2026: používat.
 > Mimo tyto čtyři oblasti (zbytek Itálie, San Marino, Vatikán) aplikace **profil nedělá**, kliknutí ukáže hlášku
-> (`city.js closedAt`, `staty.json` `closed_it`); hledání Photon tam ulice nabídnout může. Návrhy „odhad z OSM a
+> (`city.js closedAt`, `states.json` `closed_it`); hledání Photon tam ulice nabídnout může. Návrhy „odhad z OSM a
 > ortofota“ u San Marina a Vatikánu níže jsou rešerše, ne stav aplikace.
 >
 > **Lombardie (24. 11. 2026, `lombardia/ZPRAVA.md`):** Database Topografico Regionale (DBT) je zapojená jako mapa
@@ -20,7 +20,7 @@ z prohlížeče to funguje stejně; „bez CORS“ = hlavička chybí (obrázek 
 > `query`; vrstvy 105 (pěší plochy) i 94 (výšky) přes `identify` odpovídají do 1 s. **Licence ověřena: CC BY 4.0**
 > (záznam Geoportale `r_lombar:1CE0E71B-6451-4B5D-8E4D-BC0FF6E0A46F`, „Dati di proprietà di Regione Lombardia“).
 > Pokryto všech 1 502 obcí (rok zaměření 2005–2022). A/B 41 řezů: DBT ve 32, podle fotek lépe 7, hůř 3, nejde 11; zapnuto,
-> Lombardie otevřená v `staty.json`. Ortofoto Lombardie (AGEA) dál nepoužité.
+> Lombardie otevřená v `states.json`. Ortofoto Lombardie (AGEA) dál nepoužité.
 >
 > **Hranice a kredit Turína (Bára 23. 11. 2026, recenze body 13 a 15):** oblasti jsou od 23. 11. hranice ISTAT „Confini
 > delle unità amministrative a fini statistici al 1° gennaio 2026“, negeneralizované (shapefile v EPSG:32632,
@@ -170,7 +170,7 @@ Bbox států: IT `[6.63, 35.49, 18.52, 47.09]` (GISCO), SM `[12.40, 43.89, 12.52
 asi třetina (poměr ČR 0,9 GB → 281 MB), tedy každý díl pod 512 MB.
 
 **Hranice** (**ověřeno**: `CNTR_RG_01M_2024_4326.geojson`, `CNTR_ID` „IT“): 117 polygonů, 7 951 bodů, **2 díry**:
-Vatikán (5 bodů) a San Marino (42 bodů). `tools/build_staty.mjs` už má `italy: () => gisco("IT", true)` (s dírami).
+Vatikán (5 bodů) a San Marino (42 bodů). `tools/build_states.mjs` už má `italy: () => gisco("IT", true)` (s dírami).
 Kampione d'Italia je díra ve Švýcarsku (už vyřešeno u CH). Regiony: GISCO NUTS 2 (viz kap. 1b).
 
 ---
@@ -199,7 +199,7 @@ vlastní díl `sm` z tohoto výřezu (nebo `osmium extract` z `italy-latest` pod
 
 **Hranice** (**ověřeno**): GISCO „SM“ 1 polygon, **42 bodů** na 61 km² (průměrně bod po ~1 km, u Monaka bylo 11 bodů na
 2 km²). Na rozlišení státu v řezu hrubé jen u hranice; doporučuji jako u Monaka hranici z OSM (admin_level 2, relace
-San Marina, © OSM ODbL), zjednodušenou na ~30 m, a před Itálií v `staty.json`.
+San Marina, © OSM ODbL), zjednodušenou na ~30 m, a před Itálií v `states.json`.
 
 ---
 
@@ -216,7 +216,7 @@ openstreetmap.fr má i `europe/vatican_city-latest.osm.pbf` (**ověřeno**, 3,1 
 **Hranice** (**ověřeno**): GISCO „VA“ = **5 bodů** (čtyřúhelník 12,446–12,459 / 41,900–41,907), díra v Itálii je stejná.
 To je na stát velikosti 1 × 0,7 km **nepoužitelně hrubé** (Svatopetrské náměstí a Via della Conciliazione by padaly
 napůl). Doporučuji hranici z OSM (admin_level 2, Città del Vaticano) jako u Monaka, uloženou v `tools/vatican-border.json`,
-a v `staty.json` před Itálií; z italské díry pak počítat stejně (díru GISCO nahradit polygonem OSM, nebo nechat přednost
+a v `states.json` před Itálií; z italské díry pak počítat stejně (díru GISCO nahradit polygonem OSM, nebo nechat přednost
 Vatikánu jako u Monaka před Francií).
 
 **Mapa povrchů, budovy:** nenalezeny; ulic je ve Vatikánu pár. Odhad z OSM a ortofota.
@@ -249,7 +249,7 @@ Vatikánu jako u Monaka před Francií).
 | OSM | Geofabrik 5 dílů (207–599 MB) | ověřeno | – | ODbL | Díly `it_*` (už v `countries.mjs`) |
 | OSM San Marino | openstreetmap.fr `san_marino` 1,6 MB | ověřeno; Geofabrik díly ho z 77 % vynechávají | – | ODbL | **Vlastní díl `sm`** |
 | OSM Vatikán | v `italy/centro` | ověřeno | – | ODbL | Nic navíc |
-| Hranice IT | GISCO s dírami SM, VA | ověřeno | – | © EuroGeographics | už v `build_staty.mjs` |
+| Hranice IT | GISCO s dírami SM, VA | ověřeno | – | © EuroGeographics | už v `build_states.mjs` |
 | Hranice SM / VA | GISCO 42 / **5** bodů | ověřeno | – | – | **OSM hranice** jako u Monaka |
 | Regiony | GISCO NUTS 2 (21) | ověřeno | – | © EuroGeographics | `regioni.json` jako `laender.json` |
 

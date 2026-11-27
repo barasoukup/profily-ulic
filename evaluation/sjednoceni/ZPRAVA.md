@@ -21,7 +21,7 @@ přepínačů: `AUDIT.md`.
 Doplnění za pasportem města až k domům (ortofoto, model, čáry mapy) bylo zapnuté ve 14 státech, v Česku vypnuté bez
 uvedeného důvodu; Belgie a Lucembursko ho měly vypnuté, ale jejich mapy pasport nemají (příznak nic nedělal).
 
-Vzorek: 47 nových náhodných řezů v devíti českých městech s pasportem (`towns/pasporty.js`): Chomutov 6, Šumperk 5,
+Vzorek: 47 nových náhodných řezů v devíti českých městech s pasportem (`towns/passports.js`): Chomutov 6, Šumperk 5,
 Rožnov 5, Litoměřice 7, Chotěboř 7, Šlapanice 4, Kuřim 4, Prachatice 4, Roudnice 5; ve všech pasport odpověděl.
 O: bez doplnění, N: s doplněním do 25 m (hodnota většiny států).
 

@@ -5,9 +5,9 @@ překlady). Po sběru se kód zkusmo změnil jednou (konce řezu, viz níže) a 
 
 ## Co je zapojené
 
-- **Území:** okresy Suffolk, Middlesex a Norfolk (TIGERweb), `staty-america.json` `usa` (druhý kruh vedle metra DC),
-  `tools/build_staty.mjs METROS`. Města `mesta-us.json`: `boston` (město, TIGERweb Incorporated Places), `cambridge`
-  (jen území mapy) a `bostonmetro` (celé metro, kruh ze `staty-america.json`). Zbytek USA `closed_us` s hláškou, která
+- **Území:** okresy Suffolk, Middlesex a Norfolk (TIGERweb), `states-america.json` `usa` (druhý kruh vedle metra DC),
+  `tools/build_states.mjs METROS`. Města `towns-us.json`: `boston` (město, TIGERweb Incorporated Places), `cambridge`
+  (jen území mapy) a `bostonmetro` (celé metro, kruh ze `states-america.json`). Zbytek USA `closed_us` s hláškou, která
   teď jmenuje obě metra.
 - **OSM:** balík `us_bos` (Geofabrik Massachusetts oříznutý na `-71.92,41.97,-70.62,42.76`), lokálně 75 MB.
 - **Mapy povrchů** (`towns/boston.js`, společný adaptér `planimetrics.js`): Boston (Street Edges, Sidewalk Inventory,
@@ -83,4 +83,4 @@ Mapa proti bez mapy +1 bod (−7 až +10), lépe 9, hůř 7, stejně 12. Ve vše
 
 Příkazy pro přegenerování souborů (při slučování s New Yorkem a San Franciskem):
 
-    node tools/build_staty.mjs usa && node tools/build_towns_us.mjs && node tools/build_coverage.mjs
+    node tools/build_states.mjs usa && node tools/build_towns_us.mjs && node tools/build_coverage.mjs
