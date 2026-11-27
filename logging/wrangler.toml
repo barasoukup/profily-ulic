@@ -14,3 +14,8 @@ database_id = "6674c597-2e83-4a25-aa8c-e65d7db75ed9"
 # Every hour: the rate rows of the contact form's past hours are deleted (worker.js scheduled).
 [triggers]
 crons = ["17 * * * *"]
+
+# The contact form's messages by e-mail (logging/README.md, Email Routing of streetspace.eu): no address here, the
+# sender and the recipient are the Worker's secrets CONTACT_FROM and CONTACT_TO.
+[[send_email]]
+name = "MAIL"
