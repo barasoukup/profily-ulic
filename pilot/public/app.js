@@ -7,6 +7,8 @@ import { dkToken } from "./keys.js";
 import { boxed as boxedPlace, within as withinPlace } from "./places.js";
 import { orthoOsmPolys, besidePassport, trimToEnds, estimateNote, outerGapsByImage, medianGapsByImage, deckSpans, bridgeRailings, P as ORTHO_P } from "./ortho-osm.js";
 import { LOOKS as HOUSE_LOOKS } from "./house-looks.js";
+// A click this close to the cut shown (m) is placed exactly, not moved away from junctions (cutAt; Bára 27. 11. 2026).
+const AGAIN_M = 200;
 // The gabled house looks with the gable's outline (house-looks.js; Bára to approve it, 23. 11. 2026): ?stit=1.
 if (new URLSearchParams(location.search).get("stit") === "1") HOUSE_LOOKS.gables = true;
 import { aiCut, aiKerbs, aiSurface, aiParking, parkFromAi, parkSkip, lawKerbs, layLaw, lawUnsplits, widenLaw, aiReady, onAiProgress } from "./ai-kerbs.js";
@@ -597,8 +599,11 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wa
       // The street the link names, if it is still there (derive.js savedStreet), else the nearest one.
       near = (wantWay && savedStreet(osm, frame, wantWay)) || nearestStreet(osm, frame, [0, 0], wantName);
       // A click lands the cut away from junctions and crossings; a dragged cut stays where it is put, a saved one (a link,
-      // a pasted position with its azimuth) exactly where it was saved.
-      if (near) near = placeCut(osm, frame, near, bearing !== null);
+      // a pasted position with its azimuth) exactly where it was saved. Only the first click in an area is moved (Bára
+      // 27. 11. 2026): a click within AGAIN_M of the cut shown lands where it is, only snapped onto the street and between
+      // two carriageways (?off=firstclick: every click moved as before).
+      const again = bearing === null && !!state.cut && !ORTHO_P.off?.has("firstclick") && Math.hypot(...frame.toXY(state.cut.lon, state.cut.lat)) <= AGAIN_M;
+      if (near) near = again ? centerOnStreet(osm, frame, near) : placeCut(osm, frame, near, bearing !== null);
     }
     if (!near) {
       // A click with no street found is logged too (Bára: how many try outside the Czech Republic): only where, to
