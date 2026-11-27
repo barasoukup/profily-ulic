@@ -26,7 +26,9 @@ const app = new Map();
 for (const dir of [...(process.env.DATA_DIRS || "").split(":").filter(Boolean), DATA]) for (const f of (await fs.readdir(dir).catch(() => [])).filter((f) => /^app(-[a-z-]+)?\.json$/.test(f) && !(process.env.SKIP && f.includes(process.env.SKIP))).sort((a, b) => (a === "app.json" ? -1 : b === "app.json" ? 1 : a.localeCompare(b)))) for (const r of JSON.parse(await fs.readFile(path.join(dir, f), "utf8"))) app.set(r.id, r);
 for (const f of (await fs.readdir(path.join(ROOT, "vysledky"))).filter((f) => /^sluzebni-[a-z]+\.json$/.test(f))) for (const r of JSON.parse(await fs.readFile(path.join(ROOT, "vysledky", f), "utf8"))) if (app.has(r.id) && r.service) app.get(r.id).service ??= r.service;
 const NO_STREET = new Set(["driveway", "parking_aisle", "drive-through"]);
-const excluded = (j) => process.env.NOEX !== "1" && NO_STREET.has(app.get(j.id).service);
+// Left out: no street at the point (the service), and cuts the app flags as in a junction (junction.mjs; JUNCTION=1 keeps them).
+const { inJunction } = await import("./junction.mjs");
+const excluded = (j) => process.env.NOEX !== "1" && (NO_STREET.has(app.get(j.id).service) || (process.env.JUNCTION !== "1" && inJunction(app.get(j.id))));
 const judged = (await Promise.all((await fs.readdir(path.join(ROOT, "vysledky"))).filter((f) => /^u-.*\.jsonl$/.test(f)).map((f) => fs.readFile(path.join(ROOT, "vysledky", f), "utf8"))))
   .join("\n").split("\n").filter(Boolean).map((l) => JSON.parse(l)).filter((j) => j.usable && app.get(j.id)?.parts?.length)
   // Streets only: the random point may fall on a path in a park or a footway (no roadway in the app's profile nor the
