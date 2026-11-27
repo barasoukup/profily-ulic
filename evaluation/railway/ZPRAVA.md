@@ -49,7 +49,7 @@ u stezky. Oprava `?dosah=1`: strana s dosahem nad 22,5 m, který uživatel natá
 k plotu, zdi nebo domu. Tikkurilantie: strana A pokračuje trávníkem (15,6 m) až k plotu lesa 26,7 m od osy; Merano: za chodníkem
 zelení do dosahu. Výchozí řez (dosah 22 m) se nemění.
 Slepý A/B na 12 řezech s dosahem 32 m (bez koleje, `judge2/`): změněno 6, lépe 0, hůř 1, stejně 5; odchylka šířky 8,48 m proti 7,70 m.
-**Proto je výchozí stav vypnuto** (`?dosah=1`); pro Bářin případ funguje, obecně se nezlepšuje. Vzorek byl náhodný, ne případy „trávník
+**Bára 27. 11. 2026: zapnuto** (`?dosah=0` vypne), jde jen o ručně nataženou stranu, cílenou akci uživatele; dříve vypnuto; pro Bářin případ funguje, obecně se nezlepšuje. Vzorek byl náhodný, ne případy „trávník
 za stezkou“; vhodné měřit znovu na nich.
 
 ## Soubory

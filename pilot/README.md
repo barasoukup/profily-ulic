@@ -1152,7 +1152,7 @@ Dlaždice OSM: `tools/build_osm_data.sh` a `tools/build_osm_tiles.mjs` nově dr�
 do jedné buňky (asi 30–45 m) od silnice; **balíky na R2 je potřeba přestavět** (týdenní workflow), do té doby se železnice kreslí
 jen v místních vzorcích. Měření a postup: `evaluation/railway/ZPRAVA.md`.
 
-Samostatně `?dosah=1` (výchozí vypnuto): strana, kterou uživatel natáhl za obvyklý dosah (22 m), nekončí na poslední stezce či
+Samostatně `?dosah=0` vypne (výchozí zapnuto, Bára 27. 11. 2026: jen ručně natažená strana, cílená akce, neměří se): strana, kterou uživatel natáhl za obvyklý dosah (22 m), nekončí na poslední stezce či
 chodníku, ale pokračuje zelení a dalšími plochami do dosahu, k plotu nebo budově (`orthoOsmPolys` parametr `stretch`).
 
 ## Export do Streetmixu

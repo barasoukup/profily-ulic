@@ -824,7 +824,7 @@ export function orthoOsmPolys({ osm, frame, dir, way, st, mapRuns = [], edges = 
     // The side the user stretched beyond the usual reach (Bára 27. 11. 2026, Tikkurilantie in Vantaa and Via Leopardi in Merano:
     // the profile stopped at the cycle track or sidewalk with a lawn and a wood beyond it): no end at the last thing; the
     // lawn, other areas and things go on to the reach, or to a house, a fence or a wall (above). stretch: { A: true, B: false }
-    // from app.js (a reach beyond MAX_REACH that the user set). ?dosah=1 only (off by default: evaluation/railway/ZPRAVA.md).
+    // from app.js (a reach beyond MAX_REACH that the user set). on by default, ?dosah=0 off (Bára 27. 11. 2026; evaluation/railway/ZPRAVA.md).
     if (stretch?.[side] && P.stretchOn) { ends[side] = null; continue; }
     ends[side] = lastW ? (sg > 0 ? Math.max : Math.min)(last + sg * halfOf(lastW), ...chain[side].map((w) => w.t + sg * halfOf(w))) : kerbT + sg * LAST_NONE;
     if (!lastW) (ends.soft ??= {})[side] = true;

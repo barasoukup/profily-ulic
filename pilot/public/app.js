@@ -12,9 +12,10 @@ if (new URLSearchParams(location.search).get("stit") === "1") HOUSE_LOOKS.gables
 import { aiCut, aiKerbs, aiSurface, aiParking, parkFromAi, parkSkip, lawKerbs, layLaw, lawUnsplits, widenLaw, aiReady, onAiProgress } from "./ai-kerbs.js";
 // ?off=… switches named parts of the estimate off (the A/B tests, evaluation/ortofoto-osm/regrese.mjs).
 { const off = new URLSearchParams(location.search).get("off"); if (off) ORTHO_P.off = new Set(off.split(",")); }
-// ?dosah=1: a side the user stretched beyond the usual reach goes on past the last path or sidewalk (ortho-osm.js stretch). Off
-// by default: the blind A/B of 27. 11. 2026 (12 cuts at 32 m, 6 changed: better 0, worse 1) did not show it better.
-if (new URLSearchParams(location.search).get("dosah") === "1") ORTHO_P.stretchOn = true;
+// A side the user stretched beyond the usual reach goes on past the last path or sidewalk (ortho-osm.js stretch): on by
+// default, no measuring (Bára 27. 11. 2026: only a hand-stretched side, a deliberate act); ?dosah=0 off. (The random A/B of
+// 27. 11. 2026, 12 cuts at 32 m: better 0, worse 1, measured cuts nobody stretched.)
+ORTHO_P.stretchOn = new URLSearchParams(location.search).get("dosah") !== "0";
 // Tree pits as sidewalk (derive.js treePitsAsSidewalk): off, ?treepits=1 turns them on.
 if (new URLSearchParams(location.search).get("treepits") === "1") ORTHO_P.treepits = true;
 if (new URLSearchParams(location.search).get("axisroad") === "0") ORTHO_P.axisroad = false;
