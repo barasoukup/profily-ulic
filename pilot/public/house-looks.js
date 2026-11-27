@@ -27,8 +27,9 @@ export const smallHouse = (info) => !villageOff() && info?.footprint > 0 && info
 // A panel house abroad (Bára 27. 11. 2026: Leipzig, two town houses of 6 floors drawn as panel houses): the shape alone makes
 // one only as a long compact slab, filling its box (a street row of town houses in a bent line does not: its 4 parts
 // filled 29 % of the box); stronger evidence is a year of the panel era (flatKind) or OSM's own word (info.panel).
-// ?off=panel2: the old shape rule (profile.js isSlab).
-export const panelOff = () => ((typeof location === "undefined" ? globalThis.PROFILY_CA?.off : new URLSearchParams(location.search).get("off")) || "").split(",").includes("panel2");
+// NOT the default: the blind A/B on photographs (EE, LT, PL, 36 houses, two judges) came 11 : 12 and 14 : 10
+// (evaluation/village-houses/ZPRAVA.md). ?panel2=1 turns it on (globalThis.PROFILY_CA.panel2 in scripts).
+export const panelOn = () => (typeof location === "undefined" ? globalThis.PROFILY_CA?.panel2 : new URLSearchParams(location.search).get("panel2")) === "1";
 export const strictSlab = (b) => !!b && ((b.fill >= 0.8 && b.width <= 16 && b.length >= 25) || (b.parts >= 2 && b.fill >= 0.5 && b.width <= 20 && (b.length + b.width) / b.parts >= 30));
 
 const OLD = new Set(["sikma", "mestan", "nizky"]);

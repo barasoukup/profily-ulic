@@ -14,8 +14,8 @@ let n = 0, lost = 0, same = 0; const out = [];
 for (const [id, r] of Object.entries(rows)) for (const a of ["before", "after"]) {
   const info = r[a].info;
   C.setCity(r.city); if (r.panels !== undefined) C.city.panels = r.panels;
-  globalThis.PROFILY_CA.off = ""; const l1 = P.buildingStyle(info);
-  globalThis.PROFILY_CA.off = "panel2"; const l0 = P.buildingStyle(info);
+  globalThis.PROFILY_CA.panel2 = "1"; const l1 = P.buildingStyle(info);
+  globalThis.PROFILY_CA.panel2 = ""; const l0 = P.buildingStyle(info);
   if (l0 === l1) { same++; continue; }
   n++;
   const k = keys[id], j = jud[id], side = k ? (k.X === a ? "X" : "Y") : null;

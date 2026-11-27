@@ -1,0 +1,683 @@
+{
+ "stat": {
+  "houses": 363,
+  "noData": 346,
+  "changed": 22,
+  "regCut": 0,
+  "noPhoto": 10,
+  "dataChanged": 0,
+  "villages": 8,
+  "pairs": {
+   "plocha>sikma": 22
+  }
+ },
+ "rows": [
+  {
+   "id": "PLp01",
+   "town": "lodz",
+   "far": false,
+   "city": "poland",
+   "point": [
+    19.456967,
+    51.7558618
+   ],
+   "mapillary": "1716260542824421",
+   "pano": false,
+   "dist": 22,
+   "off": 3.4,
+   "before": {
+    "look": "plocha",
+    "info": {
+     "levels": 5,
+     "point": [
+      19.456966995188278,
+      51.75586180255392
+     ],
+     "km": 99,
+     "block": {
+      "length": 99.7,
+      "width": 39.1,
+      "fill": 0.48,
+      "parts": 4,
+      "area": 1890
+     },
+     "tint": 0,
+     "type": "apartments",
+     "footprint": 696.0246697317864
+    }
+   },
+   "after": {
+    "look": "sikma",
+    "info": {
+     "levels": 5,
+     "point": [
+      19.456966995188278,
+      51.75586180255392
+     ],
+     "km": 99,
+     "block": {
+      "length": 99.7,
+      "width": 39.1,
+      "fill": 0.48,
+      "parts": 4,
+      "area": 1890
+     },
+     "tint": 0,
+     "type": "apartments",
+     "footprint": 696.0246697317864
+    }
+   }
+  },
+  {
+   "id": "PLp02",
+   "town": "lodz",
+   "far": false,
+   "city": "poland",
+   "point": [
+    19.4713692,
+    51.76338
+   ],
+   "mapillary": "991708433741497",
+   "pano": false,
+   "dist": 20.9,
+   "off": 12.5,
+   "before": {
+    "look": "plocha",
+    "info": {
+     "levels": 4,
+     "point": [
+      19.471369212537127,
+      51.76337997691947
+     ],
+     "km": 99,
+     "block": {
+      "length": 98.6,
+      "width": 43.8,
+      "fill": 0.36,
+      "parts": 4,
+      "area": 1558
+     },
+     "tint": 0,
+     "footprint": 300.9159636248629
+    }
+   },
+   "after": {
+    "look": "sikma",
+    "info": {
+     "levels": 4,
+     "point": [
+      19.471369212537127,
+      51.76337997691947
+     ],
+     "km": 99,
+     "block": {
+      "length": 98.6,
+      "width": 43.8,
+      "fill": 0.36,
+      "parts": 4,
+      "area": 1558
+     },
+     "tint": 0,
+     "footprint": 300.9159636248629
+    }
+   }
+  },
+  {
+   "id": "PLp03",
+   "town": "warszawa",
+   "far": false,
+   "city": "poland",
+   "point": [
+    21.0241458,
+    52.2251507
+   ],
+   "mapillary": "1791918395591625",
+   "pano": true,
+   "dist": 14.6,
+   "off": -167.2,
+   "before": {
+    "look": "plocha",
+    "info": {
+     "levels": 12,
+     "point": [
+      21.02414581148252,
+      52.225150738242164
+     ],
+     "km": 99,
+     "block": {
+      "length": 104.9,
+      "width": 54.4,
+      "fill": 0.28,
+      "parts": 2,
+      "area": 1569
+     },
+     "tint": 0,
+     "type": "apartments",
+     "footprint": 987.7526345924608
+    }
+   },
+   "after": {
+    "look": "sikma",
+    "info": {
+     "levels": 12,
+     "point": [
+      21.02414581148252,
+      52.225150738242164
+     ],
+     "km": 99,
+     "block": {
+      "length": 104.9,
+      "width": 54.4,
+      "fill": 0.28,
+      "parts": 2,
+      "area": 1569
+     },
+     "tint": 0,
+     "type": "apartments",
+     "footprint": 987.7526345924608
+    }
+   }
+  },
+  {
+   "id": "PLp04",
+   "town": "warszawa",
+   "far": true,
+   "city": "poland",
+   "point": [
+    20.9900216,
+    52.2377462
+   ],
+   "mapillary": "1202259680199688",
+   "pano": false,
+   "dist": 25.2,
+   "off": 29.5,
+   "before": {
+    "look": "plocha",
+    "info": {
+     "levels": 12,
+     "point": [
+      20.99002163863942,
+      52.237746186047296
+     ],
+     "km": 99,
+     "block": {
+      "length": 117.5,
+      "width": 58.8,
+      "fill": 0.27,
+      "parts": 4,
+      "area": 1865
+     },
+     "tint": 0,
+     "type": "apartments",
+     "footprint": 776.8028965528842
+    }
+   },
+   "after": {
+    "look": "sikma",
+    "info": {
+     "levels": 12,
+     "point": [
+      20.99002163863942,
+      52.237746186047296
+     ],
+     "km": 99,
+     "block": {
+      "length": 117.5,
+      "width": 58.8,
+      "fill": 0.27,
+      "parts": 4,
+      "area": 1865
+     },
+     "tint": 0,
+     "type": "apartments",
+     "footprint": 776.8028965528842
+    }
+   }
+  },
+  {
+   "id": "PLp05",
+   "town": "lodz",
+   "far": false,
+   "city": "poland",
+   "point": [
+    19.4624813,
+    51.7610396
+   ],
+   "mapillary": "1035151819257338",
+   "pano": true,
+   "dist": 9.8,
+   "off": 148.9,
+   "before": {
+    "look": "plocha",
+    "info": {
+     "levels": 4,
+     "point": [
+      19.462481282429714,
+      51.761039587820434
+     ],
+     "km": 99,
+     "block": {
+      "length": 68.2,
+      "width": 41.2,
+      "fill": 0.48,
+      "parts": 2,
+      "area": 1362
+     },
+     "tint": 0,
+     "type": "apartments",
+     "footprint": 924.5260953549293
+    }
+   },
+   "after": {
+    "look": "sikma",
+    "info": {
+     "levels": 4,
+     "point": [
+      19.462481282429714,
+      51.761039587820434
+     ],
+     "km": 99,
+     "block": {
+      "length": 68.2,
+      "width": 41.2,
+      "fill": 0.48,
+      "parts": 2,
+      "area": 1362
+     },
+     "tint": 0,
+     "type": "apartments",
+     "footprint": 924.5260953549293
+    }
+   }
+  },
+  {
+   "id": "PLp06",
+   "town": "poznan",
+   "far": false,
+   "city": "poland",
+   "point": [
+    16.9313904,
+    52.4059004
+   ],
+   "mapillary": "529502194711746",
+   "pano": false,
+   "dist": 15,
+   "off": -3.9,
+   "before": {
+    "look": "plocha",
+    "info": {
+     "levels": 4,
+     "point": [
+      16.931390428655394,
+      52.40590041371755
+     ],
+     "km": 99,
+     "block": {
+      "length": 158.3,
+      "width": 103,
+      "fill": 0.28,
+      "parts": 5,
+      "area": 4522
+     },
+     "tint": 0,
+     "footprint": 2286.5949892780027
+    }
+   },
+   "after": {
+    "look": "sikma",
+    "info": {
+     "levels": 4,
+     "point": [
+      16.931390428655394,
+      52.40590041371755
+     ],
+     "km": 99,
+     "block": {
+      "length": 158.3,
+      "width": 103,
+      "fill": 0.28,
+      "parts": 5,
+      "area": 4522
+     },
+     "tint": 0,
+     "footprint": 2286.5949892780027
+    }
+   }
+  },
+  {
+   "id": "PLp07",
+   "town": "warszawa",
+   "far": false,
+   "city": "poland",
+   "point": [
+    21.0167536,
+    52.2351818
+   ],
+   "mapillary": "1400145760365542",
+   "pano": false,
+   "dist": 13,
+   "off": -23.7,
+   "before": {
+    "look": "plocha",
+    "info": {
+     "levels": 4,
+     "point": [
+      21.01675356893043,
+      52.23518180515199
+     ],
+     "km": 99,
+     "block": {
+      "length": 169.1,
+      "width": 59.5,
+      "fill": 0.27,
+      "parts": 2,
+      "area": 2694
+     },
+     "tint": 0,
+     "type": "apartments",
+     "footprint": 644.5216110530964
+    }
+   },
+   "after": {
+    "look": "sikma",
+    "info": {
+     "levels": 4,
+     "point": [
+      21.01675356893043,
+      52.23518180515199
+     ],
+     "km": 99,
+     "block": {
+      "length": 169.1,
+      "width": 59.5,
+      "fill": 0.27,
+      "parts": 2,
+      "area": 2694
+     },
+     "tint": 0,
+     "type": "apartments",
+     "footprint": 644.5216110530964
+    }
+   }
+  },
+  {
+   "id": "PLp08",
+   "town": "lublin",
+   "far": true,
+   "city": "poland",
+   "point": [
+    22.5376666,
+    51.2544613
+   ],
+   "mapillary": "1620211729165578",
+   "pano": false,
+   "dist": 16.7,
+   "off": -20.4,
+   "before": {
+    "look": "plocha",
+    "info": {
+     "levels": 4,
+     "point": [
+      22.537666602638478,
+      51.25446126042052
+     ],
+     "km": 99,
+     "block": {
+      "length": 53,
+      "width": 13.6,
+      "fill": 0.79,
+      "parts": 1,
+      "area": 568
+     },
+     "tint": 0,
+     "type": "apartments",
+     "footprint": 567.752336902513
+    }
+   },
+   "after": {
+    "look": "sikma",
+    "info": {
+     "levels": 4,
+     "point": [
+      22.537666602638478,
+      51.25446126042052
+     ],
+     "km": 99,
+     "block": {
+      "length": 53,
+      "width": 13.6,
+      "fill": 0.79,
+      "parts": 1,
+      "area": 568
+     },
+     "tint": 0,
+     "type": "apartments",
+     "footprint": 567.752336902513
+    }
+   }
+  },
+  {
+   "id": "PLp09",
+   "town": "szczecin",
+   "far": true,
+   "city": "poland",
+   "point": [
+    14.590574,
+    53.362723
+   ],
+   "mapillary": "2900177056918905",
+   "pano": false,
+   "dist": 24.1,
+   "off": -32.6,
+   "before": {
+    "look": "plocha",
+    "info": {
+     "levels": 4,
+     "point": [
+      14.590574001168818,
+      53.36272300849581
+     ],
+     "km": 99,
+     "block": {
+      "length": 66.7,
+      "width": 22.3,
+      "fill": 0.7,
+      "parts": 2,
+      "area": 1039
+     },
+     "tint": 0,
+     "type": "residential",
+     "footprint": 972.8919281549411
+    }
+   },
+   "after": {
+    "look": "sikma",
+    "info": {
+     "levels": 4,
+     "point": [
+      14.590574001168818,
+      53.36272300849581
+     ],
+     "km": 99,
+     "block": {
+      "length": 66.7,
+      "width": 22.3,
+      "fill": 0.7,
+      "parts": 2,
+      "area": 1039
+     },
+     "tint": 0,
+     "type": "residential",
+     "footprint": 972.8919281549411
+    }
+   }
+  },
+  {
+   "id": "PLp10",
+   "town": "gdansk",
+   "far": false,
+   "city": "poland",
+   "point": [
+    18.6564974,
+    54.3597236
+   ],
+   "mapillary": "1699980020919705",
+   "pano": false,
+   "dist": 16.8,
+   "off": 26,
+   "before": {
+    "look": "plocha",
+    "info": {
+     "point": [
+      18.65649738746142,
+      54.359723608836035
+     ],
+     "km": 99,
+     "block": {
+      "length": 97,
+      "width": 54.4,
+      "fill": 0.71,
+      "parts": 3,
+      "area": 3740
+     },
+     "tint": 0,
+     "type": "apartments",
+     "footprint": 2253.301487644306
+    }
+   },
+   "after": {
+    "look": "sikma",
+    "info": {
+     "point": [
+      18.65649738746142,
+      54.359723608836035
+     ],
+     "km": 99,
+     "block": {
+      "length": 97,
+      "width": 54.4,
+      "fill": 0.71,
+      "parts": 3,
+      "area": 3740
+     },
+     "tint": 0,
+     "type": "apartments",
+     "footprint": 2253.301487644306
+    }
+   }
+  },
+  {
+   "id": "PLp11",
+   "town": "szczecin",
+   "far": false,
+   "city": "poland",
+   "point": [
+    14.5693828,
+    53.4375167
+   ],
+   "mapillary": "1566010850401768",
+   "pano": false,
+   "dist": 20.8,
+   "off": 30.5,
+   "before": {
+    "look": "plocha",
+    "info": {
+     "levels": 5,
+     "point": [
+      14.569382835288923,
+      53.437516717179356
+     ],
+     "km": 99,
+     "block": {
+      "length": 111.3,
+      "width": 55.3,
+      "fill": 0.29,
+      "parts": 2,
+      "area": 1770
+     },
+     "tint": 0,
+     "type": "residential",
+     "footprint": 1135.4352870489038
+    }
+   },
+   "after": {
+    "look": "sikma",
+    "info": {
+     "levels": 5,
+     "point": [
+      14.569382835288923,
+      53.437516717179356
+     ],
+     "km": 99,
+     "block": {
+      "length": 111.3,
+      "width": 55.3,
+      "fill": 0.29,
+      "parts": 2,
+      "area": 1770
+     },
+     "tint": 0,
+     "type": "residential",
+     "footprint": 1135.4352870489038
+    }
+   }
+  },
+  {
+   "id": "PLp12",
+   "town": "lodz",
+   "far": false,
+   "city": "poland",
+   "point": [
+    19.4382233,
+    51.7582328
+   ],
+   "mapillary": "2595597134194201",
+   "pano": false,
+   "dist": 24,
+   "off": -11.6,
+   "before": {
+    "look": "plocha",
+    "info": {
+     "levels": 4,
+     "point": [
+      19.438223289348297,
+      51.758232801171744
+     ],
+     "km": 99,
+     "block": {
+      "length": 161.9,
+      "width": 109.2,
+      "fill": 0.23,
+      "parts": 7,
+      "area": 4031
+     },
+     "tint": 0,
+     "type": "apartments",
+     "footprint": 1354.7139124371588
+    }
+   },
+   "after": {
+    "look": "sikma",
+    "info": {
+     "levels": 4,
+     "point": [
+      19.438223289348297,
+      51.758232801171744
+     ],
+     "km": 99,
+     "block": {
+      "length": 161.9,
+      "width": 109.2,
+      "fill": 0.23,
+      "parts": 7,
+      "area": 4031
+     },
+     "tint": 0,
+     "type": "apartments",
+     "footprint": 1354.7139124371588
+    }
+   }
+  }
+ ],
+ "controls": []
+}
