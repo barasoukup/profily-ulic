@@ -7,6 +7,7 @@
 // lanes and parking), the orthophotos DC's of 2025 over DC and MassGIS's of 2025 over Boston's metro (lanes-ortho.js "us").
 // Sources and norms: evaluation/usa/ (NORMS.md), evaluation/usa/boston/ (NORMS.md), the pilot evaluation/usa-dc/.
 import { t } from "../i18n.js";
+import { norm } from "../norm-text.js";
 import { northAmericaLook, northAmericaDetails } from "../house-looks-america.js";
 import { LATE_BOUNDS } from "../late.js";
 import { northAmericaFurniture, ownArt, NORTH_AMERICA_VEHICLES } from "../art.js";
@@ -49,23 +50,23 @@ function limitsUS(s, segs = [], i = -1, place = city, street = null) {
     case "chodnik":
       return { min: 0, zaklad: 1.83, why: t("country.us.sidewalkClearWalkingWidth") };
     case "chodnik_kola": case "stezka_sdilena":
-      return { min: 0, zaklad: 3.05, why: t("country.us.sharedPathPedestriansCyclists") };
+      return { min: 0, zaklad: 3.05, why: norm("sharedPath", [["min", { ft: 10 }]], ["DDOT DEM 2023"]) };
     case "cyklopruh": case "ochranny_pruh":
       return { min: 0, zaklad: 1.52, why: PARKED(segs, i)
         ? t("country.us.cycleLaneBesideParking")
-        : t("country.us.cycleLaneLeast5") };
+        : norm("cycleLane", [["min", { ft: 5 }], ["rec", { ft: 6 }]], ["DDOT DEM 2023"]) };
     case "cyklostezka": {
       // A half of a two-way track by the whole track (countries/cycletrack.js).
       return cycleTrackLimits(s, segs, i, { min: 0, zaklad: 1.52, why: t("country.us.oneWayProtectedCycle") },
-        { min: 0, zaklad: 2.44, why: t("country.us.twoWayCycleTrack") });
+        { min: 0, zaklad: 2.44, why: norm("twoWayCycleTrack", [[null, { ft: 10 }], ["tight", { ft: 8 }]], ["DDOT Bicycle Facility Design Guide 2020"]) });
     }
     case "bus": case "bus_cyklo":
       return { min: 0, zaklad: 3.05, why: t("country.us.busLane1012") };
     case "pruh": case "pruh_piktokoridor":
-      if (s.turn) return { min: 0, zaklad: 2.74, why: t("country.us.turnLaneLeast9") };
+      if (s.turn) return { min: 0, zaklad: 2.74, why: norm("turnLane", [["min", { ft: 9 }], ["rec", { ft: 10 }]], ["DDOT DEM 2023"]) };
       return { min: 0, zaklad: 3.05, why: t("country.us.trafficLane10Ft") };
     case "parkovani":
-      if (s.orient === "kolme") return { min: 0, zaklad: 5.49, why: t("country.us.perpendicularParkingDepth18") };
+      if (s.orient === "kolme") return { min: 0, zaklad: 5.49, why: norm("perpendicularParking", [["depth", { ft: 18 }]], ["DDOT DEM 2023"]) };
       if (s.orient === "sikme") return { min: 0, zaklad: 5.38, why: t("country.us.angledParking45Depth") };
       return { min: 0, zaklad: 2.13, why: t("country.us.parallelParking8Ft") };
     default:
@@ -84,7 +85,7 @@ function limitsNYC(s, segs, i) {
       return cycleTrackLimits(s, segs, i, { min: 0, zaklad: 1.22, why: t("country.us.oneWayProtectedCycleTrack") },
         { min: 0, zaklad: 2.44, why: t("country.us.twoWayProtectedCycle") });
     case "bus": case "bus_cyklo":
-      return { min: 0, zaklad: 3.35, why: t("country.us.kerbsideBusLaneLeast") };
+      return { min: 0, zaklad: 3.35, why: norm("busLaneKerbside", [["min", { ft: 11 }]], ["NYC Street Design Manual", "Curb Bus Lane"]) };
     case "pruh": case "pruh_piktokoridor":
       return { min: 0, zaklad: 3.05, why: t("country.us.trafficLaneTypically10") };
     case "parkovani":
@@ -105,14 +106,14 @@ function limitsBoston(s) {
     case "cyklopruh": case "ochranny_pruh":
       return { min: 0, zaklad: 1.52, why: t("country.us.cycleLaneLeast5Ft") };
     case "bus":
-      return { min: 0, zaklad: 3.35, why: t("country.us.busLaneLeast11") };
+      return { min: 0, zaklad: 3.35, why: norm("busLane", [["min", { ft: 11 }]], ["Boston Complete Streets Guidelines 2013", ["page", "103"]]) };
     case "bus_cyklo":
       return { min: 0, zaklad: 3.66, why: t("country.us.sharedBusCycleLane") };
     case "pruh": case "pruh_piktokoridor":
-      return { min: 0, zaklad: 3.05, why: s.turn ? t("country.us.turnLaneLeast10")
+      return { min: 0, zaklad: 3.05, why: s.turn ? norm("turnLane", [["min", { ft: 10 }]], ["Boston Complete Streets Guidelines 2013", ["page", "103"]])
         : t("country.us.trafficLaneLeast10") };
     case "parkovani":
-      return s.orient === "kolme" || s.orient === "sikme" ? null : { min: 0, zaklad: 2.13, why: t("country.us.parallelParkingLeast7") };
+      return s.orient === "kolme" || s.orient === "sikme" ? null : { min: 0, zaklad: 2.13, why: norm("parallelParking", [["min", { ft: 7 }]], ["Boston Complete Streets Guidelines 2013", ["page", "103"]]) };
     default:
       return null;
   }

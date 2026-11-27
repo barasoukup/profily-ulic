@@ -2,6 +2,7 @@
 // towns/poland.js (Kraków's base map), GUGiK's orthophoto lanes-ortho.js "pl". Sources, norms and signs:
 // evaluation/poland/ (SOURCES.md, NORMS.md, ab/).
 import { t } from "../i18n.js";
+import { norm } from "../norm-text.js";
 import { GROUP, fmt } from "../norms.js";
 import { czechFurniture, TOWN_ART } from "../art.js";
 import base, { CZ_CODE } from "./default.js";
@@ -11,19 +12,19 @@ import base, { CZ_CODE } from "./default.js";
 // ministry's non-binding recommendations WR-D only as the base, said so. The class of a road (GP, G, Z, L, D) is not
 // in the data: the app's groups by OSM, main streets as Z (the cautious figure), local L, calmed D.
 const PL_LANE_BY_GROUP = {
-  A: { min: 3.5, zaklad: 3.75, why: t("country.pl.drivingLaneMotorwayExpressway") },
+  A: { min: 3.5, zaklad: 3.75, why: norm("laneMotorwayExpress", [[null, 3.75], ["min", 3.5]], ["RMI 2022 § 17"]) },
   B: { min: 2.75, zaklad: 3, why: t("country.pl.drivingLaneCollectorStreet") },
-  C: { min: 2.5, zaklad: 2.75, why: t("country.pl.drivingLaneLocalStreet") },
-  D: { min: 2.25, zaklad: 2.5, why: t("country.pl.drivingLaneAccessStreet") },
+  C: { min: 2.5, zaklad: 2.75, why: norm("laneLocalStreetL", [[null, 2.75], ["min", 2.5]], ["RMI 2022 § 17"]) },
+  D: { min: 2.25, zaklad: 2.5, why: norm("laneAccessStreetD", [[null, 2.5], ["min", 2.25]], ["RMI 2022 § 17"]) },
 };
 function limitsPL(s, segs, i) {
   switch (s.type) {
     case "chodnik": case "chodnik_kola":
       return { min: 1, zaklad: 1.8, why: t("country.pl.sidewalk18M") };
     case "stezka_sdilena":
-      return { min: 2.5, zaklad: 3, why: t("country.pl.sharedPathPedestriansCyclists") };
+      return { min: 2.5, zaklad: 3, why: norm("sharedPath", [[null, 3], ["min", 2.5]], ["RMI 2022 § 42 odst. 4"]) };
     case "cyklostezka":
-      return { min: 1.2, zaklad: 1.5, why: t("country.pl.oneWayCyclePath") };
+      return { min: 1.2, zaklad: 1.5, why: norm("cyclePathOneWay", [[null, 1.5], ["min", 1.2], ["twoWay", 2.5], ["min", 2]], ["RMI 2022 § 42 odst. 2 a 3"]) };
     case "cyklopruh": case "ochranny_pruh":
       return { min: 1.25, zaklad: 1.5, why: t("country.pl.cycleLaneContraflowLane") };
     case "bus": case "bus_cyklo":
@@ -31,7 +32,7 @@ function limitsPL(s, segs, i) {
     case "pruh": case "pruh_piktokoridor":
       if (s.turn) return null;
       // A roadway of one lane: at least 3.5 m (RMI 2022 § 17 odst. 3; the hostile review).
-      if (segs.filter((x) => x.type === "pruh" || x.type === "pruh_piktokoridor").length === 1) return { min: 3.5, zaklad: 3.5, why: t("country.pl.singleLaneCarriagewayLeast") };
+      if (segs.filter((x) => x.type === "pruh" || x.type === "pruh_piktokoridor").length === 1) return { min: 3.5, zaklad: 3.5, why: norm("singleLaneCarriageway", [["min", 3.5]], ["RMI 2022 § 17 odst. 3"]) };
       return PL_LANE_BY_GROUP[GROUP[s.roadClass ?? segs.find((x) => x.roadClass)?.roadClass]] || null;
     case "parkovani":
       if (s.orient === "sikme") return null;

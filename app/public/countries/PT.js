@@ -2,6 +2,7 @@
 // towns/portugal.js (the estimate only: no city publishes its street surfaces online), DGT's orthophotos lanes-ortho.js
 // "pt". Sources, norms and signs: evaluation/portugal/ (SOURCES.md, NORMS.md).
 import { t } from "../i18n.js";
+import { norm } from "../norm-text.js";
 import { czechFurniture, TOWN_ART } from "../art.js";
 import base, { CZ_CODE } from "./default.js";
 import { mediterraneanDetails, mediterraneanLook } from "../house-looks.js";
@@ -20,7 +21,7 @@ function limitsPT(s, segs, i) {
     case "cyklopruh":
       if (parking && (parking.orient || "podelne") === "podelne")
         return { min: 2.2, zaklad: 2.5, why: t("country.pt.cycleLaneBesideParallel") };
-      return { min: 1.2, zaklad: 1.5, why: t("country.pt.cycleLane15") };
+      return { min: 1.2, zaklad: 1.5, why: norm("cycleLane", [[null, 1.5], ["min", 1.2]], ["IMT"]) };
     case "cyklostezka":
       return { min: 1.75, zaklad: 2, why: t("country.pt.oneWayCycleTrack") };
     // IMT's 3 m is France's figure it cites (CEREMA 2016, second hand: NORMS.md A3); Lisbon's 3.25 m at the kerb.

@@ -43,3 +43,12 @@ test("staré poznámky uložených řezů: česká věta i odstraněný klíč s
     assert.doesNotMatch(shown, /\{\w+\}|\|\{|^note\./, `${old} → ${shown}`);
   }
 });
+
+test("norma složená z pravidla, hodnot a zdroje: čísla podle jazyka, stopy s metry, místo ve zdroji slovem jazyka", async () => {
+  const { norm } = await import("../app/public/norm-text.js");
+  assert.equal(norm("cycleLane", [["min", 1.5], ["std", 1.85]], ["ERA 2010"]), "cyklopruh: min. 1,5 m, základ 1,85 m (ERA 2010)");
+  assert.equal(norm("busLane", [["min", { ft: 11 }]], ["Boston Complete Streets Guidelines 2013", ["page", "103"]]),
+    "pruh pro autobusy: min. 11 ft (3,35 m) (Boston Complete Streets Guidelines 2013, s. 103)");
+  assert.equal(norm("busLane", [[null, { ft: [10, 12] }]]), "pruh pro autobusy: 10–12 ft (3,05–3,66 m)");
+  assert.equal(norm("parallelParking", [[null, 2]]), "podélné stání: 2 m");
+});

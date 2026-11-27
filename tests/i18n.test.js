@@ -36,7 +36,7 @@ const VARIABLE = {
     'mark(orthophoto ? "note.mapDownOrthoOsm" : "note.mapDownOsm", { name: what })'],
 };
 // The prefixes of keys the code builds from a name (data.js, credits.js, norms): ref("data." + kind), place(id).
-const COMPOSED = ["place.", "data.", "rules.head.", "parking.source.", "credits.what."];
+const COMPOSED = ["place.", "data.", "rules.head.", "parking.source.", "credits.what.", "norm.", "rule."];
 // The page's keys: data-t, data-t-<attribute>, data-t-html.
 const PAGE = src("index.html");
 const pageKeys = () => [...PAGE.matchAll(/\sdata-t(?:-[\w-]+)?="([^"]+)"/g)].map((m) => m[1]);

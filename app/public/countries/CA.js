@@ -3,6 +3,7 @@
 // (the City of Toronto's topographic mapping as the surface map), the orthophoto Toronto's current year (lanes-ortho.js
 // "ca", only over the city). Sources and norms: evaluation/canada/ (NORMS.md).
 import { t } from "../i18n.js";
+import { norm } from "../norm-text.js";
 import { northAmericaLook, northAmericaDetails } from "../house-looks-america.js";
 import { LATE_BOUNDS } from "../late.js";
 import { northAmericaFurniture, ownArt, NORTH_AMERICA_VEHICLES } from "../art.js";
@@ -18,17 +19,17 @@ function limitsCA(s, segs = [], i = -1) {
     case "chodnik":
       return { min: 0, zaklad: 2.1, why: t("country.ca.sidewalkClearWidthLeast") };
     case "cyklopruh": case "ochranny_pruh":
-      return { min: 0, zaklad: 1.5, why: t("country.ca.cycleLane16") };
+      return { min: 0, zaklad: 1.5, why: norm("cycleLane", [[null, 1.6], ["min", 1.5]], ["Toronto On-Street Bikeway Design Guidelines 2023", ["table", "3.4"]]) };
     case "cyklostezka":
-      return cycleTrackLimits(s, segs, i, { min: 0, zaklad: 1.5, why: t("country.ca.oneWayCycleTrack") },
-        { min: 0, zaklad: 2.4, why: t("country.ca.twoWayCycleTrack") });
+      return cycleTrackLimits(s, segs, i, { min: 0, zaklad: 1.5, why: norm("oneWayCycleTrack", [[null, 2.1], ["min", 1.5]], ["Toronto On-Street Bikeway Design Guidelines 2023", ["table", "3.1"]]) },
+        { min: 0, zaklad: 2.4, why: norm("twoWayCycleTrack", [[null, 3.5], ["min", 2.4]], ["Toronto On-Street Bikeway Design Guidelines 2023", ["table", "3.2"]]) });
     case "bus": case "bus_cyklo":
-      return { min: 0, zaklad: 3.3, why: t("country.ca.busLane35") };
+      return { min: 0, zaklad: 3.3, why: norm("busLane", [[null, [3.3, 3.5]]], ["Toronto Lane Widths Guideline 2025", ["table", "11"]]) };
     case "pruh": case "pruh_piktokoridor":
-      if (s.turn) return { min: 0, zaklad: 3, why: t("country.ca.turnLaneLeast3") };
+      if (s.turn) return { min: 0, zaklad: 3, why: norm("turnLane", [["min", 3]], ["Toronto Lane Widths Guideline 2025", ["table", "6 a 7"]]) };
       return { min: 0, zaklad: 3, why: t("country.ca.trafficLane30") };
     case "parkovani":
-      return s.orient === "kolme" || s.orient === "sikme" ? null : { min: 0, zaklad: 2, why: t("country.ca.parallelParking20") };
+      return s.orient === "kolme" || s.orient === "sikme" ? null : { min: 0, zaklad: 2, why: norm("parallelParking", [[null, [2, 2.4]]], ["Toronto Lane Widths Guideline 2025", ["table", "12"]]) };
     default:
       return null;
   }

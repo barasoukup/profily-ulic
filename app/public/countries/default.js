@@ -4,6 +4,7 @@
 // module has a function, not a flag the core would branch on again. No import of city.js or of a module importing it
 // (city.js imports the states).
 import { t, mark } from "../i18n.js";
+import { norm } from "../norm-text.js";
 import { GROUP, fmt } from "../norms.js";
 
 const LANE_BY_GROUP = {
@@ -30,30 +31,30 @@ function limits(s, segs, i) {
       return laneByClass(s.roadClass ?? segs.find((x) => x.roadClass)?.roadClass) || { min: 2.5, zaklad: 3, why: t("country.default.trafficLaneStandard3") };
     case "bus": case "bus_cyklo":
       return s.type === "bus_cyklo"
-        ? { min: 4.25, zaklad: 4.25, why: t("country.default.busCycleLane4") }
-        : { min: 3, zaklad: 3.25, why: t("country.default.busLane325") };
+        ? { min: 4.25, zaklad: 4.25, why: norm("busAndCycleLane", [[null, [4.25, 4.5]]]) }
+        : { min: 3, zaklad: 3.25, why: norm("busLane", [[null, 3.25]]) };
     case "cyklopruh": case "ochranny_pruh": {
       if (parking) {
         const perp = parking.orient === "kolme" || parking.orient === "sikme";
         return perp
-          ? { min: 2, zaklad: 2, why: t("country.default.cycleLaneBesidePerpendicular") }
-          : { min: 1.75, zaklad: 1.75, why: t("country.default.cycleLaneBesideParallel") };
+          ? { min: 2, zaklad: 2, why: norm("cycleLaneBesidePerpendicular", [["min", 2]]) }
+          : { min: 1.75, zaklad: 1.75, why: norm("cycleLaneBesideParallel", [["min", 1.75]]) };
       }
       return s.type === "ochranny_pruh"
-        ? { min: 1.25, zaklad: 1.5, why: t("country.default.advisoryCycleLaneStandard") }
-        : { min: 1.5, zaklad: 1.5, why: t("country.default.cycleLaneKerb1") };
+        ? { min: 1.25, zaklad: 1.5, why: norm("protectedCycleLane", [["std", 1.5], ["min", 1.25]]) }
+        : { min: 1.5, zaklad: 1.5, why: norm("cycleLaneKerb", [[null, 1.5]]) };
     }
     // Below these widths orange only (Bára 11. 11. 2026).
     case "cyklostezka":
-      return { min: 0, zaklad: 2.5, why: t("country.default.cycleTrack25") };
+      return { min: 0, zaklad: 2.5, why: norm("cycleTrack", [[null, 2.5]]) };
     case "nastupiste":
       return { min: 0, zaklad: [segs[i - 1], segs[i + 1]].some((x) => /^tramvaj/.test(x?.type || "")) ? 2.5 : 2, why: t("country.default.stopPlatformClearWidth") };
     case "parkovani":
       // Angled stalls keep the rules of perpendicular ones, their depth by the angle (Manuál C.2): 2.5 × 5 m at 45°
       // is about 5.3 m deep, at 30° 4.7 m.
       return s.orient === "kolme" || s.orient === "sikme"
-        ? { min: 4.5, zaklad: 5, why: t("country.default.perpendicularAngledParking5") }
-        : { min: 2, zaklad: 2, why: t("country.default.parallelParking2M") };
+        ? { min: 4.5, zaklad: 5, why: norm("perpendicularAngledParking", [[null, 5]], ["4,5 m s přesahem nad chodník"]) }
+        : { min: 2, zaklad: 2, why: norm("parallelParking", [[null, 2]]) };
     default:
       return null;
   }

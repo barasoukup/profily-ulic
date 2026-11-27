@@ -1,6 +1,7 @@
 // Austria (AT; Bára 16. 11. 2026): what differs from the Czech rules of countries/default.js. Its towns' data are
 // towns/austria.js.
 import { t } from "../i18n.js";
+import { norm } from "../norm-text.js";
 import { GROUP, fmt } from "../norms.js";
 import { TOWN_ART, TRAM, TROLLEY, czechFurniture } from "../art.js";
 import base, { CZ_CODE } from "./default.js";
@@ -13,7 +14,7 @@ const AT_LANE = { min: 2.5, zaklad: 2.75, why: t("country.at.laneTownTwoCar") };
 const AT_LANE_BY_GROUP = {
   // RVS 03.03.30 is not public: no red, only the basic width.
   A: { min: 0, zaklad: 3.75, why: t("country.at.motorwayLaneUsually3") },
-  B: { min: 2.75, zaklad: 3.25, why: t("country.at.laneMainStreetLeast") },
+  B: { min: 2.75, zaklad: 3.25, why: norm("laneMainStreet", [["min", 2.75], ["std", 3.25]], ["NÖ Leitfaden Radverkehr 2024", ["page", "22"], "Wiener Projektierungshandbuch"]) },
   C: AT_LANE,
   D: { min: 2.5, zaklad: 2.5, why: t("country.at.laneLocalStreetTwo") },
 };
@@ -21,7 +22,7 @@ function limitsAT(s, segs, i) {
   const parking = [segs[i - 1], segs[i + 1]].find((x) => x?.type === "parkovani");
   switch (s.type) {
     case "chodnik": case "chodnik_kola":
-      return { min: 1.5, zaklad: 2, why: t("country.at.sidewalk2MException") };
+      return { min: 1.5, zaklad: 2, why: norm("sidewalk", [[null, 2], ["exc", 1.5]], ["Wiener Projektierungshandbuch", "STEP 2025"]) };
     case "stezka_sdilena":
       return parking ? { min: 3.05, zaklad: 3.75, why: t("country.at.sharedPathPedestriansCyclists") }
         : { min: 2.8, zaklad: 3.5, why: t("country.at.sharedPathPedestriansCyclistsLeast") };
@@ -29,7 +30,7 @@ function limitsAT(s, segs, i) {
       if (s.turn) return { min: 0, zaklad: 2.75, why: t("country.at.turningLaneAbout2") };
       return AT_LANE_BY_GROUP[GROUP[s.roadClass ?? segs.find((x) => x.roadClass)?.roadClass]] || AT_LANE;
     case "bus":
-      return { min: 0, zaklad: 3.5, why: t("country.at.busLane35") };
+      return { min: 0, zaklad: 3.5, why: norm("busLane", [[null, 3.5]], ["Wiener Projektierungshandbuch", ["chapter", "2"]]) };
     case "bus_cyklo":
       return { min: 0, zaklad: 4, why: t("country.at.busLaneCyclists4") };
     case "cyklopruh": case "ochranny_pruh": {
@@ -48,7 +49,7 @@ function limitsAT(s, segs, i) {
     case "nastupiste":
       return { min: 2.5, zaklad: 3.3, why: t("country.at.stopPlatformShelterLeast") };
     case "parkovani":
-      return s.orient === "kolme" || s.orient === "sikme" ? null : { min: 2, zaklad: 2, why: t("country.at.parallelParking2M") };
+      return s.orient === "kolme" || s.orient === "sikme" ? null : { min: 2, zaklad: 2, why: norm("parallelParking", [[null, 2]], ["Wiener Projektierungshandbuch"]) };
     default:
       return null;
   }

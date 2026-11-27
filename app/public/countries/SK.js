@@ -1,6 +1,7 @@
 // Slovakia (SK; Bára 15.–16. 11. 2026): what differs from the Czech rules of countries/default.js. Its towns' data are
 // towns/slovakia.js.
 import { t, mark } from "../i18n.js";
+import { norm } from "../norm-text.js";
 import { GROUP } from "../norms.js";
 import { TOWN_ART, TRAM, TROLLEY, czechFurniture } from "../art.js";
 import base, { CZ_CODE, lawNote } from "./default.js";
@@ -9,7 +10,7 @@ import base, { CZ_CODE, lawNote } from "./default.js";
 // evaluation/slovakia/NORMS.md: TP 117 (2023, signs and markings: the minimum widths of marked lanes), TP 118, TP 73 6110
 // (2024), TP 085 (2019, cycling), vyhláška 532/2002 Z. z. (sidewalk), IDS BK (platforms). STN 73 6110:2024 itself is
 // not public: lanes by class after its 2004 values and TP 117/118. No public Slovak width of a tram belt: no warning.
-const SK_LANE = { min: 2.75, zaklad: 3, why: t("country.sk.laneTownLeast2") };
+const SK_LANE = { min: 2.75, zaklad: 3, why: norm("laneInTown", [["min", 2.75], ["std", 3]], ["TP 117", "2.12.2"]) };
 const SK_LANE_BY_GROUP = {
   // The standard is not public: no red warning, only the basic width (Fable).
   A: { min: 0, zaklad: 3.5, why: t("country.sk.motorwayLane35") },
@@ -42,18 +43,18 @@ function limitsSK(s, segs, i) {
           ? { min: 2.5, zaklad: 2.75, why: t("country.sk.cycleLaneBesidePerpendicular") }
           : { min: 2.25, zaklad: 2.5, why: t("country.sk.cycleLaneBesideParallel") };
       }
-      return { min: 1.75, zaklad: 2, why: t("country.sk.cycleLaneLeast1") };
+      return { min: 1.75, zaklad: 2, why: norm("cycleLane", [["min", 1.75], ["rec", 2]], ["TP 117", "2.12.4.2"]) };
     }
     case "ochranny_pruh":
-      return { min: 1.25, zaklad: 1.5, why: t("country.sk.advisoryCycleLane1") };
+      return { min: 1.25, zaklad: 1.5, why: norm("cyclistAdvisoryLane", [[null, 1.5], ["min", 1.25]], ["TP 117", "2.12.4.3"]) };
     case "cyklostezka":
       return { min: 2, zaklad: 2.5, why: t("country.sk.cycleTrackOneWay") };
     case "nastupiste":
       return { min: 0, zaklad: [segs[i - 1], segs[i + 1]].some((x) => /^tramvaj/.test(x?.type || "")) ? 2.5 : 2, why: t("country.sk.stopPlatformRuleLeast") };
     case "parkovani":
       return s.orient === "kolme" || s.orient === "sikme"
-        ? { min: 4.5, zaklad: 5, why: t("country.sk.perpendicularAngledParking5") }
-        : { min: 2, zaklad: 2, why: t("country.sk.parallelParking2M") };
+        ? { min: 4.5, zaklad: 5, why: norm("perpendicularAngledParking", [[null, 5]], ["4,5 m s přesahem nad obrubník", "STN 73 6056", "TP 117 tab. 13"]) }
+        : { min: 2, zaklad: 2, why: norm("parallelParking", [[null, 2]], ["TP 117", "2.13.8.2"]) };
     default:
       return null;
   }
