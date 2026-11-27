@@ -6,6 +6,7 @@ test("Podlaží z výšky: patrový dům od 6 m, střecha známého tvaru, haly 
   assert.deepEqual([5, 5.9, 6, 6.8, 8, 11, 25, 40].map((h) => f(h)), [1, 1, 2, 2, 2, 3, 7, 12]);
   assert.equal(f(1), undefined);
   assert.equal(f(20.9, { type: "train_station" }), undefined);
+  assert.equal(f(4.5, { type: "warehouse" }), 1);
   assert.equal(f(6.6, { roofShape: "gabled" }), 1);
   assert.equal(f(10.9, { roofShape: "gabled" }), 2);
   assert.equal(f(6.6, { roofShape: "flat" }), 2);

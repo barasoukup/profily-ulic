@@ -6,13 +6,13 @@
 //   but under 8 m the boundary of one and two floors lies at 6.0 m (a two-storey house of 6.4–6.8 m came out of one);
 // - a roof known to be pitched (OSM roof:shape, or the caller's `pitched`): PITCHED m of roof taken off before the floors
 //   (a steep gable on a bay-and-gable house raises the height by a floor);
-// - a hall (OSM building=train_station, warehouse, industrial, sports_hall, hangar…): no floors from the height, undefined.
+// - a hall (OSM building=train_station, warehouse, industrial, sports_hall, hangar…) of 6 m or more: no floors from the height, undefined.
 // ?off=floorsh: the old rule (floorsOld) everywhere.
 const param = (k) => (typeof location === "undefined" ? globalThis.PROFILY_CA?.[k] ?? null : new URLSearchParams(location.search).get(k));
 export const floorsHOff = () => (param("off") || "").split(",").includes("floorsh");
 
 export const HALLS = new Set(["train_station", "transportation", "warehouse", "industrial", "sports_hall", "hangar", "hall", "factory", "manufacture",
-  "sports_centre", "stadium", "grandstand", "parking", "service", "silo", "storage_tank", "greenhouse", "barn"]);
+  "sports_centre", "stadium", "grandstand", "service", "silo", "storage_tank", "greenhouse", "barn"]);
 export const PITCHED_SHAPES = new Set(["gabled", "hipped", "half-hipped", "gambrel", "mansard", "pyramidal", "saltbox", "skillion", "side_hipped",
   "hipped_and_gabled", "gabled_height_moved", "cone", "round"]);
 export const LOW_MAX = 8, TWO_FROM = 6.0, PITCHED = 3.5;
@@ -25,7 +25,7 @@ export const floorsOld = (h) => (h > 2 && h < 400 ? Math.max(1, Math.round((h - 
 export function floorsFromHeight(h, o = {}) {
   if (floorsHOff()) return floorsOld(h);
   if (!(h > 2 && h < 400)) return undefined;
-  if (HALLS.has(o.type)) return undefined;
+  if (HALLS.has(o.type)) return h < TWO_FROM ? 1 : undefined; // a low hall is one floor, a tall one is no count of floors
   const storey = h <= 25 ? 3.3 : 3.05;
   const pitched = o.pitched ?? PITCHED_SHAPES.has(o.roofShape);
   if (pitched) return Math.max(1, Math.round((h - PITCHED) / storey));
