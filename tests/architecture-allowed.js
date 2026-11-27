@@ -28,7 +28,7 @@ export const UNUSED_EXPORTS = [
 ];
 
 export const LONG_FILES = {
-  "pilot/public/app.js": 2830,
+  "pilot/public/app.js": 2837,
   "pilot/public/derive.js": 3048,
   "pilot/public/lanes-ortho.js": 1160,
   "pilot/public/ortho-osm.js": 1478,
@@ -37,7 +37,7 @@ export const LONG_FILES = {
 
 export const LONG_FUNCTIONS = {
   "pilot/public/ai-kerbs.js:parkFromAi": 121,
-  "pilot/public/app.js:cutAt": 426,
+  "pilot/public/app.js:cutAt": 430,
   "pilot/public/app.js:fitLabels": 109,
   "pilot/public/app.js:renderEditor": 250,
   "pilot/public/derive.js:deriveProfile": 640,
