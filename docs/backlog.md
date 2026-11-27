@@ -111,7 +111,7 @@ Co rozhodne Bára, je označeno **(Bára)**.
 - ~~Španělsko **(Bára)**: Catastro je jen v patičce, ne v kreditu exportu~~ Bára 27. 11. 2026: přidat; hotovo (`esCatastro`).
 - ~~Portugalsko **(Bára)**: popis dat „ortofota DGT a OSM“ neplatí na Madeiře a Azorech~~ Bára 27. 11. 2026: tam „OSM“;
   hotovo obecně (kde ortofoto státu nedosahuje, `orthoHereAt` zná i mezery PT a ES).
-- Kypr **(Bára)**: kredit ortofota v exportu bez roku („ortofoto © DLS Kypr“): doplnit „, 2019“ jako v patičce?
+- ~~Kypr **(Bára)**: kredit ortofota v exportu bez roku~~ Bára 27. 11. 2026: doplnit; hotovo („…, 2019“).
 - ~~Kypr: kredit budov DLS je v exportu u každého kyperského řezu; kredit britských značek se počítá ze Stavu, ne ze značek
   přidaných v Návrhu~~ (26. 11. 2026: `cyDls` jen s domem z DLS, `exportSources` bere značky Stavu i Návrhu).
 - ~~Kypr: `lanes-ortho.js` „cy“: napůl chybějící dlaždice (404 u Zelené linie) dávají jas 0 místo NaN (vyplnit NaN nebo
