@@ -369,6 +369,18 @@ function drawPermeable(g, x, w, top, unpaved) {
   }
 }
 
+// A green roof laid on a stop shelter (rainwater management 5.1.1) where the city has no picture of it: a planted strip
+// on the shelter's roof (restored 27. 11. 2026, Bára: the function was lost and a green shelter threw a ReferenceError).
+function greenRoof(g, name, x, top, right) {
+  const s = (cityArt() && sprites[`${artKey()}/${CITY_ART[artKey()]?.[name]}`]) || sprites[name];
+  if (!s) return;
+  const prague = s.w === 270 && s.h === 360, x0 = x - s.w / 2;
+  const [a, b] = prague ? (right ? [s.w - 198, s.w - 13] : [13, 198]) : [s.w * 0.08, s.w * 0.92];
+  const y = top - s.h + (prague ? 95 : 0);
+  el("rect", { x: x0 + a, y: y - 9, width: b - a, height: 9, rx: 2, fill: "#7a6a52" }, g);
+  for (let u = x0 + a + 6; u < x0 + b - 4; u += 12) el("circle", { cx: u, cy: y - 10, r: 6, fill: (u / 12) % 2 < 1 ? "#6aa84f" : "#86b55a" }, g);
+}
+
 // Street furniture and barriers standing at x on a surface at height top.
 // The surface of a separate tram bed, raised behind curbs (Bára): concrete panels with their joints, gravel
 // with the sleepers showing, grass, or asphalt like the roadway (beds used by buses). A curb stone at each end where the bed meets another part.
