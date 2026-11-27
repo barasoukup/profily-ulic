@@ -678,7 +678,8 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
 - Pobřeží: Španělsko, Portugalsko, Monako a Francie platí do 400 m za hranicí GISCO (nábřeží, přístavy); Gibraltar a Andorra
   zůstávají cizinou.
 - Jízda vlevo je zabudovaná přímo v pravidlech (`derive.js`), profil se nezrcadlí.
-- Worker logu ukládá každou platnou polohu (25. 11. 2026); nový Worker musí nasadit Bára.
+- Worker logu ukládá každou platnou polohu (25. 11. 2026); nasazený z main 27. 11. 2026 (i s kontaktním formulářem a cronem
+  „17 * * * *“).
 
 ## Měření přesnosti (Bára 17. 11. 2026, přeměřeno 24. 11. 2026)
 - Jedna univerzální metoda pro všechny státy: skill `mereni-presnosti`, kód a zpráva `evaluation/universal/`. Použít u
@@ -788,7 +789,10 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
 - Kontaktní formulář přes Workera (`POST /contact`, tabulky `contacts` a `contact_rate`, skryté pole, 5 zpráv za hodinu
   z adresy, IPv6 po /64, počítáno atomicky `INSERT … RETURNING`, bez celkového stropu; e-mail 2× z adresy a 10× za hodinu
   celkem; bez `RATE_SALT` odpověď 503; staré řádky maže hodinový cron; Bára 24. 11. 2026: jen limit, žádný Turnstile),
-  e-mail volitelně přes `send_email`; nasazení v `logging/README.md` (Bára). Bez `LOG_URL` „zatím nejde“.
+  e-mail přes `send_email` (vazba `MAIL` ve `wrangler.toml`; zapnuto 27. 11. 2026: Email Routing pro streetspace.eu,
+  tajné `CONTACT_FROM=profily@streetspace.eu` a `CONTACT_TO` – Bářina adresa, ne v kódu); nasazení v `logging/README.md`.
+  Bez `LOG_URL` „zatím nejde“. Na Bářině počítači `npx wrangler` (i `npm test`) s Node 26 tiše končí kódem 194:
+  wrangler spouštět přímo `node <cesta k wrangler>/bin/wrangler.js …`, testy `node --test tests/*.test.js`.
 
 ## Licence
 - Kód MIT. Ilustrace Streetmix CC BY-SA 4.0 (s uvedením autora), pražské ilustrace (`pilot/public/praha/`)

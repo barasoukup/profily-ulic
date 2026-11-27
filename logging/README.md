@@ -119,6 +119,10 @@ Lokálně (`node pilot/server.mjs`) se nic nezaznamenává, `LOG_URL` je tam pr�
 
 ## Kontaktní formulář (okno „O aplikaci“, 24. 11. 2026)
 
+**Stav 27. 11. 2026:** nasazeno z main (Worker verze 3932755b, pak 84238226), e-mail zapnutý (Email Routing pro
+streetspace.eu, tajné `CONTACT_FROM=profily@streetspace.eu` a `CONTACT_TO`, vazba `[[send_email]] name="MAIL"`). Na Macu
+s Node 26 `npx wrangler` tiše končí kódem 194; spouštět `node …/node_modules/wrangler/bin/wrangler.js …` přímo.
+
 Formulář posílá na stejného Workera jako záznam řezů, na adresu z `LOG_URL` s koncovkou `/contact` místo `/log`
 (`pilot/public/about.js`). Dokud `LOG_URL` není nastavené nebo Worker neodpovídá, okno napíše „Odesílání zpráv tu zatím
 nejde.“ a nic neposílá. Nasazení (ve složce `logging/`, jednou):
