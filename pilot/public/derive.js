@@ -571,20 +571,61 @@ export function mtvuPolygons(json, frame) {
   });
 }
 
+// A building of OSM where the surface map has none (Bára 27. 11. 2026: Moravská in Česká Třebová, a house RÚIAN does not
+// know stood in a yard the technical map draws as paving, and the profile went on across it): the OSM buildings the cut
+// crosses and no building of the map covers join the map's polygons as weak buildings (osmBuilding: they take the
+// place of what is open, not of a road or a sidewalk, classify). Only where the map draws buildings at all (a source
+// without a building layer would turn into OSM's), the map's own buildings keep their place. ?off=osmdomy: as before.
+const OSM_NO_BUILDING = new Set(["roof", "no", "ruins", "collapsed", "proposed", "construction", "carport", "canopy"]);
+export function withOsmBuildings(polys, osm, frame, center, normal, half) {
+  if (ORTHO_P.off?.has("osmdomy") || !polys.some((p) => isBuilding(p.code))) return polys;
+  const mapBuildings = polys.filter((p) => isBuilding(p.code));
+  const onCut = [];
+  for (let t = -half; t <= half; t += 0.5) onCut.push([center[0] + normal[0] * t, center[1] + normal[1] * t]);
+  const added = [];
+  for (const el of osm?.elements || []) {
+    if (el.type !== "area" || !el.tags?.building || OSM_NO_BUILDING.has(el.tags.building) || el.tags["building:part"] || !el.geometry?.length) continue;
+    const ring = el.geometry.map((g) => frame.toXY(g.lon, g.lat));
+    const rings = [ring, ...(el.holes || []).map((h) => h.map((g) => frame.toXY(g.lon, g.lat)))];
+    const bbox = bboxOf(ring);
+    if (!onCut.some(([x, y]) => x >= bbox[0] && x <= bbox[2] && y >= bbox[1] && y <= bbox[3] && inside(rings, x, y))) continue;
+    // Covered by a building of the map: a quarter of its area (grid points inside it) lies in the map's buildings (two
+    // buildings wall to wall share a corner, a shifted one still overlaps).
+    const near = mapBuildings.filter((b) => bbox[0] <= b.bbox[2] && bbox[2] >= b.bbox[0] && bbox[1] <= b.bbox[3] && bbox[3] >= b.bbox[1]);
+    let inOwn = 0, inMap = 0;
+    const gs = Math.max(0.5, Math.min(1.5, Math.sqrt(((bbox[2] - bbox[0]) * (bbox[3] - bbox[1])) / 40)));
+    for (let x = bbox[0] + gs / 2; x < bbox[2]; x += gs) {
+      for (let y = bbox[1] + gs / 2; y < bbox[3]; y += gs) {
+        if (!inside(rings, x, y)) continue;
+        inOwn++;
+        if (near.some((b) => inside(b.rings, x, y))) inMap++;
+      }
+    }
+    const covered = inOwn > 0 && inMap / inOwn >= 0.25;
+    if (covered) continue;
+    added.push({ code: 601, label: "", guess: false, level: 0, osmBuilding: true, rings, bbox, lonlat: rings.map((r) => r.map((q) => { const [lon, lat] = frame.toLonLat(q[0], q[1]); return [lat, lon]; })) });
+  }
+  return added.length ? [...added, ...polys] : polys;
+}
+
 // Classify the cut: list of runs {code, s, e} with s < e in metres along the normal (+ = left of way).
 function classify(center, normal, half, polys) {
   const runs = [];
   for (let t = -half; t <= half + 1e-9; t += STEP) {
     const x = center[0] + normal[0] * t, y = center[1] + normal[1] * t;
-    let code = null, orient, use, guess, carved, free = false;
+    let code = null, orient, use, guess, carved, free = false, weak = null;
     for (const p of polys) {
       const [x0, y0, x1, y1] = p.bbox;
       if (x < x0 || x > x1 || y < y0 || y > y1) continue;
+      // An OSM building the map lacks: it takes the place of what is open (paving, yard, green), not of a road, a
+      // sidewalk, a tram bed or a stall (withOsmBuildings).
+      if (p.osmBuilding) { if (!weak && inside(p.rings, x, y)) weak = p; continue; }
       // A no-parking part of a TSK section (a driveway, a crossing): the section has no stall there.
       if (p.code === NO_PARKING) { if (!free && inside(p.rings, x, y)) free = true; continue; }
       if (free && (isTskParking(p.code) || p.code === OSM_PARKING)) continue;
       if (inside(p.rings, x, y)) { code = p.code; orient = p.orient; use = p.use; guess = p.guess; carved = p.carvedTrack; break; }
     }
+    if (weak && (code === null || !(code >= 700 && code <= 705) && !(code >= 9700 && code < 9800))) { code = weak.code; orient = use = guess = carved = undefined; }
     const last = runs[runs.length - 1];
     if (last && last.code === code && !!last.guess === !!guess) last.e = t + STEP / 2;
     else runs.push({ code, orient, use, guess, s: t - STEP / 2, e: t + STEP / 2, ...(carved && { carved: true }) });
