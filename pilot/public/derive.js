@@ -414,6 +414,9 @@ export function awayFromJunctions(osm, frame, near) {
   }
   if (best && !ORTHO_P.off?.has("protejsi") && hits.some((h) => h.service) && slack(start, near.point, hits.filter((h) => !h.service)) >= 0
     && partnerJunctions(osm, frame, near).some((h) => Math.hypot(best.point[0] - h[0], best.point[1] - h[1]) < JUNCTION_CLEARANCE)) return near;
+  // A service way with no free spot at all (short, all junctions and drives): the click stays where it is, not moved to the
+  // least bad spot (Bára 27. 11. 2026; evaluation/kliky: maps 32 : 13, service ways 9 : 2 and 7 : 2). ?off=obsluznevolne.
+  if (best && best.score >= 1e6 && near.way.tags?.highway === "service" && !ORTHO_P.off?.has("obsluznevolne")) return near;
   return best ? { ...near, point: best.point, dir: best.dir, index: best.index } : near;
 }
 

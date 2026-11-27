@@ -35,7 +35,7 @@ Co rozhodne Bára, je označeno **(Bára)**.
 - Sjednocení, zbývající kandidáti (`evaluation/sjednoceni/AUDIT.md`): `besideMax` (SK 15 m, jinde 25 m; A/B na Slovensku),
   `roadOnPath` (jen Praha; zkusit na DTM ČÚZK a mapách měst), `roadClassFromOsm` (CZ, SK; jen norma varování, výklad
   **(Bára)**), `orthoEstimate` (jen text, totéž co `laneOrtho !== "none"`).
-- **(Bára)** Kliky (`evaluation/kliky/ZPRAVA.md`): „nesplnitelné obslužné vynechat“ (mapy 32 : 13, naslepo 17 : 19; na obslužných cestách
+- ~~**(Bára)** Kliky: „nesplnitelné obslužné vynechat“~~ Bára 27. 11. 2026: ano, nechat kam kliknu; hotovo (`?off=obsluznevolne`). Původní bod: Kliky (`evaluation/kliky/ZPRAVA.md`): „nesplnitelné obslužné vynechat“ (mapy 32 : 13, naslepo 17 : 19; na obslužných cestách
   9 : 2 a 7 : 2, změřit znovu), kliknutí do 2 m od osy obslužné cesty skončí na ulici do 10 m (`nearestStreet` přirážka),
   konec cesty, kde ulice pokračuje, posouvá kliknutí o 12 m (bez něj 37 : 209 proti mapám).
 - ~~Pravidlo obslužných cest (`?off=obsluzne`) v Berlíně proti jeho mapě 10 : 12, jediné město, kde nepomáhá
