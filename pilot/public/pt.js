@@ -238,6 +238,7 @@ export const PT = {
   "Piktokoridor": "Pictogramas de bicicleta",
   "Přístupová cesta": "Via de acesso",
   "Krajnice": "Berma",
+  "Šrafy": "Zona zebrada",
   "Pruh BUS": "Corredor BUS",
   "Pruh pro BUS a cyklisty": "Corredor BUS e bicicletas",
   "Tramvaj v pruhu": "Elétrico em via partilhada",

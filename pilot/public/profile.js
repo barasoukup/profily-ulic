@@ -1,6 +1,6 @@
 // SVG drawing and direct editing of a street profile. Drawing units are centimetres,
 // matching the Streetmix illustrations (1 px = 1 cm).
-import { TYPES, SOURCES, PARKING_USE, PARKING_POSITION, TRAM_BEDS, TURNS, HDV_UNDER, LAMP_H, underSize } from "./types.js";
+import { TYPES, partLabel, SOURCES, PARKING_USE, PARKING_POSITION, TRAM_BEDS, TURNS, HDV_UNDER, LAMP_H, underSize } from "./types.js";
 import { city, country, cityById, CITY_IDS, creditLines } from "./city.js";
 import { COUNTRIES } from "./countries/index.js";
 import { GENERIC_VEHICLES } from "./art.js";
@@ -2616,7 +2616,7 @@ export function buildSvg(profile, opts = {}) {
   // The bottom: the label rows, then the signs and the credits line of an export (set after the signs are laid out).
   let bottom = (opts.credits ? H + 110 : H) + DROP;
   const svg = el("svg", { xmlns: NS, viewBox: `${vx} ${yv} ${view[1]} ${bottom - yv}`, "font-family": "Inter, system-ui, sans-serif",
-    role: "img", "aria-label": tr("Příčný profil, celkem {w}: ", { w: fmt(total / 100) }) + segs.map((s) => `${TYPES[s.type]?.label || s.type} ${fmt(s.width)}`).join(", ") });
+    role: "img", "aria-label": tr("Příčný profil, celkem {w}: ", { w: fmt(total / 100) }) + segs.map((s) => `${partLabel(s)} ${fmt(s.width)}`).join(", ") });
   const bg = el("rect", { class: "bg", x: vx, y: yv, width: view[1], height: bottom - yv, fill: "#fbfaf6" }, svg);
 
   const firstRaised = isRaised(segs[0]);
@@ -2650,7 +2650,7 @@ export function buildSvg(profile, opts = {}) {
     const kerbLeft = half && (isRaised(segs[i - 1]) !== isRaised(segs[i + 1]) ? isRaised(segs[i - 1]) : x + w / 2 < total / 2);
     const g = el("g", { class: "seg" + (opts.selected === i ? " selected" : "") + (opts.changed?.has(i) ? " changed" : ""), "data-i": i }, svg);
     // Name and width on hover, also for parts too narrow for a label.
-    el("title", {}, g).textContent = `${t.label}, ${fmt(s.width)}`;
+    el("title", {}, g).textContent = `${partLabel(s)}, ${fmt(s.width)}`;
     el("rect", { class: "ground", x, y: top, width: w, height: GROUND + 60 - top, fill: s.color || (s.position === "on_kerb" ? KERB_PAVING : t.color) }, g);
     // Green parts: grass on topsoil, not a green block all the way down (Bára: nothing that looks like a slab under
     // the green).
@@ -2675,6 +2675,8 @@ export function buildSvg(profile, opts = {}) {
       if (!TYPES[segs[i - 1]?.type]?.tracks) el("rect", { x: x + 4, y: top - 3, width: 25, height: 4, fill: "#f2f0ea" }, g);
       if (!TYPES[segs[i + 1]?.type]?.tracks) el("rect", { x: x + w - 29, y: top - 3, width: 25, height: 4, fill: "#f2f0ea" }, g);
     }
+    // Hatching (V 13) read on the orthophoto: oblique stripes of paint in the top layer of the roadway.
+    if (s.hatched) for (let hx = x + 6; hx + 30 <= x + w - 4; hx += 40) el("polygon", { class: "hatch", points: `${hx},${top} ${hx + 16},${top} ${hx + 30},${top + 36} ${hx + 14},${top + 36}`, fill: "#f2f0ea", "fill-opacity": 0.8 }, g);
     if (t.tracks) {
       for (const dx of [-72, 72]) el("rect", { x: cx + dx - 6, y: top - 6, width: 12, height: 8, fill: "#3d3b36" }, g);
     }
@@ -2767,7 +2769,7 @@ export function buildSvg(profile, opts = {}) {
         // A lane with a piktokoridor is first a lane (Bára): "Jízdní pruh ↑, piktokoridor ↓" with the cyclists' direction
         // when it differs; cyclists in contraflow in a plain lane likewise.
         : s.type === "pruh_piktokoridor" ? `${TYPES.pruh.label}${s.dir ? (forward ? " ↑" : " ↓") : ""}, ${tr("piktokoridor")}${contra ? (s.bikeDir === "backward" ? " ↓" : " ↑") : ""}`
-        : t.label + (t.directional && s.dir ? (forward ? " ↑" : " ↓") : s.type === "pruh" ? " ↑↓" : "") +
+        : partLabel(s) + (t.directional && s.dir ? (forward ? " ↑" : " ↓") : s.type === "pruh" ? " ↑↓" : "") +
           (contra ? `, ${tr("cyklisté")} ${s.bikeDir === "backward" ? "↓" : "↑"}` : "");
       // Trees between the stalls are named with the parking (Bára).
       if (s.type === "parkovani" && s.items?.some((it) => it.kind === "strom")) label += tr(" se stromy");
@@ -2805,7 +2807,7 @@ export function buildSvg(profile, opts = {}) {
     if (opts.onSelect) {
       g.setAttribute("tabindex", "0");
       g.setAttribute("role", "button");
-      g.setAttribute("aria-label", `${t.label}, ${fmt(s.width)}, ${SOURCES[s.source]?.label || ""}`);
+      g.setAttribute("aria-label", `${partLabel(s)}, ${fmt(s.width)}, ${SOURCES[s.source]?.label || ""}`);
       g.addEventListener("click", () => opts.onSelect(i));
       g.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); opts.onSelect(i); } });
     }

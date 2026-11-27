@@ -238,6 +238,7 @@ export const RO = {
   "Piktokoridor": "Culoar cu pictograme",
   "Přístupová cesta": "Alee de acces",
   "Krajnice": "Acostament",
+  "Šrafy": "Zonă hașurată",
   "Pruh BUS": "Bandă BUS",
   "Pruh pro BUS a cyklisty": "Bandă BUS și biciclete",
   "Tramvaj v pruhu": "Tramvai în trafic mixt",

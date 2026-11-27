@@ -238,6 +238,7 @@ export const LV = {
   "Piktokoridor": "Piktogrammu koridors",
   "Přístupová cesta": "Piebraucamais ceļš",
   "Krajnice": "Nomale",
+  "Šrafy": "Svītrotā josla",
   "Pruh BUS": "Autobusu josla",
   "Pruh pro BUS a cyklisty": "Autobusu un velosipēdu josla",
   "Tramvaj v pruhu": "Tramvajs kopējā joslā",

@@ -238,6 +238,7 @@ export const HR = {
   "Piktokoridor": "Piktogramski koridor",
   "Přístupová cesta": "Pristupni put",
   "Krajnice": "Rubni trak",
+  "Šrafy": "Šrafirana površina",
   "Pruh BUS": "Autobusna traka",
   "Pruh pro BUS a cyklisty": "Traka za autobuse i bicikle",
   "Tramvaj v pruhu": "Tramvaj u prometnoj traci",

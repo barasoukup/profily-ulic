@@ -238,6 +238,7 @@ export const MT = {
   "Piktokoridor": "Marki tar-roti",
   "Přístupová cesta": "Triq ta' aċċess",
   "Krajnice": "Spalla tat-triq",
+  "Šrafy": "Żona bil-linji",
   "Pruh BUS": "Korsija tal-linja",
   "Pruh pro BUS a cyklisty": "Korsija tal-linja u tar-roti",
   "Tramvaj v pruhu": "Tramm fit-traffiku",

@@ -241,6 +241,7 @@ export const IT = {
   "Piktokoridor": "Pittogrammi bici",
   "Přístupová cesta": "Controviale",
   "Krajnice": "Banchina",
+  "Šrafy": "Zebratura",
   "Pruh BUS": "Corsia bus",
   "Pruh pro BUS a cyklisty": "Corsia bus e bici",
   "Tramvaj v pruhu": "Tram in sede promiscua",

@@ -4,6 +4,8 @@
 import { city } from "./city.js";
 import { t } from "./i18n.js";
 
+// A part's name: the hatched strip of a roadway (V 13) is a krajnice drawn so, named by what it is.
+export const partLabel = (s) => (s?.hatched ? t("Šrafy") : TYPES[s?.type]?.label || s?.type);
 export const TYPES = {
   chodnik: { label: t("Chodník"), color: "#d6d1c4", raised: true, sprite: "people" },
   chodnik_kola: { label: t("Chodník s cyklisty"), color: "#d9c9c0", raised: true, sprite: "people", withBike: true },

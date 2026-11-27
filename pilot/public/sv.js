@@ -238,6 +238,7 @@ export const SV = {
   "Piktokoridor": "Cykelsymboler",
   "Přístupová cesta": "Tillfart",
   "Krajnice": "Vägren",
+  "Šrafy": "Spärrområde",
   "Pruh BUS": "Busskörfält",
   "Pruh pro BUS a cyklisty": "Körfält för buss och cykel",
   "Tramvaj v pruhu": "Spårvagn i blandtrafik",

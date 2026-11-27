@@ -239,6 +239,7 @@ export const FI = {
   "Piktokoridor": "Pyöräsymbolit",
   "Přístupová cesta": "Ajoyhteys",
   "Krajnice": "Piennar",
+  "Šrafy": "Viirualue",
   "Pruh BUS": "Bussikaista",
   "Pruh pro BUS a cyklisty": "Bussi- ja pyöräkaista",
   "Tramvaj v pruhu": "Raitiovaunu sekaliikenteessä",

@@ -239,6 +239,7 @@ export const GA = {
   "Piktokoridor": "Siombailí rothair",
   "Přístupová cesta": "Bóthar rochtana",
   "Krajnice": "Gualainn",
+  "Šrafy": "Achar crosaithe",
   "Pruh BUS": "Lána bus",
   "Pruh pro BUS a cyklisty": "Lána bus agus rothar",
   "Tramvaj v pruhu": "Tram i lána tráchta",

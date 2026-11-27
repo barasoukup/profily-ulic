@@ -231,6 +231,7 @@ export const LT = {
   "Piktokoridor": "Piktogramų koridorius",
   "Přístupová cesta": "Privažiavimas",
   "Krajnice": "Kelkraštis",
+  "Šrafy": "Brūkšniuotas plotas",
   "Pruh BUS": "Autobusų juosta",
   "Pruh pro BUS a cyklisty": "Autobusų ir dviračių juosta",
   "Tramvaj v pruhu": "Tramvajus bendroje juostoje",

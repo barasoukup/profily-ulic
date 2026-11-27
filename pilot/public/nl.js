@@ -239,6 +239,7 @@ export const NL = {
   "Piktokoridor": "Fietspictogrammen",
   "Přístupová cesta": "Toegangsweg",
   "Krajnice": "Kantstrook",
+  "Šrafy": "Verdrijvingsvlak",
   "Pruh BUS": "Busstrook",
   "Pruh pro BUS a cyklisty": "Bus- en fietsstrook",
   "Tramvaj v pruhu": "Tram op rijstrook",

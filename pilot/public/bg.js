@@ -231,6 +231,7 @@ export const BG = {
   "Piktokoridor": "Пиктограмен коридор",
   "Přístupová cesta": "Локално платно",
   "Krajnice": "Банкет",
+  "Šrafy": "Щриховка",
   "Pruh BUS": "Автобусна лента",
   "Pruh pro BUS a cyklisty": "Лента за автобуси и велосипедисти",
   "Tramvaj v pruhu": "Трамвай в общата лента",
