@@ -61,7 +61,15 @@ kód větve `canada`. Kroky přijdou po nasazení, po přestavbě překladů a p
     dotknout, slepé A/B jen na nich (asi 20–40) a malá kontrolní sada (30–50), která se nesmí změnit; nikdy celý vzorek
     v prohlížeči jen kvůli zjištění, co se změnilo.
 
-Odhad: 1–6 asi 4–5 dní, 7–9 asi 4 dny, 10–13 asi 7–9 dní, 14–16 asi 4 dny, 17–18 asi 2 dny.
+19. **Vlastní pravidla psaní kódu `docs/coding-guidelines.md`** (S; Bára 27. 11. 2026), asi na stránku, udělat hned po
+    kroku 3 (ESLint), ať se jimi řídí všechny další kroky: z Google/Airbnb JavaScript Style Guide pojmenování a délka
+    funkcí, z *A Philosophy of Software Design* (Ousterhout) malé moduly s jasným rozhraním a jedna věc na jednom místě,
+    z Test Desiderata (Kent Beck) a zásad Testing Library testy chování (rychlé, nezávislé, selžou jen při skutečné
+    chybě); k tomu pravidla projektu: anglické názvy, jazyk ≠ stát, sdílený kód bez výjimek pro jedno město, vypínač
+    a A/B u každé změny odhadu, měření na malých vzorcích (krok 18), bez bundleru a TypeScriptu, zprávy commitů
+    popisné jako dosud. `CLAUDE.md` na ni odkáže, aby ji dostal každý agent.
+
+Odhad: 1–6 asi 4–5 dní, 7–9 asi 4 dny, 10–13 asi 7–9 dní, 14–16 asi 4 dny, 17–19 asi 2–3 dny.
 
 ## Co nedělat
 
