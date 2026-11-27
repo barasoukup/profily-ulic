@@ -1,27 +1,37 @@
-# The OSM tiles of each state, built from Geofabrik's extracts once a week and uploaded to Cloudflare R2 (bucket
-# profily-ulic-osm in Bára's account, served at data.streetspace.eu/osm), apart from the deploy of the site (Bára
-# 17. 11. 2026: more states will come). Each state is a job of its own (its own runner, disk and 6 h limit), all in
-# parallel; a state that fails keeps last week's file. Germany is built by its 16 Länder (tools/countries.mjs parts: de_by, de_nw …). The last job writes index.json from what R2 holds (the newest
-# file of each state) and deletes all but the newest of each. Then the site's deploy runs (pages.yml), copying the
-# Czech and Slovak files onto Pages as a fallback. A new state: its line in tools/countries.mjs.
-# Runs weekly, by hand (optionally only some states) and when the tile scripts change on main.
+# The OSM tiles of each state, built from Geofabrik's extracts and uploaded to Cloudflare R2 (bucket profily-ulic-osm in
+# Bára's account, served at data.streetspace.eu/osm), apart from the deploy of the site (Bára 17. 11. 2026: more states will
+# come). Each pack (a state or a part of one: de_by, nl_zh …; tools/countries.mjs) is a job of its own (its own runner,
+# disk and 6 h limit), a few at a time; a pack that fails keeps its previous file.
+# Every day a seventh of the packs (Bára 26. 11. 2026: R2 is free up to 10 GB, counted by the largest amount of each day):
+# tools/countries.mjs DAYS puts each pack on a day of the week, the days about as big, so each pack is rebuilt once a week.
+# As soon as a pack is on R2, its job asks for the index (osm-index.yml): one run at a time writes index.json from what R2
+# holds (the newest file of each state) and deletes the older files at once, so R2 never holds two whole sets, only the
+# whole set and the few new files waiting for the index (evaluation/osm-r2/ZPRAVA-ZMENSENI.md, tools/osm_peak.mjs).
+# The Czech and Slovak files are copied onto Pages as a fallback by the site's deploy (pages.yml), which osm-index.yml
+# starts when they change. A new state: its line in tools/countries.mjs (and its MB in tools/osm-sizes.json).
+# Runs daily (that day's packs), by hand (the packs named, a day, or all) and when the tile scripts change on main (all).
 name: OSM tiles
 
 on:
   workflow_dispatch:
     inputs:
       states:
-        description: "Kódy balíků oddělené čárkou (prázdné: všechny), např. at,de (celé Německo) nebo de_by"
+        description: "Kódy balíků oddělené čárkou (prázdné: podle dne, nebo všechny), např. at,de (celé Německo) nebo de_by"
+        required: false
+        default: ""
+      day:
+        description: "Den týdne 1–7 (balíky toho dne, tools/countries.mjs --days); prázdné a bez států: všechny balíky"
         required: false
         default: ""
   schedule:
-    - cron: "0 3 * * 1"
+    - cron: "0 3 * * *"
   push:
     branches: [main]
     paths:
       - tools/build_osm_tiles.mjs
       - tools/build_osm_data.sh
       - tools/pack_osm_tiles.mjs
+      - tools/osm_slim.mjs
       - pilot/public/osmtile.js
       - pilot/public/osmpack.js
       - .github/workflows/osm-tiles.yml
@@ -43,21 +53,35 @@ env:
   ENDPOINT: https://${{ vars.R2_ACCOUNT_ID }}.r2.cloudflarestorage.com
 
 jobs:
-  # The packs to build, one a state or a part of one (tools/countries.mjs --matrix).
+  # The packs to build (tools/countries.mjs --matrix): the named ones, those of the day (the daily run: today's), or all.
   plan:
     runs-on: ubuntu-latest
     outputs:
       matrix: ${{ steps.m.outputs.matrix }}
+      any: ${{ steps.m.outputs.any }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: 22
       - id: m
-        run: echo "matrix=$(node tools/countries.mjs --matrix)" >> "$GITHUB_OUTPUT"
+        env:
+          STATES: ${{ github.event.inputs.states }}
+          DAY: ${{ github.event.inputs.day }}
+          EVENT: ${{ github.event_name }}
+        run: |
+          if [ -n "$STATES" ]; then args=(--states "$STATES")
+          elif [ -n "$DAY" ]; then args=(--day "$DAY")
+          elif [ "$EVENT" = "schedule" ]; then args=(--day "$(date -u +%u)")
+          else args=(); fi
+          m=$(node tools/countries.mjs --matrix "${args[@]}")
+          echo "matrix=$m" >> "$GITHUB_OUTPUT"
+          if [ "$(echo "$m" | node -e 'let s = ""; process.stdin.on("data", (d) => (s += d)).on("end", () => console.log(JSON.parse(s).include.length))')" -gt 0 ]; then echo "any=true" >> "$GITHUB_OUTPUT"; else echo "any=false" >> "$GITHUB_OUTPUT"; fi
+          echo "$m"
 
   build:
     needs: plan
+    if: needs.plan.outputs.any == 'true'
     strategy:
       fail-fast: false
       # Geofabrik refused the connection when 20 downloads began at once (Thuringia, Switzerland, 17. 11. 2026): a few
@@ -67,28 +91,23 @@ jobs:
     runs-on: ubuntu-latest
     # Each well under an hour (the largest: Austria, Czechia, Bavaria, North Rhine-Westphalia).
     timeout-minutes: 330
+    permissions:
+      contents: read
+      actions: write
     steps:
-      - id: wanted
+      - name: R2 keys
         run: |
-          s="${{ github.event.inputs.states }}"
-          # A state's code (de) builds all its parts (de_by, de_nw …).
-          c="${{ matrix.code }}"
-          if [ -z "$s" ] || echo ",$s," | grep -q ",$c," || echo ",$s," | grep -q ",${c%%_*},"; then echo "go=true" >> "$GITHUB_OUTPUT"; else echo "go=false" >> "$GITHUB_OUTPUT"; fi
           if [ -z "$AWS_ACCESS_KEY_ID" ] || [ -z "${{ vars.R2_ACCOUNT_ID }}" ]; then echo "::error::no R2 keys (secrets R2_ACCESS_KEY_ID, R2_SECRET_ACCESS_KEY, variable R2_ACCOUNT_ID)"; exit 1; fi
-      - if: steps.wanted.outputs.go == 'true'
-        uses: actions/checkout@v4
-      - if: steps.wanted.outputs.go == 'true'
-        uses: actions/setup-node@v4
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: 22
       # The preinstalled toolchains the build does not use go first (Germany's exports and tiles need the room).
       - name: Free disk space
-        if: steps.wanted.outputs.go == 'true'
         run: |
           sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc /opt/hostedtoolcache/CodeQL /usr/local/share/boost
           df -h /
       - name: Install GDAL (ogr2ogr)
-        if: steps.wanted.outputs.go == 'true'
         timeout-minutes: 8
         env:
           DEBIAN_FRONTEND: noninteractive
@@ -97,7 +116,6 @@ jobs:
           sudo -E apt-get install -y -q --no-install-recommends gdal-bin
           ogr2ogr --version
       - name: Download the OSM extract
-        if: steps.wanted.outputs.go == 'true'
         timeout-minutes: 60
         run: |
           mkdir -p data/osm
@@ -122,54 +140,40 @@ jobs:
           fi
           ls -l data/osm
       - name: Build and pack the tiles
-        if: steps.wanted.outputs.go == 'true'
         timeout-minutes: 240
         run: |
           c=${{ matrix.code }}
           mkdir -p site-osm
           NAME=$c tools/build_osm_data.sh "data/osm/$c.osm.pbf" "tiles-$c"
           rm -f "data/osm/$c.osm.pbf" data/osm/${c}_*.geojsonl
-          node tools/pack_osm_tiles.mjs "tiles-$c" "site-osm/$c-$(date -u +%F)-{hash}.posm"
+          # Slimmed as it is packed (tools/osm_slim.mjs: what the app never reads; the ids of its areas and points are counted in memory).
+          node --max-old-space-size=12000 tools/pack_osm_tiles.mjs "tiles-$c" "site-osm/$c-$(date -u +%F)-{hash}.posm"
           ls -l site-osm
       - name: Upload to R2
-        if: steps.wanted.outputs.go == 'true'
         timeout-minutes: 30
         run: |
           aws configure set default.s3.multipart_chunksize 64MB
+          # The box of the file's tiles for the index first (pack_osm_tiles.mjs index.json; an index run between the two
+          # uploads then finds it), then the file.
+          aws s3 cp --endpoint-url "$ENDPOINT" site-osm/index.json "$R2/meta/${{ matrix.code }}.json" --content-type application/json
           for f in site-osm/*.posm; do
             aws s3 cp --endpoint-url "$ENDPOINT" "$f" "$R2/" --content-type application/octet-stream --cache-control "public, max-age=31536000, immutable"
           done
-          # The box of the file's tiles for the index (pack_osm_tiles.mjs index.json).
-          aws s3 cp --endpoint-url "$ENDPOINT" site-osm/index.json "$R2/meta/${{ matrix.code }}.json" --content-type application/json
+      # The index at once (osm-index.yml, one run at a time): the new file is read from now on and the old one goes.
+      - name: Ask for the index
+        run: gh workflow run osm-index.yml --repo "${{ github.repository }}" --ref "${{ github.ref_name }}"
+        env:
+          GH_TOKEN: ${{ github.token }}
 
-  # index.json from the files on R2: the newest of each state (by the upload time), so a state whose job failed keeps
-  # its previous file; then all but the newest of each state go.
+  # Once more after all the packs (one whose request for the index failed, or a run that built nothing): index.json from
+  # the files on R2, the older ones deleted, the fallback on Pages renewed when the Czech or Slovak file changed.
   index:
     needs: build
     if: always()
     runs-on: ubuntu-latest
-    timeout-minutes: 10
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 22
-      - run: |
-          aws s3api list-objects-v2 --endpoint-url "$ENDPOINT" --bucket profily-ulic-osm --prefix osm/ --output json > list.json
-          mkdir -p meta && aws s3 cp --endpoint-url "$ENDPOINT" "$R2/meta/" meta/ --recursive || true
-          node tools/osm_index.mjs list.json index.json delete.txt meta
-          cat index.json
-          aws s3 cp --endpoint-url "$ENDPOINT" index.json "$R2/index.json" --content-type application/json --cache-control "public, max-age=300"
-          while read -r old; do [ -n "$old" ] && aws s3 rm --endpoint-url "$ENDPOINT" "s3://profily-ulic-osm/$old"; done < delete.txt
-
-  # The site with the new files of the fallback (pages.yml copies the Czech and Slovak files from R2 onto Pages).
-  deploy:
-    needs: index
-    if: always() && needs.index.result == 'success'
-    runs-on: ubuntu-latest
     permissions:
       actions: write
     steps:
-      - run: gh workflow run pages.yml --repo "${{ github.repository }}" --ref main
+      - run: gh workflow run osm-index.yml --repo "${{ github.repository }}" --ref "${{ github.ref_name }}"
         env:
           GH_TOKEN: ${{ github.token }}

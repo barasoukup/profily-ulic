@@ -82,10 +82,25 @@ export function frame(cut) {
 async function tile(name) {
   try { return decodeTile(await fs.readFile(path.join(TILES, `${name}.json`), "utf8")); } catch { return []; }
 }
+// OSM_PACK=<folder of packs with index.json> (pilot/data/osm-pack): the packed files as the app reads them, in place of
+// the tiles (the slim packs of evaluation/osm-r2/ZPRAVA-ZMENSENI.md against the full ones).
+const packs = process.env.OSM_PACK && (async () => {
+  const { PackSet } = await import("../../pilot/public/osmpack.js");
+  const dir = process.env.OSM_PACK, files = new Map();
+  return new PackSet(["pack://."], { fetch: async (url, opts = {}) => {
+    const f = path.join(dir, String(url).replace(/^pack:\/\/\.\//, ""));
+    if (!files.has(f)) files.set(f, fs.readFile(f));
+    const buf = await files.get(f);
+    const m = /bytes=(\d+)-(\d+)/.exec(opts.headers?.Range || "");
+    const body = m ? buf.subarray(+m[1], +m[2] + 1) : buf;
+    return { ok: true, status: m ? 206 : 200, headers: { get: () => null }, json: async () => JSON.parse(buf), arrayBuffer: async () => body.buffer.slice(body.byteOffset, body.byteOffset + body.byteLength) };
+  } });
+})();
 export async function osmAround(lat, lon, radius = 60) {
   const dLat = radius / 110574, dLon = radius / (111320 * Math.cos((lat * Math.PI) / 180)), names = [];
   for (let ix = Math.floor((lon - dLon) / TILE); ix <= Math.floor((lon + dLon) / TILE); ix++)
     for (let iy = Math.floor((lat - dLat) / TILE); iy <= Math.floor((lat + dLat) / TILE); iy++) names.push(`${ix}_${iy}`);
+  if (packs) return mergePieces(await (await packs).tiles(names));
   return mergePieces(await Promise.all(names.map(tile)));
 }
 // What OSM says along the cut: the app's own reading (pilot/public/ortho-osm.js osmAlong) in the cut's frame.

@@ -7,6 +7,10 @@
 //   node tools/countries.mjs --list pages       → cz sk (the packs also on Pages)
 //   node tools/countries.mjs --key             → cz-sk-at (for cache keys)
 //   node tools/countries.mjs --matrix          → the packs to build ({ include: [{ code, extract }] }, osm-tiles.yml)
+//   node tools/countries.mjs --matrix --day 3  → only the packs of the 3rd day of the week (1 Monday … 7 Sunday; DAYS)
+//   node tools/countries.mjs --matrix --states at,de_by → only these packs (a state's code: all its parts)
+//   node tools/countries.mjs --days            → the packs of each day with their MB (tools/osm-sizes.json)
+import fs from "node:fs";
 import { pathToFileURL } from "node:url";
 
 export const COUNTRIES = {
@@ -86,6 +90,33 @@ export const COUNTRIES = {
 // The packs to build (osm-tiles.yml): a state's own, or its parts.
 export const PACKS = Object.entries(COUNTRIES).flatMap(([k, c]) => (c.parts ? Object.entries(c.parts).map(([code, extract]) => ({ code, extract })) : [{ code: k, extract: c.geofabrik }]));
 
+// The day of the week each pack is rebuilt on (Bára 26. 11. 2026: each day a seventh of the packs, about as many MB, so
+// that R2 holds the whole set and only the few new files of one day at once; osm-tiles.yml runs daily). The largest pack
+// first, each to the day with the fewest MB so far (tools/osm-sizes.json; a pack not measured yet weighs DEFAULT_MB), ties
+// to the earlier day: the same days on every run until a pack comes or a weight changes. DAYS[0] is Monday.
+export const DAY_COUNT = 7, DEFAULT_MB = 50;
+export const SIZES = JSON.parse(fs.readFileSync(new URL("./osm-sizes.json", import.meta.url), "utf8")).mb;
+export function packDays(packs = PACKS, sizes = SIZES) {
+  const days = Array.from({ length: DAY_COUNT }, () => ({ mb: 0, codes: [] }));
+  const w = (c) => sizes[c] ?? DEFAULT_MB;
+  for (const p of [...packs].sort((a, b) => w(b.code) - w(a.code) || (a.code < b.code ? -1 : 1))) {
+    const d = days.reduce((best, x) => (x.mb < best.mb ? x : best), days[0]);
+    d.mb += w(p.code);
+    d.codes.push(p.code);
+  }
+  return days;
+}
+export const DAYS = packDays();
+// The packs of a run: those named (a state's code builds all its parts), those of a day (1–7), or all.
+export function packsFor({ day, states } = {}) {
+  if (states) {
+    const want = states.split(",").map((s) => s.trim()).filter(Boolean);
+    return PACKS.filter((p) => want.includes(p.code) || want.includes(p.code.split("_")[0]));
+  }
+  if (day) return PACKS.filter((p) => DAYS[day - 1].codes.includes(p.code));
+  return PACKS;
+}
+
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
   const [flag, what] = process.argv.slice(2);
   const keys = Object.keys(COUNTRIES);
@@ -93,6 +124,9 @@ if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) 
   else if (flag === "--list" && what === "osm") console.log(keys.join(" "));
   else if (flag === "--list" && what === "geofabrik") console.log(keys.map((k) => `${k}:${COUNTRIES[k].geofabrik}`).join(" "));
   else if (flag === "--list" && what === "pages") console.log(keys.filter((k) => COUNTRIES[k].pages).join(" "));
-  else if (flag === "--matrix") console.log(JSON.stringify({ include: PACKS }));
+  else if (flag === "--matrix") {
+    const arg = (k) => { const i = process.argv.indexOf(k); return i > 0 ? process.argv[i + 1] : undefined; };
+    console.log(JSON.stringify({ include: packsFor({ day: Number(arg("--day")) || undefined, states: arg("--states") || undefined }) }));
+  } else if (flag === "--days") DAYS.forEach((d, i) => console.log(`${i + 1}: ${d.mb} MB, ${d.codes.length} balíků: ${d.codes.join(" ")}`));
   else { console.error("node tools/countries.mjs --list osm|geofabrik|pages | --key"); process.exit(1); }
 }
