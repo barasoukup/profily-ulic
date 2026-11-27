@@ -3,10 +3,10 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
 
-const read = (f) => fs.readFileSync(new URL(`../pilot/public/${f}`, import.meta.url), "utf8");
+const read = (f) => fs.readFileSync(new URL(`../app/public/${f}`, import.meta.url), "utf8");
 
 // Brno's codes (MTVU 5100xxx, technical-map lines 1xxxxxx) read as Prague's.
-const { brnoMtvuCode, brnoLineCode } = await import("../pilot/public/sources.js");
+const { brnoMtvuCode, brnoLineCode } = await import("../app/public/sources.js");
 test("kódy MTVU Brna na pražské", () => {
   assert.equal(brnoMtvuCode(5100710), 701); // komunikace
   assert.equal(brnoMtvuCode(5100720), 702); // chodník
@@ -44,13 +44,13 @@ test("písmo a Leaflet z vlastního webu, CSP bez Googlu a unpkg", () => {
   assert.match(html, /href="fonts\/inter\.css"/);
   assert.match(html, /src="leaflet\/leaflet\.js"/);
   assert.match(html, /font-src 'self'/);
-  for (const f of ["fonts/OFL.txt", "leaflet/LICENSE.txt", "leaflet/leaflet.css", "leaflet/images/layers.png"]) assert.ok(fs.existsSync(new URL(`../pilot/public/${f}`, import.meta.url)), f);
-  for (const m of read("fonts/inter.css").matchAll(/url\(([^)]+)\)/g)) assert.ok(fs.existsSync(new URL(`../pilot/public/fonts/${m[1]}`, import.meta.url)), m[1]);
+  for (const f of ["fonts/OFL.txt", "leaflet/LICENSE.txt", "leaflet/leaflet.css", "leaflet/images/layers.png"]) assert.ok(fs.existsSync(new URL(`../app/public/${f}`, import.meta.url)), f);
+  for (const m of read("fonts/inter.css").matchAll(/url\(([^)]+)\)/g)) assert.ok(fs.existsSync(new URL(`../app/public/fonts/${m[1]}`, import.meta.url)), m[1]);
   assert.match(html, /IP adresy neukládáme a cookies nepoužíváme/);
 });
 // The credits of an export: the region of the cut, ČÚZK with the year, the DMVS standing in, the orthophoto.
 test("zdroje exportu podle města a kraje řezu", async () => {
-  const { creditLines, cityById } = await import("../pilot/public/city.js");
+  const { creditLines, cityById } = await import("../app/public/city.js");
   const [cz, art] = creditLines(cityById("cesko"), { region: "Pardubický kraj" });
   assert.match(cz, /technická mapa © Pardubický kraj, IS DMVS ČÚZK/);
   assert.match(cz, /RÚIAN © ČÚZK, 2026/);
@@ -74,7 +74,7 @@ test("bývalé stránky měst přesměrují i s řezem", () => {
   assert.match(redirectPage("brno"), /location\.replace\("\.\.\/\?mesto=brno" \+ location\.hash\)/);
 });
 test("město podle polohy řezu", async () => {
-  const C = await import("../pilot/public/city.js");
+  const C = await import("../app/public/city.js");
   C.loadBounds(JSON.parse(read("mesta.json")));
   assert.equal(C.cityAt(50.0875, 14.4208), "praha");
   assert.equal(C.cityAt(49.1951, 16.6085), "brno");
@@ -85,7 +85,7 @@ test("město podle polohy řezu", async () => {
   C.setCity("praha");
 });
 test("stát podle polohy řezu: Česko, Slovensko, Rakousko, Německo, cizina", async () => {
-  const C = await import("../pilot/public/city.js");
+  const C = await import("../app/public/city.js");
   C.loadBounds(JSON.parse(read("mesta.json")));
   C.loadStates(JSON.parse(read("staty.json")));
   assert.equal(C.cityAt(49.907481, 16.442219), "cesko"); // Česká Třebová
@@ -117,7 +117,7 @@ test("stát podle polohy řezu: Česko, Slovensko, Rakousko, Německo, cizina", 
 
 // The towns' passports (towns/pasporty.js): the page may ask their servers, a point takes its town.
 test("pasporty měst: CSP, město podle polohy, převod typů", async () => {
-  const { PASSPORT_HOSTS, passportAt, codes } = await import("../pilot/public/towns/pasporty.js");
+  const { PASSPORT_HOSTS, passportAt, codes } = await import("../app/public/towns/pasporty.js");
   const connect = read("index.html").match(/connect-src [^;]*/)[0];
   for (const host of PASSPORT_HOSTS) assert.ok(connect.includes(host), host);
   assert.equal(await passportAt(18.1431, 49.4583), "roznov");
@@ -135,7 +135,7 @@ test("pasporty měst: CSP, město podle polohy, převod typů", async () => {
 
 // A passport that answers with nothing (as Jihlava's on 16. 11. 2026) leaves the box to the national DTM.
 test("pasport bez ploch: plochy jen z technické mapy ČÚZK", async () => {
-  const { withPassports } = await import("../pilot/public/towns/pasporty.js");
+  const { withPassports } = await import("../app/public/towns/pasporty.js");
   const dtm = { features: [{ attributes: { CTVUK_KOD: 701 } }], region: "DTM" };
   const native = globalThis.fetch;
   globalThis.fetch = async () => new Response(JSON.stringify({ features: [] }));
@@ -145,7 +145,7 @@ test("pasport bez ploch: plochy jen z technické mapy ČÚZK", async () => {
 });
 
 test("slovenská města podle hranic ze ZBGIS (mesta-sk.json): Šamorín ani Svätý Jur nejsou Bratislava", async () => {
-  const C = await import("../pilot/public/city.js");
+  const C = await import("../app/public/city.js");
   C.loadSkTowns(JSON.parse(read("mesta-sk.json")));
   // The city of a point and its illustrations (step 4b: the Slovak towns are cities, mesta-sk.json).
   C.loadBounds(JSON.parse(read("mesta.json")));
@@ -164,8 +164,8 @@ test("slovenská města podle hranic ze ZBGIS (mesta-sk.json): Šamorín ani Sv�
 // Where a point lies (towns/index.js placeAt, docs/architecture-countries.md step 4): the state, the city, the town's
 // illustrations and the sources with a territory of their own that have the point.
 test("placeAt: stát, město, ilustrace a zdroje s vlastním územím", async () => {
-  const C = await import("../pilot/public/city.js");
-  const { placeAt } = await import("../pilot/public/towns/index.js");
+  const C = await import("../app/public/city.js");
+  const { placeAt } = await import("../app/public/towns/index.js");
   C.loadBounds(JSON.parse(read("mesta.json")));
   C.loadStates(JSON.parse(read("staty.json")));
   C.loadSkTowns(JSON.parse(read("mesta-sk.json")));
@@ -182,7 +182,7 @@ test("placeAt: stát, město, ilustrace a zdroje s vlastním územím", async ()
   assert.deepEqual(placeAt(50.0817, 14.4176), { country: "CZ", city: "praha", art: "praha", sources: [] });
   assert.deepEqual(placeAt(47.87, 17.269), { country: null, city: "cizina", art: "cesko", sources: [] });
   // The other cities take their state's sources and texts.
-  const { TOWNS } = await import("../pilot/public/towns/index.js");
+  const { TOWNS } = await import("../app/public/towns/index.js");
   assert.equal(TOWNS.bratislava, TOWNS.slovensko);
   assert.equal(TOWNS.graz, TOWNS.austria);
   C.setCity("kosice");

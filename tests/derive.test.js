@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { localFrame, deriveProfile, mtvuPolygons } from "../pilot/public/derive.js";
+import { localFrame, deriveProfile, mtvuPolygons } from "../app/public/derive.js";
 
 // A straight street running north through a synthetic frame; no technical map (polys = []),
 // so the profile is the estimate from OSM tags.
@@ -37,8 +37,8 @@ function measured(ways, road) {
 }
 
 test("jízda vlevo (Kypr, Malta): směry podle pravidel otočené, data na svém místě", async () => {
-  const { country } = await import("../pilot/public/city.js");
-  const D = await import("../pilot/public/derive.js");
+  const { country } = await import("../app/public/city.js");
+  const D = await import("../app/public/derive.js");
   const was = country.leftHand;
   const four = { highway: "primary", lanes: "4", "lanes:forward": "2", "lanes:backward": "2" };
   const turn = { ...four, "turn:lanes:forward": "left|through" }, bus = { ...four, "bus:lanes:forward": "designated|yes" };
@@ -61,7 +61,7 @@ test("jízda vlevo (Kypr, Malta): směry podle pravidel otočené, data na svém
 });
 
 test("osa ulice ve stání u obruby: výchozí (?axisroad=0 vypne) je vozovka vedle, kterou přechází jen chodník, její (Lippard Avenue)", async () => {
-  const { P } = await import("../pilot/public/ortho-osm.js");
+  const { P } = await import("../app/public/ortho-osm.js");
   const frame = localFrame(37.73, -122.43);
   const rect = (x0, x1, code) => ({ attributes: { CTVUK_KOD: code }, geometry: { rings: [[[x0, -60], [x1, -60], [x1, 60], [x0, 60], [x0, -60]].map(([x, y]) => frame.toLonLat(x, y))] } });
   // Sidewalk, a parking lane under the axis (x 0), the roadway beside it with a footway's crossing over it, sidewalk.
@@ -79,7 +79,7 @@ test("osa ulice ve stání u obruby: výchozí (?axisroad=0 vypne) je vozovka ve
 
 // Bára 26. 11. 2026: a dragged cut could not leave its OSM way (Kraków, Kościuszki onto the bridge, a way of its own).
 test("tažený řez pokračuje na navazující úsek ulice (most), ne na vzdálenou ulici", async () => {
-  const { dragAlong, localFrame } = await import("../pilot/public/derive.js");
+  const { dragAlong, localFrame } = await import("../app/public/derive.js");
   const f = localFrame(50, 20);
   const g = (pts) => pts.map(([x, y]) => { const [lon, lat] = f.toLonLat(x, y); return { lon, lat }; });
   const way = (id, pts, tags = {}) => ({ type: "way", id, tags: { highway: "secondary", ...tags }, geometry: g(pts) });

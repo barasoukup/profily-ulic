@@ -1,4 +1,4 @@
-// What visitors corrected and designed, from the log of edits (kind "upravy", pilot/public/app.js logEdits):
+// What visitors corrected and designed, from the log of edits (kind "upravy", app/public/app.js logEdits):
 // each record as a short list of changes, then the most common changes per kind (oprava = the detection was
 // wrong, navrh = what people want of their streets). Run from logging/ (wrangler signed in to Bára's account):
 //   node upravy.mjs            all records

@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { toStreetmix } from "../pilot/public/streetmix.js";
+import { toStreetmix } from "../app/public/streetmix.js";
 
 const profile = {
   segments: [
@@ -23,7 +23,7 @@ test("veřejná ulice ve Streetmixu nese uvedení zdrojů", async () => {
   assert.match(name, /IPR Praha/);
   assert.match(name, /OpenStreetMap/);
   // The credit is the cut's city's (Bára 12. 11. 2026: not always IPR).
-  const { setCity } = await import("../pilot/public/city.js");
+  const { setCity } = await import("../app/public/city.js");
   setCity("brno");
   const brno = toStreetmix(profile, "Testovací").name;
   assert.match(brno, /Statutární město Brno/);
@@ -40,7 +40,7 @@ test("tramvajové těleso v trávě jde do Streetmixu jako tramvaj na trávě, o
 });
 
 test("Kypr a Malta jezdí vlevo: export do Streetmixu to řekne (leftHandTraffic)", async () => {
-  const { setCity } = await import("../pilot/public/city.js");
+  const { setCity } = await import("../app/public/city.js");
   try {
     for (const [id, left] of [["cyprus", true], ["malta", true], ["praha", false], ["brno", false]]) {
       setCity(id);

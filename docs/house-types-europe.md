@@ -1,9 +1,9 @@
 # Regionální vzhledy domů v Evropě (specifikace, 23. 11. 2026)
 
-> Stav 23. 11. 2026: nakreslené a zapojené (`pilot/public/house-looks.js`, `profile.js`), štítové domy jen s `?stit=1`;
+> Stav 23. 11. 2026: nakreslené a zapojené (`app/public/house-looks.js`, `profile.js`), štítové domy jen s `?stit=1`;
 > zpráva a snímky `evaluation/budovy-regiony/ZPRAVA.md`.
 
-Návrh nových vzhledů domu vedle profilu (`pilot/public/profile.js`) pro starší zástavbu mimo Česko, kde český
+Návrh nových vzhledů domu vedle profilu (`app/public/profile.js`) pro starší zástavbu mimo Česko, kde český
 činžák se šikmou střechou (`sikma`) a další české vzhledy nesedí, a pro severské státy do budoucna. Jen specifikace:
 nic z toho není nakreslené ani zapojené. Číselné hodnoty jsou ve stejných jednotkách jako `STOREY`, `WINDOWS`,
 `DEFAULT_FLOORS` a `plinth` v `profile.js`; barvy jsou výchozí návrh k ověření od oka.

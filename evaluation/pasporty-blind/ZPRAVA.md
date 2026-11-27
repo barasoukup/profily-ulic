@@ -19,7 +19,7 @@ u k-2 70. S pasportem je odhadem 12 a 6 řezů.
 ## Postup
 
 - **Vzorek** (`sample.mjs`, semínko 20261126): 60 náhodných bodů v každém městě podle délky ulic OSM uvnitř hranice pasportu
-  (`pilot/public/pasporty.json`; i obslužné cesty kromě vjezdů a parkovišť), od sebe ≥ 60 m, od dřívějšího vzorku
+  (`app/public/pasporty.json`; i obslužné cesty kromě vjezdů a parkovišť), od sebe ≥ 60 m, od dřívějšího vzorku
   (`evaluation/<město>/data/samples.json`) ≥ 100 m (Šlapanice nejméně 102 m, medián 186 m; Kuřim 101 a 158 m).
 - **Sběr:** řez umístí klik („s pasportem“), „bez“ se počítá na tomtéž řezu. Pasport změnil profil u 50 z 60 řezů ve
   Šlapanicích a 32 z 60 v Kuřimi (`results/collection.json`); šum (opakované „s pasportem“ jiné) žádný.

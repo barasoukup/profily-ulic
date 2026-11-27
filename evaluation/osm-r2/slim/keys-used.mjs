@@ -1,4 +1,4 @@
-// Which tag keys of the packs the app's code can read (evaluation/osm-r2/slim): every word of the code of pilot/public
+// Which tag keys of the packs the app's code can read (evaluation/osm-r2/slim): every word of the code of app/public
 // (comments left out, translations too) is taken as a key it may read, with the parts of a key before a colon (a key
 // built in a template, `parking:${side}`) and the words of regular expressions. Conservative: a word used for anything
 // else keeps a key of that name. Then the keys of the measured packs (composition.mjs --json, FULL=1) that no word names,
@@ -7,7 +7,7 @@
 import fs from "node:fs";
 import path from "node:path";
 
-const ROOT = path.join(path.dirname(new URL(import.meta.url).pathname), "../../../pilot/public");
+const ROOT = path.join(path.dirname(new URL(import.meta.url).pathname), "../../../app/public");
 const files = [];
 const walk = (d) => { for (const f of fs.readdirSync(d)) { const p = path.join(d, f); if (fs.statSync(p).isDirectory()) walk(p); else if (/\.js$/.test(f)) files.push(p); } };
 walk(ROOT);

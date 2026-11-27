@@ -60,7 +60,7 @@ function limitsSK(s, segs, i) {
 }
 
 
-// The signs of the state SK (pilot/public/znacky-SK/, README there): the number for the label, the file of the sign
+// The signs of the state SK (app/public/znacky-SK/, README there): the number for the label, the file of the sign
 // and of its plate. SK has no plates for the manner of parking (272 alone), no one-way sign with contraflow
 // cyclists (321 + plate 514, seen from the exit 230 + plate 507 with a bicycle), and puts a reserved parking
 // space under Zákaz zastavenia (270 + plate 531).
@@ -123,7 +123,7 @@ function signLabel(x, own, label, plates) {
   return code ? `${code} ${label.replace(CZ_CODE, "")}` : label;
 }
 
-// The Slovak towns' vehicles (Bára 16. 11. 2026; pilot/public/<town>/, drawn after photos of Wikimedia Commons): a cut in
+// The Slovak towns' vehicles (Bára 16. 11. 2026; app/public/<town>/, drawn after photos of Wikimedia Commons): a cut in
 // Slovakia draws the trams, trolleybuses and buses of its town (by a box around it), elsewhere the neutral ones (generic/); the
 // furniture is the Czech set's ("../cesko/…": the files of cesko/).
 // The stop posts carry the Slovak sign 331 Zastávka (Bára 16. 11. 2026; slovensko/, for every Slovak town).

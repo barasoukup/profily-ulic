@@ -8,8 +8,8 @@ import { setCity, sources } from "./labels-lib.mjs";
 // After labels-lib (the app's config.js as published, STATIC = true: OSM from the packs); static imports would load
 // the app's modules before it.
 const { cuts, truthOf, stripOf } = await import("../ortofoto-osm/lib.mjs");
-const { orthoOsmPolys, trimToEnds, P } = await import("../../pilot/public/ortho-osm.js");
-const { localFrame, deriveProfile } = await import("../../pilot/public/derive.js");
+const { orthoOsmPolys, trimToEnds, P } = await import("../../app/public/ortho-osm.js");
+const { localFrame, deriveProfile } = await import("../../app/public/derive.js");
 
 const [city = "brno", key = "brno10"] = process.argv.slice(2);
 P.off = new Set((process.env.OFF || "").split(",").filter(Boolean));

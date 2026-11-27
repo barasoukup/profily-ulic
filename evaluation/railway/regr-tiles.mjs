@@ -1,11 +1,11 @@
 // The OSM tiles of Prague and Brno for the regression (evaluation/ortofoto-osm/regrese.mjs, OSM_TILES=<out>): the app's
-// tiles of pilot/data/osm-tiles, with the railway lines the new build keeps (tiles-CZ of build.sh, over the BBBike
+// tiles of app/data/osm-tiles, with the railway lines the new build keeps (tiles-CZ of build.sh, over the BBBike
 // extracts of Prague and Brno) added to them; tiles without a railway are links.
 //   node evaluation/railway/regr-tiles.mjs <tiles-CZ folder> <out folder>
 import fs from "node:fs";
 import path from "node:path";
 const [src, out] = process.argv.slice(2);
-const MAIN = new URL("../../pilot/data/osm-tiles/", import.meta.url).pathname;
+const MAIN = new URL("../../app/data/osm-tiles/", import.meta.url).pathname;
 const KIND = /"railway":"(rail|narrow_gauge|subway)"/;
 fs.rmSync(out, { recursive: true, force: true });
 fs.mkdirSync(out, { recursive: true });

@@ -17,8 +17,8 @@ import zlib from "node:zlib";
 import { execFile } from "node:child_process";
 import { promisify } from "node:util";
 import { politeFetch } from "../polite.mjs";
-import { decodePng } from "../../pilot/public/dmvs.js";
-import { TYPES } from "../../pilot/public/types.js";
+import { decodePng } from "../../app/public/dmvs.js";
+import { TYPES } from "../../app/public/types.js";
 
 const run = promisify(execFile);
 const ROOT = path.dirname(new URL(import.meta.url).pathname);

@@ -2,7 +2,7 @@
 // tracks holds a wire across them instead of a bracket over the cars.
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { spanPlan } from "../pilot/public/profile.js";
+import { spanPlan } from "../app/public/profile.js";
 
 const pole = (f = 0.5) => ({ kind: "sloup_trakce", f });
 const S = (type, width, items) => ({ type, width, ...(items ? { items } : {}) });

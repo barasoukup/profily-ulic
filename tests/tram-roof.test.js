@@ -5,7 +5,7 @@ import assert from "node:assert/strict";
 import fs from "node:fs";
 import path from "node:path";
 
-const ROOT = new URL("../pilot/public/", import.meta.url).pathname;
+const ROOT = new URL("../app/public/", import.meta.url).pathname;
 test("tramvaj s obrázkem jiné výšky než 420 má data-roof", () => {
   let n = 0;
   for (const dir of fs.readdirSync(ROOT, { withFileTypes: true })) {

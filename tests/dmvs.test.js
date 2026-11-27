@@ -1,10 +1,10 @@
-// Surfaces read from the map images of the national DTM (pilot/public/dmvs.js): the PNG decoder, the areas
+// Surfaces read from the map images of the national DTM (app/public/dmvs.js): the PNG decoder, the areas
 // of an image and their outlines, the type names of GetFeatureInfo.
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import zlib from "node:zlib";
 
-const { decodePng, classify, components, trace, simplify, typeCode, jvfName } = await import("../pilot/public/dmvs.js");
+const { decodePng, classify, components, trace, simplify, typeCode, jvfName } = await import("../app/public/dmvs.js");
 
 // A PNG as the WMS answers it (palette with transparency), lines filtered with Sub, Up and Paeth.
 function png(w, h, palette, alpha, pixels) {

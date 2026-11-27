@@ -2,17 +2,17 @@
 // The truth is RÚIAN's "druh svislé nosné konstrukce" (wall panels 4, 41, 43 = panel; bricks, stone,
 // monolith… = not). Buildings are sampled from the OSM tiles around the centres of a few cities and
 // given the data the app gives them after a click: the OSM building and its block, the city's floors
-// (IPR in Prague, RÚIAN elsewhere) and in Prague the age of the area (pilot/data/vyvoj).
+// (IPR in Prague, RÚIAN elsewhere) and in Prague the age of the area (app/data/vyvoj).
 // Answers are cached in evaluation/budovy-panel/cache.json; requests go through polite.mjs.
 // Usage: node evaluation/budovy-panel/run.mjs [--per 60] > evaluation/budovy-panel/vysledek.tsv
 import fs from "node:fs";
 import { politeFetch } from "../polite.mjs";
-import { localFrame, buildingAt } from "../../pilot/public/derive.js";
-import { setCity, city } from "../../pilot/public/city.js";
-import { buildingStyle } from "../../pilot/public/profile.js";
-import { PODLAZNOST, PODLAZNOST_FIELDS, podlaznostInfo } from "../../pilot/public/queries.js";
-import { RUIAN_HALL, RUIAN_LOW } from "../../pilot/public/gis.js";
-import { decodeTile, mergePieces } from "../../pilot/public/osmtile.js";
+import { localFrame, buildingAt } from "../../app/public/derive.js";
+import { setCity, city } from "../../app/public/city.js";
+import { buildingStyle } from "../../app/public/profile.js";
+import { PODLAZNOST, PODLAZNOST_FIELDS, podlaznostInfo } from "../../app/public/queries.js";
+import { RUIAN_HALL, RUIAN_LOW } from "../../app/public/gis.js";
+import { decodeTile, mergePieces } from "../../app/public/osmtile.js";
 
 const DIR = "evaluation/budovy-panel";
 const PER = +(process.argv[process.argv.indexOf("--per") + 1] || 60);
@@ -57,7 +57,7 @@ let seed = 20261116;
 const rnd = () => { seed |= 0; seed = (seed + 0x6d2b79f5) | 0; let t = Math.imul(seed ^ (seed >>> 15), 1 | seed); t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t; return ((t ^ (t >>> 14)) >>> 0) / 4294967296; };
 
 const TILE = 0.005, tiles = new Map();
-const tile = (k) => { if (!tiles.has(k)) { try { tiles.set(k, decodeTile(fs.readFileSync(`pilot/data/osm-tiles/${k}.json`, "utf8"))); } catch { tiles.set(k, []); } } return tiles.get(k); };
+const tile = (k) => { if (!tiles.has(k)) { try { tiles.set(k, decodeTile(fs.readFileSync(`app/data/osm-tiles/${k}.json`, "utf8"))); } catch { tiles.set(k, []); } } return tiles.get(k); };
 const around = (lat, lon) => {
   const lists = [];
   for (let dx = -1; dx <= 1; dx++) for (let dy = -1; dy <= 1; dy++) lists.push(tile(`${Math.floor(lon / TILE) + dx}_${Math.floor(lat / TILE) + dy}`));
@@ -67,7 +67,7 @@ const VY = 0.01, vyTiles = new Map();
 const insideRing = (ring, x, y) => { let c = false; for (let i = 0, j = ring.length - 1; i < ring.length; j = i++) { const [xi, yi] = ring[i], [xj, yj] = ring[j]; if (yi > y !== yj > y && x < ((xj - xi) * (y - yi)) / (yj - yi) + xi) c = !c; } return c; };
 function vyvoj(lat, lon) {
   const k = `${Math.floor(lon / VY)}_${Math.floor(lat / VY)}`;
-  if (!vyTiles.has(k)) { try { vyTiles.set(k, JSON.parse(fs.readFileSync(`pilot/data/vyvoj/${k}.json`, "utf8"))); } catch { vyTiles.set(k, null); } }
+  if (!vyTiles.has(k)) { try { vyTiles.set(k, JSON.parse(fs.readFileSync(`app/data/vyvoj/${k}.json`, "utf8"))); } catch { vyTiles.set(k, null); } }
   const polys = vyTiles.get(k); if (!polys) return undefined;
   let year = 2020;
   for (const [rok, rings] of polys) if (rok < year && rings.some((r) => insideRing(r, lon, lat))) year = rok;

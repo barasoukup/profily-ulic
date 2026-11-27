@@ -3,12 +3,12 @@
 import fs from "node:fs";
 import path from "node:path";
 const HERE = path.dirname(new URL(import.meta.url).pathname), W = path.join(HERE, "../../..");
-const { Pack } = await import(W + "/pilot/public/osmpack.js");
-const { mergePieces, TILE } = await import(W + "/pilot/public/osmtile.js");
-const { deckSpans } = await import(W + "/pilot/public/ortho-osm.js");
-const { localFrame } = await import(W + "/pilot/public/derive.js");
+const { Pack } = await import(W + "/app/public/osmpack.js");
+const { mergePieces, TILE } = await import(W + "/app/public/osmtile.js");
+const { deckSpans } = await import(W + "/app/public/ortho-osm.js");
+const { localFrame } = await import(W + "/app/public/derive.js");
 const [code, lat, lon, bearing, wayId] = process.argv.slice(2);
-const dir = W + "/pilot/data/osm-pack/", idx = JSON.parse(fs.readFileSync(dir + "index.json"));
+const dir = W + "/app/data/osm-pack/", idx = JSON.parse(fs.readFileSync(dir + "index.json"));
 const fd = fs.openSync(dir + idx.files[code], "r");
 const pack = new Pack(async (s, e) => { const b = Buffer.alloc(e - s + 1); fs.readSync(fd, b, 0, b.length, s); return { bytes: new Uint8Array(b.buffer, b.byteOffset, b.length) }; });
 const ix = Math.floor(+lon / TILE), iy = Math.floor(+lat / TILE), names = [];
@@ -25,7 +25,7 @@ if (process.env.RING) for (const e of els.filter((e) => e.type === "area" && e.t
   console.log(e.geometry.map((p) => { const [x, y] = frame.toXY(p.lon, p.lat); return `${(x * n[0] + y * n[1]).toFixed(1)},${(x * d[0] + y * d[1]).toFixed(1)}`; }).join(" "));
 }
 if (process.env.GREEN) {
-  const { WATER, GREEN } = await import(W + "/pilot/public/ortho-osm.js");
+  const { WATER, GREEN } = await import(W + "/app/public/ortho-osm.js");
   const n = [-d[1], d[0]];
   for (const e of els.filter((e) => e.type === "area" && (WATER(e.tags) || GREEN(e.tags)))) {
     const g = e.geometry.map((p) => { const [x, y] = frame.toXY(p.lon, p.lat); return [x * n[0] + y * n[1], x * d[0] + y * d[1]]; });

@@ -1,5 +1,5 @@
 // Every state's looks before and after (docs/house-types-north-america.md): buildingStyle and the drawn SVG of many
-// houses in every city but North America's. OLD=<old pilot/public> node compare.mjs
+// houses in every city but North America's. OLD=<old app/public> node compare.mjs
 import path from "node:path";
 import { createHash } from "node:crypto";
 import { execFileSync } from "node:child_process";
@@ -7,7 +7,7 @@ import { fileURLToPath } from "node:url";
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 if (!process.env.ONE) {
   const run = (pub) => JSON.parse(execFileSync("node", [fileURLToPath(import.meta.url)], { env: { ...process.env, ONE: pub }, maxBuffer: 1e9 }).toString());
-  const a = run(process.env.OLD), b = run(path.join(HERE, "../../../pilot/public"));
+  const a = run(process.env.OLD), b = run(path.join(HERE, "../../../app/public"));
   let diff = 0, n = 0;
   for (const c of Object.keys(a)) { n += a[c].n; if (a[c].hash !== b[c]?.hash) { diff++; console.log("differs:", c); } }
   console.log(Object.keys(a).length, "cities", n, "houses,", diff, "cities differ");

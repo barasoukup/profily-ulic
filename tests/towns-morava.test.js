@@ -4,7 +4,7 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
 
-const { toWgs, fromWgs } = await import("../pilot/public/towns/sjtsk.js");
+const { toWgs, fromWgs } = await import("../app/public/towns/sjtsk.js");
 test("S-JTSK → WGS 84 (EPSG 1623) jako PROJ a zpět", () => {
   // gdaltransform with +towgs84=570.8,85.7,462.8,4.998,1.587,5.261,3.56
   const [lon, lat] = toWgs(-467360.44, -1120301.7);
@@ -14,7 +14,7 @@ test("S-JTSK → WGS 84 (EPSG 1623) jako PROJ a zpět", () => {
   assert.ok(Math.abs(back[0] - 17.4498) < 1e-9 && Math.abs(back[1] - 49.4548) < 1e-9);
 });
 
-const { pakomCode } = await import("../pilot/public/towns/frydek-mistek.js");
+const { pakomCode } = await import("../app/public/towns/frydek-mistek.js");
 test("pasport komunikací Frýdku-Místku na kódy MTVU", () => {
   assert.equal(pakomCode({ typ: "místní komunikace (MKa,MKb,MKc)" }), 701);
   assert.equal(pakomCode({ typ: "zpevněná plocha (příjezd z vozovky)" }), 701);
@@ -25,15 +25,15 @@ test("pasport komunikací Frýdku-Místku na kódy MTVU", () => {
 });
 
 test("řez v moravských městech dostane své město", async () => {
-  const C = await import("../pilot/public/city.js");
-  C.loadBounds(JSON.parse(fs.readFileSync(new URL("../pilot/public/mesta.json", import.meta.url), "utf8")));
+  const C = await import("../app/public/city.js");
+  C.loadBounds(JSON.parse(fs.readFileSync(new URL("../app/public/mesta.json", import.meta.url), "utf8")));
   assert.equal(C.cityAt(49.8355, 18.2924), "ostrava");
   assert.equal(C.cityAt(49.6837, 18.3504), "frydek-mistek");
   assert.equal(C.cityAt(49.8542, 18.542), "karvina");
   assert.equal(C.cityAt(49.215, 15.8799), "trebic");
   assert.equal(C.cityAt(49.4555, 17.451), "prerov");
   assert.equal(C.cityAt(49.7787, 18.4372), "cesko"); // Havířov
-  const { TOWNS } = await import("../pilot/public/towns/index.js");
+  const { TOWNS } = await import("../app/public/towns/index.js");
   for (const id of ["ostrava", "frydek-mistek", "karvina", "trebic", "prerov"]) {
     assert.ok(TOWNS[id]?.sources?.surfaces, id);
     assert.equal(C.setCity(id).id, id);
@@ -42,9 +42,9 @@ test("řez v moravských městech dostane své město", async () => {
 });
 
 test("kredity: Šlapanice a Kuřim vyřazené i z kreditu; New York z NYCmaps; Krakov v patičce jen s ?krakow=1", async () => {
-  const { SOURCE_CREDITS } = await import("../pilot/public/credits.js");
+  const { SOURCE_CREDITS } = await import("../app/public/credits.js");
   assert.equal(SOURCE_CREDITS.passport.kurim, undefined, "Kuřim ani v kreditu (Bára 26. 11. 2026)");
   assert.equal(SOURCE_CREDITS.passport.slapanice, undefined, "Šlapanice ani v kreditu (Bára 26. 11. 2026)");
   assert.match(SOURCE_CREDITS.cityMap.nyc(), /\(NYCmaps, NYC Open Data\)/);
-  assert.match(fs.readFileSync(new URL("../pilot/public/index.html", import.meta.url), "utf8"), /Gmina Miejska Kraków \(jen s \?krakow=1\)/);
+  assert.match(fs.readFileSync(new URL("../app/public/index.html", import.meta.url), "utf8"), /Gmina Miejska Kraków \(jen s \?krakow=1\)/);
 });

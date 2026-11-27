@@ -5,9 +5,9 @@ const SITE = process.env.SITE;
 globalThis.location = { search: "?osm=balik", href: SITE, origin: SITE };
 const native = globalThis.fetch;
 globalThis.fetch = (url, o) => (/^https?:/.test(String(url?.url || url)) ? native(url, o) : native(new URL(String(url), SITE + "/"), o));
-const C = await import("../../../pilot/public/city.js"), json = async (f) => JSON.parse(await fs.readFile(new URL(f, import.meta.url), "utf8"));
-C.loadBounds(await json("../../../pilot/public/mesta.json")); await import("../../../pilot/public/america.js"); C.loadStates({ ...await json("../../../pilot/public/staty.json"), ...await json("../../../pilot/public/staty-america.json") }); C.loadTowns(await json("../../../pilot/public/mesta-us.json"));
-const U = await import("../../../pilot/public/towns/usa.js");
+const C = await import("../../../app/public/city.js"), json = async (f) => JSON.parse(await fs.readFile(new URL(f, import.meta.url), "utf8"));
+C.loadBounds(await json("../../../app/public/mesta.json")); await import("../../../app/public/america.js"); C.loadStates({ ...await json("../../../app/public/staty.json"), ...await json("../../../app/public/staty-america.json") }); C.loadTowns(await json("../../../app/public/mesta-us.json"));
+const U = await import("../../../app/public/towns/usa.js");
 const pts = await json(process.argv[2] || "sample-all.json");
 let tagged = 0;
 for (const s of pts) {

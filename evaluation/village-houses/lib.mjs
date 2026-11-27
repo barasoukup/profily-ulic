@@ -3,7 +3,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
-export const HERE = path.dirname(fileURLToPath(import.meta.url)), PUB = path.resolve(HERE, "../../pilot/public");
+export const HERE = path.dirname(fileURLToPath(import.meta.url)), PUB = path.resolve(HERE, "../../app/public");
 const imp = (f) => import(pathToFileURL(path.join(PUB, f)));
 class N { constructor(n) { this.name = n; this.attrs = {}; this.children = []; this.text = ""; this.style = {}; this.dataset = {}; this.classList = { add() {}, toggle() {}, contains: () => false }; } setAttribute(k, v) { this.attrs[k] = String(v); } getAttribute(k) { return this.attrs[k] ?? null; } appendChild(c) { this.children.push(c); return c; } append(...c) { this.children.push(...c); } addEventListener() {} set textContent(t) { this.text = String(t); } get textContent() { return this.text; } get firstChild() { return this.children[0]; } }
 globalThis.document = { createElementNS: (_, n) => new N(n) };

@@ -5,10 +5,10 @@
 //   node evaluation/ortofoto/hatch-eval.mjs [-v]      PSET='{"rms":6}' sets other values of HATCH_PARAMS
 import fs from "node:fs/promises";
 import path from "node:path";
-import { decodePng } from "../../pilot/public/dmvs.js";
+import { decodePng } from "../../app/public/dmvs.js";
 import { ALL, strip, layout } from "./run.mjs";
 import { FINEST } from "./oznac.mjs";
-import { hatchBands, HATCH_PARAMS } from "../../pilot/public/lanes-ortho.js";
+import { hatchBands, HATCH_PARAMS } from "../../app/public/lanes-ortho.js";
 if (process.env.PSET) Object.assign(HATCH_PARAMS, JSON.parse(process.env.PSET));
 const f2 = (q) => [q.s, q.e, `sh${q.share} sg${q.sign?.toFixed(2)} co${q.coh?.toFixed(2)} rm${q.rms?.toFixed(1)} al${q.a?.toFixed(2)} ry${q.rhy?.toFixed(2)} am${q.amp?.toFixed(1)}`];
 const ROOT = path.dirname(new URL(import.meta.url).pathname), PAD = 3, V = process.argv.includes("-v");

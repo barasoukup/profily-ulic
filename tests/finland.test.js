@@ -8,9 +8,9 @@ import fs from "node:fs";
 const fixture = (f) => JSON.parse(fs.readFileSync(new URL(`./fixtures/${f}`, import.meta.url), "utf8"));
 
 test("Finsko: stát řezu, Alandy a sousedé u hranice", async () => {
-  const C = await import("../pilot/public/city.js");
-  C.loadBounds(JSON.parse(fs.readFileSync(new URL("../pilot/public/mesta.json", import.meta.url), "utf8")));
-  C.loadStates(JSON.parse(fs.readFileSync(new URL("../pilot/public/staty.json", import.meta.url), "utf8")));
+  const C = await import("../app/public/city.js");
+  C.loadBounds(JSON.parse(fs.readFileSync(new URL("../app/public/mesta.json", import.meta.url), "utf8")));
+  C.loadStates(JSON.parse(fs.readFileSync(new URL("../app/public/staty.json", import.meta.url), "utf8")));
   // Helsinki, Suomenlinna, the quay of the Market Square, Mariehamn (Åland), Tornio, Oulu, Utsjoki, Vaalimaa, Imatra, Karigasniemi
   for (const [lat, lon] of [[60.1695, 24.938], [60.1455, 24.988], [60.1673, 24.9545], [60.0973, 19.9348], [65.8481, 24.1466], [65.0121, 25.4651],
     [69.9078, 27.0281], [60.585, 27.84], [61.1717, 28.7614], [69.3986, 25.8442]]) assert.equal(C.cityAt(lat, lon), "finland", `${lat},${lon}`);
@@ -20,7 +20,7 @@ test("Finsko: stát řezu, Alandy a sousedé u hranice", async () => {
 });
 
 test("Finsko: ortofoto jen v Helsinkách, Espoo a Turku", async () => {
-  const L = await import("../pilot/public/lanes-ortho.js");
+  const L = await import("../app/public/lanes-ortho.js");
   assert.deepEqual(L.fiOrthoAt(24.938, 60.1695), ["fi-hki"]);
   assert.deepEqual(L.fiOrthoAt(24.805, 60.176), ["fi-esp"]);
   assert.deepEqual(L.fiOrthoAt(22.268, 60.451), ["fi-tku"]);
@@ -36,7 +36,7 @@ test("Finsko: ortofoto jen v Helsinkách, Espoo a Turku", async () => {
 });
 
 test("Finsko: mapa povrchů Helsinek (YLRE)", async () => {
-  const F = await import("../pilot/public/towns/finland.js");
+  const F = await import("../app/public/towns/finland.js");
   assert.equal(F.ylreCode({ paatyyppi: "Ajorata", alatyyppi: "Ajorata" }), 701);
   assert.equal(F.ylreCode({ paatyyppi: "Silta", alatyyppi: "Ajorata (Silta)" }), 701);
   assert.equal(F.ylreCode({ paatyyppi: "Ajorata", alatyyppi: "Pysäköintialue" }), 704);
@@ -95,7 +95,7 @@ test("Finsko: mapa povrchů Helsinek (YLRE)", async () => {
 });
 
 test("Finsko: budovy Helsinek a Ryhti", async () => {
-  const F = await import("../pilot/public/towns/finland.js");
+  const F = await import("../app/public/towns/finland.js");
   // Bulevardi 5: 7 floors, 1924, brick walls and facade, offices (151).
   assert.deepEqual(F.hkiPick(fixture("fi-hki-rakennus.json"), 60.16531, 24.93874),
     { built: 1924, solid: true, type: undefined, office: true, cornice: 7, total: 7, roof: 0, fiBuild: "hki" });
@@ -127,7 +127,7 @@ test("Finsko: budovy Helsinek a Ryhti", async () => {
 });
 
 test("Finsko: hledání adres Ryhti", async () => {
-  const S = await import("../pilot/public/search-fi.js");
+  const S = await import("../app/public/search-fi.js");
   assert.deepEqual(S.parseFiQuery("Bulevardi 5, Helsinki"), { street: "Bulevardi", number: 5, extra: null, town: "Helsinki" });
   assert.deepEqual(S.parseFiQuery("Hämeenkatu 10 Tampere"), { street: "Hämeenkatu", number: 10, extra: null, town: "Tampere" });
   assert.equal(S.parseFiQuery("Mannerheimintie 12 b").extra, "b");
@@ -162,7 +162,7 @@ test("Finsko: hledání adres Ryhti", async () => {
 });
 
 test("Finsko: značky, normy, zákon o stání", async () => {
-  const { COUNTRIES } = await import("../pilot/public/countries/index.js");
+  const { COUNTRIES } = await import("../app/public/countries/index.js");
   const FI = COUNTRIES.FI, f = FI.signs.file;
   assert.equal(f({ k: "oneway", dir: "forward" }), "E14.1");
   assert.equal(f({ k: "oneway", dir: "backward" }), "C17");
@@ -177,12 +177,12 @@ test("Finsko: značky, normy, zákon o stání", async () => {
   assert.equal(FI.signs.label({ k: "b29" }, null, "B 29 Zákaz stání"), "C38 Zákaz stání");
   for (const k of ["b1", "b11", "b8", "b30", "b28", "b29", "ip11a", "ip14a", "ip15a", "ip20a", "zona30", "ip26a", "ip27a", "cyklozona", "c8a", "c9a", "c10a", "c7a"]) {
     const file = f({ k });
-    assert.ok(file && fs.existsSync(new URL(`../pilot/public/signs-FI/${file}.svg`, import.meta.url)), `${k}: ${file}`);
+    assert.ok(file && fs.existsSync(new URL(`../app/public/signs-FI/${file}.svg`, import.meta.url)), `${k}: ${file}`);
   }
-  for (const v of [20, 30, 40, 50, 60, 70, 80, 100, 120]) assert.ok(fs.existsSync(new URL(`../pilot/public/signs-FI/C32-${v}.svg`, import.meta.url)), `${v}`);
-  for (const file of ["E14.1", "C17", "D7.2"]) assert.ok(fs.existsSync(new URL(`../pilot/public/signs-FI/${file}.svg`, import.meta.url)), file);
-  for (const file of fs.readdirSync(new URL("../pilot/public/signs-FI/", import.meta.url)).filter((x) => x.endsWith(".svg"))) {
-    assert.match(fs.readFileSync(new URL(`../pilot/public/signs-FI/${file}`, import.meta.url), "utf8"), /viewBox=/, file);
+  for (const v of [20, 30, 40, 50, 60, 70, 80, 100, 120]) assert.ok(fs.existsSync(new URL(`../app/public/signs-FI/C32-${v}.svg`, import.meta.url)), `${v}`);
+  for (const file of ["E14.1", "C17", "D7.2"]) assert.ok(fs.existsSync(new URL(`../app/public/signs-FI/${file}.svg`, import.meta.url)), file);
+  for (const file of fs.readdirSync(new URL("../app/public/signs-FI/", import.meta.url)).filter((x) => x.endsWith(".svg"))) {
+    assert.match(fs.readFileSync(new URL(`../app/public/signs-FI/${file}`, import.meta.url), "utf8"), /viewBox=/, file);
   }
   // Guides only: nothing red.
   for (const s of [{ type: "chodnik" }, { type: "cyklopruh" }, { type: "cyklostezka" }, { type: "bus" }, { type: "parkovani" }]) assert.equal(FI.limits(s, [], 0).min, 0, s.type);

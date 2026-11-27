@@ -1,10 +1,10 @@
-// The street from the orthophoto and OSM where no technical map answers (pilot/public/ortho-osm.js) on a drawn image:
+// The street from the orthophoto and OSM where no technical map answers (app/public/ortho-osm.js) on a drawn image:
 // a 7 m carriageway (dark) between lighter sidewalks, OSM houses 8 m from the axis on both sides.
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { orthoOsmPolys, osmAlong, osmRoad, besidePassport, estimateNote, trimToEnds, P } from "../pilot/public/ortho-osm.js";
-import { withBuildings } from "../pilot/public/gis.js";
-import { localFrame, deriveProfile } from "../pilot/public/derive.js";
+import { orthoOsmPolys, osmAlong, osmRoad, besidePassport, estimateNote, trimToEnds, P } from "../app/public/ortho-osm.js";
+import { withBuildings } from "../app/public/gis.js";
+import { localFrame, deriveProfile } from "../app/public/derive.js";
 
 const frame = localFrame(50.08, 14.43), dir = [0, 1]; // the street runs north; t across it = −x (west is +t)
 const ll = (x, y) => { const [lon, lat] = frame.toLonLat(x, y); return { lon, lat }; };

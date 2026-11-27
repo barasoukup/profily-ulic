@@ -2,7 +2,7 @@
 
 Rozsah: `countries/IT.js`, `towns/italy.js`, `signs-IT/`, `evaluation/italy/`, části `lanes-ortho.js` („it“),
 `tools/build_staty.mjs`, `staty.json`, `search-photon.js`, `credits.js`, `sources.js`, `index.html`, `tools/countries.mjs`,
-`logging/worker.js`, `LICENCE-A-ZDROJE.md`, `pilot/README.md`, `tests/italy.test.js`. Větev `estonia`, HEAD `84140de`.
+`logging/worker.js`, `LICENCE-A-ZDROJE.md`, `app/README.md`, `tests/italy.test.js`. Větev `estonia`, HEAD `84140de`.
 Žádný jiný soubor jsem neměnil, nic jsem necommitoval.
 
 Co jsem ověřil:
@@ -42,9 +42,9 @@ Bez nálezu:
 ## Závažné
 
 ### 1. Mimo polygon `italy` aplikace Itálii dál pokrývá, jen jako „cizinu“ s českými pravidly (ověřeno z kódu)
-- **Kde:** `tools/countries.mjs:56` (pět dílů Geofabriku = celá Itálie, 2,1 GB PBF), `pilot/public/osmpack.js:217–223`
-  (balík se vybírá jen podle polohy dlaždice), `pilot/public/towns/cizina.js:1` („cizina“ = okraje výřezů OSM, profil
-  z OSM), `pilot/public/search-photon.js:10` (`IT: [6.6, 35.4, 18.6, 47.1]`), `tests/italy.test.js:12`.
+- **Kde:** `tools/countries.mjs:56` (pět dílů Geofabriku = celá Itálie, 2,1 GB PBF), `app/public/osmpack.js:217–223`
+  (balík se vybírá jen podle polohy dlaždice), `app/public/towns/cizina.js:1` („cizina“ = okraje výřezů OSM, profil
+  z OSM), `app/public/search-photon.js:10` (`IT: [6.6, 35.4, 18.6, 47.1]`), `tests/italy.test.js:12`.
 - **Co je špatně:** Bářino pravidlo zní „jen oblasti s otevřeným ortofotem“. Polygon to splňuje, ale balíky OSM ne. Po
   nasazení `it_no`, `it_ne`, `it_c`, `it_s`, `it_i` bude kliknutí v Římě, Miláně, Neapoli, **ve Vatikánu** (leží
   v `italy/centro`, `ZDROJE.md` kap. 7) a v okrajích **San Marina** (kap. 6) dávat profil státu „cizina“: odhad z OSM,
@@ -59,7 +59,7 @@ Bez nálezu:
 
 ### 2. Bolzano 2023 není „vlastní nálet“, ale ortofoto ve spolupráci s AGEA; dokumentace tvrdí opak
 - **Kde:** `evaluation/italy/ZDROJE.md:36` a `:88` („z vlastních náletů … Bolzano 2023“, „Bez právní nejistoty (ne
-  AGEA)“), `LICENCE-A-ZDROJE.md:98` („ortofota AGEA nepoužita“), `pilot/public/lanes-ortho.js:71–73`, `pilot/README.md:308–311`.
+  AGEA)“), `LICENCE-A-ZDROJE.md:98` („ortofota AGEA nepoužita“), `app/public/lanes-ortho.js:71–73`, `app/README.md:308–311`.
 - **Důkaz:** metadata provincie, pole `lineage`: „la Ripartizione 28 ha, **in collaborazione AgEA, nell'ambito del Piano
   di monitoraggio**, realizzato un'ortofoto con un pixel di 20 cm per l'intero territorio provinciale“
   (https://geonetwork1.civis.bz.it/geonetwork/srv/api/records/p_bz:Orthoimagery:Aerial-2023-RGB). Tentýž záznam má
@@ -74,7 +74,7 @@ Bez nálezu:
 ## Střední
 
 ### 3. Jízdní pruh: jedna hodnota 2,75 m pro všechny ulice, text slibuje „2,75–3 m“
-- **Kde:** `pilot/public/countries/IT.js:19–22`, `:70` (`roadClassFromOsm: true`), `evaluation/italy/NORMY.md` A3 a D.
+- **Kde:** `app/public/countries/IT.js:19–22`, `:70` (`roadClassFromOsm: true`), `evaluation/italy/NORMY.md` A3 a D.
 - **Co je špatně:** podle `NORMY.md` (tab. 3.4.a) má městská F 2,75 m, **E 3,00 m, D 3,25 m**. `limitsIT` třídu ulice
   nečte (`limits({ type: "pruh", roadClass: "B" }).zaklad` = 2,75), ač ji `roadClassFromOsm` z OSM počítá. Na
   `primary`/`secondary` se tedy pruh 2,8 m nevaruje. Bod 3.4.2 navíc říká, že pro pruhy s autobusy a nákladní dopravou
@@ -109,7 +109,7 @@ Bez nálezu:
 - **Oprava:** `if (s.k === "ip27a") return "II-320";` před kontrolou tabulek; test.
 
 ### 7. Výpadek ortofota se v Itálii neohlásí
-- **Kde:** `pilot/public/lanes-ortho.js:223–227` (`laneImageOf(key, opts).catch(() => null)`).
+- **Kde:** `app/public/lanes-ortho.js:223–227` (`laneImageOf(key, opts).catch(() => null)`).
 - **Co je špatně:** u Belgie a Portugalska se poslední chyba vyhodí (`lastError`), u Itálie se spolkne. Když WMS regionu
   neodpoví, profil je odhad jen z OSM a nikdo se to nedozví. Itálie má navíc v každé oblasti jediný zdroj, takže není
   kam ustoupit.

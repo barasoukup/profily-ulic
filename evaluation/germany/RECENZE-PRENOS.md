@@ -29,13 +29,13 @@ v patičce jsou, Sársko zůstává neověřené (nález 8).
 ### 1. `pack_osm_tiles.mjs` spadne u každého balíku nad asi 120 000 dlaždic: Česko, Rakousko a velké země se nenahrají
 - **Kde:** `tools/pack_osm_tiles.mjs:108–109` (nový obdélník dlaždic pro `index.json`), volá `.github/workflows/osm-tiles.yml:106`.
 - **Co je špatně:** `Math.min(...ij.map(…))` rozbalí všechny dlaždice do argumentů funkce. Od zhruba 120–125 tisíc
-  prvků končí `RangeError: Maximum call stack size exceeded`. Česko má 246 496 dlaždic (`pilot/data/osm-tiles-cz2`),
+  prvků končí `RangeError: Maximum call stack size exceeded`. Česko má 246 496 dlaždic (`app/data/osm-tiles-cz2`),
   Slovensko 105 315 (těsně pod hranicí). Podle plochy vyjde Bavorsko kolem 220 tisíc, Dolní Sasko 150 tisíc, Rakousko
   přes 150 tisíc, Bádensko-Württembersko a Severní Porýní-Vestfálsko kolem hranice. Soubor `.posm` se zapíše, ale
   `index.json` ne a skript skončí chybou: krok „Build and pack“ selže, „Upload to R2“ se přeskočí.
 - **Dopad:** po sloučení se Česko (a nejspíš Rakousko) přestanou týdně obnovovat (zůstane poslední starý soubor, nikdo si
   nevšimne, protože `index` a `deploy` běží dál) a největší německé země nebudou mít data nikdy. Místní `index.json`
-  v `pilot/data/osm-pack` nemá `bbox`, takže tahle podoba skriptu na celém státu ještě neběžela.
+  v `app/data/osm-pack` nemá `bbox`, takže tahle podoba skriptu na celém státu ještě neběžela.
 - **Jak zopakovat:** složka se 132 000 prázdnými soubory `x_y.json`, `node tools/pack_osm_tiles.mjs <složka> out/xx-{hash}.posm`
   → RangeError, v `out/` je jen `.posm`. Nebo `node -e 'Math.min(...new Array(125000).fill(1))'`.
 - **Oprava:** obdélník počítat smyčkou (`packTiles` už `extent` počítá v řádcích 44–51: vrátit ho a použít), přidat test
@@ -44,7 +44,7 @@ v patičce jsou, Sársko zůstává neověřené (nález 8).
 ## Vážné
 
 ### 2. Výpadek českého balíku na R2 už nepřepne na zálohu na Pages, řez dostane prázdná data
-- **Kde:** `pilot/public/osmpack.js:215–227` (`PackSet.tiles`).
+- **Kde:** `app/public/osmpack.js:215–227` (`PackSet.tiles`).
 - **Co je špatně:** oprava bodu 6 pustí dál každou odpověď, ve které uspěl aspoň jeden dotázaný balík. Obdélníky balíků
   se ale hodně překrývají (obdélník Saska drží Ústí, Děčín, Most a Chomutov, Bavorska Plzeň, Cheb a Karlovy Vary,
   Rakouska České Budějovice a Znojmo, Slovenska východní Moravu). Když tam český balík selže (timeout, 5xx) a sousední
@@ -57,7 +57,7 @@ v patičce jsou, Sársko zůstává neověřené (nález 8).
   varování a pokračovat. Test na opačný případ, než je ten stávající (Česko dole, Bavorsko odpovídá).
 
 ### 3. Podklad „Ortofoto“: německá vrstva kreslí bílé dlaždice přes české (a rakouské) ortofoto v pásu u hranice
-- **Kde:** `pilot/public/app.js:206–234` (`DeOrtho`), `pilot/public/lanes-ortho.js:71–78` (`landsAt` s okolím 2 km).
+- **Kde:** `app/public/app.js:206–234` (`DeOrtho`), `app/public/lanes-ortho.js:71–78` (`landsAt` s okolím 2 km).
 - **Co je špatně:** vrstva je v `kinds.ortho` poslední, tedy nad ortofotem ČÚZK i basemap.at. Dlaždice se ptá země,
   i když její střed leží do 2 km **za** hranicí Německa (`landsAt` vrací i okolní země). Pro jednu zemi jde JPEG bez
   průhlednosti a mimo své území WMS vrací bílou. Ověřeno: střed Varnsdorfu → `["SN"]`, střed Aše → `["BY"]`, oba
@@ -70,7 +70,7 @@ v patičce jsou, Sársko zůstává neověřené (nález 8).
   Případně `zIndex` pod ortofota sousedních států nestačí, ČÚZK je bez `bounds` všude.
 
 ### 4. Zúžené stání v odhadnuté vozovce svítí v Návrhu červeně hned po kliknutí
-- **Kde:** `pilot/public/derive.js:676–687` (`OSM_PARK_MIN`).
+- **Kde:** `app/public/derive.js:676–687` (`OSM_PARK_MIN`).
 - **Co je špatně:** oprava bodu 7 zúžení omezila na odhadnutou vozovku, jenže tam (celé Německo, Rakousko a Slovensko
   mimo města s mapou, Česko bez technické mapy, pražské a brněnské plochy s `guess`) dál vzniká stání 1,7–1,9 m a pruh
   2,5 m, na které pravidla hned hlásí minimum. Recenze to vytýkala a výtka pro odhad platí dál.
@@ -82,7 +82,7 @@ v patičce jsou, Sársko zůstává neověřené (nález 8).
 
 ## Drobné
 
-5. **Protisměr bez pravidla smaže varování pruhů** (`pilot/public/rules.js:45–51`): varování pruhů se z `out` vyřízne
+5. **Protisměr bez pravidla smaže varování pruhů** (`app/public/rules.js:45–51`): varování pruhů se z `out` vyřízne
    dřív, než se zjistí, že stát pravidlo nemá. V Německu pruh 2,8 m ve skupině B dává „užší než základ“, se značkou
    `oneway + protismer` nedá nic. Kontrolu `if (!rule)` dát před `splice`.
 6. **Ruční spuštění `osm-tiles.yml` s `de` nepostaví nic** (`osm-tiles.yml:14, 72`): popis vstupu radí „např. de,at“,
@@ -109,7 +109,7 @@ v patičce jsou, Sársko zůstává neověřené (nález 8).
     četla vedle `de_xx` (test `tests/osm-index.test.js` to dokonce čeká). Před prvním během zkontrolovat kbelík.
 14. **`useCity` a obnova zapisují `panels` po `await`** (`app.js:88–93, 2087–2089`): při dvou rychlých klicích ve dvou
     státech se `panels` může zapsat městu druhého řezu. Hodnotu zapsat jen když `city.id` zůstalo stejné.
-15. **Dokumentace nových vlastností státu:** `docs/architecture-countries.md` a `pilot/README.md` `lawNeed`, `besideMax`
+15. **Dokumentace nových vlastností státu:** `docs/architecture-countries.md` a `app/README.md` `lawNeed`, `besideMax`
     a `atPlace` neznají (jen `default.js` a jedna zmínka ve skillu); `houseLook` má čtvrtý parametr `city`, `default.js`
     ho nepopisuje. Nápověda `tools/countries.mjs` nezná `--matrix`.
 16. **První push (trvá, bod 5 staré recenze):** stránka s Německem vyjde za minuty, dlaždice zemí až po `osm-tiles.yml`;

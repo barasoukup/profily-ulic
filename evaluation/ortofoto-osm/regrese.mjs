@@ -10,14 +10,14 @@
 //   RUIAN=1 …                                                          only the RÚIAN buildings OSM lacks
 //   SRC=cuzk12 …                                                       only this orthophoto (default: cuzk12 and the city's 10 cm)
 import { cuts, truthOf, osmAround, stripOf, median, ROOT } from "./lib.mjs";
-import { orthoOsmPolys, trimToEnds, P } from "../../pilot/public/ortho-osm.js";
-import { aiKerbs, parkFromAi, parkSkip } from "../../pilot/public/ai-kerbs.js";
+import { orthoOsmPolys, trimToEnds, P } from "../../app/public/ortho-osm.js";
+import { aiKerbs, parkFromAi, parkSkip } from "../../app/public/ai-kerbs.js";
 import fsAi from "node:fs";
 import path from "node:path";
-import { ruianOutlines, withBuildings } from "../../pilot/public/gis.js";
+import { ruianOutlines, withBuildings } from "../../app/public/gis.js";
 import { politeFetch } from "../polite.mjs";
 if (process.env.RUIAN) globalThis.fetch = politeFetch;
-import { localFrame, deriveProfile } from "../../pilot/public/derive.js";
+import { localFrame, deriveProfile } from "../../app/public/derive.js";
 const wayAlong = (way, frame, dir) => { const g = way.geometry.map((q) => frame.toXY(q.lon, q.lat)); let best = null; for (let i = 0; i + 1 < g.length; i++) { const [a, b] = [g[i], g[i + 1]], d = Math.hypot((a[0] + b[0]) / 2, (a[1] + b[1]) / 2); if (!best || d < best.d) best = { d, v: [b[0] - a[0], b[1] - a[1]] }; } return !best || best.v[0] * dir[0] + best.v[1] * dir[1] >= 0; };
 
 const CITIES = process.argv.slice(2).filter((a) => /^[a-z]+$/.test(a));

@@ -1,5 +1,5 @@
 // Trees of IPR's technical map (layer 9, 83130 strom mimo park) beside the OSM trees.
-import { prahaLines, parkovani } from "../../pilot/public/sources.js";
+import { prahaLines, parkovani } from "../../app/public/sources.js";
 export const about = "stromy technické mapy";
 export const lines = async (bbox) => {
   const json = await prahaLines(bbox, { opendata: false });

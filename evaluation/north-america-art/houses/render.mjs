@@ -9,7 +9,7 @@ import { execFileSync } from "node:child_process";
 import { fileURLToPath, pathToFileURL } from "node:url";
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
-const ROOT = path.join(HERE, "..", "..", "..", "pilot", "public");
+const ROOT = path.join(HERE, "..", "..", "..", "app", "public");
 class Node {
   constructor(name) { this.name = name; this.attrs = {}; this.children = []; this.text = ""; this.style = {}; this.dataset = {}; this.classList = { add() {}, toggle() {}, contains: () => false }; }
   setAttribute(k, v) { this.attrs[k] = String(v); }

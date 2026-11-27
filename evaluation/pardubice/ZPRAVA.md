@@ -3,7 +3,7 @@
 9. 11. 2026 · stránka `/pardubice/` (zatím nenasazená)
 
 Pardubice nemají vlastní GIS, ze kterého by šlo číst. Plochy proto pocházejí z celostátní digitální technické
-mapy ČÚZK (IS DMVS), kterou plní Pardubický kraj. Čtou se živě při kliknutí modulem `pilot/public/dmvs.js`,
+mapy ČÚZK (IS DMVS), kterou plní Pardubický kraj. Čtou se živě při kliknutí modulem `app/public/dmvs.js`,
 který jde použít pro každé město v ČR.
 
 ČÚZK DTM zveřejňuje jen jako WMS: dává obrázky a typ plochy v pixelu, ale ne geometrii. Modul proto při

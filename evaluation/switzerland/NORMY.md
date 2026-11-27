@@ -50,5 +50,5 @@ jejich hodnoty uvádíme podle kantonálních a městských příruček, které 
 
 ## Značky
 
-Viz `pilot/public/signs-CH/README.md`. Čísla ověřená v SSV (2.49 je zákaz zastavení, 2.50 zákaz stání; Busfahrbahn je
+Viz `app/public/signs-CH/README.md`. Čísla ověřená v SSV (2.49 je zákaz zastavení, 2.50 zákaz stání; Busfahrbahn je
 2.64). Lichtenštejnská SSV má stejná čísla, o verzi starší (chybí např. tabulka 5.34.4 Gehbehinderte; kreslíme ji i tam).

@@ -2,7 +2,7 @@
 // so a cut there does not ask it but the cadastre of its province (towns/spain-foral.js): Eurostat GISCO NUTS 2024
 // level 3 at 1 : 1 000 000 (© EuroGeographics; the finest NUTS of 2024 in GeoJSON), the three Basque provinces ES211
 // Álava (ar), ES212 Gipuzkoa (gi), ES213 Bizkaia (bi) and Navarre ES220 (nc), with their holes (the Treviño enclave of
-// Burgos in Álava and the Valle de Villaverde of Cantabria in Bizkaia), simplified to about 30 m. Written into pilot/public/regions-es.json:
+// Burgos in Álava and the Valle de Villaverde of Cantabria in Bizkaia), simplified to about 30 m. Written into app/public/regions-es.json:
 // node tools/build_regions_es.mjs
 import fs from "node:fs";
 
@@ -32,4 +32,4 @@ for (const f of all.features) {
     .filter((r) => r.length > 3);
 }
 console.log(Object.entries(out).map(([k, v]) => `${k}: ${v.length} kruhů, ${v.flat().length} bodů`).join("; "));
-fs.writeFileSync(new URL("../pilot/public/regions-es.json", import.meta.url), JSON.stringify(out));
+fs.writeFileSync(new URL("../app/public/regions-es.json", import.meta.url), JSON.stringify(out));

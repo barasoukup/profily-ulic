@@ -3,8 +3,8 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
-import { localFrame, nearestStreet, placeCut, snapToWay } from "../pilot/public/derive.js";
-import { P } from "../pilot/public/ortho-osm.js";
+import { localFrame, nearestStreet, placeCut, snapToWay } from "../app/public/derive.js";
+import { P } from "../app/public/ortho-osm.js";
 
 // The length along a polyline to a point snapped on it.
 const along = (pts, at) => { let d = Math.hypot(at.point[0] - pts[at.index][0], at.point[1] - pts[at.index][1]); for (let i = 0; i < at.index; i++) d += Math.hypot(pts[i + 1][0] - pts[i][0], pts[i + 1][1] - pts[i][1]); return d; };

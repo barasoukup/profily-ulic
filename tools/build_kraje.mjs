@@ -1,6 +1,6 @@
 // The boundaries of the regions whose digital technical map (DTM kraje) answers a WFS with the polygons of the
 // basic spatial situation (dtmwfs.js): RÚIAN VÚSC from ČÚZK, simplified to about 300 m (a cut within 400 m of a border
-// asks both regions, dtmwfs.js regionsAt). Written into pilot/public/kraje.json and kept in the repository
+// asks both regions, dtmwfs.js regionsAt). Written into app/public/kraje.json and kept in the repository
 // (boundaries change rarely): node tools/build_kraje.mjs
 import fs from "node:fs";
 
@@ -20,4 +20,4 @@ for (const [kod, id] of Object.entries(CODES)) {
   console.log(id, f.attributes.nazev, f.geometry.rings.reduce((a, r) => a + r.length, 0), "bodů");
   await new Promise((r) => setTimeout(r, 500));
 }
-fs.writeFileSync(new URL("../pilot/public/kraje.json", import.meta.url), JSON.stringify(out));
+fs.writeFileSync(new URL("../app/public/kraje.json", import.meta.url), JSON.stringify(out));

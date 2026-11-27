@@ -5,9 +5,9 @@ import assert from "node:assert/strict";
 import fs from "node:fs";
 
 test("Slovinsko: stát řezu a sousedé u hranice", async () => {
-  const C = await import("../pilot/public/city.js");
-  C.loadBounds(JSON.parse(fs.readFileSync(new URL("../pilot/public/mesta.json", import.meta.url), "utf8")));
-  C.loadStates(JSON.parse(fs.readFileSync(new URL("../pilot/public/staty.json", import.meta.url), "utf8")));
+  const C = await import("../app/public/city.js");
+  C.loadBounds(JSON.parse(fs.readFileSync(new URL("../app/public/mesta.json", import.meta.url), "utf8")));
+  C.loadStates(JSON.parse(fs.readFileSync(new URL("../app/public/staty.json", import.meta.url), "utf8")));
   // Ljubljana, Maribor, Koper, Nova Gorica, Šentilj, Obrežje, Piran
   for (const [lat, lon] of [[46.0514, 14.5058], [46.558, 15.646], [45.548, 13.73], [45.956, 13.648], [46.681, 15.65], [45.849, 15.682], [45.528, 13.568]]) assert.equal(C.cityAt(lat, lon), "slovenia", `${lat},${lon}`);
   // Gorizia, Trieste, Spielfeld, Bregana, Zagreb, Umag
@@ -16,7 +16,7 @@ test("Slovinsko: stát řezu a sousedé u hranice", async () => {
 });
 
 test("Slovinsko: ortofoto GURS DOF025 ve Web Mercatoru", async () => {
-  const L = await import("../pilot/public/lanes-ortho.js");
+  const L = await import("../app/public/lanes-ortho.js");
   const u = new URL(L.SI_ORTHO([1614700, 5790900, 1614775, 5790975], 300, 300));
   assert.equal(u.origin + u.pathname, "https://ipi.eprostor.gov.si/wms-si-gurs-dts/wms");
   assert.equal(u.searchParams.get("LAYERS"), "SI.GURS.ZPDZ:DOF025_3857");
@@ -24,7 +24,7 @@ test("Slovinsko: ortofoto GURS DOF025 ve Web Mercatoru", async () => {
 });
 
 test("Slovinsko: GURS, který visí, se ptá znovu (podle počtu pauz), 404 ne", async () => {
-  const L = await import("../pilot/public/lanes-ortho.js"), { localFrame } = await import("../pilot/public/derive.js");
+  const L = await import("../app/public/lanes-ortho.js"), { localFrame } = await import("../app/public/derive.js");
   const pauses = L.SI_RETRY.pauses;
   L.SI_RETRY.pauses = [1, 1, 1];
   try {
@@ -52,7 +52,7 @@ test("Slovinsko: GURS, který visí, se ptá znovu (podle počtu pauz), 404 ne",
 });
 
 test("Slovinsko: model obrub se GURS ptá znovu, při výpadku nečeká podruhé", async () => {
-  const L = await import("../pilot/public/lanes-ortho.js");
+  const L = await import("../app/public/lanes-ortho.js");
   const keep = { pauses: L.SI_RETRY.pauses, downFor: L.SI_RETRY.downFor, OC: globalThis.OffscreenCanvas, CIB: globalThis.createImageBitmap };
   // The browser's canvas, stubbed: every pixel grey (not blank).
   globalThis.OffscreenCanvas = class { constructor(w, h) { this.w = w; this.h = h; } getContext() { return { drawImage() {}, getImageData: (x, y, w, h) => ({ width: w, height: h, data: new Uint8ClampedArray(w * h * 4).fill(120) }) }; } };
@@ -85,7 +85,7 @@ test("Slovinsko: model obrub se GURS ptá znovu, při výpadku nečeká podruhé
 });
 
 test("Slovinsko: budovy katastru GURS", async () => {
-  const S = await import("../pilot/public/towns/slovenia.js");
+  const S = await import("../app/public/towns/slovenia.js");
   const json = JSON.parse(fs.readFileSync(new URL("./fixtures/gurs-stavbe.json", import.meta.url), "utf8"));
   // Ajdovščina, Ljubljana: 8 floors with the ground floor the third (two below it), built 1622, brick.
   assert.deepEqual(S.gursPick(json, 46.0519, 14.5055), { built: 1622, solid: true, house: undefined, type: "apartments", cornice: 6, total: 6, roof: 0, height: 21.2, gurs: true });
@@ -104,7 +104,7 @@ test("Slovinsko: budovy katastru GURS", async () => {
 });
 
 test("Slovinsko: podkroví podle výšky katastru GURS", async () => {
-  const S = await import("../pilot/public/towns/slovenia.js");
+  const S = await import("../app/public/towns/slovenia.js");
   const fx = JSON.parse(fs.readFileSync(new URL("./fixtures/gurs-podkrovi.json", import.meta.url), "utf8"));
   const floors = (id) => { const b = S.gursBuilding(fx[id].properties); return [b.cornice, b.roof, b.total, b.height, b.roofType]; };
   // The height above the entrance (H2 − H3): 3 floors in 9.9 m cannot all stand under a roof, the top one is the attic.
@@ -125,7 +125,7 @@ test("Slovinsko: podkroví podle výšky katastru GURS", async () => {
 });
 
 test("Slovinsko: hledání adres GURS", async () => {
-  const S = await import("../pilot/public/search-si.js");
+  const S = await import("../app/public/search-si.js");
   assert.deepEqual(S.parseSiQuery("Trubarjeva cesta 5, Ljubljana"), { street: "Trubarjeva cesta", number: 5, extra: null, town: "Ljubljana" });
   assert.deepEqual(S.parseSiQuery("Glavni trg 14 Maribor"), { street: "Glavni trg", number: 14, extra: null, town: "Maribor" });
   assert.equal(S.parseSiQuery("Cesta 12a").extra, "A");
@@ -147,7 +147,7 @@ test("Slovinsko: hledání adres GURS", async () => {
 });
 
 test("Slovinsko: značky, normy, zákon o stání", async () => {
-  const { COUNTRIES } = await import("../pilot/public/countries/index.js");
+  const { COUNTRIES } = await import("../app/public/countries/index.js");
   const SI = COUNTRIES.SI, f = SI.signs.file;
   assert.equal(f({ k: "oneway", dir: "forward" }), "2407");
   assert.equal(f({ k: "oneway", dir: "backward" }), "2201");
@@ -160,11 +160,11 @@ test("Slovinsko: značky, normy, zákon o stání", async () => {
   assert.equal(SI.signs.label({ k: "b29" }, null, "B 29 Zákaz stání"), "2237 Zákaz stání");
   for (const k of ["b1", "b11", "b8", "b30", "b28", "b29", "ip11a", "ip14a", "ip20a", "zona30", "ip26a", "ip27a", "sdilena", "c8a", "c9a", "c10a", "c7a"]) {
     const file = f({ k });
-    assert.ok(file && fs.existsSync(new URL(`../pilot/public/signs-SI/${file}.svg`, import.meta.url)), `${k}: ${file}`);
+    assert.ok(file && fs.existsSync(new URL(`../app/public/signs-SI/${file}.svg`, import.meta.url)), `${k}: ${file}`);
   }
-  for (const v of [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130]) assert.ok(fs.existsSync(new URL(`../pilot/public/signs-SI/2232-${v}.svg`, import.meta.url)), `${v}`);
-  for (const file of fs.readdirSync(new URL("../pilot/public/signs-SI/", import.meta.url)).filter((x) => x.endsWith(".svg"))) {
-    assert.match(fs.readFileSync(new URL(`../pilot/public/signs-SI/${file}`, import.meta.url), "utf8"), /viewBox=/, file);
+  for (const v of [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130]) assert.ok(fs.existsSync(new URL(`../app/public/signs-SI/2232-${v}.svg`, import.meta.url)), `${v}`);
+  for (const file of fs.readdirSync(new URL("../app/public/signs-SI/", import.meta.url)).filter((x) => x.endsWith(".svg"))) {
+    assert.match(fs.readFileSync(new URL(`../app/public/signs-SI/${file}`, import.meta.url), "utf8"), /viewBox=/, file);
   }
   assert.equal(SI.limits({ type: "chodnik" }, [], 0), null, "minimum chodníku nenalezeno");
   assert.equal(SI.limits({ type: "cyklopruh" }, [], 0).zaklad, 1.75);
@@ -194,8 +194,8 @@ test("Slovinsko: značky, normy, zákon o stání", async () => {
 
 // The contraflow rule reaches Slovenia through rules.js (it passes the run; Bára 24. 11. 2026): on a tertiary road and up
 // the 3 m minimum, on a residential street no warning (čl. 38 odst. 2 gives no width).
-import { checkRules } from "../pilot/public/rules.js";
-import { setCity } from "../pilot/public/city.js";
+import { checkRules } from "../app/public/rules.js";
+import { setCity } from "../app/public/city.js";
 test("SI: cyklisté v protisměru jen na silnici třetí třídy a výš", () => {
   setCity("slovenia");
   const ip4c = [{ k: "oneway", plate: "protismer" }];

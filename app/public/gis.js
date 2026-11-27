@@ -71,13 +71,13 @@ const tile = (n) => {
 // The OSM tiles of each country in one file (osmpack.js, tools/pack_osm_tiles.mjs), read in pieces over HTTP Range
 // (Bára 15. 11. 2026): on the web from Cloudflare R2 (data.streetspace.eu), the same files on Pages when R2 fails.
 // ?osm=r2 reads R2 only (its r2.dev address as the second place), ?osm=balik the files of the local server
-// (pilot/data/osm-pack); the local server otherwise keeps to the tiles of data/osm-tiles.
+// (app/data/osm-pack); the local server otherwise keeps to the tiles of data/osm-tiles.
 export const OSM_R2 = "https://data.streetspace.eu/osm", OSM_R2_DEV = "https://pub-a2b7312aca0a4dfe8a49583ae59ddbc6.r2.dev/osm";
 export const OSM_PACK = (() => {
   const v = typeof location === "undefined" ? null : new URLSearchParams(location.search).get("osm");
   return v === "r2" || v === "balik" ? v : STATIC ? "web" : null;
 })();
-// (?osm=r2 on the local server: R2 through the server, pilot/server.mjs /r2osm/, as R2 sends CORS for streetspace.eu only.)
+// (?osm=r2 on the local server: R2 through the server, app/server.mjs /r2osm/, as R2 sends CORS for streetspace.eu only.)
 const PACK_AT = { web: [OSM_R2, "data/osm-pack"], r2: STATIC ? [OSM_R2, OSM_R2_DEV] : ["r2osm"], balik: ["data/osm-pack"] }[OSM_PACK];
 const packs = PACK_AT && new PackSet(PACK_AT, { timeout: TIMEOUT });
 

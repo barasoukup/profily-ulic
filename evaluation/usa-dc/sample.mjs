@@ -7,7 +7,7 @@
 //   node evaluation/usa-dc/sample.mjs
 import fs from "node:fs/promises";
 import path from "node:path";
-import { decodeTile } from "../../pilot/public/osmtile.js";
+import { decodeTile } from "../../app/public/osmtile.js";
 import { ROOT, DATA, cachedJSON, placeCut } from "./lib.mjs";
 
 const KIND = { trunk: "arterial", primary: "arterial", secondary: "arterial", tertiary: "collector", residential: "residential", unclassified: "residential" };

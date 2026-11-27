@@ -5,7 +5,7 @@
 // extract (data/osm/fi/fi_ways.geojsonl and fi_buildings.geojsonl of tools/build_osm_data.sh; not committed: ODbL).
 //   node evaluation/finland/buildings-ab/sample.mjs > evaluation/finland/buildings-ab/sample.json
 import fs from "node:fs";
-import { buildingAt, localFrame } from "../../../pilot/public/derive.js";
+import { buildingAt, localFrame } from "../../../app/public/derive.js";
 
 const OSM = new URL("../../../../../../data/osm/fi/", import.meta.url);
 let seed = 20261128;

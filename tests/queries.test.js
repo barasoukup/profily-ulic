@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { podlaznostInfo, parkingFields, LINE_WHERE } from "../pilot/public/queries.js";
+import { podlaznostInfo, parkingFields, LINE_WHERE } from "../app/public/queries.js";
 
 test("podlažnost: plocha z Web Mercatoru se přepočte na zem", () => {
   const lat = 50;

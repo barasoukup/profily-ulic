@@ -1,4 +1,4 @@
-// The prototype (pilot/public/lanes-ortho.js) against the independent marks by eye (OZNACOVANI.md,
+// The prototype (app/public/lanes-ortho.js) against the independent marks by eye (OZNACOVANI.md,
 // labels/oznac-<city>-<who>.json): per marked carriageway (quality "ok", both edges marked) the boundaries inside it
 // (≥ 0.7 m from its edges) of
 //   pravidla   the profile as the rules drew it (r.a of evaluation/<city>/data/ab-city-stejne), laid on the map;
@@ -8,8 +8,8 @@
 //   node evaluation/ortofoto/proto-eval.mjs        → printed, data/proto-eval.json
 import fs from "node:fs/promises";
 import path from "node:path";
-import { decodePng } from "../../pilot/public/dmvs.js";
-import { applyLanes } from "../../pilot/public/lanes-ortho.js";
+import { decodePng } from "../../app/public/dmvs.js";
+import { applyLanes } from "../../app/public/lanes-ortho.js";
 import { strip, median, layout } from "./run.mjs";
 
 const ROOT = path.dirname(new URL(import.meta.url).pathname);

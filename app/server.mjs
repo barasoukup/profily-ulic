@@ -259,7 +259,7 @@ const server = http.createServer(async (req, res) => {
       res.writeHead(302, { Location: `/?mesto=${site}` });
       return res.end();
     }
-    // data/… (OSM tiles, parking zones) is served from pilot/data, as the web build places it next to the app.
+    // data/… (OSM tiles, parking zones) is served from app/data, as the web build places it next to the app.
     const dataDir = path.join(ROOT, "data");
     const base = rel.startsWith("data/") ? dataDir : PUBLIC;
     const file = path.normalize(path.join(base, rel.startsWith("data/") ? rel.slice(5) : rel));

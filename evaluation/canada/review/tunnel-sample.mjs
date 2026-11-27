@@ -1,8 +1,8 @@
 // Streets over a tram in a tunnel (?off=tunneltracks), Europe's cities with one and Toronto.   node tunnel-sample.mjs
 import fs from "node:fs/promises";
 import { tiles } from "../../kliky/osm.mjs";
-import { TILE, mergePieces } from "../../../pilot/public/osmtile.js";
-import { localFrame, nearestStreet, placeCut as place } from "../../../pilot/public/derive.js";
+import { TILE, mergePieces } from "../../../app/public/osmtile.js";
+import { localFrame, nearestStreet, placeCut as place } from "../../../app/public/derive.js";
 const C = { wien: [48.195, 16.355], bruxelles: [50.846, 4.352], antwerpen: [51.217, 4.41], koeln: [50.937, 6.95], essen: [51.456, 7.012], stuttgart: [48.777, 9.18], brno: [49.19, 16.6], krakow: [50.063, 19.95], rotterdam: [51.92, 4.48], denhaag: [52.077, 4.31], graz: [47.07, 15.43], toronto: [43.665, -79.4] };
 const out = []; let seed = 20261214; const rnd = () => ((seed = (seed * 16807) % 2147483647) / 2147483647);
 for (const [city, [la, lo]] of Object.entries(C)) {

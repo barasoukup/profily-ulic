@@ -8,18 +8,18 @@
 //     current), paged one request at a time; when the service fails, from the Hub copy;
 //   - "Uliční úseky TSK včetně zatřídění komunikací": the class of each street section (lines).
 // The GeoJSON links come from the DCAT feed; when the feed does not answer, from the known item ids.
-//   node tools/build_praha_opendata.mjs [outDir]   (default pilot/data/praha; served as data/praha/…)
+//   node tools/build_praha_opendata.mjs [outDir]   (default app/data/praha; served as data/praha/…)
 //   ONLY=stromy,zakaz node tools/build_praha_opendata.mjs   (only these datasets; the others are left out)
 //   FROM=dir: read <dir>/<name>.geojson instead of downloading (a local copy).
 // Output: <outDir>/opendata/<ix>_<iy>.json, tiles of TILE degrees (one file holds all four datasets, so a
 // cut reads one or a few files), and <outDir>/opendata/about.json. Coordinates are integers: millionths of a
-// degree from the tile's south-west corner. Read by pilot/public/sources.js (prahaTile).
+// degree from the tile's south-west corner. Read by app/public/sources.js (prahaTile).
 import fs from "node:fs";
 import path from "node:path";
 
 export const TILE = 0.01; // degrees (sources.js PRAHA_TILE)
 const ROOT = path.join(path.dirname(new URL(import.meta.url).pathname), "..");
-const OUT = path.join(process.argv[2] || path.join(ROOT, "pilot", "data", "praha"), "opendata");
+const OUT = path.join(process.argv[2] || path.join(ROOT, "app", "data", "praha"), "opendata");
 const FEED = "https://opendata.geoportalpraha.cz/api/feed/dcat-ap/2.1.1.json";
 const DOWNLOAD = (id) => `https://opendata.geoportalpraha.cz/api/download/v1/items/${id}/geojson?layers=0`;
 const DATASETS = {

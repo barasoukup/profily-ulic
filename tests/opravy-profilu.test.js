@@ -2,7 +2,7 @@
 // than a lane.
 import test from "node:test";
 import assert from "node:assert/strict";
-import { pedestrianZone, widenNarrowTrams } from "../pilot/public/derive.js";
+import { pedestrianZone, widenNarrowTrams } from "../app/public/derive.js";
 
 test("pěší zóna: pruhy a neurčeno odhadu jsou chodník, s technickou mapou pruh zůstane", () => {
   const segs = () => [{ type: "chodnik", width: 3 }, { type: "pruh", width: 14.9, dir: "forward" }, { type: "nezname", width: 5, source: "odhad" }, { type: "stromorad", width: 1.5 }];

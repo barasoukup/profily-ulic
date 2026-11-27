@@ -22,9 +22,9 @@ globalThis.fetch = async (url, o) => {
   if (r.ok && !/^\s*\{"error"/.test(t)) await fs.writeFile(f, t);
   return new Response(t, { status: r.status });
 };
-const C = await import("../../pilot/public/city.js"), json = async (f) => JSON.parse(await fs.readFile(new URL(f, import.meta.url), "utf8"));
-C.loadBounds(await json("../../pilot/public/mesta.json")); await import("../../pilot/public/america.js"); C.loadStates({ ...await json("../../pilot/public/staty.json"), ...await json("../../pilot/public/staty-america.json") }); C.loadTowns(await json("../../pilot/public/mesta-us.json"));
-const U = await import("../../pilot/public/towns/usa.js");
+const C = await import("../../app/public/city.js"), json = async (f) => JSON.parse(await fs.readFile(new URL(f, import.meta.url), "utf8"));
+C.loadBounds(await json("../../app/public/mesta.json")); await import("../../app/public/america.js"); C.loadStates({ ...await json("../../app/public/staty.json"), ...await json("../../app/public/staty-america.json") }); C.loadTowns(await json("../../app/public/mesta-us.json"));
+const U = await import("../../app/public/towns/usa.js");
 for (const s of [...await json("../usa/ab/sample.json"), ...await json("../usa/fresh/sample.json")]) {
   const b = (s.bearing * Math.PI) / 180, half = 40, pad = 0.0004, kx = 111320 * Math.cos((s.lat * Math.PI) / 180);
   const dx = (Math.abs(Math.cos(b)) * half) / kx + pad, dy = (Math.abs(Math.sin(b)) * half) / 110574 + pad;

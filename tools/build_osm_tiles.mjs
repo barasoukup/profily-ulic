@@ -1,14 +1,14 @@
 // Splits GeoJSONSeq exports of OSM data (from ogr2ogr, tools/build_osm_data.sh) into small grid tiles in
-// the compact form of pilot/public/osmtile.js, for the whole Czech Republic (about 700 MB in 230 000 tiles).
+// the compact form of app/public/osmtile.js, for the whole Czech Republic (about 700 MB in 230 000 tiles).
 // Lines become "way" (cut by tiles: a tile keeps the segments touching it), polygons "area" (whole, with
 // holes), points "node". Only what the profile draws, or may draw (Bára: zones, speeds, surface, stops,
 // crossings, kinds of trees, widths, signs), is kept; paths and tracks away from streets are left out.
 // Streams: tiles go to disk in batches, so memory stays small whatever the extract.
-//   node tools/build_osm_tiles.mjs pilot/data/osm-tiles data/osm/cz_ways.geojsonl data/osm/cz_parking.geojsonl …
+//   node tools/build_osm_tiles.mjs app/data/osm-tiles data/osm/cz_ways.geojsonl data/osm/cz_parking.geojsonl …
 import fs from "node:fs";
 import path from "node:path";
 import readline from "node:readline";
-import { TILE } from "../pilot/public/osmtile.js";
+import { TILE } from "../app/public/osmtile.js";
 import { clipRing, ringArea, enc, tilePieces, BRIDGE_AREA, bridgeTags } from "./osm_areas.mjs";
 
 export { TILE };

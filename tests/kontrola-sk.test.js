@@ -1,7 +1,7 @@
 // Fixes from the check of 1000 Slovak cuts (evaluation/slovensko/kontrola/ZPRAVA.md, Bára 16. 11. 2026).
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { splitTwoWayLane, capWideLanes } from "../pilot/public/derive.js";
+import { splitTwoWayLane, capWideLanes } from "../app/public/derive.js";
 
 const seg = (type, width, extra = {}) => ({ type, width, source: "ortofoto", ...extra });
 
@@ -46,7 +46,7 @@ test("obousměrka s krajnicí od 1,5 m po obou stranách: k pruhům jen užší"
 });
 
 test("cyklostezka z OSM přes odhadnutý díl: vyřízne se pás její šířky, ne z pruhu ani poblíž jiného dílu pro kola", async () => {
-  const { carveCycleways } = await import("../pilot/public/derive.js");
+  const { carveCycleways } = await import("../app/public/derive.js");
   const s = [seg("zelen", 3.95), seg("chodnik", 6), seg("krajnice", 4.15), seg("plocha", 3.5)];
   assert.equal(carveCycleways(s, [{ at: 12.7, tags: { highway: "cycleway" } }]), 1);
   assert.deepEqual(s.map((x) => [x.type, x.width]), [["zelen", 3.95], ["chodnik", 6], ["krajnice", 1.5], ["cyklostezka", 2.65], ["plocha", 3.5]]);
@@ -57,7 +57,7 @@ test("cyklostezka z OSM přes odhadnutý díl: vyřízne se pás její šířky,
 });
 
 test("vozovka jen z krajnic dostane pruh; koleje z OSM v odhadnutém dílu jsou tramvajový pás", async () => {
-  const { lanesFromShoulders, carveTramTracks } = await import("../pilot/public/derive.js");
+  const { lanesFromShoulders, carveTramTracks } = await import("../app/public/derive.js");
   const s = [seg("chodnik", 2.6), seg("krajnice", 1.67), seg("krajnice", 2.43), seg("chodnik", 2.65)];
   assert.equal(lanesFromShoulders(s, { highway: "residential" }), 1);
   assert.deepEqual(s.map((x) => [x.type, x.width]), [["chodnik", 2.6], ["pruh", 4.1], ["chodnik", 2.65]]);

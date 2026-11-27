@@ -3,7 +3,7 @@
 // without a hand list: the states of staty.json, each state's orthophoto (countries/<ISO>.js laneOrtho, lanes-ortho.js
 // for the partial ones), each source module's SURFACE_MAPS (towns/*.js: "all", ids of its AREAS, keys of the boundary
 // files, "-<NUTS 3>" left out) and the boundaries of the towns (mesta*.json, pasporty.json, regions-*.json). Simplified
-// to about 500 m and written into pilot/public/coverage.json (tests/coverage.test.js checks it is up to date):
+// to about 500 m and written into app/public/coverage.json (tests/coverage.test.js checks it is up to date):
 //   node tools/build_coverage.mjs            (offline; the NUTS 3 areas a module leaves out come from tools/coverage-nuts3.json)
 //   node tools/build_coverage.mjs --fetch    (first fetches those NUTS 3 areas and the towns' LAU from Eurostat GISCO,
 //                                             © EuroGeographics)
@@ -15,7 +15,7 @@
 import fs from "node:fs";
 import { pathToFileURL } from "node:url";
 
-const PUB = new URL("../pilot/public/", import.meta.url);
+const PUB = new URL("../app/public/", import.meta.url);
 const NUTS_FILE = new URL("coverage-nuts3.json", import.meta.url);
 const LAU_FILE = new URL("coverage-lau.json", import.meta.url);
 const LAU_URL = "https://gisco-services.ec.europa.eu/distribution/v2/lau/geojson/LAU_RG_01M_2024_4326.geojson";

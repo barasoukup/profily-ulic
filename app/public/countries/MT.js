@@ -30,7 +30,7 @@ function limitsMT(s) {
   }
 }
 
-// The signs of the state MT (pilot/public/signs-MT/, README there; S.L. 65.05). Malta's copyright gives the government
+// The signs of the state MT (app/public/signs-MT/, README there; S.L. 65.05). Malta's copyright gives the government
 // its drawings: only files of Commons with their own licence (UK drawings under the Open Government Licence v1.0,
 // credited in the footer; Maltese ones in the public domain; evaluation/malta/signs-licence.json). Only the signs of the
 // regulation's Schedule (reg. 2): no one-way sign, no cycle route signs (the Highway Code's British ones are guidance)

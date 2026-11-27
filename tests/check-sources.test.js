@@ -4,10 +4,10 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
 import { plan, POINTS, runChecks, settle, isBad, watched, answered } from "../tools/check_sources_lib.mjs";
-import * as C from "../pilot/public/city.js";
-import { TOWNS } from "../pilot/public/towns/index.js";
+import * as C from "../app/public/city.js";
+import { TOWNS } from "../app/public/towns/index.js";
 
-const read = (f) => JSON.parse(fs.readFileSync(new URL(`../pilot/public/${f}`, import.meta.url)));
+const read = (f) => JSON.parse(fs.readFileSync(new URL(`../app/public/${f}`, import.meta.url)));
 const PLAN = plan({ ...C, TOWNS });
 
 test("kontrola zdrojů: každá mapa povrchů má bod, plochy se žádají jen tam", () => {
@@ -81,6 +81,6 @@ test("kontrola zdrojů: bez mapy povrchů nic nechybí; pomalá služba je varov
 });
 
 test("kontrola zdrojů: config.js jen čte, STATIC v něm jde přepnout", () => {
-  const src = fs.readFileSync(new URL("../pilot/public/config.js", import.meta.url), "utf8");
+  const src = fs.readFileSync(new URL("../app/public/config.js", import.meta.url), "utf8");
   assert.equal(src.match(/export const STATIC = [^;]*;/g)?.length, 1);
 });

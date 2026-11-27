@@ -2,7 +2,7 @@
 
 Rozsah: `countries/ES.js`, `towns/spain.js`, `search-es.js`, `signs-ES/`, `evaluation/spain/`, části `lanes-ortho.js`,
 `signs.js`, `derive.js`, `credits.js`, `app.js`, `index.html`, `tools/countries.mjs`, `tools/build_staty.mjs`,
-`tests/spain.test.js`, `LICENCE-A-ZDROJE.md`, `pilot/README.md`. Větev `estonia`, HEAD `84140de`. Žádný soubor kromě
+`tests/spain.test.js`, `LICENCE-A-ZDROJE.md`, `app/README.md`. Větev `estonia`, HEAD `84140de`. Žádný soubor kromě
 této zprávy jsem neměnil.
 
 Co jsem ověřil:
@@ -38,7 +38,7 @@ Bez nálezu:
 
 ### 1. Odhad stání nechává v obousměrce dva pruhy po 1,5 m (závažné)
 
-`ES.js:71` má `lawNeed: () => 3` bez ohledu na směr, počet pruhů a `minLane`. Komentář (`ES.js:69`) a `pilot/README.md:265`
+`ES.js:71` má `lawNeed: () => 3` bez ohledu na směr, počet pruhů a `minLane`. Komentář (`ES.js:69`) a `app/README.md:265`
 tvrdí „odhad jako v Lucembursku“, jenže Lucembursko, Francie, Belgie i Polsko mají
 `Math.max(3, minLane * Math.max(oneway ? 1 : 2, lanes))`, tedy pruhy zůstávají průjezdné. `derive.js:707–712` pak
 odhadne stání, kdykoli po něm zbude 3 m.

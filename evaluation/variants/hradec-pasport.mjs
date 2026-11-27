@@ -8,10 +8,10 @@
 // (the town's ArcGIS on the same host, with CORS, has the technical map only as CAD lines). The module serves
 // the evaluation (CITY=hradec VARIANTS=city,hradec-pasport CACHE=disk node evaluation/ab.mjs), which runs in Node. Once the
 // town's server allows other origins (as T-MAPY's servers of Jablonec, Děčín and Tábor do), the module can
-// become pilot/public/towns/hradec.js (sources: osm tiles, these surfaces, RÚIAN floors) and be registered.
-import { getJSON, asMtvu } from "../../pilot/public/gis.js";
-import { MTVU_LABELS } from "../../pilot/public/city.js";
-import { surfaces as dmvsSurfaces } from "../../pilot/public/dmvs.js";
+// become app/public/towns/hradec.js (sources: osm tiles, these surfaces, RÚIAN floors) and be registered.
+import { getJSON, asMtvu } from "../../app/public/gis.js";
+import { MTVU_LABELS } from "../../app/public/city.js";
+import { surfaces as dmvsSurfaces } from "../../app/public/dmvs.js";
 
 const HK_PAKOM = "https://geoportal.mmhk.cz/services/mapserver/common/pakom/gservice";
 

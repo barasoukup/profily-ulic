@@ -27,7 +27,7 @@ track axes of the DI (code 55010, as IPR's). Tiles are 0.005° like the OSM tile
 Run with QGIS's Python (GDAL and shapely 2):
   Q=/Applications/QGIS-final-4_2_3.app/Contents
   PROJ_DATA=$Q/Resources/qgis/proj GDAL_DATA=$Q/Resources/qgis/gdal \\
-    $Q/MacOS/python tools/build_dtm_brno.py data/dtm-brno/zip data/osm/brno_ways.geojsonl pilot/data/brno/dtm-tiles
+    $Q/MacOS/python tools/build_dtm_brno.py data/dtm-brno/zip data/osm/brno_ways.geojsonl app/data/brno/dtm-tiles
 On GitHub Actions: python3 with python3-gdal and shapely. The zips come from tools/fetch_dtm_brno.sh, the
 OSM ways from tools/build_osm_data.sh (NAME=brno).
 """
@@ -53,7 +53,7 @@ TILE = 0.005
 GML = "{http://www.opengis.net/gml/3.2}"
 ATR = "{atr}"
 
-# Definition points of DTM areas → MTVU code (see the labels in pilot/public/city.js).
+# Definition points of DTM areas → MTVU code (see the labels in app/public/city.js).
 AREA = {
     "pokdef": 701,  # provozní plocha pozemní komunikace (roadway)
     "ppkdef": 701,  # přidružená plocha pozemní komunikace (lay-bys, shoulders)

@@ -8,7 +8,7 @@
 //   CITY=praha node evaluation/ortofoto/krajnice.mjs [who …]
 import fs from "node:fs/promises";
 import path from "node:path";
-import { decodePng } from "../../pilot/public/dmvs.js";
+import { decodePng } from "../../app/public/dmvs.js";
 import { ALL, strip, layout } from "./run.mjs";
 import { brightMap, m4 } from "./cary.mjs";
 import { FINEST } from "./oznac.mjs";

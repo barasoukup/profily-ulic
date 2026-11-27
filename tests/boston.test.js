@@ -4,11 +4,11 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
-import "../pilot/public/america.js";
-const read = (f) => JSON.parse(fs.readFileSync(new URL(`../pilot/public/${f}`, import.meta.url), "utf8"));
+import "../app/public/america.js";
+const read = (f) => JSON.parse(fs.readFileSync(new URL(`../app/public/${f}`, import.meta.url), "utf8"));
 
 test("Boston: metro (Suffolk, Middlesex, Norfolk) v USA, město, Cambridge a okolí; Washington beze změny", async () => {
-  const C = await import("../pilot/public/city.js");
+  const C = await import("../app/public/city.js");
   C.loadBounds(read("mesta.json")); C.loadStates({ ...read("staty.json"), ...read("staty-america.json") }); C.loadTowns(read("mesta-us.json"));
   // City Hall, Dorchester, East Boston; Cambridge, Somerville, Brookline, Newton, Quincy, Lowell; Washington's White House.
   for (const p of [[42.3603, -71.0578], [42.3016, -71.0676], [42.375, -71.039]]) assert.equal(C.cityAt(...p), "boston", `${p}`);
@@ -27,7 +27,7 @@ test("Boston: metro (Suffolk, Middlesex, Norfolk) v USA, město, Cambridge a oko
 
 test("Boston: dlaždice map povrchů (oříznutí obdélníkem, zápis a čtení) a pole vrstev stejná v nástroji i v aplikaci", async () => {
   const T = await import("../tools/build_planimetrics_us.mjs");
-  const B = await import("../pilot/public/towns/boston.js");
+  const B = await import("../app/public/towns/boston.js");
   assert.equal(T.TILE, B.PLAN_TILE);
   for (const [city, layers] of Object.entries(T.CITIES)) for (const [k, l] of Object.entries(layers)) assert.deepEqual(B.PLAN_FIELDS[city][k], l.fields, `${city} ${k}`);
   // A square across a tile's corner, clipped: what lies in the tile.
@@ -40,7 +40,7 @@ test("Boston: dlaždice map povrchů (oříznutí obdélníkem, zápis a čtení
   const tiles = new Map();
   T.tileFeatures([{ attributes: { type: "RD-PAVED" }, geometry: { rings: [outer, hole] } }], ["type"], tiles, "r");
   assert.ok(tiles.size >= 2);
-  const { inRings } = await import("../pilot/public/towns/planimetrics.js");
+  const { inRings } = await import("../app/public/towns/planimetrics.js");
   const feats = [...tiles].flatMap(([k, t]) => { const [ix, iy] = k.split("_").map(Number); return B.decodePlanTile(t.r, ix, iy, ["type"]); });
   assert.ok(feats.every((f) => f.attributes.type === "RD-PAVED"));
   const hit = (x, y) => feats.some((f) => inRings(f.geometry.rings, x, y));
@@ -56,8 +56,8 @@ const BBOX = [...ll(-30, -1), ...ll(30, 1)].map((v, i) => v + (i < 2 ? -4e-4 : 4
 const codes = (r) => r.features.map((f) => f.attributes.code);
 
 test("Boston a Cambridge: plochy podél řezu (vozovka, chodník, ostrůvek, jamka stromu, vjezd, budova)", async () => {
-  const { BOSTON_MAP, CAMBRIDGE_MAP } = await import("../pilot/public/towns/boston.js");
-  const { planimetricCut } = await import("../pilot/public/towns/planimetrics.js");
+  const { BOSTON_MAP, CAMBRIDGE_MAP } = await import("../app/public/towns/boston.js");
+  const { planimetricCut } = await import("../app/public/towns/planimetrics.js");
   // Boston: buildings, sidewalks, a median island between two roadways, a traffic island at the side (green).
   const b = planimetricCut(BOSTON_MAP, [esri("part_floors", [["4", -30, -12], ["3", 12, 30]]), esri("x", [["", -12, -7], ["", 7, 12]]),
     esri("type", [["RD-PAVED", -7, 7], ["RD-TRAF-ISLAND", -1, 1]])], [way], BBOX, way.tags, { way });
@@ -69,23 +69,23 @@ test("Boston a Cambridge: plochy podél řezu (vozovka, chodník, ostrůvek, jam
 });
 
 test("Boston: mapa podle místa (Memorial Drive je Cambridge), domy z počtu podlaží, ortofoto MassGIS", async () => {
-  const { bostonHouse, AREAS } = await import("../pilot/public/towns/boston.js");
-  const { inArea } = await import("../pilot/public/places.js");
+  const { bostonHouse, AREAS } = await import("../app/public/towns/boston.js");
+  const { inArea } = await import("../app/public/places.js");
   assert.deepEqual(bostonHouse({ part_floors: "5.0" }), { cornice: 5, roof: 0, total: 5, usHouse: "boston" });
   assert.deepEqual(bostonHouse({ part_floors: "0" }), {});
   // Memorial Drive by the Charles: Cambridge strictly, Boston only within its 30 m.
   const mem = [-71.1035, 42.3685];
   assert.ok(inArea({ ...AREAS.cambridge, near: 0 }, ...mem));
   assert.ok(!inArea({ ...AREAS.boston, near: 0 }, ...mem));
-  const { US_ORTHO, usOrthoAt } = await import("../pilot/public/lanes-ortho.js");
+  const { US_ORTHO, usOrthoAt } = await import("../app/public/lanes-ortho.js");
   assert.equal(US_ORTHO["us-ma"].town, "bostonmetro");
   assert.deepEqual(usOrthoAt(-71.0578, 42.3603), ["us-ma"]);
   assert.deepEqual(usOrthoAt(-77.0365, 38.8977), ["us-dc"]);
 });
 
 test("Boston: pravidla šířek z Boston Complete Streets Guidelines jen v metru Bostonu, ilustrace MBTA", async () => {
-  const C = await import("../pilot/public/city.js");
-  const US = (await import("../pilot/public/countries/US.js")).default;
+  const C = await import("../app/public/city.js");
+  const US = (await import("../app/public/countries/US.js")).default;
   C.setCity("boston");
   assert.match(US.limits({ type: "pruh", width: 2.9 }).why, /Boston Complete Streets/);
   assert.equal(US.limits({ type: "cyklostezka", width: 2 }), null);
@@ -100,15 +100,15 @@ test("Boston: pravidla šířek z Boston Complete Streets Guidelines jen v metru
     assert.equal(set["streetcar-inbound"], "tram-inbound");
     assert.equal(set["stop-post-left"], "oznacnik-left");
   }
-  for (const f of ["bus-inbound", "tram-inbound", "lamp-acorn-left", "oznacnik-left"]) assert.ok(fs.existsSync(new URL(`../pilot/public/boston/${f}.svg`, import.meta.url)), f);
+  for (const f of ["bus-inbound", "tram-inbound", "lamp-acorn-left", "oznacnik-left"]) assert.ok(fs.existsSync(new URL(`../app/public/boston/${f}.svg`, import.meta.url)), f);
   // Washington keeps Metrobus and its globe.
   assert.equal(US.art.washington["bus-inbound"], "../washington/bus-inbound");
   assert.equal(US.art.washington["lamp-post-top"], "lamp-globe-left");
 });
 
 test("Boston: mezery za vnějším chodníkem podle OSM (dům, parkoviště) a ortofota", async () => {
-  const { outerGaps, osmAreasAlong } = await import("../pilot/public/towns/planimetrics.js");
-  const { outerGapsByImage } = await import("../pilot/public/ortho-osm.js");
+  const { outerGaps, osmAreasAlong } = await import("../app/public/towns/planimetrics.js");
+  const { outerGapsByImage } = await import("../app/public/ortho-osm.js");
   const R = (...a) => a.map(([code, s, e, gap]) => ({ code, s, e, ...(gap && { gap: true }) }));
   // A tree strip by the kerb (−8…−6) stays green; beyond the sidewalks a house of OSM (−30…−20) and a lot (8…25) take the gaps.
   const runs = R([401, -30, -10, 1], [702, -10, -8], [401, -8, -6, 1], [701, -6, 6], [702, 6, 8], [401, 8, 30, 1]);
@@ -134,7 +134,7 @@ test("Boston: mezery za vnějším chodníkem podle OSM (dům, parkoviště) a o
 });
 
 test("Boston: ?outerosm=1 doplní mezery za chodníkem jen domy a parkovišti z OSM, ortofoto nic neposuzuje", async () => {
-  const { BOSTON_MAP } = await import("../pilot/public/towns/boston.js");
+  const { BOSTON_MAP } = await import("../app/public/towns/boston.js");
   const runs = () => [{ s: -30, e: -10, code: 401, gap: true }, { s: -10, e: -8, code: 702 }, { s: -8, e: 8, code: 701 }, { s: 8, e: 10, code: 702 }, { s: 10, e: 30, code: 401, gap: true }];
   const ctx = { tags: { highway: "primary" }, tracks: () => [], cycleTracks: () => [], osmAreas: () => [{ s: 12, e: 25, code: 1003 }] };
   const plain = runs(); BOSTON_MAP.prepare(plain, ctx);
@@ -151,7 +151,7 @@ test("Boston: ?outerosm=1 doplní mezery za chodníkem jen domy a parkovišti z 
 });
 
 test("Boston: ?off=kerbbays vypne stání z úzkých parkovišť u obruby jako v Torontu a New Yorku", async () => {
-  const { BOSTON_MAP } = await import("../pilot/public/towns/boston.js");
+  const { BOSTON_MAP } = await import("../app/public/towns/boston.js");
   const runs = () => [{ s: -10, e: -6, code: 702 }, { s: -6, e: -3.5, code: 1003, lot: true }, { s: -3.5, e: 5, code: 701 }, { s: 5, e: 9, code: 702 }];
   const ctx = { tags: { highway: "residential" }, tracks: () => [], cycleTracks: () => [], osmAreas: () => [] };
   const on = runs(); BOSTON_MAP.prepare(on, ctx);
@@ -163,7 +163,7 @@ test("Boston: ?off=kerbbays vypne stání z úzkých parkovišť u obruby jako v
 });
 
 test("Boston: bez značky about.json města mapa na webu chybí (mapFailed, mapMissing); stavba po městech, selhání jednoho nezastaví druhé", async () => {
-  const B = await import("../pilot/public/towns/boston.js");
+  const B = await import("../app/public/towns/boston.js");
   const native = globalThis.fetch, asked = [];
   globalThis.fetch = async (url) => { asked.push(String(url)); return new Response("{}", { status: /cambridge\/about/.test(url) ? 404 : 200 }); };
   try {

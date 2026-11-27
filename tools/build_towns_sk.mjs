@@ -2,7 +2,7 @@
 // boxes reached Šamorín, Ivanka pri Dunaji or Svätý Jur, which got Bratislava's buses and its passport's queries), from
 // ZBGIS of ÚGKK SR (Uzemnospravne_clenenie, CC BY 4.0): Bratislava and Košice as their districts (okres Bratislava
 // I–V, Košice I–IV), the other towns as their municipality. ZBGIS answers its query operation with 503, so each part
-// is asked by identify at a point inside it. Simplified to about 30 m, written into pilot/public/mesta-sk.json
+// is asked by identify at a point inside it. Simplified to about 30 m, written into app/public/mesta-sk.json
 // (city.js loadSkTowns), kept in the repository: node tools/build_towns_sk.mjs
 import fs from "node:fs";
 
@@ -45,4 +45,4 @@ for (const [id, [layer, pts]] of Object.entries(TOWNS)) {
   out[id] = parts.flatMap((p) => p.rings);
   console.log(id, parts.map((p) => p.name).join(", "), out[id].length, "kruhů");
 }
-fs.writeFileSync(new URL("../pilot/public/mesta-sk.json", import.meta.url), JSON.stringify(out));
+fs.writeFileSync(new URL("../app/public/mesta-sk.json", import.meta.url), JSON.stringify(out));

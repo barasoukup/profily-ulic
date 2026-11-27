@@ -7,11 +7,11 @@
 // map (the truth) and with ?mapa=0 (the estimate); README.md.
 import fs from "node:fs";
 import path from "node:path";
-import { PackSet } from "../../pilot/public/osmpack.js";
-import { mergePieces, TILE } from "../../pilot/public/osmtile.js";
+import { PackSet } from "../../app/public/osmpack.js";
+import { mergePieces, TILE } from "../../app/public/osmtile.js";
 
 const HERE = path.dirname(new URL(import.meta.url).pathname), EVAL = path.join(HERE, "..");
-const PACK = path.join(HERE, "../../pilot/data/osm-pack/");
+const PACK = path.join(HERE, "../../app/data/osm-pack/");
 const fileFetch = async (url, opts = {}) => {
   const buf = fs.readFileSync(path.join(PACK, String(url).replace(/^pack:\/\/\.?\/?/, "")));
   const m = /bytes=(\d+)-(\d+)/.exec(opts.headers?.Range || "");

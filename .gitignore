@@ -1,12 +1,12 @@
-# Data downloaded or derived from third-party sources: rebuild them locally (see pilot/README.md)
+# Data downloaded or derived from third-party sources: rebuild them locally (see app/README.md)
 # instead of publishing them. OSM-derived tiles are an ODbL derivative database, technical-map
 # extracts and cached IPR responses have unclear redistribution terms.
 data/
-pilot/cache/
-pilot/data/
+app/cache
+app/data
 
-# Copy of the Streetmix repository (AGPL-3.0 code, CC BY-SA illustrations); the pilot only
-# ships the illustrations it uses, in pilot/public/streetmix/ with their LICENSE.
+# Copy of the Streetmix repository (AGPL-3.0 code, CC BY-SA illustrations); the app only
+# ships the illustrations it uses, in app/public/streetmix/ with their LICENSE.
 vendor/
 
 .DS_Store
@@ -17,12 +17,12 @@ evaluation/snapshot/
 .claude/
 
 # Local test page for building drawings (imports profile.js, never deployed)
-pilot/public/test-budovy.html
+app/public/test-budovy.html
 # OSM-derived table (ODbL), rebuilt by evaluation/budovy-typ/labels.mjs
 evaluation/budovy-typ/labels.tsv
 
 # Local Mapy.com key (export const MAPY_KEY = "…"), never committed
-pilot/public/config.local.js
+app/public/config.local.js
 
 # Brno evaluation data (orthophoto tiles, results, review images); the scripts in evaluation/ rebuild them.
 evaluation/brno/data/
@@ -39,9 +39,9 @@ tools/.ca-check.pem
 Profily-ulic-Plus.docx
 evaluation/budovy-panel/cache.json
 # Copies of evaluation scripts served to the app page during a run (evaluation/slovensko/kontrola)
-pilot/public/evaluation-*
+app/public/evaluation-*
 # Working files of the agents' runs in the app's folder (copies of collectors, point lists), never deployed or committed
-pilot/public/zz-*
+app/public/zz-*
 # Esri World Imagery crops of the Lombardy A/B (not to be published: evaluation/italy/lombardia/ZPRAVA.md) and its data
 evaluation/italy/lombardia/obrazky/
 evaluation/italy/lombardia/data/

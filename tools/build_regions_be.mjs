@@ -1,6 +1,6 @@
 // The boundaries of Belgium's regions (Bára 20. 11. 2026), so a cut asks only its region's orthophoto and map lines
 // (lanes-ortho.js BE_ORTHO, towns/belgium.js): Eurostat GISCO NUTS 2024 level 1 at 1 : 1 000 000 (© EuroGeographics),
-// rounded to about 100 m. Written into pilot/public/regions-be.json: node tools/build_regions_be.mjs
+// rounded to about 100 m. Written into app/public/regions-be.json: node tools/build_regions_be.mjs
 import fs from "node:fs";
 
 const NUTS = { BE1: "bru", BE2: "vl", BE3: "wal" };
@@ -14,4 +14,4 @@ for (const f of all.features) {
     .filter((r) => r.length > 3);
 }
 console.log(Object.keys(out));
-fs.writeFileSync(new URL("../pilot/public/regions-be.json", import.meta.url), JSON.stringify(out));
+fs.writeFileSync(new URL("../app/public/regions-be.json", import.meta.url), JSON.stringify(out));

@@ -1,11 +1,11 @@
 // The socialist house looks (sorela, the brick block of the 1950s–60s, the panel house) only in the states that built
 // them (Bára 23. 11. 2026): Czechia, Slovakia, Poland, Estonia and the former GDR; elsewhere, and abroad ("cizina"),
 // the postwar block of flats (profile.js westernLook).
-import "../pilot/public/america.js"; // the states of North America (late.js)
+import "../app/public/america.js"; // the states of North America (late.js)
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { buildingStyle, BUILDING_STYLES } from "../pilot/public/profile.js";
-import { setCity, city } from "../pilot/public/city.js";
+import { buildingStyle, BUILDING_STYLES } from "../app/public/profile.js";
+import { setCity, city } from "../app/public/city.js";
 
 const slab = { length: 60, width: 12, fill: 0.85, parts: 1 };
 const HOUSES = {
@@ -47,9 +47,9 @@ test("jinde poválečný bytový dům, před 1946 funkcionalistický, po 1990 mo
 
 // The regional looks of Europe's old houses (docs/house-types-europe.md, house-looks.js; Bára 23. 11. 2026): a state's
 // houseLook replaces only the old looks (sikma, mestan, nizky; vila and statek of wooden houses) by year and place.
-import { LOOKS, nordicLook, nordicDetails, mediterraneanLook } from "../pilot/public/house-looks.js";
-import { EDGE_STYLES } from "../pilot/public/validate.js";
-import { COUNTRIES } from "../pilot/public/countries/index.js";
+import { LOOKS, nordicLook, nordicDetails, mediterraneanLook } from "../app/public/house-looks.js";
+import { EDGE_STYLES } from "../app/public/validate.js";
+import { COUNTRIES } from "../app/public/countries/index.js";
 
 const PT = { madrid: [-3.705, 40.415], coruna: [-8.40, 43.37], bolzano: [11.35, 46.5], torino: [7.68, 45.07], paris: [2.33, 48.87],
   marseille: [5.37, 43.30], bruxelles: [4.35, 50.85], gent: [3.72, 51.05], liege: [5.57, 50.63], amsterdam: [4.89, 52.37],
@@ -135,13 +135,13 @@ test("každý vzhled má popisek, překlad a platí v souborech", () => {
 });
 
 test("štít uříznutý okrajem (2/3) je výchozí (Bára 23. 11. 2026)", async () => {
-  const { LOOKS } = await import("../pilot/public/house-looks.js");
+  const { LOOKS } = await import("../app/public/house-looks.js");
   assert.equal(LOOKS.gableCut, true);
 });
 
 // North America (docs/house-types-north-america.md; Bára 25. 11. 2026).
 test("severoamerické domy podle druhu, roku a místa; bez dat prostý vzhled", async () => {
-  const { northAmericaLook: na, northAmericaDetails: det } = await import("../pilot/public/house-looks-america.js");
+  const { northAmericaLook: na, northAmericaDetails: det } = await import("../app/public/house-looks-america.js");
   const row = { length: 60, width: 12, fill: 0.9, parts: 10 }, alone = { length: 11, width: 9, fill: 0.9, parts: 1 };
   const CH = [-76.993, 38.886], PET = [-77.02, 38.942], MD = [-77.2, 39.1], GT = [-77.065, 38.908], DT = [-77.035, 38.902];
   assert.equal(look("usa", { levels: 2, type: "house", block: row, point: CH }), "bayrow");
@@ -173,8 +173,8 @@ test("severoamerické domy podle druhu, roku a místa; bez dat prostý vzhled", 
 });
 
 test("Vzhled čte všechny budovy OSM, panelák ne z tvaru samotného, řadový dům Flander bez podlaží je cihlový", async () => {
-  const D = await import("../pilot/public/derive.js"), P = await import("../pilot/public/profile.js"), C = await import("../pilot/public/city.js");
-  const O = await import("../pilot/public/ortho-osm.js"), { brickLook } = await import("../pilot/public/house-looks.js");
+  const D = await import("../app/public/derive.js"), P = await import("../app/public/profile.js"), C = await import("../app/public/city.js");
+  const O = await import("../app/public/ortho-osm.js"), { brickLook } = await import("../app/public/house-looks.js");
   const frame = { toXY: (x, y) => [x, y], toLonLat: (x, y) => [x, y] }, box = (tags) => ({ type: "area", tags, geometry: [[-5, -5], [5, -5], [5, 5], [-5, 5], [-5, -5]].map(([lon, lat]) => ({ lon, lat })) });
   assert.equal(D.buildingAt({ elements: [box({ building: "house" })] }, frame, [0, 0]).type, "house");
   assert.equal(D.buildingAt({ elements: [box({ building: "roof" })] }, frame, [0, 0]), null);

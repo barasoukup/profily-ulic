@@ -2,7 +2,7 @@
 
 Bára schválila 24. 11. 2026 levný offline test: **dají se z otevřených dat DC poskládat profily, které sedí se
 skutečností zhruba tak dobře jako v evropských státech** (univerzální měření, shoda složení asi 55–65 %)? Kritérium:
-aspoň asi 60 %, nebo srovnatelně s Evropou. Kód aplikace (`pilot/public/*`) se neměnil, vše je v `evaluation/usa-dc/`.
+aspoň asi 60 %, nebo srovnatelně s Evropou. Kód aplikace (`app/public/*`) se neměnil, vše je v `evaluation/usa-dc/`.
 
 ## Verdikt
 

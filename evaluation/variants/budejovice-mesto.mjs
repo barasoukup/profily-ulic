@@ -7,9 +7,9 @@
 // (towns/overlay.js "under"; in the DTM's blank quarters the profile stays the OSM estimate: lawns alone are
 // no profile), and the benches where OSM has none within 3 m.
 //   CITY=budejovice VARIANTS=city,budejovice-mesto,budejovice-stani CACHE=disk ONLY=… node evaluation/ab.mjs
-import { query, envelope, osmTiles, boxAround, asMtvu, addPoints } from "../../pilot/public/gis.js";
-import { MTVU_LABELS } from "../../pilot/public/city.js";
-import { surfaces as dmvsSurfaces } from "../../pilot/public/dmvs.js";
+import { query, envelope, osmTiles, boxAround, asMtvu, addPoints } from "../../app/public/gis.js";
+import { MTVU_LABELS } from "../../app/public/city.js";
+import { surfaces as dmvsSurfaces } from "../../app/public/dmvs.js";
 
 export const CB = "https://services9.arcgis.com/8svDug0pVvBQzXWS/arcgis/rest/services";
 const none = () => ({ features: [] });

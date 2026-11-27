@@ -3,7 +3,7 @@
 // I/38 as 13.0 m; the same polygon may narrow to 9 m elsewhere, so it is judged edge by edge), narrowed by TRIM on each side: the crown includes the unpaved verges, the asphalt is about
 // 10.5 m (evaluation/jihlava/PASPORT.md). The rest as towns/jihlava.js.
 import { roads, compose, passportLayer, stateRoad } from "./_jihlava.mjs";
-import { metres } from "../../pilot/public/gis.js";
+import { metres } from "../../app/public/gis.js";
 
 export const about = "pasport, pás silnice ŘSD/KSÚS široký 13 m zúžený o 1,25 m z každé strany";
 // The strip: 13 m (12.7–13.2) across over at least SHARE of the polygon's edges, as a buffer of the axis is.

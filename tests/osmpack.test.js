@@ -2,8 +2,8 @@
 // same elements as the tiles of osmtile.js, read in pieces as over HTTP Range.
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { decodeTile, mergePieces } from "../pilot/public/osmtile.js";
-import { Pack, PackSet, encodeElement, decodePackedTile } from "../pilot/public/osmpack.js";
+import { decodeTile, mergePieces } from "../app/public/osmtile.js";
+import { Pack, PackSet, encodeElement, decodePackedTile } from "../app/public/osmpack.js";
 import { packTiles } from "../tools/pack_osm_tiles.mjs";
 
 const diff = (pts) => pts.flatMap(([x, y], i) => (i ? [x - pts[i - 1][0], y - pts[i - 1][1]] : [x, y]));

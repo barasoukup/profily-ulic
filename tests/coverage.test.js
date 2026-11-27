@@ -1,13 +1,13 @@
-// The overview map of the About dialog (tools/build_coverage.mjs, pilot/public/coverage.json; Bára 24. 11. 2026): every
+// The overview map of the About dialog (tools/build_coverage.mjs, app/public/coverage.json; Bára 24. 11. 2026): every
 // source module says where its surface map answers, every state's orthophoto is classified, every state of the app is on
 // the map, and the file is what the build makes of the modules now (else: node tools/build_coverage.mjs).
-import "../pilot/public/america.js"; // the states of North America (late.js)
+import "../app/public/america.js"; // the states of North America (late.js)
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
 import { buildCoverage, OUT, ORTHO_FULL, ORTHO_ONLY, ORTHO_BUT } from "../tools/build_coverage.mjs";
-import { TOWNS } from "../pilot/public/towns/index.js";
-import { COUNTRIES } from "../pilot/public/countries/index.js";
+import { TOWNS } from "../app/public/towns/index.js";
+import { COUNTRIES } from "../app/public/countries/index.js";
 
 test("pokrytí: každý modul zdrojů a každé ortofoto je zařazené", () => {
   for (const [id, m] of Object.entries(TOWNS)) assert.ok(Array.isArray(m.SURFACE_MAPS), `towns: ${id} bez SURFACE_MAPS`);
@@ -60,7 +60,7 @@ test("pokrytí: každá třída má plochu, každý modul je zařazený, města 
   }
   // Every module of towns/index.js is on the map: its state or city under some class, and each of its surface maps as
   // a surface map unless its state is one already.
-  const { cityById } = await import("../pilot/public/city.js");
+  const { cityById } = await import("../app/public/city.js");
   const ids = new Set(coverage.features.map((f) => f.properties.id));
   const stateIds = new Set(coverage.features.filter((f) => /^[a-z]+$/.test(f.properties.id)).map((f) => f.properties.id));
   for (const [id, m] of Object.entries(TOWNS)) {

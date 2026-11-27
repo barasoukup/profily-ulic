@@ -29,9 +29,9 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 import { ROOT, DATA, osmAround, cachedJSON, ft } from "./lib.mjs";
-import { localFrame, snapToWay, mtvuPolygons, deriveProfile, splitTwoWayLane, capWideLanes, pedestrianZone, carveCycleways, carveTramTracks, lanesFromShoulders, trackAlongRoad, crossFromA, MAX_REACH } from "../../pilot/public/derive.js";
-import { orthoOsmPolys, trimToEnds } from "../../pilot/public/ortho-osm.js";
-import { MTVU_LABELS } from "../../pilot/public/city.js";
+import { localFrame, snapToWay, mtvuPolygons, deriveProfile, splitTwoWayLane, capWideLanes, pedestrianZone, carveCycleways, carveTramTracks, lanesFromShoulders, trackAlongRoad, crossFromA, MAX_REACH } from "../../app/public/derive.js";
+import { orthoOsmPolys, trimToEnds } from "../../app/public/ortho-osm.js";
+import { MTVU_LABELS } from "../../app/public/city.js";
 
 const PLAN = "https://maps2.dcgis.dc.gov/dcgis/rest/services/DCGIS_DATA/Planimetrics_2023/MapServer";
 const SUB = "https://maps2.dcgis.dc.gov/dcgis/rest/services/DCGIS_DATA/Transportation_WebMercator/MapServer/162";

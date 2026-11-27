@@ -1,10 +1,10 @@
 // Bridges and embankments over water from the local OSM packs. node find.mjs
 import fs from "node:fs";
 const W = new URL("../..", import.meta.url).pathname.replace(/\/$/, "");
-const { Pack } = await import(W + "/pilot/public/osmpack.js");
-const { mergePieces, TILE } = await import(W + "/pilot/public/osmtile.js");
-const { WATER } = await import(W + "/pilot/public/ortho-osm.js");
-const dir = W + "/pilot/data/osm-pack/";
+const { Pack } = await import(W + "/app/public/osmpack.js");
+const { mergePieces, TILE } = await import(W + "/app/public/osmtile.js");
+const { WATER } = await import(W + "/app/public/ortho-osm.js");
+const dir = W + "/app/data/osm-pack/";
 const idx = JSON.parse(fs.readFileSync(dir + "index.json"));
 const fd = {};
 const pack = (c) => new Pack(async (s, e) => { fd[c] ??= fs.openSync(dir + idx.files[c], "r"); const b = Buffer.alloc(e - s + 1); fs.readSync(fd[c], b, 0, b.length, s); return { bytes: new Uint8Array(b.buffer, b.byteOffset, b.length) }; });

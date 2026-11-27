@@ -2,12 +2,12 @@
 // decode to the same elements (osmtile.js decodeTile = osmpack.js Pack). Then the OSM answer of the cuts of
 // evaluation/data/samples.json (as osmTiles in gis.js: tiles around the point, lines joined), old vs. pack.
 // The pack is read from disk or, with a URL (R2), over HTTP Range.
-//   node evaluation/osm_pack_check.mjs pilot/data/osm-tiles data/osm-pack/cz.posm [samples.json …] [--all]
+//   node evaluation/osm_pack_check.mjs app/data/osm-tiles data/osm-pack/cz.posm [samples.json …] [--all]
 import fs from "node:fs";
 import path from "node:path";
 import { isDeepStrictEqual } from "node:util";
-import { TILE, decodeTile, mergePieces } from "../pilot/public/osmtile.js";
-import { Pack, rangeFetch } from "../pilot/public/osmpack.js";
+import { TILE, decodeTile, mergePieces } from "../app/public/osmtile.js";
+import { Pack, rangeFetch } from "../app/public/osmpack.js";
 
 const [dir, file, ...samplesFiles] = process.argv.slice(2).filter((a) => !a.startsWith("--"));
 const ALL = process.argv.includes("--all");

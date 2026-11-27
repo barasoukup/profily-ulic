@@ -4,7 +4,7 @@
 # IS DMVS ČÚZK: public data sets, no login. The list of links comes from the portal's open-data API
 # (the same as "Veřejné datové sady → Stáhnout seznam odkazů"); the newest month is taken.
 #   tools/fetch_dtm_brno.sh [out dir]   (default data/dtm-brno/zip)
-# Then: python3 tools/build_dtm_brno.py data/dtm-brno/zip pilot/data/brno/dtm-tiles
+# Then: python3 tools/build_dtm_brno.py data/dtm-brno/zip app/data/brno/dtm-tiles
 set -euo pipefail
 cd "$(dirname "$0")/.."
 OUT=${1:-data/dtm-brno/zip}

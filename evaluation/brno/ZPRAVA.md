@@ -78,7 +78,7 @@ ulic. Profil je pak jen odhad z OSM (2–5 pruhů po 3 m bez okrajů), nebo vozo
 - **Vzorek** (`evaluation/sample.mjs`, `CITY=brno`, seed 20261106): stejné kvóty podle typu ulice jako v Praze,
   úseky ulic z OSM výřezu BBBike Brno uvnitř hranice Brna (OSM, admin_level 8), vážené délkou, aspoň 300 m od sebe.
 - **Profil** (`evaluation/run_brno.mjs`): kód aplikace (`derive.js`, `sources.js`) nad brněnskými soubory
-  z `pilot/data/brno`, stejný postup jako klik.
+  z `app/data/brno`, stejný postup jako klik.
 - **Kontrola**: ortofoto Brna 2025 (dlaždice gis.brno.cz, asi 20 cm/px) natočené ve směru profilu s hranicemi
   částí (`evaluation/render_brno.mjs` → `brno/data/png/<n>.svg.png`). Řezy prošli čtyři agenti po 25 se stejnými
   kritérii jako v Praze; poznámky v `brno/data/review-*.md`, verdikty v `brno/data/verdikty-*.json`.

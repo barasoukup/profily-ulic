@@ -4,8 +4,8 @@
 import fs from "node:fs";
 import { politeFetch } from "../polite.mjs";
 globalThis.fetch = politeFetch;
-import { query } from "../../pilot/public/gis.js";
-import { PODLAZNOST, PODLAZNOST_FIELDS, podlaznostInfo } from "../../pilot/public/queries.js";
+import { query } from "../../app/public/gis.js";
+import { PODLAZNOST, PODLAZNOST_FIELDS, podlaznostInfo } from "../../app/public/queries.js";
 const RU = "https://ags.cuzk.gov.cz/arcgis/rest/services/RUIAN/Prohlizeci_sluzba_nad_daty_RUIAN/MapServer/3/query";
 const dir = new URL("../praha/data/ab-city-stejne/", import.meta.url).pathname, cache = new URL("data/domy.json", import.meta.url).pathname;
 const C = fs.existsSync(cache) ? JSON.parse(fs.readFileSync(cache, "utf8")) : {};

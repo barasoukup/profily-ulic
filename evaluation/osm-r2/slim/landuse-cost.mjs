@@ -7,7 +7,7 @@ import fs from "node:fs";
 import readline from "node:readline";
 import { tilesOf } from "./posm.mjs";
 import { packTiles } from "../../../tools/pack_osm_tiles.mjs";
-import { TILE } from "../../../pilot/public/osmtile.js";
+import { TILE } from "../../../app/public/osmtile.js";
 
 const [packFile, areasFile, tolArg] = process.argv.slice(2);
 const TOL_M = Number(tolArg || 2);

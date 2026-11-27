@@ -5,7 +5,7 @@
 // a house, a pause of 1.5 s, answers kept in data/answers.json (git ignores data/).
 //   node evaluation/denmark/buildings-ab/run.mjs → vysledky/rezy.json and a summary
 import fs from "node:fs";
-import { kbhBuildingUrl, aarBuildingUrl, pick, kbhBuilding, aarBuilding } from "../../../pilot/public/towns/denmark.js";
+import { kbhBuildingUrl, aarBuildingUrl, pick, kbhBuilding, aarBuilding } from "../../../app/public/towns/denmark.js";
 
 const HERE = new URL("./", import.meta.url), CACHE = new URL("data/answers.json", HERE);
 const OSM = new URL("../../../../../../data/osm/dk/dk_buildings.geojsonl", import.meta.url);

@@ -9,7 +9,7 @@
 //   CITY=praha node evaluation/ortofoto/oznac-eval.mjs [who …]   → printed, data/<city>/oznac-eval.json
 import fs from "node:fs/promises";
 import path from "node:path";
-import { decodePng } from "../../pilot/public/dmvs.js";
+import { decodePng } from "../../app/public/dmvs.js";
 import { ALL, strip, median, layout, align, markings } from "./run.mjs";
 import { brightMap, m4, m5, offset } from "./cary.mjs";
 import { r1, r2 } from "./napojeni.mjs";

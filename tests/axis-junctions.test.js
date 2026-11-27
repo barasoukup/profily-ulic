@@ -3,8 +3,8 @@
 // roadways under a single axis stays the median, and the counted lanes (the USA pilot). No network.
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { localFrame, snapToWay, awayFromJunctions, deriveProfile, mtvuPolygons, splitTwoWayLane } from "../pilot/public/derive.js";
-import { P } from "../pilot/public/ortho-osm.js";
+import { localFrame, snapToWay, awayFromJunctions, deriveProfile, mtvuPolygons, splitTwoWayLane } from "../app/public/derive.js";
+import { P } from "../app/public/ortho-osm.js";
 
 const LAT = 50.08, LON = 14.42;
 const frame = localFrame(LAT, LON);

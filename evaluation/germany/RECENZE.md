@@ -15,7 +15,7 @@ u hranic (21 hraničních měst DE/AT správně), `signs.js` nečte jazyk, CSP m
 ## Blokující
 
 ### 1. Uložený řez v Německu se po obnovení stránky ztratí a profil se kreslí jako pražský
-- **Kde:** `pilot/public/validate.js:110` a `:115`, volá `app.js:2051` (`restore`), spouští `app.js:2208` (každé načtení
+- **Kde:** `app/public/validate.js:110` a `:115`, volá `app.js:2051` (`restore`), spouští `app.js:2208` (každé načtení
   stránky s uloženým řezem, i změna jazyka) a `app.js:1998` (otevření souboru JSON).
 - **Co je špatně:** `cleanCut` pustí jen 48–52° s. š. a 12–19° v. d. Mimo je skoro celé Německo (Berlín 52,52°, Hamburk,
   Kolín, Mnichov 11,58°, Frankfurt, Stuttgart). Řez je `null`, `setCity` se nezavolá, město zůstane výchozí `praha`:
@@ -25,13 +25,13 @@ u hranic (21 hraničních měst DE/AT správně), `signs.js` nečte jazyk, CSP m
   (dl-de/by-2-0, CC BY 4.0).
 - **Dopad mimo Německo:** stejná chyba je už nasazená pro Košice a Prešov (nad 19° v. d.) a ve větvi pro Graz, Salcburk,
   Innsbruck a Klagenfurt (pod 48°).
-- **Jak zopakovat:** `node -e 'import("./pilot/public/validate.js").then(({cleanCut})=>console.log(cleanCut({lat:52.5163,lon:13.3777,bearing:0})))'`
+- **Jak zopakovat:** `node -e 'import("./app/public/validate.js").then(({cleanCut})=>console.log(cleanCut({lat:52.5163,lon:13.3777,bearing:0})))'`
   → `null`. V aplikaci: řez v Berlíně, F5.
 - **Oprava:** meze podle států ve `staty.json` (nebo 45–56° a 5–23°), `sources` rozšířit o všechny klíče, které čte
   `creditLines`, s kontrolou hodnot; test pro Berlín, Košice, Graz.
 
 ### 2. Zákonný odhad stání v Německu dělá z obousměrné ulice dva pruhy po 1,55 m
-- **Kde:** `pilot/public/derive.js:598` (`lawNeedFor`), použité v `:671` a `:690`; zapnuto v `app.js:379`.
+- **Kde:** `app/public/derive.js:598` (`lawNeedFor`), použité v `:671` a `:690`; zapnuto v `app.js:379`.
 - **Co je špatně:** v DE stačí 3,05 m zbytku bez ohledu na počet pruhů, ale `lanesTotal` zůstane 2. Zbytek se rozdělí
   na dva pruhy pod `MIN_LANE` (2,5 m).
 - **Jak zopakovat:** `deriveProfile` s `setCity("germany")`, `highway=residential`, vozovka 701:
@@ -41,7 +41,7 @@ u hranic (21 hraničních měst DE/AT správně), `signs.js` nečte jazyk, CSP m
   u obousměrky žádat 2 × `MIN_LANE`. Test na 5,1 / 6 / 7,1 m.
 
 ### 3. Licence ortofot několika zemí nejsou přečtené, kredit tvrdí licenci, kterou nikdo neověřil
-- **Kde:** `pilot/public/lanes-ortho.js:44–67` (`DE_ORTHO.credit`), `evaluation/germany/ZDROJE.md:30`, `index.html:126`.
+- **Kde:** `app/public/lanes-ortho.js:44–67` (`DE_ORTHO.credit`), `evaluation/germany/ZDROJE.md:30`, `index.html:126`.
 - **Co je špatně:** `ZDROJE.md` sám říká „Licenci Saska a Saska-Anhaltska před nasazením přečíst“. Přesto má SN
   v kódu „(dl-de/by-2-0)“, ačkoli tabulka uvádí jen „podmínky geoportal.sachsen.de“. ST, MV a SL jsou bez licence
   („podmínky LVermGeo ST (PDF)“, „povinný zdrojový údaj“, „noLimitations“). U dl-de/by-2-0 (BW, BE/BB, HH, RP) licence
@@ -69,7 +69,7 @@ u hranic (21 hraničních měst DE/AT správně), `signs.js` nečte jazyk, CSP m
   balíku v `index.json` jiná hláška („data pro Německo teď nejsou dostupná“).
 
 ### 6. Když R2 jednou selže, Rakousko a Německo jsou do znovunačtení stránky bez dat
-- **Kde:** `pilot/public/osmpack.js:216–222`, `pilot/public/gis.js:80`.
+- **Kde:** `app/public/osmpack.js:216–222`, `app/public/gis.js:80`.
 - **Co je špatně:** každý řez čte balíky všech států najednou (`Promise.all`); chyba jediného (výpadek, timeout 25 s
   na velkém souboru, jiná verze formátu u státu, jehož job selhal a zůstal starý soubor) shodí celé R2 a `this.at++`
   přepne natrvalo na Pages, kde jsou jen `cz` a `sk`. Pages vrací pro Německo prázdno bez chyby, takže se už nikdy
@@ -78,7 +78,7 @@ u hranic (21 hraničních měst DE/AT správně), `signs.js` nečte jazyk, CSP m
   místa, a když záloha stát nemá, zkusit příště znovu R2 a říct, že data nejsou dostupná.
 
 ### 7. Zúžení stání z OSM (`OSM_PARK_MIN`) platí i pro přesné vozovky v Česku a dává červená varování
-- **Kde:** `pilot/public/derive.js:567, 653–661`.
+- **Kde:** `app/public/derive.js:567, 653–661`.
 - **Co je špatně:** commit zúžení zdůvodňuje „mírně podhodnocenou odhadnutou vozovkou“, ale kód neví, zda je vozovka
   odhad. V Praze (MTVU, přesná šířka) dřív stání, které se nevešlo, vypadlo; teď se kreslí 1,7–1,9 m a pruhy 2,5 m.
   Návrh je kopie Stavu, takže hned svítí „Parkování 1,70 m: pod minimem“. Regrese `regrese.mjs` měří jen odhad
@@ -88,14 +88,14 @@ u hranic (21 hraničních měst DE/AT správně), `signs.js` nečte jazyk, CSP m
 - **Oprava:** zúžení jen u odhadnuté vozovky (`estimate`, plochy z `ortho-osm.js`), nebo ověřit na 100 pražských řezech.
 
 ### 8. Dodatková tabulka u Z 220 má špatné číslo
-- **Kde:** `pilot/public/signs.js:149, 362`, `pilot/public/signs-DE/1000-33.svg`, `signs-DE/README.md`.
+- **Kde:** `app/public/signs.js:149, 362`, `app/public/signs-DE/1000-33.svg`, `signs-DE/README.md`.
 - **Co je špatně:** k Z 220 při cyklistech v protisměru patří podle VwV-StVO k Z 220 Zusatzzeichen **1000-32** (kolo
   a dvě vodorovné šipky), 1000-33 (svislé šipky, „Radverkehr im Gegenverkehr“) patří jinam. Z 267 + 1022-10 je správně.
   Píšu to z paměti, bez primárního textu: ověřit ve VwV-StVO a na Commons.
 - **Oprava:** stáhnout 1000-32, opravit `plateFile`, `DE_CHOICE_CODE`, README a test.
 
 ### 9. Normy: hodnoty bez zdroje spouštějí varování a dvě citace nesedí s vlastní rešerší
-- **Kde:** `pilot/public/rules.js:131–136, 145–148, 161, 250, 256`, `evaluation/germany/NORMY.md`.
+- **Kde:** `app/public/rules.js:131–136, 145–148, 161, 250, 256`, `evaluation/germany/NORMY.md`.
 - **Co je špatně:**
   - Pruhy (3,75 / 3 / 2,75 m), buspruh 3,25 a bus s cyklisty 4,75 m jsou podle `NORMY.md` „z paměti“ nebo „zdroj
     nenalezen“ a rešerše doporučuje „bez varování“. Kód z nich přesto dělá oranžové varování. Spolu s bodem 2 a 7 dostane
@@ -107,7 +107,7 @@ u hranic (21 hraničních měst DE/AT správně), `signs.js` nečte jazyk, CSP m
 - **Oprava:** co nemá zdroj, vrátit `null` (žádné varování); kolmé stání podle `NORMY.md`; protisměr doložit, nebo jen 3,5 m oranžově.
 
 ### 10. `inGdr` kreslí paneláky na západě a nekreslí na východě
-- **Kde:** `pilot/public/city.js:495–503`.
+- **Kde:** `app/public/city.js:495–503`.
 - **Co je špatně:** ručně kreslený mnohoúhelník se s hranicí rozchází o desítky km. Změřeno: Heiligenstadt (TH) a Dömitz
   (MV) vyjdou jako západ; Eschwege (HE), Bad Steben, Ludwigsstadt a Neustadt b. Coburg (BY) a Schnackenburg (NI) jako NDR.
 - **Oprava:** brát zemi z `laender.json` (BB, BE, MV, SN, ST, TH), která je přesná na 100 m; `landsAt` už existuje.
@@ -119,7 +119,7 @@ u hranic (21 hraničních měst DE/AT správně), `signs.js` nečte jazyk, CSP m
 - **Oprava:** meze rozšířit (45–56°, 5–23°) a nasadit Worker před aplikací.
 
 ### 12. Podklad „Ortofoto“ v Německu: bílé dlaždice u hranic zemí
-- **Kde:** `pilot/public/app.js:208–221`.
+- **Kde:** `app/public/app.js:208–221`.
 - **Co je špatně:** dlaždice se bere jen ze země svého středu (`lands[0]`), bez sousední země a bez kontroly prázdného
   obrázku (odhad pruhů obojí má). Hranice zemí jsou z měřítka 1 : 1 M a vedou středem dvojměst: Mainz/Wiesbaden,
   Mannheim/Ludwigshafen, Ulm/Neu-Ulm, Hamburk a okolí, Brémy. Tam budou půlky dlaždic bílé. `minZoom: 12` nechá pod
@@ -156,7 +156,7 @@ u hranic (21 hraničních měst DE/AT správně), `signs.js` nečte jazyk, CSP m
 22. **`/api/eval-save`** (`server.mjs:182`): bez omezení velikosti těla a bez kontroly `Origin`; s `EVAL_SAVE=1` může
     kterákoli otevřená stránka zapsat soubor do `evaluation/universal/data/`. Jméno je ošetřené, server poslouchá jen
     na 127.0.0.1.
-23. **Dokumentace:** `CLAUDE.md:281` říká „Odhad stání podle zákona vypnutý“, další odrážka opak; `pilot/README.md:711`
+23. **Dokumentace:** `CLAUDE.md:281` říká „Odhad stání podle zákona vypnutý“, další odrážka opak; `app/README.md:711`
     „Německé značky ani data z Německa aplikace nemá“; `LICENCE-A-ZDROJE.md` a patička nemají povrchy Berlína,
     Hamburku a Cách ani Photon pro DE; `tools/check_sources.mjs` německé služby nehlídá.
 24. **Hamburk:** „gemeinsamer Geh- und Radweg“ jde na chodník (702), ne na společnou stezku. **Cáchy:** `aachenCode`

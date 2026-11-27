@@ -7,7 +7,7 @@
 //   node evaluation/usa-dc/sample.mjs
 import fs from "node:fs/promises";
 import path from "node:path";
-import { decodeTile } from "../../../pilot/public/osmtile.js";
+import { decodeTile } from "../../../app/public/osmtile.js";
 import { ROOT, DATA, cachedJSON, placeCut } from "../../usa-dc/lib.mjs";
 const OLD = JSON.parse(await fs.readFile(new URL("../../usa-dc/sample.json", import.meta.url), "utf8"));
 const OUT = path.dirname(new URL(import.meta.url).pathname);

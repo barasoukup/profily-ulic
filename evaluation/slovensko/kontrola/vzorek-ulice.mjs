@@ -1,13 +1,13 @@
 // 1000 cuts on real streets of Slovakia (Bára 16. 11. 2026: "více zaměřit na cesty, které jsou fakt ulice", not the
 // paths and service roads of some premises): the random points of vzorek.mjs (same towns, same seed), each moved to
 // the nearest point of a named street of the classes below within 250 m (else dropped), until 1000; at most two
-// points on the same street. Reads the local OSM pack (pilot/data/osm-pack, tools/pack_osm_tiles.mjs).
+// points on the same street. Reads the local OSM pack (app/data/osm-pack, tools/pack_osm_tiles.mjs).
 //   node evaluation/slovensko/kontrola/vzorek-ulice.mjs   → vzorek-ulice.json
 import fs from "node:fs";
-import { PackSet } from "../../../pilot/public/osmpack.js";
-import { mergePieces, TILE } from "../../../pilot/public/osmtile.js";
+import { PackSet } from "../../../app/public/osmpack.js";
+import { mergePieces, TILE } from "../../../app/public/osmtile.js";
 
-const PACK = new URL("../../../pilot/data/osm-pack/", import.meta.url);
+const PACK = new URL("../../../app/data/osm-pack/", import.meta.url);
 // The pack reader asks by HTTP with a Range header; here the files are read from the disk.
 const fileFetch = async (url, opts = {}) => {
   const path = new URL(String(url).replace(/^pack:\/\//, ""), PACK);

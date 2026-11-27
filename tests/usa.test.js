@@ -4,12 +4,12 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
-import "../pilot/public/america.js";
-const STATY = { ...JSON.parse(fs.readFileSync(new URL("../pilot/public/staty.json", import.meta.url), "utf8")), ...JSON.parse(fs.readFileSync(new URL("../pilot/public/staty-america.json", import.meta.url), "utf8")) };
+import "../app/public/america.js";
+const STATY = { ...JSON.parse(fs.readFileSync(new URL("../app/public/staty.json", import.meta.url), "utf8")), ...JSON.parse(fs.readFileSync(new URL("../app/public/staty-america.json", import.meta.url), "utf8")) };
 
 test("USA: District of Columbia je stát usa, zbytek USA zavřený (i okresy Marylandu a Virginie)", async () => {
-  const C = await import("../pilot/public/city.js");
-  C.loadBounds(JSON.parse(fs.readFileSync(new URL("../pilot/public/mesta.json", import.meta.url), "utf8")));
+  const C = await import("../app/public/city.js");
+  C.loadBounds(JSON.parse(fs.readFileSync(new URL("../app/public/mesta.json", import.meta.url), "utf8")));
   C.loadStates(STATY);
   // The White House; on the DC line (Southern Avenue, dc-8-3): simplified county rings left a gap there.
   for (const [lat, lon] of [[38.8977, -77.0365], [38.8436094, -76.9725878]]) {
@@ -17,7 +17,7 @@ test("USA: District of Columbia je stát usa, zbytek USA zavřený (i okresy Mar
     assert.equal(C.closedAt(lat, lon), null);
   }
   // New York City (26. 11. 2026): the city of the state, its five boroughs (Manhattan, Queens, the Bronx, Staten Island, Brooklyn).
-  C.loadTowns(JSON.parse(fs.readFileSync(new URL("../pilot/public/mesta-us.json", import.meta.url), "utf8")));
+  C.loadTowns(JSON.parse(fs.readFileSync(new URL("../app/public/mesta-us.json", import.meta.url), "utf8")));
   for (const [lat, lon] of [[40.7128, -74.006], [40.7282, -73.7949], [40.8448, -73.8648], [40.5795, -74.1502], [40.6782, -73.9442]]) {
     assert.equal(C.cityAt(lat, lon), "newyork", `${lat},${lon}`);
     assert.equal(C.closedAt(lat, lon), null);
@@ -35,12 +35,12 @@ test("USA: District of Columbia je stát usa, zbytek USA zavřený (i okresy Mar
 });
 
 test("USA: mezi okresy ani na hranici DC nejsou díry, staty.json nenese společné hranice dvakrát", async () => {
-  const C = await import("../pilot/public/city.js");
+  const C = await import("../app/public/city.js");
   const staty = STATY;
-  const us = JSON.parse(fs.readFileSync(new URL("../pilot/public/mesta-us.json", import.meta.url), "utf8"));
+  const us = JSON.parse(fs.readFileSync(new URL("../app/public/mesta-us.json", import.meta.url), "utf8"));
   // (Four metros since 26. 11. 2026: Washington, New York, San Francisco, Boston; about 60 kB.)
   assert.ok(JSON.stringify(staty.usa).length < 75_000, `${JSON.stringify(staty.usa).length} B`);
-  C.loadBounds(JSON.parse(fs.readFileSync(new URL("../pilot/public/mesta.json", import.meta.url), "utf8")));
+  C.loadBounds(JSON.parse(fs.readFileSync(new URL("../app/public/mesta.json", import.meta.url), "utf8")));
   C.loadStates(staty);
   // Round each point of the District's ring, nothing of the District is closed (the state's ring is grown by 60 m,
   // tools/build_staty.mjs grow: a street along the line).
@@ -55,14 +55,14 @@ test("USA: mezi okresy ani na hranici DC nejsou díry, staty.json nenese společ
 });
 
 const loadWashington = async () => {
-  const C = await import("../pilot/public/city.js");
-  C.loadTowns(JSON.parse(fs.readFileSync(new URL("../pilot/public/mesta-us.json", import.meta.url), "utf8")));
+  const C = await import("../app/public/city.js");
+  C.loadTowns(JSON.parse(fs.readFileSync(new URL("../app/public/mesta-us.json", import.meta.url), "utf8")));
   return C;
 };
 test("USA: DC je District, ne obdélník (ortofoto, mapa povrchů, město)", async () => {
-  const { orthoHereAt, usOrthoAt } = await import("../pilot/public/lanes-ortho.js");
-  const { AREAS } = await import("../pilot/public/towns/usa.js");
-  const { inArea } = await import("../pilot/public/places.js");
+  const { orthoHereAt, usOrthoAt } = await import("../app/public/lanes-ortho.js");
+  const { AREAS } = await import("../app/public/towns/usa.js");
+  const { inArea } = await import("../app/public/places.js");
   const C = await loadWashington();
   C.loadStates(STATY);
   assert.deepEqual(usOrthoAt(-77.0365, 38.8977), ["us-dc"]);
@@ -86,7 +86,7 @@ const way = { type: "way", id: 1, tags: { highway: "residential", name: "A St" }
 const PAD = 0.0004, BBOX = [ll(-30, 0)[0] - PAD, LAT - PAD, ll(30, 0)[0] + PAD, LAT + PAD].join(",");
 
 test("USA: plochy DC podél řezu, stání a pruhy z inventáře DDOT", async () => {
-  const U = await import("../pilot/public/towns/usa.js");
+  const U = await import("../app/public/towns/usa.js");
   assert.deepEqual(U.dcCode(10, "Parking Lot"), [1003, 4]);
   assert.deepEqual(U.dcCode(11, "Crosswalk"), [701, 3]);
   assert.equal(U.dcCode(1, "Canopy Structure"), null);
@@ -109,7 +109,7 @@ test("USA: plochy DC podél řezu, stání a pruhy z inventáře DDOT", async ()
 });
 
 test("USA: RPPSIDE neříká, na které straně se stojí (zóna rezidentů, ne pruh)", async () => {
-  const U = await import("../pilot/public/towns/usa.js");
+  const U = await import("../app/public/towns/usa.js");
   const runs = () => [{ code: 702, s: -8, e: -5 }, { code: 701, s: -5, e: 5 }, { code: 702, s: 5, e: 8 }];
   const one = { TOTALPARKINGLANES: 1, TOTALPARKINGLANEWIDTH: 8 };
   for (const RPPSIDE of ["O", "I", "B", "AO", null]) {
@@ -119,7 +119,7 @@ test("USA: RPPSIDE neříká, na které straně se stojí (zóna rezidentů, ne 
 });
 
 test("USA: strany podle cesty řezu, ne podle nejbližší cesty OSM (dvě vozovky a stezka uprostřed)", async () => {
-  const U = await import("../pilot/public/towns/usa.js");
+  const U = await import("../app/public/towns/usa.js");
   const line = (id, x, tags, down = false) => ({ type: "way", id, tags, geometry: (down ? [ll(x, 80), ll(x, -80)] : [ll(x, -80), ll(x, 80)]).map(([lon, lat]) => ({ lat, lon })) });
   const tags = { highway: "primary", name: "A St", oneway: "yes", "parking:right": "lane" };
   const own = line(1, 8, tags), other = line(2, -8, { highway: "primary", name: "A St", oneway: "yes" }, true);
@@ -137,7 +137,7 @@ test("USA: strany podle cesty řezu, ne podle nejbližší cesty OSM (dvě vozov
 });
 
 test("USA: chráněná cyklostezka podle OSM: uprostřed (Pennsylvania Avenue), na straně z tagů, zakázaná strana", async () => {
-  const U = await import("../pilot/public/towns/usa.js");
+  const U = await import("../app/public/towns/usa.js");
   const runs = () => [[702, -16, -13], [701, -13, 13], [702, 13, 16]].map(([code, s, e]) => ({ code, s, e }));
   const b = { a: { BIKELANE_DUAL_PROTECTED: "IB", TOTALBIKELANEWIDTH: 12, TOTALBIKELANES: 2 }, along: true };
   const tags = { "cycleway:left": "separate", "cycleway:right": "no", oneway: "yes" };
@@ -157,7 +157,7 @@ test("USA: chráněná cyklostezka podle OSM: uprostřed (Pennsylvania Avenue), 
 });
 
 test("USA: střed řezu v polygonu Intersection, ulička pod service, blok podle druhu a vyplněnosti", async () => {
-  const U = await import("../pilot/public/towns/usa.js");
+  const U = await import("../app/public/towns/usa.js");
   const walks = esri([["Sidewalk", -8, -6], ["Sidewalk", 6, 8]]), bldg = esri([]), sub = { features: [] };
   assert.equal(U.dcSurfaces({ roads: esri([["Intersection", -5, 5]]), walks, bldg, sub }, [way], BBOX, way.tags).junction, true);
   assert.equal(U.dcSurfaces({ roads: esri([["Road", -5, 5]]), walks, bldg, sub }, [way], BBOX, way.tags).junction, false);
@@ -175,7 +175,7 @@ test("USA: střed řezu v polygonu Intersection, ulička pod service, blok podle
 });
 
 test("Ústí uličky je křižovatka (OSM service=alley i plocha uličky)", async () => {
-  const { localFrame, snapToWay, awayFromJunctions } = await import("../pilot/public/derive.js");
+  const { localFrame, snapToWay, awayFromJunctions } = await import("../app/public/derive.js");
   const frame = localFrame(LAT, LON);
   const pts = way.geometry.map((g) => frame.toXY(g.lon, g.lat));
   const near = { ...snapToWay(pts, [0, 0]), way, pts };
@@ -183,13 +183,13 @@ test("Ústí uličky je křižovatka (OSM service=alley i plocha uličky)", asyn
   const alley = { type: "area", id: -1, tags: { service: "alley" }, geometry: [[5, -2], [40, -2], [40, 2], [5, 2], [5, -2]].map(([x, y]) => { const [lon, lat] = ll(x, y); return { lat, lon }; }) };
   const moved = awayFromJunctions({ elements: [way, alley] }, frame, near);
   assert.ok(Math.abs(moved.point[1]) >= 6 + 2 - 0.5, `posun ${moved.point[1]}`);
-  const P = (await import("../pilot/public/ortho-osm.js")).P;
+  const P = (await import("../app/public/ortho-osm.js")).P;
   P.off = new Set(["ulicky"]);
   try { assert.equal(Math.abs(awayFromJunctions({ elements: [way, alley] }, frame, near).point[1]) < 0.01, true); } finally { P.off = new Set(); }
 });
 
 test("Spočítané pruhy: obousměrka se stáním se dělí od 4 m, bez počtu nebo bez stání od 5 m", async () => {
-  const { splitTwoWayLane } = await import("../pilot/public/derive.js");
+  const { splitTwoWayLane } = await import("../app/public/derive.js");
   const segs = (beside = "parkovani") => [{ type: "chodnik", width: 2 }, { type: beside, width: 2 }, { type: "pruh", width: 4.3 }, { type: "chodnik", width: 2 }];
   const a = segs(); splitTwoWayLane(a, { highway: "residential", lanes: "2" });
   assert.equal(a.filter((s) => s.type === "pruh").length, 2);
@@ -200,8 +200,8 @@ test("Spočítané pruhy: obousměrka se stáním se dělí od 4 m, bez počtu n
 });
 
 test("Jamky stromů v chodníku: dlážděný úzký pás u obruby patří chodníku", async () => {
-  const { treePitsAsSidewalk } = await import("../pilot/public/derive.js");
-  const P = (await import("../pilot/public/ortho-osm.js")).P;
+  const { treePitsAsSidewalk } = await import("../app/public/derive.js");
+  const P = (await import("../app/public/ortho-osm.js")).P;
   const segs0 = [{ type: "chodnik", width: 2 }, { type: "zelen", width: 1 }, { type: "parkovani", width: 2.2 }, { type: "pruh", width: 4 }];
   assert.equal(treePitsAsSidewalk(segs0, [-6.1, 3.1], { G: [1], Y: [1] }), 0, "vypnuté bez ?treepits=1");
   P.treepits = true;
@@ -224,11 +224,11 @@ test("Jamky stromů v chodníku: dlážděný úzký pás u obruby patří chodn
 });
 
 test("Tepny Washingtonu: svodidla, ostrůvky mimo vozovku, stání u méně pruhů, chráněná cyklostezka, pruhy směru", async () => {
-  const u = await import("../pilot/public/towns/usa.js");
+  const u = await import("../app/public/towns/usa.js");
   const R = (...a) => a.map(([code, s, e]) => ({ code, s, e }));
   const f = [{ attributes: { DESCRIPTION: "Barrier" }, geometry: { paths: [[[0, 0], [1, 1]]] } }, { attributes: { DESCRIPTION: "Guardrail" }, geometry: { paths: [[[0, 0], [1, 1]]] } }];
   assert.deepEqual(u.barrierLines({ features: f }).map((x) => x.attributes.CTMTP_KOD), [71540]);
-  assert.deepEqual((await import("../pilot/public/towns/planimetrics.js")).islandsBeside(R([9950, -20, -8], [702, -8, -6], [701, -6, -1], [9950, -1, 1], [701, 1, 6])).map((r) => r.code), [401, 702, 701, 9950, 701]);
+  assert.deepEqual((await import("../app/public/towns/planimetrics.js")).islandsBeside(R([9950, -20, -8], [702, -8, -6], [701, -6, -1], [9950, -1, 1], [701, 1, 6])).map((r) => r.code), [401, 702, 701, 9950, 701]);
   const block = (a) => ({ a, along: true });
   const runs = () => R([702, -8, -6], [701, -6, 6], [702, 6, 8]);
   const park = { TOTALPARKINGLANES: 1, TOTALPARKINGLANEWIDTH: 8, TOTALTRAVELLANESINBOUND: 1, TOTALTRAVELLANESOUTBOUND: 2 };
@@ -247,7 +247,7 @@ test("Tepny Washingtonu: svodidla, ostrůvky mimo vozovku, stání u méně pruh
 });
 
 test("Washington: domy z CAMA podle pozemku, výpadek nic nezdrží", async () => {
-  const U = await import("../pilot/public/towns/usa.js");
+  const U = await import("../app/public/towns/usa.js");
   assert.deepEqual(U.camaHouse({ AYB: 1937, STORIES: 2, STRUCT_D: "Row Inside", EXTWALL_D: "Common Brick", USECODE: 11 }), { usCama: true, built: 1937, cornice: 2, roof: 0, total: 2, type: "terrace", material: "brick" });
   // Half a storey: in the roof of a detached house, a floor of a row house; 25 storeys of a house is a slip.
   assert.equal(U.camaHouse({ STORIES: 2.5, STRUCT_D: "Single" }).cornice, 2);
@@ -272,7 +272,7 @@ test("Washington: domy z CAMA podle pozemku, výpadek nic nezdrží", async () =
 });
 
 test("DC: vypnutý inventář (?ddot=0) není výpadek, neodpovídající ano", async () => {
-  const U = await import("../pilot/public/towns/usa.js");
+  const U = await import("../app/public/towns/usa.js");
   const LAT = 38.9, LON = -77.03, KX = 111320 * Math.cos((LAT * Math.PI) / 180), KY = 110574, ll = (x, y) => [LON + x / KX, LAT + y / KY];
   const esri = (list) => ({ features: list.map(([d, x0, x1]) => ({ attributes: { DESCRIPTION: d }, geometry: { rings: [[[x0, -50], [x1, -50], [x1, 50], [x0, 50], [x0, -50]].map(([x, y]) => ll(x, y))] } })) });
   const way = { type: "way", id: 1, tags: { highway: "residential" }, geometry: [ll(0, -60), ll(0, 60)].map(([lon, lat]) => ({ lon, lat })) };
@@ -283,9 +283,9 @@ test("DC: vypnutý inventář (?ddot=0) není výpadek, neodpovídající ano", 
 });
 
 test("New York: planimetrie podél řezu (malovaný ostrůvek je vozovka), domy z obrysů, normy Street Design Manual", async () => {
-  const N = await import("../pilot/public/towns/newyork.js");
-  const { planimetricCut } = await import("../pilot/public/towns/planimetrics.js");
-  const US = (await import("../pilot/public/countries/US.js")).default;
+  const N = await import("../app/public/towns/newyork.js");
+  const { planimetricCut } = await import("../app/public/towns/planimetrics.js");
+  const US = (await import("../app/public/countries/US.js")).default;
   const LAT = 40.78, LON = -73.98, KX = 111320 * Math.cos((LAT * Math.PI) / 180), KY = 110574, ll = (x, y) => [LON + x / KX, LAT + y / KY];
   const esri = (list) => ({ features: list.map(([a, x0, x1]) => ({ attributes: a, geometry: { rings: [[[x0, -50], [x1, -50], [x1, 50], [x0, 50], [x0, -50]].map(([x, y]) => ll(x, y))] } })) });
   const way = { type: "way", id: 1, tags: { highway: "residential" }, geometry: [ll(0, -60), ll(0, 60)].map(([lon, lat]) => ({ lon, lat })) };
@@ -307,7 +307,7 @@ test("New York: planimetrie podél řezu (malovaný ostrůvek je vozovka), domy 
 });
 
 test("New York: stání podle značek NYC DOT (?nycsigns=1): nejbližší značka strany do 40 m, OSM má přednost", async () => {
-  const N = await import("../pilot/public/towns/newyork.js");
+  const N = await import("../app/public/towns/newyork.js");
   // EPSG:2263 there and back (a sign of 3rd Avenue between East 85th and 86th Street).
   const [lon, lat] = N.fromStatePlane(996877, 222815);
   assert.ok(Math.abs(lon + 73.9544) < 2e-4 && Math.abs(lat - 40.7782) < 2e-4);
@@ -333,8 +333,8 @@ test("New York: stání podle značek NYC DOT (?nycsigns=1): nejbližší značk
 });
 
 test("New York: náměstí a parkoviště jsou nepovinné vrstvy (výpadek jen té vrstvy = bez ní), vozovka, chodník a ostrůvky povinné", async () => {
-  const { NYC_MAP } = await import("../pilot/public/towns/newyork.js");
-  const { optionalAnswer } = await import("../pilot/public/towns/planimetrics.js");
+  const { NYC_MAP } = await import("../app/public/towns/newyork.js");
+  const { optionalAnswer } = await import("../app/public/towns/planimetrics.js");
   const opt = NYC_MAP.layers.filter((l) => l.optional).map((l) => l.id.split("/")[0]);
   assert.deepEqual(opt, ["Plaza_2022", "Parking_Lot_2022"]);
   const warn = console.warn; console.warn = () => {};
@@ -347,7 +347,7 @@ test("New York: náměstí a parkoviště jsou nepovinné vrstvy (výpadek jen t
 });
 
 test("Hledání Photon v USA: jeden dotaz s obdélníkem jednoho metra (jmenovaného, pod středem mapy, jinak nejbližšího)", async () => {
-  const { findPhoton, metroBox, METROS } = await import("../pilot/public/search-photon.js");
+  const { findPhoton, metroBox, METROS } = await import("../app/public/search-photon.js");
   const urls = [], getJSON = async (u) => { urls.push(new URL(u)); return { features: [] }; };
   const box = (u) => u.searchParams.get("bbox").split(",").map(Number);
   // The map in San Francisco: its box, not one from Washington to Boston.
@@ -365,13 +365,13 @@ test("Hledání Photon v USA: jeden dotaz s obdélníkem jednoho metra (jmenovan
   assert.equal(urls.length, 3);
   assert.deepEqual(metroBox("CA", [43.65, -79.38]), [-79.95, 43.45, -78.95, 44.05]);
   // The closed places of a box are dropped (New Jersey in New York's).
-  const { parsePhoton } = await import("../pilot/public/search-photon.js");
+  const { parsePhoton } = await import("../app/public/search-photon.js");
   const f = (lon, lat, name) => ({ geometry: { coordinates: [lon, lat] }, properties: { countrycode: "US", osm_key: "highway", name, city: "x" } });
   assert.deepEqual(parsePhoton({ features: [f(-74.07, 40.72, "Jersey Ave"), f(-73.99, 40.75, "W 34th St")] }, ["US"], (lat, lon) => lon < -74.03).map((x) => x.at.street), ["W 34th St"]);
 });
 
 test("Hledání Photon v USA: jméno ulice podle města (Washington Street, Boston Post Road) metro neurčuje", async () => {
-  const { metroBox, METROS } = await import("../pilot/public/search-photon.js");
+  const { metroBox, METROS } = await import("../app/public/search-photon.js");
   assert.deepEqual(metroBox("US", [42.35, -71.06], "Washington Street"), METROS.US.boston.box);
   assert.deepEqual(metroBox("US", [38.9, -77.03], "Washington Street, Boston"), METROS.US.boston.box);
   assert.deepEqual(metroBox("US", [40.85, -73.86], "Boston Post Road"), METROS.US.nyc.box);
@@ -380,7 +380,7 @@ test("Hledání Photon v USA: jméno ulice podle města (Washington Street, Bost
 });
 
 test("DC: stání z inventáře se do úzké vozovky nevejde, nevyřeže se a nezakáže odhad (?off=ddotfit)", async () => {
-  const U = await import("../pilot/public/towns/usa.js");
+  const U = await import("../app/public/towns/usa.js");
   const runs = (w) => [{ code: 702, s: -8, e: -w / 2 }, { code: 701, s: -w / 2, e: w / 2 }, { code: 702, s: w / 2, e: 8 }];
   const two = { a: { TOTALPARKINGLANES: 2, TOTALPARKINGLANEWIDTH: 16 }, along: true };
   // 7,4 m: 2 × 2,45 + 2,5 = 7,4 fits (the strips 2,45 m each, width 16 ft / 2)

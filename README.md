@@ -28,7 +28,7 @@ ilustrace i texty. Staré adresy `/brno/`, `/jihlava/`… přesměrují na hlavn
 ## Spuštění u sebe
 
 ```bash
-node pilot/server.mjs
+node app/server.mjs
 ```
 
 Pak otevřete http://localhost:5173. Potřebujete Node.js 22 nebo novější a připojení k internetu.
@@ -37,20 +37,20 @@ Dlaždice OSM celé ČR si nejdřív vyrobte z výřezu Geofabrik (potřebuje og
 
 ```bash
 mkdir -p data/osm && curl -fL -o data/osm/cz.osm.pbf https://download.geofabrik.de/europe/czech-republic-latest.osm.pbf
-NAME=cz tools/build_osm_data.sh data/osm/cz.osm.pbf pilot/data/osm-tiles
+NAME=cz tools/build_osm_data.sh data/osm/cz.osm.pbf app/data/osm-tiles
 ```
 
-a hranice zón placeného stání v Praze (jednou, soubor `pilot/data/zps.json`):
+a hranice zón placeného stání v Praze (jednou, soubor `app/data/zps.json`):
 
 ```bash
 node tools/build_zps.mjs
 ```
 
 Další statická data (otevřená data Prahy, vývoj zástavby, parkování v Brně, zóny v Plzni) popisuje
-[pilot/README.md](pilot/README.md). Bez nich aplikace běží taky, jen víc odhaduje.
+[app/README.md](app/README.md). Bez nich aplikace běží taky, jen víc odhaduje.
 
 Server poslouchá jen na tomto počítači. Pro vyzkoušení z telefonu ve stejné síti ho spusťte s
-`HOST=0.0.0.0 node pilot/server.mjs`.
+`HOST=0.0.0.0 node app/server.mjs`.
 
 Testy (syntaxe všech skriptů a testy v `tests/`; běží i před každým nasazením):
 
@@ -69,16 +69,16 @@ npm test
   označené šedým proužkem.
 - Pod profilem je řádek dopravních značek podle dat; v Návrhu se dají měnit.
 
-Podrobný popis pravidel a zdrojů je v [pilot/README.md](pilot/README.md), vyhodnocení na 100 náhodných řezech
+Podrobný popis pravidel a zdrojů je v [app/README.md](app/README.md), vyhodnocení na 100 náhodných řezech
 v [evaluation/ZPRAVA.md](evaluation/ZPRAVA.md) (další města v `evaluation/<město>/ZPRAVA.md`).
 
 ## Struktura
 
-- `pilot/public/` – aplikace (bez sestavování, ES moduly; `derive.js` skládá profil, `city.js` města)
-- `pilot/public/towns/` – zdroje dat jednotlivých měst a zbytku Česka
-- `pilot/server.mjs` – lokální server s cache dotazů na IPR
-- `pilot/public/queries.js` – co se ptá IPR (vrstvy, pole), společné pro server i web
-- `pilot/navrhy-ilustraci/` – nepoužívané varianty pražských ilustrací (nenasazují se)
+- `app/public/` – aplikace (bez sestavování, ES moduly; `derive.js` skládá profil, `city.js` města)
+- `app/public/towns/` – zdroje dat jednotlivých měst a zbytku Česka
+- `app/server.mjs` – lokální server s cache dotazů na IPR
+- `app/public/queries.js` – co se ptá IPR (vrstvy, pole), společné pro server i web
+- `app/navrhy-ilustraci/` – nepoužívané varianty pražských ilustrací (nenasazují se)
 - `tests/` – testy pravidel, převodu do Streetmixu, dotazů, zdrojů měst a odhadu profilu z OSM
 - `tools/` – výroba dlaždic OSM, statických dat a pomocné skripty
 - `evaluation/` – vyhodnocení řezů nad ortofotem a A/B testy zdrojů
@@ -89,7 +89,7 @@ v [evaluation/ZPRAVA.md](evaluation/ZPRAVA.md) (další města v `evaluation/<m�
 
 - Kód: MIT, © 2026 Bára Soukupová ([LICENSE](LICENSE)).
 - Ilustrace: © [Streetmix](https://github.com/streetmix/streetmix), CC BY-SA 4.0
-  (`pilot/public/streetmix/LICENSE`). Ilustrace měst (`pilot/public/praha/`, `brno/`…): MIT jako kód.
+  (`app/public/streetmix/LICENSE`). Ilustrace měst (`app/public/praha/`, `brno/`…): MIT jako kód.
 - IPR Praha: technická mapa, MTVU a mapové podklady (povinně zveřejňovaná data); podlažnosti a vývoj
   zástavby 1840–2010 (CC BY 4.0). Úseky parkování © TSK hl. m. Prahy, otevřená data Geoportálu Praha
   (CC BY 4.0).

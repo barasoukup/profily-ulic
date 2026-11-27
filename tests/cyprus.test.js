@@ -5,7 +5,7 @@ import assert from "node:assert/strict";
 import fs from "node:fs";
 
 test("Kypr: budovy DLS (podlaží, typ)", async () => {
-  const C = await import("../pilot/public/towns/cyprus.js");
+  const C = await import("../app/public/towns/cyprus.js");
   assert.deepEqual(C.dlsBuilding({ B_TYPE: "High residential building", ROOF_TYPE: "Flat roof", FLOOR_QTY: 4, H_ROOF_A_1: 13.55 }),
     { office: undefined, house: undefined, type: "apartments", cornice: 4, total: 4, roof: 0, fromHeight: false, height: 13.6 });
   assert.equal(C.dlsBuilding({ B_TYPE: "Mosque", FLOOR_QTY: 1 }).type, "church");
@@ -16,7 +16,7 @@ test("Kypr: budovy DLS (podlaží, typ)", async () => {
 });
 
 test("Kypr: jízda vlevo, značky a normy", async () => {
-  const { COUNTRIES } = await import("../pilot/public/countries/index.js");
+  const { COUNTRIES } = await import("../app/public/countries/index.js");
   const CY = COUNTRIES.CY, f = CY.signs.file;
   assert.equal(CY.leftHand, true);
   assert.equal(f({ k: "oneway", dir: "forward" }), "oneway");
@@ -32,10 +32,10 @@ test("Kypr: jízda vlevo, značky a normy", async () => {
   for (const [k, file] of Object.entries(expected)) assert.equal(f({ k }), file, k);
   const licence = JSON.parse(fs.readFileSync(new URL("../evaluation/cyprus/signs-licence.json", import.meta.url), "utf8"));
   for (const file of [...new Set([...Object.values(expected), "noentry", "oneway", "c10a-chodci-vlevo"])]) {
-    assert.ok(fs.existsSync(new URL(`../pilot/public/signs-CY/${file}.svg`, import.meta.url)), file);
+    assert.ok(fs.existsSync(new URL(`../app/public/signs-CY/${file}.svg`, import.meta.url)), file);
     assert.ok(licence[file], `licence ${file}`);
   }
-  for (const v of [10, 20, 30, 40, 50, 60, 70, 80, 90, 100]) assert.ok(fs.existsSync(new URL(`../pilot/public/signs-CY/speed-${v}.svg`, import.meta.url)), `${v}`);
+  for (const v of [10, 20, 30, 40, 50, 60, 70, 80, 90, 100]) assert.ok(fs.existsSync(new URL(`../app/public/signs-CY/speed-${v}.svg`, import.meta.url)), `${v}`);
   assert.equal(CY.signs.label({ k: "b29" }, null, "B 29 Zákaz stání"), "Zákaz stání", "Kodex značky nečísluje");
   // The files under the Open Government Licence (their credit in the export) are those of signs-licence.json.
   const ogl = Object.entries(JSON.parse(fs.readFileSync(new URL("../evaluation/cyprus/signs-licence.json", import.meta.url), "utf8"))).filter(([, v]) => /OGL/.test(v.lic)).map(([k]) => k).sort();
@@ -55,9 +55,9 @@ test("Kypr: jízda vlevo, značky a normy", async () => {
 });
 
 test("Kypr: stát podle hranic (sever bez profilu, nárazníková zóna podle hranice OSM)", async () => {
-  const C = await import("../pilot/public/city.js");
-  C.loadBounds(JSON.parse(fs.readFileSync(new URL("../pilot/public/mesta.json", import.meta.url), "utf8")));
-  C.loadStates(JSON.parse(fs.readFileSync(new URL("../pilot/public/staty.json", import.meta.url), "utf8")));
+  const C = await import("../app/public/city.js");
+  C.loadBounds(JSON.parse(fs.readFileSync(new URL("../app/public/mesta.json", import.meta.url), "utf8")));
+  C.loadStates(JSON.parse(fs.readFileSync(new URL("../app/public/staty.json", import.meta.url), "utf8")));
   assert.equal(C.cityAt(35.17, 33.36), "cyprus"); // Nicosia, the south
   assert.equal(C.cityAt(34.68, 33.045), "cyprus"); // Limassol
   assert.equal(C.cityAt(34.585, 32.985), "cyprus"); // Akrotiri (a British base)

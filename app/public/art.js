@@ -1,6 +1,6 @@
-// The illustrations a city or a state draws in place of Streetmix's (files in pilot/public/<art>/, profile.js): the
+// The illustrations a city or a state draws in place of Streetmix's (files in app/public/<art>/, profile.js): the
 // names of the sprites by their Streetmix name. No import of city.js (the states' modules use it).
-// The rest of a town's illustrations (pilot/public/<art>/): its bus and, until it has its own, Prague's
+// The rest of a town's illustrations (app/public/<art>/): its bus and, until it has its own, Prague's
 // furniture (copies in the town's folder).
 export const TOWN_ART = {
   "bus-inbound": "bus-inbound", "bus-outbound": "bus-outbound",
@@ -17,7 +17,7 @@ export const TOWN_ART = {
   "swale-plants": "pruleh-rostliny", "reeds-left": "rakos-left", "reeds-right": "rakos-right",
 };
 
-// A town's own vehicles (pilot/public/<art>/tram-*, trolejbus-*) in place of Streetmix's.
+// A town's own vehicles (app/public/<art>/tram-*, trolejbus-*) in place of Streetmix's.
 export const TRAM = { "streetcar-inbound": "tram-inbound", "streetcar-outbound": "tram-outbound" };
 export const TROLLEY = { "trolleybus-inbound": "trolejbus-inbound", "trolleybus-outbound": "trolejbus-outbound" };
 

@@ -4,11 +4,11 @@ Bára schválila 24. 11. 2026 („Fáze 2 s mapou Washingtonu“). Pilot fáze 1
 
 ## Co je v aplikaci
 
-- **Stát US** (`pilot/public/countries/US.js`): jen metro Washingtonu (`staty.json` `usa`: DC, Montgomery, Prince George's,
+- **Stát US** (`app/public/countries/US.js`): jen metro Washingtonu (`staty.json` `usa`: DC, Montgomery, Prince George's,
   Arlington, Fairfax County a city, Falls Church, Alexandria; hranice okresů TIGERweb, sloučené v jeden obrys a pak zjednodušené na 10 m), zbytek USA
   `closed_us` s hláškou. Normy DDOT a NACTO jen oranžově (`NORMY.md`), stání 3 m na směr, bez značek, bez paneláků,
   hledání Photon; od 25. 11. 2026 severoamerické domy, mobiliář a Metrobus (`../north-america-art/`).
-- **Washington** (`pilot/public/towns/usa.js`): mapa povrchů Planimetrics 2023 (`?dc=0`), inventář DDOT Roadway SubBlock
+- **Washington** (`app/public/towns/usa.js`): mapa povrchů Planimetrics 2023 (`?dc=0`), inventář DDOT Roadway SubBlock
   (`?ddot=0`: počet pruhů, stání u obrub, cyklopruhy; odhad stání podle pravidel tam vypnutý), uličky z planimetrie jako
   plochy `service=alley`, ortofoto DC 2025 pro pruhy, model obrub a podklad mapy (`lanes-ortho.js us-dc`).
 - **OSM balík `us_dc`** (86 MB, jen R2): Geofabrik District of Columbia, Maryland a Virginie oříznuté osmiem na obdélník
@@ -95,7 +95,7 @@ jen 2 : 0 : 1; zbylých 6 : 2 jsou řezy, na kterých se ladilo, takže to důka
 
 1. **OSM balík na R2:** spustit workflow OSM tiles ručně se `states: us` (job `us_dc` stáhne DC, Maryland 218 MB a Virginii
    430 MB, ořízne osmiem, nainstaluje `osmium-tool`) a ověřit `data.streetspace.eu/osm/index.json` (klíč `us_dc`).
-   Lokálně postavený balík je `pilot/data/osm-pack/us_dc-novy.posm`.
+   Lokálně postavený balík je `app/data/osm-pack/us_dc-novy.posm`.
 2. Worker logu: od 25. 11. 2026 ukládá každou platnou polohu (dřív jen obdélník evropských států); nasadit ho musí Bára.
 3. CSP má `maps2.dcgis.dc.gov` v `connect-src` i `img-src`.
 

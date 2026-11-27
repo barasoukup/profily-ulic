@@ -3,7 +3,7 @@
 // The samples from this folder or evaluation/replay; the harness is this folder's (evaluation/replay/harness.js with &pause=).
 // ---
 // The safety net of the rebuild into states, cities and sources (docs/architecture-countries.md, step 0): the app as
-// the pilot server serves it, with a recorder of every answer of a data source in between (evaluation/replay/harness.js).
+// the app server serves it, with a recorder of every answer of a data source in between (evaluation/replay/harness.js).
 // Record once (live, the services asked as by a visitor), then replay as often as needed without a single request:
 // the outputs of a replay are compared with those of the recording by compare.mjs.
 //   node evaluation/replay/server.mjs [port]          → http://localhost:5190/?replay=record&run=rec&lang=cs
@@ -11,7 +11,7 @@
 // Everything recorded (third-party data) stays in evaluation/replay/data/ (git ignores it).
 import http from "node:http";
 import fs from "node:fs/promises";
-import { createReadStream } from "node:fs";
+import { createReadStream, existsSync } from "node:fs";
 import path from "node:path";
 import crypto from "node:crypto";
 import { spawn } from "node:child_process";
@@ -24,7 +24,9 @@ const SAMPLES = [HERE, path.join(HERE, "..", "replay")];
 const PORT = Number(process.argv[2] || process.env.PORT || 5190), APP = PORT + 100; // the app 100 ports up (next to other replays)
 
 // The app's own server (static files, /api/*, data/*) on the next port.
-const child = spawn(process.execPath, [path.join(ROOT, "pilot", "server.mjs")], { env: { ...process.env, PORT: String(APP) }, stdio: "inherit" });
+// The app folder is app/ (pilot/ before the renaming of 27. 11. 2026: an older checkout as ROOT still replays).
+const APP_SERVER = ["app", "pilot"].map((d) => path.join(ROOT, d, "server.mjs")).find((f) => existsSync(f));
+const child = spawn(process.execPath, [APP_SERVER], { env: { ...process.env, PORT: String(APP) }, stdio: "inherit" });
 process.on("exit", () => child.kill());
 for (const s of ["SIGINT", "SIGTERM"]) process.on(s, () => process.exit());
 

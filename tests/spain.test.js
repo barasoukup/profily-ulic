@@ -5,7 +5,7 @@ import assert from "node:assert/strict";
 import fs from "node:fs";
 
 test("Španělsko: mapa povrchů Zaragozy (chodník, střední pás, zelený pás), vozovka podél os OSM, vypínač ?zaragoza=0", async () => {
-  const E = await import("../pilot/public/towns/spain.js");
+  const E = await import("../app/public/towns/spain.js");
   const sq = (x) => [[[x, 0], [x + 1, 0], [x + 1, 1], [x, 1], [x, 0]]];
   const got = E.zaragozaFeatures([[702, { features: [{ geometry: { type: "MultiPolygon", coordinates: [sq(0), sq(2)] } }] }], [1003, { features: [{ geometry: { type: "Polygon", coordinates: sq(4) } }] }]]);
   assert.deepEqual(got.features.map((f) => f.attributes.code), [702, 702, 1003], "MultiPolygon po polygonech");
@@ -24,7 +24,7 @@ test("Španělsko: mapa povrchů Zaragozy (chodník, střední pás, zelený pá
 });
 
 test("Španělsko: budovy z katastru (podlaží části u fasády, rok, užití)", async () => {
-  const E = await import("../pilot/public/towns/spain.js");
+  const E = await import("../app/public/towns/spain.js");
   const part = (floors, ring) => `<gml:featureMember><bu-ext2d:BuildingPart><bu-ext2d:numberOfFloorsAboveGround>${floors}</bu-ext2d:numberOfFloorsAboveGround><gml:posList srsDimension="2">${ring.map(([x, y]) => `${y} ${x}`).join(" ")}</gml:posList></bu-ext2d:BuildingPart></gml:featureMember>`;
   const sq = (x) => [[x, 0], [x + 1, 0], [x + 1, 1], [x, 1], [x, 0]];
   const building = `<gml:featureMember><bu-ext2d:Building><bu-core2d:beginning>1966-01-01T00:00:00</bu-core2d:beginning><bu-ext2d:currentUse>1_residential</bu-ext2d:currentUse><bu-ext2d:numberOfDwellings>12</bu-ext2d:numberOfDwellings></bu-ext2d:Building></gml:featureMember>`;
@@ -38,8 +38,8 @@ test("Španělsko: budovy z katastru (podlaží části u fasády, rok, užití)
 });
 
 test("Španělsko: v Baskicku a Navaře se katastr neptá, ale foralního katastru provincie (regions-es.json, díry Treviño a Villaverde)", async () => {
-  const E = await import("../pilot/public/towns/spain.js");
-  const F = await import("../pilot/public/towns/spain-foral.js");
+  const E = await import("../app/public/towns/spain.js");
+  const F = await import("../app/public/towns/spain-foral.js");
   const orig = globalThis.fetch, asked = [];
   globalThis.fetch = async (url) => { asked.push(String(url)); return { ok: true, text: async () => "" }; };
   try {
@@ -69,7 +69,7 @@ test("Španělsko: v Baskicku a Navaře se katastr neptá, ale foralního katast
 });
 
 test("Španělsko: foralní katastry (Navarra, Gipuzkoa, Bizkaia, Álava): dotaz a čtení GML", async () => {
-  const F = await import("../pilot/public/towns/spain-foral.js");
+  const F = await import("../app/public/towns/spain-foral.js");
   const gml = (c) => fs.readFileSync(new URL(`fixtures/foral-${c}.xml`, import.meta.url), "utf8");
   // Navarre: BU:Building, the year in "beginning", the use in xlink:href (public services: no type).
   assert.deepEqual(F.foralBuilding("nc", gml("nc"), 42.81855, -1.6443), { built: 1953, office: undefined, house: undefined, type: undefined, cornice: 2, total: 2, roof: 0, foral: "nc" });
@@ -96,13 +96,13 @@ test("Španělsko: foralní katastry (Navarra, Gipuzkoa, Bizkaia, Álava): dotaz
   assert.deepEqual(["nc", "gi", "bi", "ar"].map((c) => F.foralEnabled(c, "nc,gi")), [true, true, false, false]);
   assert.deepEqual(["nc", "gi", "bi", "ar"].map((c) => F.foralEnabled(c, null)), ["nc", "gi", "bi", "ar"].map((c) => F.FORAL_ON.has(c)));
   // The credit of each.
-  const { sourceCredits } = await import("../pilot/public/credits.js");
+  const { sourceCredits } = await import("../app/public/credits.js");
   assert.ok(sourceCredits({ esForal: "nc" })[0].includes("Servicio proporcionado por el Gobierno de Navarra"));
   for (const c of ["gi", "bi", "ar"]) assert.ok(sourceCredits({ esForal: c })[0].includes("Foru Aldundia"), c);
 });
 
 test("Španělsko: hledání CartoCiudad (adresa s bodem, ulice bez bodu až přes find)", async () => {
-  const S = await import("../pilot/public/search-es.js");
+  const S = await import("../app/public/search-es.js");
   const got = S.parseEs([
     { type: "portal", address: "GRAN VIA", portalNumber: 11, muni: "Mula", lat: 38.04, lng: -1.49, id: "a" },
     { type: "callejero", address: "CALLE ALCALA, Madrid", lat: 0, lng: 0, id: "280790007456" },
@@ -117,7 +117,7 @@ test("Španělsko: hledání CartoCiudad (adresa s bodem, ulice bez bodu až př
 });
 
 test("Španělsko: značky (S-11 / R-101 podle směru, R-301, autopista a autovía)", async () => {
-  const { COUNTRIES } = await import("../pilot/public/countries/index.js");
+  const { COUNTRIES } = await import("../app/public/countries/index.js");
   const ES = COUNTRIES.ES, f = ES.signs.file;
   assert.equal(f({ k: "oneway", dir: "forward" }), "S-11");
   assert.equal(f({ k: "oneway", dir: "backward" }), "R-101");
@@ -134,9 +134,9 @@ test("Španělsko: značky (S-11 / R-101 podle směru, R-301, autopista a autov�
   assert.equal(f({ k: "ztp" }), null, "vyhrazené stání jen s textem: nekreslí se");
   for (const k of ["b1", "b11", "b8", "b30", "b28", "b29", "ip11a", "ip15a", "ip20a", "zona30", "ip26a", "sdilena", "ip27a", "c8a", "c9a", "c10a", "c7a"]) {
     const file = f({ k });
-    assert.ok(file && fs.existsSync(new URL(`../pilot/public/signs-ES/${file}.svg`, import.meta.url)), `${k}: ${file}`);
+    assert.ok(file && fs.existsSync(new URL(`../app/public/signs-ES/${file}.svg`, import.meta.url)), `${k}: ${file}`);
   }
-  for (const v of [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120]) assert.ok(fs.existsSync(new URL(`../pilot/public/signs-ES/R-301-${v}.svg`, import.meta.url)), `R-301-${v}`);
+  for (const v of [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120]) assert.ok(fs.existsSync(new URL(`../app/public/signs-ES/R-301-${v}.svg`, import.meta.url)), `R-301-${v}`);
   assert.equal(ES.lawNeed(false, 1, 2.5), 5, "obousměrka: dva průjezdné pruhy");
   assert.equal(ES.lawNeed(true, 1, 2.5), 3, "jednosměrka: 3 m k protějšímu okraji (čl. 91.2 a RGC)");
   assert.equal(ES.limits({ type: "chodnik", width: 1.5 }, []).min, 1.8);
@@ -144,9 +144,9 @@ test("Španělsko: značky (S-11 / R-101 podle směru, R-301, autopista a autov�
 });
 
 test("Španělsko: stát podle hranic (ostrovy, Ceuta, Melilla, Llívia)", async () => {
-  const C = await import("../pilot/public/city.js");
-  C.loadBounds(JSON.parse(fs.readFileSync(new URL("../pilot/public/mesta.json", import.meta.url), "utf8")));
-  C.loadStates(JSON.parse(fs.readFileSync(new URL("../pilot/public/staty.json", import.meta.url), "utf8")));
+  const C = await import("../app/public/city.js");
+  C.loadBounds(JSON.parse(fs.readFileSync(new URL("../app/public/mesta.json", import.meta.url), "utf8")));
+  C.loadStates(JSON.parse(fs.readFileSync(new URL("../app/public/staty.json", import.meta.url), "utf8")));
   assert.equal(C.cityAt(40.4168, -3.7038), "spain"); // Madrid
   assert.equal(C.cityAt(41.3874, 2.1686), "spain"); // Barcelona
   assert.equal(C.cityAt(39.5696, 2.6502), "spain"); // Palma
@@ -160,7 +160,7 @@ test("Španělsko: stát podle hranic (ostrovy, Ceuta, Melilla, Llívia)", async
 });
 
 test("Španělsko: obytná ulice S-47 (20 km/h), S-28 jen s 10 km/h; výchozí rychlost podle čl. 50 RGC", async () => {
-  const { deriveSigns, signFile } = await import("../pilot/public/signs.js");
+  const { deriveSigns, signFile } = await import("../app/public/signs.js");
   const two = () => ({ segments: [{ type: "chodnik" }, { type: "pruh", dir: "backward" }, { type: "pruh" }, { type: "chodnik" }] });
   const drawn = (tags) => deriveSigns(two(), tags, { country: "ES" }).segments[2].signs?.map((x) => signFile(x, null, "ES")) || [];
   assert.deepEqual(drawn({ highway: "living_street" }), ["S-47"]);
@@ -176,8 +176,8 @@ test("Španělsko: obytná ulice S-47 (20 km/h), S-28 jen s 10 km/h; výchozí r
 });
 
 test("Španělsko: odhad stání podle zákona nechá dva průjezdné pruhy (recenze 23. 11. 2026)", async () => {
-  const C = await import("../pilot/public/city.js");
-  const { deriveProfile, localFrame } = await import("../pilot/public/derive.js");
+  const C = await import("../app/public/city.js");
+  const { deriveProfile, localFrame } = await import("../app/public/derive.js");
   const frame = localFrame(40.42, -3.7);
   const rect = (code, x0, x1) => ({ code, label: "", rings: [[[x0, -60], [x1, -60], [x1, 60], [x0, 60]]], bbox: [x0, -60, x1, 60] });
   const ll = (x, y) => { const [lon, lat] = frame.toLonLat(x, y); return { lon, lat }; };
@@ -196,19 +196,19 @@ test("Španělsko: odhad stání podle zákona nechá dva průjezdné pruhy (rec
 });
 
 test("Španělsko: katastr (osy dotazu, budova pod bodem, ne soused), pruhy z ortofota ne v Melille", async () => {
-  const E = await import("../pilot/public/towns/spain.js");
+  const E = await import("../app/public/towns/spain.js");
   const u = new URL(E.catastroUrl("BU:Building", 40.4, -3.7, 0.000005));
   assert.deepEqual(u.searchParams.get("bbox").split(",").map((v) => Math.round(+v * 1e6) / 1e6), [40.399995, -3.700005, 40.400005, -3.699995], "bbox lat, lon");
   const b = (year, ring) => `<gml:featureMember><bu-ext2d:Building><bu-core2d:beginning>${year}-01-01</bu-core2d:beginning><gml:posList>${ring.map(([x, y]) => `${y} ${x}`).join(" ")}</gml:posList></bu-ext2d:Building></gml:featureMember>`;
   const sq = (x) => [[x, 0], [x + 1, 0], [x + 1, 1], [x, 1], [x, 0]];
   assert.equal(E.catastroBuilding(b(1900, sq(0)) + b(1975, sq(1)), "", 0.5, 1.5).built, 1975, "štítová zeď: dům pod bodem");
-  const L = await import("../pilot/public/lanes-ortho.js");
-  const { localFrame } = await import("../pilot/public/derive.js");
+  const L = await import("../app/public/lanes-ortho.js");
+  const { localFrame } = await import("../app/public/derive.js");
   assert.equal(await L.laneImage({ source: "es", frame: localFrame(35.293, -2.94), dir: [1, 0], t0: -10, t1: 10 }), null, "Melilla: snímek Airbus, licence nevyjasněná");
 });
 
 test("Španělsko: jméno ulice z CartoCiudad se shodne s OSM (Passeig de Gràcia)", async () => {
-  const { nearestStreet, localFrame } = await import("../pilot/public/derive.js");
+  const { nearestStreet, localFrame } = await import("../app/public/derive.js");
   const frame = localFrame(41.39, 2.16);
   const ll = (x, y) => { const [lon, lat] = frame.toLonLat(x, y); return { lon, lat }; };
   const osm = { elements: [{ type: "way", id: 1, tags: { highway: "residential", name: "Carrer de Mallorca" }, geometry: [ll(-50, 2), ll(50, 2)] },

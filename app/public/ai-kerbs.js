@@ -4,7 +4,7 @@
 // 43 %); sidewalks, green and parking stay the estimate's.
 // The model: a U-Net with a MobileNetV3 encoder (timm, Apache 2.0) taught on the surface maps of Prague (MTVU, © IPR
 // Praha), Vienna (FMZK, Stadt Wien – data.wien.gv.at, CC BY 4.0), Berlin and Hamburg, run in the browser by
-// onnxruntime-web (MIT, pilot/public/ort/). Its input: a north-up square of 83.2 m around the cut, 416 px (20 cm),
+// onnxruntime-web (MIT, app/public/ort/). Its input: a north-up square of 83.2 m around the cut, 416 px (20 cm),
 // the orthophoto and eight channels of OSM drawn on it (evaluation/ai-segmentation/train.py osm_channels: streets,
 // the street's width as OSM suggests it, paths, cycle ways, tram tracks, buildings, green, parking); its output five
 // kinds per pixel (carriageway, sidewalk, green, building, other), and a second output, parking (a small branch of its

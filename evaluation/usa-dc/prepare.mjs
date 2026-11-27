@@ -8,7 +8,7 @@ import path from "node:path";
 import os from "node:os";
 import { execFile } from "node:child_process";
 import { promisify } from "node:util";
-import { decodePng } from "../../pilot/public/dmvs.js";
+import { decodePng } from "../../app/public/dmvs.js";
 import { encodePng } from "../ortofoto/run.mjs";
 import { ROOT, DATA } from "./lib.mjs";
 

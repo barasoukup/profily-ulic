@@ -7,7 +7,7 @@ import fs from "node:fs";
 const sq = (x, y, d = 0.0001) => [[[x - d, y - d], [x + d, y - d], [x + d, y + d], [x - d, y + d], [x - d, y - d]]];
 
 test("Nizozemsko: funkce BGT na kódy MTVU, vypínač ?bgt=0", async () => {
-  const N = await import("../pilot/public/towns/netherlands.js");
+  const N = await import("../app/public/towns/netherlands.js");
   assert.equal(N.bgtCode("wegdeel", { functie: "rijbaan lokale weg" }), 701);
   assert.equal(N.bgtCode("wegdeel", { functie: "voetpad" }), 702);
   assert.equal(N.bgtCode("wegdeel", { functie: "fietspad" }), 703);
@@ -25,7 +25,7 @@ test("Nizozemsko: funkce BGT na kódy MTVU, vypínač ?bgt=0", async () => {
 });
 
 test("Nizozemsko: BGT jen v úrovni ulice pod středem, OV-baan s tramvají jako těleso", async () => {
-  const N = await import("../pilot/public/towns/netherlands.js");
+  const N = await import("../app/public/towns/netherlands.js");
   const got = {
     wegdeel: [
       { properties: { functie: "rijbaan lokale weg", relatieve_hoogteligging: 0 }, geometry: { type: "Polygon", coordinates: sq(5, 52) } },
@@ -57,7 +57,7 @@ test("Nizozemsko: BGT jen v úrovni ulice pod středem, OV-baan s tramvají jako
 });
 
 test("Nizozemsko: budova z BAG a 3D BAG", async () => {
-  const N = await import("../pilot/public/towns/netherlands.js");
+  const N = await import("../app/public/towns/netherlands.js");
   const pand = { properties: { bouwjaar: 1750, gebruiksdoel: "bijeenkomstfunctie,winkelfunctie,woonfunctie", aantal_verblijfsobjecten: 9 } };
   const bag3d = { feature: { CityObjects: { x: { attributes: { b3_bouwlagen: 4, b3_dak_type: "slanted", b3_h_dak_70p: 13.1, b3_h_maaiveld: 1 } } } } };
   const b = N.bagBuilding(pand, bag3d);
@@ -70,7 +70,7 @@ test("Nizozemsko: budova z BAG a 3D BAG", async () => {
 });
 
 test("Nizozemsko: hledání PDOK Locatieserver", async () => {
-  const S = await import("../pilot/public/search-nl.js");
+  const S = await import("../app/public/search-nl.js");
   const out = S.parseNl({ response: { docs: [
     { type: "adres", weergavenaam: "Oudegracht 10, 3511AM Utrecht", centroide_ll: "POINT(5.1165 52.0960)", straatnaam: "Oudegracht" },
     { type: "weg", weergavenaam: "Keizersgracht, Amsterdam", centroide_ll: "POINT(4.88 52.37)", straatnaam: "Keizersgracht" },
@@ -83,9 +83,9 @@ test("Nizozemsko: hledání PDOK Locatieserver", async () => {
 });
 
 test("Nizozemsko: stát podle hranic, sousedé", async () => {
-  const C = await import("../pilot/public/city.js");
-  C.loadBounds(JSON.parse(fs.readFileSync(new URL("../pilot/public/mesta.json", import.meta.url), "utf8")));
-  C.loadStates(JSON.parse(fs.readFileSync(new URL("../pilot/public/staty.json", import.meta.url), "utf8")));
+  const C = await import("../app/public/city.js");
+  C.loadBounds(JSON.parse(fs.readFileSync(new URL("../app/public/mesta.json", import.meta.url), "utf8")));
+  C.loadStates(JSON.parse(fs.readFileSync(new URL("../app/public/staty.json", import.meta.url), "utf8")));
   assert.equal(C.cityAt(52.3727, 4.8933), "netherlands"); // Amsterdam
   assert.equal(C.cityAt(51.9225, 4.4792), "netherlands"); // Rotterdam
   assert.equal(C.cityAt(50.8514, 5.6910), "netherlands"); // Maastricht
@@ -95,7 +95,7 @@ test("Nizozemsko: stát podle hranic, sousedé", async () => {
 });
 
 test("Nizozemsko: značky RVV, normy, zákon o stání", async () => {
-  const { default: NL } = await import("../pilot/public/countries/NL.js");
+  const { default: NL } = await import("../app/public/countries/NL.js");
   const f = NL.signs.file;
   assert.equal(f({ k: "oneway" }, { dir: "forward" }), "C3");
   assert.equal(f({ k: "oneway" }, { dir: "backward" }), "C2");
@@ -106,7 +106,7 @@ test("Nizozemsko: značky RVV, normy, zákon o stání", async () => {
   assert.equal(f({ k: "ip26a" }), "G5");
   assert.equal(f({ k: "c9a" }), null, "Nizozemsko nemá stezku pro chodce a cyklisty");
   for (const k of ["C1", "C2", "C3", "C12", "C14", "C16", "E1", "E2", "E4", "E6", "E9", "F13", "G1", "G3", "G5", "G7", "G7_Zone", "G11", "A1_30_Zone", "A1-50"]) {
-    const svg = fs.readFileSync(new URL(`../pilot/public/signs-NL/${k}.svg`, import.meta.url), "utf8");
+    const svg = fs.readFileSync(new URL(`../app/public/signs-NL/${k}.svg`, import.meta.url), "utf8");
     assert.match(svg, /<svg[^>]*viewBox="[\d.]+ [\d.]+ [\d.]+ [\d.]+"/, k);
   }
   assert.equal(NL.limits({ type: "chodnik" }, [], 0).min, 1.8);

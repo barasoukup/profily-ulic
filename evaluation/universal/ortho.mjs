@@ -10,9 +10,9 @@ import path from "node:path";
 import os from "node:os";
 import { execFile } from "node:child_process";
 import { promisify } from "node:util";
-import { decodePng } from "../../pilot/public/dmvs.js";
+import { decodePng } from "../../app/public/dmvs.js";
 import { encodePng } from "../ortofoto/run.mjs";
-import { DE_ORTHO, deWmsUrl, landsAt } from "../../pilot/public/lanes-ortho.js";
+import { DE_ORTHO, deWmsUrl, landsAt } from "../../app/public/lanes-ortho.js";
 
 const run = promisify(execFile), R = 6378137, RES = 0.1, UA = { "User-Agent": "profily-ulic" };
 const FONT = "/System/Library/Fonts/Supplemental/Arial Bold.ttf";
@@ -49,7 +49,7 @@ async function fetchOrtho(country, b, w, h, lon, lat) {
   else if (country === "NL") url = `https://service.pdok.nl/hwh/luchtfotorgb/wms/v1_0?${new URLSearchParams({ SERVICE: "WMS", VERSION: "1.3.0", REQUEST: "GetMap", LAYERS: "Actueel_orthoHR", STYLES: "", CRS: "EPSG:3857", BBOX: b.join(","), WIDTH: w, HEIGHT: h, FORMAT: "image/png" })}`;
   // Belgium: Flanders' orthophoto, else Wallonia's (a small answer is a blank one); Luxembourg: the ACT's tiles.
   else if (country === "BE") {
-    const { BE_ORTHO } = await import("../../pilot/public/lanes-ortho.js");
+    const { BE_ORTHO } = await import("../../app/public/lanes-ortho.js");
     for (const r of ["vl", "wal"]) {
       const res = await fetch(BE_ORTHO[r].url(b, w, h, "image/png"), { headers: UA });
       const buf = Buffer.from(await res.arrayBuffer());
@@ -57,26 +57,26 @@ async function fetchOrtho(country, b, w, h, lon, lat) {
     }
   }
   else if (country === "PL") {
-    const { PL_ORTHO } = await import("../../pilot/public/lanes-ortho.js");
+    const { PL_ORTHO } = await import("../../app/public/lanes-ortho.js");
     const res = await fetch(PL_ORTHO(b, w, h), { headers: UA });
     if (!res.ok) throw new Error(`ortofoto ${res.status}`);
     return toPng(Buffer.from(await res.arrayBuffer()));
   }
   else if (country === "FR" || country === "MC") {
-    const { FR_ORTHO } = await import("../../pilot/public/lanes-ortho.js");
+    const { FR_ORTHO } = await import("../../app/public/lanes-ortho.js");
     const res = await fetch(FR_ORTHO(b, w, h), { headers: UA });
     if (!res.ok) throw new Error(`ortofoto ${res.status}`);
     return toPng(Buffer.from(await res.arrayBuffer()));
   }
   else if (country === "ES") {
-    const { ES_ORTHO } = await import("../../pilot/public/lanes-ortho.js");
+    const { ES_ORTHO } = await import("../../app/public/lanes-ortho.js");
     const res = await fetch(ES_ORTHO(b, w, h), { headers: UA });
     if (!res.ok) throw new Error(`ortofoto ${res.status}`);
     return toPng(Buffer.from(await res.arrayBuffer()));
   }
   else if (country === "PT") {
     // Portugal: the newest DGT flight with a photo here (a white JPEG is tiny: under 0.02 bytes a pixel).
-    const { PT_ORTHO } = await import("../../pilot/public/lanes-ortho.js");
+    const { PT_ORTHO } = await import("../../app/public/lanes-ortho.js");
     for (const key of ["pt-25", "pt-21", "pt-18", "pt-sat"]) {
       const res = await fetch(PT_ORTHO[key](b, w, h), { headers: UA });
       if (!res.ok) throw new Error(`ortofoto ${res.status}`);
@@ -85,7 +85,7 @@ async function fetchOrtho(country, b, w, h, lon, lat) {
     }
   }
   else if (country === "IT") {
-    const { IT_ORTHO, itOrthoAt } = await import("../../pilot/public/lanes-ortho.js");
+    const { IT_ORTHO, itOrthoAt } = await import("../../app/public/lanes-ortho.js");
     const [key] = itOrthoAt(...[(b[0] + b[2]) / 2, (b[1] + b[3]) / 2].map((v, i) => (i === 0 ? (v / 6378137) * (180 / Math.PI) : (Math.atan(Math.sinh(v / 6378137)) * 180) / Math.PI)));
     if (!key) throw new Error("ortofoto: mimo otevřená ortofota");
     const res = await fetch(IT_ORTHO[key].url(b, w, h), { headers: UA });
@@ -93,23 +93,23 @@ async function fetchOrtho(country, b, w, h, lon, lat) {
     return toPng(Buffer.from(await res.arrayBuffer()));
   }
   else if (country === "MT") {
-    const { MT_ORTHO } = await import("../../pilot/public/lanes-ortho.js");
+    const { MT_ORTHO } = await import("../../app/public/lanes-ortho.js");
     const res = await fetch(MT_ORTHO(b, w, h), { headers: UA });
     if (!res.ok) throw new Error(`ortofoto ${res.status}`);
     return toPng(Buffer.from(await res.arrayBuffer()));
   }
   else if (country === "CY") {
-    const { CY_ORTHO } = await import("../../pilot/public/lanes-ortho.js");
+    const { CY_ORTHO } = await import("../../app/public/lanes-ortho.js");
     return tiles(CY_ORTHO, "", 20, b, w, h);
   }
   else if (country === "EE") {
     // Estonia: the Land and Spatial Development Board's TMS tiles (y from the bottom), level 18 (the WMS has a watermark).
-    const { EE_ORTHO } = await import("../../pilot/public/lanes-ortho.js");
+    const { EE_ORTHO } = await import("../../app/public/lanes-ortho.js");
     return tiles(EE_ORTHO, ".jpg", 18, b, w, h, true, true);
   }
   else if (country === "SI") {
     // Slovenia: GURS's DOF025 (WMS in Web Mercator); its server hangs now and then with a 504: up to three tries.
-    const { SI_ORTHO } = await import("../../pilot/public/lanes-ortho.js");
+    const { SI_ORTHO } = await import("../../app/public/lanes-ortho.js");
     for (let i = 0; ; i++) {
       const res = await fetch(SI_ORTHO(b, w, h), { headers: UA, signal: AbortSignal.timeout(35000) }).catch((e) => ({ ok: false, status: e.name }));
       if (res.ok) return toPng(Buffer.from(await res.arrayBuffer()));
@@ -119,7 +119,7 @@ async function fetchOrtho(country, b, w, h, lon, lat) {
   }
   else if (country === "FI") {
     // Finland: the town's own orthophoto (lanes-ortho.js FI_ORTHO: Helsinki, Espoo, Turku); none elsewhere (Tampere, Oulu).
-    const { FI_ORTHO, fiOrthoAt } = await import("../../pilot/public/lanes-ortho.js");
+    const { FI_ORTHO, fiOrthoAt } = await import("../../app/public/lanes-ortho.js");
     // For the judge only (24. 11. 2026), where the app has none: Tampere's own orthophoto 2025 (georaster.tampere.fi) and
     // HSY's 2023 one of the capital region (the north of Vantaa); Oulu's service asks a login.
     const key = fiOrthoAt(lon, lat)[0];
@@ -132,7 +132,7 @@ async function fetchOrtho(country, b, w, h, lon, lat) {
   else if (country === "DK") {
     // Denmark: GeoDanmark's spring orthophoto through Dataforsyningen's WMS in Web Mercator, with the token (keys.js:
     // the environment variable DK_TOKEN or config.local.js; never printed).
-    const { dkToken } = await import("../../pilot/public/keys.js");
+    const { dkToken } = await import("../../app/public/keys.js");
     if (!dkToken()) throw new Error("ortofoto: chybí token Dataforsyningen (DK_TOKEN)");
     url = `https://api.dataforsyningen.dk/orto_foraar_DAF?${new URLSearchParams({ service: "WMS", request: "GetMap", version: "1.3.0", layers: "orto_foraar", styles: "", crs: "EPSG:3857", bbox: b.join(","), width: w, height: h, format: "image/png", token: dkToken() })}`;
   }

@@ -41,7 +41,7 @@ function limitsEE(s, segs = [], i = -1) {
   }
 }
 
-// The signs of the state EE (pilot/public/signs-EE/, README there; the signs regulation "Liiklusmärgid ja nende
+// The signs of the state EE (app/public/signs-EE/, README there; the signs regulation "Liiklusmärgid ja nende
 // kasutamine"; Wikimedia Commons). Official texts are not protected (Autoriõiguse seadus § 5; the drawings read as part of
 // them, NORMY.md C). Estonia's law has no pedestrian zone: the zone 381 with the footpath 432 (Commons' "386") stands
 // for it, for Bára.

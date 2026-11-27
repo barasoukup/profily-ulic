@@ -1,7 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { localFrame, deriveProfile, techLines, REACH, reachOf } from "../pilot/public/derive.js";
-import { decodePrahaTile, PRAHA_TILE } from "../pilot/public/sources.js";
+import { localFrame, deriveProfile, techLines, REACH, reachOf } from "../app/public/derive.js";
+import { decodePrahaTile, PRAHA_TILE } from "../app/public/sources.js";
 
 // A street running north: roadway 8 m (x −4…4), sidewalks 3 m, houses. The cut runs west–east through y = 0,
 // t = −x (normal [−1, 0]).

@@ -1,60 +1,60 @@
 // Today's exceptions to tests/architecture.test.js. Only ever shortened or lowered (never extended): when a line here
 // gets stale the test says so. Counts and lengths are the present ones.
 export const STATE_CONDITIONS = {
-  "pilot/public/house-looks.js": 12
+  "app/public/house-looks.js": 12
 };
 
 export const UNUSED_EXPORTS = [
-  "pilot/public/ai-kerbs.js:PARK",
-  "pilot/public/ai-kerbs.js:kind",
-  "pilot/public/countries/FI.js:FI_SPEEDS",
-  "pilot/public/countries/SI.js:SI_SPEEDS",
-  "pilot/public/countries/SI.js:contraflowSI",
-  "pilot/public/floors.js:HALLS",
-  "pilot/public/floors.js:LOW_MAX",
-  "pilot/public/floors.js:PITCHED",
-  "pilot/public/floors.js:PITCHED_SHAPES",
-  "pilot/public/floors.js:TWO_FROM",
-  "pilot/public/floors.js:floorsHOff",
-  "pilot/public/queries.js:IPR",
-  "pilot/public/queries.js:LINE_CODES",
-  "pilot/public/queries.js:POINT_CODES",
-  "pilot/public/search-at.js:WIEN_WFS",
-  "pilot/public/search-sk.js:ZBGIS",
-  "pilot/public/search.js:KINDS",
-  "pilot/public/search.js:MIN_CHARS",
-  "pilot/public/search.js:RUIAN_SEARCH",
-  "pilot/public/site.js:NET_CITIES"
+  "app/public/ai-kerbs.js:PARK",
+  "app/public/ai-kerbs.js:kind",
+  "app/public/countries/FI.js:FI_SPEEDS",
+  "app/public/countries/SI.js:SI_SPEEDS",
+  "app/public/countries/SI.js:contraflowSI",
+  "app/public/floors.js:HALLS",
+  "app/public/floors.js:LOW_MAX",
+  "app/public/floors.js:PITCHED",
+  "app/public/floors.js:PITCHED_SHAPES",
+  "app/public/floors.js:TWO_FROM",
+  "app/public/floors.js:floorsHOff",
+  "app/public/queries.js:IPR",
+  "app/public/queries.js:LINE_CODES",
+  "app/public/queries.js:POINT_CODES",
+  "app/public/search-at.js:WIEN_WFS",
+  "app/public/search-sk.js:ZBGIS",
+  "app/public/search.js:KINDS",
+  "app/public/search.js:MIN_CHARS",
+  "app/public/search.js:RUIAN_SEARCH",
+  "app/public/site.js:NET_CITIES"
 ];
 
 export const LONG_FILES = {
-  "pilot/public/app.js": 2837,
-  "pilot/public/derive.js": 3084,
-  "pilot/public/lanes-ortho.js": 1165,
-  "pilot/public/ortho-osm.js": 1478,
-  "pilot/public/profile.js": 3089
+  "app/public/app.js": 2837,
+  "app/public/derive.js": 3084,
+  "app/public/lanes-ortho.js": 1165,
+  "app/public/ortho-osm.js": 1478,
+  "app/public/profile.js": 3089
 };
 
 export const LONG_FUNCTIONS = {
-  "pilot/public/ai-kerbs.js:parkFromAi": 121,
-  "pilot/public/app.js:cutAt": 430,
-  "pilot/public/app.js:fitLabels": 109,
-  "pilot/public/app.js:renderEditor": 250,
-  "pilot/public/derive.js:deriveProfile": 641,
-  "pilot/public/derive.js:splitRoadway": 221,
-  "pilot/public/dmvs.js:dtmAreas": 128,
-  "pilot/public/dmvs.js:fromLines": 107,
-  "pilot/public/houses-america.js:drawAmerican": 566,
-  "pilot/public/lanes-ortho.js:measured": 114,
-  "pilot/public/maplayers.js:createDataLayers": 204,
-  "pilot/public/maplayers.js:draw": 172,
-  "pilot/public/ortho-osm.js:besidePassport": 168,
-  "pilot/public/ortho-osm.js:orthoOsmPolys": 535,
-  "pilot/public/profile.js:(anonymous)": 176,
-  "pilot/public/profile.js:buildSvg": 320,
-  "pilot/public/profile.js:drawItem": 145,
-  "pilot/public/profile.js:drawPrahaBuilding": 1232,
-  "pilot/public/search.js:mountSearch": 174,
-  "pilot/public/signs.js:deriveSigns": 117,
-  "pilot/public/towns/plzen.js:parking": 110
+  "app/public/ai-kerbs.js:parkFromAi": 121,
+  "app/public/app.js:cutAt": 430,
+  "app/public/app.js:fitLabels": 109,
+  "app/public/app.js:renderEditor": 250,
+  "app/public/derive.js:deriveProfile": 641,
+  "app/public/derive.js:splitRoadway": 221,
+  "app/public/dmvs.js:dtmAreas": 128,
+  "app/public/dmvs.js:fromLines": 107,
+  "app/public/houses-america.js:drawAmerican": 566,
+  "app/public/lanes-ortho.js:measured": 114,
+  "app/public/maplayers.js:createDataLayers": 204,
+  "app/public/maplayers.js:draw": 172,
+  "app/public/ortho-osm.js:besidePassport": 168,
+  "app/public/ortho-osm.js:orthoOsmPolys": 535,
+  "app/public/profile.js:(anonymous)": 176,
+  "app/public/profile.js:buildSvg": 320,
+  "app/public/profile.js:drawItem": 145,
+  "app/public/profile.js:drawPrahaBuilding": 1232,
+  "app/public/search.js:mountSearch": 174,
+  "app/public/signs.js:deriveSigns": 117,
+  "app/public/towns/plzen.js:parking": 110
 };

@@ -223,7 +223,7 @@ tabulka H13; aplikace nechává {need}.“
 4. Způsob stání: Finsko ho nemá na E2, ale dodatkovou tabulkou H13 (k obrubníku) a E4; kreslit H13?
 5. Dodatkové tabulky H12.7, H12.10: ověřit licenci na Commons později (API nás omezilo).
 
-## E. Co aplikace použila (23. 11. 2026, `pilot/public/countries/FI.js`)
+## E. Co aplikace použila (23. 11. 2026, `app/public/countries/FI.js`)
 
 Všechno jsou doporučení, proto nic červeně (`min: 0`); oranžově pod **nejnižší** šířkou, kterou příručka pro běžnou
 ulici doporučuje (v textu varování je i výchozí hodnota): chodník 2,0 (KTM: 2,5, v obytné ulici a vedle cyklostezky 2,0),

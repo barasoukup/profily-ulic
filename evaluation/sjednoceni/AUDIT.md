@@ -4,7 +4,7 @@ Bára 24. 11. 2026: co nejvíc ve sdíleném kódu, co nejméně výjimek. Výji
 kde odráží skutečný rozdíl v zákoně, normách nebo datech. Opatrnost, „nevyzkoušeno“ ani „nechtěli jsme na to sahat“
 důvodem nejsou. Vzor: e0494e5 (mapFill v Česku, slepé A/B 90 řezů, příznak zrušený).
 
-Prošlé soubory: `pilot/public/countries/*.js` (default.js a 22 států), `towns/*.js`, `city.js` a čtení `country.<x>`,
+Prošlé soubory: `app/public/countries/*.js` (default.js a 22 států), `towns/*.js`, `city.js` a čtení `country.<x>`,
 `city.<x>` a `city.fix` v `app.js`, `derive.js`, `ortho-osm.js`, `lanes-ortho.js`, `ai-kerbs.js`, `rules.js`,
 `profile.js`, `sources.js`, `gis.js`. `ortho-osm.js`, `ai-kerbs.js` a `lanes-ortho.js` podle státu nevětví (jen podle
 zdroje ortofota při jeho stahování).

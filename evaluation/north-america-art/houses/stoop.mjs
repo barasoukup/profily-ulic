@@ -3,7 +3,7 @@
 import path from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { renderCells } from "./render.mjs";
-const PUB = process.env.PUB ? path.resolve(process.env.PUB) : path.join(path.dirname(fileURLToPath(import.meta.url)), "..", "..", "..", "pilot", "public");
+const PUB = process.env.PUB ? path.resolve(process.env.PUB) : path.join(path.dirname(fileURLToPath(import.meta.url)), "..", "..", "..", "app", "public");
 await import(pathToFileURL(path.join(PUB, "america.js"))); // the drawing is loaded late: here at once
 const blk = { length: 40, width: 12, fill: 0.9, parts: 8 };
 const P = { dc: [-76.9935, 38.8870], george: [-77.065, 38.908], petworth: [-77.02, 38.942], nyc: [-73.968, 40.78], any: [-77.2, 38.85], any2: [-77.2, 38.8503], bos: [-71.06, 42.31] };

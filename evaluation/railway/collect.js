@@ -1,4 +1,4 @@
-// Run in the app's page (localhost, server with EVAL_SAVE=1, ?osm=balik; the points in pilot/public/zz-rail.json, not
+// Run in the app's page (localhost, server with EVAL_SAVE=1, ?osm=balik; the points in app/public/zz-rail.json, not
 // kept in git): each point is cut as on a click (at the street's bearing) and its profile kept, to
 // evaluation/universal/data/<name>.json. With ?off=railway the name is rail-off, else rail-on (Bára 27. 11. 2026).
 //   await collectRail()

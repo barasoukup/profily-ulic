@@ -1,13 +1,13 @@
 // allBuildings as the shared behaviour (Bára 25. 11. 2026): random houses of the states' towns (fixed seed), the look and
 // the drawing reading the tuned OSM buildings only (?off=vsedomy) and all of them, the register of buildings
 // (podlaznost) where the state has one, asked only of the houses OSM's reading changes. A photo by Mapillary of each
-// changed house. OSM from the local packs (pilot/data/osm-pack).
+// changed house. OSM from the local packs (app/data/osm-pack).
 //   TOKEN=<token.local> node sample.mjs <scratch dir> DE,AT,… [changed=12] [most houses=240]
 // Photos go to the scratch directory only; vzorek-<ISO>.json (houses, no photos) to this folder.
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
-const HERE = path.dirname(fileURLToPath(import.meta.url)), PUB = path.resolve(HERE, "../../pilot/public");
+const HERE = path.dirname(fileURLToPath(import.meta.url)), PUB = path.resolve(HERE, "../../app/public");
 const imp = (f) => import(pathToFileURL(path.join(PUB, f)));
 const [OUT, isos, WANT = "12", MOST = "240"] = process.argv.slice(2);
 class N { constructor(n) { this.name = n; this.attrs = {}; this.children = []; this.text = ""; this.style = {}; this.dataset = {}; this.classList = { add() {}, toggle() {}, contains: () => false }; } setAttribute(k, v) { this.attrs[k] = String(v); } getAttribute(k) { return this.attrs[k] ?? null; } appendChild(c) { this.children.push(c); return c; } append(...c) { this.children.push(...c); } addEventListener() {} set textContent(t) { this.text = String(t); } get textContent() { return this.text; } get firstChild() { return this.children[0]; } }

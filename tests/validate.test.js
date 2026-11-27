@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { cleanProfile, cleanCut } from "../pilot/public/validate.js";
+import { cleanProfile, cleanCut } from "../app/public/validate.js";
 
 test("soubor bez částí nebo s vadnou šířkou se odmítne", () => {
   assert.throws(() => cleanProfile({ segments: [] }), /chybí části/);
@@ -46,7 +46,7 @@ test("tabulka zůstane jen u známé dvojice značky a tabulky", () => {
 });
 
 test("změna typu části v Návrhu odloží, co k novému typu nepatří", async () => {
-  const { retype } = await import("../pilot/public/validate.js");
+  const { retype } = await import("../app/public/validate.js");
   // Parking on the sidewalk made a lane: no position (the lane would be drawn in the sidewalk's paving), a direction.
   const lane = retype({ type: "parkovani", width: 5, orient: "kolme", position: "on_kerb", use: "ztp", items: [], signs: [{ k: "ip11d" }] }, "pruh");
   assert.deepEqual(lane, { type: "pruh", width: 5, dir: "forward", items: [], signs: [{ k: "ip11d" }] });
@@ -59,9 +59,9 @@ test("změna typu části v Návrhu odloží, co k novému typu nepatří", asyn
 });
 
 test("šipky nabízené v Návrhu mají jméno a převod do Streetmixu", async () => {
-  const { TURN_CHOICES, TURNS, isTurn } = await import("../pilot/public/types.js");
-  const { turnLabel } = await import("../pilot/public/profile.js");
-  const { toStreetmix } = await import("../pilot/public/streetmix.js");
+  const { TURN_CHOICES, TURNS, isTurn } = await import("../app/public/types.js");
+  const { turnLabel } = await import("../app/public/profile.js");
+  const { toStreetmix } = await import("../app/public/streetmix.js");
   for (const v of TURN_CHOICES) {
     assert.ok(isTurn(v), v);
     assert.ok(v.split(";").every((x) => turnLabel(v).includes(TURNS[x])), v);

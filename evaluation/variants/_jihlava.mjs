@@ -1,8 +1,8 @@
 // What the Jihlava variants share: the layers of towns/jihlava.js (the module keeps them to itself), the
 // national DTM of ČÚZK without RÚIAN, and the order of the layers (the first one at a point wins).
-import { query, envelope, asMtvu, parkingStrip } from "../../pilot/public/gis.js";
-import { MTVU_LABELS } from "../../pilot/public/city.js";
-import { surfaces as dmvsSurfaces } from "../../pilot/public/dmvs.js";
+import { query, envelope, asMtvu, parkingStrip } from "../../app/public/gis.js";
+import { MTVU_LABELS } from "../../app/public/city.js";
+import { surfaces as dmvsSurfaces } from "../../app/public/dmvs.js";
 
 const JI = "https://gis.jihlava-city.cz";
 const PASPORT = `${JI}/server1/rest/services/ost/Pasporty/MapServer`;

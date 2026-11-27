@@ -2,8 +2,8 @@
 // city's map (and its passport, which matches it) off, or OSM and the orthophoto? (Bára 19. 11. 2026)
 import fs from "node:fs";
 import path from "node:path";
-import { PackSet } from "../../pilot/public/osmpack.js";
-import { mergePieces, TILE } from "../../pilot/public/osmtile.js";
+import { PackSet } from "../../app/public/osmpack.js";
+import { mergePieces, TILE } from "../../app/public/osmtile.js";
 const BOX = (process.argv[2] || "17.100,48.138,17.125,48.155").split(",").map(Number);
 const TM = "https://geoportal.bratislava.sk/hsite/rest/services/tm/Technická_mapa_TM/MapServer/8/query";
 const out = [];
@@ -12,7 +12,7 @@ for (let off = 0; off < 30000; off += 1000) {
   const j = await (await fetch(`${encodeURI(TM)}?${p}`)).json();
   out.push(...(j.features || [])); if (!j.exceededTransferLimit) break; await new Promise((r) => setTimeout(r, 1500));
 }
-const PACK = path.join(path.dirname(new URL(import.meta.url).pathname), "../../pilot/data/osm-pack/");
+const PACK = path.join(path.dirname(new URL(import.meta.url).pathname), "../../app/data/osm-pack/");
 const fileFetch = async (url, opts = {}) => { const buf = fs.readFileSync(path.join(PACK, String(url).replace(/^pack:\/\/\.?\/?/, ""))); const m = /bytes=(\d+)-(\d+)/.exec(opts.headers?.Range || ""); const body = m ? buf.subarray(+m[1], +m[2] + 1) : buf; return { ok: true, status: m ? 206 : 200, headers: { get: () => null }, json: async () => JSON.parse(buf), arrayBuffer: async () => body.buffer.slice(body.byteOffset, body.byteOffset + body.byteLength) }; };
 const packs = new PackSet(["pack://."], { fetch: fileFetch });
 const names = []; for (let ix = Math.floor(BOX[0] / TILE); ix <= Math.floor(BOX[2] / TILE); ix++) for (let iy = Math.floor(BOX[1] / TILE); iy <= Math.floor(BOX[3] / TILE); iy++) names.push(`${ix}_${iy}`);

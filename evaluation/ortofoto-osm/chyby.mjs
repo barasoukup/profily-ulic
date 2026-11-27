@@ -6,10 +6,10 @@
 //   node evaluation/ortofoto-osm/chyby.mjs [praha|brno …]   → vysledky/chyby.md (counts, the metres confused, links)
 import fs from "node:fs/promises";
 import { cuts, truthOf, osmAround, stripOf, ROOT } from "./lib.mjs";
-import { orthoOsmPolys, trimToEnds, P } from "../../pilot/public/ortho-osm.js";
-import { localFrame, deriveProfile, lanesFromShoulders, splitTwoWayLane, capWideLanes, pedestrianZone, widenNarrowTrams } from "../../pilot/public/derive.js";
-import { applyLanes } from "../../pilot/public/lanes-ortho.js";
-import { aiKerbs } from "../../pilot/public/ai-kerbs.js";
+import { orthoOsmPolys, trimToEnds, P } from "../../app/public/ortho-osm.js";
+import { localFrame, deriveProfile, lanesFromShoulders, splitTwoWayLane, capWideLanes, pedestrianZone, widenNarrowTrams } from "../../app/public/derive.js";
+import { applyLanes } from "../../app/public/lanes-ortho.js";
+import { aiKerbs } from "../../app/public/ai-kerbs.js";
 import fsAi from "node:fs";
 const aiCache = {};
 

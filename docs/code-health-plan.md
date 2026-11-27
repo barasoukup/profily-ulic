@@ -6,9 +6,9 @@ kód větve `canada`. Kroky přijdou po nasazení, po přestavbě překladů a p
 
 ## Co audit změřil
 
-- Aplikace bez překladů asi 27 200 řádků (18 400 `pilot/public/*.js`, 6 200 `towns/`, 2 600 `countries/`); překlady
+- Aplikace bez překladů asi 27 200 řádků (18 400 `app/public/*.js`, 6 200 `towns/`, 2 600 `countries/`); překlady
   30 000 řádků; testy 8 150 (532 testů, 7 s); `evaluation/` 338 skriptů, 18 900 řádků, 41,5 MB v gitu; `CLAUDE.md`
-  769 řádků, `pilot/README.md` 1 221.
+  769 řádků, `app/README.md` 1 221.
 - Největší funkce: `profile.js drawPrahaBuilding` 1 245 ř. (34 větví podle vzhledu), `derive.js deriveProfile` 617 ř.
   a 20 argumentů, `app.js cutAt` 400 ř., `ortho-osm.js orthoOsmPolys` 459 ř.; `app.js` má 101 řádků přes 160 znaků.
 - Vypínače: asi 150 (README jmenuje 46). 66 klíčů `?off=`, z toho 27 nezmíněných nikde; 12 parametrů aplikace;
@@ -46,7 +46,7 @@ výsledek ve zprávě commitu. Povinné jádro: 1–8, 9 a 11–13a; ostatní po
    `CLAUDE.md` na ni odkáže.
 4. **Hlídací testy architektury** (S) v jednom `tests/architecture.test.js`: žádná podmínka na stát mimo `countries/`,
    žádný nepoužitý export, strop velikosti souboru a funkce; seznam dnešních výjimek, který se smí jen zkracovat.
-5. **`CLAUDE.md` a `pilot/README.md`** (M): nejdřív vypsat všechna pravidla a zákazy (věty s „Bára:“, „nikdy“, „vždy“,
+5. **`CLAUDE.md` a `app/README.md`** (M): nejdřív vypsat všechna pravidla a zákazy (věty s „Bára:“, „nikdy“, „vždy“,
    „před nasazením“) do jednoho oddílu a ten nechat celý; přesouvat jen popis stavu (státy do `docs/countries/<ISO>.md`,
    rozhodnutí do `docs/decisions.md`, README podle témat do `docs/`). Cíl asi 200 řádků; každý řádek původního souboru
    dohledatelný v novém umístění.

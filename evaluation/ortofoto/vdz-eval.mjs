@@ -6,7 +6,7 @@
 //   node evaluation/ortofoto/vdz-eval.mjs
 import fs from "node:fs/promises";
 import path from "node:path";
-import { decodePng } from "../../pilot/public/dmvs.js";
+import { decodePng } from "../../app/public/dmvs.js";
 import { ALL, strip, median, layout, markings } from "./run.mjs";
 import { brightMap, m4, m5 } from "./cary.mjs";
 

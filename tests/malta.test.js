@@ -5,7 +5,7 @@ import assert from "node:assert/strict";
 import fs from "node:fs";
 
 test("Malta: ortofoto 2018 ve stupních (služba nemá Web Mercator)", async () => {
-  const L = await import("../pilot/public/lanes-ortho.js");
+  const L = await import("../app/public/lanes-ortho.js");
   const R = 6378137, lat = 35.8989, lon = 14.5146;
   const x = (R * lon * Math.PI) / 180, y = R * Math.log(Math.tan(Math.PI / 4 + (lat * Math.PI) / 360));
   const u = new URL(L.MT_ORTHO([x - 30, y - 30, x + 30, y + 30], 400, 400));
@@ -15,7 +15,7 @@ test("Malta: ortofoto 2018 ve stupních (služba nemá Web Mercator)", async () 
 });
 
 test("Malta: jízda vlevo, značky, normy, zákon o stání", async () => {
-  const { COUNTRIES } = await import("../pilot/public/countries/index.js");
+  const { COUNTRIES } = await import("../app/public/countries/index.js");
   const MT = COUNTRIES.MT, f = MT.signs.file;
   assert.equal(MT.leftHand, true);
   // Only the signs of S.L. 65.05's Schedule (review of 23. 11. 2026): no one-way sign, no cycle routes, no "except cycles".
@@ -29,10 +29,10 @@ test("Malta: jízda vlevo, značky, normy, zákon o stání", async () => {
   for (const [k, file] of Object.entries(expected)) assert.equal(f({ k }), file, k);
   const licence = JSON.parse(fs.readFileSync(new URL("../evaluation/malta/signs-licence.json", import.meta.url), "utf8"));
   for (const file of [...Object.values(expected), "II.A4", ...[10, 20, 30, 40, 50, 60, 70, 80].map((v) => `II.D1-${v}`)]) {
-    assert.ok(fs.existsSync(new URL(`../pilot/public/signs-MT/${file}.svg`, import.meta.url)), file);
+    assert.ok(fs.existsSync(new URL(`../app/public/signs-MT/${file}.svg`, import.meta.url)), file);
     assert.ok(licence[file], `licence ${file}`);
   }
-  for (const file of fs.readdirSync(new URL("../pilot/public/signs-MT/", import.meta.url))) if (file.endsWith(".svg")) assert.ok(!file.startsWith("UK-"), `${file}: britská značka mimo předpis`);
+  for (const file of fs.readdirSync(new URL("../app/public/signs-MT/", import.meta.url))) if (file.endsWith(".svg")) assert.ok(!file.startsWith("UK-"), `${file}: britská značka mimo předpis`);
   // The files under the Open Government Licence (their credit in the export) are those of signs-licence.json.
   const ogl = Object.entries(JSON.parse(fs.readFileSync(new URL("../evaluation/malta/signs-licence.json", import.meta.url), "utf8"))).filter(([, v]) => /OGL/.test(v.lic)).map(([k]) => k).sort();
   assert.deepEqual([...MT.signs.ogl].sort(), ogl);
@@ -53,9 +53,9 @@ test("Malta: jízda vlevo, značky, normy, zákon o stání", async () => {
 });
 
 test("Malta: stát podle hranic (Malta, Gozo, Comino)", async () => {
-  const C = await import("../pilot/public/city.js");
-  C.loadBounds(JSON.parse(fs.readFileSync(new URL("../pilot/public/mesta.json", import.meta.url), "utf8")));
-  C.loadStates(JSON.parse(fs.readFileSync(new URL("../pilot/public/staty.json", import.meta.url), "utf8")));
+  const C = await import("../app/public/city.js");
+  C.loadBounds(JSON.parse(fs.readFileSync(new URL("../app/public/mesta.json", import.meta.url), "utf8")));
+  C.loadStates(JSON.parse(fs.readFileSync(new URL("../app/public/staty.json", import.meta.url), "utf8")));
   assert.equal(C.cityAt(35.8989, 14.5146), "malta"); // Valletta
   assert.equal(C.cityAt(36.0443, 14.2397), "malta"); // Victoria, Gozo
   assert.equal(C.cityAt(36.0128, 14.3368), "malta"); // Comino
@@ -64,8 +64,8 @@ test("Malta: stát podle hranic (Malta, Gozo, Comino)", async () => {
 
 // The whole profile with the state malta (review of 23. 11. 2026, finding 4): a measured roadway, the parking estimate.
 test("Malta: odhad stání podle zákona nechává pruhy aspoň 2,5 m a stání vlevo", async () => {
-  const C = await import("../pilot/public/city.js");
-  const { localFrame, deriveProfile, mtvuPolygons } = await import("../pilot/public/derive.js");
+  const C = await import("../app/public/city.js");
+  const { localFrame, deriveProfile, mtvuPolygons } = await import("../app/public/derive.js");
   const was = C.city.id;
   C.setCity("malta");
   const cut = (tags, road) => {

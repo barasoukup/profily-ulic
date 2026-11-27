@@ -1,4 +1,4 @@
-# Publishes the app (pilot/public) on GitHub Pages as a static site: the browser asks IPR, the cities'
+# Publishes the app (app/public) on GitHub Pages as a static site: the browser asks IPR, the cities'
 # GIS and ČÚZK directly, and the OSM tiles of the states are built apart once a week (osm-tiles.yml, onto Cloudflare
 # R2, data.streetspace.eu), the files of the states listed for Pages (tools/countries.mjs) copied here as a fallback.
 # Runs on push to main, by hand, and weekly after the tiles (osm-tiles.yml starts it).
@@ -208,7 +208,7 @@ jobs:
           DK_TOKEN: ${{ vars.DK_TOKEN }} # Dataforsyningen token (Denmark's orthophoto and address search; public in the page by design); empty → the estimate from OSM
         run: |
           mkdir -p _site/data
-          cp -R pilot/public/. _site/
+          cp -R app/public/. _site/
           sed -i 's/export const STATIC = false;/export const STATIC = true;/' _site/config.js
           grep -q "STATIC = true" _site/config.js
           # The key goes in as a JSON string (any characters are safe); GitHub masks it in the log.
@@ -241,7 +241,7 @@ jobs:
           node tools/build_city_site.mjs _site
           cat > _site/data/README.txt <<'EOF'
           data/osm-pack: dlaždice odvozené z OpenStreetMap (výřezy Geofabrik Česká republika a Slovensko; Rakousko jen na R2), jeden
-          soubor na stát (index.json, formát v pilot/public/osmpack.js); tytéž soubory jsou na data.streetspace.eu/osm.
+          soubor na stát (index.json, formát v app/public/osmpack.js); tytéž soubory jsou na data.streetspace.eu/osm.
           © přispěvatelé OpenStreetMap, licence ODbL 1.0 (https://opendatacommons.org/licenses/odbl/).
           Vytvořeno skripty tools/build_osm_data.sh a tools/pack_osm_tiles.mjs v repozitáři této aplikace.
           EOF

@@ -3,7 +3,7 @@
 Spustit server z pracovní kopie s pokusem (z hlavní složky projektu):
 
 ```bash
-PORT=5174 node .claude/worktrees/ortofoto/pilot/server.mjs
+PORT=5174 node .claude/worktrees/ortofoto/app/server.mjs
 ```
 
 Části z ortofota mají ve zdroji „podle čar na ortofotu“ (oranžový proužek pod částí). Odkaz „bez“ (`?orto=0`) ukáže profil podle pravidel. Krajnici dělá i čára u obruby, tedy i úzkou (od 10 cm; Bára 12. 11. 2026).

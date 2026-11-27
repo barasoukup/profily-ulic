@@ -23,7 +23,7 @@ globalThis.OffscreenCanvas = Canvas;
 globalThis.createImageBitmap = async (blob) => ({ width: 256, height: 256, rgb: (await blob.text()).split(",").map(Number) });
 const grey = () => new Response("120,118,115", { status: 200, headers: { "content-type": "image/jpeg" } });
 
-const L = await import("../pilot/public/lanes-ortho.js");
+const L = await import("../app/public/lanes-ortho.js");
 const frameAt = (lon, lat) => ({ toLonLat: (x, y) => [lon + x / (111320 * Math.cos((lat * Math.PI) / 180)), lat + y / 110540] });
 const optsAt = (source, lon, lat) => ({ source, frame: frameAt(lon, lat), dir: [1, 0], t0: -12, t1: 12 });
 const nanShare = (st) => st.L.filter(Number.isNaN).length / st.L.length;
@@ -48,7 +48,7 @@ test("Kypr: chybějící dlaždice (404 u Zelené linie) je neznámá, ne čern�
 });
 
 test("Dánsko: dlaždice 400 je díra NaN, 429 se zeptá ještě jednou", async () => {
-  const K = await import("../pilot/public/keys.js");
+  const K = await import("../app/public/keys.js");
   K.setDkToken("test-token");
   try {
     const opts = optsAt("dk", 12.5685, 55.6761);

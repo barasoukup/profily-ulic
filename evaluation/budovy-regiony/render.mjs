@@ -8,7 +8,7 @@ import { execFileSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
-const ROOT = path.join(HERE, "..", "..", "pilot", "public");
+const ROOT = path.join(HERE, "..", "..", "app", "public");
 class Node {
   constructor(name) { this.name = name; this.attrs = {}; this.children = []; this.text = ""; this.style = {}; this.dataset = {}; this.classList = { add() {}, toggle() {}, contains: () => false }; }
   setAttribute(k, v) { this.attrs[k] = String(v); }
@@ -27,10 +27,10 @@ globalThis.fetch = async (p) => {
   const file = path.join(ROOT, String(p));
   return { ok: fs.existsSync(file), status: 200, text: async () => fs.readFileSync(file, "utf8") };
 };
-const { loadSprites, buildSvg, BUILDING_STYLES } = await import("../../pilot/public/profile.js");
-const cityMod = await import("../../pilot/public/city.js");
+const { loadSprites, buildSvg, BUILDING_STYLES } = await import("../../app/public/profile.js");
+const cityMod = await import("../../app/public/city.js");
 const { setCity } = cityMod;
-const { LOOKS, nordicDetails } = await import("../../pilot/public/house-looks.js");
+const { LOOKS, nordicDetails } = await import("../../app/public/house-looks.js");
 await loadSprites();
 
 // One cell: a house on each side of a narrow street. [title, city, left {look, levels, point}, right {…}]
@@ -74,7 +74,7 @@ SHEETS.mansarda = [
 ];
 // The gables: each form with and without the outline (LOOKS.gables), a Prague tenement beside. The form follows the
 // house's place (houseHash): a point near Amsterdam's or Tallinn's centre giving each form.
-const { houseHash: hh } = await import("../../pilot/public/house-looks.js");
+const { houseHash: hh } = await import("../../app/public/house-looks.js");
 const pointFor = (base, ok) => { for (let i = 1; i < 500; i++) { const p = [base[0] + i * 0.00001, base[1]]; if (ok(hh({ point: p }))) return p; } };
 const AMS = [4.8936, 52.3708], TLL = [24.745, 59.437];
 const trap = pointFor(AMS, (x) => x % 3 === 0), hals = pointFor(AMS, (x) => x % 3 === 1), klok = pointFor(AMS, (x) => x % 3 === 2);
@@ -94,7 +94,7 @@ const FORMS = [["stupňovitý", "stit", trap, "netherlands"], ["krkový", "stit"
 SHEETS["stity-varianty"] = FORMS.flatMap(([name, look, point, cityId]) => [false, true].map((cut) => ({
   ...gab(`${name} · ${cut ? "2/3 (?stit=2/3)" : "celý, souměrný"}`, true, h(look, look === "hanza" ? 3 : 4, cityId === "estonia" ? "tallinn" : "amsterdam", { point }), h("sikma", 5, "praha")),
   cityId, cut })));
-const { houseHash } = await import("../../pilot/public/house-looks.js");
+const { houseHash } = await import("../../app/public/house-looks.js");
 const which = process.argv[2] || "vse";
 for (const [name, cells] of Object.entries(SHEETS)) {
   if (which !== "vse" && which !== name) continue;

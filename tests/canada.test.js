@@ -3,11 +3,11 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
-import "../pilot/public/america.js";
-const read = (f) => JSON.parse(fs.readFileSync(new URL(`../pilot/public/${f}`, import.meta.url), "utf8"));
+import "../app/public/america.js";
+const read = (f) => JSON.parse(fs.readFileSync(new URL(`../app/public/${f}`, import.meta.url), "utf8"));
 
 test("Kanada: Toronto a okolí, zbytek Kanady s hláškou, hranice s USA u Windsoru a Niagary", async () => {
-  const C = await import("../pilot/public/city.js");
+  const C = await import("../app/public/city.js");
   const staty = ({ ...read("staty.json"), ...read("staty-america.json") });
   C.loadBounds(read("mesta.json")); C.loadStates(staty); C.loadTowns(read("mesta-us.json")); C.loadTowns(read("mesta-ca.json"));
   assert.ok(JSON.stringify(staty.canada).length < 10_000);
@@ -36,8 +36,8 @@ const BBOX = [...ll(-30, -1), ...ll(30, 1)].map((v, i) => v + (i < 2 ? -4e-4 : 4
 const codes = (r) => r.features.map((f) => f.attributes.code);
 
 test("Toronto: plochy podél řezu, mezera mezi vozovkami je dělicí pás nebo těleso tramvaje, zálivy u obruby", async () => {
-  const { TORONTO_MAP } = await import("../pilot/public/towns/canada.js");
-  const { planimetricCut } = await import("../pilot/public/towns/planimetrics.js");
+  const { TORONTO_MAP } = await import("../app/public/towns/canada.js");
+  const { planimetricCut } = await import("../app/public/towns/planimetrics.js");
   const cut = (b, s, r, p, osm = [way], tags = way.tags) => planimetricCut(TORONTO_MAP, [esri(b), esri(s), esri(r), esri(p)], osm, BBOX, tags, { way });
   const side = cut([["Building Outline", -20, -12], ["Miscellaneous Structure", 12, 14]], [["Sidewalk", -8, -6], ["Sidewalk", 6, 8]], [["Road Edge", -4.2, 4.2]], []);
   assert.deepEqual(codes(side), [401, 601, 401, 702, 401, 701, 401, 702, 401]);
@@ -59,7 +59,7 @@ test("Toronto: plochy podél řezu, mezera mezi vozovkami je dělicí pás nebo 
 });
 
 test("Toronto: domy podle výšky obrysu", async () => {
-  const { torontoHouse, floorsOf } = await import("../pilot/public/towns/canada.js");
+  const { torontoHouse, floorsOf } = await import("../app/public/towns/canada.js");
   assert.deepEqual([5, 6.5, 8, 11, 40].map((h) => floorsOf(h)), [1, 2, 2, 3, 12]);
   assert.deepEqual(torontoHouse({ SUBTYPE_DESC: "Garage", DERIVED_HEIGHT: 3 }), { type: "garage", garage: true, caHouse: true });
   assert.equal(torontoHouse({ SUBTYPE_DESC: "Building Outline", DERIVED_HEIGHT: 8 }).fromHeight, true);
@@ -67,7 +67,7 @@ test("Toronto: domy podle výšky obrysu", async () => {
 });
 
 test("Severní Amerika se načítá, až když tam řez nebo mapa je (late.js)", async () => {
-  const L = await import("../pilot/public/late.js");
+  const L = await import("../app/public/late.js");
   const staty = read("staty.json"), far = read("staty-america.json");
   assert.deepEqual(Object.keys(far).sort(), ["canada", "closed_ca", "closed_us", "usa"]);
   assert.ok(!Object.keys(staty).some((id) => id in far));
@@ -75,7 +75,7 @@ test("Severní Amerika se načítá, až když tam řez nebo mapa je (late.js)",
   for (const rings of Object.values(far)) for (const [x, y] of rings.flat()) assert.ok(L.isLate(y, x) || x < -169 || x > 170, `${x},${y}`);
   for (const [id, rings] of Object.entries(staty)) for (const [x, y] of rings.flat()) assert.ok(!L.isLate(y, x), `${id} ${x},${y}`);
   // No module of the app's start imports America's.
-  const dir = new URL("../pilot/public/", import.meta.url), seen = new Set();
+  const dir = new URL("../app/public/", import.meta.url), seen = new Set();
   const walk = (u) => { if (seen.has(u.href)) return; seen.add(u.href); for (const m of fs.readFileSync(u, "utf8").matchAll(/^\s*(?:import|export)\b[^;'"]*?["'](\.[^"']+\.js)["']/gm)) walk(new URL(m[1], u)); };
   walk(new URL("app.js", dir));
   for (const f of ["america.js", "countries/US.js", "countries/CA.js", "towns/usa.js", "towns/canada.js", "towns/planimetrics.js", "houses-america.js", "house-looks-america.js"]) assert.ok(!seen.has(new URL(f, dir).href), f);
@@ -96,8 +96,8 @@ test("Severní Amerika se načítá, až když tam řez nebo mapa je (late.js)",
 });
 
 test("Toronto: koleje v tunelu nejsou na povrchu, cyklostezka jako tag silnice u obruby, ulička vedle parkoviště", async () => {
-  const { TORONTO_MAP } = await import("../pilot/public/towns/canada.js");
-  const { planimetricCut } = await import("../pilot/public/towns/planimetrics.js");
+  const { TORONTO_MAP } = await import("../app/public/towns/canada.js");
+  const { planimetricCut } = await import("../app/public/towns/planimetrics.js");
   const cut = (b, s, r, p, osm = [way], w = way) => planimetricCut(TORONTO_MAP, [esri(b), esri(s), esri(r), esri(p)], osm, BBOX, w.tags, { way: w });
   const two = [["Road Edge", -12, -5], ["Road Edge", 5, 12]], under = { ...tram(0), tags: { railway: "tram", tunnel: "yes", layer: "-1" } };
   assert.deepEqual(codes(cut([], [], two, [], [way, under])), [401, 701, 9950, 701, 401]);

@@ -1,12 +1,12 @@
 // Every set's lamps before and after (the drawn SVGs of heights 3–10 m and the usual one, on either side and in a median,
-// with trams): OLD=<old pilot/public> node compare-lamps.mjs. The sets of the USA differ as meant, no other may.
+// with trams): OLD=<old app/public> node compare-lamps.mjs. The sets of the USA differ as meant, no other may.
 import path from "node:path";
 import fs from "node:fs";
 import { createHash } from "node:crypto";
 import { execFileSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
-const ME = fileURLToPath(import.meta.url), NEW = path.join(path.dirname(ME), "../../../pilot/public");
-if (!process.env.ONE && !process.env.OLD) throw new Error("OLD=<old pilot/public>");
+const ME = fileURLToPath(import.meta.url), NEW = path.join(path.dirname(ME), "../../../app/public");
+if (!process.env.ONE && !process.env.OLD) throw new Error("OLD=<old app/public>");
 if (!process.env.ONE) {
   const run = (pub) => JSON.parse(execFileSync("node", [ME], { env: { ...process.env, ONE: pub }, maxBuffer: 1e9 }).toString());
   const a = run(process.env.OLD), b = run(NEW);

@@ -3,7 +3,7 @@
 // kerbs and facades of Prague's and Brno's cuts, ČÚZK 12.5 cm (the fallback's orthophoto) and the cities' 10 cm.
 //   node evaluation/ortofoto-osm/zelen.mjs
 import { cuts, truthOf, stripOf } from "./lib.mjs";
-import { columns } from "../../pilot/public/ortho-osm.js";
+import { columns } from "../../app/public/ortho-osm.js";
 for (const [city, keys] of [["praha", ["cuzk12", "ipr10"]], ["brno", ["cuzk12", "brno10"]]]) for (const key of keys) {
   const rows = [];
   for (const c of await cuts(city)) {

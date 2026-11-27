@@ -4,8 +4,8 @@
 // photo can show: lanes, parking per side, cycle facilities, tram, sidewalk per side, trees, median.
 //   node evaluation/streetview/pilot-data.mjs > evaluation/streetview/pilot.json
 import { cuts, osmAround, stripOf } from "../ortofoto-osm/lib.mjs";
-import { orthoOsmPolys } from "../../pilot/public/ortho-osm.js";
-import { localFrame, deriveProfile } from "../../pilot/public/derive.js";
+import { orthoOsmPolys } from "../../app/public/ortho-osm.js";
+import { localFrame, deriveProfile } from "../../app/public/derive.js";
 
 const LANE = new Set(["pruh", "pruh_piktokoridor", "bus", "bus_cyklo", "tramvaj_v_pruhu", "obsluzna"]);
 const ROAD = new Set([...LANE, "tramvaj_pruh", "krajnice", "parkovani", "cyklopruh", "ochranny_pruh"]);

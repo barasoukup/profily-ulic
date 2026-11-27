@@ -26,7 +26,7 @@ function limitsLU(s) {
   }
 }
 
-// The signs of the state LU (pilot/public/signs-LU/, README there; Code de la route, arrêté grand-ducal of
+// The signs of the state LU (app/public/signs-LU/, README there; Code de la route, arrêté grand-ducal of
 // 23. 11. 1955; Wikimedia Commons, public domain and CC BY-SA 4.0 by GilPe). Speed signs exist only for 50 and 70.
 const LU_FILE = { b1: "C_2", b11: "C_3a", b8: "C_3c", b30: "C_3g", b28: "C_19", b29: "C_18", ip11a: "E_23", ip14a: "E_15", ip15a: "E_17",
   ip20a: "D_10", zona30: "H_1_1", ip26a: "E_25a", ip27a: "E_27a", c8a: "D_4", c9a: "D_5b", c10a: "D_5a", c7a: "D_5" };

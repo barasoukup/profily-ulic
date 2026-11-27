@@ -1,6 +1,6 @@
 # Most nad vodou a zelení: slepé přeměření (26. 11. 2026)
 
-Přeměření změny „ulice na mostě nebere vodu ani zeleň OSM pod sebou“ (`pilot/public/ortho-osm.js` u `overGround`,
+Přeměření změny „ulice na mostě nebere vodu ani zeleň OSM pod sebou“ (`app/public/ortho-osm.js` u `overGround`,
 `?off=mostvoda` = dřív; `../ZPRAVA.md`). Recenze vytkla, že dosavadní 18 : 0 nebylo slepé, řádky nejsou uložené a měřily
 se jen mosty nad vodou, ačkoli změna zahazuje i zeleň. Kód zmrazený: větev `canada` a1e594d (větev `measure-1126`), aplikace
 se neměnila, nové jsou jen skripty v této složce.

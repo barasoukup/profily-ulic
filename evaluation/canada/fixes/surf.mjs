@@ -8,10 +8,10 @@ const W = new URL("../../../", import.meta.url).pathname, SP = W + "evaluation/c
 fs.mkdirSync(SP, { recursive: true });
 globalThis.PROFILY_US = {}; globalThis.PROFILY_CA = {};
 const { osmAt } = await import(W + "evaluation/kliky/osm.mjs");
-const usa = await import(W + "pilot/public/towns/usa.js");
-const ca = await import(W + "pilot/public/towns/canada.js");
-const P = await import(W + "pilot/public/towns/planimetrics.js");
-const { cutOfBox } = await import(W + "pilot/public/towns/belgium.js");
+const usa = await import(W + "app/public/towns/usa.js");
+const ca = await import(W + "app/public/towns/canada.js");
+const P = await import(W + "app/public/towns/planimetrics.js");
+const { cutOfBox } = await import(W + "app/public/towns/belgium.js");
 const args = process.argv.slice(2), idsAt = args.indexOf("--ids"), ids = idsAt >= 0 ? new Set(args[idsAt + 1].split(",")) : null;
 const [file, ...vs] = args.filter((_, i) => idsAt < 0 || (i !== idsAt && i !== idsAt + 1));
 const raw = JSON.parse(fs.readFileSync(file, "utf8")), sample = (Array.isArray(raw) ? raw : raw.rows).filter((s) => !ids || ids.has(s.id));

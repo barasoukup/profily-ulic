@@ -39,7 +39,7 @@ if (!process.env.PROFILY_LANG) {
 }
 
 // ROOT: the app of another checkout (the code before a change); the snapshots stay here.
-const PUB = path.join(process.env.ROOT || path.join(HERE, "..", ".."), "pilot", "public");
+const PUB = path.join(process.env.ROOT || path.join(HERE, "..", ".."), "app", "public");
 const imp = (f) => import(path.join(PUB, f));
 const C = await imp("city.js");
 const { CITY_IDS, setCity, city, creditLines, cityAt, loadBounds, loadStates, loadSkTowns } = C;

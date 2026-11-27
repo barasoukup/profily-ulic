@@ -1,5 +1,5 @@
---- a/pilot/public/derive.js
-+++ b/pilot/public/derive.js
+--- a/app/public/derive.js
++++ b/app/public/derive.js
 @@ -331,20 +331,31 @@
      }
    };

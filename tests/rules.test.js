@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { checkRules } from "../pilot/public/rules.js";
+import { checkRules } from "../app/public/rules.js";
 
 const levels = (segments) => checkRules({ segments }).map((f) => `${f.i}:${f.level}`);
 
@@ -62,7 +62,7 @@ test("ochranný cyklopruh: základ 1,5 m, pod 1,25 m červeně, vedle stání ja
 });
 
 test("Slovensko: pravidla podle TP 117 (cyklopruh 1,75 m, bus s cyklisty mimo 3,5–4,75 m, chodník 1,3 m)", async () => {
-  const { setCity } = await import("../pilot/public/city.js");
+  const { setCity } = await import("../app/public/city.js");
   setCity("slovensko");
   const at = (segments) => checkRules({ segments }).map((w) => w.level);
   assert.deepEqual(at([{ type: "cyklopruh", width: 1.5 }]), ["min"]);
@@ -77,8 +77,8 @@ test("Slovensko: pravidla podle TP 117 (cyklopruh 1,75 m, bus s cyklisty mimo 3,
 });
 
 test("Rakousko (AT): dálnice bez červené, místní ulice 2,5 m, cyklopruh 1,5 / 2 m vedle stání, tramvaj 6,6 m", async () => {
-  const C = await import("../pilot/public/city.js");
-  const { osmGroup } = await import("../pilot/public/derive.js");
+  const C = await import("../app/public/city.js");
+  const { osmGroup } = await import("../app/public/derive.js");
   C.setCity("austria");
   try {
     assert.equal(osmGroup("motorway_link"), "dalnice");
@@ -93,7 +93,7 @@ test("Rakousko (AT): dálnice bez červené, místní ulice 2,5 m, cyklopruh 1,5
 });
 
 test("Vídeň: třídy FMZK na plochy, podloubí podle plochy pod ním", async () => {
-  const { fmzkCode } = await import("../pilot/public/towns/austria.js");
+  const { fmzkCode } = await import("../app/public/towns/austria.js");
   assert.equal(fmzkCode({ F_KLASSE: 21 }), 701);
   assert.equal(fmzkCode({ F_KLASSE: 23 }), 702);
   assert.equal(fmzkCode({ F_KLASSE: 25 }), 702);
@@ -105,8 +105,8 @@ test("Vídeň: třídy FMZK na plochy, podloubí podle plochy pod ním", async (
 });
 
 test("Německo (DE): pruh místní ulice bez varování (zdroj nenalezen), Radfahrstreifen 1,5 / 1,85, chodník 1,8 / 2,5, tramvajový pás bez varování", async () => {
-  const C = await import("../pilot/public/city.js");
-  const { osmGroup } = await import("../pilot/public/derive.js");
+  const C = await import("../app/public/city.js");
+  const { osmGroup } = await import("../app/public/derive.js");
   C.setCity("germany");
   try {
     assert.deepEqual(levels([{ type: "pruh", width: 2.4, roadClass: osmGroup("residential") }]), [], "bez zdroje bez varování");

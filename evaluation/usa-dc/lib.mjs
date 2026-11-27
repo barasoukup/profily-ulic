@@ -5,8 +5,8 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 import crypto from "node:crypto";
-import { TILE, decodeTile, mergePieces } from "../../pilot/public/osmtile.js";
-import { localFrame, nearestStreet, awayFromJunctions, centerOnStreet } from "../../pilot/public/derive.js";
+import { TILE, decodeTile, mergePieces } from "../../app/public/osmtile.js";
+import { localFrame, nearestStreet, awayFromJunctions, centerOnStreet } from "../../app/public/derive.js";
 
 export const ROOT = path.dirname(new URL(import.meta.url).pathname);
 export const DATA = path.join(ROOT, "data");

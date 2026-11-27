@@ -5,9 +5,9 @@ import assert from "node:assert/strict";
 import fs from "node:fs";
 
 test("Itálie: jen oblasti s ortofotem s otevřenou licencí, jinde (i Vatikán a San Marino) bez profilu", async () => {
-  const C = await import("../pilot/public/city.js");
-  C.loadBounds(JSON.parse(fs.readFileSync(new URL("../pilot/public/mesta.json", import.meta.url), "utf8")));
-  C.loadStates(JSON.parse(fs.readFileSync(new URL("../pilot/public/staty.json", import.meta.url), "utf8")));
+  const C = await import("../app/public/city.js");
+  C.loadBounds(JSON.parse(fs.readFileSync(new URL("../app/public/mesta.json", import.meta.url), "utf8")));
+  C.loadStates(JSON.parse(fs.readFileSync(new URL("../app/public/staty.json", import.meta.url), "utf8")));
   // Lombardy by its DBT (Milan, Campione d'Italia inside Switzerland).
   for (const [lat, lon] of [[44.4949, 11.3426], [44.6471, 10.9252], [45.0703, 7.6869], [46.4983, 11.3548], [46.6713, 11.159], [45.4642, 9.19], [45.6950, 9.67], [45.9690, 8.9710]]) assert.equal(C.cityAt(lat, lon), "italy", `${lat},${lon}`);
   // Rome, Genoa (Liguria), Novara (Piedmont by the Ticino), Verona (Veneto), Bari, the Vatican, San Marino.
@@ -16,14 +16,14 @@ test("Itálie: jen oblasti s ortofotem s otevřenou licencí, jinde (i Vatikán 
     assert.match(C.closedAt(lat, lon) || "", /Itálii/, `bez profilu ${lat},${lon}`);
   }
   assert.equal(C.closedAt(44.494, 11.343), null, "Bologna");
-  const L = await import("../pilot/public/lanes-ortho.js");
+  const L = await import("../app/public/lanes-ortho.js");
   assert.deepEqual(L.itOrthoAt(11.3426, 44.4949), ["it-bo"]);
   assert.deepEqual(L.itOrthoAt(11.3548, 46.4983), ["it-bz"]);
   assert.deepEqual(L.itOrthoAt(12.4964, 41.9028), [], "Řím: jen AGEA");
 });
 
 test("Itálie: budovy Bologni (výška → podlaží), mapa povrchů vypnutá", async () => {
-  const I = await import("../pilot/public/towns/italy.js");
+  const I = await import("../app/public/towns/italy.js");
   assert.deepEqual(I.bolognaBuilding({ altezza_gr: 19.2, descrizion: "Edificio generico" }), { type: undefined, cornice: 6, total: 6, roof: 0, height: 19.2 });
   assert.equal(I.bolognaBuilding({ altezza_gr: 25, descrizion: "Chiesa" }).type, "church");
   assert.deepEqual(I.bolognaBuilding({ altezza_gr: 6, descrizion: "Portico" }), {});
@@ -34,7 +34,7 @@ test("Itálie: budovy Bologni (výška → podlaží), mapa povrchů vypnutá", 
 });
 
 test("Itálie: značky a normy", async () => {
-  const { COUNTRIES } = await import("../pilot/public/countries/index.js");
+  const { COUNTRIES } = await import("../app/public/countries/index.js");
   const IT = COUNTRIES.IT, f = IT.signs.file;
   assert.equal(f({ k: "oneway", dir: "forward" }), "II-349");
   assert.equal(f({ k: "oneway", dir: "backward", plate: "protismer" }), "II-47-plus-II-4b");
@@ -42,15 +42,15 @@ test("Itálie: značky a normy", async () => {
   assert.equal(IT.signs.label({ k: "zona30" }, null, "IZ 8a Zóna s dopravním omezením"), "II.323/a Zóna s dopravním omezením");
   for (const k of ["b1", "b11", "b8", "b30", "b28", "b29", "ip11a", "ztp", "ip14a", "ip15a", "zona30", "ip26a", "ip27a", "c8a", "c9a", "c10a", "c7a"]) {
     const file = f({ k });
-    assert.ok(file && fs.existsSync(new URL(`../pilot/public/signs-IT/${file}.svg`, import.meta.url)), `${k}: ${file}`);
+    assert.ok(file && fs.existsSync(new URL(`../app/public/signs-IT/${file}.svg`, import.meta.url)), `${k}: ${file}`);
   }
-  for (const v of [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130]) assert.ok(fs.existsSync(new URL(`../pilot/public/signs-IT/II-50-${v}.svg`, import.meta.url)), `${v}`);
+  for (const v of [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130]) assert.ok(fs.existsSync(new URL(`../app/public/signs-IT/II-50-${v}.svg`, import.meta.url)), `${v}`);
   assert.equal(f({ k: "ip20a" }), null, "vyhrazený pruh je panel Uso corsie, kresba chybí");
   assert.equal(IT.limits({ type: "chodnik" }).min, 0.9);
 });
 
 test("Itálie: ortofoto Turína a Modeny i v severních exklávách Modeny", async () => {
-  const L = await import("../pilot/public/lanes-ortho.js");
+  const L = await import("../app/public/lanes-ortho.js");
   assert.deepEqual(L.itOrthoAt(7.6869, 45.0703), ["it-to"]);
   assert.deepEqual(L.itOrthoAt(10.9252, 44.6471), ["it-mo"]);
   assert.deepEqual(L.itOrthoAt(10.89281, 44.74047), ["it-mo"], "exkláva Modeny");
@@ -60,9 +60,9 @@ test("Itálie: ortofoto Turína a Modeny i v severních exklávách Modeny", asy
 // GISCO's 1 : 1 000 000 placed wrong; every point of the covered area lies in its orthophoto's box; Turin's credit in
 // the Geoportale's wording.
 test("Itálie: hranice obcí ISTAT, ortofoto pokrývá celé území, kredit Turína", async () => {
-  const C = await import("../pilot/public/city.js");
-  C.loadBounds(JSON.parse(fs.readFileSync(new URL("../pilot/public/mesta.json", import.meta.url), "utf8")));
-  const staty = JSON.parse(fs.readFileSync(new URL("../pilot/public/staty.json", import.meta.url), "utf8"));
+  const C = await import("../app/public/city.js");
+  C.loadBounds(JSON.parse(fs.readFileSync(new URL("../app/public/mesta.json", import.meta.url), "utf8")));
+  const staty = JSON.parse(fs.readFileSync(new URL("../app/public/staty.json", import.meta.url), "utf8"));
   C.loadStates(staty);
   const inside = [[45.1387, 7.66514], [45.09861, 7.7503], [45.0192, 7.59288], [44.72488, 10.89973], [44.62863, 10.99276], [44.61059, 10.82662],
     [44.5509, 11.3758], [44.4444, 11.35468], [44.49141, 11.26779], [44.73113, 10.8926], [44.74047, 10.89281]];
@@ -73,9 +73,9 @@ test("Itálie: hranice obcí ISTAT, ortofoto pokrývá celé území, kredit Tur
     assert.equal(C.cityAt(lat, lon), "cizina", `venku ${lat},${lon}`);
     assert.match(C.closedAt(lat, lon) || "", /Itálii/, `bez profilu ${lat},${lon}`);
   }
-  const L = await import("../pilot/public/lanes-ortho.js");
+  const L = await import("../app/public/lanes-ortho.js");
   // Lombardy has the DBT, no orthophoto (towns/lombardy.js).
-  const { inLombardy } = await import("../pilot/public/towns/lombardy.js");
+  const { inLombardy } = await import("../app/public/towns/lombardy.js");
   // Every point outside Lombardy has an orthophoto; inside it none (Bolzano's box reaches in: Ponte di Legno, Valfurva;
   // the review of 24. 11. 2026), and the kerb model is not loaded there (lanes-ortho.js orthoHereAt).
   for (const ring of staty.italy) for (const [lon, lat] of ring) if (!inLombardy(lon, lat)) assert.ok(L.itOrthoAt(lon, lat).length, `mimo obdélníky ortofot ${lon},${lat}`);
@@ -87,12 +87,12 @@ test("Itálie: hranice obcí ISTAT, ortofoto pokrývá celé území, kredit Tur
   assert.equal(L.orthoHereAt("none", 25.28, 54.69), false, "Litva");
   assert.equal(L.orthoHereAt("fi", 23.76, 61.5), false, "Tampere");
   assert.equal(L.orthoHereAt("cuzk", 14.42, 50.08), true);
-  const { SOURCE_CREDITS } = await import("../pilot/public/credits.js");
+  const { SOURCE_CREDITS } = await import("../app/public/credits.js");
   assert.match(SOURCE_CREDITS.orthoCity["it-to"](), /Base cartografica realizzata da .+, integrata con Ortofoto digitale colore 2023 della Città di Torino reperiti sul Geoportale del Comune di Torino/);
 });
 
 test("Itálie: výpadek ortofota se ohlásí (jako Belgie a Portugalsko)", async () => {
-  const L = await import("../pilot/public/lanes-ortho.js");
+  const L = await import("../app/public/lanes-ortho.js");
   const lon0 = 11.3426, lat0 = 44.4949, k = Math.cos((lat0 * Math.PI) / 180);
   const frame = { toLonLat: (x, y) => [lon0 + x / (111320 * k), lat0 + y / 110574] };
   const down = async () => ({ ok: false, status: 503 });
@@ -112,7 +112,7 @@ function stubFetch(answers) {
 }
 
 test("Itálie: mapa povrchů Bologni s ?bologna=1 (pořadí os, stránkování, výpadek)", async () => {
-  const I = await import("../pilot/public/towns/italy.js");
+  const I = await import("../app/public/towns/italy.js");
   globalThis.PROFILY_IT = { bologna: "1" };
   try {
     // A road area far from the cut's centre: asked lat-first in in_bbox, two pages, then nothing at the centre.
@@ -132,7 +132,7 @@ test("Itálie: mapa povrchů Bologni s ?bologna=1 (pořadí os, stránkování, 
 });
 
 test("Itálie: budovy Bologni pod podloubím a nejvyšší z více", async () => {
-  const I = await import("../pilot/public/towns/italy.js");
+  const I = await import("../app/public/towns/italy.js");
   const s = stubFetch([{ json: { results: [{ altezza_gr: 9.6, descrizion: "Edificio" }, { altezza_gr: 16, descrizion: "Edificio" }, { altezza_gr: 30, descrizion: "Portico" }] } }]);
   try {
     assert.equal((await I.sources.podlaznost(44.4938, 11.3426)).cornice, 5);
@@ -146,7 +146,7 @@ test("Itálie: budovy Bologni pod podloubím a nejvyšší z více", async () =>
 });
 
 test("Itálie: značky s tabulkami a popisky", async () => {
-  const { COUNTRIES } = await import("../pilot/public/countries/index.js");
+  const { COUNTRIES } = await import("../app/public/countries/index.js");
   const IT = COUNTRIES.IT, f = IT.signs.file, label = IT.signs.label;
   assert.equal(f({ k: "ip27a", plate: "kola" }), "II-320", "pěší zóna kola pouští sama");
   assert.equal(f({ k: "b1", plate: "obsluha" }), null);
@@ -158,7 +158,7 @@ test("Itálie: značky s tabulkami a popisky", async () => {
 });
 
 test("Itálie: normy podle třídy ulice, cyklostezky, společná stezka, BUS", async () => {
-  const { COUNTRIES } = await import("../pilot/public/countries/index.js");
+  const { COUNTRIES } = await import("../app/public/countries/index.js");
   const lim = COUNTRIES.IT.limits;
   assert.equal(lim({ type: "pruh", roadClass: "mk2" }, [], 0).zaklad, 3, "primary/secondary = E");
   assert.equal(lim({ type: "pruh", roadClass: "dalnice" }, [], 0).zaklad, 3.25, "trunk ve městě = D");
@@ -177,7 +177,7 @@ test("Itálie: normy podle třídy ulice, cyklostezky, společná stezka, BUS", 
 // Lombardy's DBT (Bára 24. 11. 2026; towns/lombardy.js): the region told from South Tyrol and Modena, the kinds of the
 // layers, one identify request, the map only with a street surface at the centre, an outage told.
 test("Lombardie: území, druhy ploch DBT, identify, výpadek", async () => {
-  const B = await import("../pilot/public/towns/lombardy.js");
+  const B = await import("../app/public/towns/lombardy.js");
   const L = JSON.parse(fs.readFileSync(new URL("../tools/lombardy-border.json", import.meta.url), "utf8"));
   const I = JSON.parse(fs.readFileSync(new URL("../tools/italy-border.json", import.meta.url), "utf8"));
   // Vertices farther than 800 m from the other boundary (at the Stelvio the two sources differ by some hundred metres).

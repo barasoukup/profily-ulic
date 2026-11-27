@@ -5,7 +5,7 @@
 //   node evaluation/town_prep.mjs slapanice 583952  (by the RÚIAN code)
 import fs from "node:fs";
 import path from "node:path";
-import { decodeTile, mergePieces, TILE } from "../pilot/public/osmtile.js";
+import { decodeTile, mergePieces, TILE } from "../app/public/osmtile.js";
 
 const [city, name] = process.argv.slice(2);
 if (!city || !name) throw new Error("node evaluation/town_prep.mjs <city> <název obce>");
@@ -21,7 +21,7 @@ fs.writeFileSync(path.join(DATA, `${city}_hranice.geojson`), JSON.stringify(bord
 const pts = border.features.flatMap((f) => (f.geometry.type === "Polygon" ? [f.geometry.coordinates] : f.geometry.coordinates)).flat(2);
 const xs = pts.map((p) => p[0]), ys = pts.map((p) => p[1]);
 
-const TILES = path.join(ROOT, "..", "pilot", "data", "osm-tiles");
+const TILES = path.join(ROOT, "..", "app", "data", "osm-tiles");
 const lists = [];
 for (let x = Math.floor(Math.min(...xs) / TILE); x <= Math.floor(Math.max(...xs) / TILE); x++) {
   for (let y = Math.floor(Math.min(...ys) / TILE); y <= Math.floor(Math.max(...ys) / TILE); y++) {

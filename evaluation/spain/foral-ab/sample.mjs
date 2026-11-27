@@ -9,8 +9,8 @@
 //   around (one request a point, a pause of 1.5 s); no OSM facts.
 //   node evaluation/spain/foral-ab/sample.mjs > evaluation/spain/foral-ab/sample.json
 import fs from "node:fs";
-import { buildingAt, localFrame } from "../../../pilot/public/derive.js";
-import { FORAL } from "../../../pilot/public/towns/spain-foral.js";
+import { buildingAt, localFrame } from "../../../app/public/derive.js";
+import { FORAL } from "../../../app/public/towns/spain-foral.js";
 
 const DIR = new URL("./data/", import.meta.url);
 let seed = 20261127;

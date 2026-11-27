@@ -1,7 +1,7 @@
 // Helsinki's border for towns/finland.js (the review of 24. 11. 2026, bod 7: the box took parts of Espoo and Vantaa):
 // the city's 60 districts with their waters (kartta.hel.fi WFS avoindata:Kaupunginosajako, CC BY 4.0 Helsingin
 // kaupunki), merged into the city's outline (the districts share their vertices: an edge two districts have goes) and
-// simplified to TOL m. Writes pilot/public/towns/finland-helsinki.js.
+// simplified to TOL m. Writes app/public/towns/finland-helsinki.js.
 //   node evaluation/finland/border/helsinki.mjs [cached.json]
 import fs from "node:fs";
 const TOL = 5;
@@ -57,6 +57,6 @@ function dp(pts) {
 }
 const out = rings.map((r) => dp(r.slice(0, -1).concat([r[0]]))).filter((r) => r.length >= 4).map((r) => r.map(([x, y]) => [+x.toFixed(6), +y.toFixed(6)]));
 const n = out.reduce((a, r) => a + r.length, 0);
-fs.writeFileSync(new URL("../../../pilot/public/towns/finland-helsinki.js", import.meta.url),
+fs.writeFileSync(new URL("../../../app/public/towns/finland-helsinki.js", import.meta.url),
   `// Helsinki's border with its waters (evaluation/finland/border/helsinki.mjs: the city's districts, kartta.hel.fi WFS\n// avoindata:Kaupunginosajako, CC BY 4.0 Helsingin kaupunki, merged and simplified to ${TOL} m; ${out.length} rings, ${n} points).\nexport const HELSINKI_RINGS = ${JSON.stringify(out)};\n`);
 console.log(rings.length, "rings", out.length, "kept", n, "points");

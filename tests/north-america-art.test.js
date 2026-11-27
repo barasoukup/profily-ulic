@@ -1,14 +1,14 @@
-// The furniture of North America (pilot/public/northamerica/, Bára 25. 11. 2026): the USA draws it, Washington its own
+// The furniture of North America (app/public/northamerica/, Bára 25. 11. 2026): the USA draws it, Washington its own
 // stop; every file of both sets exists.
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
-import "../pilot/public/america.js";
-const read = (f) => JSON.parse(fs.readFileSync(new URL(`../pilot/public/${f}`, import.meta.url), "utf8"));
+import "../app/public/america.js";
+const read = (f) => JSON.parse(fs.readFileSync(new URL(`../app/public/${f}`, import.meta.url), "utf8"));
 
 test("USA kreslí severoamerický mobiliář, Washington svůj označník, společnou lampu a do 5 m svůj glóbus", async () => {
-  const C = await import("../pilot/public/city.js");
-  const P = await import("../pilot/public/profile.js");
+  const C = await import("../app/public/city.js");
+  const P = await import("../app/public/profile.js");
   C.loadBounds(read("mesta.json")); C.loadStates(({ ...read("staty.json"), ...read("staty-america.json") })); C.loadTowns(read("mesta-us.json"));
   // The White House is Washington; Silver Spring and Arlington are the closed USA since 26. 11. 2026 (the District only).
   assert.equal(C.cityAt(38.8977, -77.0365), "washington");
@@ -24,18 +24,18 @@ test("USA kreslí severoamerický mobiliář, Washington svůj označník, spole
   assert.equal(art("washington")["stop-post-left"], "oznacnik-left");
   assert.equal(art("washington")["bench-center"], "../northamerica/bench-center");
   for (const id of ["usa", "washington"]) for (const f of Object.values(art(id))) {
-    assert.ok(fs.existsSync(new URL(`../pilot/public/${id}/${f}.svg`.replace(`${id}/../`, ""), import.meta.url)), `${id} ${f}`);
+    assert.ok(fs.existsSync(new URL(`../app/public/${id}/${f}.svg`.replace(`${id}/../`, ""), import.meta.url)), `${id} ${f}`);
   }
 });
 
 test("USA kreslí Metrobus, tramvaj neutrální; vozidla dalších měst mají soubory", async () => {
-  const P = await import("../pilot/public/profile.js");
-  const { NORTH_AMERICA_VEHICLES } = await import("../pilot/public/art.js");
+  const P = await import("../app/public/profile.js");
+  const { NORTH_AMERICA_VEHICLES } = await import("../app/public/art.js");
   // Metrobus in the whole metro (WMATA runs in the suburbs too).
   assert.equal(P.artSet("washington")["bus-inbound"], "../washington/bus-inbound");
   assert.equal(P.artSet("washington")["streetcar-inbound"], "../generic/tram-inbound");
   assert.equal(P.artSet("usa")["bus-inbound"], "../washington/bus-inbound");
-  const file = (town, f) => new URL(`../pilot/public/${town}/${f}.svg`, import.meta.url);
+  const file = (town, f) => new URL(`../app/public/${town}/${f}.svg`, import.meta.url);
   for (const [town, map] of Object.entries(NORTH_AMERICA_VEHICLES)) for (const f of Object.values(map)) assert.ok(fs.existsSync(file(town, f)), `${town}/${f}`);
   for (const f of ["bus-inbound", "bus-outbound"]) assert.ok(fs.existsSync(file("washington", f)));
 });

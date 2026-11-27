@@ -1,6 +1,6 @@
 // The boundaries of Germany's Länder (Bára 17. 11. 2026), so a cut in Germany asks the orthophoto of its Land
 // (lanes-ortho.js DE_ORTHO): Eurostat GISCO NUTS 2024 level 1 at 1 : 1 000 000 (© EuroGeographics), rounded to about
-// 100 m. Near a border the next Land is tried too (lanes-ortho.js). Written into pilot/public/laender.json and kept in
+// 100 m. Near a border the next Land is tried too (lanes-ortho.js). Written into app/public/laender.json and kept in
 // the repository: node tools/build_laender.mjs
 import fs from "node:fs";
 
@@ -17,4 +17,4 @@ for (const f of all.features) {
     .filter((r) => r.length > 3);
 }
 console.log(Object.keys(out).length, "zemí");
-fs.writeFileSync(new URL("../pilot/public/laender.json", import.meta.url), JSON.stringify(out));
+fs.writeFileSync(new URL("../app/public/laender.json", import.meta.url), JSON.stringify(out));

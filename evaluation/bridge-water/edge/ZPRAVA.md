@@ -12,7 +12,7 @@ s vodou mezi nimi (Vilnius, w-9) kreslil jako jednu plochu.
   `tools/osm_areas.mjs`). Platí pro všechny státy. **Na produkci se projeví až po přestavbě balíků OSM** (workflow OSM tiles,
   všechny státy); balíky narostou málo (Rakousko 284,0 → 284,5 MB). Do té doby kód dělá totéž co dřív, jen kreslí zábradlí
   (níže). Na zkoušku jsou mostovky doplněné jen do místních balíků (`patch-pack.mjs`, osmium z výřezů Geofabriku).
-- **Konec na hraně mostovky** (`pilot/public/ortho-osm.js` `deckSpans`, konec v `orthoOsmPolys`, strop v `trimToEnds`): jen
+- **Konec na hraně mostovky** (`app/public/ortho-osm.js` `deckSpans`, konec v `orthoOsmPolys`, strop v `trimToEnds`): jen
   u ulice na mostě a jen když mostovka OSM drží osu ulice (jinak OSM a jeho ulice nesouhlasí a nic se nerozhoduje). Kusy
   jedné mostovky rozřezané dlaždicemi se spojí. Krajní díl končí na hraně mostovky, která obsahuje krajní obrubu; hrana blíž
   než 1 m za obrubou se nebere (OSM nakreslilo jen vozovku). Druhá vozovka téže ulice na vlastní mostovce (stejné jméno nebo

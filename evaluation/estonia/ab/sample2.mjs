@@ -1,14 +1,14 @@
 // The second A/B sample of Tallinn's surface map (hostile review 24. 11. 2026, bod 5): named streets for cars only, the
 // whole city (not 3 km of the centre: the estates of Lasnamäe and Mustamäe, the villas of Nõmme too). 40 ways drawn
-// with a fixed seed from the local OSM pack of Estonia (pilot/data/osm-pack/ee-novy.posm), highway residential to
+// with a fixed seed from the local OSM pack of Estonia (app/data/osm-pack/ee-novy.posm), highway residential to
 // primary with a name, in the box [24.60, 59.38, 24.88, 59.47]; the point is the way's middle vertex.
 //   node evaluation/estonia/ab/sample2.mjs > evaluation/estonia/ab/sample2.json
 import fs from "node:fs/promises";
-import { Pack } from "../../../pilot/public/osmpack.js";
+import { Pack } from "../../../app/public/osmpack.js";
 
 const CARS = new Set(["primary", "secondary", "tertiary", "residential", "unclassified", "living_street"]);
 const BOX = [24.6, 59.38, 24.88, 59.47], T = 0.005;
-const fh = await fs.open(new URL("../../../pilot/data/osm-pack/ee-novy.posm", import.meta.url));
+const fh = await fs.open(new URL("../../../app/data/osm-pack/ee-novy.posm", import.meta.url));
 const pack = new Pack(async (a, b) => { const buf = Buffer.alloc(b - a + 1); await fh.read(buf, 0, buf.length, a); return { bytes: new Uint8Array(buf) }; });
 const names = [];
 for (let ix = Math.floor(BOX[0] / T); ix <= Math.floor(BOX[2] / T); ix++) for (let iy = Math.floor(BOX[1] / T); iy <= Math.floor(BOX[3] / T); iy++) names.push(`${ix}_${iy}`);

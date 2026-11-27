@@ -29,7 +29,7 @@ const DATA = PRAHA ? path.join(ROOT, "praha", "data") : path.join(ROOT, CITY, "d
 const OWN = process.env.SAMPLES ? path.basename(process.env.SAMPLES, ".json") : "";
 const SAMPLES = OWN ? path.resolve(process.env.SAMPLES) : PRAHA ? path.join(ROOT, "data", "samples.json") : path.join(DATA, "samples.json");
 const PRAHA_ORTHO = PRAHA && !OWN; // the Prague sample's own orthophotos (evaluation/data/ortho_fix)
-const PILOT = path.join(ROOT, "..", "pilot");
+const PILOT = path.join(ROOT, "..", "app");
 const PILOT_DATA = path.join(PILOT, "data", CITY);
 const VARIANTS = (process.env.VARIANTS || "city").split(",").map((s) => s.trim()).filter(Boolean);
 const CACHE = process.env.CACHE ?? "mem";
@@ -61,7 +61,7 @@ globalThis.fetch = async (url, opts) => {
     if (!kind) return missing();
     try { return reply(await fs.readFile(iprCache(kind, q.searchParams.get("bbox")))); } catch { return missing(599); }
   }
-  // "../data/…" and "data/…": the shared files in pilot/data, else the city's own folder.
+  // "../data/…" and "data/…": the shared files in app/data, else the city's own folder.
   const rel = u.startsWith("../data/") ? u.slice(8) : u.startsWith("data/") ? u.slice(5) : null;
   if (rel !== null) {
     for (const file of [path.join(PILOT, "data", rel), path.join(PILOT_DATA, rel)]) {
@@ -89,9 +89,9 @@ globalThis.fetch = async (url, opts) => {
   return reply(buf, status);
 };
 
-const D = await import("../pilot/public/derive.js");
-const S = await import("../pilot/public/sources.js");
-const G = await import("../pilot/public/gis.js");
+const D = await import("../app/public/derive.js");
+const S = await import("../app/public/sources.js");
+const G = await import("../app/public/gis.js");
 const { localFrame, nearestStreet, awayFromJunctions, centerOnStreet, mtvuPolygons, trackLines, techLines, esriPolygons, deriveProfile, MAX_REACH } = D;
 
 // The city's normal sources (Prague: OSM from the local tiles, as compare_dmvs.mjs).
@@ -231,7 +231,7 @@ async function ensureOrtho(n, cut) {
   const dir = path.join(ORTHO, String(n));
   try { await fs.access(path.join(dir, "tiles.json")); return; } catch {}
   await fs.mkdir(dir, { recursive: true });
-  const { TOWNS } = await import("../pilot/public/towns/index.js");
+  const { TOWNS } = await import("../app/public/towns/index.js");
   const o = TOWNS[CITY]?.ortho;
   const [x, y] = merc(cut.lon, cut.lat);
   const h = VIEW / Math.cos((cut.lat * Math.PI) / 180), bbox = [x - h, y - h, x + h, y + h].join(",");
@@ -246,7 +246,7 @@ async function ensureOrtho(n, cut) {
 }
 
 // ---------- Review image: the orthophoto turned so the profile runs left → right, A above, B below ----------
-const { TYPES } = await import("../pilot/public/types.js");
+const { TYPES } = await import("../app/public/types.js");
 const PX_M = 10, BOX = 640, SIZE = 1100;
 const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
 const ARROW = { forward: "↑", backward: "↓" };

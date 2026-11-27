@@ -19,14 +19,14 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
 - Repo: github.com/barasoukup/profily-ulic (MIT, © Bára Soukupová).
 - Push na `main` = nasazení na GitHub Pages (`.github/workflows/pages.yml`), navíc každé pondělí
   obnova OSM. Dlaždice OSM ČR a Slovenska (Geofabrik) jsou zabalené do jednoho souboru na stát (`tools/pack_osm_tiles.mjs`,
-  `pilot/public/osmpack.js`, čtení přes HTTP Range) na Cloudflare R2: kbelík `profily-ulic-osm` v Bářině účtu, doména
+  `app/public/osmpack.js`, čtení přes HTTP Range) na Cloudflare R2: kbelík `profily-ulic-osm` v Bářině účtu, doména
   `https://data.streetspace.eu/osm/` (DNS v Cloudflaru, Cache Rule), tytéž soubory na Pages (`data/osm-pack/`) jako
   záloha. Nahrává workflow přes S3 API (tajné `R2_ACCESS_KEY_ID`, `R2_SECRET_ACCESS_KEY`, proměnná `R2_ACCOUNT_ID`).
   ČR 281 MB, SK 107 MB (Bára 15. 11. 2026, zpráva `evaluation/osm-r2/ZPRAVA.md`). Lokálně server čte dlaždice
-  `pilot/data/osm-tiles` jako dřív, `?osm=balik` balík z `pilot/data/osm-pack`, `?osm=r2` z R2.
-- Lokálně: `node pilot/server.mjs` → http://localhost:5173 (Node 22+). Dlaždice OSM:
+  `app/data/osm-tiles` jako dřív, `?osm=balik` balík z `app/data/osm-pack`, `?osm=r2` z R2.
+- Lokálně: `node app/server.mjs` → http://localhost:5173 (Node 22+). Dlaždice OSM:
   `tools/build_osm_data.sh`, hranice ZPS: `node tools/build_zps.mjs`.
-- Popis pravidel: `pilot/README.md`, vyhodnocení 100 řezů: `evaluation/ZPRAVA.md`,
+- Popis pravidel: `app/README.md`, vyhodnocení 100 řezů: `evaluation/ZPRAVA.md`,
   licence: `LICENCE-A-ZDROJE.md`.
 
 ## Pravidla od Báry (dodržuj)
@@ -94,7 +94,7 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
   `countries/<ISO>.js` `socialistLooks`, DE podle `city.panels`); jinde i v „cizině“ `profile.js` `westernLook`: 1946–90
   poválečný bytový dům, deska před 1946 funkcionalistický, po 1990 moderní. Snímky `evaluation/budovy-povalecny/`.
 - Regionální vzhledy starých domů Evropy (Bára 23. 11. 2026, specifikace `docs/house-types-europe.md`, pravidla
-  `pilot/public/house-looks.js`, háček státu `houseLook`/`houseDetails` volaný po `westernLook`, Česko beze změny):
+  `app/public/house-looks.js`, háček státu `houseLook`/`houseDetails` volaný po `westernLook`, Česko beze změny):
   haussmannovský (FR, MC, LU, Brusel), středomořský + azulejos (PT), galerie (sever ES), Malta, Kypr, cihlový s římsou
   (NL, Flandry), tallinnský a dřevěný dům (EE); severské (stenstad, dřevák, dánský, puukaupunki) jen jako pravidla
   `nordicLook(iso)` pro budoucí moduly SE/NO/DK/FI. Štítové domy (severomořský štít před 1800 nebo ve starém jádru,
@@ -104,7 +104,7 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
   vzhledy, i české; Bára 23. 11. 2026). Místo domu `info.at` (app.js). Snímky a zpráva
   `evaluation/budovy-regiony/`.
 - Panorama z ulice: Mapy.com Panorama API, klíč jen v tajné proměnné repozitáře `MAPY_KEY` a v
-  lokálním `pilot/public/config.local.js` (git ho ignoruje), nikdy v kódu.
+  lokálním `app/public/config.local.js` (git ho ignoruje), nikdy v kódu.
 - Tlačítko „Do Streetmixu“ je vyndané (Bára 8. 11. 2026), protože na Pages nefunguje (API Streetmixu
   nemá CORS). Převod `streetmix.js` zůstává s testy. Dotaz:
   https://github.com/streetmix/streetmix/issues/3828. Proxy přes Cloudflare je odložená do odpovědi.
@@ -126,15 +126,15 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
 - Rešerše: podobné nástroje https://claude.ai/artifact/F2fMQV88XSJJQiHX2YxLb6 (3DStreet pro 3D),
   rozšíření na celou ČR https://claude.ai/artifact/4U8qC5mKb5sTwLnvfYdeWn (proveditelné, začít Brnem).
 
-- Neutrální moderní tramvaj a autobus (`pilot/public/generic/`, `art.js` GENERIC_VEHICLES; Bára 17. 11. 2026: „všude, kde
+- Neutrální moderní tramvaj a autobus (`app/public/generic/`, `art.js` GENERIC_VEHICLES; Bára 17. 11. 2026: „všude, kde
   nemáme specifickou“): v každé sadě, která nemá vlastní tramvaj nebo autobus, místo Streetmixu. Trolejbus a auta zůstávají
   ze Streetmixu. Snímky `evaluation/generic-vehicles/`.
 - Pražské ilustrace: tramvaj T3, autobus SOR NB 12 v klasických bílo-červených barvách, mobiliář podle
   Olgoj Chorchoj, domy z boku ve 4 typech. Auta zůstávají ze Streetmixu (Bára rozhodla 8. 11. 2026).
 
 ## Brno (nasazeno 9. 11. 2026, vylepšení rozpracovaná)
-- Samostatná stránka `/brno/` ze stejného kódu (`pilot/public/city.js`, `config.js` CITY,
-  `tools/city_site.mjs`). Lokálně http://localhost:5173/brno/. Popis v `pilot/README.md`.
+- Samostatná stránka `/brno/` ze stejného kódu (`app/public/city.js`, `config.js` CITY,
+  `tools/city_site.mjs`). Lokálně http://localhost:5173/brno/. Popis v `app/README.md`.
 - Bára: co nejméně věcí lokálně. Brno se jako Praha ptá služeb při kliknutí: plochy z MTVU města
   (gis.brno.cz ags3 PUBLIC/opendata_mtvu), linie a body z kresby technické mapy UMPS (opendata_umps),
   budovy z KAM. Lokálně dlaždice OSM a parkování z mapy parkovanivbrne.cz (Bára: otevřená data
@@ -142,20 +142,20 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
 - Úpravy výpočtu z Brna (dřív `city.fix`) platí od 25. 11. 2026 všude i v Praze.
 - Záložní postup z veřejné DTM kraje (`tools/fetch_dtm_brno.sh`, `tools/build_dtm_brno.py`) si Bára
   přeje schovat pro města bez vlastní služby (DTM kraje má u velkých silnic chybějící obruby).
-- Ilustrace (`pilot/public/brno/`): tramvaj Tatra T3 v nátěru DPMB (Bára: je hezčí; 45T a 13T nakreslené taky), autobus DPMB, mobiliář podle
+- Ilustrace (`app/public/brno/`): tramvaj Tatra T3 v nátěru DPMB (Bára: je hezčí; 45T a 13T nakreslené taky), autobus DPMB, mobiliář podle
   zásad KAM Brno. Bára: u 13T i 45T není kolem čelního okna svislá červená, jen vodorovný červený pás pod oknem.
 - Test 100 řezů: `evaluation/brno/ZPRAVA.md`, skripty `evaluation/run_brno.mjs`, `render_brno.mjs`.
 - Otevřené: licence služeb města (MTVU, UMPS), úseky placeného stání jsou z 2/2024.
 
 ## Jihlava (lokálně hotová 9. 11. 2026)
 - Stránka `/jihlava/` ze stejného kódu (`city.js` „jihlava“, `tools/city_site.mjs`), lokálně
-  http://localhost:5173/jihlava/. Popis v `pilot/README.md`, kontrola řezů v `evaluation/jihlava/ZPRAVA.md`.
+  http://localhost:5173/jihlava/. Popis v `app/README.md`, kontrola řezů v `evaluation/jihlava/ZPRAVA.md`.
 - Jako Praha s IPR se při kliknutí ptá serveru města (`gis.jihlava-city.cz`, CORS povolený): pasport komunikací
   (vozovka, chodník), budovy RÚIAN s počtem podlaží, trávníky, katastr (zahrady, dvory, krajnice; Bára: zaplnit
   „Neurčeno“), parkovací místa města s orientací, ploty z technické mapy, stromy, lampy, zastávky s přístřešky,
   stojany na kola. Služby vracejí WGS 84 jinou transformací (6 m vedle OSM): dotazy s `datumTransformation=1623`.
 - Lokálně jen dlaždice OSM (výřez z Geofabriku ČR přes osmium, BBBike Jihlavu nemá).
-- Ilustrace (`pilot/public/jihlava/`): trolejbus Škoda 32Tr a autobus Citelis DPmJ podle Bářiných fotek (krémová,
+- Ilustrace (`app/public/jihlava/`): trolejbus Škoda 32Tr a autobus Citelis DPmJ podle Bářiných fotek (krémová,
   červený pás, u 32Tr černé čelo s béžovou linkou). Trolejbus jen v bus pruhu pod trolejemi (OSM `trolley_wire`).
 - Pravidla doplněná při Jihlavě, platí všude: obousměrka od 5,0 m na 2 × 2,5 m (Manuál C.2, nižší intenzity);
   dvousměrná ulice s jednou osou má polovinu pruhů každým směrem; krajnice jednosměrné vozovky u vnějšího okraje;
@@ -164,15 +164,15 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
   mobiliář.
 
 ## Most, Opava, Plzeň (lokálně hotové 9. 11. 2026)
-- Každé malé město = modul `pilot/public/towns/<město>.js` (vzor Jihlava), texty v `city.js`, stránka, CSP a výřez OSM
-  v `tools/cities.mjs`; nasazení a server berou seznam odtud. Postup pro další město v `pilot/README.md`.
+- Každé malé město = modul `app/public/towns/<město>.js` (vzor Jihlava), texty v `city.js`, stránka, CSP a výřez OSM
+  v `tools/cities.mjs`; nasazení a server berou seznam odtud. Postup pro další město v `app/README.md`.
 - Bára vybrala z průzkumu 27 měst (Plzeň, Opava, Most; další připravená: Třebíč, Karviná a Frýdek-Místek přes WFS T-MAPY).
 - Domy všech malých měst z RÚIAN ČÚZK (rok dokončení a panely místo stáří zástavby; Bára: Most má jen mladou zástavbu),
   vnitřní město a sídliště podle `innerKm`/`estateKm` města.
 - Posun souřadnic: Most sedí, Opava 4 m a Plzeň 12 m bez `datumTransformation=1623`.
 - Ilustrace podle fotek z Wikimedia Commons: Most tramvaj EVO2 a SOR NB 12, Opava 32Tr a Iveco Urbanway, Plzeň 40T, 26Tr a SOR NS 12.
 - Otevřené: licence služeb měst, kolmé stání mimo zóny, Most bez stání s orientací, Plzeň bez os kolejí a lamp.
-- Pardubice (9. 11. 2026): bez služeb města, plochy živě z celostátní technické mapy ČÚZK (`pilot/public/dmvs.js`,
+- Pardubice (9. 11. 2026): bez služeb města, plochy živě z celostátní technické mapy ČÚZK (`app/public/dmvs.js`,
   obrázek + typ plochy v bodě), univerzální cesta pro další města (Bára: „univerzálně pro všechna města“). 26/22/1 z 49.
 - Plzeň: zóny placeného stání z otevřených dat (CC0, statický soubor při nasazení), stání v zóně se kreslí jako odhad.
 - Dopravní značení: technická mapa (ani ČÚZK) ho nemá; Praha jen OSM nebo žádost podle zákona 106 (Bára: záloha).
@@ -181,7 +181,7 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
 
 ## Jedna stránka pro celou ČR (Bára 10. 11. 2026)
 - Žádný přepínač měst: město se pozná podle místa řezu (`city.js` `cityAt`, hranice obcí z RÚIAN v
-  `pilot/public/mesta.json`, `node tools/build_mesta.mjs`), mimo naše města platí „cesko“ (technická mapa ČÚZK,
+  `app/public/mesta.json`, `node tools/build_mesta.mjs`), mimo naše města platí „cesko“ (technická mapa ČÚZK,
   RÚIAN, OSM, pražský mobiliář a vozidla Streetmixu). Zdroje dat, ilustrace a texty se mění s městem řezu.
 - Podkladové mapy: Mapa, Ortofoto, Technická mapa, OpenStreetMap; v každé jsou vrstvy měst omezené na jejich území.
 - Staré adresy `/brno/`, `/jihlava/`… přesměrují na `/?mesto=…` i s řezem v odkazu. Data měst v `data/brno/`, `data/plzen/`.
@@ -190,7 +190,7 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
   adresa v proměnné repozitáře `LOG_URL`; nasadit musí Bára (její účet).
 
 ## Nasazeno 10. 11. 2026
-- Řádek dopravních značek (`signs.js`, ikony `pilot/public/znacky/`, čísla podle vyhl. 294/2015 ve znění 205/2025: zóny IZ, IP 4c, IP 11b–g, V 15 BUS/TRAM) pod popisky prvků profilu (i v exportu, v Návrhu měnitelné), podoby podle vyhl. 294/2015
+- Řádek dopravních značek (`signs.js`, ikony `app/public/znacky/`, čísla podle vyhl. 294/2015 ve znění 205/2025: zóny IZ, IP 4c, IP 11b–g, V 15 BUS/TRAM) pod popisky prvků profilu (i v exportu, v Návrhu měnitelné), podoby podle vyhl. 294/2015
   (úřední díla, SVG z Wikimedia Commons, zmenšené): omezení rychlosti (i po pruzích), zóna 30, obytná zóna, pěší zóna
   (i s koly), cyklistická zóna/ulice, sdílená zóna, stezka pro chodce a cyklisty (C 9, C 10), cyklopruh (V 14),
   piktokoridor (V 20), směrové šipky řadicích pruhů (V 9a, z OSM turn:lanes), zákaz stání (B 29), zákaz zastavení (B 28), parkoviště IP 11 se způsobem stání (podélné,
@@ -209,8 +209,8 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
   vyhrazený vs. sdílený pruh OSM nerozlišuje (počet pruhů); psv/bus=yes na kolejích (asi 186) = pruh tram + BUS.
 
 ## Pruhy z ortofota (Bára 11.–12. 11. 2026)
-- `pilot/public/lanes-ortho.js`: čáry na ortofotu přeměří pruhy a krajnice a oddělí stání z dlažby; Praha IPR 10 cm,
-  Brno 2025 s posunem, Plzeň 2024, jinde ČÚZK 12,5 cm. Pravidla v `pilot/README.md` (Jak se profil skládá, bod 11),
+- `app/public/lanes-ortho.js`: čáry na ortofotu přeměří pruhy a krajnice a oddělí stání z dlažby; Praha IPR 10 cm,
+  Brno 2025 s posunem, Plzeň 2024, jinde ČÚZK 12,5 cm. Pravidla v `app/README.md` (Jak se profil skládá, bod 11),
   vyhodnocení a co nevyšlo v `evaluation/ortofoto/ZPRAVA.md`, odkazy na zkoušení `evaluation/ortofoto/ODKAZY.md`.
 - Krajnice z vodicí čáry může být i hodně úzká (Bára); pravidlo „krajnice od 1 m“ platí pro odhad podle pravidel.
 - Proti ručnímu značení 117 vozovek: hranice pruhů do 0,3 m 25 → 39 %, počet pruhů 52 → 52 %, lépe 32, hůře 9.
@@ -221,13 +221,13 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
 ## Bez technické mapy: ortofoto a OSM (Bára 15. 11. 2026)
 - Pokus `evaluation/ortofoto-osm/ZPRAVA.md` (profil jen z ortofota a OSM proti MTVU, Praha a Brno): kombinace je
   lepší než samotné OSM (obruba do 0,5 m 39–49 % proti 26–35 %), ale zůstává hrubým odhadem. Rozlišení 20 cm stačí.
-- Bára: použít jako záložní případ, když technická mapa chybí. `pilot/public/ortho-osm.js`, zapojené v `app.js`, když
-  `deriveProfile` vrátí odhad z OSM (`estimate`). Plochy jsou označené jako odhad. Popis v `pilot/README.md` (bod 11a).
+- Bára: použít jako záložní případ, když technická mapa chybí. `app/public/ortho-osm.js`, zapojené v `app.js`, když
+  `deriveProfile` vrátí odhad z OSM (`estimate`). Plochy jsou označené jako odhad. Popis v `app/README.md` (bod 11a).
 - Pro rozšíření do ciziny: nejdřív hledat místní mapy povrchů (NL BGT, Vídeň FMZK…), tohle je až záloha.
 - Dlaždice OSM (Bára 15. 11. 2026): všechny budovy (ne jen s výškou; v ČR dál primárně RÚIAN, OSM navíc pro zahraničí),
   zeleň, voda, zahrádky, hřbitovy, obruby `barrier=kerb`, `area:highway`, u budov rok a střecha. Změřeno na celé ČR:
   1,39 GB proti dřívějším 0,84 GB (domy bez výšky 279 MB, zeleň 236 MB): na Pages (1 GB) se nevejde, proto jsou na R2
-  (zabalené 281 MB). Popis v `pilot/README.md` (Dlaždice OSM).
+  (zabalené 281 MB). Popis v `app/README.md` (Dlaždice OSM).
 
 ## Slovensko (větev slovensko, 15.–16. 11. 2026)
 - Stát řezu ze `staty.json` (`tools/build_staty.mjs`: ČR z RÚIAN, SR ze ZBGIS): `cesko`, `slovensko`, jinde `cizina`;
@@ -239,7 +239,7 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
   ulic, obcí a adres (`search-sk.js`). Vyhodnocení `evaluation/slovensko/ZPRAVA.md` (ortofoto lépe 10, hůř 2, stejně 16
   z 39). Slovenská vozidla a označníky nakreslené a zapojené (16. 11.).
 - Jazyk a stát nikdy nemíchat a psát kódy ISO: jazyky malými (cs, sk, en), státy velkými (CZ, SK, AT) (Bára 15. 11. 2026).
-- Značky státu SK (vyhl. 30/2020 Z. z.): `pilot/public/znacky-SK/` (piktogramy podle přílohy „Symboly“, tabulka klíčů
+- Značky státu SK (vyhl. 30/2020 Z. z.): `app/public/znacky-SK/` (piktogramy podle přílohy „Symboly“, tabulka klíčů
   v README), řádek značek podle `city.country` (`signFile/plateFile/signLabel(…, country)`); název značky v jazyce
   stránky, číslo podle státu. SK nemá způsob stání (jen 272), IP 4c (321 + 514, z druhé strany 230 + 507),
   vyhrazené stání je 270 + 531, sdílenou zónu nemá. Obě sady (CZ i SK) zkontroloval Fable proti vyhláškám a opravené.
@@ -261,9 +261,9 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
   doplnění za pasportem `?vypln=1`, filtr trávy ZBGIS `P.areaGreen`).
 - Změna jazyka načte stránku znovu, ale profil se nepřepočítává (stav záložky v sessionStorage); záblesk je v pořádku
   (Bára 16. 11. 2026), přepnutí za běhu je připravené v `i18n.js` (onLangChange), napojené není.
-- Ilustrace SK (Bára 16. 11. 2026): vozidla měst (`pilot/public/bratislava|kosice|zilina|bystrica|presov/`, kreslířka a
+- Ilustrace SK (Bára 16. 11. 2026): vozidla měst (`app/public/bratislava|kosice|zilina|bystrica|presov/`, kreslířka a
   kritik ve 3 kolech) podle města řezu (`countries/SK.js` art, artAt); mobiliář český (Bratislava převzala od Prahy lavičku,
-  koš a stojan Olgoj Chorchoj), označníky a přístřešky se slovenskou značkou 331 Zastávka (`pilot/public/slovensko/`).
+  koš a stojan Olgoj Chorchoj), označníky a přístřešky se slovenskou značkou 331 Zastávka (`app/public/slovensko/`).
   Vlastní bratislavský přístřešek, lampa a označník DPB až po zásadách MIB pro zastávky a osvětlení (přístřešky jsou
   v řezech vzácné). Technická mapa Bratislavy, čáry map Nitry, Piešťan, Zvolena, Hlohovce, Prešova: `?tm=1`, `?hrany=0`.
 
@@ -292,7 +292,7 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
 
 ## Státy, města a zdroje (přestavba, větev architecture-countries, 16. 11. 2026, nenasazené)
 - Plán `docs/architecture-countries.md` (Fable schválil s úpravami). Struktura všude stejná: stát → město → zdroje.
-- Stát = modul `pilot/public/countries/<ISO>.js` (CZ, SK, AT; `default.js` pro „cizinu“ a výchozí hodnoty), načítaný
+- Stát = modul `app/public/countries/<ISO>.js` (CZ, SK, AT; `default.js` pro „cizinu“ a výchozí hodnoty), načítaný
   staticky: normy, zákon o stání, značky, ortofoto, ilustrace měst státu, vzhled domů, hledání. Vedle `city` je `country`
   (modul státu), `city.country` zůstává ISO. Mimo `countries/` žádná podmínka na stát. Pro nasazení řádek v
   `tools/countries.mjs` (pages.yml z něj bere smyčky), CSP hlídá `tests/csp.test.js`.
@@ -520,7 +520,7 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
 - `countries/DK.js`, `towns/denmark.js`, `search-dk.js` (GSearch s tokenem, jinak Photon), `keys.js`, `signs-DK/`,
   `evaluation/denmark/` (ZDROJE, NORMY, buildings-ab/). Hranice GISCO s Bornholmem (bez Faerských ostrovů a Grónska),
   pobřeží 400 m. OSM balík `dk` (jen R2; **workflow OSM tiles se `states: dk`**), lokálně Kodaň, Aarhus, Odense, Aalborg.
-- **Token Dataforsyningen** (Bára): lokálně `DK_TOKEN` v `pilot/public/config.local.js`, na webu proměnná repozitáře
+- **Token Dataforsyningen** (Bára): lokálně `DK_TOKEN` v `app/public/config.local.js`, na webu proměnná repozitáře
   `DK_TOKEN` (pages.yml ji zapíše do `config.js`), nikdy ho nevypisovat ani necommitovat. Ortofoto jaro GeoDanmark (WMTS
   z20) pro pruhy a jako mapa; bez tokenu (nebo odmítnutý) odhad jen z OSM s poctivou poznámkou, výpadek služby (platforma
   se stěhuje, okno 26.–30. 11. 2026) jako výpadek.
@@ -723,8 +723,8 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
 
 ## Jazyky (Bára 12. 11. 2026, slovenčina 15. 11. 2026, němčina 16. 11. 2026)
 - Anglicky se aplikace jmenuje **Street Profile**, slovensky **Profily ulíc**, německy **Straßenprofil**. Čeština, slovenčina,
-  angličtina a němčina: `pilot/public/i18n.js` (`t("český text")`), překlady v `pilot/public/en.js`, `sk.js` a `de.js`, od 17. 11. 2026 přepínač v menu Soubor (jazyky jménem, bez vlajek), `?lang=sk`. Jazyk podle
-  prohlížeče (první z jeho jazyků, který aplikace umí; všichni ostatní angličtina), ne podle místa řezu (Bára). Nový text vždy přes `t()` a s překladem (hlídá `tests/i18n.test.js`). Popis v `pilot/README.md`.
+  angličtina a němčina: `app/public/i18n.js` (`t("český text")`), překlady v `app/public/en.js`, `sk.js` a `de.js`, od 17. 11. 2026 přepínač v menu Soubor (jazyky jménem, bez vlajek), `?lang=sk`. Jazyk podle
+  prohlížeče (první z jeho jazyků, který aplikace umí; všichni ostatní angličtina), ne podle místa řezu (Bára). Nový text vždy přes `t()` a s překladem (hlídá `tests/i18n.test.js`). Popis v `app/README.md`.
 - Všech 24 úředních jazyků EU (větev `eu-languages`, Bára 17. 11. 2026, nenasazené): soubor `<jazyk>.js` na jazyk, načítá
   se jen jazyk stránky. **Překlady jsou strojové (agent na jazyk), měl by je projít rodilý mluvčí.** Kritik Fable (jako rodilý
   mluvčí) prošel všech 20 nových jazyků, hodnocení 3,5–4,5 z 5 (maltština nejhůř). Bára 17. 11. 2026: česká jména měst
@@ -780,9 +780,9 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
   `rec-cz` (`evaluation/replay/README.md`).
 
 ## O aplikaci (Bára 24. 11. 2026, větev estonia, nenasazené)
-- Menu Soubor → „O aplikaci“ (`pilot/public/about.js`, dialog v `index.html`): text o aplikaci, autorka podle státu řezu
+- Menu Soubor → „O aplikaci“ (`app/public/about.js`, dialog v `index.html`): text o aplikaci, autorka podle státu řezu
   (`countries/*.js author`: v CZ a SK Bára Soukupová, jinde Bara Soukup), MIT a odkazy na repo a `LICENCE-A-ZDROJE.md`.
-- Mapa pokrytí `pilot/public/coverage.json` (309 kB) dělá `node tools/build_coverage.mjs` z modulů: `SURFACE_MAPS` v každém
+- Mapa pokrytí `app/public/coverage.json` (309 kB) dělá `node tools/build_coverage.mjs` z modulů: `SURFACE_MAPS` v každém
   `towns/*.js` („all“, id z AREAS, klíč hranic, „-NUTS3“ vynechá), `laneOrtho` států a částečná ortofota z `lanes-ortho.js`.
   Nový zdroj = upravit `SURFACE_MAPS` a přestavět; `tests/coverage.test.js` hlídá aktuálnost, zařazení všech států a modulů
   a třídy v bodech (i těsně za hranicí města). Města z obdélníků AREAS se kreslí hranicí obce (GISCO LAU 2024,
@@ -796,6 +796,6 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
   wrangler spouštět přímo `node <cesta k wrangler>/bin/wrangler.js …`, testy `node --test tests/*.test.js`.
 
 ## Licence
-- Kód MIT. Ilustrace Streetmix CC BY-SA 4.0 (s uvedením autora), pražské ilustrace (`pilot/public/praha/`)
+- Kód MIT. Ilustrace Streetmix CC BY-SA 4.0 (s uvedením autora), pražské ilustrace (`app/public/praha/`)
   pod MIT jako kód (Bára rozhodla 8. 11. 2026), kód Streetmixu AGPL-3.0 (jen kopie
   ve `vendor/`, nepublikuje se). OSM ODbL. Podrobnosti v `LICENCE-A-ZDROJE.md`.

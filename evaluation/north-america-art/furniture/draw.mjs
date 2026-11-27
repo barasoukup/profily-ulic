@@ -3,7 +3,7 @@
 // drawn for the left half of the street (the roadway on the right; a lamp's "left" picture has its arm to the left, as
 // Prague's), the right one is its mirror. The pictograms are symmetric, so the mirror needs no text of its own.
 import fs from "node:fs";
-const PUB = new URL("../../../pilot/public/", import.meta.url);
+const PUB = new URL("../../../app/public/", import.meta.url);
 const PROP = new URL("./navrhy/", import.meta.url);
 const R = (x, y, w, h, f, rx) => `<rect x="${+x.toFixed(2)}" y="${+y.toFixed(2)}" width="${+w.toFixed(2)}" height="${+h.toFixed(2)}"${rx ? ` rx="${rx}"` : ""} fill="${f}"/>`;
 const P = (d, f) => `<path d="${d}" fill="${f}"/>`;

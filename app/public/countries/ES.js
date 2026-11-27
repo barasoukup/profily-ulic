@@ -38,7 +38,7 @@ function limitsES(s, segs) {
   }
 }
 
-// The signs of the state ES (pilot/public/signs-ES/, README there; the catalogue of RD 465/2025, annex I of the RGC, in
+// The signs of the state ES (app/public/signs-ES/, README there; the catalogue of RD 465/2025, annex I of the RGC, in
 // force from 1. 7. 2025; Wikimedia Commons; the zone 30 is the panel "ZONA" with R-301 30 of the catalogue of 2003, which
 // the 2025 one lacks: labelled without a code, Bára 23. 11. 2026 chose the panel). Part of a regulation, so no object of copyright (art. 13 of the LPI; Bára
 // 23. 11. 2026 for France: "Značky jsou volně"). Spain has no sign of a cycle street or a paid zone; the disabled's and

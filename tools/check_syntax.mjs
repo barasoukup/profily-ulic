@@ -17,10 +17,10 @@ function walk(dir, out = []) {
 }
 
 export function scriptFiles() {
-  const files = walk(path.join(root, "pilot/public"));
-  for (const d of ["pilot", "tools"]) {
+  const files = walk(path.join(root, "app/public"));
+  for (const d of ["app", "tools"]) {
     const dir = path.join(root, d);
-    files.push(...(d === "pilot" ? fs.readdirSync(dir).filter((f) => /\.mjs$/.test(f)).map((f) => path.join(dir, f)) : walk(dir)));
+    files.push(...(d === "app" ? fs.readdirSync(dir).filter((f) => /\.mjs$/.test(f)).map((f) => path.join(dir, f)) : walk(dir)));
   }
   return files.sort();
 }

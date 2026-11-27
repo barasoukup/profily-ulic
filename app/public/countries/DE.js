@@ -40,7 +40,7 @@ function limitsDE(s, segs, i) {
   }
 }
 
-// The signs of the state DE (pilot/public/signs-DE/, README there; StVO Anlage 2 and 3, Wikimedia Commons, German
+// The signs of the state DE (app/public/signs-DE/, README there; StVO Anlage 2 and 3, Wikimedia Commons, German
 // official works § 5 UrhG): the Zeichen number and the file, with the Zusatzzeichen. Germany has no shared zone and no
 // sign for parking on the sidewalk drawn here (Z 315 has many forms), nor one for a reserved space.
 const DE_CODE = { b1: "Z 250", b11: "Z 260", b8: "Z 254", b30: "Z 259", b20a: "Z 274", b28: "Z 283", b29: "Z 286", oneway: "Z 267",

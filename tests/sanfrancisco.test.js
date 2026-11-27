@@ -3,11 +3,11 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
-import "../pilot/public/america.js";
-const read = (f) => JSON.parse(fs.readFileSync(new URL(`../pilot/public/${f}`, import.meta.url), "utf8"));
+import "../app/public/america.js";
+const read = (f) => JSON.parse(fs.readFileSync(new URL(`../app/public/${f}`, import.meta.url), "utf8"));
 
 test("San Francisco: město ve státě USA, okolí zůstává zavřené", async () => {
-  const C = await import("../pilot/public/city.js");
+  const C = await import("../app/public/city.js");
   C.loadBounds(read("mesta.json")); C.loadStates({ ...read("staty.json"), ...read("staty-america.json") }); C.loadTowns(read("mesta-us.json"));
   // Market Street, the Ferry Building, the Mission, Treasure Island; Washington stays itself.
   for (const p of [[37.7848, -122.4071], [37.7955, -122.3937], [37.7599, -122.4148], [37.8235, -122.3706]]) assert.equal(C.cityAt(...p), "sanfrancisco", `${p}`);
@@ -28,8 +28,8 @@ const BBOX = [...ll(-30, -1), ...ll(30, 1)].map((v, i) => v + (i < 2 ? -4e-4 : 4
 const codes = (r) => { const c = r.features.map((f) => f.attributes.code); while (c[0] === 401) c.shift(); while (c.at(-1) === 401) c.pop(); return c; };
 
 test("San Francisco: vozovka mezi obrubami v uličním prostoru, chodníky k jeho hranici, ostrůvek, domy posunuté o 1,4 m", async () => {
-  const { SF_MAP, sodaAsEsri } = await import("../pilot/public/towns/sanfrancisco.js");
-  const { planimetricCut } = await import("../pilot/public/towns/planimetrics.js");
+  const { SF_MAP, sodaAsEsri } = await import("../app/public/towns/sanfrancisco.js");
+  const { planimetricCut } = await import("../app/public/towns/planimetrics.js");
   // Right of way −12…13, kerbs at −7.2 and 8.7; buildings −35…−13.4 (a gap of 1.4 m) and 11.3…28 (1.7 m into the street).
   const row = poly([[-12, 13]]), bldg = poly([[-35, -13.4], [11.3, 28]]), kerbs = lines([[-7.2, { CBB_TYPE: "BLK" }], [8.7, { CBB_TYPE: "BLK" }]]);
   const cut = (b, r, k, extra) => planimetricCut(SF_MAP, [b, r, k], [way], BBOX, way.tags, { way, extra });
@@ -53,11 +53,11 @@ test("San Francisco: vozovka mezi obrubami v uličním prostoru, chodníky k jeh
 });
 
 test("San Francisco: domy podle výšky obrysu, vlastní normy chodníku", async () => {
-  const { sfHouse } = await import("../pilot/public/towns/sanfrancisco.js");
+  const { sfHouse } = await import("../app/public/towns/sanfrancisco.js");
   assert.deepEqual(sfHouse({ hgt_median_m: "12.1" }), { cornice: 3, roof: 0, total: 3, fromHeight: true, hm: 12.1, sfHouse: true });
   assert.deepEqual(sfHouse({}), {});
-  const C = await import("../pilot/public/city.js");
-  const US = (await import("../pilot/public/countries/US.js")).default;
+  const C = await import("../app/public/city.js");
+  const US = (await import("../app/public/countries/US.js")).default;
   C.setCity("sanfrancisco");
   assert.match(US.limits({ type: "chodnik", width: 2 }).why, /SFMTA/);
   assert.equal(US.limits({ type: "pruh", width: 3 }), null);
@@ -66,8 +66,8 @@ test("San Francisco: domy podle výšky obrysu, vlastní normy chodníku", async
 });
 
 test("San Francisco: šikmé a kolmé stání podle OSM, kde ho obruba nepozná; osa ve vykrojeném stání", async () => {
-  const { SF_MAP } = await import("../pilot/public/towns/sanfrancisco.js");
-  const { planimetricCut } = await import("../pilot/public/towns/planimetrics.js");
+  const { SF_MAP } = await import("../app/public/towns/sanfrancisco.js");
+  const { planimetricCut } = await import("../app/public/towns/planimetrics.js");
   const row = poly([[-12, 13]]), bldg = poly([[-35, -13.4], [11.3, 28]]), kerbs = lines([[-7.2, { CBB_TYPE: "BLK" }], [8.7, { CBB_TYPE: "BLK" }]]);
   const zone = (x, n = 10, len = 200) => [x, { POLICY_CATEGORY: "General Parking", NUM_SPACES: n, LENGTH_FT: len }];
   const zones = lines([zone(-7.2), zone(8.7)]);
@@ -87,8 +87,8 @@ test("San Francisco: šikmé a kolmé stání podle OSM, kde ho obruba nepozná;
 });
 
 test("San Francisco: výpadek pravidel obrub (SFMTA 56) se hlásí, oříznutá odpověď je výpadek", async () => {
-  const { SF_MAP, zonesAnswer } = await import("../pilot/public/towns/sanfrancisco.js");
-  const { planimetricCut } = await import("../pilot/public/towns/planimetrics.js");
+  const { SF_MAP, zonesAnswer } = await import("../app/public/towns/sanfrancisco.js");
+  const { planimetricCut } = await import("../app/public/towns/planimetrics.js");
   const row = poly([[-12, 13]]), bldg = poly([[-35, -13.4], [11.3, 28]]), kerbs = lines([[-7.2, { CBB_TYPE: "BLK" }], [8.7, { CBB_TYPE: "BLK" }]]);
   const cut = (extra) => planimetricCut(SF_MAP, [bldg, row, kerbs], [way], BBOX, way.tags, { way, extra });
   // null: the zones did not answer; undefined: ?sfcurb=0 (nothing said).
@@ -99,9 +99,9 @@ test("San Francisco: výpadek pravidel obrub (SFMTA 56) se hlásí, oříznutá 
 });
 
 test("San Francisco: chodník podle typu ulice (ulička 6 ft, jiná obslužná bez varování), citace Better Streets Plan v datech SFMTA", async () => {
-  const C = await import("../pilot/public/city.js");
+  const C = await import("../app/public/city.js");
   C.loadBounds(read("mesta.json")); C.loadStates({ ...read("staty.json"), ...read("staty-america.json") }); C.loadTowns(read("mesta-us.json"));
-  const US = (await import("../pilot/public/countries/US.js")).default;
+  const US = (await import("../app/public/countries/US.js")).default;
   const sf = C.cityById("sanfrancisco"), walk = { type: "chodnik", width: 2 };
   const street = US.limits(walk, [walk], 0, sf);
   assert.equal(street.zaklad, 3.05);
@@ -111,7 +111,7 @@ test("San Francisco: chodník podle typu ulice (ulička 6 ft, jiná obslužná b
   assert.equal(US.limits(walk, [walk], 0, sf, { kind: "service" }), null);
   // Through the rules of the Design: an alley's 2 m sidewalk is not narrower than its basic width.
   C.setCity("sanfrancisco");
-  const { checkRules } = await import("../pilot/public/rules.js");
+  const { checkRules } = await import("../app/public/rules.js");
   const p = { segments: [{ type: "chodnik", width: 2 }, { type: "pruh", width: 3 }, { type: "chodnik", width: 2 }] };
   assert.equal(checkRules(p).filter((w) => w.why.includes("Better Streets")).length, 2);
   assert.equal(checkRules(p, { kind: "alley" }).filter((w) => w.why.includes("Better Streets")).length, 0);

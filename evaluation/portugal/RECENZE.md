@@ -2,7 +2,7 @@
 
 Rozsah: `countries/PT.js`, `towns/portugal.js`, `signs-PT/`, `evaluation/portugal/`, části `lanes-ortho.js`, `app.js`,
 `signs.js`, `credits.js`, `search-photon.js`, `index.html`, `city.js`, `tools/countries.mjs`, `tools/build_staty.mjs`,
-`tests/portugal.test.js`, `LICENCE-A-ZDROJE.md`, `pilot/README.md`. Větev `estonia`, HEAD `84140de`. Žádný soubor kromě
+`tests/portugal.test.js`, `LICENCE-A-ZDROJE.md`, `app/README.md`. Větev `estonia`, HEAD `84140de`. Žádný soubor kromě
 této zprávy jsem neměnil.
 
 Co jsem ověřil:
@@ -109,7 +109,7 @@ vyjde z 1,2 / 1,5 m i vedle stání.
 - `signs-PT/M12a.svg`, `M12b.svg` a `G4-40.svg` aplikace nekreslí (`PT.js:82`: `plate: () => null`), README je přitom
   uvádí u `ip11a` jako dodatkové tabulky kolmého a šikmého stání. M12a a M12b jsou navíc dva z CC BY-SA souborů.
 - `towns/portugal.js:2–3`: „the aerial of 2021, else 2018, else the satellite mosaic of 2023“, kód začíná letem 2025.
-- `pilot/README.md:272`: pořadí „2025, 2021, 2018, satelit“ platí pro pruhy; mapa má jiné (sat, 2018, 2025, bez 2021).
+- `app/README.md:272`: pořadí „2025, 2021, 2018, satelit“ platí pro pruhy; mapa má jiné (sat, 2018, 2025, bez 2021).
 
 ### 10. Testy a měření (drobné)
 

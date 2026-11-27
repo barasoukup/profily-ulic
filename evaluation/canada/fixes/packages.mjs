@@ -7,7 +7,7 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import { orthoImage, DC_ORTHO } from "../../usa-dc/prepare.mjs";
 const HERE = path.dirname(new URL(import.meta.url).pathname), DATA = path.join(HERE, "data"), FOTO = path.join(DATA, "foto");
-import { NYS_ORTHO, MA_ORTHO } from "../../../pilot/public/lanes-ortho.js";
+import { NYS_ORTHO, MA_ORTHO } from "../../../app/public/lanes-ortho.js";
 const ORTHO = { dc: DC_ORTHO, toronto: "https://gis.toronto.ca/arcgis/rest/services/basemap/cot_ortho/MapServer/export", newyork: `${NYS_ORTHO}/export` };
 // (Each city's orthophoto as the app reads it: Boston MassGIS's tiles, New York the state's, Toronto the city's.)
 const orthoOf = (a) => (a.id.startsWith("ntrack") ? { service: ORTHO.newyork } : /^b(dual|track)/.test(a.id) ? { tiles: MA_ORTHO } : { service: a.lat < 41 ? ORTHO.dc : ORTHO.toronto });

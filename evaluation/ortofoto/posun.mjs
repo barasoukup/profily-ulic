@@ -6,7 +6,7 @@
 //   CITY=brno node evaluation/ortofoto/posun.mjs brno25
 import fs from "node:fs/promises";
 import path from "node:path";
-import { decodePng } from "../../pilot/public/dmvs.js";
+import { decodePng } from "../../app/public/dmvs.js";
 import { strip } from "./run.mjs";
 
 const ROOT = path.dirname(new URL(import.meta.url).pathname);

@@ -3,7 +3,7 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 
 globalThis.PROFILY_CITY = "plzen";
-const { zoneCurbs } = await import("../pilot/public/towns/plzen.js");
+const { zoneCurbs } = await import("../app/public/towns/plzen.js");
 
 test("zóny Plzně: stání u obou obrubníků, jen u jednoho, nebo žádné", () => {
   // two-way: 5.0 m for traffic (2 × 2.5 m) plus 2.0 m per strip

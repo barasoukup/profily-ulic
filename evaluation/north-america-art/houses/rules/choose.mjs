@@ -1,4 +1,4 @@
-// The look each sample house gets: PUB=<pilot/public> node choose.mjs <scratch dir with dc.json> <out.json>
+// The look each sample house gets: PUB=<app/public> node choose.mjs <scratch dir with dc.json> <out.json>
 // (buildingAt, buildingStyle of that checkout: before = 59ec341, after = this branch).
 import fs from "node:fs";
 import path from "node:path";

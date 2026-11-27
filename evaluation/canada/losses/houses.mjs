@@ -5,7 +5,7 @@ const W = new URL("../../../", import.meta.url).pathname;
 const SP = new URL("data/cache/", import.meta.url).pathname;
 const crypto = await import("node:crypto");
 fs.mkdirSync(SP, { recursive: true });
-const { floorsOf } = await import(W + "pilot/public/towns/canada.js");
+const { floorsOf } = await import(W + "app/public/towns/canada.js");
 const R = W + "evaluation/canada/review/";
 const rows = JSON.parse(fs.readFileSync(R + "houses.json", "utf8")).rows, ch = JSON.parse(fs.readFileSync(R + "results/houses-changed.json", "utf8"));
 const L = (f) => new Map(fs.readFileSync(R + "results/" + f, "utf8").trim().split("\n").map((l) => JSON.parse(l)).map((r) => [r.id, r]));

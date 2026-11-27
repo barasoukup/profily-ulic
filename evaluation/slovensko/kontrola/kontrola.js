@@ -1,5 +1,5 @@
 // Checks of the 1000 Slovak cuts (window.__res of sber.js) against what OSM says on the cut line (Bára 16. 11. 2026).
-// Each finding is a suspicion, not a verdict. A module: run in the app's page (served from pilot/public for the run),
+// Each finding is a suspicion, not a verdict. A module: run in the app's page (served from app/public for the run),
 // report(window.__res) returns the Markdown of podezreni.md; findings(rows) the findings by kind for the A/B.
 const BIKE_PARTS = new Set(["cyklostezka", "cyklopruh", "ochranny_pruh", "chodnik_kola", "stezka_sdilena", "bus_cyklo", "pruh_piktokoridor"]);
 const WALK_PARTS = new Set(["chodnik", "chodnik_kola", "stezka_sdilena", "nastupiste"]);

@@ -4,8 +4,8 @@
 
 Ověřeno 17. 11. 2026 jedním GetMap (EPSG:3857, 500 × 500 px, ±25 m) v centru jednoho města každé země, s hlavičkou
 `Origin: https://streetspace.eu`. Všech 16 zemí vrátilo snímek a CORS (`*` nebo ozvěnu původu). Licence z polí `Fees` a
-`AccessConstraints` v GetCapabilities. Zapojení: `pilot/public/lanes-ortho.js` (`DE_ORTHO`), země podle
-`pilot/public/laender.json` (`tools/build_laender.mjs`, GISCO NUTS 1), u hranice se zkusí sousední země, prázdný snímek
+`AccessConstraints` v GetCapabilities. Zapojení: `app/public/lanes-ortho.js` (`DE_ORTHO`), země podle
+`app/public/laender.json` (`tools/build_laender.mjs`, GISCO NUTS 1), u hranice se zkusí sousední země, prázdný snímek
 (mimo pokrytí) se nepoužije. V mapě podklad „Ortofoto“ bere každou dlaždici z WMS země jejího středu.
 
 | Země | WMS | Vrstva | Odpověď (čas) | CORS | Licence, uvedení |

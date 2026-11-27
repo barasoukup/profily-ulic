@@ -1,17 +1,17 @@
-// Fills the local server's cache (pilot/cache) for the Prague sample cuts that have no cached IPR answer
+// Fills the local server's cache (app/cache) for the Prague sample cuts that have no cached IPR answer
 // yet, so evaluation/ab.mjs (CITY=praha, cache only) can derive all 100 cuts: MTVU, the line layer, parking
 // and the point layer of the technical map (layer 9). The cuts and their bboxes come from an earlier ab.mjs
 // run (evaluation/praha/data/ab-<a>-<b>/<n>.json). Requests go through polite.mjs: one at a time, 300 ms apart.
 //   node evaluation/praha-opendata/fill_cache.mjs [ab-city-stejne]
-// The same requests and cache files as pilot/server.mjs (cache key: the bbox as ab.mjs rounds it).
+// The same requests and cache files as app/server.mjs (cache key: the bbox as ab.mjs rounds it).
 import fs from "node:fs/promises";
 import path from "node:path";
 import crypto from "node:crypto";
 import { politeFetch } from "../polite.mjs";
-import { MTVU, MTVU_FIELDS, TM_LINES, LINE_WHERE, TM_POINTS, POINT_WHERE, PARKOVANI, PARKING_LAYERS, parkingFields } from "../../pilot/public/queries.js";
+import { MTVU, MTVU_FIELDS, TM_LINES, LINE_WHERE, TM_POINTS, POINT_WHERE, PARKOVANI, PARKING_LAYERS, parkingFields } from "../../app/public/queries.js";
 
 const ROOT = path.dirname(new URL(import.meta.url).pathname);
-const PILOT = path.join(ROOT, "..", "..", "pilot");
+const PILOT = path.join(ROOT, "..", "..", "app");
 const RUN = path.join(ROOT, "..", "praha", "data", process.argv[2] || "ab-city-stejne");
 const sha1 = (s) => crypto.createHash("sha1").update(s).digest("hex");
 const round = (v) => Math.round(v * 1e5) / 1e5;

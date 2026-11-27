@@ -6,7 +6,7 @@
 // request at a time, a pause of 1.5 s, the answers kept in data/raw.json (a second run asks nothing again).
 //   node evaluation/slovenia/ab/attic.mjs → data/raw.json
 import fs from "node:fs";
-import { GURS_KN, gursUrl } from "../../../pilot/public/towns/slovenia.js";
+import { GURS_KN, gursUrl } from "../../../app/public/towns/slovenia.js";
 
 const HERE = new URL("./", import.meta.url), CACHE = new URL("data/raw.json", HERE);
 const raw = fs.existsSync(CACHE) ? JSON.parse(fs.readFileSync(CACHE, "utf8")) : {};

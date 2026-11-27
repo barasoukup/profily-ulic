@@ -2,12 +2,12 @@
 // srážkovými vodami, ch. 5.1): the parts, what lies under a part, permeable paving, and how they travel and count.
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { TYPES, HDV_UNDER, UNDER_TYPES, PERMEABLE_TYPES, ITEMS, underSize } from "../pilot/public/types.js";
-import { checkUnder, checkTrees } from "../pilot/public/rules.js";
-import { cleanProfile, retype } from "../pilot/public/validate.js";
-import { packProfile, unpackProfile } from "../pilot/public/share.js";
-import { shares } from "../pilot/public/shares.js";
-import { toStreetmix } from "../pilot/public/streetmix.js";
+import { TYPES, HDV_UNDER, UNDER_TYPES, PERMEABLE_TYPES, ITEMS, underSize } from "../app/public/types.js";
+import { checkUnder, checkTrees } from "../app/public/rules.js";
+import { cleanProfile, retype } from "../app/public/validate.js";
+import { packProfile, unpackProfile } from "../app/public/share.js";
+import { shares } from "../app/public/shares.js";
+import { toStreetmix } from "../app/public/streetmix.js";
 
 const design = () => ({ segments: [
   { type: "chodnik", width: 2.5, permeable: true, under: "nadrz", items: [{ kind: "pristresek_zeleny", f: 0.5 }] },

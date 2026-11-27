@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
-# Builds the OSM tiles the app reads (pilot/data/osm-tiles): for the whole Czech Republic (as the deploy does)
-#   NAME=cz tools/build_osm_data.sh data/osm/cz.osm.pbf pilot/data/osm-tiles   (Geofabrik's extract)
+# Builds the OSM tiles the app reads (app/data/osm-tiles): for the whole Czech Republic (as the deploy does)
+#   NAME=cz tools/build_osm_data.sh data/osm/cz.osm.pbf app/data/osm-tiles   (Geofabrik's extract)
 # or, as before, from the BBBike Prague extract:
 # exports the needed features with ogr2ogr into data/osm/praha_*.geojsonl, then tiles them.
 #   tools/build_osm_data.sh [Prag.osm.pbf] [out dir]
-# Brno: NAME=brno tools/build_osm_data.sh data/osm/Brno.osm.pbf pilot/data/brno/osm-tiles
-# A town (no BBBike extract; tools/cities.mjs): NAME=jihlava tools/build_osm_data.sh data/osm/towns/jihlava.osm.pbf pilot/data/jihlava/osm-tiles,
+# Brno: NAME=brno tools/build_osm_data.sh data/osm/Brno.osm.pbf app/data/brno/osm-tiles
+# A town (no BBBike extract; tools/cities.mjs): NAME=jihlava tools/build_osm_data.sh data/osm/towns/jihlava.osm.pbf app/data/jihlava/osm-tiles,
 # the pbf cut from Geofabrik's Czech Republic with osmium (as the deploy does), or SPAT="x0 y0 x1 y1" to
 # read only that box of a bigger pbf.
 # OGR=/path/to/ogr2ogr overrides the ogr2ogr binary (on a Mac with QGIS:

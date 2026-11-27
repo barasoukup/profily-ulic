@@ -1,6 +1,6 @@
 # Záznam řezů (Cloudflare)
 
-Stránka posílá po každém řezu a u několika akcí krátkou zprávu (`pilot/public/log.js`). Cloudflare Worker
+Stránka posílá po každém řezu a u několika akcí krátkou zprávu (`app/public/log.js`). Cloudflare Worker
 (`worker.js`) ji uloží do databáze D1 (`schema.sql`). Odesílá se na pozadí přes `navigator.sendBeacon`, takže
 kliknutí na nic nečeká, a když Worker neodpoví, nic se nestane.
 
@@ -115,7 +115,7 @@ npx wrangler d1 execute profily-ulic-log --remote --command "ALTER TABLE events 
 npx wrangler deploy
 ```
 
-Lokálně (`node pilot/server.mjs`) se nic nezaznamenává, `LOG_URL` je tam prázdné.
+Lokálně (`node app/server.mjs`) se nic nezaznamenává, `LOG_URL` je tam prázdné.
 
 ## Kontaktní formulář (okno „O aplikaci“, 24. 11. 2026)
 
@@ -124,7 +124,7 @@ streetspace.eu, tajné `CONTACT_FROM=profily@streetspace.eu` a `CONTACT_TO`, vaz
 s Node 26 `npx wrangler` tiše končí kódem 194; spouštět `node …/node_modules/wrangler/bin/wrangler.js …` přímo.
 
 Formulář posílá na stejného Workera jako záznam řezů, na adresu z `LOG_URL` s koncovkou `/contact` místo `/log`
-(`pilot/public/about.js`). Dokud `LOG_URL` není nastavené nebo Worker neodpovídá, okno napíše „Odesílání zpráv tu zatím
+(`app/public/about.js`). Dokud `LOG_URL` není nastavené nebo Worker neodpovídá, okno napíše „Odesílání zpráv tu zatím
 nejde.“ a nic neposílá. Nasazení (ve složce `logging/`, jednou):
 
 1. Přidej do databáze dvě nové tabulky. `schema.sql` má všechno s `IF NOT EXISTS`, takže stačí ho spustit znovu

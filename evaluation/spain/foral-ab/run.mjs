@@ -6,9 +6,9 @@
 // Also (agreement): up to 15 OSM buildings a Basque city with building:levels, asked the same way (data/<city>.geojsonl).
 //   node evaluation/spain/foral-ab/run.mjs → vysledky/rezy.json, vysledky/osm-levels.json
 import fs from "node:fs";
-import { setCity } from "../../../pilot/public/city.js";
-import { buildingStyle } from "../../../pilot/public/profile.js";
-import { sources } from "../../../pilot/public/towns/spain.js";
+import { setCity } from "../../../app/public/city.js";
+import { buildingStyle } from "../../../app/public/profile.js";
+import { sources } from "../../../app/public/towns/spain.js";
 
 setCity("spain");
 const HERE = new URL("./", import.meta.url), CACHE = new URL("data/answers.json", HERE);

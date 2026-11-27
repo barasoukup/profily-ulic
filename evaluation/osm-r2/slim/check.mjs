@@ -2,12 +2,12 @@
 // around a cut (gis.js osmTiles: the tiles within 80 m, mergePieces) must be the same elements in the same order, with the
 // same geometry and the same tags, but for what the slimming takes by design: the id of an area or a point (0) and the
 // keys of osm_slim.mjs DROP_KEY. Any other difference is listed.
-//   node evaluation/osm-r2/slim/check.mjs pilot/data/osm-pack pilot/data/osm-pack-slim sample.json …
+//   node evaluation/osm-r2/slim/check.mjs app/data/osm-pack app/data/osm-pack-slim sample.json …
 import fs from "node:fs";
 import path from "node:path";
 import { isDeepStrictEqual } from "node:util";
-import { PackSet } from "../../../pilot/public/osmpack.js";
-import { mergePieces, TILE } from "../../../pilot/public/osmtile.js";
+import { PackSet } from "../../../app/public/osmpack.js";
+import { mergePieces, TILE } from "../../../app/public/osmtile.js";
 import { DROP_KEY } from "../../../tools/osm_slim.mjs";
 
 const [fullDir, slimDir, ...samples] = process.argv.slice(2);

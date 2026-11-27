@@ -42,7 +42,7 @@ function limitsPL(s, segs, i) {
   }
 }
 
-// The signs of the state PL (pilot/public/signs-PL/, README there; Rozporządzenie w sprawie znaków i sygnałów
+// The signs of the state PL (app/public/signs-PL/, README there; Rozporządzenie w sprawie znaków i sygnałów
 // drogowych, Dz.U. 2019 poz. 2310; Wikimedia Commons, public domain: road signs are no subject of copyright, art. 4
 // of the Polish copyright act). Poland has no sign of a pedestrian zone or a cycle street.
 const PL_FILE = { ip25a: "D-44", b1: "B-1", b11: "B-3", b8: "B-9", b30: "B-41", b28: "B-36", b29: "B-35", ip11a: "D-18", ztp: "D-18", ip12: "D-18a", ip14a: "D-9",

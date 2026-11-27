@@ -1,6 +1,6 @@
 # A/B: budovy Helsinek a Ryhti ve Finsku (23. 11. 2026)
 
-Co se zkoušelo: bez dat státu kreslí aplikace dům ve Finsku jen z OSM. Nově se ptá (`pilot/public/towns/finland.js`)
+Co se zkoušelo: bez dat státu kreslí aplikace dům ve Finsku jen z OSM. Nově se ptá (`app/public/towns/finland.js`)
 v Helsinkách **registru budov města** (`Rakennukset_alue_rekisteritiedot`, WFS kartta.hel.fi, CC BY 4.0: podlaží, rok
 dokončení, nosný materiál, fasáda, užití) a jinde (nebo když Helsinky dům nemají) **Ryhti SYKE** (`open_building`, body
 s podlažími, rokem, materiálem, fasádou, užitím; CC BY 4.0), bod uvnitř obrysu domu z OSM na fasádě. A = jen OSM

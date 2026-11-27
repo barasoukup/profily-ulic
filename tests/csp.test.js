@@ -1,13 +1,13 @@
 // The page's CSP (index.html) is written by hand, but every host the app's code asks for data must be in its
 // connect-src (docs/architecture-countries.md, step 5): a new state's or city's source that is not there would fail
 // only in the browser, on the web. Hosts the code names only for map tiles (img-src) or links are listed here.
-import "../pilot/public/america.js"; // the states of North America (late.js)
+import "../app/public/america.js"; // the states of North America (late.js)
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
-import { LANGS } from "../pilot/public/i18n.js";
+import { LANGS } from "../app/public/i18n.js";
 
-const DIR = new URL("../pilot/public/", import.meta.url);
+const DIR = new URL("../app/public/", import.meta.url);
 const FILES = [...fs.readdirSync(DIR).filter((f) => f.endsWith(".js")), ...["towns", "countries"].flatMap((d) => fs.readdirSync(new URL(`${d}/`, DIR)).map((f) => `${d}/${f}`))]
   // The languages' texts (en.js, fr.js…) only link to the sources, in the footer.
   .filter((f) => f.endsWith(".js") && !Object.keys(LANGS).some((l) => f === `${l}.js`));
@@ -29,7 +29,7 @@ test("CSP: connect-src má všechny hostitele, na které se ptají moduly zdroj�
 
 test("seznam států pro nasazení: každý má modul státu v aplikaci", async () => {
   const { COUNTRIES } = await import("../tools/countries.mjs");
-  const { COUNTRIES: APP } = await import("../pilot/public/countries/index.js");
+  const { COUNTRIES: APP } = await import("../app/public/countries/index.js");
   for (const [key, c] of Object.entries(COUNTRIES)) {
     assert.ok(APP[c.iso], `${key}: countries/${c.iso}.js`);
     assert.equal(key, c.iso.toLowerCase());

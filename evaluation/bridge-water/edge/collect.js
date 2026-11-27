@@ -1,5 +1,5 @@
 // The collector of the bridge-edge measurement (26. 11. 2026), as ../blind/collect.js, run in the app's page (server
-// with EVAL_SAVE=1, this file copied to pilot/public/zz-edge.js, git ignores it):
+// with EVAL_SAVE=1, this file copied to app/public/zz-edge.js, git ignores it):
 //   (await import("/zz-edge.js")).run(name, points, variants, budgetMs, noise)
 // Besides the parts and the ends it keeps the items at the profile's two outer parts (the railing, bridgeRailings).
 const parts = (s) => (s.stav?.segments || []).map((x) => [x.type, +x.width.toFixed(2)]);

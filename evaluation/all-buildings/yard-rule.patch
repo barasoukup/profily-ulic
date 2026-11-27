@@ -1,7 +1,7 @@
-diff --git a/pilot/public/derive.js b/pilot/public/derive.js
+diff --git a/app/public/derive.js b/app/public/derive.js
 index a89de99..df2b74f 100644
---- a/pilot/public/derive.js
-+++ b/pilot/public/derive.js
+--- a/app/public/derive.js
++++ b/app/public/derive.js
 @@ -1448,6 +1448,22 @@ const gableToStreet = (axis, normal) => !!axis && axis.width <= GABLE_MAX_W && a
  // long slab about 10–14 m wide that fills its rectangle; a city block of tenements is wide,
  // with a courtyard (low fill); a building standing alone is one part.
@@ -40,10 +40,10 @@ index a89de99..df2b74f 100644
  }
  
  // Street furniture, barriers and slopes found along the cut, as {kind, t}.
-diff --git a/pilot/public/house-looks.js b/pilot/public/house-looks.js
+diff --git a/app/public/house-looks.js b/app/public/house-looks.js
 index e18387d..e7ed124 100644
---- a/pilot/public/house-looks.js
-+++ b/pilot/public/house-looks.js
+--- a/app/public/house-looks.js
++++ b/app/public/house-looks.js
 @@ -32,7 +32,22 @@ export const houseHash = (info) => {
    if (!p) return (info?.tint ?? 0) + (info?.levels || 0);
    return ((Math.round(p[0] * 1e5) * 73856093) ^ (Math.round(p[1] * 1e5) * 19349663)) >>> 0;
@@ -77,10 +77,10 @@ index e18387d..e7ed124 100644
      // Brussels: the narrower maison bourgeoise of 3–4 floors as a Haussmann house without the long balconies.
      if (low && (!y || y >= 1850) && !(n > 8)) return "haussmann";
      return undefined;
-diff --git a/pilot/public/profile.js b/pilot/public/profile.js
+diff --git a/app/public/profile.js b/app/public/profile.js
 index 76c72b0..aec44bc 100644
---- a/pilot/public/profile.js
-+++ b/pilot/public/profile.js
+--- a/app/public/profile.js
++++ b/app/public/profile.js
 @@ -7,7 +7,7 @@ import { GENERIC_VEHICLES } from "./art.js";
  import { PLATES, signFile, plateFile, signLabel, signDir, SPEED_TEMPLATES } from "./signs.js";
  // tr: t is a part's type here.

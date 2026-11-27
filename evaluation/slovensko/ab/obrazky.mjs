@@ -9,7 +9,7 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import { execFile } from "node:child_process";
 import { promisify } from "node:util";
-import { decodePng } from "../../../pilot/public/dmvs.js";
+import { decodePng } from "../../../app/public/dmvs.js";
 import { encodePng } from "../../ortofoto/run.mjs";
 
 const ROOT = path.dirname(new URL(import.meta.url).pathname);
@@ -102,7 +102,7 @@ async function image(c, tMax) {
   try { buf = await fs.readFile(file); } catch {
     if (process.env.ORTHO === "de") {
       // Germany (evaluation/germany/ab): the orthophoto of the town's Land (lanes-ortho.js DE_ORTHO) as a PNG.
-      const { DE_ORTHO, deWmsUrl } = await import("../../../pilot/public/lanes-ortho.js");
+      const { DE_ORTHO, deWmsUrl } = await import("../../../app/public/lanes-ortho.js");
       const land = { berlin: "BE", hamburg: "HH", aachen: "NW" }[c.town];
       buf = Buffer.from(await (await fetch(deWmsUrl(DE_ORTHO[land], [x0, y0, x1, y1], w, h, "image/png"), { headers: { "User-Agent": "profily-ulic" } })).arrayBuffer());
       await fs.mkdir(path.dirname(file), { recursive: true });
@@ -118,7 +118,7 @@ async function image(c, tMax) {
       await new Promise((r) => setTimeout(r, 300));
     } else if (process.env.ORTHO === "pl") {
       // Poland (evaluation/poland/ab): GUGiK's orthophoto WMS (a JPEG, made a PNG).
-      const { PL_ORTHO } = await import("../../../pilot/public/lanes-ortho.js");
+      const { PL_ORTHO } = await import("../../../app/public/lanes-ortho.js");
       await fs.mkdir(path.dirname(file), { recursive: true });
       await fs.writeFile(file + ".img", Buffer.from(await (await fetch(PL_ORTHO([x0, y0, x1, y1], w, h), { headers: { "User-Agent": "profily-ulic" } })).arrayBuffer()));
       await run("magick", [file + ".img", "PNG24:" + file]);
@@ -127,7 +127,7 @@ async function image(c, tMax) {
       await new Promise((r) => setTimeout(r, 300));
     } else if (process.env.ORTHO === "fr") {
       // France (evaluation/france/ab): IGN's orthophoto WMS (a JPEG, made a PNG).
-      const { FR_ORTHO } = await import("../../../pilot/public/lanes-ortho.js");
+      const { FR_ORTHO } = await import("../../../app/public/lanes-ortho.js");
       await fs.mkdir(path.dirname(file), { recursive: true });
       await fs.writeFile(file + ".img", Buffer.from(await (await fetch(FR_ORTHO([x0, y0, x1, y1], w, h), { headers: { "User-Agent": "profily-ulic" } })).arrayBuffer()));
       await run("magick", [file + ".img", "PNG24:" + file]);
@@ -136,7 +136,7 @@ async function image(c, tMax) {
       await new Promise((r) => setTimeout(r, 300));
     } else if (process.env.ORTHO === "si") {
       // Slovenia (evaluation/slovenia): GURS's DOF025 WMS (a JPEG, made a PNG); the server hangs now and then: up to three tries.
-      const { SI_ORTHO } = await import("../../../pilot/public/lanes-ortho.js");
+      const { SI_ORTHO } = await import("../../../app/public/lanes-ortho.js");
       await fs.mkdir(path.dirname(file), { recursive: true });
       let r;
       for (let i = 0; i < 3 && !r?.ok; i++) r = await fetch(SI_ORTHO([x0, y0, x1, y1], w, h), { headers: { "User-Agent": "profily-ulic" }, signal: AbortSignal.timeout(35000) }).catch(() => null);
@@ -148,7 +148,7 @@ async function image(c, tMax) {
       await new Promise((r) => setTimeout(r, 300));
     } else if (process.env.ORTHO === "fi") {
       // Finland (evaluation/finland/ab): the town's orthophoto (lanes-ortho.js FI_ORTHO; Helsinki 2026, 5 cm) as a JPEG, made a PNG.
-      const { FI_ORTHO, fiOrthoAt } = await import("../../../pilot/public/lanes-ortho.js");
+      const { FI_ORTHO, fiOrthoAt } = await import("../../../app/public/lanes-ortho.js");
       await fs.mkdir(path.dirname(file), { recursive: true });
       await fs.writeFile(file + ".img", Buffer.from(await (await fetch(FI_ORTHO[fiOrthoAt(c.lon, c.lat)[0]].url([x0, y0, x1, y1], w, h), { headers: { "User-Agent": "profily-ulic" } })).arrayBuffer()));
       await run("magick", [file + ".img", "PNG24:" + file]);
@@ -157,7 +157,7 @@ async function image(c, tMax) {
       await new Promise((r) => setTimeout(r, 300));
     } else if (process.env.ORTHO === "es") {
       // Spain (evaluation/spain/ab): IGN's PNOA WMS (a JPEG, made a PNG).
-      const { ES_ORTHO } = await import("../../../pilot/public/lanes-ortho.js");
+      const { ES_ORTHO } = await import("../../../app/public/lanes-ortho.js");
       await fs.mkdir(path.dirname(file), { recursive: true });
       await fs.writeFile(file + ".img", Buffer.from(await (await fetch(ES_ORTHO([x0, y0, x1, y1], w, h), { headers: { "User-Agent": "profily-ulic" } })).arrayBuffer()));
       await run("magick", [file + ".img", "PNG24:" + file]);
@@ -166,7 +166,7 @@ async function image(c, tMax) {
       await new Promise((r) => setTimeout(r, 300));
     } else if (process.env.ORTHO === "pt") {
       // Portugal (evaluation/portugal/ab): the newest DGT flight with a photo here (a white JPEG is tiny).
-      const { PT_ORTHO } = await import("../../../pilot/public/lanes-ortho.js");
+      const { PT_ORTHO } = await import("../../../app/public/lanes-ortho.js");
       await fs.mkdir(path.dirname(file), { recursive: true });
       let img;
       for (const key of ["pt-25", "pt-21", "pt-18", "pt-sat"]) {
@@ -181,7 +181,7 @@ async function image(c, tMax) {
       await new Promise((r) => setTimeout(r, 300));
     } else if (process.env.ORTHO === "be") {
       // Belgium (evaluation/belgium/ab): Flanders' orthophoto, else Wallonia's (a blank Flemish image is small).
-      const { BE_ORTHO } = await import("../../../pilot/public/lanes-ortho.js");
+      const { BE_ORTHO } = await import("../../../app/public/lanes-ortho.js");
       await fs.mkdir(path.dirname(file), { recursive: true });
       for (const r of ["vl", "wal"]) {
         const b = Buffer.from(await (await fetch(BE_ORTHO[r].url([x0, y0, x1, y1], w, h, "image/png"), { headers: { "User-Agent": "profily-ulic" } })).arrayBuffer());
@@ -211,7 +211,7 @@ async function image(c, tMax) {
     } else if (process.env.ORTHO === "dk") {
       // Denmark (evaluation/denmark/ab): GeoDanmark's spring orthophoto (lanes-ortho.js DK_ORTHO, with the app's token
       // from DK_TOKEN or config.local.js, never printed), tiles of level 20 glued and cut to the box.
-      const { DK_ORTHO } = await import("../../../pilot/public/lanes-ortho.js");
+      const { DK_ORTHO } = await import("../../../app/public/lanes-ortho.js");
       buf = await atImage([x0, y0, x1, y1], w, h, false, (z, x, y) => DK_ORTHO(z, x, y));
       await fs.mkdir(path.dirname(file), { recursive: true });
       await fs.writeFile(file, buf);

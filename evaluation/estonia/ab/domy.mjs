@@ -6,8 +6,8 @@
 //   node evaluation/estonia/ab/domy.mjs photos   (Mapillary; token in evaluation/streetview/token.local)
 //   node evaluation/estonia/ab/domy.mjs score
 import fs from "node:fs/promises";
-import { Pack } from "../../../pilot/public/osmpack.js";
-import { etakBuilding } from "../../../pilot/public/towns/estonia.js";
+import { Pack } from "../../../app/public/osmpack.js";
+import { etakBuilding } from "../../../app/public/towns/estonia.js";
 
 const HERE = new URL("./", import.meta.url), DATA = new URL("data/domy/", HERE), OUT = new URL("vysledky/domy.json", HERE);
 const SEED = 20261124;
@@ -16,8 +16,8 @@ const rnd = () => ((s = (s * 1103515245 + 12345) % 2147483648) / 2147483648);
 const centroid = (g) => { const r = g.type === "MultiPolygon" ? g.coordinates[0][0] : g.coordinates[0]; return [r.reduce((a, p) => a + p[0], 0) / r.length, r.reduce((a, p) => a + p[1], 0) / r.length]; };
 const inRing = (r, x, y) => { let c = false; for (let i = 0, j = r.length - 1; i < r.length; j = i++) { const [xi, yi] = r[i], [xj, yj] = r[j]; if (yi > y !== yj > y && x < ((xj - xi) * (y - yi)) / (yj - yi) + xi) c = !c; } return c; };
 
-async function osmLevels(box) { // the local OSM pack of Estonia (pilot/data/osm-pack/ee-novy.posm)
-  const fh = await fs.open(new URL("../../../pilot/data/osm-pack/ee-novy.posm", HERE));
+async function osmLevels(box) { // the local OSM pack of Estonia (app/data/osm-pack/ee-novy.posm)
+  const fh = await fs.open(new URL("../../../app/data/osm-pack/ee-novy.posm", HERE));
   const p = new Pack(async (a, b) => { const buf = Buffer.alloc(b - a + 1); await fh.read(buf, 0, buf.length, a); return { bytes: new Uint8Array(buf) }; });
   const T = 0.005, names = [];
   for (let ix = Math.floor(box[0] / T); ix <= Math.floor(box[2] / T); ix++) for (let iy = Math.floor(box[1] / T); iy <= Math.floor(box[3] / T); iy++) names.push(`${ix}_${iy}`);

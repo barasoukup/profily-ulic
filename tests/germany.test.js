@@ -4,7 +4,7 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 
 test("Německo: plochy Berlína, Hamburku a Cách na kódy MTVU, město podle polohy, vypínače", async () => {
-  const G = await import("../pilot/public/towns/germany.js");
+  const G = await import("../app/public/towns/germany.js");
   assert.equal(G.BERLIN_LAYERS.cm_fahrbahn, 701);
   assert.equal(G.BERLIN_LAYERS.cl_gehweg, 702);
   assert.equal(G.BERLIN_LAYERS.bz_gleiskoerper_strab, 705);
@@ -26,7 +26,7 @@ test("Německo: plochy Berlína, Hamburku a Cách na kódy MTVU, město podle po
 });
 
 test("Německo: ortofoto spolkové země podle polohy, u hranice i sousední", async () => {
-  const { landsAt, DE_ORTHO, deWmsUrl } = await import("../pilot/public/lanes-ortho.js");
+  const { landsAt, DE_ORTHO, deWmsUrl } = await import("../app/public/lanes-ortho.js");
   assert.deepEqual(await landsAt(11.5755, 48.1374), ["BY"]);
   assert.deepEqual(await landsAt(6.957, 50.94), ["NW"]);
   assert.equal((await landsAt(13.3777, 52.5163))[0], "BE");
@@ -37,9 +37,9 @@ test("Německo: ortofoto spolkové země podle polohy, u hranice i sousední", a
 
 test("Německo: CSP stránky pustí ortofota všech zemí (connect-src pro odhad, img-src pro podklad) a mapy měst", async () => {
   const fs = await import("node:fs");
-  const html = fs.readFileSync(new URL("../pilot/public/index.html", import.meta.url), "utf8");
+  const html = fs.readFileSync(new URL("../app/public/index.html", import.meta.url), "utf8");
   const connect = html.match(/connect-src [^;]*/)[0], img = html.match(/img-src [^;]*/)[0];
-  const { DE_ORTHO } = await import("../pilot/public/lanes-ortho.js");
+  const { DE_ORTHO } = await import("../app/public/lanes-ortho.js");
   for (const [land, o] of Object.entries(DE_ORTHO)) {
     const host = new URL(o.wms).origin;
     assert.ok(connect.includes(host), `connect-src ${land} ${host}`);
@@ -49,7 +49,7 @@ test("Německo: CSP stránky pustí ortofota všech zemí (connect-src pro odhad
 });
 
 test("velikost značek ze sad Commons (AT, DE) podle tvaru, ne podle čísel ve viewBoxu", async () => {
-  const { signUnits } = await import("../pilot/public/profile.js");
+  const { signUnits } = await import("../app/public/profile.js");
   assert.equal(signUnits("znacky", 132, 100), 1.32, "české zůstávají");
   assert.equal(signUnits("signs-DE", 600.995, 600.995), 1);
   assert.equal(signUnits("signs-AT", 960, 960), signUnits("signs-AT", 100, 100), "10a-30 a 10a-50 stejně velké");
@@ -58,8 +58,8 @@ test("velikost značek ze sad Commons (AT, DE) podle tvaru, ne podle čísel ve 
 });
 
 test("Německo: stání podle zákona nenechá dva pruhy po 1,55 m (obousměrka 5,1 m bez stání, 7,1 m s jedním, 9,1 m se dvěma)", async () => {
-  const C = await import("../pilot/public/city.js");
-  const { deriveProfile, localFrame } = await import("../pilot/public/derive.js");
+  const C = await import("../app/public/city.js");
+  const { deriveProfile, localFrame } = await import("../app/public/derive.js");
   const frame = localFrame(52.5, 13.4);
   const rect = (code, x0, x1) => ({ code, label: "", rings: [[[x0, -60], [x1, -60], [x1, 60], [x0, 60]]], bbox: [x0, -60, x1, 60] });
   const ll = (x, y) => { const [lon, lat] = frame.toLonLat(x, y); return { lon, lat }; };
@@ -79,7 +79,7 @@ test("Německo: stání podle zákona nenechá dva pruhy po 1,55 m (obousměrka 
 });
 
 test("Německo: paneláky jen v zemích bývalé NDR (countries/DE.js atPlace podle laender.json)", async () => {
-  const { countryOf } = await import("../pilot/public/countries/index.js");
+  const { countryOf } = await import("../app/public/countries/index.js");
   const DE = countryOf("DE");
   // Heiligenstadt and Dömitz east, Eschwege, Bad Steben and Neustadt bei Coburg west (the review of Germany).
   for (const [lon, lat, east] of [[12.375, 51.34, true], [13.4, 52.52, true], [11.63, 52.13, true], [10.135, 51.378, true], [11.25, 53.14, true],
@@ -87,8 +87,8 @@ test("Německo: paneláky jen v zemích bývalé NDR (countries/DE.js atPlace po
 });
 
 test("stání zakreslené v OSM se do o něco užší odhadnuté vozovky vejde v plné šířce, pruh ustoupí (Großer Brockhaus, recenze přenosu)", async () => {
-  const C = await import("../pilot/public/city.js");
-  const { deriveProfile, localFrame } = await import("../pilot/public/derive.js");
+  const C = await import("../app/public/city.js");
+  const { deriveProfile, localFrame } = await import("../app/public/derive.js");
   const frame = localFrame(51.34, 12.386);
   const rect = (code, x0, x1, guess) => ({ code, label: "", guess, rings: [[[x0, -60], [x1, -60], [x1, 60], [x0, 60]]], bbox: [x0, -60, x1, 60] });
   const ll = (x, y) => { const [lon, lat] = frame.toLonLat(x, y); return { lon, lat }; };
@@ -107,7 +107,7 @@ test("stání zakreslené v OSM se do o něco užší odhadnuté vozovky vejde v
 });
 
 test("koleje z OSM vedle tělesa z mapy města se posunou do něj (Neue Schönhauser Straße), jinde zůstanou", async () => {
-  const { snapTracksToBeds } = await import("../pilot/public/derive.js");
+  const { snapTracksToBeds } = await import("../app/public/derive.js");
   const r2 = (ts) => ts.map((t) => Math.round(t * 100) / 100);
   // Berlin's Gleiskörper in the roadway (−1.2…3.0 m), OSM's tracks 1 m south: 1.5 m each side of the bed's centre.
   let ts = [-1.70, 1.49];
@@ -128,7 +128,7 @@ test("koleje z OSM vedle tělesa z mapy města se posunou do něj (Neue Schönha
 });
 
 test("úzký proužek tělesa ani vzdálené těleso kolej nepřitáhnou (Vídeň, Rotundenbrücke)", async () => {
-  const { snapTracksToBeds } = await import("../pilot/public/derive.js");
+  const { snapTracksToBeds } = await import("../app/public/derive.js");
   // The filter of narrow strips is in mapTramBeds; here a track 2.2 m from the bed's centre stays.
   const ts = [-1.55, 1.47];
   snapTracksToBeds(ts, [[-7.5, -3.0, false]]);

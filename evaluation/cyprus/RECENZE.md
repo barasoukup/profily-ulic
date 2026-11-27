@@ -2,7 +2,7 @@
 
 Rozsah: `countries/CY.js`, `towns/cyprus.js`, `signs-CY/`, `evaluation/cyprus/`, jízda vlevo v `derive.js`
 (`leftHand`, `mirrorLeftHand`), `lanes-ortho.js` („cy“), `search-photon.js`, `credits.js`, `city.js`, `index.html`,
-`LICENCE-A-ZDROJE.md`, `pilot/README.md`, `tests/cyprus.test.js`, `tests/derive.test.js`, `staty.json` a
+`LICENCE-A-ZDROJE.md`, `app/README.md`, `tests/cyprus.test.js`, `tests/derive.test.js`, `staty.json` a
 `tools/cyprus-border.json`. HEAD `84140de` (větev `estonia`). Žádný existující soubor jsem neměnil, nic necommitoval.
 
 Co jsem ověřil:
@@ -21,7 +21,7 @@ Co jsem ověřil:
 
 ### 1. Jízda vlevo: šipky řadicích pruhů a pruhy z `bus:lanes` končí ve špatném pruhu (ověřeno)
 
-`applyLaneTags` (`pilot/public/derive.js:863–883`) čte `turn:lanes`, `bus:lanes`, `bicycle:lanes` „od řidičovy levé
+`applyLaneTags` (`app/public/derive.js:863–883`) čte `turn:lanes`, `bus:lanes`, `bicycle:lanes` „od řidičovy levé
 ruky“ v rozložení pro jízdu vpravo (levý pruh = u středu). `mirrorLeftHand` (`derive.js:849–859`) pak jen obrátí
 pořadí směrů a šipek po pozicích. Při jízdě vlevo je ale řidičův levý pruh u obruby, takže se pořadí uvnitř směru
 převrátí.
@@ -85,7 +85,7 @@ vlevo je vnější okraj po řidičově levici. Umělá dělená silnice (pás 2
 
 ### 6. Nárazníková zóna není „mimo“: Pyla, Mammari, Deneia a letiště Nikósie jsou stát „cyprus“ (ověřeno)
 
-`pilot/README.md:291` a commit tvrdí, že nárazníková zóna OSN (Pyla) je mimo. `tests/cyprus.test.js:44` to má
+`app/README.md:291` a commit tvrdí, že nárazníková zóna OSN (Pyla) je mimo. `tests/cyprus.test.js:44` to má
 dokazovat bodem 35,045 N, 33,712 E s komentářem „Pyla“. Ten bod leží 3,5 km severně od Pyly u Pergamosu (sever).
 Skutečná Pyla (35,0142 N, 33,6925 E; i těžiště katastru 35,0031 N, 33,6994 E podle Photonu), Mammari (35,1756 N,
 33,2051 E), Deneia (35,1664 N, 33,1464 E) i mezinárodní letiště Nikósie v chráněné oblasti OSN (35,1528 N,

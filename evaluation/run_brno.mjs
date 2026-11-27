@@ -1,5 +1,5 @@
 // The Brno version of run.mjs: every sampled cut (brno/data/samples.json) through the live pilot code as a
-// click on the Brno site does it (city "brno", data from pilot/data/brno, read by pilot/public/sources.js),
+// click on the Brno site does it (city "brno", data from app/data/brno, read by app/public/sources.js),
 // plus Brno's 2025 orthophoto tiles around each cut (gis.brno.cz, 90 × 90 m, about 20 cm/px).
 // Usage: node evaluation/run_brno.mjs [from] [to] → evaluation/brno/data/results/<n>.json, ortho/<n>.jpg
 import fs from "node:fs/promises";
@@ -11,14 +11,14 @@ const ROOT = path.dirname(new URL(import.meta.url).pathname);
 // (evaluation/<town>/data, the town's orthophoto from its module's `ortho`).
 const CITY = process.env.CITY || "brno";
 const DATA = path.join(ROOT, CITY, "data");
-const PILOT_DATA = path.join(ROOT, "..", "pilot", "data", CITY);
+const PILOT_DATA = path.join(ROOT, "..", "app", "data", CITY);
 globalThis.PROFILY_CITY = CITY;
-// sources.js reads "data/…" next to the page: here the files in pilot/data.
+// sources.js reads "data/…" next to the page: here the files in app/data.
 // ČÚZK one request at a time with pauses (polite.mjs).
 const webFetch = politeFetch;
 globalThis.fetch = async (url, opts) => {
   const u = String(url);
-  // data/…: pilot/data, as the one page has it (the OSM tiles of the country, data/<city>/ of a city).
+  // data/…: app/data, as the one page has it (the OSM tiles of the country, data/<city>/ of a city).
   const file = u.startsWith("data/") ? path.join(PILOT_DATA, "..", u.slice(5)) : null;
   if (!file) return webFetch(url, opts);
   try {
@@ -28,8 +28,8 @@ globalThis.fetch = async (url, opts) => {
     return { ok: false, status: 404, json: async () => null, text: async () => "" };
   }
 };
-const D = await import("../pilot/public/derive.js");
-const S = await import("../pilot/public/sources.js");
+const D = await import("../app/public/derive.js");
+const S = await import("../app/public/sources.js");
 const { localFrame, nearestStreet, awayFromJunctions, centerOnStreet, mtvuPolygons, trackLines, techLines, esriPolygons, deriveProfile, MAX_REACH } = D;
 
 const HALF = 40;
@@ -43,7 +43,7 @@ const merc = (lon, lat) => [R * (lon * Math.PI) / 180, R * Math.log(Math.tan(Mat
 // Mercator, saved as one "tile" for render_brno.mjs. Without one, the ČÚZK orthophoto (WMS).
 const CUZK_ORTHO = "https://ags.cuzk.gov.cz/arcgis1/services/ORTOFOTO/MapServer/WMSServer";
 async function orthoTown(lat, lon, dir) {
-  const { TOWNS } = await import("../pilot/public/towns/index.js");
+  const { TOWNS } = await import("../app/public/towns/index.js");
   const o = TOWNS[CITY]?.ortho;
   const [x, y] = merc(lon, lat);
   const scale = Math.cos((lat * Math.PI) / 180), h = VIEW / scale, bbox = [x - h, y - h, x + h, y + h].join(",");
@@ -102,8 +102,8 @@ async function run(s) {
   const inZps = await S.zps(clat, clon);
   // The orthophoto of the lanes (lanes-ortho.js), as PNG decoded here (no canvas in Node): ČÚZK's where the city
   // has no better one; it also tells grass from paving beside a roadway read from lines (derive.js linePieces).
-  const { laneImage } = await import("../pilot/public/lanes-ortho.js");
-  const { decodePng } = await import("../pilot/public/dmvs.js");
+  const { laneImage } = await import("../app/public/lanes-ortho.js");
+  const { decodePng } = await import("../app/public/dmvs.js");
   // After the others: polite.mjs asks ČÚZK one request at a time, and the image would hold the DTM's up past their timeout.
   const [m, k, pk] = await Promise.all([S.mtvu(bbox), S.linie(bbox), S.parkovani(bbox, inZps)]);
   const li = await laneImage({ frame, dir, t0: -25, t1: 25, source: "cuzk", fetchImpl: webFetch, decode: decodePng, timeout: 30000 });

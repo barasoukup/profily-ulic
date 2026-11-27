@@ -9,9 +9,9 @@ import fs from "node:fs";
 const fixture = (f) => JSON.parse(fs.readFileSync(new URL(`./fixtures/${f}`, import.meta.url), "utf8"));
 
 test("Dánsko: stát řezu, Bornholm, přístavy a sousedé u hranice", async () => {
-  const C = await import("../pilot/public/city.js");
-  C.loadBounds(JSON.parse(fs.readFileSync(new URL("../pilot/public/mesta.json", import.meta.url), "utf8")));
-  C.loadStates(JSON.parse(fs.readFileSync(new URL("../pilot/public/staty.json", import.meta.url), "utf8")));
+  const C = await import("../app/public/city.js");
+  C.loadBounds(JSON.parse(fs.readFileSync(new URL("../app/public/mesta.json", import.meta.url), "utf8")));
+  C.loadStates(JSON.parse(fs.readFileSync(new URL("../app/public/staty.json", import.meta.url), "utf8")));
   // Rådhuspladsen, Nyhavn, Islands Brygge, Aarhus, Odense, Aalborg, Rønne (Bornholm), Skagen, Padborg, Kruså, Esbjerg, Helsingør
   for (const [lat, lon] of [[55.6761, 12.5685], [55.6798, 12.591], [55.664, 12.577], [56.1567, 10.2108], [55.3959, 10.3883], [57.0488, 9.9217],
     [55.1009, 14.7066], [57.7209, 10.5839], [54.8256, 9.3612], [54.8506, 9.4053], [55.4765, 8.4594], [56.0361, 12.6136]]) assert.equal(C.cityAt(lat, lon), "denmark", `${lat},${lon}`);
@@ -21,8 +21,8 @@ test("Dánsko: stát řezu, Bornholm, přístavy a sousedé u hranice", async ()
 });
 
 test("Dánsko: ortofoto jen s tokenem, bez něj poctivá chyba", async () => {
-  const K = await import("../pilot/public/keys.js");
-  const L = await import("../pilot/public/lanes-ortho.js");
+  const K = await import("../app/public/keys.js");
+  const L = await import("../app/public/lanes-ortho.js");
   const frame = { toLonLat: (x, y) => [12.5685 + x / 63000, 55.6761 + y / 111000] };
   const opts = { source: "dk", frame, dir: [1, 0], t0: -10, t1: 10 };
   K.setDkToken("");
@@ -46,7 +46,7 @@ test("Dánsko: ortofoto jen s tokenem, bez něj poctivá chyba", async () => {
 });
 
 test("Dánsko: okraje vozovek a parkovací plochy Kodaně", async () => {
-  const D = await import("../pilot/public/towns/denmark.js");
+  const D = await import("../app/public/towns/denmark.js");
   // Kapelvej by Assistens Kirkegård: of the paths, drives and roadways only the roadway's edges.
   const paths = D.kantPaths(fixture("dk-kbh-vejkant.json"));
   const roadways = fixture("dk-kbh-vejkant.json").features.filter((f) => f.properties.vejtype === "Kørevej").length;
@@ -95,7 +95,7 @@ test("Dánsko: okraje vozovek a parkovací plochy Kodaně", async () => {
 });
 
 test("Dánsko: budovy Kodaně a Aarhusu", async () => {
-  const D = await import("../pilot/public/towns/denmark.js");
+  const D = await import("../app/public/towns/denmark.js");
   // Kapelvej 4: the chapel of 1862, brick, one floor, culture (an office-like building).
   assert.deepEqual(D.pick(fixture("dk-kbh-bygning.json"), 55.68954585, 12.55228407, D.kbhBuilding, (q) => q.antaletager),
     { built: 1862, material: "brick", solid: true, office: true, cornice: 1, roof: 0, total: 1 });
@@ -134,8 +134,8 @@ test("Dánsko: budovy Kodaně a Aarhusu", async () => {
 });
 
 test("Dánsko: hledání GSearch jen s tokenem", async () => {
-  const K = await import("../pilot/public/keys.js");
-  const S = await import("../pilot/public/search-dk.js");
+  const K = await import("../app/public/keys.js");
+  const S = await import("../app/public/search-dk.js");
   K.setDkToken("");
   assert.equal(S.gsearchReady(), false);
   assert.deepEqual(await S.findDk("Nørrebrogade 10", () => { throw new Error("no request"); }), []);
@@ -155,7 +155,7 @@ test("Dánsko: hledání GSearch jen s tokenem", async () => {
 });
 
 test("Dánsko: značky a normy", async () => {
-  const { COUNTRIES } = await import("../pilot/public/countries/index.js");
+  const { COUNTRIES } = await import("../app/public/countries/index.js");
   const DK = COUNTRIES.DK;
   const f = DK.signs.file;
   assert.equal(f({ k: "b29" }), "C62");
@@ -168,10 +168,10 @@ test("Dánsko: značky a normy", async () => {
   assert.equal(f({ k: "sdilena" }), null);
   assert.equal(f({ k: "zona30" }), null);
   for (const k of ["b1", "b11", "b8", "b30", "b28", "b29", "ip11a", "ip14a", "ip15a", "ip26a", "ip27a", "cyklozona", "c8a", "c9a", "c7a"]) {
-    assert.ok(fs.existsSync(new URL(`../pilot/public/signs-DK/${f({ k })}.svg`, import.meta.url)), k);
+    assert.ok(fs.existsSync(new URL(`../app/public/signs-DK/${f({ k })}.svg`, import.meta.url)), k);
   }
-  assert.ok(fs.existsSync(new URL("../pilot/public/signs-DK/C55.svg", import.meta.url)));
-  const { SPEED_TEMPLATES } = await import("../pilot/public/signs.js");
+  assert.ok(fs.existsSync(new URL("../app/public/signs-DK/C55.svg", import.meta.url)));
+  const { SPEED_TEMPLATES } = await import("../app/public/signs.js");
   assert.ok(SPEED_TEMPLATES.has("C55"));
   assert.match(DK.signs.label({ k: "b29" }, null, "B 29 Zákaz stání"), /^C 62 Zákaz stání$/);
   // Recommendations are orange; the two-way cycle track (circular 95/1984, second hand) too (tests/cycle-track.test.js).
@@ -189,7 +189,7 @@ test("Dánsko: značky a normy", async () => {
 });
 
 test("Dánsko: cyklostezka podél silnice z OSM (cycleway:<strana>=track)", async () => {
-  const D = await import("../pilot/public/derive.js");
+  const D = await import("../app/public/derive.js");
   const seg = () => [{ type: "chodnik", width: 4, source: "odhad" }, { type: "pruh", width: 3.5 }, { type: "pruh", width: 3.5 }, { type: "chodnik", width: 4, source: "odhad" }];
   // Both sides: a track of the OSM width beside the roadway, the sidewalk keeps the rest; directions by the side.
   let s = seg();
@@ -206,7 +206,7 @@ test("Dánsko: cyklostezka podél silnice z OSM (cycleway:<strana>=track)", asyn
   assert.deepEqual(s.map((x) => [x.type, x.width]), [["chodnik", 1], ["cyklostezka", 1.5], ["pruh", 3.5]]);
   s = [{ type: "chodnik", width: 4, source: "dtm" }, { type: "pruh", width: 3.5 }];
   assert.equal(D.trackAlongRoad(s, { "cycleway:left": "track" }), 0);
-  const O = await import("../pilot/public/ortho-osm.js");
+  const O = await import("../app/public/ortho-osm.js");
   O.P.off = new Set(["stezkapodel"]);
   try { assert.equal(D.trackAlongRoad(seg(), { "cycleway:both": "track" }), 0); } finally { O.P.off = undefined; }
 });

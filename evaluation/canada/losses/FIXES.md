@@ -16,7 +16,7 @@ Opravy DDOT (Washington) a domy Toronta tu nejsou (Bára 26. 11. 2026: jen spole
 
 - Nové řezy (`../fixes/sample.mjs`, vlastní semínko, nic blíž než 150 m od dřívějších bodů), do aplikace jen ty, kterých se
   opravy můžou týkat (`surf.mjs`): 608 řezů v Torontu, Bostonu a New Yorku.
-- Sběr v aplikaci (lokální server, `?osm=balik`, `pilot/public/zz-collect.js`): `def` (vše zapnuté) proti `plan0`
+- Sběr v aplikaci (lokální server, `?osm=balik`, `app/public/zz-collect.js`): `def` (vše zapnuté) proti `plan0`
   (`?off=gapsortho,gapswide,trackaxis`), `evaluation/universal/data/na-fixes-plan.json`. **Změnilo se 72 profilů**
   (Toronto 61, Boston 10, New York 1).
 - Rozlišení po opravách (běh bez jedné opravy, `gapsfix0` a `ta0`) doběhlo jen u 37 ze 72 řezů; u zbylých 35 se neví,

@@ -3,8 +3,8 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { packTiles } from "../tools/pack_osm_tiles.mjs";
-import { Pack } from "../pilot/public/osmpack.js";
-import { mergePieces } from "../pilot/public/osmtile.js";
+import { Pack } from "../app/public/osmpack.js";
+import { mergePieces } from "../app/public/osmtile.js";
 
 // Tile 2884_10016 starts at 14.42°, 50.08° (5000 × 1e-6° a tile, 500 × 1e-5°).
 const X = 14420000, Y = 50080000, X5 = 1442000, Y5 = 5008000;

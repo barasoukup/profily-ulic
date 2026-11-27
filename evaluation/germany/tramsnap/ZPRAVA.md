@@ -2,7 +2,7 @@
 
 Podnět: Neue Schönhauser Straße v Berlíně (`#rez=52.524699,13.405405,69,22.0,22.0`), OSM má `parking:both=lane`, aplikace
 kreslila stání jen na straně A. Koleje z OSM (cesty 153424801, 153424828) leží asi 1 m jižněji než Gleiskörper z
-berlínské Straßenbefahrung, na straně B pak zbylo 0,8 m. Pravidlo v `derive.js` `snapTracksToBeds` (popis v `pilot/README.md`,
+berlínské Straßenbefahrung, na straně B pak zbylo 0,8 m. Pravidlo v `derive.js` `snapTracksToBeds` (popis v `app/README.md`,
 Tramvajové koleje), `?off=tramsnap` ho vypne.
 
 Sběr v aplikaci (localhost, `?osm=balik`), každý řez hned po sobě A = `off=tramsnap`, B = s pravidlem. Body na tramvajových

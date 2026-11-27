@@ -10,10 +10,10 @@
 import fs from "node:fs";
 import path from "node:path";
 const HERE = path.dirname(new URL(import.meta.url).pathname), W = path.join(HERE, "../../..");
-const { Pack } = await import(W + "/pilot/public/osmpack.js");
-const { mergePieces } = await import(W + "/pilot/public/osmtile.js");
-const { WATER, GREEN } = await import(W + "/pilot/public/ortho-osm.js");
-const dir = W + "/pilot/data/osm-pack/", idx = JSON.parse(fs.readFileSync(dir + "index.json"));
+const { Pack } = await import(W + "/app/public/osmpack.js");
+const { mergePieces } = await import(W + "/app/public/osmtile.js");
+const { WATER, GREEN } = await import(W + "/app/public/ortho-osm.js");
+const dir = W + "/app/data/osm-pack/", idx = JSON.parse(fs.readFileSync(dir + "index.json"));
 // The states whose judge has an orthophoto (../../universal/ortho.mjs) and whose app estimates somewhere.
 const STATES = { pl: "PL", sk: "SK", at: "AT", de: "DE", fr: "FR", es: "ES", pt: "PT", it: "IT", si: "SI", ee: "EE", fi: "FI", lt: "LT", be: "BE", lu: "LU", nl: "NL", ch: "CH" };
 const PER = 4, BLOCKS = Number(process.env.BLOCKS || 5), TARGET = { water: 36, green: 30, short: 26 };

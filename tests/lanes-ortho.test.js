@@ -1,8 +1,8 @@
-// Lanes from the orthophoto (pilot/public/lanes-ortho.js, prototype) on a drawn image: an 8 m carriageway with a
+// Lanes from the orthophoto (app/public/lanes-ortho.js, prototype) on a drawn image: an 8 m carriageway with a
 // dashed line in its middle, where the rules drew a shoulder and two lanes over 9.9 m.
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { brightMap, laneLines, applyLanes } from "../pilot/public/lanes-ortho.js";
+import { brightMap, laneLines, applyLanes } from "../app/public/lanes-ortho.js";
 
 // The image on the cut's grid: asphalt 100, kerbs at ±4 m, a dashed line (3 m of every 9 m) at t = lineAt.
 function image(lineAt = 0, res = 0.1) {

@@ -57,7 +57,7 @@ function limitsSI(s, segs = [], i = -1) {
 const CONTRA_SI = { lo: 3, base: 3.2, why: t("jednosměrka s cyklisty v protisměru: vozovka nejméně 3,2 m, v zóně zklidněného provozu 3 m (pravidlo o cyklistických plochách, čl. 38)") };
 export const contraflowSI = (parked, run) => (Array.isArray(run) && run.some((x) => ["A", "B", "C"].includes(GROUP[x?.roadClass])) ? CONTRA_SI : null);
 
-// The signs of the state SI (pilot/public/signs-SI/, README there). The numbers are those of the rule of 2015 kept by
+// The signs of the state SI (app/public/signs-SI/, README there). The numbers are those of the rule of 2015 kept by
 // the Pravilnik o prometni signalizaciji of 2024 (from the AVP's booklet, second hand; NORMY.md C); the drawings on
 // Wikimedia Commons are mostly of the rule of 2000 (II-x, III-x), the file named by the current number. Official texts are
 // not protected (ZASP čl. 9/1/2; that it covers the drawings is Commons' reading, Bára to confirm). Slovenia has no

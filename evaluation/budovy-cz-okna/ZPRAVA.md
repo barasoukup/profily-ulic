@@ -29,7 +29,7 @@ bez něj, regionální vzhledy s mansardou (haussmannovský, severský činžák
 ## Snímek
 
 `pred-po.png`: vlevo HEAD, vpravo po změně, jen řádky, kde se kresba změnila (dva páry domů beze změny skript vynechá).
-`node evaluation/budovy-cz-okna/render.mjs <kořen před> <kořen po> [výstup.png]`, kořen je složka s `pilot/public`
+`node evaluation/budovy-cz-okna/render.mjs <kořen před> <kořen po> [výstup.png]`, kořen je složka s `app/public`
 (např. `git archive HEAD | tar -x -C …`); kreslí kódem aplikace (Quick Look + ImageMagick).
 
 ## Ověření

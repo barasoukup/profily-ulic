@@ -6,11 +6,11 @@
 //   node evaluation/ortofoto-osm/auta/krajnice.mjs
 import fs from "node:fs";
 import { cuts, osmAround, stripOf } from "../lib.mjs";
-import { orthoOsmPolys, trimToEnds, carsColoured } from "../../../pilot/public/ortho-osm.js";
-import { localFrame, deriveProfile, lanesFromShoulders, splitTwoWayLane, capWideLanes, pedestrianZone, widenNarrowTrams } from "../../../pilot/public/derive.js";
-import { applyLanes } from "../../../pilot/public/lanes-ortho.js";
-import { aiKerbs, parkFromAi, parkSkip } from "../../../pilot/public/ai-kerbs.js";
-import { P } from "../../../pilot/public/ortho-osm.js";
+import { orthoOsmPolys, trimToEnds, carsColoured } from "../../../app/public/ortho-osm.js";
+import { localFrame, deriveProfile, lanesFromShoulders, splitTwoWayLane, capWideLanes, pedestrianZone, widenNarrowTrams } from "../../../app/public/derive.js";
+import { applyLanes } from "../../../app/public/lanes-ortho.js";
+import { aiKerbs, parkFromAi, parkSkip } from "../../../app/public/ai-kerbs.js";
+import { P } from "../../../app/public/ortho-osm.js";
 const wayAlong = (way, frame, dir) => { const g = way.geometry.map((q) => frame.toXY(q.lon, q.lat)); let best = null; for (let i = 0; i + 1 < g.length; i++) { const [a, b] = [g[i], g[i + 1]], d = Math.hypot((a[0] + b[0]) / 2, (a[1] + b[1]) / 2); if (!best || d < best.d) best = { d, v: [b[0] - a[0], b[1] - a[1]] }; } return !best || best.v[0] * dir[0] + best.v[1] * dir[1] >= 0; };
 // AI=ai-map5-3: the model's kerbs and surfaces as in the app (Brno only).
 const AIC = process.env.AI && JSON.parse(fs.readFileSync(`/Users/barasoukupova/streetdesign/data/ai-seg/cuts/brno/${process.env.AI}.json`, "utf8"));

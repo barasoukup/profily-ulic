@@ -29,7 +29,7 @@ mobiliář, ploty pro hranici ulice). Zbytečné jsou jen:
 - **id ploch a bodů**: aplikace id čte jen v `mergePieces` (osmtile.js), aby tvar ze dvou dlaždic vzala jednou. Cesty
   id potřebují (ulice řezu, spojování kusů, uložené odkazy). Plocha nebo bod v jediné dlaždici dostane id 0 (pokud by tím
   nevznikla shoda klíče v `mergePieces`). Deset číslic, které gzip neumí zmenšit: asi 6 % balíku.
-- **značky, které žádný kód nečte** (`evaluation/osm-r2/slim/keys-used.mjs`, projde všechen kód `pilot/public`):
+- **značky, které žádný kód nečte** (`evaluation/osm-r2/slim/keys-used.mjs`, projde všechen kód `app/public`):
   jména v jiných jazycích a jejich etymologie (`name:fi`, `name:etymology:wikidata` …), čísla dopravců (`ref:IFOPT`,
   `route_ref:De_Lijn` …), poznámky (`*:note`). Asi 1–2 %.
 

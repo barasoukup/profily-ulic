@@ -4,14 +4,14 @@
 // evaluation/ortofoto/run.mjs, sampled on the cut's grid. Nothing here asks IPR or ČÚZK.
 import fs from "node:fs/promises";
 import path from "node:path";
-import { decodePng } from "../../pilot/public/dmvs.js";
-import { TILE, decodeTile, mergePieces } from "../../pilot/public/osmtile.js";
-import { osmAlong as appOsmAlong } from "../../pilot/public/ortho-osm.js";
+import { decodePng } from "../../app/public/dmvs.js";
+import { TILE, decodeTile, mergePieces } from "../../app/public/osmtile.js";
+import { osmAlong as appOsmAlong } from "../../app/public/ortho-osm.js";
 
 export const ROOT = path.dirname(new URL(import.meta.url).pathname);
 const EVAL = path.join(ROOT, "..");
 // OSM_TILES: another build of the tiles (e.g. with all buildings and green areas, before it is the app's).
-const TILES = process.env.OSM_TILES || path.join(EVAL, "..", "pilot", "data", "osm-tiles");
+const TILES = process.env.OSM_TILES || path.join(EVAL, "..", "app", "data", "osm-tiles");
 export const median = (a) => { const b = a.filter((v) => Number.isFinite(v)).sort((x, y) => x - y); return b.length ? b[b.length >> 1] : NaN; };
 export const mean = (a) => (a.length ? a.reduce((x, y) => x + y, 0) / a.length : NaN);
 
@@ -82,10 +82,10 @@ export function frame(cut) {
 async function tile(name) {
   try { return decodeTile(await fs.readFile(path.join(TILES, `${name}.json`), "utf8")); } catch { return []; }
 }
-// OSM_PACK=<folder of packs with index.json> (pilot/data/osm-pack): the packed files as the app reads them, in place of
+// OSM_PACK=<folder of packs with index.json> (app/data/osm-pack): the packed files as the app reads them, in place of
 // the tiles (the slim packs of evaluation/osm-r2/ZPRAVA-ZMENSENI.md against the full ones).
 const packs = process.env.OSM_PACK && (async () => {
-  const { PackSet } = await import("../../pilot/public/osmpack.js");
+  const { PackSet } = await import("../../app/public/osmpack.js");
   const dir = process.env.OSM_PACK, files = new Map();
   return new PackSet(["pack://."], { fetch: async (url, opts = {}) => {
     const f = path.join(dir, String(url).replace(/^pack:\/\/\.\//, ""));
@@ -103,7 +103,7 @@ export async function osmAround(lat, lon, radius = 60) {
   if (packs) return mergePieces(await (await packs).tiles(names));
   return mergePieces(await Promise.all(names.map(tile)));
 }
-// What OSM says along the cut: the app's own reading (pilot/public/ortho-osm.js osmAlong) in the cut's frame.
+// What OSM says along the cut: the app's own reading (app/public/ortho-osm.js osmAlong) in the cut's frame.
 export function osmAlong(elements, c, half = 45) {
   return appOsmAlong(elements, frame(c.cut).tu, c.cut.wayId, half);
 }

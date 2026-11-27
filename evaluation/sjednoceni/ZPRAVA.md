@@ -8,7 +8,7 @@ přepínačů: `AUDIT.md`.
 
 - Vzorky: `sample.mjs <sada>` (náhodné body v kruhu kolem centra, pevné semínko), v aplikaci `sber.js pick` přitáhne
   bod na nejbližší ulici pro auta do 25 m (žádný do 100 m od jiného). Kandidáti `<sada>-kandidati.json`.
-- Sběr: vlastní server `PORT=5390 EVAL_SAVE=1 node pilot/server.mjs`, stránka `?osm=balik`, `sber.js collect`: každý
+- Sběr: vlastní server `PORT=5390 EVAL_SAVE=1 node app/server.mjs`, stránka `?osm=balik`, `sber.js collect`: každý
   bod jednou v každé variantě na stejném místě (O: výjimka jako dosud, N: sdílená hodnota, příznak státu přepnutý za
   běhu). Výsledky `vysledky/*.json`, změny `node evaluation/sjednoceni/diff.mjs vysledky/<soubor>.json O N`.
 - Slepé posouzení změněných řezů: `fotky.mjs` (Mapillary, v Česku Mapy.com; fotky Mapy.com po posouzení smazané),

@@ -54,7 +54,7 @@ def main():
     rows.sort(key=lambda r: (r[0], -r[8]))
     changed = sum(1 for r in rows if r[8] >= 0.1)
     out = ["# Obruby vozovky z AI: odkazy na proklikání (18. 11. 2026)", "",
-           "Lokálně: `PORT=5293 node pilot/server.mjs` v této větvi (balíky OSM z disku, R2 odpovídá jen na localhost:5173).",
+           "Lokálně: `PORT=5293 node app/server.mjs` v této větvi (balíky OSM z disku, R2 odpovídá jen na localhost:5173).",
            "Každý řez dvakrát až třikrát: **ortofoto** (dnešní odhad z ortofota a OSM), **AI** (`?ai=1`: obruby vozovky určil model, zbytek profilu stejný) a **mapa** tam, kde má město mapu povrchů (pasport, Cáchy): tak, jak aplikace řez kreslí naostro.",
            "Šířka vozovky v metrech; chyba obrub (levá / pravá, m) proti mapě města tam, kde ji máme (pasport, Cáchy).", "",
            f"{len(rows)} řezů, vozovka se změnila o 10 cm a víc na {changed}.", "",

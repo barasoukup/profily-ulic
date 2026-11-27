@@ -6,7 +6,7 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import { osmAt, ROOT, isDC } from "./osm.mjs";
 import { place } from "./collect.mjs";
-import * as D from "../../pilot/public/derive.js";
+import * as D from "../../app/public/derive.js";
 let seed = 31337; const rnd = () => ((seed = (seed * 16807) % 2147483647) / 2147483647);
 const shuffle = (a) => { a = [...a]; for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(rnd() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
 const dist = (a, b) => Math.hypot((a.lat - b.lat) * 110574, (a.lon - b.lon) * 111320 * Math.cos((a.lat * Math.PI) / 180));

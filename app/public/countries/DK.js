@@ -47,7 +47,7 @@ function limitsDK(s, segs = [], i = -1) {
   }
 }
 
-// The signs of the state DK (pilot/public/signs-DK/, README there; bekendtgørelse om vejafmærkning 425/2023): the drawings
+// The signs of the state DK (app/public/signs-DK/, README there; bekendtgørelse om vejafmærkning 425/2023): the drawings
 // from Wikimedia Commons ("Denmark road sign …", Public domain, PD-ineligible; licences checked through Commons' API
 // 23. 11. 2026, evaluation/denmark/signs-licence.json). The Danish copyright act § 9 (2) keeps the copyright of works
 // that appear in a regulation as independent contributions; treated as France's (official works, Bára to confirm;

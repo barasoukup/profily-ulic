@@ -1,6 +1,6 @@
 # House looks of North America (specification, 25. 11. 2026)
 
-> Drawn and wired: `pilot/public/houses-america.js` (measures and drawing), `house-looks.js` `northAmericaLook` and
+> Drawn and wired: `app/public/houses-america.js` (measures and drawing), `house-looks.js` `northAmericaLook` and
 > `northAmericaDetails` (which house gets which look), `countries/US.js`; Canada's module is to use the same two functions.
 > The overview `evaluation/north-america-art/houses/prehled.png`, the check of the choice `evaluation/north-america-art/houses/ZPRAVA.md`.
 

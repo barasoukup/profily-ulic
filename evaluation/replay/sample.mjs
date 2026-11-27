@@ -3,15 +3,15 @@
 // Austria (Vienna with its map of surfaces, Graz, Linz, Salzburg with its signs, Innsbruck, Klagenfurt, smaller
 // towns, motorways), Prague and Brno (few in Prague, to spare IPR) and the margins abroad. The Czech towns asking
 // the national DTM of ČÚZK come after its outage (from 19. 11. 2026) in sample-cz.json. Points on named streets,
-// from the local OSM pack (pilot/data/osm-pack), as evaluation/slovensko/kontrola/vzorek-ulice.mjs.
+// from the local OSM pack (app/data/osm-pack), as evaluation/slovensko/kontrola/vzorek-ulice.mjs.
 //   node evaluation/replay/sample.mjs   → sample.json
 import fs from "node:fs";
 import path from "node:path";
-import { PackSet } from "../../pilot/public/osmpack.js";
-import { mergePieces, TILE } from "../../pilot/public/osmtile.js";
+import { PackSet } from "../../app/public/osmpack.js";
+import { mergePieces, TILE } from "../../app/public/osmtile.js";
 
 const HERE = new URL(".", import.meta.url);
-const PACK = new URL("../../pilot/data/osm-pack/", import.meta.url);
+const PACK = new URL("../../app/data/osm-pack/", import.meta.url);
 const fileFetch = async (url, opts = {}) => {
   const buf = fs.readFileSync(new URL(String(url).replace(/^pack:\/\//, ""), PACK));
   const m = /bytes=(\d+)-(\d+)/.exec(opts.headers?.Range || "");

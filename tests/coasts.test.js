@@ -5,10 +5,10 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
 
-const read = (f) => JSON.parse(fs.readFileSync(new URL(`../pilot/public/${f}`, import.meta.url), "utf8"));
+const read = (f) => JSON.parse(fs.readFileSync(new URL(`../app/public/${f}`, import.meta.url), "utf8"));
 const staty = read("staty.json");
 async function city(states = staty) {
-  const C = await import("../pilot/public/city.js");
+  const C = await import("../app/public/city.js");
   C.loadBounds(read("mesta.json"));
   C.loadStates(states);
   return C;

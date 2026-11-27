@@ -28,7 +28,7 @@ složení; **bez fotky 28 %, tedy nepoužitelný**. Hodnotí se proto jen řezy 
 3. **Dlaždice OSM** pro lokální sběr (`?osm=balik`): u velkého státu jen města vzorku osmiem
    (`osmium extract -c …` z výřezu Geofabriku, pak `tools/build_osm_data.sh` a `pack_osm_tiles.mjs`).
 4. **Profily aplikace:** server s `EVAL_SAVE=1` (`.claude/launch.json` „pilot-germany-eval“, port 5196), body do
-   `pilot/public/zz-pts.json`, v prohlížeči skript z `collect.js` (CSP nedovolí eval: vložit funkci přímo přes
+   `app/public/zz-pts.json`, v prohlížeči skript z `collect.js` (CSP nedovolí eval: vložit funkci přímo přes
    javascript_tool), uloží `data/app*.json`. Pozdější sběr týchž řezů po opravě: jiný název (`app-at`), vyhrává.
 5. **Výběr a fotky** `node evaluation/universal/select.mjs <ISO>`: nejvýš 4 řezy na město, které mají fotku.
    Mapillary všude (token `evaluation/streetview/token.local`), v Česku navíc panorama Mapy.com (vlastní klíč
@@ -44,7 +44,7 @@ složení; **bez fotky 28 %, tedy nepoužitelný**. Hodnotí se proto jen řezy 
 7. **Skóre** `node evaluation/universal/score-states.mjs` (jen řezy s vozovkou), uložit do `vysledky/staty.md`,
    doplnit ZPRAVA.md, commit.
 8. **Úklid:** `node evaluation/universal/clean.mjs` (panoramata Mapy.com se podle podmínek nesmí uchovávat),
-   smazat `pilot/public/zz-pts.json`.
+   smazat `app/public/zz-pts.json`.
 
 ## Na co dát pozor (z prvního měření)
 
@@ -71,7 +71,7 @@ starým sběrem. Výsledky 24. 11.: `vysledky/staty.md`.
 
 Uložené řezy se otevírají přesně, takže žádné měření s uloženou polohou neukáže, kam padne kliknutí. Po každé změně v
 `derive.js` `nearestStreet`, `placeCut`, `awayFromJunctions`, `alleyMouths`, `partnerJunctions`, `centerOnStreet`:
-1. `git archive <commit před> pilot/public | tar -x -C <složka>`; `OLD=<složka>/pilot/public node evaluation/kliky/collect.mjs`
+1. `git archive <commit před> app/public | tar -x -C <složka>`; `OLD=<složka>/app/public node evaluation/kliky/collect.mjs`
    (440 kliků, bez prohlížeče) a `node evaluation/kliky/report.mjs vysledky/kliky.json now` (posuny, nad 25 m s příčinou, chyby).
    Velký sběr: `times=10 seed=… city=…`. Washington jen, když je jeho balík OSM.
 2. `node --test tests/placement.test.js` (nahrané scény; nová scéna: `evaluation/kliky/scenes.json`, `record.mjs`).

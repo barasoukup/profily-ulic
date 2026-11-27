@@ -27,7 +27,7 @@ Bára 24. 11. 2026: „mapa povrchů je pro nás lepší než ortofoto, vezmi ne
   (dati.lombardia.it `b7fb-r6ie`, CC0 1.0), `tools/lombardy-border.json` (zjednodušeno na 5 m; s Campione d'Italia,
   exklávami u Piemontu a dírami v Oltrepò).
 
-## Jak to aplikace dělá (`pilot/public/towns/lombardy.js`)
+## Jak to aplikace dělá (`app/public/towns/lombardy.js`)
 
 - V Lombardii (`inLombardy`: obdélník regionu bez Jižního Tyrolska u Stelvia a severních exkláv Modeny) se ptá
   DBT. Plochy jako MTVU: budovy 601/602, vozovka 701, stání (fascia di sosta, parcheggio) 704, ostrůvky a dvory nemovitostí
@@ -74,7 +74,7 @@ otevřená; zbytek Itálie dál `closed_it`.
 
 ## Dlaždice OSM
 
-Lokální balík `it` (`pilot/data/osm-pack/it-novy.posm`, 28,5 MB) postaven z výřezů měst vzorku z Geofabrik `nord-ovest`
+Lokální balík `it` (`app/data/osm-pack/it-novy.posm`, 28,5 MB) postaven z výřezů měst vzorku z Geofabrik `nord-ovest`
 (`data/osm/it/build.sh`, oddíl „Lombardy“), pak `tools/build_osm_data.sh` a `tools/pack_osm_tiles.mjs`. **Nasazení**:
 workflow OSM tiles staví `it` po částech Geofabriku včetně `it_no` (`italy/nord-ovest`, `tools/countries.mjs`), takže
 celou Lombardii; před nasazením ověřit, že balíky `it_*` na R2 jsou aktuální (`data.streetspace.eu/osm/index.json`).

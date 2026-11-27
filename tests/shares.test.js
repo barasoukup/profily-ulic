@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { shares, surfaces } from "../pilot/public/shares.js";
+import { shares, surfaces } from "../app/public/shares.js";
 
 test("podíl prostoru sečte šířky podle skupin a dá 100 %", () => {
   const s = shares({ segments: [

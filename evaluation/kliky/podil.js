@@ -1,6 +1,6 @@
 // The places of the variants (collect.mjs rows) against the city's own surface map, in the app's page (as
 // ../sjednoceni/praha/mtvu.js): the surfaces every 2 m of the way within 50 m of the places, 15 m to each side; the usual one
-// at each offset; a variant's share of its own line that is the usual surface. Run: copied to pilot/public/zz-kliky.js (git
+// at each offset; a variant's share of its own line that is the usual surface. Run: copied to app/public/zz-kliky.js (git
 // ignores it), rows in zz-kliky.json, server with EVAL_SAVE=1:  (await import("/zz-kliky.js")).run("kliky-podil")
 export async function run(name, { gap = 400, skip = 0 } = {}) {
   const gis = await import("/gis.js"), sources = await import("/sources.js"), D = await import("/derive.js"), C = await import("/city.js");

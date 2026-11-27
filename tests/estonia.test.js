@@ -5,20 +5,20 @@ import assert from "node:assert/strict";
 import fs from "node:fs";
 
 test("Estonsko: stát řezu, ostrovy, sousedé mimo", async () => {
-  const C = await import("../pilot/public/city.js");
-  C.loadBounds(JSON.parse(fs.readFileSync(new URL("../pilot/public/mesta.json", import.meta.url), "utf8")));
-  C.loadStates(JSON.parse(fs.readFileSync(new URL("../pilot/public/staty.json", import.meta.url), "utf8")));
+  const C = await import("../app/public/city.js");
+  C.loadBounds(JSON.parse(fs.readFileSync(new URL("../app/public/mesta.json", import.meta.url), "utf8")));
+  C.loadStates(JSON.parse(fs.readFileSync(new URL("../app/public/staty.json", import.meta.url), "utf8")));
   for (const [lat, lon] of [[59.437, 24.7536], [58.378, 26.729], [58.385, 24.4966], [59.3772, 28.1903], [58.2528, 22.4853]]) assert.equal(C.cityAt(lat, lon), "estonia", `${lat},${lon}`);
   for (const [lat, lon] of [[56.9496, 24.1052], [60.1699, 24.9384], [59.37, 28.32]]) assert.notEqual(C.cityAt(lat, lon), "estonia", `${lat},${lon}`);
 });
 
 test("Estonsko: dlaždice ortofota v TMS (osa y odspodu)", async () => {
-  const L = await import("../pilot/public/lanes-ortho.js");
+  const L = await import("../app/public/lanes-ortho.js");
   assert.match(L.EE_ORTHO, /^https:\/\/tiles\.maaamet\.ee\/tm\/tms\/1\.0\.0\/foto@GMC$/);
 });
 
 test("Estonsko: budovy ETAK (výška k hřebeni, podlaží z OSM mají přednost)", async () => {
-  const E = await import("../pilot/public/towns/estonia.js");
+  const E = await import("../app/public/towns/estonia.js");
   // Skutečné hodnoty tyyp_tekst (WFS e_401_hoone_ka, Kalamaja a Nõmme 24. 11. 2026).
   assert.deepEqual(E.etakBuilding({ korgus_m: 12, tyyp_tekst: "Elu- või ühiskondlik hoone" }), { type: undefined, etak: true, cornice: 3, total: 3, roof: 0, fromHeight: true, height: 12 });
   assert.equal(E.etakBuilding({ korgus_m: 15, tyyp_tekst: "Elu- või ühiskondlik hoone" }).cornice, 4, "15 m k hřebeni: 4 podlaží, ne 5");
@@ -31,7 +31,7 @@ test("Estonsko: budovy ETAK (výška k hřebeni, podlaží z OSM mají přednost
 });
 
 test("Estonsko: mapa povrchů Tallinnu jen s ulicí pod středem řezu", async () => {
-  const E = await import("../pilot/public/towns/estonia.js");
+  const E = await import("../app/public/towns/estonia.js");
   const sq = [[[0, 0], [1, 0], [1, 1], [0, 0]]];
   const t = E.tallinnFeatures([[701, { features: [{ geometry: { type: "MultiPolygon", coordinates: [sq, sq] } }] }], [702, { features: [{ geometry: { type: "Polygon", coordinates: sq } }] }]]);
   assert.deepEqual(t.features.map((f) => f.attributes.code), [701, 701, 702], "mapa povrchů Tallinnu: multipolygon po polygonech");
@@ -50,7 +50,7 @@ test("Estonsko: mapa povrchů Tallinnu jen s ulicí pod středem řezu", async (
 });
 
 test("Estonsko: hledání In-ADS nad nahranou odpovědí služby", async () => {
-  const S = await import("../pilot/public/search-ee.js");
+  const S = await import("../app/public/search-ee.js");
   const rec = JSON.parse(fs.readFileSync(new URL("fixtures/estonia-inads.json", import.meta.url), "utf8"));
   // Jen druhy, které služba přijímá (24. 11. 2026: LIIKLUSPIND, ASUSTUSYKSUS, OMAVALITSUS, ASUSTUS, ASULA → 400).
   const url = new URL(S.eeUrl("Narva mnt 10 Tallinn"));
@@ -73,7 +73,7 @@ test("Estonsko: hledání In-ADS nad nahranou odpovědí služby", async () => {
 });
 
 test("Estonsko: značky a normy", async () => {
-  const { COUNTRIES } = await import("../pilot/public/countries/index.js");
+  const { COUNTRIES } = await import("../app/public/countries/index.js");
   const EE = COUNTRIES.EE, f = EE.signs.file;
   assert.equal(f({ k: "oneway", dir: "forward" }), "521");
   assert.equal(f({ k: "oneway", dir: "forward", plate: "protismer" }), "521-plus-836");
@@ -84,10 +84,10 @@ test("Estonsko: značky a normy", async () => {
   assert.equal(EE.signs.label({ k: "oneway", dir: "backward", plate: "protismer" }, null, "Zákaz vjezdu"), "331 + 891a Zákaz vjezdu");
   for (const k of ["b1", "b11", "b8", "b30", "b28", "b29", "ip11a", "ztp", "ip12", "ip14a", "ip20a", "zona30", "ip26a", "ip27a", "c8a", "c9a", "c10a", "c7a"]) {
     const file = f({ k });
-    assert.ok(file && fs.existsSync(new URL(`../pilot/public/signs-EE/${file}.svg`, import.meta.url)), `${k}: ${file}`);
+    assert.ok(file && fs.existsSync(new URL(`../app/public/signs-EE/${file}.svg`, import.meta.url)), `${k}: ${file}`);
   }
-  for (const file of ["521-plus-836", "331-plus-891a-kolo", "525b", "331"]) assert.ok(fs.existsSync(new URL(`../pilot/public/signs-EE/${file}.svg`, import.meta.url)), file);
-  for (const v of [5, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110]) assert.ok(fs.existsSync(new URL(`../pilot/public/signs-EE/351-${v}.svg`, import.meta.url)), `${v}`);
+  for (const file of ["521-plus-836", "331-plus-891a-kolo", "525b", "331"]) assert.ok(fs.existsSync(new URL(`../app/public/signs-EE/${file}.svg`, import.meta.url)), file);
+  for (const v of [5, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110]) assert.ok(fs.existsSync(new URL(`../app/public/signs-EE/351-${v}.svg`, import.meta.url)), `${v}`);
   assert.equal(f({ k: "ip15a" }), null, "silnici pro motorová vozidla Estonsko nemá");
   assert.equal(EE.limits({ type: "chodnik" }).min, 1.5);
   // Druhá ruka jen oranžově (recenze 24. 11. 2026, jako Litva).

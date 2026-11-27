@@ -1,6 +1,6 @@
 // The cuts of the blind A/B (seeded, before anything is run in the app): from the candidate cuts that have a street-level photo and
 // an orthophoto, AT 7, DE 7, CH 5, CZ 4, SK 4, PL 3; the controls (no railway or tram within 100 m): up to 40, photo or not.
-// Writes the points for the app (pilot/public/zz-rail.json, not kept in git) and judge/ (neutral names j01…, copies of the
+// Writes the points for the app (app/public/zz-rail.json, not kept in git) and judge/ (neutral names j01…, copies of the
 // orthophoto and the photos) with judge/map.json (judge id → real id).
 //   node evaluation/railway/select.mjs <cuts-prep.json>
 import fs from "node:fs";
@@ -14,7 +14,7 @@ const shuffle = (a) => { for (let i = a.length - 1; i > 0; i--) { const j = Math
 const N = { AT: 7, DE: 7, CH: 5, CZ: 4, SK: 4, PL: 3 };
 const targets = Object.entries(N).flatMap(([c, n]) => shuffle(rows.filter((r) => r.kind === "target" && r.country === c && has(r))).slice(0, n));
 const controls = shuffle(rows.filter((r) => r.kind === "control")).slice(0, 40);
-fs.writeFileSync(path.join(ROOT, "..", "..", "pilot", "public", "zz-rail.json"), JSON.stringify([...targets, ...controls]));
+fs.writeFileSync(path.join(ROOT, "..", "..", "app", "public", "zz-rail.json"), JSON.stringify([...targets, ...controls]));
 fs.writeFileSync(path.join(ROOT, "selected.json"), JSON.stringify({ targets, controls }, null, 1));
 const J = path.join(ROOT, "judge");
 fs.rmSync(J, { recursive: true, force: true });

@@ -1,14 +1,14 @@
 // The click collector: random clicks beside streets of all kinds, where each lands under the variants of the placement
 // rules (derive.js nearestStreet + placeCut, no browser, no profile) and why it moved. A control of every change there.
 //   node evaluation/kliky/collect.mjs [out=vysledky/kliky.json] [seed=20261125] [cities=…]
-// OLD=<dir of an older tree's pilot/public>: the variant "old" by that code (git archive <commit> pilot/public).
+// OLD=<dir of an older tree's app/public>: the variant "old" by that code (git archive <commit> app/public).
 // ABSENT from a click: the cities' own OSM readers (their elements are the same packs), except Washington's alleys.
 import fs from "node:fs/promises";
 import path from "node:path";
 import { pathToFileURL } from "node:url";
 import { osmAt, ROOT } from "./osm.mjs";
-import * as D from "../../pilot/public/derive.js";
-import { P } from "../../pilot/public/ortho-osm.js";
+import * as D from "../../app/public/derive.js";
+import { P } from "../../app/public/ortho-osm.js";
 const arg = Object.fromEntries(process.argv.slice(2).map((a) => a.split("=")));
 const OUT = path.join(ROOT, arg.out || "vysledky/kliky.json");
 export const CITIES = { praha: [50.087, 14.421, "CZ"], brno: [49.195, 16.608, "CZ"], hradec: [50.209, 15.832, "CZ"], bratislava: [48.146, 17.107, "SK"], wien: [48.208, 16.373, "AT"],

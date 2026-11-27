@@ -5,8 +5,8 @@
 //   of the carriageway with the two profiles as bars under it (A and B in a random order, the key in index.json)
 import fs from "node:fs/promises";
 import path from "node:path";
-import { decodePng } from "../../pilot/public/dmvs.js";
-import { applyLanes, HATCH_PARAMS } from "../../pilot/public/lanes-ortho.js";
+import { decodePng } from "../../app/public/dmvs.js";
+import { applyLanes, HATCH_PARAMS } from "../../app/public/lanes-ortho.js";
 import { strip, layout, encodePng } from "./run.mjs";
 
 const ROOT = path.dirname(new URL(import.meta.url).pathname);

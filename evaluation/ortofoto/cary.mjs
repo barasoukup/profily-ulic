@@ -12,7 +12,7 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import { execFile } from "node:child_process";
 import { promisify } from "node:util";
-import { decodePng } from "../../pilot/public/dmvs.js";
+import { decodePng } from "../../app/public/dmvs.js";
 import { ALL, strip, median, layout, align, encodePng, markings } from "./run.mjs";
 
 const run = promisify(execFile);

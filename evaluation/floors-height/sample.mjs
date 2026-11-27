@@ -6,7 +6,7 @@ import fs from "node:fs";
 import path from "node:path";
 import crypto from "node:crypto";
 import { fileURLToPath, pathToFileURL } from "node:url";
-const HERE = path.dirname(fileURLToPath(import.meta.url)), PUB = path.resolve(HERE, "../../pilot/public");
+const HERE = path.dirname(fileURLToPath(import.meta.url)), PUB = path.resolve(HERE, "../../app/public");
 const imp = (f) => import(pathToFileURL(path.join(PUB, f)));
 const OUT = process.argv[2], CHANGED = Number(process.argv[3] || 36), KEEP = Number(process.argv[4] || 10);
 fs.mkdirSync(OUT, { recursive: true });

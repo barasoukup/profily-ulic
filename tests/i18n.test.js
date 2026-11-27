@@ -5,12 +5,12 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
-import { EN, EN_HTML, EN_CITY, EN_ATTRIBUTION } from "../pilot/public/en.js";
-import { SK, SK_HTML, SK_CITY, SK_ATTRIBUTION } from "../pilot/public/sk.js";
-import { DE, DE_HTML, DE_CITY, DE_ATTRIBUTION } from "../pilot/public/de.js";
-import { LANGS } from "../pilot/public/i18n.js";
+import { EN, EN_HTML, EN_CITY, EN_ATTRIBUTION } from "../app/public/en.js";
+import { SK, SK_HTML, SK_CITY, SK_ATTRIBUTION } from "../app/public/sk.js";
+import { DE, DE_HTML, DE_CITY, DE_ATTRIBUTION } from "../app/public/de.js";
+import { LANGS } from "../app/public/i18n.js";
 
-const DIR = new URL("../pilot/public/", import.meta.url);
+const DIR = new URL("../app/public/", import.meta.url);
 const FILES = [...fs.readdirSync(DIR).filter((f) => f.endsWith(".js")), ...["towns", "countries"].flatMap((d) => fs.readdirSync(new URL(`${d}/`, DIR)).map((f) => `${d}/${f}`))]
   .filter((f) => f.endsWith(".js") && !Object.keys(LANGS).some((l) => f === `${l}.js`));
 
@@ -82,7 +82,7 @@ test("anglické texty jsou anglicky", () => {
 });
 
 test("každé město má anglické texty", async () => {
-  const { CITY_IDS, cityById } = await import("../pilot/public/city.js");
+  const { CITY_IDS, cityById } = await import("../app/public/city.js");
   const FIELDS = ["server", "dataName", "dataShort", "techMap", "parkingSource", "rulesHead", "credit"];
   for (const id of CITY_IDS) {
     const en = EN_CITY[id] || EN_CITY[cityById(id).like];
@@ -99,14 +99,14 @@ test("každé město má anglické texty", async () => {
 test("i18n.js: čísla, {jména}, chybějící text a kredity mapy", async () => {
   globalThis.PROFILY_LANG = "en";
   // A copy of its own (the language is read once, when the module loads).
-  const i18n = await import("../pilot/public/i18n.js?en");
+  const i18n = await import("../app/public/i18n.js?en");
   delete globalThis.PROFILY_LANG;
   assert.equal(i18n.lang, "en");
   assert.equal(i18n.num(3.5), "3.50");
   assert.equal(i18n.t("Celkem {w}", { w: "12.00 m" }), "Total 12.00 m");
   assert.equal(i18n.t("text, který en.js nemá"), "text, který en.js nemá", "chybějící text zůstane česky");
   assert.equal(i18n.attribution("technická mapa © Statutární město Brno"), "technical map © Statutární město Brno");
-  const cs = await import("../pilot/public/i18n.js");
+  const cs = await import("../app/public/i18n.js");
   assert.equal(cs.lang, "cs");
   assert.equal(cs.num(3.5), "3,50");
   assert.equal(cs.t("Celkem {w}", { w: "12,00 m" }), "Celkem 12,00 m");
@@ -129,7 +129,7 @@ test("slovenské texty jsou slovensky", () => {
 });
 
 test("každé město má slovenské texty", async () => {
-  const { CITY_IDS, cityById } = await import("../pilot/public/city.js");
+  const { CITY_IDS, cityById } = await import("../app/public/city.js");
   const FIELDS = ["server", "dataName", "dataShort", "techMap", "parkingSource", "rulesHead", "credit"];
   for (const id of CITY_IDS) {
     const sk = SK_CITY[id] || SK_CITY[cityById(id).like];
@@ -144,7 +144,7 @@ test("každé město má slovenské texty", async () => {
 
 test("i18n.js po slovensky: čísla jako v češtině, chybějící text česky", async () => {
   globalThis.PROFILY_LANG = "sk";
-  const i18n = await import("../pilot/public/i18n.js?sk");
+  const i18n = await import("../app/public/i18n.js?sk");
   delete globalThis.PROFILY_LANG;
   assert.equal(i18n.lang, "sk");
   assert.equal(i18n.num(3.5), "3,50");
@@ -174,7 +174,7 @@ test("německé texty jsou německy", () => {
 });
 
 test("každé město má německé texty", async () => {
-  const { CITY_IDS, cityById } = await import("../pilot/public/city.js");
+  const { CITY_IDS, cityById } = await import("../app/public/city.js");
   const FIELDS = ["server", "dataName", "dataShort", "techMap", "parkingSource", "rulesHead", "credit"];
   for (const id of CITY_IDS) {
     const de = DE_CITY[id] || DE_CITY[cityById(id).like];
@@ -189,7 +189,7 @@ test("každé město má německé texty", async () => {
 
 test("i18n.js po německy: desetinná čárka jako v češtině, chybějící text česky", async () => {
   globalThis.PROFILY_LANG = "de";
-  const i18n = await import("../pilot/public/i18n.js?de");
+  const i18n = await import("../app/public/i18n.js?de");
   delete globalThis.PROFILY_LANG;
   assert.equal(i18n.lang, "de");
   assert.ok("de" in i18n.LANGS);
@@ -214,7 +214,7 @@ test("jazyk není stát: německé rozhraní nemění značky ani pravidla řezu
 // no Czech left, numbers as the language writes them.
 const OTHER = Object.keys(LANGS).filter((l) => !["cs", "en", "sk", "de"].includes(l));
 const tables = async (l) => {
-  const m = await import(`../pilot/public/${l}.js`), U = l.toUpperCase();
+  const m = await import(`../app/public/${l}.js`), U = l.toUpperCase();
   return { texts: m[U], html: m[`${U}_HTML`], city: m[`${U}_CITY`], attribution: m[`${U}_ATTRIBUTION`] };
 };
 // Czech and Slovak names of places, offices, standards and sources keep their letters.
@@ -240,7 +240,7 @@ for (const l of OTHER) {
     const czech = Object.entries(texts).filter(([, v]) => /[ěřůťď]|\b(jsou|také|který|která|které|chodník)\b/i.test(v.replace(KEEP, "")));
     assert.deepEqual(czech.map(([cs]) => cs), [], `česky v ${l}.js`);
     // The city's texts: the same fields as in English, the same sources credited.
-    const { CITY_IDS, cityById } = await import("../pilot/public/city.js");
+    const { CITY_IDS, cityById } = await import("../app/public/city.js");
     const FIELDS = ["server", "dataName", "dataShort", "techMap", "parkingSource", "rulesHead", "credit"];
     for (const id of CITY_IDS) {
       const c = city[id] || city[cityById(id).like];
@@ -257,7 +257,7 @@ for (const l of OTHER) {
 test("čísla podle jazyka: desetinná tečka jen v angličtině, irštině a maltštině", async () => {
   for (const l of Object.keys(LANGS)) {
     globalThis.PROFILY_LANG = l;
-    const i18n = await import(`../pilot/public/i18n.js?num-${l}`);
+    const i18n = await import(`../app/public/i18n.js?num-${l}`);
     delete globalThis.PROFILY_LANG;
     assert.equal(i18n.lang, l);
     const point = ["en", "ga", "mt"].includes(l);

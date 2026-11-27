@@ -4,9 +4,9 @@ import assert from "node:assert/strict";
 import fs from "node:fs";
 
 test("Monako: stát podle hranic OSM, francouzské ortofoto, bez odhadu stání a bez norem šířek", async () => {
-  const C = await import("../pilot/public/city.js");
-  C.loadBounds(JSON.parse(fs.readFileSync(new URL("../pilot/public/mesta.json", import.meta.url), "utf8")));
-  C.loadStates(JSON.parse(fs.readFileSync(new URL("../pilot/public/staty.json", import.meta.url), "utf8")));
+  const C = await import("../app/public/city.js");
+  C.loadBounds(JSON.parse(fs.readFileSync(new URL("../app/public/mesta.json", import.meta.url), "utf8")));
+  C.loadStates(JSON.parse(fs.readFileSync(new URL("../app/public/staty.json", import.meta.url), "utf8")));
   assert.equal(C.cityAt(43.7447, 7.4310), "monaco"); // Monte-Carlo
   assert.equal(C.cityAt(43.7310, 7.4190), "monaco"); // Monaco-Ville
   // The review of 23. 11. 2026: Mareterra (reclaimed land beyond GISCO's coast) and the Boulevard du Général Leclerc
@@ -31,7 +31,7 @@ test("Monako: stát podle hranic OSM, francouzské ortofoto, bez odhadu stání 
   assert.equal(MC.signs.file({ k: "ip27a" }), "B54");
   assert.deepEqual([30, 50, 70, 80, 110].map((v) => MC.signs.file({ k: "b20a", v })), ["B14-30", "B14-50", "B14-70", null, null]);
   // A living street with 20 km/h: no zone sign, so its speed is drawn (and the town's 50 is not).
-  const { deriveSigns, signFile } = await import("../pilot/public/signs.js");
+  const { deriveSigns, signFile } = await import("../app/public/signs.js");
   const lanes = () => ({ segments: [{ type: "pruh", dir: "backward" }, { type: "pruh" }] });
   assert.deepEqual(deriveSigns(lanes(), { highway: "living_street", maxspeed: "20" }, { country: "MC" }).segments[1].signs?.map((x) => signFile(x, null, "MC")) ?? [], [], "20 km/h: B14-20 Monako nemá");
   assert.deepEqual(deriveSigns(lanes(), { highway: "residential", "zone:maxspeed": "FR:30", maxspeed: "30" }, { country: "MC" }).segments[1].signs?.map((x) => signFile(x, null, "MC")), ["B14-30"]);

@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { floorsFromHeight as f, floorsOld, refloor, heightHouse } from "../pilot/public/floors.js";
+import { floorsFromHeight as f, floorsOld, refloor, heightHouse } from "../app/public/floors.js";
 
 test("Podlaží z výšky: patrový dům od 6 m, střecha známého tvaru, haly bez podlaží", () => {
   assert.deepEqual([5, 5.9, 6, 6.8, 8, 11, 25, 40].map((h) => f(h)), [1, 1, 2, 2, 2, 3, 7, 12]);

@@ -1,8 +1,8 @@
 // The boundaries of the towns whose road or green passport the app reads anywhere else in the Czech Republic
 // (towns/pasporty.js; Bára 16. 11. 2026): RÚIAN obce of ČÚZK, simplified to about 20 m, written into
-// pilot/public/pasporty.json (kept in the repository): node tools/build_pasporty.mjs
+// app/public/pasporty.json (kept in the repository): node tools/build_pasporty.mjs
 import fs from "node:fs";
-import { PASSPORT_CODES } from "../pilot/public/towns/pasporty.js";
+import { PASSPORT_CODES } from "../app/public/towns/pasporty.js";
 
 const OBEC = "https://ags.cuzk.gov.cz/arcgis/rest/services/RUIAN/Prohlizeci_sluzba_nad_daty_RUIAN/MapServer/12/query";
 const out = {};
@@ -17,4 +17,4 @@ for (const [id, kod] of Object.entries(PASSPORT_CODES)) {
   out[id] = f.geometry.rings;
   console.log(id, f.attributes.nazev, f.geometry.rings.reduce((a, r) => a + r.length, 0), "bodů");
 }
-fs.writeFileSync(new URL("../pilot/public/pasporty.json", import.meta.url), JSON.stringify(out));
+fs.writeFileSync(new URL("../app/public/pasporty.json", import.meta.url), JSON.stringify(out));

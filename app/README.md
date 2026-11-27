@@ -7,7 +7,7 @@ značky, stav / návrh / porovnání, export SVG a PNG, uložení a načtení pr
 ## Spuštění
 
 ```bash
-node pilot/server.mjs
+node app/server.mjs
 ```
 
 Pak otevřete http://localhost:5173. Potřebujete Node.js 22 nebo novější a připojení
@@ -18,12 +18,12 @@ Statická data, která web dostane při nasazení, si lokálně vyrobíte takto 
 
 | Data | Příkaz | Kam |
 |---|---|---|
-| dlaždice OSM celé ČR | `NAME=cz tools/build_osm_data.sh data/osm/cz.osm.pbf pilot/data/osm-tiles` | `pilot/data/osm-tiles` |
-| hranice zón placeného stání v Praze | `node tools/build_zps.mjs` | `pilot/data/zps.json` |
-| otevřená data Prahy (stromy, zákaz stání, třídy ulic) | `node tools/build_praha_opendata.mjs` | `pilot/data/praha/opendata` |
-| vývoj zástavby Prahy | `node tools/build_vyvoj.mjs` | `pilot/data/vyvoj` |
-| placené stání v Brně | `node tools/build_parkovani_brno.mjs pilot/data/brno` | `pilot/data/brno/parkovani` |
-| zóny placeného stání v Plzni | `node tools/build_zony_plzen.mjs` | `pilot/data/plzen/zony.json` |
+| dlaždice OSM celé ČR | `NAME=cz tools/build_osm_data.sh data/osm/cz.osm.pbf app/data/osm-tiles` | `app/data/osm-tiles` |
+| hranice zón placeného stání v Praze | `node tools/build_zps.mjs` | `app/data/zps.json` |
+| otevřená data Prahy (stromy, zákaz stání, třídy ulic) | `node tools/build_praha_opendata.mjs` | `app/data/praha/opendata` |
+| vývoj zástavby Prahy | `node tools/build_vyvoj.mjs` | `app/data/vyvoj` |
+| placené stání v Brně | `node tools/build_parkovani_brno.mjs app/data/brno` | `app/data/brno/parkovani` |
+| zóny placeného stání v Plzni | `node tools/build_zony_plzen.mjs` | `app/data/plzen/zony.json` |
 
 Server je vydává pod `data/…`, stejně jako web.
 
@@ -213,7 +213,7 @@ WMS-Raster v Web Mercatoru, `lanes-ortho.js` zdroj `fr`; mimo Francii bílé, pr
 ## Odkud jsou data (Praha)
 
 - **Šířky:** IPR Praha, *Mapa technického využití území* (MTVU), služba
-  `gs-pub.praha.eu/.../dtmp/dtmp/MapServer/15`. Odpovědi se lokálně ukládají do `pilot/cache/mtvu`,
+  `gs-pub.praha.eu/.../dtmp/dtmp/MapServer/15`. Odpovědi se lokálně ukládají do `app/cache/mtvu`,
   stejné místo se tedy podruhé načte hned. První načtení trvá podle serveru IPR 1–10 s.
 - **Tramvajové koleje:** osy kolejí z liniové vrstvy technické mapy IPR (`dtmp/MapServer/10`, kód 55010
   „MHD – osa kolejí“). Pruh s tramvají sahá 1,75 m od osy koleje ven a mezi kolejemi do poloviny osové
@@ -493,7 +493,7 @@ autobus a tramvaj MBTA, ortofoto MassGIS, texty a normy Bostonu) a `cambridge` (
   jsou v obou službách polygony přes celé město (5 MB na dotaz), proto se **jednou týdně při nasazení** stáhnou a rozřežou do
   dlaždic `data/us-plan/<město>/` (`tools/build_planimetrics_us.mjs`, 0,005°, každý polygon oříznutý na dlaždici; Boston
   711 dlaždic 35 MB, Cambridge 120 a 9 MB); při kliknutí žádný dotaz na město. Lokálně: `node tools/build_planimetrics_us.mjs`
-  (zapíše `pilot/data/us-plan`). Řez na hranici měst bere mapu města, ve kterém leží (Memorial Drive je Cambridge).
+  (zapíše `app/data/us-plan`). Řez na hranici měst bere mapu města, ve kterém leží (Memorial Drive je Cambridge).
   `?boston=0`, `?cambridge=0` vypnou, `?bostonhouse=0` vypne podlaží domů.
 - **ortofoto** MassGIS 2025 (15 cm, dlaždice z20, „No restrictions“) nad celým metrem: pruhy, obruby, podklad mapy (`lanes-ortho.js us-ma`).
 - normy Boston Complete Streets Guidelines 2013 jen oranžově (`evaluation/usa/boston/NORMY.md`), stání 3 m na směr jako DC.
@@ -522,17 +522,17 @@ už od 4,0 m, kde je počet pruhů známý (OSM `lanes` ≥ 2 nebo inventář; `
 
 ### Dlaždice OSM
 
-Jedna sada dlaždic pro všechna města (`pilot/data/osm-tiles`, na webu `data/osm-tiles`) z výřezu Geofabrik Česká
+Jedna sada dlaždic pro všechna města (`app/data/osm-tiles`, na webu `data/osm-tiles`) z výřezu Geofabrik Česká
 republika:
 
 ```bash
 mkdir -p data/osm && curl -fL -o data/osm/cz.osm.pbf https://download.geofabrik.de/europe/czech-republic-latest.osm.pbf
-NAME=cz tools/build_osm_data.sh data/osm/cz.osm.pbf pilot/data/osm-tiles
+NAME=cz tools/build_osm_data.sh data/osm/cz.osm.pbf app/data/osm-tiles
 ```
 
 Na Macu s QGIS přidejte před příkaz `OGR=/Applications/QGIS-final-4_2_3.app/Contents/MacOS/ogr2ogr
 PROJ_DATA=…/Resources/qgis/proj GDAL_DATA=…/Resources/qgis/gdal`. Exporty ogr2ogr trvají asi 8 min, dlaždice
-(`tools/build_osm_tiles.mjs`) se zapisují proudově za 1–2 min. Úsporný zápis (`pilot/public/osmtile.js`): jen značky,
+(`tools/build_osm_tiles.mjs`) se zapisují proudově za 1–2 min. Úsporný zápis (`app/public/osmtile.js`): jen značky,
 které profil čte nebo by mohl (zóny, rychlosti, povrch, zastávky, přechody, druhy stromů, šířky, značky), chodníky
 a pěšiny jen u ulic (v parcích, lesích a polích ne), bez polních cest; souřadnice jako rozdíly celých čísel (budovy
 na 1 m); dlouhé cesty rozdělené po dlaždicích a v aplikaci zase spojené. Do 15. 11. 2026 asi 800 MB ve 245 000
@@ -553,12 +553,12 @@ vede silnice. Pražský výřez: 88 → 116 MB (+32 %), celá ČR 0,84 → 1,39 
 přes limit GitHub Pages 1 GB, proto se čeká na dlaždice na Cloudflare R2 (Bára 15. 11. 2026: zatím nepushovat).
 
 Na webu (Bára 15. 11. 2026) jsou dlaždice každého státu (ČR, Slovensko) zabalené do jednoho souboru
-(`tools/pack_osm_tiles.mjs`, formát v `pilot/public/osmpack.js`: slovník tagů, krátký zápis prvků, každá dlaždice
+(`tools/pack_osm_tiles.mjs`, formát v `app/public/osmpack.js`: slovník tagů, krátký zápis prvků, každá dlaždice
 zvlášť gzip, dvouúrovňový index) a aplikace z něj čte jen potřebné kousky přes HTTP Range. Soubory leží na
 Cloudflare R2 (kbelík `profily-ulic-osm`, `https://data.streetspace.eu/osm/`) a tytéž na Pages (`data/osm-pack/`),
 kam aplikace sáhne, když R2 neodpovídá. `index.json` vedle nich jmenuje soubor každého státu; týdenní obnova je
 nahrává pod novým jménem s datem. ČR asi 281 MB místo 1,3 GB ve 246 000 souborech, Slovensko 107 MB.
-Lokálně: `node tools/pack_osm_tiles.mjs pilot/data/osm-tiles pilot/data/osm-pack/cz.posm` a aplikace s `?osm=balik`
+Lokálně: `node tools/pack_osm_tiles.mjs app/data/osm-tiles app/data/osm-pack/cz.posm` a aplikace s `?osm=balik`
 (soubory z místního serveru) nebo `?osm=r2` (z R2); bez přepínače čte místní server dlaždice jako dřív.
 Kontrola balíku proti dlaždicím: `node evaluation/osm_pack_check.mjs <dlaždice> <soubor nebo URL> [samples.json …] --all`.
 
@@ -676,17 +676,17 @@ PROJ_DATA=$Q/Resources/qgis/proj GDAL_DATA=$Q/Resources/qgis/gdal $Q/MacOS/pytho
 
 ## Města jako moduly
 
-Každé město je jeden modul `pilot/public/towns/<město>.js` (vzor `towns/jihlava.js`): zdroje dat pro
+Každé město je jeden modul `app/public/towns/<město>.js` (vzor `towns/jihlava.js`): zdroje dat pro
 kliknutí (`osm`, `surfaces`, `lines`, `parking`, `podlaznost`) ve stejném tvaru jako odpovědi IPR, podkladové
-mapy (`maps`) a ortofoto pro kontrolu řezů (`ortho`). Společné funkce jsou v `pilot/public/gis.js`, dlaždice OSM
+mapy (`maps`) a ortofoto pro kontrolu řezů (`ortho`). Společné funkce jsou v `app/public/gis.js`, dlaždice OSM
 čtou všechna města stejné. Texty aplikace a uvedení zdrojů jsou v `city.js`, servery pro CSP a staré adresy
 v `tools/cities.mjs`. Město patří do státu a dědí od něj, co nemá svého (`countries/<ISO>.js`; vlastní ortofoto pruhů
 přepíše `laneOrtho`); jen data města popisují jeho vlastnosti (`roadOnPath`, `slowServer`, `ruianYear` u Prahy a Brna). Nové město: záznam v
 `city.js` a `tools/cities.mjs`, modul v `towns/` (a v `towns/index.js`), kredit jeho zdrojů pod klíčem v `credits.js`,
-kód obce v `tools/build_mesta.mjs` (pak `node tools/build_mesta.mjs`), ilustrace v `pilot/public/<město>/`,
+kód obce v `tools/build_mesta.mjs` (pak `node tools/build_mesta.mjs`), ilustrace v `app/public/<město>/`,
 kontrola `CITY=<město> node evaluation/sample.mjs|run_brno.mjs|render_brno.mjs` a A/B test (níže).
 
-Ilustrace měst (`pilot/public/<město>/`, podle fotek z Wikimedia Commons): tramvaje, trolejbusy a autobusy místních
+Ilustrace měst (`app/public/<město>/`, podle fotek z Wikimedia Commons): tramvaje, trolejbusy a autobusy místních
 dopravců, sloupy trakčního vedení a označníky; mobiliář je kromě Brna pražský. Vlastní vozidla mají Praha (T3,
 SOR NB 12), Brno (Tatra T3 v nátěru DPMB, 45T a 13T, autobus DPMB), Jihlava (32Tr, Citelis), Most (EVO2, SOR NB 12),
 Opava (32Tr, Urbanway), Pardubice (32Tr, Urbanway), Plzeň (40T, 26Tr, SOR NS 12), Ostrava (Tango NF2, 26Tr,
@@ -734,7 +734,7 @@ Služby města (`gis.jihlava-city.cz`, CORS povolený):
 
 ### Pasporty dalších měst (16. 11. 2026)
 
-Ve zbytku Česka („cesko“) se v hranicích jedné obce (`pilot/public/pasporty.json`, `node tools/build_pasporty.mjs`)
+Ve zbytku Česka („cesko“) se v hranicích jedné obce (`app/public/pasporty.json`, `node tools/build_pasporty.mjs`)
 berou plochy z pasportu města a jinde DTM ČÚZK (`towns/pasporty.js`, `towns/overlay.js overDmvs`): komunikace
 Rožnova pod Radhoštěm (T-MAPY PaKom); Šlapanice a Kuřim (osy zimní údržby se šířkou) vyřadila Bára 26. 11. 2026 po
 slepém A/B na nových řezech (12 : 12, 14 : 16), i z kreditu. Pasport, který v okolí řezu nic nemá, nechá řez technické mapě. Nejsou
@@ -775,13 +775,13 @@ Připojená po srovnání s celostátní DTM ČÚZK nad ortofotem (`evaluation/<
 
 ### Celostátní technická mapa (Pardubice a zbytek Česka)
 
-- **DTM krajů z WFS** (`pilot/public/dtmwfs.js`): v devíti krajích s DTM od T-MAPY (Jihočeský, Pardubický,
+- **DTM krajů z WFS** (`app/public/dtmwfs.js`): v devíti krajích s DTM od T-MAPY (Jihočeský, Pardubický,
   Vysočina, Moravskoslezský, Královéhradecký, Jihomoravský, Liberecký, Karlovarský, Zlínský) dává mapová služba
   kraje WFS 2.0 se skutečnými polygony (`…/mapservice/v1/wms/dtm_zps_plochy_bar`, GML v S-JTSK, CORS). Kraj řezu
   se pozná podle `kraje.json` (`node tools/build_kraje.mjs`), jeden dotaz, kliknutí medián 0,65 s. A/B 137 řezů
   proti obrázkům DMVS: lepší 6, horší 3, jinak stejně; ploty a zdi z WFS se nepřipojují (uříznou chodníky).
   `evaluation/dtm-wfs/ZPRAVA.md`.
-- **Obrázky IS DMVS ČÚZK** (`pilot/public/dmvs.js`): jinde, při chybě WFS nebo když do 1,5 s neodpoví. Služba
+- **Obrázky IS DMVS ČÚZK** (`app/public/dmvs.js`): jinde, při chybě WFS nebo když do 1,5 s neodpoví. Služba
   nevrací tvary, jen obrázky a typ plochy v bodě: modul stáhne obrázek ploch a hraničních linií (0,1 m/px),
   rozdělí ho podle barev legendy, obtáhne obrysy a typ bílých a šedých ploch na řezu doptá (průměrně 6 dotazů,
   kliknutí kolem 1 s).
@@ -850,7 +850,7 @@ Připojená po srovnání s celostátní DTM ČÚZK nad ortofotem (`evaluation/<
   nakreslí obrázky.
 - Příklad: pasport komunikací v Jihlavě, `evaluation/jihlava/PASPORT.md`.
 - **Změna pravidla** (ne zdroje): varianta exportuje `deriveProfile` z kopie kódu před změnou
-  (`cp -R pilot/public/*.js pilot/public/towns evaluation/<složka>/data/kod-0`, vzor `variants/pred-zakon.mjs`).
+  (`cp -R app/public/*.js app/public/towns evaluation/<složka>/data/kod-0`, vzor `variants/pred-zakon.mjs`).
   `ITEMS=1` počítá i stání a předměty, `PARTS=1` i druhy částí (např. druh tramvaje) a šířky pruhů a krajnic.
   Příklad: `evaluation/pravidla-11-2026/ZPRAVA.md`.
 
@@ -913,7 +913,7 @@ Připojená po srovnání s celostátní DTM ČÚZK nad ortofotem (`evaluation/<
    a v úzkých uličkách se domy najdou, odhad tam zůstává.
    Platí v ulicích residential a unclassified (na hlavních ulicích ne; v Praze ani v MK I a II podle TSK), jen mimo
    zóny placeného stání: do 100 m od řezu nesmí být žádná zóna TSK (vrstva „Zóny placeného stání vymezené
-   tarifem“). Hranice zón se stahují jednou skriptem `node tools/build_zps.mjs` do `pilot/data/zps.json` (na webu
+   tarifem“). Hranice zón se stahují jednou skriptem `node tools/build_zps.mjs` do `app/data/zps.json` (na webu
    při nasazení), takže se kvůli nim IPR při kliknutí neptá. Bez souboru rozhodují úseky TSK kolem řezu. Odhad se
    nepřidá, kde je stání z dat města nebo z OSM nebo kde ho tag zakazuje.
 7. Obytné a pěší zóny (`living_street`, `pedestrian`) mají vozovku jako jeden pruh bez ohledu na počet pruhů v OSM

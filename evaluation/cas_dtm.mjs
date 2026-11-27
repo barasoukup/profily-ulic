@@ -5,8 +5,8 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 const ROOT = path.dirname(new URL(import.meta.url).pathname);
-const { surfaces } = await import("../pilot/public/dmvs.js");
-const { MTVU_LABELS } = await import("../pilot/public/city.js");
+const { surfaces } = await import("../app/public/dmvs.js");
+const { MTVU_LABELS } = await import("../app/public/city.js");
 const N = Number(process.env.N || 6), HALF = 40, PAD = 0.0004;
 const wait = (ms) => new Promise((r) => setTimeout(r, ms));
 const rows = [];

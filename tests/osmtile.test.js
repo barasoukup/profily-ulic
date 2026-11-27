@@ -1,7 +1,7 @@
-// The compact OSM tiles (pilot/public/osmtile.js): coordinates as differences, lines cut by tiles joined back.
+// The compact OSM tiles (app/public/osmtile.js): coordinates as differences, lines cut by tiles joined back.
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { decodeTile, mergePieces } from "../pilot/public/osmtile.js";
+import { decodeTile, mergePieces } from "../app/public/osmtile.js";
 
 const line = (o, pts) => JSON.stringify({ t: "w", i: 7, k: { highway: "residential" }, o, g: pts.flatMap(([x, y], i) => (i ? [x - pts[i - 1][0], y - pts[i - 1][1]] : [x, y])) });
 

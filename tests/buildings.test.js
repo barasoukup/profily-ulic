@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { buildingStyle } from "../pilot/public/profile.js";
+import { buildingStyle } from "../app/public/profile.js";
 
 const flat = (extra) => buildingStyle({ roofType: 3, levels: 6, cornice: 6, km: 3.5, type: "apartments", ...extra });
 
@@ -57,7 +57,7 @@ test("zastavěno do 1920 je dům starší zástavby, pokud to není panelová de
 
 // RÚIAN (the towns): walls of panels and the year of completion decide where the roof is not known.
 test("RÚIAN: panely a rok dokončení", async () => {
-  const { buildingStyle } = await import("../pilot/public/profile.js");
+  const { buildingStyle } = await import("../app/public/profile.js");
   assert.equal(buildingStyle({ levels: 8, panel: 1, km: 0.2 }), "plocha");
   assert.equal(buildingStyle({ levels: 4, built: 1915, km: 5 }), "sikma");
   assert.equal(buildingStyle({ levels: 4, built: 1952, km: 5 }), "sorela");
@@ -69,14 +69,14 @@ test("RÚIAN: panely a rok dokončení", async () => {
 
 // A low building keeps a pitched roof only as a house (RÚIAN rodinný dům, OSM house type) or where the roof is known.
 test("nízká budova: sedlová jen u rodinného domu, jinak rovná", async () => {
-  const { buildingStyle } = await import("../pilot/public/profile.js");
+  const { buildingStyle } = await import("../app/public/profile.js");
   assert.equal(buildingStyle({ levels: 2, type: "civic", built: 1969, km: 0.4 }), "nizky");
   assert.equal(buildingStyle({ levels: 2, house: 1, km: 0.4 }), "vila");
 });
 
 // Bára 16. 11. 2026: fewer panel houses where there are none (evaluation/budovy-panel).
 test("panelák ne před 1955, ne u zděných zdí, panelová novostavba je moderní", async () => {
-  const { buildingStyle } = await import("../pilot/public/profile.js");
+  const { buildingStyle } = await import("../app/public/profile.js");
   const slab = { length: 60, width: 12, fill: 0.85, parts: 1 };
   assert.equal(buildingStyle({ levels: 5, built: 1938, km: 99, block: slab }), "funkce");
   assert.equal(buildingStyle({ levels: 5, built: 1980, solid: 1, km: 99, block: slab }), "funkce");
@@ -88,8 +88,8 @@ test("panelák ne před 1955, ne u zděných zdí, panelová novostavba je moder
 
 // The rest of the country and abroad (no centre, km 99): an unknown house is a panel house only by its block or floors.
 test("bez centra a bez roku rozhoduje tvar desky", async () => {
-  const { buildingStyle } = await import("../pilot/public/profile.js");
-  const { setCity } = await import("../pilot/public/city.js");
+  const { buildingStyle } = await import("../app/public/profile.js");
+  const { setCity } = await import("../app/public/city.js");
   setCity("cesko");
   try {
     assert.equal(buildingStyle({ levels: 4, km: 99, block: { length: 40, width: 30, fill: 0.5, parts: 4 } }), "funkce");
@@ -99,7 +99,7 @@ test("bez centra a bez roku rozhoduje tvar desky", async () => {
 });
 
 test("rodinné domy podle stáří, venkovský dům štítem do ulice, kancelář z RÚIAN", async () => {
-  const { buildingStyle } = await import("../pilot/public/profile.js");
+  const { buildingStyle } = await import("../app/public/profile.js");
   assert.equal(buildingStyle({ levels: 2, house: 1, built: 1932, km: 5 }), "vila");
   assert.equal(buildingStyle({ levels: 2, house: 1, built: 1976, km: 5 }), "kostka");
   assert.equal(buildingStyle({ levels: 2, house: 1, built: 2015, km: 5 }), "novyrd");
@@ -111,8 +111,8 @@ test("rodinné domy podle stáří, venkovský dům štítem do ulice, kancelá�
 });
 
 test("kostel, garáž, škola, měšťanský dům na náměstí", async () => {
-  const { buildingStyle } = await import("../pilot/public/profile.js");
-  const { setCity } = await import("../pilot/public/city.js");
+  const { buildingStyle } = await import("../app/public/profile.js");
+  const { setCity } = await import("../app/public/city.js");
   assert.equal(buildingStyle({ levels: 2, type: "church", km: 3 }), "kostel");
   assert.equal(buildingStyle({ levels: 1, type: "garages", km: 3 }), "garaz");
   assert.equal(buildingStyle({ levels: 1, garage: 1, km: 3 }), "garaz");
@@ -128,8 +128,8 @@ test("kostel, garáž, škola, měšťanský dům na náměstí", async () => {
 
 // Review of 16. 11. 2026 (Fable).
 test("ručně zvolený vzhled přežije uložení; všechny vzhledy zná kontrola souboru", async () => {
-  const { BUILDING_STYLES } = await import("../pilot/public/profile.js");
-  const { EDGE_STYLES, cleanProfile } = await import("../pilot/public/validate.js");
+  const { BUILDING_STYLES } = await import("../app/public/profile.js");
+  const { EDGE_STYLES, cleanProfile } = await import("../app/public/validate.js");
   for (const k of Object.keys(BUILDING_STYLES)) assert.ok(EDGE_STYLES.has(k), k);
   const p = cleanProfile({ segments: [{ type: "chodnik", width: 3 }], edges: { left: "budova", leftStyle: "vila", right: "budova", rightStyle: "xyz" } });
   assert.equal(p.edges.leftStyle, "vila");
@@ -137,7 +137,7 @@ test("ručně zvolený vzhled přežije uložení; všechny vzhledy zná kontrol
 });
 
 test("zděný dům 60. let jen do 5 podlaží (i deska); rok i u známé šikmé střechy", async () => {
-  const { buildingStyle } = await import("../pilot/public/profile.js");
+  const { buildingStyle } = await import("../app/public/profile.js");
   const slab = { length: 60, width: 12, fill: 0.85, parts: 1 };
   assert.equal(buildingStyle({ levels: 9, built: 1963, km: 99 }), "plocha");
   assert.equal(buildingStyle({ levels: 5, built: 1968, km: 99, block: slab }), "typovy");
@@ -145,7 +145,7 @@ test("zděný dům 60. let jen do 5 podlaží (i deska); rok i u známé šikmé
 });
 
 test("řadovka před venkovským domem, usedlost nejvýš 2 podlaží, IPR typ 6 v centru Prahy", async () => {
-  const { buildingStyle } = await import("../pilot/public/profile.js");
+  const { buildingStyle } = await import("../app/public/profile.js");
   assert.equal(buildingStyle({ levels: 2, house: 1, built: 1930, km: 5, across: 1, type: "terrace" }), "nizky");
   assert.notEqual(buildingStyle({ levels: 5, farm: 1, built: 1930, km: 5 }), "statek");
   assert.equal(buildingStyle({ levels: 1, iprKind: 6, km: 0.3, period: 1840 }), "mestan");
@@ -154,7 +154,7 @@ test("řadovka před venkovským domem, usedlost nejvýš 2 podlaží, IPR typ 6
 });
 
 test("Slovensko bez centra města: panelák jen deska nebo věžák, jinak činžák (Bára 16. 11. 2026, Kozia)", async () => {
-  const { setCity } = await import("../pilot/public/city.js");
+  const { setCity } = await import("../app/public/city.js");
   setCity("slovensko");
   const court = { length: 115, width: 84, fill: 0.44, parts: 8 }, slab = { length: 60, width: 12, fill: 0.9, parts: 1 };
   assert.equal(buildingStyle({ levels: 6, km: 99, block: court, type: "apartments" }), "sikma");
@@ -166,8 +166,8 @@ test("Slovensko bez centra města: panelák jen deska nebo věžák, jinak čin�
 });
 
 test("Rakousko: žádný panelák, deska je poválečný bytový dům (před 1946 funkcionalistický), nová moderní, kanceláře kanceláře", async () => {
-  const C = await import("../pilot/public/city.js");
-  const { buildingStyle } = await import("../pilot/public/profile.js");
+  const C = await import("../app/public/city.js");
+  const { buildingStyle } = await import("../app/public/profile.js");
   const slab = { levels: 9, block: { fill: 0.95, width: 12, length: 80, parts: 1 } };
   C.setCity("slovensko");
   const sk = buildingStyle(slab);
@@ -183,8 +183,8 @@ test("Rakousko: žádný panelák, deska je poválečný bytový dům (před 194
 });
 
 test("Německo: panelák jen na východě (bývalá NDR), na západě jako v Rakousku", async () => {
-  const C = await import("../pilot/public/city.js");
-  const { buildingStyle } = await import("../pilot/public/profile.js");
+  const C = await import("../app/public/city.js");
+  const { buildingStyle } = await import("../app/public/profile.js");
   const slab = { levels: 9, block: { fill: 0.95, width: 12, length: 80, parts: 1 } };
   try {
     Object.assign(C.setCity("germany"), await C.country.atPlace(13.47, 52.54)); // Berlin-Lichtenberg
@@ -196,7 +196,7 @@ test("Německo: panelák jen na východě (bývalá NDR), na západě jako v Rak
 });
 
 test("odhad z ortofota v Česku doplní budovy z RÚIAN, které OSM nemá (23. 11. 2026)", async () => {
-  const { withBuildings } = await import("../pilot/public/gis.js");
+  const { withBuildings } = await import("../app/public/gis.js");
   const sq = (x, y, d) => [{ lon: x, lat: y }, { lon: x + d, lat: y }, { lon: x + d, lat: y + d }, { lon: x, lat: y + d }, { lon: x, lat: y }];
   const ruian = [{ type: "area", id: "ruian-1", tags: { building: "yes", source: "RÚIAN" }, geometry: sq(0, 0, 1), holes: [] }];
   const osm = { elements: [

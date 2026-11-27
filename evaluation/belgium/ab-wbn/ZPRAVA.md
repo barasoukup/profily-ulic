@@ -11,7 +11,7 @@
 - Plochy chodníků GRB nemá ani jinde: TRN (terén) jen mimo ulici (zpevněno/tráva), WGA jen přístřešky zastávek, WLI
   jsou zase čáry (horní hrana obruby, zídky). Vyzkoušeno v Gentu a Antverpách.
 
-## Jak se to používá (`pilot/public/towns/belgium.js`)
+## Jak se to používá (`app/public/towns/belgium.js`)
 Druhy se čtou **podél řezu**: od osy ulice (OSM silnice) ven, každá zkřížená čára dává další druh (silnice → `wrb` →
 pás u kraje → `wcz` → chodník; `woz` → zeleň), konec WBN je konec ulice, přechod do sousedního polygonu WBN
 (křižovatka) pokračuje stejným druhem. Pás mezi `wrb` a obrubou: do 1,6 m vozovka (žlab), 1,6–3 m stání, širší jiná

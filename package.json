@@ -2,13 +2,13 @@
   "name": "profily-ulic",
   "private": true,
   "type": "module",
-  "description": "Příčné profily pražských ulic (pilot/public je aplikace, pilot/server.mjs místní server)",
+  "description": "Příčné profily pražských ulic (app/public je aplikace, app/server.mjs místní server)",
   "license": "MIT",
   "engines": {
     "node": ">=22"
   },
   "scripts": {
-    "start": "node pilot/server.mjs",
+    "start": "node app/server.mjs",
     "check": "node tools/check_syntax.mjs && node tools/check_imports.mjs",
     "lint": "eslint",
     "test": "npm run check && npm run lint && node --test tests/*.test.js"

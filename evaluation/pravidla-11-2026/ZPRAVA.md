@@ -1,10 +1,10 @@
 # Pravidla 11/2026: stání podle zákona, tři druhy tramvaje, pruhy podle třídy TSK (10. 11. 2026)
 
 Každá změna prošla testem A/B nad ortofotem (`evaluation/ab.mjs`). Protože jde o pravidla, ne o zdroje,
-porovnává se kód před změnou a po ní: před každou změnou vznikla kopie `pilot/public` v `data/kod-0`,
+porovnává se kód před změnou a po ní: před každou změnou vznikla kopie `app/public` v `data/kod-0`,
 `data/kod-1` a `data/kod-2` (git ji ignoruje). Varianty `variants/pred-zakon.mjs`, `po-zakon.mjs`,
 `pred-tram.mjs`, `po-tram.mjs`, `pred-tsk.mjs` z ní berou `deriveProfile`, zdroje jsou stejné. Praha jen
-z cache (`pilot/cache`), Jihlava a Ostrava s `CACHE=disk` přes `polite.mjs` (Ostrava 226 dotazů při prvním běhu,
+z cache (`app/cache`), Jihlava a Ostrava s `CACHE=disk` přes `polite.mjs` (Ostrava 226 dotazů při prvním běhu,
 pak 0). Verdikty jsou v `review.md` párů `evaluation/<město>/data/ab-*`.
 
 ## 1. Odhad stání podle zákona: připojeno

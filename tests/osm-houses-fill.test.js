@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { localFrame, mtvuPolygons, withOsmBuildings } from "../pilot/public/derive.js";
+import { localFrame, mtvuPolygons, withOsmBuildings } from "../app/public/derive.js";
 
 // The cut runs along x (normal (1, 0)), 40 m a side; the map draws a yard (603) all across and a RÚIAN house at 20..30 m.
 const frame = localFrame(49.9, 16.45);

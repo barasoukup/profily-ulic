@@ -1,7 +1,7 @@
 // Draws the link preview image (Open Graph, 1200 × 630) from the app's own drawing code: a sample
 // street profile beside the app's name, for the whole Czech Republic (the default, "cesko", drawn with Prague's
 // illustrations) or for one city. Writes an SVG; the PNG the
-// page links (pilot/public/og.png) is made from it with any SVG renderer. On a Mac, Quick Look
+// page links (app/public/og.png) is made from it with any SVG renderer. On a Mac, Quick Look
 // renders squares only, so: set the SVG to viewBox="0 -285 1200 1200" and height="1200", then
 // qlmanage -t -s 1200 -o . og.svg && sips --cropToHeightWidth 630 1200 og.svg.png --out og.png
 //   node tools/build_og.mjs [out.svg] [cesko|praha|brno|jihlava|…]   (default og.svg in the current folder, the country's card)
@@ -9,7 +9,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
-const ROOT = path.join(path.dirname(fileURLToPath(import.meta.url)), "..", "pilot", "public");
+const ROOT = path.join(path.dirname(fileURLToPath(import.meta.url)), "..", "app", "public");
 const out = process.argv[2] || "og.svg";
 const { NAMES, SITES } = await import("./cities.mjs");
 const cityId = SITES[process.argv[3]] || process.argv[3] === "praha" ? process.argv[3] : "cesko";
@@ -43,10 +43,10 @@ globalThis.fetch = async (p) => {
   return { ok: fs.existsSync(file), status: 200, text: async () => fs.readFileSync(file, "utf8") };
 };
 
-const { loadSprites, buildSvg } = await import("../pilot/public/profile.js");
+const { loadSprites, buildSvg } = await import("../app/public/profile.js");
 await loadSprites();
 // A town with trolleybuses and no trams (its illustrations): a bus lane under the trolley wires instead.
-const { city } = await import("../pilot/public/city.js");
+const { city } = await import("../app/public/city.js");
 const trolleyOnly = city.artMap?.["trolleybus-inbound"] && !city.artMap["streetcar-inbound"];
 const profile = trolleyOnly ? {
   segments: [

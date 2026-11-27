@@ -6,12 +6,12 @@
 // is told by surf.mjs (in Node), only those are cut in the app.   node evaluation/canada/fixes/sample.mjs   writes sample.json
 import fs from "node:fs/promises";
 import { osmAt, tiles } from "../../kliky/osm.mjs";
-import { TILE, mergePieces } from "../../../pilot/public/osmtile.js";
-import { localFrame, nearestStreet, placeCut as place } from "../../../pilot/public/derive.js";
-import { inside } from "../../../pilot/public/places.js";
-import { isTrack } from "../../../pilot/public/towns/planimetrics.js";
+import { TILE, mergePieces } from "../../../app/public/osmtile.js";
+import { localFrame, nearestStreet, placeCut as place } from "../../../app/public/derive.js";
+import { inside } from "../../../app/public/places.js";
+import { isTrack } from "../../../app/public/towns/planimetrics.js";
 const read = async (f) => JSON.parse(await fs.readFile(new URL(f, import.meta.url), "utf8")).valueOf();
-const P = "../../../pilot/public/", DC = (await read(`${P}mesta-us.json`)).washington, TO = (await read(`${P}mesta-ca.json`)).toronto;
+const P = "../../../app/public/", DC = (await read(`${P}mesta-us.json`)).washington, TO = (await read(`${P}mesta-ca.json`)).toronto;
 const US = await read(`${P}mesta-us.json`);
 const AREA = { dc: DC, toronto: TO, boston: US.boston, newyork: US.newyork };
 const list = (x) => (Array.isArray(x) ? x : x.rows || []);

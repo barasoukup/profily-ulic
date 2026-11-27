@@ -4,7 +4,7 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 import { osmAt, ROOT } from "./osm.mjs";
-import { localFrame, nearestStreet, placeCut } from "../../pilot/public/derive.js";
+import { localFrame, nearestStreet, placeCut } from "../../app/public/derive.js";
 const TAGS = ["highway", "service", "name", "oneway", "footway", "cycleway", "junction", "area:highway", "tunnel", "layer", "level", "indoor", "bridge", "dual_carriageway", "area"];
 const list = JSON.parse(await fs.readFile(process.argv[2], "utf8")), out = [];
 for (const s of list) {

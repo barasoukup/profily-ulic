@@ -1,11 +1,11 @@
 // A street on a bridge ends at its deck's edge, with a railing there (Bára 26. 11. 2026; evaluation/bridge-water/edge).
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { localFrame } from "../pilot/public/derive.js";
-import { deckSpans, deckAt, offDecks, bridgeRailings, trimToEnds, P } from "../pilot/public/ortho-osm.js";
-import { toStreetmix } from "../pilot/public/streetmix.js";
+import { localFrame } from "../app/public/derive.js";
+import { deckSpans, deckAt, offDecks, bridgeRailings, trimToEnds, P } from "../app/public/ortho-osm.js";
+import { toStreetmix } from "../app/public/streetmix.js";
 import { tilePieces } from "../tools/osm_areas.mjs";
-import { decodeTile, mergePieces } from "../pilot/public/osmtile.js";
+import { decodeTile, mergePieces } from "../app/public/osmtile.js";
 
 const LAT = 50.08, LON = 14.43, frame = localFrame(LAT, LON), dir = [0, 1]; // north; t across it = −x (west is +t)
 const mx = 1 / (111320 * Math.cos((LAT * Math.PI) / 180)), my = 1 / 110574;

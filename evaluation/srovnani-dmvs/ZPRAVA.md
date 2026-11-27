@@ -22,7 +22,7 @@ města a s `dmvs.js surfaces()` pro stejný výřez. OSM, linie a parkování z�
 
 - Obrázky obou profilů nad ortofotem dělá `evaluation/render_dmvs.mjs`.
 - Data jsou v `evaluation/<město>/data/dmvs/`, obrázky v `dmvs-png/` a verdikty v `dmvs-review.md`.
-- Praha se počítá jen z cache lokálního serveru (`pilot/cache`), IPR se neptá. Řez bez uložené odpovědi se přeskočí.
+- Praha se počítá jen z cache lokálního serveru (`app/cache`), IPR se neptá. Řez bez uložené odpovědi se přeskočí.
 
 ## Čísla
 
@@ -125,7 +125,7 @@ Bára má pravdu: vektory jsou jednodušší a robustnější.
 3. **Mezery uvnitř dat města DMVS plnit nemá.** V zkoumaných městech nemělo město plochy jen u 4 řezů z 320
    (3 v Jihlavě, 1 v Praze). DMVS tam měla plochy jen zčásti. Současné chování `sources.js` stačí: DMVS jen tam,
    kde město nevrátí nic.
-4. **Opravy v `dmvs.js`, které stojí za to** (do `pilot/public` jsem nesahala):
+4. **Opravy v `dmvs.js`, které stojí za to** (do `app/public` jsem nesahala):
    - Do `TYPES` přidat `/mostovk/` (plocha mostovky) jako vozovku, nebo 700 jako mostní konstrukci. Tím se
      vrátí mosty.
    - Když DTM ve výřezu nemá nic (`anyDtm` je false), vynechat i budovy z RÚIAN, případně je nechat jen jako

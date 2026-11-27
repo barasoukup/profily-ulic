@@ -1,13 +1,13 @@
-// The OSM elements of a click without a server or a browser: the app's own reader (pilot/public/osmpack.js, osmtile.js) over
-// the packs on disk (pilot/data/osm-pack/index.json; the pack of Washington, which this branch does not have, by KLIKY_PACKS),
+// The OSM elements of a click without a server or a browser: the app's own reader (app/public/osmpack.js, osmtile.js) over
+// the packs on disk (app/data/osm-pack/index.json; the pack of Washington, which this branch does not have, by KLIKY_PACKS),
 // and Washington's alleys, which its module adds to them as areas (DC Planimetrics, one cached request a place).
 import fs from "node:fs/promises";
 import path from "node:path";
-import { Pack } from "../../pilot/public/osmpack.js";
-import { TILE, mergePieces } from "../../pilot/public/osmtile.js";
+import { Pack } from "../../app/public/osmpack.js";
+import { TILE, mergePieces } from "../../app/public/osmtile.js";
 export const ROOT = path.dirname(new URL(import.meta.url).pathname);
-const AT = path.join(ROOT, "../../pilot/data/osm-pack");
-const DC = process.env.KLIKY_PACKS || path.join(ROOT, "../../../agent-a29244ef82f1b8e80/pilot/data/osm-pack/us_dc-novy.posm");
+const AT = path.join(ROOT, "../../app/data/osm-pack");
+const DC = process.env.KLIKY_PACKS || path.join(ROOT, "../../../agent-a29244ef82f1b8e80/app/data/osm-pack/us_dc-novy.posm");
 const fileRead = (file) => { let fh; return async (a, b) => { fh ??= await fs.open(file); const buf = Buffer.alloc(b - a + 1), { bytesRead } = await fh.read(buf, 0, buf.length, a); return { bytes: new Uint8Array(buf.buffer, buf.byteOffset, bytesRead), etag: "1" }; }; };
 let packs;
 const open = async () => (packs ??= (async () => {

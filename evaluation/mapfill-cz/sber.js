@@ -1,5 +1,5 @@
 // The Czech mapFill A/B (Bára 24. 11. 2026): run in the app's page (localhost ?osm=balik, server with EVAL_SAVE=1),
-// loaded as a module (copied to pilot/public/zz-mfcz.js, which git ignores). Each point cut once per variant; a variant
+// loaded as a module (copied to app/public/zz-mfcz.js, which git ignores). Each point cut once per variant; a variant
 // sets countries/CZ.js mapFill live (O: false as before, N: true). Saved to evaluation/universal/data/<name>.json.
 //   const m = await import("/zz-mfcz.js"); await m.collectMF(POINTS, [{ key: "O", mapFill: false }, { key: "N", mapFill: true }], "mfcz-ab")
 export async function collectMF(pts, VARIANTS, name) {

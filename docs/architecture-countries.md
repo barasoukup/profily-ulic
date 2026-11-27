@@ -41,7 +41,7 @@ je oddělený od státu; klíčem překladu je česká věta a test `tests/i18n.
 
 ## Cíl
 
-- **Nový stát** = `pilot/public/countries/<ISO>.js` + složka značek + záznam v jednom seznamu států pro nástroje.
+- **Nový stát** = `app/public/countries/<ISO>.js` + složka značek + záznam v jednom seznamu států pro nástroje.
   Žádná podmínka `country === "<ISO>"` mimo složku `countries/`.
 - **Nové město nebo zdroj města** = modul a záznam „zdroj + území + stát“ v jednom seznamu; v kterémkoli státě.
 - **Nový jazyk** = jeden soubor `<lang>.js` + řádek v `LANGS` (jako dnes).
@@ -170,7 +170,7 @@ Líně už dnes (a dál) jen zdroje měst a hledání.
 4b. **Města všude** (změna chování, schvaluje Bára): hranice obcí SK a AT, Bratislava, Košice, Žilina, Banská
    Bystrica, Prešov, Vídeň, Graz, Linz jako města s texty ze sady státu; log `city` po městech + `country`.
 5. **`tools/countries.mjs`** pro `pages.yml`, test CSP; zkušební sestavení, `_site` stejné.
-6. Přepsat návod `.claude/skills/pridani-statu`, `pilot/README.md`, CLAUDE.md.
+6. Přepsat návod `.claude/skills/pridani-statu`, `app/README.md`, CLAUDE.md.
 
 Odhad: krok 0 skoro den, kroky 1–4 další den až dva, 5–6 menší.
 

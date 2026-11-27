@@ -2,8 +2,8 @@
 // failed, and the visitor is told what the cut lacks (sources.js national, outage; app.js cutAt).
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { setCity } from "../pilot/public/city.js";
-import { national, outage } from "../pilot/public/sources.js";
+import { setCity } from "../app/public/city.js";
+import { national, outage } from "../app/public/sources.js";
 
 const ok = (value) => ({ status: "fulfilled", value });
 const no = (reason = new Error("503")) => ({ status: "rejected", reason });
@@ -78,7 +78,7 @@ test("technická mapa jen s čarami (Středočeský kraj): hláška podle toho, 
 });
 
 test("plochy z čar: vozovka pod středem, chodníky mezi hranicemi dopravní plochy, za plotem nic", async () => {
-  const { fromLines, view } = await import("../pilot/public/dmvs.js");
+  const { fromLines, view } = await import("../app/public/dmvs.js");
   // Fügnerova in Kolín across (Bára 12. 11. 2026): the lines crossed from the left, in metres from the axis.
   const v = view("15.1934,50.0255,15.1944,50.0261");
   const { w, h, res } = v, cx = Math.floor(w / 2);
@@ -102,7 +102,7 @@ test("plochy z čar: vozovka pod středem, chodníky mezi hranicemi dopravní pl
 });
 
 test("dlaždice pražských otevřených dat: chyba se ohlásí a příště se zkusí znovu, chybějící dlaždice je prázdno", async () => {
-  const { prahaOpendata } = await import("../pilot/public/sources.js");
+  const { prahaOpendata } = await import("../app/public/sources.js");
   const real = globalThis.fetch;
   let status = 500;
   globalThis.fetch = async () => ({ ok: status === 200, status, json: async () => ({ t: [500, 500] }) });
@@ -119,7 +119,7 @@ test("dlaždice pražských otevřených dat: chyba se ohlásí a příště se 
 });
 
 test("kusy z čar vedle vozovky: chodník podle OSM nebo v zástavbě, jinak zeleň", async () => {
-  const { linePieces } = await import("../pilot/public/derive.js");
+  const { linePieces } = await import("../app/public/derive.js");
   // The cut runs along y (normal [1, 0]: left is +x); a piece is a box at its offset.
   const box = (x, code, extra = {}) => ({ code, bbox: [x - 0.5, -5, x + 0.5, 5], fromLines: true, ...extra });
   const road = box(0, 701), left1 = box(5, 702), left2 = box(8, 702), right1 = box(-5, 702);
@@ -136,7 +136,7 @@ test("kusy z čar vedle vozovky: chodník podle OSM nebo v zástavbě, jinak zel
 });
 
 test("kusy z čar podle barvy ortofota: tráva je zeleň, dlažba chodník (za zeleným pruhem taky)", async () => {
-  const { linePieces } = await import("../pilot/public/derive.js");
+  const { linePieces } = await import("../app/public/derive.js");
   // The cut along x (normal [1, 0], left +x); pieces 2 m wide.
   const piece = (x, code) => ({ code, fromLines: true, bbox: [x - 1, -10, x + 1, 10], rings: [[[x - 1, -10], [x + 1, -10], [x + 1, 10], [x - 1, 10], [x - 1, -10]]] });
   const road = piece(0, 701), grass = piece(4, 702), paving = piece(7, 702);
@@ -168,7 +168,7 @@ test("kusy z čar podle barvy ortofota: tráva je zeleň, dlažba chodník (za z
 });
 
 test("kusy z čar: OSM sidewalk:left/right podle směru ulice, i po Otočit", async () => {
-  const { linePieces } = await import("../pilot/public/derive.js");
+  const { linePieces } = await import("../app/public/derive.js");
   const box = (x, code) => ({ code, fromLines: true, bbox: [x - 0.5, -5, x + 0.5, 5] });
   const polys = [box(0, 701), box(5, 702), box(-5, 702)];
   const tags = { "sidewalk:left": "yes", "sidewalk:right": "no" };
@@ -182,7 +182,7 @@ test("mimo Česko se technické mapy ČÚZK neptá a neříká, že neodpovídá
   setCity("slovensko");
   // Without the towns' passports (?pasport=0): no request leaves the test.
   globalThis.PROFILY_SK = { pasport: "0", zbgis: "0", hrany: "0" };
-  const { sources } = await import("../pilot/public/towns/slovensko.js");
+  const { sources } = await import("../app/public/towns/slovensko.js");
   const s = await sources.surfaces("17.1,48.14,17.11,48.15");
   delete globalThis.PROFILY_SK;
   // The national DTM is not tried (sources.js national): nothing to fail.
@@ -195,7 +195,7 @@ test("mimo Česko se technické mapy ČÚZK neptá a neříká, že neodpovídá
 });
 
 test("domy na Slovensku: druh a výška ze ZBGIS", async () => {
-  const { zbgisBuilding } = await import("../pilot/public/towns/slovensko.js");
+  const { zbgisBuilding } = await import("../app/public/towns/slovensko.js");
   // Suché mýto 6, Bratislava (identify 15. 11. 2026).
   const b = zbgisBuilding({ results: [{ layerId: 41, attributes: { "Typ, účel využitia budovy": "Administratívna budova", "Výška nad povrchom (m)": "27,8", "Plocha (m²)": "633,9888" } }] });
   assert.deepEqual([b.cornice, b.fromHeight, b.area, b.kind, b.house], [8, true, 634, undefined, undefined]);
@@ -205,7 +205,7 @@ test("domy na Slovensku: druh a výška ze ZBGIS", async () => {
 });
 
 test("domy ZBGIS: vzhled paneláku jen bytovým domům, jiné užití jako kanceláře", async () => {
-  const { zbgisType } = await import("../pilot/public/towns/slovensko.js");
+  const { zbgisType } = await import("../app/public/towns/slovensko.js");
   assert.equal(zbgisType("Bytový dom"), "apartments");
   assert.equal(zbgisType("Administratívna budova"), "office");
   assert.equal(zbgisType("Hotel"), "commercial");

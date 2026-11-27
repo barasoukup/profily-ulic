@@ -42,7 +42,7 @@ function limitsFI(s, segs = [], i = -1) {
   }
 }
 
-// The signs of the state FI (pilot/public/signs-FI/, README there): appendix 3 of the road traffic act 729/2018, the
+// The signs of the state FI (app/public/signs-FI/, README there): appendix 3 of the road traffic act 729/2018, the
 // drawings from Wikimedia Commons ("Finland road sign …", public domain, "Republic of Finland"). That the act's appendix
 // is free (Tekijänoikeuslaki 404/1961 § 9: no copyright in laws and decrees) is the app's reading (NORMY.md C1; Bára to
 // confirm). Finland has no shared zone; plates (H) are not drawn (their licences on Commons not checked).

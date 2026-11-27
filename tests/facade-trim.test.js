@@ -6,7 +6,7 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 
 test("Proužek plochy do 1,5 m u fasády za chodníkem je chodník (facadeStrip)", async () => {
-  const { facadeStrip } = await import("../pilot/public/ortho-osm.js");
+  const { facadeStrip } = await import("../app/public/ortho-osm.js");
   const piece = (code, s, e) => ({ code, label: "x", span: [s, e], rings: [[[s, 0]]] });
   // Side B (sg 1): the map's sidewalk up to 5 m (at), a strip of paving 5–5.65 m, the house at 5.65.
   const at = (t) => (t > 2 && t < 5 ? 702 : null);
@@ -26,7 +26,7 @@ test("Proužek plochy do 1,5 m u fasády za chodníkem je chodník (facadeStrip)
 });
 
 test("Pasport: odhadnuté vozovky DTM kolem vozovky pasportu pod středem řezu (trimGuessedRoads), ?orez=0", async () => {
-  const { trimGuessedRoads } = await import("../pilot/public/towns/overlay.js");
+  const { trimGuessedRoads } = await import("../app/public/towns/overlay.js");
   const sq = (x0, x1) => ({ rings: [[[x0, -1], [x1, -1], [x1, 1], [x0, 1], [x0, -1]]] });
   const own = { features: [{ attributes: { CTVUK_KOD: 701, PASPORT: 1 }, geometry: sq(-0.5, 0.5) }] };
   const dtm = { region: "r", features: [
@@ -44,7 +44,7 @@ test("Pasport: odhadnuté vozovky DTM kolem vozovky pasportu pod středem řezu 
 });
 
 test("Paříž: soukromé bloky Plan de voirie jako domy (parisBlocks)", async () => {
-  const F = await import("../pilot/public/towns/france.js");
+  const F = await import("../app/public/towns/france.js");
   const sq = { geometry: { type: "Polygon", coordinates: [[[0, 0], [1, 0], [1, 1], [0, 1], [0, 0]]] } };
   const got = F.parisBlocks([{ geo_shape: sq }, { geo_shape: null }]);
   assert.equal(got.length, 1);

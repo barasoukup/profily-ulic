@@ -1,7 +1,7 @@
 # USA (Washington DC): normy šířek a stání (24. 11. 2026)
 
 Rešerše agenta Sonnet z 24. 11. 2026 (texty čtené ve zdroji; nacto.org vrací skriptům 403, stránky NACTO čtené z kopií
-Internet Archive z roku 2023). Zapojeno v `pilot/public/countries/US.js` (`limitsUS`, `freeLane`, `halfKerbNote`).
+Internet Archive z roku 2023). Zapojeno v `app/public/countries/US.js` (`limitsUS`, `freeLane`, `halfKerbNote`).
 
 ## A. Zdroje
 

@@ -3,7 +3,7 @@
 Položka backlogu: bez mapy povrchů řezal odhad z ortofota a OSM most podle vody pod ním (Most Kotlarski v Krakově:
 „voda“ mezi vozovkami místo tramvaje a místo chodníků). Voda a zeleň OSM leží na zemi; ulice na mostě je nad nimi.
 
-**Změna** (`pilot/public/ortho-osm.js`, před plochami zeleně a vody): je-li řezaná ulice na mostě (`bridge` a úroveň nad
+**Změna** (`app/public/ortho-osm.js`, před plochami zeleně a vody): je-li řezaná ulice na mostě (`bridge` a úroveň nad
 zemí, `layer` nebo 1), voda ani zeleň OSM s nižší vrstvou se pod ní neberou. Konec ulice pak dává už existující pravidlo
 z map povrchů (`derive.js`, Hlávkův most): ulice na mostě končí za krajním chodníkem. Plochy `man_made=bridge` dlaždice
 OSM nemají (`tools/build_osm_tiles.mjs` je nedrží), proto rozhoduje značka mostu na řezané ulici. `?off=mostvoda` = dřív.

@@ -1,4 +1,4 @@
-// A module: run in the app's page (http://127.0.0.1:5173/?lang=cs&osm=r2), served from pilot/public for the run, after loading the points:
+// A module: run in the app's page (http://127.0.0.1:5173/?lang=cs&osm=r2), served from app/public for the run, after loading the points:
 //   window.__pts = await (await fetch("/evaluation-kontrola-vzorek.json")).json()   (a copy of vzorek.json)
 // Each point is cut (window.cutAt) and kept: the cut, its parts and edges, and every OSM way the cut line crosses
 // (its offset from the left end A and its tags) for the checks of kontrola.js. Results in window.__res (saved by

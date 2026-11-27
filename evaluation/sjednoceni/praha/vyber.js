@@ -1,5 +1,5 @@
 // The cuts of the A/B of the junction rule and the axis fixes (Bára 25. 11. 2026), run in the app's page (copied to
-// pilot/public/zz-vyber.js): random points (a fixed seed) in a circle around each town, at each the nearest place of one
+// app/public/zz-vyber.js): random points (a fixed seed) in a circle around each town, at each the nearest place of one
 // of three kinds, the kinds in turn:
 //   s  a street for cars within 14 m of where a service way (no driveway, aisle, drive-through) joins it;
 //   d  a dual carriageway: a named one-way road with its other half by name within 40 m, 14 m or less from a junction on

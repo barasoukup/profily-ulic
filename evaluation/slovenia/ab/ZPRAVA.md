@@ -1,7 +1,7 @@
 # A/B: budovy z katastru GURS ve Slovinsku (23. 11. 2026)
 
 Co se zkoušelo: bez katastru by aplikace kreslila dům ve Slovinsku jen z OSM. Nově se ptá katastru nemovitostí GURS
-(`pilot/public/towns/slovenia.js`, WFS `wfs-si-gurs-kn`, vrstva STAVBE, jeden malý dotaz na fasádu: obrys `OBRIS_GEOM`
+(`app/public/towns/slovenia.js`, WFS `wfs-si-gurs-kn`, vrstva STAVBE, jeden malý dotaz na fasádu: obrys `OBRIS_GEOM`
 v bodě 4 m uvnitř domu, jinak nejbližší obrys do 6 m druhým dotazem). A = `?gurs=0` (jen OSM), B = s katastrem. Vzhled
 domu je `profile.js buildingStyle` se stejným slučováním údajů jako v `app.js`.
 

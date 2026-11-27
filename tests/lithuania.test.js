@@ -5,9 +5,9 @@ import assert from "node:assert/strict";
 import fs from "node:fs";
 
 test("Litva: stát řezu, pobřeží, sousedé mimo", async () => {
-  const C = await import("../pilot/public/city.js");
-  C.loadBounds(JSON.parse(fs.readFileSync(new URL("../pilot/public/mesta.json", import.meta.url), "utf8")));
-  C.loadStates(JSON.parse(fs.readFileSync(new URL("../pilot/public/staty.json", import.meta.url), "utf8")));
+  const C = await import("../app/public/city.js");
+  C.loadBounds(JSON.parse(fs.readFileSync(new URL("../app/public/mesta.json", import.meta.url), "utf8")));
+  C.loadStates(JSON.parse(fs.readFileSync(new URL("../app/public/staty.json", import.meta.url), "utf8")));
   // Vilnius, Kaunas, Klaipėda (the port), Šiauliai, Panevėžys, Alytus, Nida on the Curonian Spit.
   for (const [lat, lon] of [[54.6872, 25.2797], [54.897, 23.9262], [55.7075, 21.1335], [55.9349, 23.3137], [55.7348, 24.3575], [54.3964, 24.0459], [55.3036, 21.0065]]) assert.equal(C.cityAt(lat, lon), "lithuania", `${lat},${lon}`);
   // Riga, Minsk, Kaliningrad, Suwałki (Poland), Daugavpils.
@@ -17,9 +17,9 @@ test("Litva: stát řezu, pobřeží, sousedé mimo", async () => {
 // The coast's 400 m only by the sea (Bára 24. 11. 2026): a harbour and the sea off the beach stay the state's, a cut
 // 300 m beyond a land border does not (city.js stateEntry, staty.json land_*).
 test("Pobřeží: tolerance 400 m jen u moře, ne u hranice na souši (LT, FI, DK)", async () => {
-  const C = await import("../pilot/public/city.js");
-  const staty = JSON.parse(fs.readFileSync(new URL("../pilot/public/staty.json", import.meta.url), "utf8"));
-  C.loadBounds(JSON.parse(fs.readFileSync(new URL("../pilot/public/mesta.json", import.meta.url), "utf8")));
+  const C = await import("../app/public/city.js");
+  const staty = JSON.parse(fs.readFileSync(new URL("../app/public/staty.json", import.meta.url), "utf8"));
+  C.loadBounds(JSON.parse(fs.readFileSync(new URL("../app/public/mesta.json", import.meta.url), "utf8")));
   // Outside the state's ring (GISCO's ring alone does not take them), within 400 m of the sea coast.
   const sea = [["lithuania", 55.64922, 21.16001], ["lithuania", 55.84707, 21.0545], ["finland", 60.1316, 24.99252], ["denmark", 55.68931, 12.60393]];
   for (const [st, lat, lon] of sea) {
@@ -42,7 +42,7 @@ test("Pobřeží: tolerance 400 m jen u moře, ne u hranice na souši (LT, FI, D
 });
 
 test("Litva: mapa povrchů Vilniusu (kód a účel plochy)", async () => {
-  const V = await import("../pilot/public/towns/lithuania.js");
+  const V = await import("../app/public/towns/lithuania.js");
   const c = (KODAS, Paskirtis = null) => V.vilniusCode({ KODAS, Paskirtis });
   assert.equal(c(2421, "kelias"), 701);
   assert.equal(c(2426, "kelias"), 701, "štěrková cesta je vozovka");
@@ -84,7 +84,7 @@ test("Litva: mapa povrchů Vilniusu (kód a účel plochy)", async () => {
 });
 
 test("Litva: značky, normy, bez ortofota", async () => {
-  const { COUNTRIES } = await import("../pilot/public/countries/index.js");
+  const { COUNTRIES } = await import("../app/public/countries/index.js");
   const LT = COUNTRIES.LT, f = LT.signs.file;
   assert.equal(f({ k: "oneway", dir: "forward" }), "503");
   assert.equal(f({ k: "oneway", dir: "backward" }), "301");
@@ -101,14 +101,14 @@ test("Litva: značky, normy, bez ortofota", async () => {
   assert.equal(LT.signs.label({ k: "b29" }, null, "B 29 Zákaz stání"), "333 Zákaz stání");
   for (const k of ["b1", "b11", "b8", "b30", "b28", "b29", "ip11a", "ip12", "ip14a", "ip15a", "ip20a", "zona30", "ip26a", "cyklozona", "c8a", "c7a", "c9a"]) {
     const file = f({ k });
-    assert.ok(file && fs.existsSync(new URL(`../pilot/public/signs-LT/${file}.svg`, import.meta.url)), `${k}: ${file}`);
+    assert.ok(file && fs.existsSync(new URL(`../app/public/signs-LT/${file}.svg`, import.meta.url)), `${k}: ${file}`);
   }
   for (const file of ["301", "503", "329", "413a", "413b", "846", "853"]) {
-    const svg = fs.readFileSync(new URL(`../pilot/public/signs-LT/${file}.svg`, import.meta.url), "utf8");
+    const svg = fs.readFileSync(new URL(`../app/public/signs-LT/${file}.svg`, import.meta.url), "utf8");
     assert.match(svg.match(/<svg[\s\S]*?>/)[0], /viewBox="[\d.]+ [\d.]+ [\d.]+ [\d.]+"/, file);
   }
-  assert.match(fs.readFileSync(new URL("../pilot/public/signs-LT/329.svg", import.meta.url), "utf8"), /<text id="v"/);
-  const S = await import("../pilot/public/signs.js");
+  assert.match(fs.readFileSync(new URL("../app/public/signs-LT/329.svg", import.meta.url), "utf8"), /<text id="v"/);
+  const S = await import("../app/public/signs.js");
   assert.ok(S.SPEED_TEMPLATES.has("329"));
   assert.equal(LT.limits({ type: "chodnik" }).min, 0, "jen doporučení: oranžově");
   assert.equal(LT.limits({ type: "chodnik" }).zaklad, 2.5);
@@ -116,13 +116,13 @@ test("Litva: značky, normy, bez ortofota", async () => {
   assert.equal(LT.laneOrtho, "none");
   assert.equal(LT.orthoEstimate, false);
   assert.equal(LT.socialistLooks, true);
-  const L = await import("../pilot/public/lanes-ortho.js");
+  const L = await import("../app/public/lanes-ortho.js");
   assert.equal(await L.laneImage({ source: "none" }), null, "ortofoto NŽT se nepoužívá");
   assert.equal(await L.orthoPatch({ source: "none", lon: 25.28, lat: 54.69, half: 20, px: 256 }), null, "ani pro model obrub, nic na ČÚZK");
 });
 
 test("Litva: pod ulicí pro auta musí být vozovka mapy", async () => {
-  const V = await import("../pilot/public/towns/lithuania.js");
+  const V = await import("../app/public/towns/lithuania.js");
   const box = [[[25.0, 54.0], [25.001, 54.0], [25.001, 54.001], [25.0, 54.001], [25.0, 54.0]]];
   const walk = [{ attributes: { CTVUK_KOD: 702 }, geometry: { rings: box } }];
   assert.ok(!V.hasStreet(walk, 25.0005, 54.0005, { highway: "residential" }), "obytná ulice nad chodníkem mapy: odhad");
@@ -132,7 +132,7 @@ test("Litva: pod ulicí pro auta musí být vozovka mapy", async () => {
 // Vilnius's map is off by default (?vilnius=1; Bára 24. 11. 2026: what is worse stays off), the GRPK's houses on; the
 // GRPK's houses that OSM lacks join OSM's for the estimate, those OSM has stay OSM's.
 test("Litva: mapa Vilniusu vypnutá (?vilnius=1), budovy GRPK zapnuté, GRPK doplní domy, které OSM nemá", async () => {
-  const V = await import("../pilot/public/towns/lithuania.js");
+  const V = await import("../app/public/towns/lithuania.js");
   delete globalThis.PROFILY_LT;
   assert.ok(!V.vilniusOn() && V.grpkOn(), "výchozí: mapa Vilniusu vypnutá, GRPK zapnuté");
   globalThis.PROFILY_LT = { vilnius: "1", grpk: "0" };

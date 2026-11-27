@@ -37,7 +37,7 @@ test("záznam řezu: uloží se přesně, cizí původ a neznámý druh se odmí
 
 test("záznam úprav: dva krátké profily, jen u druhu upravy", async () => {
   const db = fakeDb();
-  const { shortProfile } = await import("../pilot/public/log.js");
+  const { shortProfile } = await import("../app/public/log.js");
   const pred = shortProfile({ edges: { left: "budova", right: "budova" }, segments: [{ type: "chodnik", width: 3, items: [{ kind: "lampa" }] }, { type: "pruh", width: 6.5, dir: "forward", signs: [{ k: "b20a", v: 30 }] }] });
   assert.deepEqual(pred, { l: "budova", r: "budova", s: [{ t: "chodnik", w: 3 }, { t: "pruh", w: 6.5, d: "forward", z: ["b20a:30"] }] });
   const po = { ...pred, s: [pred.s[0], { t: "cyklopruh", w: 1.5 }, { t: "pruh", w: 5 }] };
@@ -74,7 +74,7 @@ test("bez LOG_URL stránka nic neposílá", async () => {
   const nav = globalThis.navigator;
   const old = nav.sendBeacon;
   nav.sendBeacon = () => { sent++; return true; };
-  const { log } = await import("../pilot/public/log.js");
+  const { log } = await import("../app/public/log.js");
   log("rez", { city: "praha" });
   nav.sendBeacon = old;
   assert.equal(sent, 0);
@@ -205,7 +205,7 @@ test("kontaktní formulář: e-mail nejvýš dvakrát z adresy a desetkrát za h
 });
 
 test("kontaktní formulář na stránce: bez adresy Workera se nic neposílá", async () => {
-  const { sendContact, CONTACT_URL } = await import("../pilot/public/about.js");
+  const { sendContact, CONTACT_URL } = await import("../app/public/about.js");
   assert.equal(CONTACT_URL, "");
   assert.equal(await sendContact({ message: "x" }), "off");
   assert.equal(await sendContact({ message: "x" }, { url: "https://w.example/contact", fetchFn: async () => new Response(null, { status: 204 }) }), "ok");
@@ -227,8 +227,8 @@ test("záznam řezu: poloha ve Španělsku, Francii, Belgii, v Amsterdamu i mimo
 
 // Bára 26. 11. 2026: in Czech and Slovak the author is "Bára Soukupová", in the other languages "Bara Soukup".
 test("O aplikaci: autorka česky a slovensky Bára Soukupová, jinde Bara Soukup", async () => {
-  const sk = (await import("../pilot/public/sk.js")).default ?? (await import("../pilot/public/sk.js"));
-  const en = (await import("../pilot/public/en.js")).default ?? (await import("../pilot/public/en.js"));
+  const sk = (await import("../app/public/sk.js")).default ?? (await import("../app/public/sk.js"));
+  const en = (await import("../app/public/en.js")).default ?? (await import("../app/public/en.js"));
   const pick = (m) => Object.values(m).find((v) => v && typeof v === "object" && "Bára Soukupová" in v)?.["Bára Soukupová"];
   assert.equal(pick(sk), "Bára Soukupová");
   assert.equal(pick(en), "Bara Soukup");

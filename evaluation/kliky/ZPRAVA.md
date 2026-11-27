@@ -22,7 +22,7 @@ zvlášť (dřív jedno uprostřed mezi nimi). `?off=ulickysve` = jako předtím
 
 `collect.mjs`: kliky s pevným semínkem, do 4 m od osy, 8 vzorků (ulice, křižovatka do 20 m, přechod do 8 m, dvouvozovková,
 obslužná, ulička, parkoviště a vjezd, pěší), 40 na město v 11 městech (10 + Washington); běží bez prohlížeče (`osm.mjs` čte
-balíky `pilot/data/osm-pack` čtečkou aplikace). Varianty: `none` (`?off=obsluzne,protejsi,ulicky`), `pre` (před 83734e7: bez
+balíky `app/data/osm-pack` čtečkou aplikace). Varianty: `none` (`?off=obsluzne,protejsi,ulicky`), `pre` (před 83734e7: bez
 uliček a `protejsi`, v Praze i bez obslužných), `old` (bd2ef6c, před opravou uličky), `now`. Tabulky `report.mjs`.
 Vzorek 439 kliků (`vysledky/kliky.json`): **posunuto > 1 m / 90. percentil / 99. / nejvíc (m) / přes 25 m**:
 

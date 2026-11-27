@@ -5,7 +5,7 @@ ručně volitelných všude, automaticky jen tam, kde to řekne pravidlo státu.
 
 ## Zapojení
 
-- `pilot/public/house-looks.js`: pravidla (bez dotazů za běhu, stará města a velká města jako středy s poloměry, regiony
+- `app/public/house-looks.js`: pravidla (bez dotazů za běhu, stará města a velká města jako středy s poloměry, regiony
   jako hrubé obdélníky). Stát je volá z `countries/<ISO>.js` `houseLook` a `houseDetails` (výchozí `null` v `default.js`).
 - `profile.js buildingStyle`: po `westernLook` (nebo socialistické větvi) se zeptá `country.houseLook(style, info, n, city)`;
   regionální vzhled nahrazuje jen `sikma`, `mestan`, `nizky` (a `vila`/`statek` u dřevěných domů), nikdy vzhled s vlastním
@@ -164,7 +164,7 @@ Nové snímky: `mansarda.png` a `../budovy-povalecny/povalecny.png` (`render.mjs
 ## Okraj u řezu, souměrné štíty a okna za řezem (Bára 23. 11. 2026)
 
 Po odstranění tmavého pásu u řezu (3d5dbe8) končila spousta kresby pořád 30 cm před ním (`EDGE - 30`). Opraveno v
-`pilot/public/profile.js`, před a po: `../budovy-cz-okna/okraj2-pred-po.png` (vybrané české vzhledy, pak listy
+`app/public/profile.js`, před a po: `../budovy-cz-okna/okraj2-pred-po.png` (vybrané české vzhledy, pak listy
 stity, jih, sever, drevo, mansarda, povalecny vedle sebe).
 
 - **Vzory a pásy stěny až k řezu**: cihelné vazby, azulejos, kvádry Malty a Kypru, prkna, rustika Haussmanna a sorely,

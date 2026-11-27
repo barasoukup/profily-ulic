@@ -1,13 +1,13 @@
 // The states as modules (docs/architecture-countries.md): no condition on a state outside countries/, and a state other
 // than Czechia says its own law of parking, orthophotos, panorama, signs and norms (else it would take the Czech ones of
 // countries/default.js without anyone deciding so; the review of the rebuild, 16. 11. 2026).
-import "../pilot/public/america.js"; // the states of North America (late.js)
+import "../app/public/america.js"; // the states of North America (late.js)
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
-import { LANGS } from "../pilot/public/i18n.js";
+import { LANGS } from "../app/public/i18n.js";
 
-const DIR = new URL("../pilot/public/", import.meta.url);
+const DIR = new URL("../app/public/", import.meta.url);
 const FILES = [...fs.readdirSync(DIR).filter((f) => f.endsWith(".js")), ...fs.readdirSync(new URL("towns/", DIR)).map((f) => `towns/${f}`)]
   .filter((f) => f.endsWith(".js") && !Object.keys(LANGS).some((l) => f === `${l}.js`));
 
@@ -19,7 +19,7 @@ test("mimo countries/ žádná podmínka na stát", () => {
 });
 
 test("každý stát kromě Česka uvádí vlastní zákon o stání, ortofoto, panorama, značky a normy", async () => {
-  const { COUNTRIES } = await import("../pilot/public/countries/index.js");
+  const { COUNTRIES } = await import("../app/public/countries/index.js");
   const OWN = ["halfKerbNote", "parkGuess", "laneOrtho", "bedOrtho", "panorama", "signs", "limits", "contraflow", "tramBelt", "bounds"];
   for (const [code, mod] of Object.entries(COUNTRIES)) {
     if (code === "CZ") continue;

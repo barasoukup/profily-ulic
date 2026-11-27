@@ -1,14 +1,14 @@
 // Estonia's click collector (evaluation/kliky/collect.mjs) over Washington and Toronto: 40 clicks each, 8 of them alleys.
 // rules (derive.js nearestStreet + placeCut, no browser, no profile) and why it moved. A control of every change there.
 //   node evaluation/kliky/collect.mjs [out=vysledky/kliky.json] [seed=20261125] [cities=…]
-// OLD=<dir of an older tree's pilot/public>: the variant "old" by that code (git archive <commit> pilot/public).
+// OLD=<dir of an older tree's app/public>: the variant "old" by that code (git archive <commit> app/public).
 // ABSENT from a click: the cities' own OSM readers (their elements are the same packs), except Washington's alleys.
 import fs from "node:fs/promises";
 import path from "node:path";
 import { pathToFileURL } from "node:url";
 import { osmAt, ROOT } from "../../kliky/osm.mjs";
-import * as D from "../../../pilot/public/derive.js";
-import { P } from "../../../pilot/public/ortho-osm.js";
+import * as D from "../../../app/public/derive.js";
+import { P } from "../../../app/public/ortho-osm.js";
 const arg = Object.fromEntries(process.argv.slice(2).map((a) => a.split("=")));
 const OUT = new URL(arg.out || "clicks.json", import.meta.url).pathname;
 export const CITIES = {

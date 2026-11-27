@@ -2,7 +2,7 @@
 // lanes, and a law strip where the model sees perpendicular cars gives way to them (evaluation/sjednoceni, 25. 11. 2026).
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { parkFromAi, lawKerbs, layLaw, lawUnsplits, widenLaw } from "../pilot/public/ai-kerbs.js";
+import { parkFromAi, lawKerbs, layLaw, lawUnsplits, widenLaw } from "../app/public/ai-kerbs.js";
 
 // A cut from t = 5 (A) to t = -5 (B): law strip 2 m, two lanes of 3 m, a sidewalk 2 m beyond.
 const cut = () => ({ extent: [-5, 5], segments: [

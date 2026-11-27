@@ -7,11 +7,11 @@ description: Postup, jak do Profilů ulic přidat další stát (po Slovensku a 
 
 Postup podle Slovenska (větev `slovensko`, 13.–16. 11. 2026) a Rakouska (větev `austria`, 16. 11. 2026), po přestavbě
 na stát → město → zdroje (`docs/architecture-countries.md`, 16. 11. 2026). **Stát je jeden modul
-`pilot/public/countries/<ISO>.js` + složka značek + řádek v `tools/countries.mjs`**; mimo `countries/` žádná podmínka
+`app/public/countries/<ISO>.js` + složka značek + řádek v `tools/countries.mjs`**; mimo `countries/` žádná podmínka
 na stát (`country === "SK"`, `city.country || "CZ"` …). Vzorový kód:
-- `pilot/public/countries/SK.js`, `AT.js` (normy, značky, zákon o stání, ortofoto, ilustrace měst, vzhled domů, hledání),
+- `app/public/countries/SK.js`, `AT.js` (normy, značky, zákon o stání, ortofoto, ilustrace měst, vzhled domů, hledání),
   `default.js` (česká pravidla pro místo mimo známé státy a výchozí hodnoty všech vlastností), `index.js` (seznam);
-- `pilot/public/towns/slovensko.js` (pasporty, čáry map, ZBGIS), `towns/austria.js` (mapa povrchů Vídně FMZK, značky
+- `app/public/towns/slovensko.js` (pasporty, čáry map, ZBGIS), `towns/austria.js` (mapa povrchů Vídně FMZK, značky
   Salcburku): zdroje se svým územím (`AREAS`, `places.js inArea`), `towns/index.js placeAt`;
 - `credits.js` (kredit každého zdroje pod klíčem), `ortho-osm.js`, `site.js` (NETS), `search-sk.js`, `search-at.js`,
   `search-photon.js`.
@@ -104,13 +104,13 @@ Kresby jsou zdaleka nejdražší. Proto:
 
 ## 1. Stát a jeho modul
 
-1. **Hranice:** `tools/build_staty.mjs` → `pilot/public/staty.json`.
+1. **Hranice:** `tools/build_staty.mjs` → `app/public/staty.json`.
    - Národní služba, zjednodušeno asi na 30 m. Když je vypnutá (BEV WFS), Eurostat GISCO 1 : 1 M (`CNTR_RG_01M_2024_4326`)
      s kreditem „© EuroGeographics“.
    - **Pořadí států rozhoduje:** přesné hranice (CZ, SK) první, hrubší až za nimi, aby bod u hranice dostal ten přesný.
    - Otestovat pohraniční body (Mikulov, Hainburg, Petržalka, Mnichov) v `tests/city.test.js`.
    - `city.js cityAt` pak vrací id státu, mimo známé státy `cizina`.
-2. **Modul státu `pilot/public/countries/<ISO>.js`:** `export default { ...base, code: "<ISO>", bounds: [lon0, lat0, lon1, lat1], … }`
+2. **Modul státu `app/public/countries/<ISO>.js`:** `export default { ...base, code: "<ISO>", bounds: [lon0, lat0, lon1, lat1], … }`
    (`base` = `default.js`), zapsat do `countries/index.js` (`COUNTRIES`). Načítá se staticky, nesmí importovat `city.js`
    ani modul, který ho importuje (`rules.js`, `types.js`, `profile.js`, `derive.js`…): sdílené kusy jsou v `norms.js`
    (skupiny ulic, formát šířky), `art.js` (sady ilustrací), `places.js` (hranice, území). Kde se státy liší kódem, je
@@ -144,7 +144,7 @@ Kresby jsou zdaleka nejdražší. Proto:
 5. **Seznam států pro nasazení:** řádek v `tools/countries.mjs` (klíč balíku OSM, výřez Geofabrik, zda balík smí na Pages).
    `pages.yml` z něj bere smyčky i klíče cache, nic dalšího se v něm neupravuje. Test `tests/csp.test.js` hlídá, že
    každý stát seznamu má modul.
-6. **CSP** v `pilot/public/index.html` (`connect-src`, u obrázků `img-src`) doplnit o každý nový server. Test
+6. **CSP** v `app/public/index.html` (`connect-src`, u obrázků `img-src`) doplnit o každý nový server. Test
    `tests/csp.test.js` selže, když hostitel z kódu v `connect-src` chybí.
 7. **Texty, které vyjmenovávají státy, aktualizovat:**
    - „data pokrývají Česko, Slovensko a Rakousko“;
@@ -159,7 +159,7 @@ Kresby jsou zdaleka nejdražší. Proto:
   - **Lokálně:**
     1. výřez Geofabriku do `data/osm/<kód>.osm.pbf` (Rakousko asi 800 MB);
     2. `NAME=<kód> OGR=…/QGIS…/ogr2ogr tools/build_osm_data.sh data/osm/<kód>.osm.pbf <dir>`;
-    3. `pack_osm_tiles.mjs <dir> pilot/data/osm-pack/<kód>-novy.posm` (Rakousko 284 MB);
+    3. `pack_osm_tiles.mjs <dir> app/data/osm-pack/<kód>-novy.posm` (Rakousko 284 MB);
     4. zkoušet s `?osm=balik`.
   - **V nasazení** stačí řádek v `tools/countries.mjs`. Dlaždice staví samostatný workflow `.github/workflows/osm-tiles.yml`
     (Bára 17. 11. 2026): matice z `node tools/countries.mjs --matrix`, každý balík vlastní job (vlastní běžec, disk a
@@ -261,7 +261,7 @@ Služba, která odpoví skutečnou 4xx nebo chybou ArcGIS se jménem špatného 
 2. **Sběr v aplikaci** (projde všechno jako při kliknutí, včetně ortofota):
    - skript v `javascript_tool` stránky localhostu, `window.cutAt(lat, lon)`;
    - každý bod dvakrát s vypínačem (`?pasport=0`, `?wien=0`…) přes `history.replaceState`, výsledky ve `window`;
-   - body předat souborem `pilot/public/zz-pts.json` (po testu smazat);
+   - body předat souborem `app/public/zz-pts.json` (po testu smazat);
    - dlouhý sběr spustit jako `window.__run = (async…)()` a výsledek číst dalším voláním.
 3. **Obrázky rozdílných řezů nad ortofotem:** nahoře A modře, dole B červeně.
    - Skript `evaluation/slovensko/ab/obrazky.mjs` s `IN=`, `OUT=` (složka vedle skriptu), `LA=`, `LB=`.
@@ -295,7 +295,7 @@ v `cutAt` zastínil pozdější `const name` a rozbil každý řez.
 
 ## 7. Dopravní značky
 
-- **Sada podle předpisů státu:** `pilot/public/znacky-SK/` nebo `signs-AT/`, z přílohy vyhlášky nebo z Wikimedia Commons
+- **Sada podle předpisů státu:** `app/public/znacky-SK/` nebo `signs-AT/`, z přílohy vyhlášky nebo z Wikimedia Commons
   (úřední díla: ověřit, že nejsou chráněná; AT § 7 UrhG).
   - Všem SVG doplnit `viewBox` s mezerami: bez něj nebo s čárkami se kreslí s rozměry NaN.
   - Rychlosti: šablona se vkládaným číslem (`SPEED_TEMPLATES`).
@@ -322,7 +322,7 @@ ověřit, že odhad státu opravdu čte ortofoto (`sources.orthoCity`) a že nec
 ## 8. Ilustrace
 
 - **Vozidla měst:** autobus, trolejbus a tramvaj každého většího města (bus se kreslí v buspruhu, takže autobus potřebuje
-  každé město s buspruhem), čelo i záď, soubory `pilot/public/<town>/`.
+  každé město s buspruhem), čelo i záď, soubory `app/public/<town>/`.
   - **Workflow s povinnými 3 koly:** kritik každé kolo vypíše i drobnosti a skutečné barvy si sám najde na fotkách
     z Commons. Bez toho kritik schválí hned v prvním kole a chyby zůstanou (Linz byl modrý místo oranžového).
     Kreslířce i kritikovi dát `model: "sonnet"` (šetření prostředků výše).
@@ -340,7 +340,7 @@ ověřit, že odhad státu opravdu čte ortofoto (`sources.orthoCity`) a že nec
 ## 9. Dokumentace a předání
 
 - **CLAUDE.md:** oddíl státu (zdroje, co je zapnuté a vypnuté a proč, licence, rozhodnutí Báry).
-- **Dokumentace a licence:** `pilot/README.md`, `LICENCE-A-ZDROJE.md`, patičky ve všech jazycích.
+- **Dokumentace a licence:** `app/README.md`, `LICENCE-A-ZDROJE.md`, patičky ve všech jazycích.
 - **Zprávy** v `evaluation/<state>/` a commit po každém kroku.
 - **Báře krátce:**
   - co je hotové a výsledky A/B;

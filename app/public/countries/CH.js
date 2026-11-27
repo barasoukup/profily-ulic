@@ -41,7 +41,7 @@ function limitsCH(s, segs, i) {
   }
 }
 
-// The signs of the state CH (pilot/public/signs-CH/, README there; Signalisationsverordnung SSV, SR 741.21, Anhang 2,
+// The signs of the state CH (app/public/signs-CH/, README there; Signalisationsverordnung SSV, SR 741.21, Anhang 2,
 // Stand 1. 10. 2026; Wikimedia Commons, by ASTRA, official works not protected by URG Art. 5). Liechtenstein's SSV
 // (LR 741.21) has the same numbers. No sign for parking on the sidewalk (VRV Art. 41 Abs. 1bis: 4.17 and markings), no
 // numbered plate for "Zubringerdienst gestattet" (a text) nor for "ausgenommen Velos": a sign with such a plate is left

@@ -5,7 +5,7 @@ import assert from "node:assert/strict";
 import fs from "node:fs";
 
 test("Švýcarsko: druhy úředního vyměřování na kódy MTVU, vypínač ?av=0", async () => {
-  const S = await import("../pilot/public/towns/switzerland.js");
+  const S = await import("../app/public/towns/switzerland.js");
   assert.equal(S.avCode({ Art: "Strasse_Weg" }), 701);
   assert.equal(S.avCode({ Art: "Trottoir" }), 702);
   assert.equal(S.avCode({ Art: "Verkehrsinsel" }), 1003);
@@ -22,9 +22,9 @@ test("Švýcarsko: druhy úředního vyměřování na kódy MTVU, vypínač ?av
 });
 
 test("Švýcarsko a Lichtenštejnsko: stát podle hranic swisstopo, u hranic sousedé", async () => {
-  const C = await import("../pilot/public/city.js");
-  C.loadBounds(JSON.parse(fs.readFileSync(new URL("../pilot/public/mesta.json", import.meta.url), "utf8")));
-  C.loadStates(JSON.parse(fs.readFileSync(new URL("../pilot/public/staty.json", import.meta.url), "utf8")));
+  const C = await import("../app/public/city.js");
+  C.loadBounds(JSON.parse(fs.readFileSync(new URL("../app/public/mesta.json", import.meta.url), "utf8")));
+  C.loadStates(JSON.parse(fs.readFileSync(new URL("../app/public/staty.json", import.meta.url), "utf8")));
   assert.equal(C.cityAt(47.3725, 8.539), "switzerland"); // Zürich
   assert.equal(C.cityAt(46.2044, 6.1432), "switzerland"); // Genève
   assert.equal(C.cityAt(46.0037, 8.9511), "switzerland"); // Lugano
@@ -40,14 +40,14 @@ test("Švýcarsko a Lichtenštejnsko: stát podle hranic swisstopo, u hranic sou
 });
 
 test("Švýcarsko: SWISSIMAGE po dlaždicích {z}/{x}/{y}, CSP pustí swisstopo a geodienste.ch", async () => {
-  const { CH_ORTHO } = await import("../pilot/public/lanes-ortho.js");
+  const { CH_ORTHO } = await import("../app/public/lanes-ortho.js");
   assert.match(CH_ORTHO, /wmts\.geo\.admin\.ch/);
-  const html = fs.readFileSync(new URL("../pilot/public/index.html", import.meta.url), "utf8");
+  const html = fs.readFileSync(new URL("../app/public/index.html", import.meta.url), "utf8");
   const connect = html.match(/connect-src [^;]*/)[0], img = html.match(/img-src [^;]*/)[0];
   assert.ok(connect.includes("https://wmts.geo.admin.ch") && img.includes("https://wmts.geo.admin.ch"));
   assert.ok(connect.includes("https://geodienste.ch"));
   // A tile asked x before y (ArcGIS caches are y before x).
-  const { laneImage } = await import("../pilot/public/lanes-ortho.js");
+  const { laneImage } = await import("../app/public/lanes-ortho.js");
   const asked = [];
   const frame = { toLonLat: (x, y) => [8.539 + x / 75000, 47.3725 + y / 111000] };
   globalThis.OffscreenCanvas ??= class { constructor(w, h) { this.width = w; this.height = h; } getContext() { return { drawImage() {}, getImageData: (x, y, w, h) => ({ width: w, height: h, data: new Uint8ClampedArray(w * h * 4) }) }; } };
@@ -58,8 +58,8 @@ test("Švýcarsko: SWISSIMAGE po dlaždicích {z}/{x}/{y}, CSP pustí swisstopo 
 });
 
 test("Švýcarsko: značky SSV (2.49 zákaz zastavení, 2.50 zákaz stání, 4.08 a 2.02 jednosměrka), bez tabulek, které nemáme", async () => {
-  const C = await import("../pilot/public/city.js");
-  const { signFile, plateFile, signLabel } = await import("../pilot/public/signs.js");
+  const C = await import("../app/public/city.js");
+  const { signFile, plateFile, signLabel } = await import("../app/public/signs.js");
   C.setCity("switzerland");
   assert.equal(signFile({ k: "b28" }, null, "CH"), "2.49");
   assert.equal(signFile({ k: "b29" }, null, "CH"), "2.50");
@@ -82,18 +82,18 @@ test("Švýcarsko: značky SSV (2.49 zákaz zastavení, 2.50 zákaz stání, 4.0
   assert.match(signLabel({ k: "b28" }, "CH"), /^SSV 2\.49 /);
   assert.equal(signFile({ k: "b28" }, null, "LI"), "2.49", "Lichtenštejnsko má stejná čísla");
   // Every file of the mapping exists and has a viewBox (else drawn NaN).
-  for (const f of fs.readdirSync(new URL("../pilot/public/signs-CH/", import.meta.url)).filter((f) => f.endsWith(".svg"))) {
-    assert.match(fs.readFileSync(new URL(`../pilot/public/signs-CH/${f}`, import.meta.url), "utf8"), /viewBox="[\d.]+ [\d.]+ [\d.]+ [\d.]+"/, f);
+  for (const f of fs.readdirSync(new URL("../app/public/signs-CH/", import.meta.url)).filter((f) => f.endsWith(".svg"))) {
+    assert.match(fs.readFileSync(new URL(`../app/public/signs-CH/${f}`, import.meta.url), "utf8"), /viewBox="[\d.]+ [\d.]+ [\d.]+ [\d.]+"/, f);
   }
   for (const k of ["b1", "b11", "b8", "b30", "b28", "b29", "c8a", "c9a", "c10a", "c7a", "ip11a", "ip14a", "ip15a", "ip20a", "zona30", "ip26a", "ip27a"]) {
     const f = signFile({ k }, null, "CH");
-    assert.ok(fs.existsSync(new URL(`../pilot/public/signs-CH/${f}.svg`, import.meta.url)), `${k} → ${f}`);
+    assert.ok(fs.existsSync(new URL(`../app/public/signs-CH/${f}.svg`, import.meta.url)), `${k} → ${f}`);
   }
   C.setCity("praha");
 });
 
 test("Švýcarsko: normy podle kantonálních příruček, bez varování, kde zdroj chybí; Lichtenštejnsko jako Švýcarsko se svým zákonem", async () => {
-  const { COUNTRIES } = await import("../pilot/public/countries/index.js");
+  const { COUNTRIES } = await import("../app/public/countries/index.js");
   const CH = COUNTRIES.CH, LI = COUNTRIES.LI;
   assert.equal(CH.limits({ type: "chodnik" }, [{ type: "chodnik" }], 0).min, 1.8);
   assert.equal(CH.limits({ type: "cyklopruh" }, [{ type: "cyklopruh" }], 0).min, 1.5);
@@ -110,7 +110,7 @@ test("Švýcarsko: normy podle kantonálních příruček, bez varování, kde z
 });
 
 test("Švýcarsko: Photon s místními názvy (Genève, ne Genf), jen CH a LI", async () => {
-  const { findPhoton } = await import("../pilot/public/search-photon.js");
+  const { findPhoton } = await import("../app/public/search-photon.js");
   let url = "";
   const getJSON = async (u) => { url = u; return { features: [
     { properties: { countrycode: "CH", osm_key: "highway", name: "Rue du Rhône", city: "Genève", postcode: "1204" }, geometry: { coordinates: [6.14, 46.2] } },
@@ -122,7 +122,7 @@ test("Švýcarsko: Photon s místními názvy (Genève, ne Genf), jen CH a LI", 
 });
 
 test("Švýcarsko: vyměřování jen s vozovkou, chodníkem nebo dráhou pod středem řezu, ne s ostatní zpevněnou plochou (most, nábřeží, molo)", async () => {
-  const S = await import("../pilot/public/towns/switzerland.js");
+  const S = await import("../app/public/towns/switzerland.js");
   const sq = (x0, y0, x1, y1) => ({ type: "Polygon", coordinates: [[[x0, y0], [x1, y0], [x1, y1], [x0, y1], [x0, y0]]] });
   const cx = 8.539, cy = 47.372;
   const answer = { type: "FeatureCollection", features: [
@@ -139,9 +139,9 @@ test("Švýcarsko: vyměřování jen s vozovkou, chodníkem nebo dráhou pod st
 });
 
 test("Švýcarsko: zákonný odhad stání nedá auta vedle cyklopruhu (VRV čl. 19 odst. 2), v Česku beze změny", async () => {
-  const C = await import("../pilot/public/city.js");
-  const { COUNTRIES } = await import("../pilot/public/countries/index.js");
-  const D = await import("../pilot/public/countries/default.js");
+  const C = await import("../app/public/city.js");
+  const { COUNTRIES } = await import("../app/public/countries/index.js");
+  const D = await import("../app/public/countries/default.js");
   assert.equal(COUNTRIES.CH.parkByCycleLane, false);
   assert.equal(COUNTRIES.LI.parkByCycleLane, false);
   assert.equal(D.default.parkByCycleLane, true);
@@ -150,8 +150,8 @@ test("Švýcarsko: zákonný odhad stání nedá auta vedle cyklopruhu (VRV čl.
 });
 
 test("Švýcarsko: obousměrka 10 m s cyklopruhy nemá odhadnuté stání (VRV čl. 19 odst. 2), bez cyklopruhů ano", async () => {
-  const C = await import("../pilot/public/city.js");
-  const { deriveProfile, localFrame } = await import("../pilot/public/derive.js");
+  const C = await import("../app/public/city.js");
+  const { deriveProfile, localFrame } = await import("../app/public/derive.js");
   const frame = localFrame(47.37, 8.54);
   const rect = (code, x0, x1) => ({ code, label: "", rings: [[[x0, -60], [x1, -60], [x1, 60], [x0, 60]]], bbox: [x0, -60, x1, 60] });
   const ll = (x, y) => { const [lon, lat] = frame.toLonLat(x, y); return { lon, lat }; };

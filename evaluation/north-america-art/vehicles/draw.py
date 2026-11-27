@@ -1,8 +1,8 @@
 # The vehicles of North America (Bara 25. 11. 2026): own drawings, 1 unit = 1 cm, the views, scale and anchor of the
-# other sets (wien, bratislava, brno). python3 draw.py writes pilot/public/<town>/*.svg. The buses that share a body
+# other sets (wien, bratislava, brno). python3 draw.py writes app/public/<town>/*.svg. The buses that share a body
 # (New Flyer Xcelsior) share its drawing; the photos and dimensions are in ZDROJE.md.
 import os
-PUB = os.path.join(os.path.dirname(os.path.abspath(__file__)), "../../../pilot/public")
+PUB = os.path.join(os.path.dirname(os.path.abspath(__file__)), "../../../app/public")
 GLASS, SHINE, INK, TYRE = "#2c3944", "#46596a", "#17191c", "#111"
 
 def mir(s):  # the mirror image of a bus part about its axis (x = 180)

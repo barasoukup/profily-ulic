@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { localFrame, deriveProfile, mtvuPolygons } from "../pilot/public/derive.js";
+import { localFrame, deriveProfile, mtvuPolygons } from "../app/public/derive.js";
 
 // A street running north (x = 0, roadway 7 m) with a sidewalk strip (MTVU 702, 3 m) on the east side where an OSM path runs
 // (Brandenburger Straße, Leipzig, 27. 11. 2026: a shared path one way for cyclists drew two cycle tracks).
@@ -41,7 +41,7 @@ test("segregated=yes: šířka cyklostezky z cycleway:width (nebo footway:width)
 
 // The estimate from the orthophoto and OSM (ortho-osm.js): a path beside the street, shared by walkers and cyclists, is a part like a sidewalk (702;
 // derive.js makes C 9 of it); one with segregated=yes stays a cycle track (703) as before.
-import { orthoOsmPolys } from "../pilot/public/ortho-osm.js";
+import { orthoOsmPolys } from "../app/public/ortho-osm.js";
 test("odhad z ortofota a OSM: sdílená cesta je chodníkový díl, segregated=yes zůstává cyklostezka", () => {
   const frame = localFrame(50.08, 14.43), dir = [0, 1];
   const ll = (x, y) => { const [lon, lat] = frame.toLonLat(x, y); return { lon, lat }; };

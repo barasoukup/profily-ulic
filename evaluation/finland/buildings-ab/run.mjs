@@ -6,10 +6,10 @@
 // Also (agreement): up to 10 OSM buildings a city with building:levels, asked the same way.
 //   node evaluation/finland/buildings-ab/run.mjs → vysledky/rezy.json, vysledky/osm-levels.json
 import fs from "node:fs";
-import { setCity } from "../../../pilot/public/city.js";
-import { buildingStyle } from "../../../pilot/public/profile.js";
-import { ask, hkiBuildingUrl, hkiPick, ryhtiAt, AREAS } from "../../../pilot/public/towns/finland.js";
-import { inArea } from "../../../pilot/public/places.js";
+import { setCity } from "../../../app/public/city.js";
+import { buildingStyle } from "../../../app/public/profile.js";
+import { ask, hkiBuildingUrl, hkiPick, ryhtiAt, AREAS } from "../../../app/public/towns/finland.js";
+import { inArea } from "../../../app/public/places.js";
 
 setCity("finland");
 const HERE = new URL("./", import.meta.url), CACHE = new URL("data/answers.json", HERE);

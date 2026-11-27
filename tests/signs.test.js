@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { deriveSigns, signFile, plateFile, streetSigns, signLabel, keepDrawable } from "../pilot/public/signs.js";
+import { deriveSigns, signFile, plateFile, streetSigns, signLabel, keepDrawable } from "../app/public/signs.js";
 
 const keys = (list) => (list || []).map((s) => s.k + (s.v ? `:${s.v}` : "") + (s.plate ? `+${s.plate}` : ""));
 const files = (p) => p.segments.map((s) => (s.signs || []).map((x) => signFile(x, s)));
@@ -64,7 +64,7 @@ test("zákaz zastavení u pravé strany cesty, když se profil dívá proti smě
 });
 
 test("každá značka s tabulkou z dat jde v Návrhu vybrat jako vlastní položka a její soubory existují", async () => {
-  const { SIGN_CHOICES, signChoice, signLabel, SIGNS, PLATES } = await import("../pilot/public/signs.js");
+  const { SIGN_CHOICES, signChoice, signLabel, SIGNS, PLATES } = await import("../app/public/signs.js");
   const { existsSync } = await import("node:fs");
   // What the data make with a plate: zones and bans of the street, the parts' own signs.
   const made = [
@@ -80,7 +80,7 @@ test("každá značka s tabulkou z dat jde v Návrhu vybrat jako vlastní polož
     assert.ok(SIGNS[c.k] && PLATES[c.plate], key);
     assert.equal(signLabel(c), c.label);
     for (const dir of ["forward", "backward"]) {
-      for (const f of [signFile(c, { dir }), plateFile(c, { dir })].filter(Boolean)) assert.ok(existsSync(`pilot/public/znacky/${f}.svg`), `${key}: ${f}.svg`);
+      for (const f of [signFile(c, { dir }), plateFile(c, { dir })].filter(Boolean)) assert.ok(existsSync(`app/public/znacky/${f}.svg`), `${key}: ${f}.svg`);
     }
   }
   // Labelled as drawn: the manner of parking is IP 11b or IP 11c, not "IP 11a".
@@ -125,17 +125,17 @@ test("ulice ze dvou vozovek: padesátka se kreslí, když druhá vozovka má jin
   assert.deepEqual(speeds(both50), [undefined, undefined, undefined]);
 });
 
-// The state SK (city.country): its own numbers and files (pilot/public/znacky-SK/), the names stay.
+// The state SK (city.country): its own numbers and files (app/public/znacky-SK/), the names stay.
 test("značky státu SK: každá značka a tabulka má soubor, popisek se slovenským číslem", async () => {
-  const { SIGN_CHOICES, signLabel, SIGNS } = await import("../pilot/public/signs.js");
+  const { SIGN_CHOICES, signLabel, SIGNS } = await import("../app/public/signs.js");
   const { existsSync } = await import("node:fs");
   const all = [...Object.keys(SIGNS).map((k) => ({ k, ...(k === "b20a" ? { v: 50 } : {}) })), ...Object.values(SIGN_CHOICES)];
   for (const x of all) for (const dir of ["forward", "backward"])
-    for (const f of [signFile(x, { dir }, "SK"), plateFile(x, { dir }, "SK")].filter(Boolean)) assert.ok(existsSync(`pilot/public/znacky-SK/${f}.svg`), `${x.k}: ${f}.svg`);
+    for (const f of [signFile(x, { dir }, "SK"), plateFile(x, { dir }, "SK")].filter(Boolean)) assert.ok(existsSync(`app/public/znacky-SK/${f}.svg`), `${x.k}: ${f}.svg`);
   assert.equal(signLabel({ k: "b1" }, "SK"), "231 Zákaz vjezdu pro všechna vozidla");
   // The Slovak sign's own meaning (323 Bicyklová cesta, not the Czech cycling zone), in Slovak its official name.
   assert.equal(signLabel({ k: "cyklozona" }, "SK"), "323 Cyklistická ulice");
-  const { SK } = await import("../pilot/public/sk.js");
+  const { SK } = await import("../app/public/sk.js");
   assert.equal(SK["Cyklistická ulice"], "Bicyklová cesta");
   assert.equal(SK["Zákaz vjezdu pro všechna vozidla"], "Zákaz vjazdu pre všetky vozidlá");
   assert.equal(signLabel({ k: "b20a", v: 30 }, "SK"), "253 Nejvyšší dovolená rychlost 30 km/h");
@@ -181,10 +181,10 @@ test("pěší zóna bez pruhů (celá šířka chodník z pasportu): značka zó
 
 test("značky státu AT: soubory v signs-AT/, jednosměrka se nekreslí (čelní značku nemá), rychlost, co Rakousko nemá, se nekreslí", async () => {
   const fs = await import("node:fs");
-  const { SIGNS } = await import("../pilot/public/signs.js");
+  const { SIGNS } = await import("../app/public/signs.js");
   for (const k of Object.keys(SIGNS)) {
     const f = signFile({ k, v: 50 }, {}, "AT");
-    if (f) assert.ok(fs.existsSync(new URL(`../pilot/public/signs-AT/${f}.svg`, import.meta.url)), `${k} → ${f}`);
+    if (f) assert.ok(fs.existsSync(new URL(`../app/public/signs-AT/${f}.svg`, import.meta.url)), `${k} → ${f}`);
   }
   // Austria has no one-way sign facing the driver (Bára): none under the lane.
   assert.equal(signFile({ k: "oneway" }, { dir: "forward" }, "AT"), null);
@@ -206,7 +206,7 @@ test("SK a AT: odvozené značky bez vlastní kresby státu se zahodí, v AT i z
 });
 
 test("Salcburk: z katastru značek jen zákaz zastavení a stání, číslo StVO z VZNR", async () => {
-  const { salzburgSigns } = await import("../pilot/public/towns/austria.js");
+  const { salzburgSigns } = await import("../app/public/towns/austria.js");
   const f = (vznr, street) => ({ geometry: { type: "Point", coordinates: [13.04, 47.80] }, properties: { VZNR: vznr, STRASSE: `${street}   ` } });
   const out = salzburgSigns({ features: [f("52-13b_WM       ", "Mirabellplatz"), f("52-13a", "Linzer Gasse"), f("53-25", "Rainerstraße")] });
   assert.deepEqual(out.map((x) => [x.restriction, x.street]), [["no_stopping", "Mirabellplatz"], ["no_parking", "Linzer Gasse"]]);
@@ -214,8 +214,8 @@ test("Salcburk: z katastru značek jen zákaz zastavení a stání, číslo StVO
 
 test("značky státu DE: soubory v signs-DE/ i s tabulkami, jednosměrka jen Z 267 (Z 220 rovně neumí), rychlost, sdílená zóna se nekreslí", async () => {
   const fs = await import("node:fs");
-  const { SIGNS, SIGN_CHOICES } = await import("../pilot/public/signs.js");
-  const has = (f) => fs.existsSync(new URL(`../pilot/public/signs-DE/${f}.svg`, import.meta.url));
+  const { SIGNS, SIGN_CHOICES } = await import("../app/public/signs.js");
+  const has = (f) => fs.existsSync(new URL(`../app/public/signs-DE/${f}.svg`, import.meta.url));
   for (const k of Object.keys(SIGNS)) for (const dir of ["forward", "backward"]) {
     const f = signFile({ k, v: 50 }, { dir }, "DE");
     if (f) assert.ok(has(f), `${k} → ${f}`);

@@ -1,5 +1,5 @@
 // What a visitor's start loads (gzip): the static module graph of app.js, a language's texts, the page and the JSON files app.js
-// fetches at its start.   node evaluation/canada/size.mjs <pilot/public> [<another>]
+// fetches at its start.   node evaluation/canada/size.mjs <app/public> [<another>]
 import fs from "node:fs";
 import path from "node:path";
 import { gzipSync } from "node:zlib";

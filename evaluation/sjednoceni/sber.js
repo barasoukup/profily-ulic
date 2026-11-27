@@ -1,5 +1,5 @@
 // The A/B of the unification (Bára 24. 11. 2026, as ../mapfill-cz/sber.js): run in the app's page (localhost ?osm=balik,
-// server with EVAL_SAVE=1), loaded as a module (copied to pilot/public/zz-sjed.js, which git ignores).
+// server with EVAL_SAVE=1), loaded as a module (copied to app/public/zz-sjed.js, which git ignores).
 //   const m = await import("/zz-sjed.js");
 //   const pts = await m.pick(CANDIDATES);                       // snapped onto car streets
 //   await m.collect(pts, [{ key: "O" }, { key: "N", set: { CZ: { besidePassport: true, besideMax: 25 } } }], "sj-pasporty")

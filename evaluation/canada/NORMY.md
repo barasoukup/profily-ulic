@@ -1,7 +1,7 @@
 # Kanada (Toronto): normy šířek a stání (25. 11. 2026)
 
 Rešerše agenta Sonnet 25. 11. 2026, každá hodnota čtená ve zdroji (pdftotext, tabulky kontrolované na obrázku stránky).
-Zapojeno v `pilot/public/countries/CA.js` (`limitsCA`), vše jen oranžově (Bára: žádné vymyšlené hodnoty; příručky jsou pro nový
+Zapojeno v `app/public/countries/CA.js` (`limitsCA`), vše jen oranžově (Bára: žádné vymyšlené hodnoty; příručky jsou pro nový
 návrh ve městě, aplikace čte stávající ulice a i obce kolem Toronta, kde neplatí).
 
 ## Zdroje

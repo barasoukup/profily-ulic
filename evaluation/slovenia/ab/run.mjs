@@ -5,9 +5,9 @@
 // Also (agreement): up to 15 OSM buildings a city with building:levels, asked the same way.
 //   node evaluation/slovenia/ab/run.mjs → vysledky/rezy.json, vysledky/osm-levels.json
 import fs from "node:fs";
-import { setCity } from "../../../pilot/public/city.js";
-import { buildingStyle } from "../../../pilot/public/profile.js";
-import { sources } from "../../../pilot/public/towns/slovenia.js";
+import { setCity } from "../../../app/public/city.js";
+import { buildingStyle } from "../../../app/public/profile.js";
+import { sources } from "../../../app/public/towns/slovenia.js";
 
 setCity("slovenia");
 const HERE = new URL("./", import.meta.url), CACHE = new URL("data/answers.json", HERE);

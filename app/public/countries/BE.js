@@ -29,7 +29,7 @@ function limitsBE(s) {
   }
 }
 
-// The signs of the state BE (pilot/public/signs-BE/, README there; AR 1. 12. 1975, annexe 1; Wikimedia Commons, public
+// The signs of the state BE (app/public/signs-BE/, README there; AR 1. 12. 1975, annexe 1; Wikimedia Commons, public
 // domain). No plates drawn (a sign with one is left out); the disabled's E9 needs a plate (not drawn), a reserved
 // space has no sign of its own.
 const BE_FILE = { b1: "C3", b11: "C5_C7_C9", b8: "C11", b30: "C19", b28: "E3", b29: "E1", ip11a: "E9", ip14a: "F5", ip15a: "F9", ip20a: "F17",

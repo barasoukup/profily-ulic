@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { packProfile, unpackProfile, designParams, cutHash, parseCutHash, sameCut } from "../pilot/public/share.js";
+import { packProfile, unpackProfile, designParams, cutHash, parseCutHash, sameCut } from "../app/public/share.js";
 
 test("návrh projde odkazem beze změny (bez údajů o budovách)", async () => {
   const p = {
@@ -20,7 +20,7 @@ test("parametry návrhu z adresy", () => {
 });
 
 test("barva cyklopruhu z OSM projde odkazem a kontrolou, jiná než hex se zahodí", async () => {
-  const { cleanProfile } = await import("../pilot/public/validate.js");
+  const { cleanProfile } = await import("../app/public/validate.js");
   const p = { segments: [{ type: "cyklopruh", width: 1.5, dir: "forward", color: "#c0503f", source: "osm" }], edges: {} };
   const back = await unpackProfile(await packProfile(p));
   assert.equal(back.segments[0].color, "#c0503f");
@@ -29,9 +29,9 @@ test("barva cyklopruhu z OSM projde odkazem a kontrolou, jiná než hex se zahod
 });
 
 test("okraj upravený ručně: podlaží jdou do odkazu, nahradí data a vadná se zahodí", async () => {
-  const { packProfile, unpackProfile } = await import("../pilot/public/share.js");
-  const { edgeInfo } = await import("../pilot/public/profile.js");
-  const { cleanProfile } = await import("../pilot/public/validate.js");
+  const { packProfile, unpackProfile } = await import("../app/public/share.js");
+  const { edgeInfo } = await import("../app/public/profile.js");
+  const { cleanProfile } = await import("../app/public/validate.js");
   // Bára 12. 11. 2026: a "panel house" that is a two-storey town house.
   const p = { segments: [{ type: "chodnik", width: 3 }], edges: { left: "budova", leftStyle: "nizky", leftLevels: 2, leftInfo: { levels: 8, height: 25, cornice: 7, roof: 1 } } };
   const back = await unpackProfile(await packProfile(p));

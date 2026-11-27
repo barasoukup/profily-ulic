@@ -1,9 +1,9 @@
-// The regions' DTM read as polygons from their WFS (pilot/public/dtmwfs.js): the GML of MapServer, the region of
+// The regions' DTM read as polygons from their WFS (app/public/dtmwfs.js): the GML of MapServer, the region of
 // a cut by kraje.json, the box in S-JTSK.
 import { test } from "node:test";
 import assert from "node:assert/strict";
 
-const W = await import("../pilot/public/dtmwfs.js");
+const W = await import("../app/public/dtmwfs.js");
 
 // A shortened answer of jck.krajdtm.cz (one sidewalk with a hole, one fence), as MapServer writes it.
 const GML = `<?xml version='1.0' encoding="UTF-8" ?>
@@ -59,7 +59,7 @@ test("kraj řezu: WFS jen v krajích, které ho mají, a ne u hranice s krajem b
 test("obálka v S-JTSK kolem obálky ve stupních", async () => {
   const [x0, y0, x1, y1] = W.sjtskBox("14.4733,48.9735,14.4747,48.9745");
   assert.ok(x0 < x1 && y0 < y1);
-  const { fromWgs } = await import("../pilot/public/towns/sjtsk.js");
+  const { fromWgs } = await import("../app/public/towns/sjtsk.js");
   const [cx, cy] = fromWgs(14.474, 48.974);
   assert.ok(cx > x0 && cx < x1 && cy > y0 && cy < y1, `${x0} ${y0}`);
   assert.ok(x1 - x0 > 95 && x1 - x0 < 130, `${x1 - x0}`);
@@ -67,7 +67,7 @@ test("obálka v S-JTSK kolem obálky ve stupních", async () => {
 
 test("CSP stránky pustí prohlížeč na WFS všech krajů", async () => {
   const fs = await import("node:fs");
-  const html = fs.readFileSync(new URL("../pilot/public/index.html", import.meta.url), "utf8");
+  const html = fs.readFileSync(new URL("../app/public/index.html", import.meta.url), "utf8");
   const connect = html.match(/connect-src [^;]*/)[0];
   for (const host of W.WFS_HOSTS) assert.ok(connect.includes(host), host);
 });

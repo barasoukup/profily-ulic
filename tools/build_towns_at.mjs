@@ -2,7 +2,7 @@
 // cities everywhere, Bára 16. 11. 2026), from Eurostat GISCO's local administrative units 2024 (LAU, the municipalities
 // of Statistik Austria; © EuroGeographics, as the state's boundary in staty.json). Statistik Austria's own file is no longer
 // at its open-data address and GeoSphere's map service gives no geometry. One download of about 150 MB at build time,
-// none on a click. Simplified to about 30 m, written into pilot/public/mesta-at.json (city.js loadTowns), kept in the
+// none on a click. Simplified to about 30 m, written into app/public/mesta-at.json (city.js loadTowns), kept in the
 // repository: node tools/build_towns_at.mjs [file.geojson]  (a file downloaded before, else it is fetched)
 import fs from "node:fs";
 
@@ -40,4 +40,4 @@ for (const [id, lau] of Object.entries(TOWNS)) {
   out[id] = polys.map((p) => simplify(p[0]));
   console.log(id, f.properties.LAU_NAME, out[id].length, "kruhů", out[id].reduce((a, r) => a + r.length, 0), "bodů");
 }
-fs.writeFileSync(new URL("../pilot/public/mesta-at.json", import.meta.url), JSON.stringify(out));
+fs.writeFileSync(new URL("../app/public/mesta-at.json", import.meta.url), JSON.stringify(out));

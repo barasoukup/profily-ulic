@@ -4,8 +4,8 @@
 // A record only (ZPRAVA.md): the green strip and its P.greenStripOn were taken out of ortho-osm.js on 24. 11. 2026, so
 // this script no longer runs as it is.
 import { cuts, truthOf, osmAround, stripOf } from "../lib.mjs";
-import { orthoOsmPolys, trimToEnds, P } from "../../../pilot/public/ortho-osm.js";
-import { localFrame, deriveProfile } from "../../../pilot/public/derive.js";
+import { orthoOsmPolys, trimToEnds, P } from "../../../app/public/ortho-osm.js";
+import { localFrame, deriveProfile } from "../../../app/public/derive.js";
 const runKind = (c) => (c === 700 || c === 701 || (c >= 9700 && c < 9800 && !(c >= 9704 && c <= 9708)) ? "vozovka" : c === 704 || (c >= 9704 && c <= 9708) ? "stání" : c === 702 || c === 703 ? "chodník" : c >= 400 && c < 500 ? "zeleň" : c === 705 ? "vozovka" : c===601?"budova":"jiné"+c);
 const laid = (p) => { const out = []; let t = p.extent[1]; for (const s of p.segments) { out.push({ type: s.type, s: t - s.width, e: t }); t -= s.width; } return out; };
 const tally = {}; let sides = 0, cutsN = 0;

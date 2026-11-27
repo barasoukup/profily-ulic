@@ -5,12 +5,12 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 
 globalThis.PROFILY_LANG = "de";
-const { TYPES, SOURCES } = await import("../pilot/public/types.js");
-const { checkRules } = await import("../pilot/public/rules.js");
-const { setCity, creditLines, city } = await import("../pilot/public/city.js");
-const { outage } = await import("../pilot/public/sources.js");
-const { signLabel, signDir } = await import("../pilot/public/signs.js");
-const { shares } = await import("../pilot/public/shares.js");
+const { TYPES, SOURCES } = await import("../app/public/types.js");
+const { checkRules } = await import("../app/public/rules.js");
+const { setCity, creditLines, city } = await import("../app/public/city.js");
+const { outage } = await import("../app/public/sources.js");
+const { signLabel, signDir } = await import("../app/public/signs.js");
+const { shares } = await import("../app/public/shares.js");
 
 const CZECH = /[ěščřžůňťďáíéýú]/i;
 

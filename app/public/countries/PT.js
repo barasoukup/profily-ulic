@@ -46,7 +46,7 @@ function limitsPT(s, segs, i) {
   }
 }
 
-// The signs of the state PT (pilot/public/signs-PT/, README there; Regulamento de Sinalização do Trânsito, Decreto
+// The signs of the state PT (app/public/signs-PT/, README there; Regulamento de Sinalização do Trânsito, Decreto
 // Regulamentar 22-A/98 as amended by 6/2019; Wikimedia Commons). Part of a regulation, so by our reading not protected
 // (art. 8 and 3 of the Código do Direito de Autor speak of texts; NORMY.md C1; as France and Spain, Bára 23. 11. 2026:
 // "Značky jsou volně"). Portugal has no sign

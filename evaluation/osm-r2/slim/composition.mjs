@@ -1,6 +1,6 @@
 // What a packed OSM file is made of (evaluation/osm-r2/slim): its gzip bytes shared out to kinds of elements (by the
 // share of each element in its tile's packed JSON), and within them to the tags (by key) and the geometry.
-//   node evaluation/osm-r2/slim/composition.mjs pilot/data/osm-pack/cz-novy.posm [--keys] [--json out.json]
+//   node evaluation/osm-r2/slim/composition.mjs app/data/osm-pack/cz-novy.posm [--keys] [--json out.json]
 import fs from "node:fs";
 import { tilesOf } from "./posm.mjs";
 

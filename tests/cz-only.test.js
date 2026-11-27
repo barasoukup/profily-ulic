@@ -5,13 +5,13 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
 
-const src = (f) => fs.readFileSync(new URL(`../pilot/public/${f}`, import.meta.url), "utf8");
+const src = (f) => fs.readFileSync(new URL(`../app/public/${f}`, import.meta.url), "utf8");
 const noFetch = () => { throw new Error("no request"); };
 
 test("cizina: žádné české značky, zákon, ortofoto ani panorama; Česko je má", async () => {
-  const { default: D } = await import("../pilot/public/countries/default.js");
-  const { default: CZ } = await import("../pilot/public/countries/CZ.js");
-  const { countryOf } = await import("../pilot/public/countries/index.js");
+  const { default: D } = await import("../app/public/countries/default.js");
+  const { default: CZ } = await import("../app/public/countries/CZ.js");
+  const { countryOf } = await import("../app/public/countries/index.js");
   assert.equal(countryOf(null), D);
   assert.equal(D.panorama, false, "panorama Mapy.com jen v Česku");
   assert.equal(D.laneOrtho, "none", "ortofoto ČÚZK jen v Česku");
@@ -25,7 +25,7 @@ test("cizina: žádné české značky, zákon, ortofoto ani panorama; Česko je
   assert.equal(CZ.signs.file({ k: "b28" }), "B28");
   assert.match(CZ.halfKerbNote("2 m", "6 m"), /361\/2000/);
   // Every state but Czechia has its own orthophoto source (or none), never ČÚZK's.
-  const { COUNTRIES } = await import("../pilot/public/countries/index.js");
+  const { COUNTRIES } = await import("../app/public/countries/index.js");
   for (const [code, c] of Object.entries(COUNTRIES)) if (code !== "CZ") {
     assert.notEqual(c.laneOrtho, "cuzk", code);
     assert.notEqual(c.bedOrtho, "cuzk", code);
@@ -34,8 +34,8 @@ test("cizina: žádné české značky, zákon, ortofoto ani panorama; Česko je
 });
 
 test("ortofoto: neznámý nebo žádný zdroj se ČÚZK neptá", async () => {
-  const L = await import("../pilot/public/lanes-ortho.js");
-  const { localFrame } = await import("../pilot/public/derive.js");
+  const L = await import("../app/public/lanes-ortho.js");
+  const { localFrame } = await import("../app/public/derive.js");
   const frame = localFrame(51.5074, -0.1278);
   for (const source of [undefined, null, "none", "xx"]) {
     assert.equal(await L.laneImage({ source, frame, dir: [1, 0], t0: -10, t1: 10, fetchImpl: noFetch }), null, String(source));
@@ -43,7 +43,7 @@ test("ortofoto: neznámý nebo žádný zdroj se ČÚZK neptá", async () => {
     assert.equal(L.orthoHereAt(source, -0.1278, 51.5074), false, String(source));
   }
   assert.equal(L.orthoHereAt("cuzk", 14.42, 50.08), true);
-  const { bedOrtho } = await import("../pilot/public/ortho.js");
+  const { bedOrtho } = await import("../app/public/ortho.js");
   const osm = { elements: [{ type: "way", tags: { railway: "tram" }, geometry: [{ lat: 51.507, lon: -0.128 }, { lat: 51.508, lon: -0.128 }] }] };
   for (const source of [null, "at", "de", "none"]) assert.equal(await bedOrtho({ osm, frame, dir: [0, 1], fetchImpl: noFetch, source }), null, String(source));
 });

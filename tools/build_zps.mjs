@@ -1,13 +1,13 @@
 // Downloads the paid parking zones of Prague (TSK, "Zóny placeného stání vymezené tarifem", IPR
 // service dop/zony_placeneho_stani/MapServer/10) once and keeps only their bounding boxes:
 // the app needs just "is a zone within 100 m", so it never asks IPR for zones on a click.
-//   node tools/build_zps.mjs [out.json]   (default pilot/data/zps.json)
+//   node tools/build_zps.mjs [out.json]   (default app/data/zps.json)
 // Output: {source, built, boxes: [[lon0, lat0, lon1, lat1], …]}. © TSK hl. m. Prahy / IPR Praha.
 import fs from "node:fs";
 import path from "node:path";
 
 const LAYER = "https://gs-pub.praha.eu/arcgis/rest/services/dop/zony_placeneho_stani/MapServer/10/query";
-const out = process.argv[2] || path.join(path.dirname(new URL(import.meta.url).pathname), "..", "pilot", "data", "zps.json");
+const out = process.argv[2] || path.join(path.dirname(new URL(import.meta.url).pathname), "..", "app", "data", "zps.json");
 const PAGE = 1000;
 
 const boxes = [];

@@ -1,8 +1,8 @@
-// Address search (pilot/public/search.js): the answers of the RÚIAN search service of ČÚZK parsed, ranked
+// Address search (app/public/search.js): the answers of the RÚIAN search service of ČÚZK parsed, ranked
 // (the street of the named town first, an address with the typed number first) and labelled.
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { norm, parseSuggestions, rankResults, formatLabel, score, nearestOnPaths, streetMiddle, suggestUrl, MAX_SHOWN } from "../pilot/public/search.js";
+import { norm, parseSuggestions, rankResults, formatLabel, score, nearestOnPaths, streetMiddle, suggestUrl, MAX_SHOWN } from "../app/public/search.js";
 
 const sug = (...rows) => ({ suggestions: rows.map(([text, magicKey, type]) => ({ text, magicKey, type, isCollection: false })) });
 

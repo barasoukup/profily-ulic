@@ -1,7 +1,7 @@
 // Features of the strips at the estimate's kerbs against MTVU's parking: what tells parked cars from shadows and trees?
 import { cuts, truthOf, osmAround, stripOf, PARKING } from "/Users/barasoukupova/streetdesign/.claude/worktrees/ai-segmentation/evaluation/ortofoto-osm/lib.mjs";
-import { orthoOsmPolys, P } from "/Users/barasoukupova/streetdesign/.claude/worktrees/ai-segmentation/pilot/public/ortho-osm.js";
-import { localFrame } from "/Users/barasoukupova/streetdesign/.claude/worktrees/ai-segmentation/pilot/public/derive.js";
+import { orthoOsmPolys, P } from "/Users/barasoukupova/streetdesign/.claude/worktrees/ai-segmentation/app/public/ortho-osm.js";
+import { localFrame } from "/Users/barasoukupova/streetdesign/.claude/worktrees/ai-segmentation/app/public/derive.js";
 import fs from "node:fs";
 
 function pieces(st, a, b) {

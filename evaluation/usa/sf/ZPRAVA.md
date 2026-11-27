@@ -10,7 +10,7 @@ měřicí skripty).
   bajtu stejný). Hranice města (TIGERweb Incorporated Places 0667000) v `mesta-us.json` `sanfrancisco`. Okolní okresy
   (San Mateo, Marin, Alameda) mapu povrchů nemají, zůstávají `closed_us` s hláškou, která teď San Francisco jmenuje.
 - **OSM:** balík `us_sf` (Geofabrik `north-america/us/california/norcal`, 660 MB, oříznutý na −122,54…−122,34, 37,68…37,84),
-  lokálně 7,6 MB (`pilot/data/osm-pack/us_sf-novy.posm`). Na R2 ještě není.
+  lokálně 7,6 MB (`app/data/osm-pack/us_sf-novy.posm`). Na R2 ještě není.
 - **Mapa povrchů** (`towns/sanfrancisco.js`, `?sf=0`): město nemá polygony vozovek čitelné z prohlížeče (služby
   `services.sfgov.org` zvenku neodpovídají), mapa se proto skládá podél řezu ze tří otevřených vrstev:
   uliční prostor (DataSF Right of Way Polygons `h8n7-e4ns`, 2014) je chodník, mezi dvěma krajními obrubami SFMTA (blockface

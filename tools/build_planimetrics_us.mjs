@@ -7,7 +7,7 @@
 //   (part_floors), Infrastructure/OpenData 0 Sidewalk Inventory (the City of Boston Basemap and Analyze Boston's "Sidewalk
 //   Inventory", both PDDL by their ArcGIS items).
 //   Cambridge (City of Cambridge GIS, PDDL 1.0 by its ArcGIS items): Roads, Sidewalks, Driveways, Parking_Lots, Buildings.
-//   node tools/build_planimetrics_us.mjs [outDir]   (default pilot/data/us-plan; served as data/us-plan/…)
+//   node tools/build_planimetrics_us.mjs [outDir]   (default app/data/us-plan; served as data/us-plan/…)
 //   ONLY=boston node tools/build_planimetrics_us.mjs   (one city)
 // Output: <outDir>/<city>/<ix>_<iy>.json { <layer>: [[attributes…, ring, ring…]…] } (each ring flat integers: 1e-7 degrees
 // from the tile's south-west corner), <outDir>/<city>/about.json (written last: the city is whole), <outDir>/about.json
@@ -17,7 +17,7 @@ import path from "node:path";
 
 export const TILE = 0.005; // degrees (towns/boston.js PLAN_TILE)
 const ROOT = path.join(path.dirname(new URL(import.meta.url).pathname), "..");
-const OUT = process.argv[2] || path.join(ROOT, "pilot", "data", "us-plan");
+const OUT = process.argv[2] || path.join(ROOT, "app", "data", "us-plan");
 const BOS = "https://gis.boston.gov/arcgis/rest/services", CAM = "https://services1.arcgis.com/WnzC35krSYGuYov4/ArcGIS/rest/services";
 // Each layer: its url, the fields kept (in this order, the tile's attributes), the page size (Street Edges and Roads have
 // polygons of megabytes).

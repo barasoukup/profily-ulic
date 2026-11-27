@@ -11,9 +11,9 @@ const rules = {
 };
 
 export default [
-  { ignores: ["pilot/public/leaflet/**", "pilot/public/fonts/**", "node_modules/**", "vendor/**", "data/**", "evaluation/**", "pilot/data/**", "pilot/cache/**"] },
+  { ignores: ["app/public/leaflet/**", "app/public/fonts/**", "node_modules/**", "vendor/**", "data/**", "evaluation/**", "app/data/**", "app/cache/**"] },
   // The app: ES modules in the browser, Leaflet as the global L.
-  { files: ["pilot/public/**/*.js"], languageOptions: { ecmaVersion: "latest", sourceType: "module", globals: { ...globals.browser, L: "readonly" } }, rules },
+  { files: ["app/public/**/*.js"], languageOptions: { ecmaVersion: "latest", sourceType: "module", globals: { ...globals.browser, L: "readonly" } }, rules },
   // The local server, the build tools and the tests: Node.
-  { files: ["pilot/*.mjs", "tools/**/*.mjs", "tests/**/*.js", "eslint.config.js"], languageOptions: { ecmaVersion: "latest", sourceType: "module", globals: { ...globals.node } }, rules },
+  { files: ["app/*.mjs", "tools/**/*.mjs", "tests/**/*.js", "eslint.config.js"], languageOptions: { ecmaVersion: "latest", sourceType: "module", globals: { ...globals.node } }, rules },
 ];

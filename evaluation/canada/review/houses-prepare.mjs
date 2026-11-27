@@ -3,7 +3,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { execFileSync } from "node:child_process";
-import { AMERICA } from "../../../pilot/public/houses-america-spec.js";
+import { AMERICA } from "../../../app/public/houses-america-spec.js";
 const HERE = path.dirname(new URL(import.meta.url).pathname), OUT = path.join(HERE, "../data/review-houses"), rows = JSON.parse(fs.readFileSync(path.join(HERE, "houses.json"))).rows;
 const DEFAULT = { kancelar: 5, slab: 8 };
 export const drawn = (x) => x.info.levels || AMERICA[x.look]?.floors || DEFAULT[x.look] || 3;

@@ -1,6 +1,6 @@
 """The model's convolution weights as int8 per output channel (symmetric, DequantizeLinear before each Conv), the rest
 float32: about a quarter of the size, the same arithmetic in the browser (onnxruntime-web turns them back to float).
-    python evaluation/ai-segmentation/quantize.py pilot/public/ai/kerbs.onnx pilot/public/ai/kerbs-int8.onnx
+    python evaluation/ai-segmentation/quantize.py app/public/ai/kerbs.onnx app/public/ai/kerbs-int8.onnx
 """
 import sys
 import numpy as np

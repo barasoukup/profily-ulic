@@ -42,7 +42,7 @@ const SETS = {
 const S = SETS[set];
 let seed = S.seed;
 const rnd = () => ((seed = (seed * 16807) % 2147483647) / 2147483647);
-const rings = S.ring ? JSON.parse(fs.readFileSync(new URL(`../../pilot/public/${S.ring}.json`, import.meta.url), "utf8")) : {};
+const rings = S.ring ? JSON.parse(fs.readFileSync(new URL(`../../app/public/${S.ring}.json`, import.meta.url), "utf8")) : {};
 const inRing = (ring, x, y) => { let c = false; for (let i = 0, j = ring.length - 1; i < ring.length; j = i++) { const [xi, yi] = ring[i], [xj, yj] = ring[j]; if ((yi > y) !== (yj > y) && x < ((xj - xi) * (y - yi)) / (yj - yi) + xi) c = !c; } return c; };
 const out = [];
 for (const [place, [lat0, lon0]] of Object.entries(S.places)) {

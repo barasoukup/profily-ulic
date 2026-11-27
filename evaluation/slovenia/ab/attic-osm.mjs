@@ -6,7 +6,7 @@
 // equal building:levels, it is not. Politely: one request at a time, a pause of 1.5 s, kept in data/raw-osm.json.
 //   node evaluation/slovenia/ab/attic-osm.mjs → data/raw-osm.json
 import fs from "node:fs";
-import { gursUrl } from "../../../pilot/public/towns/slovenia.js";
+import { gursUrl } from "../../../app/public/towns/slovenia.js";
 
 const HERE = new URL("./", import.meta.url), CACHE = new URL("data/raw-osm.json", HERE);
 const OSM = new URL("../../../../../../data/osm/si/si_buildings.geojsonl", import.meta.url);
@@ -60,7 +60,7 @@ for (const { town, stratum, f } of picked) {
 
 // The storeys (layer ETAZE: each storey's floor above the sea, where the cadastre has it) of the buildings found, for
 // the check of the top storey's floor against the roof's top H2 (attic.mjs reads the same for the A/B's houses).
-const { GURS_KN } = await import("../../../pilot/public/towns/slovenia.js");
+const { GURS_KN } = await import("../../../app/public/towns/slovenia.js");
 for (const v of Object.values(raw)) {
   if (!v.b?.EID_STAVBA || v.etaze) continue;
   const filter = `<fes:Filter xmlns:fes="http://www.opengis.net/fes/2.0"><fes:PropertyIsEqualTo><fes:ValueReference>EID_STAVBA</fes:ValueReference><fes:Literal>${v.b.EID_STAVBA}</fes:Literal></fes:PropertyIsEqualTo></fes:Filter>`;

@@ -1,11 +1,11 @@
 // The inputs of sample.mjs for a town without a local OSM extract: the town's boundary (the RÚIAN obec
 // from ČÚZK) → evaluation/<id>/data/<id>_hranice.geojson, and the OSM streets inside its envelope taken
-// from the national tiles (pilot/data/osm-tiles) → data/osm/<id>_ways.geojsonl (the ogr2ogr shape
+// from the national tiles (app/data/osm-tiles) → data/osm/<id>_ways.geojsonl (the ogr2ogr shape
 // sample.mjs reads: osm_id, name, highway, other_tags as hstore). Nothing is downloaded but the boundary.
 //   node evaluation/osm_ways.mjs <id> <RÚIAN kód obce>
 import fs from "node:fs";
 import path from "node:path";
-import { TILE, decodeTile, mergePieces } from "../pilot/public/osmtile.js";
+import { TILE, decodeTile, mergePieces } from "../app/public/osmtile.js";
 
 const [id, kod] = process.argv.slice(2);
 if (!id || !kod) throw new Error("node evaluation/osm_ways.mjs <id> <kód obce>");
@@ -22,7 +22,7 @@ const pts = border.features.flatMap((f) => (f.geometry.type === "Polygon" ? [f.g
 const xs = pts.map((p) => p[0]), ys = pts.map((p) => p[1]);
 console.log(border.features[0].properties.nazev, Math.min(...xs).toFixed(3), Math.min(...ys).toFixed(3), Math.max(...xs).toFixed(3), Math.max(...ys).toFixed(3));
 
-const TILES = path.join(ROOT, "..", "pilot", "data", "osm-tiles");
+const TILES = path.join(ROOT, "..", "app", "data", "osm-tiles");
 const lists = [];
 for (let ix = Math.floor(Math.min(...xs) / TILE); ix <= Math.floor(Math.max(...xs) / TILE); ix++) {
   for (let iy = Math.floor(Math.min(...ys) / TILE); iy <= Math.floor(Math.max(...ys) / TILE); iy++) {

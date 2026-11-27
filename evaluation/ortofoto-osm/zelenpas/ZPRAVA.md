@@ -3,7 +3,7 @@
 **Co:** odhad z ortofota a OSM končí na straně bez domu u obruby (nebo chodníku z OSM, jinak 2 m za obrubou,
 `LAST_NONE`). Nově, je-li část hned za posledním dílem ulice zeleň (z ortofota nebo z OSM) aspoň 1 m široká, strana
 skončí 3 m za ním (nejvýš šířka té zeleně), jako odhad. Nic jiného se nedomýšlí (ploty ani příkopy).
-Kód: `pilot/public/ortho-osm.js trimToEnds` (`GREEN_STRIP`, `GREEN_STRIP_MIN`, `P.greenStrip`).
+Kód: `app/public/ortho-osm.js trimToEnds` (`GREEN_STRIP`, `GREEN_STRIP_MIN`, `P.greenStrip`).
 
 **Stav: zamítnuto a kód odstraněn** (Bára 24. 11. 2026: pro uživatele zbytečné, skončit u obruby dává smysl; pomohlo by
 jen internímu měření, a to se řeší jeho pravidlem: za okrajem ulice na straně bez fasády se nehodnotí nic, ani zeleň,

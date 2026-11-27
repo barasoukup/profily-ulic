@@ -4,12 +4,12 @@
 // Usage: node evaluation/budovy-typ/labels.mjs > evaluation/budovy-typ/labels.tsv
 import fs from "node:fs";
 import readline from "node:readline";
-import { localFrame, buildingAt } from "../../pilot/public/derive.js";
+import { localFrame, buildingAt } from "../../app/public/derive.js";
 
 const TILE = 0.005;
 const tiles = new Map();
 const tile = (n) => {
-  if (!tiles.has(n)) { try { tiles.set(n, JSON.parse(fs.readFileSync(`pilot/data/osm-tiles/${n}.json`, "utf8"))); } catch { tiles.set(n, []); } }
+  if (!tiles.has(n)) { try { tiles.set(n, JSON.parse(fs.readFileSync(`app/data/osm-tiles/${n}.json`, "utf8"))); } catch { tiles.set(n, []); } }
   return tiles.get(n);
 };
 const around = (lat, lon) => {

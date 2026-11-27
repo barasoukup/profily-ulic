@@ -1,15 +1,15 @@
 // Packs a folder of OSM tiles (tools/build_osm_tiles.mjs, the form of osmtile.js) into one file per country
-// in the shorter form of pilot/public/osmpack.js (a dictionary of tags, shorter elements, each tile gzipped,
+// in the shorter form of app/public/osmpack.js (a dictionary of tags, shorter elements, each tile gzipped,
 // a two-level index), for the web: Cloudflare R2 and, as a fallback, Pages (gis.js). The folder stays as it is.
-//   node tools/pack_osm_tiles.mjs pilot/data/osm-tiles pilot/data/osm-pack/cz-2026-11-16-{hash}.posm
+//   node tools/pack_osm_tiles.mjs app/data/osm-tiles app/data/osm-pack/cz-2026-11-16-{hash}.posm
 // and writes the file's name into index.json beside it (the key "cz": the name up to "-" or ".").
 // The file is a database derived from OpenStreetMap: © OpenStreetMap contributors, ODbL 1.0.
 import fs from "node:fs";
 import path from "node:path";
 import zlib from "node:zlib";
 import crypto from "node:crypto";
-import { TILE } from "../pilot/public/osmtile.js";
-import { MAGIC, VERSION, encodeElement } from "../pilot/public/osmpack.js";
+import { TILE } from "../app/public/osmtile.js";
+import { MAGIC, VERSION, encodeElement } from "../app/public/osmpack.js";
 import { slimmer, RULES } from "./osm_slim.mjs";
 
 export const BLOCK = 32; // tiles a side of a block: 0,16° (about 11 × 18 km), a leaf of 4 kB before gzip

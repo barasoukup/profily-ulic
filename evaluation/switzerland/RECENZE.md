@@ -1,6 +1,6 @@
 # Nepřátelská recenze větve `switzerland` (17. 11. 2026)
 
-Rozsah: `git diff origin/main..HEAD` a neverzovaný `pilot/public/zz-pts.json`. Začal jsem na `083a3ca`; během recenze
+Rozsah: `git diff origin/main..HEAD` a neverzovaný `app/public/zz-pts.json`. Začal jsem na `083a3ca`; během recenze
 přibyly tři commity (`f497e86` pravidlo středu řezu, `a4b0cb6` zpráva A/B, `6ac2843` CLAUDE.md), HEAD při dokončení
 `6ac2843`. Jsou zahrnuté; bod 4 (A/B) jsem podle nich přepsal a zařadil mezi vážné, původně byl blokující. Žádný soubor v repozitáři jsem neměnil.
 
@@ -36,7 +36,7 @@ Bez nálezu:
 ## Blokující
 
 ### 1. Obytná a pěší zóna mají prohozené značky
-- **Kde:** `pilot/public/countries/CH.js:50–54` (`CH_CODE` a `CH_FILE`: `ip26a: "2.59.3", ip27a: "2.59.5"`).
+- **Kde:** `app/public/countries/CH.js:50–54` (`CH_CODE` a `CH_FILE`: `ip26a: "2.59.3", ip27a: "2.59.5"`).
 - **Co je špatně:** `ip26a` je v `signs.js:36` „IZ 5a Obytná zóna“, `ip27a` „IZ 6a Pěší zóna“. Soubor `2.59.3.svg`
   je Fussgängerzone, `2.59.5.svg` Begegnungszone (vykresleno a zkontrolováno, README to říká stejně). Obytná ulice
   (`living_street`) tak dostane značku pěší zóny a pěší zóna značku Begegnungszone s dvacítkou. Platí i pro LI.
@@ -45,7 +45,7 @@ Bez nálezu:
 - **Oprava:** `ip26a: "2.59.5"`, `ip27a: "2.59.3"` v obou tabulkách; test na přesnou hodnotu obou klíčů.
 
 ### 2. Železnice vedle ulice se kreslí jako dvě tramvaje
-- **Kde:** `pilot/public/towns/switzerland.js:28` (`Bahn: 705`), dopad v `derive.js:1676, 1788, 1992`.
+- **Kde:** `app/public/towns/switzerland.js:28` (`Bahn: 705`), dopad v `derive.js:1676, 1788, 1992`.
 - **Co je špatně:** `Bahn` je v úředním vyměřování hlavně železniční pozemek (kolejiště SBB), 705 je „samostatné
   tramvajové těleso“ a `derive.js` ho bere jako součást vozovky. Cáchy mají pro totéž `Bahngleis: 1100`.
 - **Jak zopakovat:** `setCity("switzerland")`, vozovka 6 m, chodníky 3 m, za pravým chodníkem plocha 705 široká 12 m:
@@ -93,7 +93,7 @@ Bez nálezu:
   (`bridge`, `tunnel`, `layer`) vyměřování nebrat; pustit univerzální měření.
 
 ### 5. Podklad „Ortofoto“ ve Vorarlbersku a západním Tyrolsku přebije basemap.at rozmazaná družice
-- **Kde:** `pilot/public/app.js:204–211`.
+- **Kde:** `app/public/app.js:204–211`.
 - **Co je špatně:** vrstva SWISSIMAGE má `bounds` obdélník kolem Švýcarska (asi 5,96–10,49° v. d., 45,82–47,81° s. š.)
   a v `kinds.ortho` je za rakouskou, tedy nad ní. Mimo Švýcarsko SWISSIMAGE neodpoví 404, ale vrátí družicový snímek:
   dlaždice v Dornbirnu na z19 je 200 a jsou to čtverce po několika metrech. V Bregenzu, Dornbirnu, Feldkirchu,
@@ -189,7 +189,7 @@ Bez nálezu:
     (`NORMY.md` to přiznává). Čísla článků VRV jsou z konsolidace 12/2015; novely 2024 a 2025 nikdo nečetl.
 15. **Hledání** (`search-photon.js:21`): `looksGerman` pozná Zürich, Basel, Bern, Luzern, ale ne francouzské a
     italské dotazy (Genève, Lausanne, Lugano, „rue“, „via“), když mapa neukazuje Švýcarsko.
-16. **`pilot/public/zz-pts.json`** (neverzovaný seznam bodů vzorku) leží ve složce, která se nasazuje. Nepřidat do
+16. **`app/public/zz-pts.json`** (neverzovaný seznam bodů vzorku) leží ve složce, která se nasazuje. Nepřidat do
     commitu, smazat.
 17. **`staty.json`** narostl ze 404 na 514 kB (čte ho každý při startu). Švýcarsko je před Rakouskem a Německem a
     hranice je zjednodušená asi na 30 m oběma směry: ulice těsně za čárou v Kostnici nebo Weilu může vyjít jako CH.

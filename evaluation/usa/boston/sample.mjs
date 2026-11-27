@@ -6,15 +6,15 @@
 //   node evaluation/usa/boston/sample.mjs 60    (writes fresh.json)
 import fs from "node:fs/promises";
 import path from "node:path";
-import { decodeTile, mergePieces } from "../../../pilot/public/osmtile.js";
-import { inside } from "../../../pilot/public/places.js";
+import { decodeTile, mergePieces } from "../../../app/public/osmtile.js";
+import { inside } from "../../../app/public/places.js";
 const DATA = new URL("data/", import.meta.url).pathname;
 process.env.OSM_TILES = path.join(DATA, "osm-tiles");
 const { placeCut } = await import("../../usa-dc/lib.mjs");
 const COUNT = Number(process.argv[2] || 60);
 const HERE = path.dirname(new URL(import.meta.url).pathname), read = async (f) => JSON.parse(await fs.readFile(new URL(f, import.meta.url), "utf8"));
 const TRIED = [[42.35195, -71.0817], [42.37387, -71.10245], [42.36575, -71.10442], [42.337, -71.075], [42.3603, -71.0578], [42.3432, -71.1216]].map(([lat, lon]) => ({ lat, lon }));
-const towns = await read("../../../pilot/public/mesta-us.json");
+const towns = await read("../../../app/public/mesta-us.json");
 const AREA = { boston: towns.boston, cambridge: towns.cambridge };
 const townAt = (x, y) => Object.keys(AREA).find((k) => inside(AREA[k], x, y));
 const KIND = { motorway: "motorway", motorway_link: "motorway", trunk: "arterial", trunk_link: "arterial", primary: "arterial", primary_link: "arterial", secondary: "arterial", secondary_link: "arterial",

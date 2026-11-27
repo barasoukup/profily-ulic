@@ -3,7 +3,7 @@
 Větev `osm-r2`. Produkce (Pages, `main`) beze změny, nic není pushnuté.
 
 ## Co vzniklo
-- **Formát** (`pilot/public/osmpack.js`): jeden soubor na stát. Tagy ve slovníku (dvojice klíč=hodnota, které
+- **Formát** (`app/public/osmpack.js`): jeden soubor na stát. Tagy ve slovníku (dvojice klíč=hodnota, které
   jsou aspoň ve 30 prvcích; jména zůstávají v dlaždici), prvky jako krátká pole, první bod od rohu dlaždice,
   každá dlaždice zvlášť gzip. Index dvouúrovňový: hlava (24–47 kB, bloky 32 × 32 dlaždic a slovník) se čte
   jednou, list bloku (asi 1 kB) při prvním řezu v bloku (asi 11 × 18 km), pak jen dlaždice. Sousední dlaždice
@@ -11,7 +11,7 @@ Větev `osm-r2`. Produkce (Pages, `main`) beze změny, nic není pushnuté.
   je 0,005° a vlastní formát je jednodušší a bez knihovny.
 - **Balení** (`tools/pack_osm_tiles.mjs`): bere hotovou složku dlaždic z `build_osm_tiles.mjs` a přepíše ji
   bezeztrátově. Stavba dlaždic se nemění.
-- **Přepínač** `?osm=r2` (z R2), `?osm=balik` (balík z lokálního serveru, `pilot/data/osm-pack/`). Bez něj
+- **Přepínač** `?osm=r2` (z R2), `?osm=balik` (balík z lokálního serveru, `app/data/osm-pack/`). Bez něj
   vše jako dřív. Čte oba státy a spojí je (dlaždice na hranici může být v obou).
 - **Testy** `tests/osmpack.test.js` (kódování, čtení po kouscích, změna souboru během čtení); `npm test` prochází.
 - **Kontrola** `evaluation/osm_pack_check.mjs`: každá dlaždice a řezy vzorků proti dlaždicím.
@@ -71,7 +71,7 @@ Zdarma měsíčně: 10 GB úložiště, 1 milion zápisů (Class A), 10 milionů
    od Wedosu: DNS (nameservery) převést do Cloudflaru, pak v R2 „Connect domain“, např. `data.<doména>`.
    Cloudflare zdarma cachuje soubory do 512 MB: ČR má 281 MB, tedy ještě rezerva, větší stát by se dělil.
 2. **CORS** kbelíku doplnit o `https://barasoukup.github.io` (a doménu stránky, pokud se změní).
-3. **CSP** v `pilot/public/index.html`: místo zkušebního `https://*.r2.dev` adresa domény.
+3. **CSP** v `app/public/index.html`: místo zkušebního `https://*.r2.dev` adresa domény.
 4. **Týdenní obnova** v `.github/workflows/`: po stavbě dlaždic `node tools/pack_osm_tiles.mjs`, stejně pro SK
    (stažení `europe/slovakia-latest.osm.pbf`, stavba asi +4 min), nahrání na R2 (API token s právem
    „R2 edit“ jen pro tento kbelík jako tajná proměnná repozitáře; wrangler zvládne soubor do 300 MiB, větší
@@ -81,6 +81,6 @@ Zdarma měsíčně: 10 GB úložiště, 1 milion zápisů (Class A), 10 milionů
    novým jménem s datem a přepsat malý `index.json`, aby čtenář nikdy nedostal půl starého a půl nového souboru.
 
 ## Kde co je
-- Balíky: `pilot/data/osm-pack/` (`cz.posm`, `sk.posm` = dnešní obsah; `cz-novy.posm`, `sk-novy.posm` = nový obsah, na R2).
-- Dlaždice SK a nové ČR: `pilot/data/osm-tiles-sk`, `osm-tiles-sk2`, `osm-tiles-cz2` (mimo git).
+- Balíky: `app/data/osm-pack/` (`cz.posm`, `sk.posm` = dnešní obsah; `cz-novy.posm`, `sk-novy.posm` = nový obsah, na R2).
+- Dlaždice SK a nové ČR: `app/data/osm-tiles-sk`, `osm-tiles-sk2`, `osm-tiles-cz2` (mimo git).
 - Kbelík `profily-ulic-osm` (východní Evropa), `https://pub-a2b7312aca0a4dfe8a49583ae59ddbc6.r2.dev/osm/{cz,sk}.posm`.

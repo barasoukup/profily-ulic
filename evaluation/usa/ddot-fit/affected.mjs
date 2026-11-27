@@ -22,10 +22,10 @@ globalThis.fetch = async (url, o) => {
   return new Response(t, { status: r.status });
 };
 const json = async (f) => JSON.parse(await fs.readFile(new URL(f, import.meta.url), "utf8"));
-const C = await import("../../../pilot/public/city.js");
-C.loadBounds(await json("../../../pilot/public/mesta.json")); await import("../../../pilot/public/america.js");
-C.loadStates({ ...await json("../../../pilot/public/staty.json"), ...await json("../../../pilot/public/staty-america.json") }); C.loadTowns(await json("../../../pilot/public/mesta-us.json"));
-const U = await import("../../../pilot/public/towns/usa.js");
+const C = await import("../../../app/public/city.js");
+C.loadBounds(await json("../../../app/public/mesta.json")); await import("../../../app/public/america.js");
+C.loadStates({ ...await json("../../../app/public/staty.json"), ...await json("../../../app/public/staty-america.json") }); C.loadTowns(await json("../../../app/public/mesta-us.json"));
+const U = await import("../../../app/public/towns/usa.js");
 const files = process.env.SAMPLES ? process.env.SAMPLES.split(",") : ["../ab/sample.json", "../fresh/sample.json", "../arterials/sample.json", "../../canada/review/sample.json", "../../canada/fresh.json", "../../canada/dev.json"];
 const seen = new Set(), [x0, y0, x1, y1] = U.AREAS.dc.box;
 for (const f of files) {

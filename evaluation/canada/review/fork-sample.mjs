@@ -2,8 +2,8 @@
 // Europe's cities, Washington and Toronto, up to 8 a city.   node evaluation/canada/review/fork-sample.mjs
 import fs from "node:fs/promises";
 import { tiles } from "../../kliky/osm.mjs";
-import { TILE, mergePieces } from "../../../pilot/public/osmtile.js";
-import { localFrame, nearestStreet, placeCut as place } from "../../../pilot/public/derive.js";
+import { TILE, mergePieces } from "../../../app/public/osmtile.js";
+import { localFrame, nearestStreet, placeCut as place } from "../../../app/public/derive.js";
 const C = { praha: [50.087, 14.421], brno: [49.195, 16.608], plzen: [49.747, 13.378], bratislava: [48.146, 17.107], wien: [48.208, 16.373], graz: [47.07, 15.439], berlin: [52.52, 13.405], koeln: [50.938, 6.96], zuerich: [47.372, 8.541], warszawa: [52.2297, 21.0122],
   krakow: [50.061, 19.937], paris: [48.8566, 2.3522], lyon: [45.758, 4.835], amsterdam: [52.3728, 4.8936], antwerpen: [51.219, 4.402], helsinki: [60.1699, 24.9384], kobenhavn: [55.676, 12.568], madrid: [40.4168, -3.7038], torino: [45.07, 7.687], ljubljana: [46.051, 14.506], washington: [38.905, -77.03], toronto: [43.66, -79.4] };
 // (Without Washington's alleys: no request.)

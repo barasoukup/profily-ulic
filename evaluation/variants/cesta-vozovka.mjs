@@ -3,5 +3,5 @@
 // which cuts it would touch).
 //   CITY=praha VARIANTS=city,cesta-vozovka node evaluation/ab.mjs
 export const about = "plocha 702 pod silnicí z OSM jako vozovka (zkouška)";
-const { deriveProfile: d } = await import("../../pilot/public/derive.js");
+const { deriveProfile: d } = await import("../../app/public/derive.js");
 export const deriveProfile = (o) => d({ ...o, roadOnPath: true });

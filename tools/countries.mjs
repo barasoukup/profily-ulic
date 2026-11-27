@@ -1,5 +1,5 @@
 // The states of the app for the tools and the deploy (docs/architecture-countries.md, step 5): one line a state. The
-// app's own rules of a state are pilot/public/countries/<ISO>.js; here what the deploy needs: the key of its OSM
+// app's own rules of a state are app/public/countries/<ISO>.js; here what the deploy needs: the key of its OSM
 // pack (the file <key>-<date>.posm, data/osm/<key>.osm.pbf), Geofabrik's extract and whether the pack also goes on
 // Pages (it must stay under Pages' 1 GB; Austria only on R2, Bára 16. 11. 2026).
 //   node tools/countries.mjs --list osm         → cz sk at

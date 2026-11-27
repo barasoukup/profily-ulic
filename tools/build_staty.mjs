@@ -12,7 +12,7 @@ async function giscoLand(iso3) {
 }
 // swissBOUNDARIES3D through api3.geo.admin.ch, open data "© swisstopo", 17. 11. 2026); a point in none is "cizina". The
 // order matters: Czechia, Slovakia, Switzerland and Liechtenstein first (their borders are exact, GISCO's coarser), so a
-// point by their border with Austria or Germany takes theirs (Büsingen and Campione are holes of Switzerland's ring). Simplified to about 30 m, written into pilot/public/staty.json and kept in the repository
+// point by their border with Austria or Germany takes theirs (Büsingen and Campione are holes of Switzerland's ring). Simplified to about 30 m, written into app/public/staty.json and kept in the repository
 // (boundaries change rarely): node tools/build_staty.mjs, or node tools/build_staty.mjs germany for one state (the
 // others stay as they are in staty.json).
 import fs from "node:fs";
@@ -315,10 +315,10 @@ const BUILD = {
   // Canada beyond Toronto's surroundings (25. 11. 2026), as the USA's: the same line at Windsor and Niagara.
   closed_ca: async () => closedFar(await gisco("CA"), CA_BORDER, 0.05, 0.02),
 };
-const file = new URL("../pilot/public/staty.json", import.meta.url);
+const file = new URL("../app/public/staty.json", import.meta.url);
 const only = process.argv.slice(2);
-// North America's entries have a file of their own, asked for only when a cut or the map is there (pilot/public/late.js).
-const AMERICA = /^(closed_)?(usa?|canada|ca)$/, farFile = new URL("../pilot/public/staty-america.json", import.meta.url);
+// North America's entries have a file of their own, asked for only when a cut or the map is there (app/public/late.js).
+const AMERICA = /^(closed_)?(usa?|canada|ca)$/, farFile = new URL("../app/public/staty-america.json", import.meta.url);
 const old = only.length ? { ...JSON.parse(fs.readFileSync(file, "utf8")), ...JSON.parse(fs.readFileSync(farFile, "utf8")) } : {};
 // The order of BUILD is the order of staty.json (city.js cityAt takes the first state a point lies in).
 const out = {};

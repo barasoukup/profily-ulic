@@ -23,7 +23,7 @@ globalThis.fetch = async (url, o) => {
   if (r.ok) await fs.writeFile(f, t);
   return new Response(t, { status: r.status });
 };
-const FR = await import("../../../pilot/public/towns/france.js"), { localFrame } = await import("../../../pilot/public/derive.js");
+const FR = await import("../../../app/public/towns/france.js"), { localFrame } = await import("../../../app/public/derive.js");
 const json = async (f) => JSON.parse(await fs.readFile(new URL(f, import.meta.url), "utf8"));
 const cuts = [...(await json("../ab/vysledky/rezy.json")).map((r) => ({ id: r.id, c: r.B })), ...(await json("../../facade-strip/vysledky/rezy-1.json")).filter((r) => r.place === "paris").map((r) => ({ id: r.id, c: r.N }))]
   .filter((x) => x.c?.lat && x.c.sources?.frTown);

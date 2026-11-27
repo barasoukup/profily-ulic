@@ -1,8 +1,8 @@
 // Before/after sheet of the Czech house looks whose upper windows (mansard, gable, set-back floor) now keep the window
-// columns of the floors below. Draws each look with two copies of the app (pilot/public of HEAD before the change and
+// columns of the floors below. Draws each look with two copies of the app (app/public of HEAD before the change and
 // of the changed tree), side by side, with the app's own code (as evaluation/budovy-regiony/render.mjs).
 //   node evaluation/budovy-cz-okna/render.mjs <before-root> <after-root> [out.png]
-// (a root is a folder holding pilot/public, e.g. a `git archive` of HEAD). PNG via Quick Look + ImageMagick.
+// (a root is a folder holding app/public, e.g. a `git archive` of HEAD). PNG via Quick Look + ImageMagick.
 import fs from "node:fs";
 import path from "node:path";
 import { execFileSync } from "node:child_process";
@@ -44,7 +44,7 @@ export const CELLS = process.env.SHEET === "stit-rimsa" ? STIT_RIMSA : ([
 
 // One copy of the app: the inner SVG of each cell (run in a child process, so the two copies never share modules).
 if (process.argv[2] === "--cells") {
-  const ROOT = path.join(process.argv[3], "pilot", "public");
+  const ROOT = path.join(process.argv[3], "app", "public");
   class Node {
     constructor(name) { this.name = name; this.attrs = {}; this.children = []; this.text = ""; this.style = {}; this.dataset = {}; this.classList = { add() {}, toggle() {}, contains: () => false }; }
     setAttribute(k, v) { this.attrs[k] = String(v); }

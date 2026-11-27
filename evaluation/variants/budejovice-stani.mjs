@@ -2,7 +2,7 @@
 // side STRANA L/P, tariff and length in m, edited 2026) as strips 2 m wide centred on the line (the lines are
 // drawn schematically near the street's axis or in the parking lane; the orientation is not given).
 //   CITY=budejovice VARIANTS=city,budejovice-mesto,budejovice-stani CACHE=disk ONLY=… node evaluation/ab.mjs
-import { query, envelope, metres } from "../../pilot/public/gis.js";
+import { query, envelope, metres } from "../../app/public/gis.js";
 import { CB } from "./budejovice-mesto.mjs";
 export { surfaces, osm } from "./budejovice-mesto.mjs";
 

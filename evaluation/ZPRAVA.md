@@ -83,7 +83,7 @@ Další plocha 701 bez osy OSM dostane pruhy hlavní ulice (č. 21: dva pruhy po
 
 ## Chyby v kódu, které jdou opravit hned
 
-1. **Cache ukládá chybové odpovědi IPR.** `cached()` v `server.mjs` zapíše i `{"error":{"code":503,"message":"Wait timeout…"}}`, takže se dané místo už nikdy nenačte (č. 22, nábřeží E. Beneše: MTVU 0 ploch, profil je čistý odhad). Ukládat jen odpovědi bez pole `error`. Stávající chybové soubory v `pilot/cache/*` je potřeba najít a smazat.
+1. **Cache ukládá chybové odpovědi IPR.** `cached()` v `server.mjs` zapíše i `{"error":{"code":503,"message":"Wait timeout…"}}`, takže se dané místo už nikdy nenačte (č. 22, nábřeží E. Beneše: MTVU 0 ploch, profil je čistý odhad). Ukládat jen odpovědi bez pole `error`. Stávající chybové soubory v `app/cache/*` je potřeba najít a smazat.
 2. **`psv:lanes` / `bus:lanes`: každé `yes` se bere jako BUS pruh.** Strakonická č. 13 má `psv:lanes=yes|yes|designated` a pilot udělal tři autobusové pruhy, i když skutečný je jen pravý. Jako BUS má platit jen `designated`. V č. 11 jsou tři BUS pruhy místo jednoho, v č. 9 naopak BUS pruh chybí, i když `busway:right=lane` je na ose.
 3. **Orientace TSK stání:** úsek 4,6 m hluboký s kolmo stojícími auty vyšel jako podélný (č. 64). Pravidlo podle délky na stání nejspíš dostává zkreslenou délku.
 4. **Plocha parkování z OSM přes celou vozovku** smaže jízdní prostor (č. 87: 7,9 m „kolmé stání"). Plochu OSM parkování, která pokrývá skoro celou vozovku, by pilot neměl brát jako záliv.

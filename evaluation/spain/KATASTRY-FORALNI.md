@@ -1,7 +1,7 @@
 # Foralní katastry (Navarra, Gipuzkoa, Bizkaia, Álava): mohou se napojit jako Catastro?
 
 Datum průzkumu: 23. 11. 2026. Bez změn kódu, bez commitu. Cíl: zjistit, zda aplikace může u kliknutí na ulici
-dotázat budovy (počet podlaží nad zemí, rok, užití, obrys) stejně jako `pilot/public/towns/spain.js` dotazuje
+dotázat budovy (počet podlaží nad zemí, rok, užití, obrys) stejně jako `app/public/towns/spain.js` dotazuje
 Catastro (`ovc.catastro.meh.es/INSPIRE/wfsBU.aspx`, ta v Baskicku a Navaře nic nemá).
 
 ## Shrnutí
@@ -14,7 +14,7 @@ Catastro (`ovc.catastro.meh.es/INSPIRE/wfsBU.aspx`, ta v Baskicku a Navaře nic 
 
 ## Postup a rozsah dotazů
 
-- Zdrojový kód: `pilot/public/towns/spain.js` (řádky 111–175: `CATASTRO_WFS`, `catastroBuilding`, `foralAt`, `podlaznost`). Dotaz Catastra je bbox ±0,000005° kolem bodu fasády (asi 0,5 m), typy `BU:Building` a `BU:BuildingPart`.
+- Zdrojový kód: `app/public/towns/spain.js` (řádky 111–175: `CATASTRO_WFS`, `catastroBuilding`, `foralAt`, `podlaznost`). Dotaz Catastra je bbox ±0,000005° kolem bodu fasády (asi 0,5 m), typy `BU:Building` a `BU:BuildingPart`.
 - Dotazy jsem dělal ručně přes `curl`, bez User-Agent a bez e-mailu, bez klíče. Každou službu jednou GetCapabilities a pro každé město jeden GetFeature s bboxem asi 100 m. Několik dalších dotazů bylo nutných, protože první pokus měl chybnou syntaxi CRS (u Navarry a Álavy) nebo chybný typ prvku (u Gipuzkoy) nebo chybné pořadí souřadnic v `bbox` (u Álavy a Bizkaye). Celkem zhruba 12 malých dotazů, žádný hromadný stahování, žádný Overpass ani Nominatim.
 - Metadatové záznamy v INSPIRE Geoportálu (`inspire-geoportal.ec.europa.eu`) se z této sandboxu nepodařilo stáhnout (curl vrátil kód 000). Pro licence jsem proto použil GetCapabilities (ověřeno) a výsledky vyhledávání a WebFetch na datos.gob.es a stránky Bizkaye (neověřeno, viz níže; stránka Bizkaye vrátila ověřovací výzvu „human verification", katalog Navarry vrátil 404).
 

@@ -5,7 +5,7 @@ import assert from "node:assert/strict";
 import fs from "node:fs";
 
 test("Belgie: čáry GRB a PICC jako kandidáti obrub, vypínač ?hrany=0", async () => {
-  const B = await import("../pilot/public/towns/belgium.js");
+  const B = await import("../app/public/towns/belgium.js");
   const grb = B.grbPaths({ features: [
     { properties: { LBLTYPE: "rand van de rijbaan (wrb)" }, geometry: { type: "LineString", coordinates: [[3.72, 51.05], [3.721, 51.05]] } },
     { properties: { LBLTYPE: "grens zone zwakke weggebruiker (wcz)" }, geometry: { type: "MultiLineString", coordinates: [[[3.72, 51.051], [3.721, 51.051]]] } },
@@ -23,7 +23,7 @@ test("Belgie: čáry GRB a PICC jako kandidáti obrub, vypínač ?hrany=0", asyn
 });
 
 test("Belgie: plochy GRB z WBN a čar WGO podél řezu, vypínač ?wbn=0", async () => {
-  const B = await import("../pilot/public/towns/belgium.js");
+  const B = await import("../app/public/towns/belgium.js");
   // A street 20 m from facade to facade along y: sidewalks 3 m (wcz at x = ±7), a parking strip 2 m on the left (wrb at
   // x = -5), the roadway between; OSM's road along the middle; the cut 30 m along x.
   const lat0 = 51.05, lon0 = 3.72, kx = 111320 * Math.cos((lat0 * Math.PI) / 180), ky = 110574, pad = 0.0004;
@@ -63,16 +63,16 @@ test("Belgie: plochy GRB z WBN a čar WGO podél řezu, vypínač ?wbn=0", async
 });
 
 test("Belgie: region podle hranic NUTS 1 (ortofoto a čáry jen svého regionu)", async () => {
-  const { beRegionsAt } = await import("../pilot/public/lanes-ortho.js");
+  const { beRegionsAt } = await import("../app/public/lanes-ortho.js");
   assert.equal((await beRegionsAt(3.7174, 51.0543))[0], "vl"); // Ghent
   assert.equal((await beRegionsAt(5.5797, 50.6326))[0], "wal"); // Liège
   assert.equal((await beRegionsAt(4.3525, 50.8467))[0], "bru"); // Brussels
 });
 
 test("Belgie a Lucembursko: stát podle hranic", async () => {
-  const C = await import("../pilot/public/city.js");
-  C.loadBounds(JSON.parse(fs.readFileSync(new URL("../pilot/public/mesta.json", import.meta.url), "utf8")));
-  C.loadStates(JSON.parse(fs.readFileSync(new URL("../pilot/public/staty.json", import.meta.url), "utf8")));
+  const C = await import("../app/public/city.js");
+  C.loadBounds(JSON.parse(fs.readFileSync(new URL("../app/public/mesta.json", import.meta.url), "utf8")));
+  C.loadStates(JSON.parse(fs.readFileSync(new URL("../app/public/staty.json", import.meta.url), "utf8")));
   assert.equal(C.cityAt(50.8467, 4.3525), "belgium"); // Brussels
   assert.equal(C.cityAt(51.0543, 3.7174), "belgium"); // Ghent
   assert.equal(C.cityAt(50.6326, 5.5797), "belgium"); // Liège
@@ -85,8 +85,8 @@ test("Belgie a Lucembursko: stát podle hranic", async () => {
 });
 
 test("Belgie a Lucembursko: značky, normy, zákon o stání", async () => {
-  const { default: BE } = await import("../pilot/public/countries/BE.js");
-  const { default: LU } = await import("../pilot/public/countries/LU.js");
+  const { default: BE } = await import("../app/public/countries/BE.js");
+  const { default: LU } = await import("../app/public/countries/LU.js");
   assert.equal(BE.signs.file({ k: "oneway" }, { dir: "forward" }), "F19");
   assert.equal(BE.signs.file({ k: "oneway" }, { dir: "backward" }), "C1");
   assert.equal(BE.signs.file({ k: "oneway", plate: "protismer" }, { dir: "backward" }), null);
@@ -98,7 +98,7 @@ test("Belgie a Lucembursko: značky, normy, zákon o stání", async () => {
   assert.equal(LU.signs.label({ k: "c9a" }, true, "x"), "D,5b x");
   for (const [dir, list] of [["signs-BE", ["C1", "C3", "C11", "C19", "C43_50", "E1", "E3", "E9", "F4a", "F19", "F12a", "F103", "D07", "D09", "D10", "D11"]],
     ["signs-LU", ["C_2", "C_1a", "C_3c", "C_14_50", "E_13a", "C_18", "C_19", "E_23", "H_1_1", "E_25a", "D_4", "D_5b"]]]) {
-    for (const k of list) assert.match(fs.readFileSync(new URL(`../pilot/public/${dir}/${k}.svg`, import.meta.url), "utf8"), /<svg[^>]*viewBox="[-\d.]+ [-\d.]+ [\d.]+ [\d.]+"/, `${dir}/${k}`);
+    for (const k of list) assert.match(fs.readFileSync(new URL(`../app/public/${dir}/${k}.svg`, import.meta.url), "utf8"), /<svg[^>]*viewBox="[-\d.]+ [-\d.]+ [\d.]+ [\d.]+"/, `${dir}/${k}`);
   }
   assert.equal(BE.limits({ type: "chodnik" }, [], 0).min, 1.5);
   assert.equal(LU.limits({ type: "chodnik" }, [], 0).zaklad, 2);

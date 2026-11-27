@@ -7,7 +7,7 @@ const pair = (a, b) => [{ type: "cyklostezka", width: a, dir: "forward" }, { typ
 const warn = (L, segs, i) => { const l = L(segs[i], segs, i); return !l ? null : segs[i].width < l.min - 0.005 ? "min" : segs[i].width < l.zaklad - 0.005 ? "zaklad" : null; };
 
 test("obousměrná stezka: celá šířka, ne polovina proti jednosměrné", async () => {
-  const { COUNTRIES } = await import("../pilot/public/countries/index.js");
+  const { COUNTRIES } = await import("../app/public/countries/index.js");
   const { FI, DK, EE, LT, SI } = COUNTRIES;
   // Finland: 2 × 1.28 m (hk10) is 2.56 m, enough for a two-way track on a local route (2.5 m, tab. 16); 2 × 1.2 m is not.
   assert.equal(warn(FI.limits, pair(1.28, 1.28), 0), null);
@@ -32,7 +32,7 @@ test("obousměrná stezka: celá šířka, ne polovina proti jednosměrné", asy
 });
 
 test("stezka bez směru (jednosměrná z OSM, derive.js) nedostane obousměrné varování", async () => {
-  const { COUNTRIES } = await import("../pilot/public/countries/index.js");
+  const { COUNTRIES } = await import("../app/public/countries/index.js");
   const { FI, DK, SI } = COUNTRIES;
   // derive.js carveCycleways puts OSM's one-way track in with 2 m and no direction.
   const one = [{ type: "cyklopruh", width: 1.5 }, { type: "cyklostezka", width: 2 }];

@@ -39,7 +39,7 @@ Otázka: zlepšuje pasport komunikací (`Pasporty/112`) profily, nebo je kazí? 
 
 ## Rozhodnutí
 - **Pasport ponechat.** Bez něj nebo za DTM jsou profily zřetelně horší (61:8 a 17:8).
-- **Změna podle varianty d je zavedená v `pilot/public/towns/jihlava.js`.** Dotaz na pasport nově čte také `spravce`
+- **Změna podle varianty d je zavedená v `app/public/towns/jihlava.js`.** Dotaz na pasport nově čte také `spravce`
   a `povrch`. Vozovka silnice ŘSD/KSÚS bez povrchu, která je napříč široká 12,7–13,2 m alespoň na 30 % svých hran,
   se na těchto hranách zúží o 1,25 m na každé straně. Okraj pak vyplní katastr jako zeleň (odhad).
   Kontrolní běh: nový stav `city` se s variantou d shoduje v 89 z 89 řezů a proti starému stavu se změnilo právě

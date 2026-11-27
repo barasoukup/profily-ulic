@@ -1,11 +1,11 @@
-// Offline reading of the OSM packs (pilot/data/osm-pack, local files of all states) for the railway measurement
+// Offline reading of the OSM packs (app/data/osm-pack, local files of all states) for the railway measurement
 // (Bára 27. 11. 2026): the ways around a point, without the browser and without any query.
 import fs from "node:fs/promises";
 import path from "node:path";
-import { Pack } from "../../pilot/public/osmpack.js";
-import { TILE, mergePieces } from "../../pilot/public/osmtile.js";
+import { Pack } from "../../app/public/osmpack.js";
+import { TILE, mergePieces } from "../../app/public/osmtile.js";
 
-const DIR = process.env.OSM_PACK || path.join(path.dirname(new URL(import.meta.url).pathname), "..", "..", "pilot", "data", "osm-pack");
+const DIR = process.env.OSM_PACK || path.join(path.dirname(new URL(import.meta.url).pathname), "..", "..", "app", "data", "osm-pack");
 const packs = new Map();
 export async function pack(code) {
   if (!packs.has(code)) {

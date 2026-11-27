@@ -4,7 +4,7 @@
 
 ## Co se kontroluje
 
-Oprava v `pilot/public/derive.js` (`ownRoad`, přepínač `ORTHO_P.axisroad`): když oprava osy přesune osu ulice z OSM na
+Oprava v `app/public/derive.js` (`ownRoad`, přepínač `ORTHO_P.axisroad`): když oprava osy přesune osu ulice z OSM na
 nejbližší vozovku (osa padla do vykrojeného stání), bere se ta vozovka jako vozovka ulice, ne jako přístupová plocha.
 Dřív ověřeno na 290 řezech pěti severoamerických měst (`evaluation/usa/sf/fixes/ZPRAVA.md`): mění se jen Lippard Avenue.
 

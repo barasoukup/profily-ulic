@@ -1,9 +1,9 @@
-// node evaluation/canada/losses/osmtags.mjs <id>…   (ids of review/sample.json; the OSM packs of pilot/data/osm-pack)
+// node evaluation/canada/losses/osmtags.mjs <id>…   (ids of review/sample.json; the OSM packs of app/data/osm-pack)
 // OSM around each cut: the cut's way's tags and the ways crossing the cut line within 30 m (their t across, A = negative?).
 import fs from "node:fs";
 const W = new URL("../../../", import.meta.url).pathname;
 const { osmAt } = await import(W + "evaluation/kliky/osm.mjs");
-const { parallelsAt } = await import(W + "pilot/public/towns/planimetrics.js");
+const { parallelsAt } = await import(W + "app/public/towns/planimetrics.js");
 const sample = JSON.parse(fs.readFileSync(W + "evaluation/canada/review/sample.json", "utf8"));
 const ids = process.argv.slice(2);
 const SKIP = new Set(["name:fr","name:en","tiger:cfcc","tiger:county","tiger:reviewed","tiger:name_base","tiger:name_type","tiger:name_direction_suffix","tiger:zip_left","tiger:zip_right","tiger:tlid","tiger:source","tiger:upload_uuid","tiger:separated","tiger:name_direction_prefix","source","wikidata","wikipedia"]);

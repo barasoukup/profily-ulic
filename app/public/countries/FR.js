@@ -44,7 +44,7 @@ function limitsFR(s, segs) {
   }
 }
 
-// The signs of the state FR (pilot/public/signs-FR/, README there; arrêté of 24. 11. 1967 on the signs of roads and
+// The signs of the state FR (app/public/signs-FR/, README there; arrêté of 24. 11. 1967 on the signs of roads and
 // motorways; Wikimedia Commons). Official works as in Luxembourg (Bára 21. 11. 2026: "značky jsou úřední dílo"; for France
 // 23. 11. 2026: "Značky jsou volně"): the
 // CC BY-SA of a redrawing on Commons is not credited. France has no sign of a cycle street, a paid zone or a path

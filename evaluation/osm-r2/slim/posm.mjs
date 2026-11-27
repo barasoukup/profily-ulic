@@ -3,7 +3,7 @@
 // PBF it was built from (evaluation/osm-r2/slim).
 import fs from "node:fs";
 import zlib from "node:zlib";
-import { MAGIC, VERSION } from "../../../pilot/public/osmpack.js";
+import { MAGIC, VERSION } from "../../../app/public/osmpack.js";
 
 export function readHead(buf) {
   if (buf.toString("ascii", 0, 4) !== MAGIC) throw new Error("není soubor dlaždic OSM");

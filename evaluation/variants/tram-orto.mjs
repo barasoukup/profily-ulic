@@ -1,7 +1,7 @@
 // The surface of a tram bed (evaluation/pravidla-11-2026/ZPRAVA.md, section 4), (c): the rule and the orthophoto
 // of ČÚZK (ortho.js), one small image per cut with tram tracks, through ab.mjs's fetch (polite.mjs, CACHE=disk).
 // What the pixels said is kept in the result (orthoSeen) for the tuning of ortho.js.
-import { bedOrtho } from "../../pilot/public/ortho.js";
+import { bedOrtho } from "../../app/public/ortho.js";
 export const about = "pravidlo + ortofoto";
 export async function ortho(ctx, res) {
   const o = await bedOrtho({ ...ctx, timeout: 30000, ...(res ? { res } : {}) });

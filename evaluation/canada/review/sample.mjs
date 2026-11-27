@@ -4,12 +4,12 @@
 //   node evaluation/canada/review/sample.mjs      writes sample.json
 import fs from "node:fs/promises";
 import { osmAt, tiles } from "../../kliky/osm.mjs";
-import { TILE, mergePieces } from "../../../pilot/public/osmtile.js";
-import { localFrame, nearestStreet, placeCut as place, snapToWay } from "../../../pilot/public/derive.js";
-import { inside } from "../../../pilot/public/places.js";
-import { isTrack } from "../../../pilot/public/towns/planimetrics.js";
+import { TILE, mergePieces } from "../../../app/public/osmtile.js";
+import { localFrame, nearestStreet, placeCut as place, snapToWay } from "../../../app/public/derive.js";
+import { inside } from "../../../app/public/places.js";
+import { isTrack } from "../../../app/public/towns/planimetrics.js";
 const read = async (f) => JSON.parse(await fs.readFile(new URL(f, import.meta.url), "utf8")).valueOf();
-const P = "../../../pilot/public/", far = await read(`${P}staty-america.json`), DC = (await read(`${P}mesta-us.json`)).washington, TO = (await read(`${P}mesta-ca.json`)).toronto;
+const P = "../../../app/public/", far = await read(`${P}staty-america.json`), DC = (await read(`${P}mesta-us.json`)).washington, TO = (await read(`${P}mesta-ca.json`)).toronto;
 const AREA = { dc: [DC], toronto: [TO], usout: [far.usa, DC], caout: [far.canada, TO] };
 const within = (k, lon, lat) => inside(AREA[k][0], lon, lat) && !(AREA[k][1] && inside(AREA[k][1], lon, lat));
 const list = (x) => (Array.isArray(x) ? x : x.rows || []);

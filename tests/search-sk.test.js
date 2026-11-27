@@ -2,8 +2,8 @@
 // no request.
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { splitQuery, townMatches, parseStreets, parseTowns, parseAddresses, findSk, locateSk, looksSlovak } from "../pilot/public/search-sk.js";
-import { rankResults } from "../pilot/public/search.js";
+import { splitQuery, townMatches, parseStreets, parseTowns, parseAddresses, findSk, locateSk, looksSlovak } from "../app/public/search-sk.js";
+import { rankResults } from "../app/public/search.js";
 
 const street = (id, name, town, code = "SK0") => ({ attributes: { STRT_ID: id, STRT_NAME: name, MUNI_NAME: town, MUNI_CODE: code } });
 const address = (street, sup, orient, town, lat, lon) => ({ attributes: { "Názov ulice": street, "Súpisné číslo": sup, "Orientačné číslo": orient, "Názov obce": town, "PSČ": "04001",

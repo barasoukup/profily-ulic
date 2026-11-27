@@ -1,6 +1,6 @@
 # Podlaží z výšky budovy: jedna sdílená funkce (Bára 27. 11. 2026)
 
-`pilot/public/floors.js` `floorsFromHeight(h, { type, roofShape, pitched })`; bez podmínky na stát či město, přednost má vždy zjištěný počet
+`app/public/floors.js` `floorsFromHeight(h, { type, roofShape, pitched })`; bez podmínky na stát či město, přednost má vždy zjištěný počet
 podlaží (OSM `building:levels`, úřední data). Pravidla:
 
 - **plochá nebo neznámá střecha**: (h − 2,2) / 3,3 (od 25 m 3,05); pod 8 m hranice 1/2 podlaží na **6,0 m** (návrh 11);

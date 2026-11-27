@@ -9,7 +9,7 @@ import path from "node:path";
 const CITY = process.env.CITY || "brno";
 const PRAHA = CITY === "praha";
 globalThis.PROFILY_CITY = CITY;
-const { TYPES } = await import("../pilot/public/types.js");
+const { TYPES } = await import("../app/public/types.js");
 
 const ROOT = path.dirname(new URL(import.meta.url).pathname);
 const DATA = PRAHA ? path.join(ROOT, "praha", "data") : path.join(ROOT, CITY, "data");

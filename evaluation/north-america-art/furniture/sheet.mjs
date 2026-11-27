@@ -1,7 +1,7 @@
 // The contact sheet: node evaluation/north-america-art/furniture/sheet.mjs out.svg [dark]  (then qlmanage -t renders it)
 // Every piece at one scale (1 px = 1 cm) beside the Czech one and a person of 1.75 m (Streetmix people-01).
 import fs from "node:fs";
-const PUB = new URL("../../../pilot/public/", import.meta.url);
+const PUB = new URL("../../../app/public/", import.meta.url);
 const [out, theme] = process.argv.slice(2);
 const bg = theme === "dark" ? "#23272a" : "#f3f1ec", ink = theme === "dark" ? "#e8e8e4" : "#222";
 let n = 0;

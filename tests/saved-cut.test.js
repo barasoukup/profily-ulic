@@ -2,7 +2,7 @@
 // click is still moved away from junctions and to the middle of a street of two carriageways.
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { localFrame, nearestStreet, savedStreet, placeCut } from "../pilot/public/derive.js";
+import { localFrame, nearestStreet, savedStreet, placeCut } from "../app/public/derive.js";
 
 const frame = localFrame(50, 14.4);
 const way = (id, pts, tags) => ({ type: "way", id, tags, geometry: pts.map(([x, y]) => { const [lon, lat] = frame.toLonLat(x, y); return { lon, lat }; }) });

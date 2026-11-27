@@ -38,7 +38,7 @@ function limitsLT(s, segs = [], i = -1) {
   }
 }
 
-// The signs of the state LT (pilot/public/signs-LT/, README there; the annex 1 of the traffic rules KET, government
+// The signs of the state LT (app/public/signs-LT/, README there; the annex 1 of the traffic rules KET, government
 // resolution 1950/2002): the drawings from Wikimedia Commons, by Augustasci (CC BY 4.0, the 4xx Public domain) and
 // Gigillo83 (the plates 846 and 853, CC BY-SA 4.0), credited in the footer. Numbers and names by lt.wikipedia
 // (second hand, NORMY.md C2). The speed sign 329 is the app's template (the ring of 302, the number filled in).

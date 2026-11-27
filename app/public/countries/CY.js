@@ -45,7 +45,7 @@ function limitsCY(s, segs, i) {
   }
 }
 
-// The signs of the state CY (pilot/public/signs-CY/, README there; the Highway Code of 2012 under reg. 71 of 66/1984).
+// The signs of the state CY (app/public/signs-CY/, README there; the Highway Code of 2012 under reg. 71 of 66/1984).
 // The Code has no numbers: the label is the sign's name. Cyprus excludes no official text from copyright, so only files
 // of Commons with their own licence (UK signs under the Open Government Licence v1.0, credited in the footer; Cypriot
 // and Vienna-convention ones in the public domain; evaluation/cyprus/signs-licence.json). No zone 30, shared zone,

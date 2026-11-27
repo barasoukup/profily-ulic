@@ -4,7 +4,7 @@
 // → its top floor is in the roof; = building:levels → it is not; any other count is left out). Asks nothing.
 //   node evaluation/slovenia/ab/attic-fit.mjs
 import fs from "node:fs";
-import { gursBuilding, ATTIC } from "../../../pilot/public/towns/slovenia.js";
+import { gursBuilding, ATTIC } from "../../../app/public/towns/slovenia.js";
 
 const HERE = new URL("./", import.meta.url);
 const raw = JSON.parse(fs.readFileSync(new URL("data/raw.json", HERE), "utf8"));

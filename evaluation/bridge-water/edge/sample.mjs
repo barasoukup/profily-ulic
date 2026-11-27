@@ -10,10 +10,10 @@
 import fs from "node:fs";
 import path from "node:path";
 const HERE = path.dirname(new URL(import.meta.url).pathname), W = path.join(HERE, "../../..");
-const { Pack } = await import(W + "/pilot/public/osmpack.js");
-const { mergePieces } = await import(W + "/pilot/public/osmtile.js");
-const { WATER } = await import(W + "/pilot/public/ortho-osm.js");
-const dir = W + "/pilot/data/osm-pack/", idx = JSON.parse(fs.readFileSync(dir + "index.json"));
+const { Pack } = await import(W + "/app/public/osmpack.js");
+const { mergePieces } = await import(W + "/app/public/osmtile.js");
+const { WATER } = await import(W + "/app/public/ortho-osm.js");
+const dir = W + "/app/data/osm-pack/", idx = JSON.parse(fs.readFileSync(dir + "index.json"));
 const STATES = { pl: "PL", at: "AT", de: "DE", fr: "FR", es: "ES", pt: "PT", it: "IT", si: "SI", ee: "EE", fi: "FI", lt: "LT", be: "BE", lu: "LU", nl: "NL", ch: "CH" };
 const PER = Number(process.env.PER || 5), BLOCKS = Number(process.env.BLOCKS || 5), TARGET = Number(process.env.TARGET || 60);
 let seed = 20261127;

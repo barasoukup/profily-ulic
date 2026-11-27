@@ -2,14 +2,14 @@
 // tram, driving lanes by the class of the street (Prague's TSK).
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { localFrame, deriveProfile, techLines, classGroup } from "../pilot/public/derive.js";
-import { lawKerbs } from "../pilot/public/ai-kerbs.js";
-import { checkRules } from "../pilot/public/rules.js";
-import { signFits } from "../pilot/public/signs.js";
-import { cleanProfile } from "../pilot/public/validate.js";
-import { packProfile, unpackProfile } from "../pilot/public/share.js";
-import { toStreetmix } from "../pilot/public/streetmix.js";
-import { bedOrtho, bedPixels, classifyBed, sleeperRepeat, tramOffsets } from "../pilot/public/ortho.js";
+import { localFrame, deriveProfile, techLines, classGroup } from "../app/public/derive.js";
+import { lawKerbs } from "../app/public/ai-kerbs.js";
+import { checkRules } from "../app/public/rules.js";
+import { signFits } from "../app/public/signs.js";
+import { cleanProfile } from "../app/public/validate.js";
+import { packProfile, unpackProfile } from "../app/public/share.js";
+import { toStreetmix } from "../app/public/streetmix.js";
+import { bedOrtho, bedPixels, classifyBed, sleeperRepeat, tramOffsets } from "../app/public/ortho.js";
 import { deflateSync } from "node:zlib";
 
 // A street running north; the cut runs west–east through y = 0 (t = −x). Houses, sidewalks of 3 m, and

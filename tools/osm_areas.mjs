@@ -1,6 +1,6 @@
 // Pieces of OSM polygons cut to the tiles of osmtile.js (tools/build_osm_tiles.mjs), shared with the tools that add
 // such polygons to packed tiles for a trial (evaluation/bridge-water/edge/patch-pack.mjs).
-import { TILE } from "../pilot/public/osmtile.js";
+import { TILE } from "../app/public/osmtile.js";
 
 export const ringArea = (r) => { let a = 0; for (let i = 0; i + 1 < r.length; i++) a += r[i][0] * r[i + 1][1] - r[i + 1][0] * r[i][1]; return a / 2; };
 // A ring cut to a box (Sutherland–Hodgman): the box's edges close it where it leaves; null when nothing is left.

@@ -36,8 +36,8 @@ neukládají ani nešíří dál.
 
 ## Tabulka
 
-Sloupec **Stav v aplikaci** porovnává `pilot/public/credits.js` (kredit u řezu a v exportu), `city.js` (kredit města),
-atribuci podkladových map, patičku `pilot/public/index.html` a `LICENCE-A-ZDROJE.md`.
+Sloupec **Stav v aplikaci** porovnává `app/public/credits.js` (kredit u řezu a v exportu), `city.js` (kredit města),
+atribuci podkladových map, patičku `app/public/index.html` a `LICENCE-A-ZDROJE.md`.
 
 | Zdroj | Licence (odkaz) | Povinný kredit | Stav v aplikaci | Co udělat |
 |---|---|---|---|---|

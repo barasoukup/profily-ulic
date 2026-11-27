@@ -1,4 +1,4 @@
-// The city's own technical map against the national DTM of ČÚZK (IS DMVS, pilot/public/dmvs.js): every
+// The city's own technical map against the national DTM of ČÚZK (IS DMVS, app/public/dmvs.js): every
 // sampled cut of a city (evaluation/<city>/data/samples.json) is derived twice as a click does it (run_brno.mjs),
 // once with the city's surfaces and once with the DMVS surfaces of the same envelope; OSM, the lines and the
 // parking stay the same. Both profiles, the times of the surfaces requests and the measures go to
@@ -6,7 +6,7 @@
 //   CITY=jihlava node evaluation/compare_dmvs.mjs [from] [to]
 //   CITY=jihlava node evaluation/compare_dmvs.mjs --summary
 // CITY=praha: the Prague sample (evaluation/data/samples.json) with IPR's answers taken ONLY from the local
-// server's cache (pilot/cache, filled by earlier runs); a cut without a cached answer is skipped. IPR is
+// server's cache (app/cache, filled by earlier runs); a cut without a cached answer is skipped. IPR is
 // never asked (every request to gs-pub.praha.eu fails here on purpose).
 import fs from "node:fs/promises";
 import path from "node:path";
@@ -16,7 +16,7 @@ const ROOT = path.dirname(new URL(import.meta.url).pathname);
 const CITY = process.env.CITY || "brno";
 const PRAHA = CITY === "praha";
 const DATA = PRAHA ? path.join(ROOT, "data") : path.join(ROOT, CITY, "data");
-const PILOT = path.join(ROOT, "..", "pilot");
+const PILOT = path.join(ROOT, "..", "app");
 const PILOT_DATA = path.join(PILOT, "data", CITY);
 const OUT = path.join(PRAHA ? path.join(ROOT, "praha", "data") : DATA, "dmvs");
 globalThis.PROFILY_CITY = CITY;
@@ -38,7 +38,7 @@ globalThis.fetch = async (url, opts) => {
     if (!kind) return missing;
     try { return reply(await fs.readFile(cacheFile(kind, q.searchParams.get("bbox")), "utf8")); } catch { return { ...missing, status: 599 }; }
   }
-  // "../data/…" (a city page) and "data/…": the shared files in pilot/data, else the city's own folder.
+  // "../data/…" (a city page) and "data/…": the shared files in app/data, else the city's own folder.
   const rel = u.startsWith("../data/") ? u.slice(8) : u.startsWith("data/") ? u.slice(5) : null;
   if (rel === null) return webFetch(url, opts);
   for (const file of [path.join(PILOT, "data", rel), path.join(PILOT_DATA, rel)]) {
@@ -47,11 +47,11 @@ globalThis.fetch = async (url, opts) => {
   return missing;
 };
 
-const D = await import("../pilot/public/derive.js");
-const S = await import("../pilot/public/sources.js");
-const G = await import("../pilot/public/gis.js");
-const { surfaces: dmvsSurfaces } = await import("../pilot/public/dmvs.js");
-const { MTVU_LABELS } = await import("../pilot/public/city.js");
+const D = await import("../app/public/derive.js");
+const S = await import("../app/public/sources.js");
+const G = await import("../app/public/gis.js");
+const { surfaces: dmvsSurfaces } = await import("../app/public/dmvs.js");
+const { MTVU_LABELS } = await import("../app/public/city.js");
 const { localFrame, nearestStreet, awayFromJunctions, centerOnStreet, mtvuPolygons, trackLines, techLines, esriPolygons, deriveProfile, MAX_REACH } = D;
 const HALF = 40;
 

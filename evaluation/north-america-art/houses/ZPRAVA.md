@@ -1,6 +1,6 @@
 # Vzhledy domů Severní Ameriky (Bára 25. 11. 2026)
 
-Specifikace `docs/house-types-north-america.md`, kresba `pilot/public/houses-america.js`, výběr `house-looks.js`
+Specifikace `docs/house-types-north-america.md`, kresba `app/public/houses-america.js`, výběr `house-looks.js`
 `northAmericaLook` (volá `countries/US.js`, Kanada bude volat totéž). Přehled `prehled.png` (`render.mjs`), jedno měřítko,
 vespod čtyři evropské. Stejná kresba jako ostatní domy, skutečná výška, měřítko beze změny.
 

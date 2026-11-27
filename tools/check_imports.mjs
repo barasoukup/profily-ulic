@@ -9,8 +9,8 @@ import { scriptFiles } from "./check_syntax.mjs";
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 // Files of today's cycles (the smallest one: its modules, sorted, joined by " > "). Only ever shortened.
 export const ALLOWED_CYCLES = [
-  "pilot/public/dmvs.js > pilot/public/dtmwfs.js",
-  "pilot/public/search-at.js > pilot/public/search-sk.js > pilot/public/search.js", // the registry of searches (plan step 8) ends it
+  "app/public/dmvs.js > app/public/dtmwfs.js",
+  "app/public/search-at.js > app/public/search-sk.js > app/public/search.js", // the registry of searches (plan step 8) ends it
 ];
 
 const IMPORT_RE = /^\s*(?:import|export)\s[^;'"]*?from\s*["']([^"']+)["']|^\s*import\s*["']([^"']+)["']/gm;

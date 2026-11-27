@@ -1,13 +1,13 @@
-// The Slovak module (pilot/public/towns/slovensko.js, the review of Slovakia 16. 11. 2026): the towns' passports and
+// The Slovak module (app/public/towns/slovensko.js, the review of Slovakia 16. 11. 2026): the towns' passports and
 // map lines by place, ZBGIS's widths and areas, the towns' illustrations; no network (PROFILY_SK, no fetch).
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
 
 globalThis.PROFILY_SK = { pasport: "0", zbgis: "0", hrany: "0" };
-const C = await import("../pilot/public/city.js");
-const SK = await import("../pilot/public/towns/slovensko.js");
-const read = (f) => fs.readFileSync(new URL(`../pilot/public/${f}`, import.meta.url), "utf8");
+const C = await import("../app/public/city.js");
+const SK = await import("../app/public/towns/slovensko.js");
+const read = (f) => fs.readFileSync(new URL(`../app/public/${f}`, import.meta.url), "utf8");
 
 test("pasporty měst: Bratislava, Žilina, Banská Bystrica, Košice, Zvolen jen na přání; Prešov jen stromy (vrstvy uzavřel)", () => {
   assert.deepEqual(Object.keys(SK.SK_TOWNS).sort(), ["bratislava", "bystrica", "kosice", "presov", "zilina", "zvolen"]);
@@ -37,17 +37,17 @@ test("ZBGIS: šířka silnice z osy, parkoviště a tráva jako plochy, ostatní
 });
 
 test("ilustrace slovenských měst: každý soubor existuje", async () => {
-  const SK = (await import("../pilot/public/countries/SK.js")).default;
+  const SK = (await import("../app/public/countries/SK.js")).default;
   for (const [town, map] of Object.entries(SK.art)) {
     for (const v of Object.values(map)) {
-      const f = new URL(`../pilot/public/${town}/${v}.svg`, import.meta.url);
+      const f = new URL(`../app/public/${town}/${v}.svg`, import.meta.url);
       assert.ok(fs.existsSync(f), `${town}: ${v}`);
     }
   }
 });
 
 test("Slovensko: pravidla podle slovenských předpisů (chodník 1,3 m, cyklopruh 1,75 m)", async () => {
-  const { checkRules } = await import("../pilot/public/rules.js");
+  const { checkRules } = await import("../app/public/rules.js");
   C.setCity("slovensko");
   try {
     const lv = (segments) => checkRules({ segments }).map((f) => `${f.i}:${f.level}`);

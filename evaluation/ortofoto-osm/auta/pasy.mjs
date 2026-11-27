@@ -1,7 +1,7 @@
 // The ortho band ±3.5 m about the estimate's kerb, per side, where the loose car rule fires (local streets): rgb dumps
 import { cuts, osmAround, stripOf } from "/Users/barasoukupova/streetdesign/.claude/worktrees/ai-segmentation/evaluation/ortofoto-osm/lib.mjs";
-import { orthoOsmPolys, P } from "/Users/barasoukupova/streetdesign/.claude/worktrees/ai-segmentation/pilot/public/ortho-osm.js";
-import { localFrame } from "/Users/barasoukupova/streetdesign/.claude/worktrees/ai-segmentation/pilot/public/derive.js";
+import { orthoOsmPolys, P } from "/Users/barasoukupova/streetdesign/.claude/worktrees/ai-segmentation/app/public/ortho-osm.js";
+import { localFrame } from "/Users/barasoukupova/streetdesign/.claude/worktrees/ai-segmentation/app/public/derive.js";
 import fs from "node:fs";
 const S = "/private/tmp/claude-501/-Users-barasoukupova-streetdesign/5069a7d2-4c81-463c-984f-c185f360f063/scratchpad";
 const rows = JSON.parse(fs.readFileSync(`${S}/cars.json`, "utf8"));

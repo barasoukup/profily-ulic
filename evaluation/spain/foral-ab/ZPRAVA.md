@@ -2,7 +2,7 @@
 
 Co se zkoušelo: v Navaře a ve třech baskických provinciích (Álava, Bizkaia, Gipuzkoa) se aplikace dosud na budovy
 neptala nikoho (Catastro tam nic nemá), dům se kreslil jen z OSM. Nově se ptá foralního katastru provincie
-(`pilot/public/towns/spain-foral.js`, INSPIRE WFS, jeden dotaz na fasádu, bod 4 m uvnitř domu jako v aplikaci).
+(`app/public/towns/spain-foral.js`, INSPIRE WFS, jeden dotaz na fasádu, bod 4 m uvnitř domu jako v aplikaci).
 A = `?foral=0` (stav dřív: jen OSM), B = `?foral=1`. Vzhled domu je `profile.js buildingStyle` se stejným slučováním
 údajů jako v `app.js`.
 

@@ -5,8 +5,8 @@
 //   node evaluation/slovensko/posun-ba.mjs [lon0,lat0,lon1,lat1]
 import fs from "node:fs";
 import path from "node:path";
-import { PackSet } from "../../pilot/public/osmpack.js";
-import { mergePieces, TILE } from "../../pilot/public/osmtile.js";
+import { PackSet } from "../../app/public/osmpack.js";
+import { mergePieces, TILE } from "../../app/public/osmtile.js";
 
 const BOX = (process.argv[2] || "17.095,48.135,17.135,48.160").split(",").map(Number);
 const URL0 = "https://services8.arcgis.com/pRlN1m0su5BYaFAS/arcgis/rest/services/Vozovka_technick%C3%BD_stav_pod%C4%BEa_OSK_zobrazenie/FeatureServer/0/query";
@@ -24,7 +24,7 @@ const lat0 = (BOX[1] + BOX[3]) / 2, kx = 111320 * Math.cos((lat0 * Math.PI) / 18
 const xy = ([lon, lat]) => [(lon - BOX[0]) * kx, (lat - BOX[1]) * ky];
 const rings = feats.flatMap((f) => (f.geometry?.rings || []).map((r) => r.map(xy)));
 
-const PACK = path.join(path.dirname(new URL(import.meta.url).pathname), "../../pilot/data/osm-pack/");
+const PACK = path.join(path.dirname(new URL(import.meta.url).pathname), "../../app/data/osm-pack/");
 const fileFetch = async (url, opts = {}) => {
   const buf = fs.readFileSync(path.join(PACK, String(url).replace(/^pack:\/\/\.?\/?/, "")));
   const m = /bytes=(\d+)-(\d+)/.exec(opts.headers?.Range || "");

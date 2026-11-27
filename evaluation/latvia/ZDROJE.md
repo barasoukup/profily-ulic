@@ -105,7 +105,7 @@ uličního prostoru (uliční čáry `Sarkanas_linijas`), cyklotrasy a zóny ryc
 ## 6. Zvláštnosti
 
 - **Pravostranný provoz** (CSN Nr. 279 bod 114: stání „ceļa labajā pusē“).
-- **Jazyk** lotyština (`lv`, soubor `pilot/public/lv.js` už existuje); ruština je menšinový jazyk, nepřidávat. Jména ulic
+- **Jazyk** lotyština (`lv`, soubor `app/public/lv.js` už existuje); ruština je menšinový jazyk, nepřidávat. Jména ulic
   v OSM a katastru jsou lotyšsky s diakritikou (ā, č, ē, ģ, ī, ķ, ļ, ņ, š, ū, ž).
 - **Typy domů v ulicích** (podle vrstev GEO RĪGA, ne z fotek; čtvrti a styly jsou obecná znalost, **neověřeno**):
   středověká a hanzovní Vecrīga; činžáky 1865–1920 včetně **secese** (Alberta iela); **dřevěné domy** 19. a počátku

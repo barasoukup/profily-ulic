@@ -36,7 +36,7 @@ function limitsNL(s, segs, i) {
   }
 }
 
-// The signs of the state NL (pilot/public/signs-NL/, README there; RVV 1990, Bijlage 1, Wikimedia Commons, Dutch
+// The signs of the state NL (app/public/signs-NL/, README there; RVV 1990, Bijlage 1, Wikimedia Commons, Dutch
 // official works in the public domain, art. 11 Auteurswet). The plates (onderborden) are not drawn: a sign with one is
 // left out (alone it would forbid what the plate allows). The Netherlands has no sign for a footway shared with
 // cyclists (C 9a, C 10a), a cycle street or a shared zone; a cycle lane is a marking.

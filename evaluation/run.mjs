@@ -1,12 +1,12 @@
 // Runs the pilot's profile derivation (snapshot in evaluation/snapshot) on every sampled cut,
 // the same way app.js cutAt() does after a click, and downloads a leaf-off IPR orthophoto
-// around each cut. Needs the pilot server running (node pilot/server.mjs) for its data APIs.
+// around each cut. Needs the app server running (node app/server.mjs) for its data APIs.
 // Usage: node evaluation/run.mjs [from] [to]
 import fs from "node:fs/promises";
 import path from "node:path";
 // DERIVE=pilot uses the live pilot code (results in data/results2, ortho in data/ortho2).
 const LIVE = process.env.DERIVE === "pilot";
-const D = await import(LIVE ? "../pilot/public/derive.js" : "./snapshot/derive.js");
+const D = await import(LIVE ? "../app/public/derive.js" : "./snapshot/derive.js");
 const { localFrame, nearestStreet, awayFromEnds, mtvuPolygons, trackLines, techLines, esriPolygons, deriveProfile, MAX_REACH } = D;
 // OUT overrides the results folder (the orthophotos are reused, so a re-run downloads none).
 const OUT = process.env.OUT || (LIVE ? "results2" : "results"), ORTHO_DIR = process.env.ORTHO_DIR || (LIVE ? "ortho2" : "ortho");
@@ -30,11 +30,11 @@ async function getJSON(url) {
   }
 }
 
-// The app's sources.vyvoj() on the local tiles (pilot/data/vyvoj, built by tools/build_vyvoj.mjs).
+// The app's sources.vyvoj() on the local tiles (app/data/vyvoj, built by tools/build_vyvoj.mjs).
 async function vyvoj(lat, lon) {
   const k = `${Math.floor(lon / 0.01)}_${Math.floor(lat / 0.01)}`;
   let polys;
-  try { polys = JSON.parse(await fs.readFile(path.join(ROOT, "..", "pilot", "data", "vyvoj", `${k}.json`), "utf8")); } catch { return undefined; }
+  try { polys = JSON.parse(await fs.readFile(path.join(ROOT, "..", "app", "data", "vyvoj", `${k}.json`), "utf8")); } catch { return undefined; }
   const inside = (rings, x, y) => { let c = false; for (const r of rings) for (let i = 0, j = r.length - 1; i < r.length; j = i++) { const [xi, yi] = r[i], [xj, yj] = r[j]; if (yi > y !== yj > y && x < ((xj - xi) * (y - yi)) / (yj - yi) + xi) c = !c; } return c; };
   let year = 2020;
   for (const [rok, rings] of polys) if (rok < year && inside(rings, lon, lat)) year = rok;
@@ -75,7 +75,7 @@ async function run(s) {
   const bbox = [Math.min(...lons) - pad, Math.min(...lats) - pad, Math.max(...lons) + pad, Math.max(...lats) + pad].join(",");
   const [m, k, pk, z] = await Promise.allSettled([
     getJSON(`${API}/api/mtvu?bbox=${bbox}`), getJSON(`${API}/api/linie?bbox=${bbox}`), getJSON(`${API}/api/parkovani?bbox=${bbox}`),
-    LIVE ? fs.readFile(path.join(ROOT, "..", "pilot", "data", "zps.json"), "utf8").then(JSON.parse) : Promise.reject(new Error("no zps")),
+    LIVE ? fs.readFile(path.join(ROOT, "..", "app", "data", "zps.json"), "utf8").then(JSON.parse) : Promise.reject(new Error("no zps")),
   ]);
   const warn = [];
   const polys = m.status === "fulfilled" ? mtvuPolygons(m.value, frame) : (warn.push("MTVU " + m.reason), []);

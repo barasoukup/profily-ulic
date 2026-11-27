@@ -1,7 +1,7 @@
 # DTM krajů z WFS místo obrázků DMVS, ortofoto krajů (10. 11. 2026)
 
 **Výsledek: připojeno.** V devíti krajích s DTM od T-MAPY bere `dmvs.js` plochy jako polygony z WFS kraje
-(`pilot/public/dtmwfs.js`), jinde a při chybě zůstávají obrázky DMVS. Ploty a zdi z WFS připojené nejsou.
+(`app/public/dtmwfs.js`), jinde a při chybě zůstávají obrázky DMVS. Ploty a zdi z WFS připojené nejsou.
 Ortofoto krajů nic nového nepřineslo.
 
 ## WFS podle krajů

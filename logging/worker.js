@@ -1,9 +1,9 @@
-// Cloudflare Worker for Profily ulic: takes the events the page sends (pilot/public/log.js) and keeps them
+// Cloudflare Worker for Profily ulic: takes the events the page sends (app/public/log.js) and keeps them
 // in a D1 database (logging/schema.sql). The page sends them with navigator.sendBeacon as text, so the
 // browser needs no preflight and the click never waits for it.
 //   POST /log      one event as JSON, from the allowed origins only; answers 204
 //   GET  /export   all events as CSV (or ?since=2026-11-01), with the header "Authorization: Bearer <EXPORT_TOKEN>"
-//   POST /contact  a message from the About dialog (pilot/public/about.js), kept in the table contacts; answers 204
+//   POST /contact  a message from the About dialog (app/public/about.js), kept in the table contacts; answers 204
 // Setup: logging/README.md.
 const KINDS = new Set(["rez", "export", "ulozeni", "sdileni", "navrh", "porovnat", "oprava", "hledani", "upravy", "hlaseni", "bez_ulice"]);
 // An edit record carries two short profiles (log.js shortProfile), a report a visitor's text and the profile.

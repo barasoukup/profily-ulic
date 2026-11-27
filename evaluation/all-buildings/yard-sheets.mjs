@@ -1,5 +1,5 @@
 // The judges' sheets of yard-sample.mjs: the photo and the distinct drawings of the three arms (1, 2, 3 from the left) in a drawn order.
-//   PUB=pilot/public RENDER=<render.mjs of north-america-art, its ROOT = PUB> node yard-sheets.mjs <photos> <out> <vzorek4…>
+//   PUB=app/public RENDER=<render.mjs of north-america-art, its ROOT = PUB> node yard-sheets.mjs <photos> <out> <vzorek4…>
 import fs from "node:fs";
 import path from "node:path";
 import { execFileSync } from "node:child_process";

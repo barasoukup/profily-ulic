@@ -1,6 +1,6 @@
 """The orthophoto and the label raster of each patch (sample.mjs): 320 x 320 px of 20 cm, Web Mercator square.
 
-The same orthophotos the app reads (pilot/public/lanes-ortho.js): IPR in Prague, Brno's 2025 tiles (with their
+The same orthophotos the app reads (app/public/lanes-ortho.js): IPR in Prague, Brno's 2025 tiles (with their
 shift), basemap.at in Vienna, the DOP 20 of Berlin and Hamburg. One request (or a few tiles) per patch, a pause
 between patches, nothing fetched twice.
     python evaluation/ai-segmentation/fetch_ortho.py praha

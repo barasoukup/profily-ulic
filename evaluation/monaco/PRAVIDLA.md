@@ -1,6 +1,6 @@
 # Monako (MC): pravidla pro profily ulic
 
-Rešerše 23. 11. 2026 pro přidání státu MC. Srovnání s Francií (`pilot/public/countries/FR.js`, `evaluation/france/NORMY.md`).
+Rešerše 23. 11. 2026 pro přidání státu MC. Srovnání s Francií (`app/public/countries/FR.js`, `evaluation/france/NORMY.md`).
 Pouze zdroje, které jsem opravdu otevřel; čísla nevymýšlím. **Závazné** = zákon/ordonnance, **doporučení** = příručka.
 Dotazy: asi 10 na legimonaco.mc a 1 na IGN, s pauzami.
 

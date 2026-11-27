@@ -3,7 +3,7 @@
 Opakování po nepřátelské recenzi (`../RECENZE` ve scratchpadu, body 1, 3, 6, 7): první A/B (`../ab/`) nebylo slepé, výhry
 byly hlavně pěšiny a velké třídy a vzorek byl jen z vnitřního města.
 
-## Co se změnilo v kódu (`pilot/public/towns/finland.js`)
+## Co se změnilo v kódu (`app/public/towns/finland.js`)
 
 - **Kdy se mapa použije** (bod 1): jen když pod středem řezu (do 3 m) leží díl registru správného druhu, jako `hasStreet`
   ve Vilniusu: pod ulicí pro auta vozovka, pod pěšinou či cyklostezkou vozovka, chodník nebo cyklostezka. Dřív stačila

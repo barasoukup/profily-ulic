@@ -3,7 +3,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { sign, wilson } from "../canada/review/stat.mjs";
-import { floorsFromHeight, floorsOld } from "../../pilot/public/floors.js";
+import { floorsFromHeight, floorsOld } from "../../app/public/floors.js";
 const HERE = path.dirname(new URL(import.meta.url).pathname), R = process.argv[2];
 const L = (fs_) => new Map(fs_.flatMap((f) => fs.readFileSync(path.join(R, f), "utf8").trim().split("\n").map((l) => JSON.parse(l))).map((r) => [r.id, r]));
 const A = L(["A1.jsonl", "A2.jsonl"]), B = L(["B1.jsonl", "B2.jsonl"]);

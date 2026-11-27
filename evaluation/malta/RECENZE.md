@@ -2,7 +2,7 @@
 
 Rozsah: `countries/MT.js`, `towns/malta.js`, `signs-MT/`, `evaluation/malta/`, jízda vlevo v `derive.js`
 (`leftHand`, `mirrorLeftHand`), `lanes-ortho.js` (`MT_ORTHO`), `search-photon.js`, `credits.js`, `city.js`,
-`index.html`, `LICENCE-A-ZDROJE.md`, `pilot/README.md`, `tests/malta.test.js`, `staty.json`. HEAD `84140de` (větev
+`index.html`, `LICENCE-A-ZDROJE.md`, `app/README.md`, `tests/malta.test.js`, `staty.json`. HEAD `84140de` (větev
 `estonia`). Žádný existující soubor jsem neměnil, nic necommitoval. Nálezy o jízdě vlevo jsou společné s Kyprem
 (`evaluation/cyprus/RECENZE.md`), tady jen stručně.
 

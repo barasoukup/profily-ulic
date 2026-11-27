@@ -64,7 +64,7 @@ const BRNO = {
   "transit-shelter-green-left": "transit-shelter-green-left", "transit-shelter-green-right": "transit-shelter-green-right",
   "swale-plants": "pruleh-rostliny", "reeds-left": "rakos-left", "reeds-right": "rakos-right",
 };
-// Every other city brings its own map of illustrations (city.js artMap, files in pilot/public/<art>/).
+// Every other city brings its own map of illustrations (city.js artMap, files in app/public/<art>/).
 const CITY_ART = { praha: PRAHA, brno: BRNO };
 for (const id of CITY_IDS) { const c = cityById(id); if (c.artMap) CITY_ART[c.art] = c.artMap; }
 // The states' sets of their cities (countries/<ISO>.js art: the Slovak and Austrian cities' vehicles, city.js art).

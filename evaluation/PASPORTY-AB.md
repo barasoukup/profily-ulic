@@ -1,6 +1,6 @@
 # A/B pasportů měst (připraveno 15. 11. 2026, spustit po odstávce DMVS)
 
-Zdroje našlo vlákno „Slovensko“ (13.–15. 11. 2026). Od 16. 11. 2026 jsou v aplikaci (`pilot/public/towns/pasporty.js`,
+Zdroje našlo vlákno „Slovensko“ (13.–15. 11. 2026). Od 16. 11. 2026 jsou v aplikaci (`app/public/towns/pasporty.js`,
 Bára: do konce odstávky je to lepší než odhad), test je dodatečný: „city“ je aplikace s pasportem města (jinde
 technická mapa ČÚZK, jako moduly Karviné a Třebíče), varianta `variants/bez-pasportu-mest.mjs` aplikace bez něj
 (jen technická mapa ČÚZK, RÚIAN, OSM). Kde pasport nevyhraje, z `pasporty.js` vyřadit. Technická mapa ČÚZK (IS DMVS i DTM krajů) má od 12. do 18. 11. 2026

@@ -53,7 +53,7 @@ function limitsIT(s, segs = [], i = -1) {
   }
 }
 
-// The signs of the state IT (pilot/public/signs-IT/, README there; the Regolamento of the Codice della strada, D.P.R.
+// The signs of the state IT (app/public/signs-IT/, README there; the Regolamento of the Codice della strada, D.P.R.
 // 495/1992, figures II.x; Wikimedia Commons). Texts of official acts are not protected (art. 5 of L. 633/1941), the
 // figures read as part of them (NORMY.md C). Italy has no sign of a shared zone, a cycle street or a cycle zone; a
 // reserved bus lane is a panel "Uso corsie" (II.337–340) Commons does not draw: no sign.

@@ -10,7 +10,7 @@ import * as espree from "espree";
 import { STATE_CONDITIONS, UNUSED_EXPORTS, LONG_FILES, LONG_FUNCTIONS } from "./architecture-allowed.js";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const PUB = path.join(root, "pilot/public");
+const PUB = path.join(root, "app/public");
 const MAX_FILE = 1000, MAX_FUNCTION = 100;
 const rel = (f) => path.relative(root, f);
 
@@ -68,7 +68,7 @@ test("a condition on a state only in countries/ (the exceptions only fewer)", ()
 // and the log Worker counts as an importer; a namespace (import * as, import(), export * from) uses all of a module.
 function usedAndExports() {
   const exports = new Map(), used = new Map(), all = new Map();
-  const consumers = [...appFiles, ...["pilot", "tools", "tests", "evaluation", "logging"].flatMap((d) => (fs.existsSync(path.join(root, d)) ? walk(path.join(root, d), [], ["node_modules", "data", "leaflet"]) : []))];
+  const consumers = [...appFiles, ...["app", "tools", "tests", "evaluation", "logging"].flatMap((d) => (fs.existsSync(path.join(root, d)) ? walk(path.join(root, d), [], ["node_modules", "data", "leaflet"]) : []))];
   const resolve = (from, spec) => {
     if (typeof spec !== "string" || !spec.startsWith(".")) return null;
     const p = path.resolve(path.dirname(from), spec);

@@ -6,8 +6,8 @@
 //   node evaluation/ai-segmentation/target-truth.mjs
 import fs from "node:fs";
 import { setCity, sources } from "./labels-lib.mjs";
-const { SK_TOWNS } = await import("../../pilot/public/towns/slovensko.js");
-const { DE_TOWNS } = await import("../../pilot/public/towns/germany.js");
+const { SK_TOWNS } = await import("../../app/public/towns/slovensko.js");
+const { DE_TOWNS } = await import("../../app/public/towns/germany.js");
 const { hintsOf } = await import("./osm.mjs");
 
 const DATA = "/Users/barasoukupova/streetdesign/data/ai-seg";

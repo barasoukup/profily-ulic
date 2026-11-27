@@ -1,5 +1,5 @@
 // The collector of the measurements of 26. 11. 2026 (bridge-water/blind, pasporty-blind, usa/sf/width), run in the
-// app's page (server with EVAL_SAVE=1, copied to pilot/public/zz-m1126.js, git ignores it):
+// app's page (server with EVAL_SAVE=1, copied to app/public/zz-m1126.js, git ignores it):
 //   (await import("/zz-m1126.js")).run(name, points, variants, budgetMs)
 // Every point is cut once per variant at the same place: the first variant places it (a click at lat, lon, or the
 // point's own bearing and way when it has them), the others reuse that cut's lat, lon, bearing and way. A variant is

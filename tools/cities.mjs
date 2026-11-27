@@ -2,11 +2,11 @@
 // their page may ask (CSP), credits, and for a town the box of its OSM extract (cut from Geofabrik's
 // Czech Republic with osmium, as the deploy does). Read by tools/city_site.mjs, the local server, the
 // deploy workflow (node tools/cities.mjs towns) and tools/drop_city_links.mjs.
-// The app's own texts for a city are in pilot/public/city.js, a town's data sources in pilot/public/towns/.
+// The app's own texts for a city are in app/public/city.js, a town's data sources in app/public/towns/.
 
 const OSM_CREDIT = `© přispěvatelé <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> (ODbL)`;
 const RUIAN_CREDIT = "budovy RÚIAN © ČÚZK (CC BY 4.0)";
-// The regions whose DTM answers WFS (pilot/public/dtmwfs.js REGIONS).
+// The regions whose DTM answers WFS (app/public/dtmwfs.js REGIONS).
 const DTM_WFS = ["https://jck.krajdtm.cz", "https://pak.krajdtm.cz", "https://vys.krajdtm.cz", "https://msk.krajdtm.cz", "https://khk.krajdtm.cz",
   "https://dtm.jmk.cz", "https://dtm.kraj-lbc.cz", "https://dtm.kr-karlovarsky.cz", "https://dtm.zlinskykraj.cz"];
 

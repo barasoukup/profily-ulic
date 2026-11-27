@@ -8,10 +8,10 @@ const SP = new URL("data/cache/", import.meta.url).pathname;
 fs.mkdirSync(SP, { recursive: true });
 globalThis.PROFILY_US = {}; globalThis.PROFILY_CA = {};
 const { osmAt } = await import(W + "evaluation/kliky/osm.mjs");
-const usa = await import(W + "pilot/public/towns/usa.js");
-const ca = await import(W + "pilot/public/towns/canada.js");
-const P = await import(W + "pilot/public/towns/planimetrics.js");
-const { cutOfBox } = await import(W + "pilot/public/towns/belgium.js");
+const usa = await import(W + "app/public/towns/usa.js");
+const ca = await import(W + "app/public/towns/canada.js");
+const P = await import(W + "app/public/towns/planimetrics.js");
+const { cutOfBox } = await import(W + "app/public/towns/belgium.js");
 const crypto = await import("node:crypto");
 const sample = JSON.parse(fs.readFileSync(W + "evaluation/canada/review/sample.json", "utf8"));
 async function get(url) {

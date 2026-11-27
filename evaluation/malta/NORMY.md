@@ -212,7 +212,7 @@ PD-self), z potřebných jen II.A6, II.B5 a II.D1.
 
 ### C3. Mapování klíčů aplikace
 
-Viz `pilot/public/signs-MT/README.md` (tabulka klíč → značka → soubor) a `evaluation/malta/signs-licence.json`.
+Viz `app/public/signs-MT/README.md` (tabulka klíč → značka → soubor) a `evaluation/malta/signs-licence.json`.
 Bez kresby: dálnice a silnice pro motorová vozidla (Malta je nemá), obytná a sdílená zóna (předpis je nezná), stezka
 pro chodce (c7a; [HC] zmiňuje „Footway“, vzor jsem nenašla), placené stání, vyhrazené stání (Blue Badge III.B7 na
 Commons není).

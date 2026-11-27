@@ -2,7 +2,7 @@
 
 Rozsah: `countries/MC.js` (nad `FR.js`), `towns/monaco.js`, `evaluation/monaco/PRAVIDLA.md`, `tools/monaco-border.json`,
 `tools/build_staty.mjs`, `staty.json`, části `app.js`, `signs.js`, `search-photon.js`, `index.html`, `city.js`,
-`tests/monaco.test.js`, `LICENCE-A-ZDROJE.md`, `pilot/README.md`. Větev `estonia`, HEAD `84140de`. Žádný soubor kromě
+`tests/monaco.test.js`, `LICENCE-A-ZDROJE.md`, `app/README.md`. Větev `estonia`, HEAD `84140de`. Žádný soubor kromě
 této zprávy jsem neměnil.
 
 Co jsem ověřil:

@@ -55,7 +55,7 @@ function limitsAT(s, segs, i) {
 }
 
 
-// The signs of the state AT (pilot/public/signs-AT/, README there; StVO 1960 § 52–53, Wikimedia Commons, Austrian
+// The signs of the state AT (app/public/signs-AT/, README there; StVO 1960 § 52–53, Wikimedia Commons, Austrian
 // official works): the label's number and the file. Austria has no sign for parking on the sidewalk, a reserved
 // space or a cycle lane (markings), nor a one-way sign facing the driver (Einbahnstraße is a plate along the street), so those are not drawn.
 const AT_CODE = { b1: "§ 52 Z 1", b11: "§ 52 Z 6c", b8: "§ 52 Z 8c", b30: "§ 52 Z 14b", b20a: "§ 52 Z 10a", b28: "§ 52 Z 13b",
@@ -74,7 +74,7 @@ function signFile(s) {
 }
 const signLabel = (x, own, label) => (AT_CODE[x.k] ? `${AT_CODE[x.k]} ${label.replace(CZ_CODE, "")}` : label);
 
-// Austria's towns (Bára 16. 11. 2026; pilot/public/wien, graz, linz, drawn in rounds of a drawer and a critic): Vienna's
+// Austria's towns (Bára 16. 11. 2026; app/public/wien, graz, linz, drawn in rounds of a drawer and a critic): Vienna's
 // Flexity and bus of Wiener Linien, the trams of Graz and Linz, elsewhere the neutral vehicles of generic/; the Austrian stop post
 // (the round H sign, wien/oznacnik-*) everywhere; the furniture the Czech set's.
 const atPosts = (dir) => Object.fromEntries(["stop-post-left", "stop-post-right", "stop-post-tram-left", "stop-post-tram-right",

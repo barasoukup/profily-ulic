@@ -8,11 +8,11 @@
 // Politely: a pause of 1.5 s after each request to a cadastre, 0.3 s after Mapillary.
 //   node evaluation/spain/foral-ab/photo-sample.mjs → vysledky/foto.json, data/foto2/<id>.jpg
 import fs from "node:fs";
-import { buildingAt, localFrame } from "../../../pilot/public/derive.js";
-import { setCity } from "../../../pilot/public/city.js";
-import { buildingStyle } from "../../../pilot/public/profile.js";
-import { sources } from "../../../pilot/public/towns/spain.js";
-import { FORAL } from "../../../pilot/public/towns/spain-foral.js";
+import { buildingAt, localFrame } from "../../../app/public/derive.js";
+import { setCity } from "../../../app/public/city.js";
+import { buildingStyle } from "../../../app/public/profile.js";
+import { sources } from "../../../app/public/towns/spain.js";
+import { FORAL } from "../../../app/public/towns/spain-foral.js";
 
 setCity("spain");
 const HERE = new URL("./", import.meta.url), OUT = new URL("data/foto2/", HERE);

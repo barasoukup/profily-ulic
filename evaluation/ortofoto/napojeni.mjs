@@ -12,7 +12,7 @@
 //   CITY=praha node evaluation/ortofoto/napojeni.mjs   → data/<city>/napojeni.json, printed summary
 import fs from "node:fs/promises";
 import path from "node:path";
-import { decodePng } from "../../pilot/public/dmvs.js";
+import { decodePng } from "../../app/public/dmvs.js";
 import { ALL, strip, median, layout, align } from "./run.mjs";
 
 const ROOT = path.dirname(new URL(import.meta.url).pathname);

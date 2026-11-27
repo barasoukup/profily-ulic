@@ -6,7 +6,7 @@ import fs from "node:fs/promises";
 import path from "node:path";
 const CITY = process.env.CITY || "brno"; // CITY=jihlava (or another town): that town's sample
 globalThis.PROFILY_CITY = CITY;
-const { TYPES } = await import("../pilot/public/types.js");
+const { TYPES } = await import("../app/public/types.js");
 
 const ROOT = path.dirname(new URL(import.meta.url).pathname);
 const DATA = path.join(ROOT, CITY, "data");

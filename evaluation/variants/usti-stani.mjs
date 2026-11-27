@@ -6,7 +6,7 @@
 // of the centre. The service turns S-JTSK into WGS 84 by its default about 12 m off OSM: answers with
 // datumTransformation 1623 (as Jihlava, Opava, Plzeň). derive.js reads the orientation from the polygon's depth, as for Opava's stalls.
 // A/B: CITY=usti-stani VARIANTS=city,usti-stani CACHE=disk node evaluation/ab.mjs (city = the app now).
-import { query, envelope } from "../../pilot/public/gis.js";
+import { query, envelope } from "../../app/public/gis.js";
 
 const UL_PARKING = "https://mapy.usti.cz/server/rest/services/Doprava/Parkovaci_zony_UL/MapServer/3/query";
 

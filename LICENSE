@@ -23,7 +23,7 @@ SOFTWARE.
 ---
 
 This licence covers the code of this repository. It does not cover:
-- the Streetmix illustrations in pilot/public/streetmix/ (© Streetmix, CC BY-SA 4.0,
-  see pilot/public/streetmix/LICENSE);
+- the Streetmix illustrations in app/public/streetmix/ (© Streetmix, CC BY-SA 4.0,
+  see app/public/streetmix/LICENSE);
 - data from third parties the app reads or builds (OpenStreetMap, ODbL 1.0;
   IPR Praha / TSK, CC BY 4.0; ČÚZK). See LICENCE-A-ZDROJE.md.

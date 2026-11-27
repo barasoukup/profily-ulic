@@ -1,15 +1,15 @@
 # Otevřená data Prahy a body technické mapy (10. 11. 2026)
 
-Každý zdroj prošel testem A/B nad ortofotem (`evaluation/ab.mjs`, pravidlo z `pilot/README.md`): základ je
+Každý zdroj prošel testem A/B nad ortofotem (`evaluation/ab.mjs`, pravidlo z `app/README.md`): základ je
 `praha-zaklad` (Praha bez nových zdrojů), varianty jsou v `evaluation/variants/praha-*.mjs`. Na vzorku 100 řezů
-(`evaluation/data/samples.json`) se odpovědi IPR (MTVU, linie, parkování) braly z cache `pilot/cache`. Chybějící
+(`evaluation/data/samples.json`) se odpovědi IPR (MTVU, linie, parkování) braly z cache `app/cache`. Chybějící
 odpovědi pro 43 řezů a body vrstvy 9 pro všechny řezy doplnil `fill_cache.mjs` přes `polite.mjs` (285 dotazů,
 jeden po druhém, 300 ms od sebe). Dva doplňkové vzorky jsou cílené na místa, kde se zdroj může projevit:
 `data/samples-zakaz.json` (30 řezů, 240 dotazů) a `data/samples-useky.json` (30 řezů). Do `review.md` párů
 `evaluation/praha/data/ab-*` jsem doplnila verdikty. `ITEMS=1` počítá jako rozdíl i předměty, stromořadí a stání.
 
 Statická data stahuje `tools/build_praha_opendata.mjs` jednou při nasazení z Hub API opendata.geoportalpraha.cz.
-Odkazy bere z DCAT feedu, když feed neodpoví, ze známých id. Výstup jsou dlaždice 0,01° v `pilot/data/praha/opendata`
+Odkazy bere z DCAT feedu, když feed neodpoví, ze známých id. Výstup jsou dlaždice 0,01° v `app/data/praha/opendata`
 (na webu `data/praha/opendata`): 863 souborů, 5,3 MiB, největší 65 kB. Jedna dlaždice nese všechny čtyři sady,
 takže řez načte jeden až čtyři soubory, souběžně s ostatními dotazy.
 
