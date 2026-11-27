@@ -79,7 +79,10 @@ async function main() {
       const name = label.textContent.trim();
       label.querySelector("input").click();
       await settle();
-      row.layers[name] = measure();
+      let m = measure();
+      // Nothing but blank tiles: a layer that decides its tiles after its own list loads (the German Länder): once more.
+      if (m.n === m.blank) { await sleep(4000); await settle(); m = measure(); }
+      row.layers[name] = m;
       await sleep(PAUSE);
     }
     const over = [...document.querySelectorAll(".leaflet-control-layers-overlays label")].find((l) => /Linie|Lines|Čiary|Linien/.test(l.textContent));
