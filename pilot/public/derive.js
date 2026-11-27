@@ -576,6 +576,7 @@ export function mtvuPolygons(json, frame) {
 // crosses and no building of the map covers join the map's polygons as weak buildings (osmBuilding: they take the
 // place of what is open, not of a road or a sidewalk, classify). Only where the map draws buildings at all (a source
 // without a building layer would turn into OSM's), the map's own buildings keep their place. ?off=osmdomy: as before.
+const OSM_BUILDING_MIN = 12; // m²
 const OSM_NO_BUILDING = new Set(["roof", "no", "ruins", "collapsed", "proposed", "construction", "carport", "canopy"]);
 export function withOsmBuildings(polys, osm, frame, center, normal, half) {
   if (ORTHO_P.off?.has("osmdomy") || !polys.some((p) => isBuilding(p.code))) return polys;
@@ -587,6 +588,8 @@ export function withOsmBuildings(polys, osm, frame, center, normal, half) {
     if (el.type !== "area" || !el.tags?.building || OSM_NO_BUILDING.has(el.tags.building) || el.tags["building:part"] || !el.geometry?.length) continue;
     const ring = el.geometry.map((g) => frame.toXY(g.lon, g.lat));
     const rings = [ring, ...(el.holes || []).map((h) => h.map((g) => frame.toXY(g.lon, g.lat)))];
+    // A stub of a few square metres (a kiosk, a mapped shed under a tree) is no house to end a profile at.
+    if (Math.abs(ring.reduce((a, q, i) => a + (ring[i - 1 < 0 ? ring.length - 1 : i - 1][0] * q[1] - q[0] * ring[i - 1 < 0 ? ring.length - 1 : i - 1][1]), 0)) / 2 < OSM_BUILDING_MIN) continue;
     const bbox = bboxOf(ring);
     if (!onCut.some(([x, y]) => x >= bbox[0] && x <= bbox[2] && y >= bbox[1] && y <= bbox[3] && inside(rings, x, y))) continue;
     // Covered by a building of the map: a quarter of its area (grid points inside it) lies in the map's buildings (two
