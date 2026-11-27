@@ -63,6 +63,12 @@ export function bedSurfaces(segs, { rails = [], ortho, at, dir, highway } = {}) 
 const WIRED = new Set(["pruh", "pruh_piktokoridor", "bus", "bus_cyklo"]);
 const transitOnly = (t) => ["yes", "designated"].includes(t.psv || t.trolleybus || t.bus) &&
   ["no", "delivery", "destination", "permit", "private"].includes(t.motor_vehicle ?? t.vehicle ?? t.access);
+// A way private cars may not use (motorcar, else motor_vehicle, vehicle, access = no; the more special tag decides). Its
+// lanes are not drawn with a passenger car (Bára 27. 11. 2026: Augustusbrücke in Dresden, motor_vehicle=no, B 11 in the
+// signs and a car in the lanes): a lane for buses where OSM lets public transport in (psv, bus, trolleybus yes or
+// designated), else a lane with no vehicle (seg.noCar). ?off=bezaut.
+const carsBanned = (t) => !ORTHO_P.off?.has("bezaut") && ["motorcar", "motor_vehicle", "vehicle", "access"].map((k) => t[k]).find((v) => v !== undefined) === "no";
+const transitAllowed = (t) => ["psv", "bus", "trolleybus"].some((k) => ["yes", "designated"].includes(t[k]));
 const tramWithBus = (t) => ["yes", "designated"].includes(t.psv) || ["yes", "designated"].includes(t.bus) || t.highway === "busway";
 const TREE_STRIP = 1.5; // width of a tree strip carved out of a sidewalk (m)
 // A cut never hits a point: a point this close to the cut, measured along the street, is drawn in the
@@ -2360,10 +2366,11 @@ export function deriveProfile({ center, dir, half, polys, osm, frame, way, track
       // A state without street classes of its own here (Austria): the OSM highway gives the group (countries/AT.js).
       const roadClass = classGroup(cls) ?? (country.roadClassFromOsm ? osmGroup(tags.highway) : null);
       roads.push({ s: r.s, e: r.e, tags });
-      segs.push(...splitRoadway(r, { guessPark, osmParkGive, tags, trams: inside, dirAt, lanesTotal, along: ownAxis ? (ownAxis.along !== (tags.oneway === "-1")) : true, single: new Set(axes.map((a) => a.id)).size === 1, parked, sides: sideTagsLR, kerbOpen, kerbBare, inZps, axesOneway: axes.every((a) => a.oneway), axes, axisInside: here.length > 0, divided, roadClass }).map((x) => ({ ...x, mtvu: r.code,
+      const noCars = carsBanned(tags), toBus = noCars && transitAllowed(tags);
+      segs.push(...splitRoadway(r, { guessPark, osmParkGive, tags, trams: inside, dirAt, lanesTotal, along: ownAxis ? (ownAxis.along !== (tags.oneway === "-1")) : true, single: new Set(axes.map((a) => a.id)).size === 1, parked, sides: sideTagsLR, kerbOpen, kerbBare, inZps, axesOneway: axes.every((a) => a.oneway), axes, axisInside: here.length > 0, divided, roadClass }).map((x) => ({ ...x, mtvu: r.code, ...(noCars && x.type === "pruh" && (toBus ? { type: "bus" } : { noCar: true })),
         // Bus lanes carry trolleybuses; so does the lane of a zone closed to cars but open to public transport
         // (třída Míru in Pardubice: motor_vehicle=delivery, psv=yes).
-        trolley: trolley && (x.type === "bus" || x.type === "bus_cyklo" || (x.type === "pruh" && transitOnly(tags))),
+        trolley: trolley && (x.type === "bus" || x.type === "bus_cyklo" || toBus || (x.type === "pruh" && transitOnly(tags))),
         // The wires hang over the lanes (drawn in the profile).
         wires: trolley && WIRED.has(x.type), roadClass })));
     } else if (r.code === MEDIAN) {
@@ -2527,6 +2534,7 @@ function toSegment(x) {
   if (x.use && x.use !== "useky") seg.use = x.use;
   if (x.color) seg.color = x.color;
   if (x.trolley) seg.trolley = true;
+  if (x.noCar) seg.noCar = true;
   if (x.wires) seg.wires = true;
   if (x.type === "tramvaj") { seg.bed = x.bed || "panely"; if (x.bedSource === "odhad") seg.bedGuess = true; }
   if (x.withBus) seg.withBus = true;
