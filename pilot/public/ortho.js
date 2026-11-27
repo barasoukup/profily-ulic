@@ -36,7 +36,7 @@ export function tramOffsets(osm, frame, center, dir, half) {
 // source: "sk" for the ZBGIS orthophoto of Slovakia (its MapServer export, a PNG too), null for none (abroad).
 export const SK_EXPORT = "https://zbgis.skgeodesy.sk/zbgis/rest/services/Ortofoto_hres/MapServer/export";
 export async function bedOrtho({ osm, frame, center = [0, 0], dir, half = 40, timeout = TIMEOUT, res = RES, fetchImpl = fetch, source = "cuzk" }) {
-  if (!source) return null;
+  if (source !== "cuzk" && source !== "sk") return null; // none, or a source of no tram bed (not ČÚZK beyond Czechia)
   const ts = tramOffsets(osm, frame, center, dir, half);
   if (!ts.length) return null;
   const normal = [-dir[1], dir[0]], lo = Math.min(...ts) - PAD, hi = Math.max(...ts) + PAD;

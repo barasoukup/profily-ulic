@@ -35,7 +35,7 @@ const NO_MAP = new URLSearchParams(location.search).get("mapa") === "0";
 import { deriveSigns, SIGNS, SIGN_CHOICES, signLabel, signFits, signFile, keepDrawable, drawable, MAX_PER_PART } from "./signs.js";
 import { loadSprites, loadSigns, layoutSigns, buildSvg, isHole, exportCredits, mountEditor, svgString, twoLines, totalWidth, setArt, getArt, buildingStyle, artEvents, edgeInfo, underDepth, ROADWAY, nearestRoadway, BUILDING_STYLES, GABLE_LOOKS, OFFICE_TYPES as OFFICE_LIKE, turnLabel } from "./profile.js";
 import * as sources from "./sources.js";
-import { ruianBuilding, ruianOutlines, withBuildings } from "./gis.js";
+import { ruianBuilding, ruianOutlines, withBuildings, insideRings } from "./gis.js";
 import { MAPY_KEY } from "./config.js";
 import { cleanProfile, cleanCut, retype } from "./validate.js";
 import { shares, surfaces } from "./shares.js";
@@ -184,7 +184,7 @@ if (lang !== "cs") for (const m of ["addAttribution", "removeAttribution"]) {
 L.control.zoom({ zoomInTitle: tr("Přiblížit"), zoomOutTitle: tr("Oddálit") }).addTo(map);
 // Address search (search.js, RÚIAN of ČÚZK): the map moves there; an address on a street or a street is cut
 // like a click at the nearest point of that street. The log gets only the kind of place, never the query.
-mountSearch(map, { status, services: () => { const c = map.getCenter(); return countryOfCity(cityAt(c.lat, c.lng)).search; }, inVienna: () => { const c = map.getCenter(); return placeAt(c.lat, c.lng).sources.includes("wien"); }, onPick: ({ item, cut }) => { log("hledani", { detail: item.type === "AdresniMisto" ? "adresa" : item.type === "Ulice" ? "ulice" : "misto" }); if (cut) cutAt(cut.lat, cut.lon, false, null, null, item.at?.street || null); } });
+mountSearch(map, { status, services: () => { const c = map.getCenter(); return countryOfCity(cityAt(c.lat, c.lng)).search; }, inVienna: () => { const c = map.getCenter(); return placeAt(c.lat, c.lng).sources.includes("wien"); }, inCzechia: () => { const c = map.getCenter(); return countryOfCity(cityAt(c.lat, c.lng)).code === "CZ"; }, onPick: ({ item, cut }) => { log("hledani", { detail: item.type === "AdresniMisto" ? "adresa" : item.type === "Ulice" ? "ulice" : "misto" }); if (cut) cutAt(cut.lat, cut.lon, false, null, null, item.at?.street || null); } });
 // Base maps. IPR services are drawn through ArcGIS export requests in Web Mercator, one per tile.
 // Each request renders a 512 px image covering four normal tiles (tileSize 512, zoomOffset -1):
 // a quarter of the requests, which IPR renders one by one (0.2–1.5 s each), and the browser's
@@ -214,24 +214,41 @@ const BIG_TILES = { tileSize: 512, zoomOffset: -1 };
 // is the national layer with the cities' own on top, each limited to its city (mesta.json).
 const DMVS = "https://dmvs.cuzk.gov.cz/api/wms";
 const osmLayer = (opacity = 1) => L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", { maxZoom: 21, maxNativeZoom: 19, opacity, attribution: `© <a href="https://www.openstreetmap.org/copyright">${tr("přispěvatelé OpenStreetMap")}</a>` });
-// Czechia's box and rings (staty.json): ČÚZK's orthophoto and the DMVS load tiles and credit themselves only there
+// A blank tile: what a layer kept to its area draws beyond it (nothing is asked of its server there).
+const BLANK_TILE = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7";
+// Does the tile reach the area's rings: a corner or its middle inside them, or a vertex of them inside the tile (a tile
+// across the border at a low zoom).
+function tileReaches(layer, coords, rings) {
+  const size = layer.getTileSize(), at = (fx, fy) => layer._map.unproject([(coords.x + fx) * size.x, (coords.y + fy) * size.y], coords.z);
+  const nw = at(0, 0), se = at(1, 1);
+  if ([[0.5, 0.5], [0, 0], [1, 0], [0, 1], [1, 1]].some(([fx, fy]) => { const q = at(fx, fy); return insideRings(rings, q.lng, q.lat); })) return true;
+  return rings.some((r) => r.some(([x, y]) => x >= nw.lng && x <= se.lng && y >= se.lat && y <= nw.lat));
+}
+// A layer class of a state's (or a city's) own service kept to its area: a tile wholly beyond it is blank and not asked
+// (Bára 26. 11. 2026: ČÚZK only over Czechia, whose box reaches into Germany, Austria and Poland). Its credit goes by
+// the rings too (boundsOf, creditCities).
+const keptInside = (Base, rings) => Base.extend({
+  getTileUrl(coords) { return tileReaches(this, coords, rings) ? Base.prototype.getTileUrl.call(this, coords) : BLANK_TILE; },
+});
+// The box of a state's or region's rings ([lon, lat]); the rings stay with it, so that its credit shows only where the
+// view reaches the area itself, not just its box (Poland's box covers Prague: creditCities).
+const boundsOf = (rings) => { const pts = rings.flat(), xs = pts.map((q) => q[0]), ys = pts.map((q) => q[1]); const b = L.latLngBounds([Math.min(...ys), Math.min(...xs)], [Math.max(...ys), Math.max(...xs)]); b.rings = rings; return b; };
+// Czechia's rings (staty.json): ČÚZK's orthophoto and the DMVS load tiles and credit themselves only there
 // (Bára 26. 11. 2026: San Francisco said "ortofoto © ČÚZK", and the tiles were asked of ČÚZK all over the world).
-const czBounds = () => { const rings = STATY.cesko || [], pts = rings.flat(); if (!pts.length) return {}; const xs = pts.map((q) => q[0]), ys = pts.map((q) => q[1]); const b = L.latLngBounds([Math.min(...ys), Math.min(...xs)], [Math.max(...ys), Math.max(...xs)]); b.rings = rings; return { bounds: b }; };
-const cuzkOrtho = () => L.tileLayer.wms("https://ags.cuzk.gov.cz/arcgis1/services/ORTOFOTO/MapServer/WMSServer", {
+const CZ_RINGS = STATY?.cesko || [];
+const czBounds = () => (CZ_RINGS.length ? { bounds: boundsOf(CZ_RINGS) } : {});
+const CzWms = CZ_RINGS.length ? keptInside(L.TileLayer.WMS, CZ_RINGS) : L.TileLayer.WMS;
+const cuzkOrtho = () => new CzWms("https://ags.cuzk.gov.cz/arcgis1/services/ORTOFOTO/MapServer/WMSServer", {
   layers: "0", format: "image/jpeg", maxZoom: 21, attribution: "ortofoto © ČÚZK", ...czBounds(),
 });
 // The DMVS answers WMS 1.3.0 only (since 11/2026; Leaflet asks 1.1.1 by default).
-const dmvsWms = (layer, opts = {}) => L.tileLayer.wms(`${DMVS}/${layer}`, {
+const dmvsWms = (layer, opts = {}) => new CzWms(`${DMVS}/${layer}`, {
   layers: layer, format: "image/png", version: "1.3.0", transparent: true, maxZoom: 21, tileSize: 512, zoomOffset: -1,
   attribution: "technická mapa © kraje, IS DMVS ČÚZK", ...czBounds(), ...opts,
 });
-// The box of a city from its boundary: its layers load tiles only there.
-const within = (id) => {
-  const pts = (MESTA[id] || []).flat();
-  if (!pts.length) return {};
-  const xs = pts.map((q) => q[0]), ys = pts.map((q) => q[1]);
-  return { bounds: L.latLngBounds([Math.min(...ys), Math.min(...xs)], [Math.max(...ys), Math.max(...xs)]) };
-};
+// The box of a city from its boundary, its rings with it (its credit only where the view reaches the city): its layers
+// load tiles only there.
+const within = (id) => (MESTA?.[id]?.length ? { bounds: boundsOf(MESTA[id]) } : {});
 const kinds = { map: [osmLayer()], ortho: [cuzkOrtho()], tech: [osmLayer(0.5), dmvsWms("dtm_zps_plochy_bar", { minZoom: 16, transparent: false })], lines: [dmvsWms("dtm_zps_linie_body", { minZoom: 17, opacity: 0.9 })] };
 // Prague: IPR's pre-rendered map in Web Mercator on ArcGIS Online (fast, a CDN) and the lines of its technical map.
 kinds.map.push(L.tileLayer("https://tiles.arcgis.com/tiles/SBTXIEUGWbqzUecw/arcgis/rest/services/MTVU_WGS84/MapServer/tile/{z}/{y}/{x}", {
@@ -248,19 +265,17 @@ kinds.ortho.push(L.tileLayer("https://gis.brno.cz/ags1/rest/services/OMI/OMI_bas
 }));
 // Slovakia: the ZBGIS orthophoto of ÚGKK SR (tiles in Web Mercator to level 19), only there (staty.json).
 if (STATY?.slovensko) {
-  const pts = STATY.slovensko.flat(), xs = pts.map((q) => q[0]), ys = pts.map((q) => q[1]);
-  kinds.ortho.push(L.tileLayer(`${SK_ORTHO}/tile/{z}/{y}/{x}`, {
-    maxZoom: 21, maxNativeZoom: 19, attribution: "ortofoto © GKÚ Bratislava, NLC (ZBGIS)",
-    bounds: L.latLngBounds([Math.min(...ys), Math.min(...xs)], [Math.max(...ys), Math.max(...xs)]),
+  const Sk = keptInside(L.TileLayer, STATY.slovensko);
+  kinds.ortho.push(new Sk(`${SK_ORTHO}/tile/{z}/{y}/{x}`, {
+    maxZoom: 21, maxNativeZoom: 19, attribution: "ortofoto © GKÚ Bratislava, NLC (ZBGIS)", bounds: boundsOf(STATY.slovensko),
   }));
 }
-// Austria: basemap.at's orthophoto (Web Mercator to level 20), only there (staty.json).
+// Austria: basemap.at's orthophoto (Web Mercator to level 20), only there (staty.json; its box covers Bratislava).
 if (STATY?.austria) {
-  const pts = STATY.austria.flat(), xs = pts.map((q) => q[0]), ys = pts.map((q) => q[1]);
-  kinds.ortho.push(L.tileLayer(`${AT_ORTHO}/{z}/{y}/{x}.jpeg`, {
+  const At = keptInside(L.TileLayer, STATY.austria);
+  kinds.ortho.push(new At(`${AT_ORTHO}/{z}/{y}/{x}.jpeg`, {
     // Level 20 only in some towns: 19 everywhere (zoomed in beyond it).
-    maxZoom: 21, maxNativeZoom: 19, attribution: "ortofoto © basemap.at",
-    bounds: L.latLngBounds([Math.min(...ys), Math.min(...xs)], [Math.max(...ys), Math.max(...xs)]),
+    maxZoom: 21, maxNativeZoom: 19, attribution: "ortofoto © basemap.at", bounds: boundsOf(STATY.austria),
   }));
 }
 // Switzerland and Liechtenstein: swisstopo's SWISSIMAGE (WMTS {z}/{x}/{y}, Web Mercator to level 20), only there.
@@ -328,9 +343,6 @@ const retryOnce = (layer, ms = 2500) => layer.on("tileerror", ({ tile }) => {
   const src = tile.src;
   setTimeout(() => { tile.src = `${src}${src.includes("?") ? "&" : "?"}retry=1`; }, ms);
 });
-// The box of a state's or region's rings ([lon, lat]); the rings stay with it, so that its credit shows only where the
-// view reaches the area itself, not just its box (Poland's box covers Prague: creditCities).
-const boundsOf = (rings) => { const pts = rings.flat(), xs = pts.map((q) => q[0]), ys = pts.map((q) => q[1]); const b = L.latLngBounds([Math.min(...ys), Math.min(...xs)], [Math.max(...ys), Math.max(...xs)]); b.rings = rings; return b; };
 // Luxembourg first, Belgium's regions over it (each answers transparent or nothing outside itself; the hostile review:
 // a white tile of one hid its neighbour). Each region's layer asks only for tiles over that region
 // (regions-be.json, loaded once).

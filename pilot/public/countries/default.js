@@ -84,6 +84,9 @@ function plateFile(s, seg) {
   return null;
 }
 
+// The Czech signs (Czechia: CZ.js).
+export const CZ_SIGNS = { dir: "znacky", file: signFile, plate: plateFile, label: null, drawable: null };
+
 // The sentence about parking half on the sidewalk under a law of 3 m for each direction (Czechia, Slovakia).
 export const lawNote = (law) => (free, need) => t("Stání napůl na chodníku z OSM: ve vozovce zůstává {free}, {law} žádá {need} (3 m pro každý směr).", { free, need, law });
 
@@ -104,7 +107,9 @@ export default {
   parkOnRoadway: null,
   // May the law's estimate put cars on the roadway beside a cycle lane (Switzerland: no, VRV Art. 19 Abs. 2).
   parkByCycleLane: true,
-  halfKerbNote: lawNote("§ 25 odst. 3 zák. 361/2000 Sb."),
+  // (A place in no state the app knows has no law of its own: the width the app leaves, no Czech paragraph; Czechia's
+  // in CZ.js.)
+  halfKerbNote: (free, need) => t("Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Aplikace nechává {need}.", { free, need }),
   parkGuess: true,
   // The group of a street from its OSM class where there is no class of the city's own (derive.js).
   roadClassFromOsm: false,
@@ -122,18 +127,20 @@ export default {
     return [];
   },
   // Traffic signs (signs.js): the folder, the file of a sign and of its plate, the label (null: the Czech one), whether
-  // a sign can be drawn (null: all).
-  signs: { dir: "znacky", file: signFile, plate: plateFile, label: null, drawable: null },
-  // The orthophotos: of a tram bed (ortho.js; null: none) and of the lanes (lanes-ortho.js; a city may have its own).
+  // a sign can be drawn (null: all). A place in no state the app knows: none (as the USA and Canada), the label without
+  // the Czech number; Czechia's are CZ_SIGNS (CZ.js; Bára 26. 11. 2026: nothing Czech beyond Czechia).
+  signs: { dir: "znacky", file: () => null, plate: () => null, label: (x, own, label) => label.replace(CZ_CODE, ""), drawable: () => false },
+  // The orthophotos: of a tram bed (ortho.js; null: none) and of the lanes (lanes-ortho.js; a city may have its own;
+  // "none": none). ČÚZK's only in Czechia (CZ.js).
   bedOrtho: null,
-  laneOrtho: "cuzk",
+  laneOrtho: "none",
   // The profile made from the orthophoto and OSM is said as such ("odhad z ortofota a OSM"; else "jen odhad z OSM").
   orthoEstimate: false,
   // How far beyond a town's passport or surface map (m) the pieces up to the houses go (app.js, ortho-osm.js
   // besidePassport, in every state; null: its own 15 m).
   besideMax: null,
-  // Mapy.com's panoramas (app.js).
-  panorama: true,
+  // Mapy.com's panoramas (app.js): only in Czechia (CZ.js).
+  panorama: false,
   // What a cut lacks when its lines do not answer (sources.js outage), marked for t().
   linesMissing: mark("kolejí, plotů a svahů"),
   // The state's illustrations (profile.js): the sets of its cities by their id, its own set by the id of its rest
