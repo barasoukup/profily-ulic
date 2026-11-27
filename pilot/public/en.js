@@ -221,6 +221,7 @@ export const EN = {
   "Piktokoridor": "Cycle symbols",
   "Přístupová cesta": "Access road",
   "Krajnice": "Hard strip",
+  "Šrafy": "Hatched area",
   "Pruh BUS": "Bus lane",
   "Pruh pro BUS a cyklisty": "Bus and cycle lane",
   "Tramvaj v pruhu": "Tram in mixed traffic",

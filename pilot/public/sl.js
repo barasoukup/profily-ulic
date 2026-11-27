@@ -238,6 +238,7 @@ export const SL = {
   "Piktokoridor": "Souporabni pas",
   "Přístupová cesta": "Dovozna pot",
   "Krajnice": "Robni pas",
+  "Šrafy": "Šrafirana površina",
   "Pruh BUS": "Avtobusni pas",
   "Pruh pro BUS a cyklisty": "Pas za avtobuse in kolesarje",
   "Tramvaj v pruhu": "Tramvaj v voznem pasu",

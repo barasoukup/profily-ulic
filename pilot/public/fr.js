@@ -240,6 +240,7 @@ export const FR = {
   "Piktokoridor": "Pictogrammes vélo",
   "Přístupová cesta": "Contre-allée",
   "Krajnice": "Accotement",
+  "Šrafy": "Zone hachurée",
   "Pruh BUS": "Voie bus",
   "Pruh pro BUS a cyklisty": "Voie bus-vélos",
   "Tramvaj v pruhu": "Tramway en site banal",

@@ -234,6 +234,7 @@ export const HU = {
   "Piktokoridor": "Kerékpáros nyom",
   "Přístupová cesta": "Szervizút",
   "Krajnice": "Padka",
+  "Šrafy": "Sraffozott terület",
   "Pruh BUS": "Buszsáv",
   "Pruh pro BUS a cyklisty": "Busz- és kerékpársáv",
   "Tramvaj v pruhu": "Villamos a sávban",

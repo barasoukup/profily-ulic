@@ -285,6 +285,7 @@ export const SK = {
   "Piktokoridor": "Piktokoridor",
   "Přístupová cesta": "Prístupová cesta",
   "Krajnice": "Krajnica",
+  "Šrafy": "Šrafy",
   "Pruh BUS": "Pruh BUS",
   "Pruh pro BUS a cyklisty": "Pruh pre BUS a cyklistov",
   "Tramvaj v pruhu": "Električka v pruhu",

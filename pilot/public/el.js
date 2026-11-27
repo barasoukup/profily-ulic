@@ -238,6 +238,7 @@ export const EL = {
   "Piktokoridor": "Διάδρομος με σύμβολα ποδηλάτου",
   "Přístupová cesta": "Παράδρομος",
   "Krajnice": "Έρεισμα",
+  "Šrafy": "Διαγράμμιση",
   "Pruh BUS": "Λεωφορειολωρίδα",
   "Pruh pro BUS a cyklisty": "Λωρίδα λεωφορείων και ποδηλάτων",
   "Tramvaj v pruhu": "Τραμ σε μικτή κυκλοφορία",

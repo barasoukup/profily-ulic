@@ -238,6 +238,7 @@ export const DA = {
   "Piktokoridor": "Cykelsymboler",
   "Přístupová cesta": "Adgangsvej",
   "Krajnice": "Kantbane",
+  "Šrafy": "Skravering",
   "Pruh BUS": "Busbane",
   "Pruh pro BUS a cyklisty": "Bus- og cykelbane",
   "Tramvaj v pruhu": "Sporvogn i vognbane",

@@ -1,4 +1,4 @@
-import { TYPES, SOURCES, DEFAULT_WIDTH, ITEMS, PARKING_USE, PARKING_POSITION, TRAM_BEDS, TURN_CHOICES, HDV_UNDER, UNDER_TYPES, PERMEABLE_TYPES, SURFACES, LAMP_HEIGHTS, underSize } from "./types.js";
+import { TYPES, partLabel, SOURCES, DEFAULT_WIDTH, ITEMS, PARKING_USE, PARKING_POSITION, TRAM_BEDS, TURN_CHOICES, HDV_UNDER, UNDER_TYPES, PERMEABLE_TYPES, SURFACES, LAMP_HEIGHTS, underSize } from "./types.js";
 import { refloor } from "./floors.js";
 import { localFrame, nearestStreet, savedStreet, snapToWay, dragAlong, placeCut, centerOnStreet, mtvuPolygons, trackLines, techLines, esriPolygons, deriveProfile, splitTwoWayLane, capWideLanes, pedestrianZone, treePitsAsSidewalk, widenNarrowTrams, carveCycleways, carveTramTracks, lanesFromShoulders, trackAlongRoad, crossFromA, lawNeedFor, isOnewayTags, MAX_REACH } from "./derive.js";
 import { bedOrtho } from "./ortho.js";
@@ -1409,7 +1409,7 @@ function changedParts(a, b) {
 // otherwise the parts that came and went.
 function diffList(a, b) {
   const div = Object.assign(document.createElement("div"), { className: "diff" });
-  const name = (s) => TYPES[s.type]?.label || s.type;
+  const name = (s) => partLabel(s);
   const items = [];
   if (a.segments.length === b.segments.length && a.segments.every((s, i) => s.type === b.segments[i].type)) {
     a.segments.forEach((s, i) => {
@@ -1502,7 +1502,7 @@ function renderWidthCheck() {
     : segs.filter(fits).reduce((b, x) => (!b || x.width > b.width ? x : b), null);
   if (!seg) return;
   const btn = document.createElement("button");
-  btn.textContent = tr("Dorovnat: {type} na {w}", { type: TYPES[seg.type]?.label || seg.type, w: fmtM(seg.width - diff) });
+  btn.textContent = tr("Dorovnat: {type} na {w}", { type: partLabel(seg), w: fmtM(seg.width - diff) });
   btn.onclick = () => {
     seg.width = +(seg.width - diff).toFixed(2);
     seg.source = "user";
@@ -1852,7 +1852,7 @@ function edited() {
 function renderInfo(ed, s) {
   if (!s) return;
   const head = Object.assign(document.createElement("div"), { className: "ed-head" });
-  head.append(Object.assign(document.createElement("h3"), { textContent: `${TYPES[s.type]?.label || s.type}, ${fmtM(s.width)}` }),
+  head.append(Object.assign(document.createElement("h3"), { textContent: `${partLabel(s)}, ${fmtM(s.width)}` }),
     Object.assign(document.createElement("span"), { className: "muted", textContent: tr("Zdroj: {source}", { source: SOURCES[s.source]?.label || s.source || "–" }) }));
   const close = Object.assign(document.createElement("button"), { className: "close", textContent: "×", onclick: () => { state.selected = null; render(); } });
   close.setAttribute("aria-label", tr("Zavřít"));
@@ -2020,7 +2020,7 @@ function renderEditor(p) {
   // A headed card (Fable's look at the interface): the part and its moves in the head; the type, the width and
   // the one choice the part is mostly about; its items and signs; the rarer choices folded under "Další volby".
   const head = Object.assign(document.createElement("div"), { className: "ed-head" });
-  head.append(Object.assign(document.createElement("h3"), { textContent: TYPES[s.type]?.label || s.type }),
+  head.append(Object.assign(document.createElement("h3"), { textContent: partLabel(s) }),
     Object.assign(document.createElement("span"), { className: "muted", textContent: tr("Zdroj: {source}", { source: SOURCES[s.source]?.label || s.source || "–" }) }));
   const acts = Object.assign(document.createElement("span"), { className: "ed-acts" });
   const act = (text, title, fn, cls, off) => { const b = btn(text, fn, cls); b.title = title; b.setAttribute("aria-label", title); b.disabled = !!off; return b; };

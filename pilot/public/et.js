@@ -231,6 +231,7 @@ export const ET = {
   "Piktokoridor": "Piktogrammirada",
   "Přístupová cesta": "Juurdesõidutee",
   "Krajnice": "Peenar",
+  "Šrafy": "Triibutatud ala",
   "Pruh BUS": "Bussirada",
   "Pruh pro BUS a cyklisty": "Bussi- ja jalgrattarada",
   "Tramvaj v pruhu": "Tramm sõidurajal",

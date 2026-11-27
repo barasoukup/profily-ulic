@@ -238,6 +238,7 @@ export const DE = {
   "Piktokoridor": "Piktogrammkette",
   "Přístupová cesta": "Zufahrt",
   "Krajnice": "Seitenstreifen",
+  "Šrafy": "Sperrfläche",
   "Pruh BUS": "Busfahrstreifen",
   "Pruh pro BUS a cyklisty": "Bus- und Radfahrstreifen",
   "Tramvaj v pruhu": "Straßenbahn im Mischverkehr",

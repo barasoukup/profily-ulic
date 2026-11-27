@@ -238,6 +238,7 @@ export const ES = {
   "Piktokoridor": "Ciclocarril",
   "Přístupová cesta": "Vía de servicio",
   "Krajnice": "Arcén",
+  "Šrafy": "Zona rayada",
   "Pruh BUS": "Carril bus",
   "Pruh pro BUS a cyklisty": "Carril bus-bici",
   "Tramvaj v pruhu": "Carril con tranvía",

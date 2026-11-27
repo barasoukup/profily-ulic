@@ -239,6 +239,7 @@ export const PL = {
   "Piktokoridor": "Sierżanty rowerowe",
   "Přístupová cesta": "Jezdnia dojazdowa",
   "Krajnice": "Pobocze",
+  "Šrafy": "Pole kreskowane",
   "Pruh BUS": "Buspas",
   "Pruh pro BUS a cyklisty": "Buspas z ruchem rowerowym",
   "Tramvaj v pruhu": "Tramwaj w pasie ruchu",
