@@ -620,7 +620,7 @@ function dashed(st, H, t, tan, k) {
 // closed), the longest bare run (m) and the number of paint runs of 0.8 m or more.
 function lineRhythm(st, H, t, tan, k) {
   const { nu, res } = st, on = lineOn(st, H, t, tan, k);
-  let sum = 0, gap = 0, longest = 0, dashes = 0, run = 0, runOn = 0;
+  let sum = 0, gap = 0, longest = 0, dashes = 0, runOn = 0;
   for (let j = 0; j < nu; j++) {
     sum += on[j];
     if (on[j]) { gap = 0; runOn++; } else { gap++; longest = Math.max(longest, gap * res); if (runOn * res >= 0.8) dashes++; runOn = 0; }
