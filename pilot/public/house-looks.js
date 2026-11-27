@@ -15,6 +15,15 @@ const STIT = typeof location !== "undefined" ? new URLSearchParams(location.sear
 // 23. 11. 2026 chose it over the whole symmetric gable, which ?stit=cely still draws).
 export const LOOKS = { gables: STIT !== "0", gableCut: STIT !== "cely" };
 
+// A small house standing alone, of which OSM knows nothing else (no floors, no height): a family house, not a block of
+// flats (Bára 27. 11. 2026: Girbigsdorfer Straße, a village, two small houses drawn as five-floor tenements). Its own
+// footprint up to SMALL_HOUSE_AREA m², at most 3 buildings joined to it (the house with its garage and shed) and all of
+// them together up to SMALL_BLOCK_AREA m². ?off=vesnice: as before.
+export const SMALL_HOUSE_AREA = 250, SMALL_BLOCK_AREA = 450, SMALL_BLOCK_PARTS = 3;
+export const villageOff = () => ((typeof location === "undefined" ? globalThis.PROFILY_CA?.off : new URLSearchParams(location.search).get("off")) || "").split(",").includes("vesnice");
+export const smallHouse = (info) => !villageOff() && info?.footprint > 0 && info.footprint <= SMALL_HOUSE_AREA
+  && !!info.block && info.block.parts <= SMALL_BLOCK_PARTS && info.block.area <= SMALL_BLOCK_AREA;
+
 const OLD = new Set(["sikma", "mestan", "nizky"]);
 export const yearOf = (info) => info?.built ?? info?.start;
 // The house's place: derive.js point while the cut is made, app.js at (rounded) in the profile kept and saved.

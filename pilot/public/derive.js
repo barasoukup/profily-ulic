@@ -1527,10 +1527,12 @@ export function buildingAt(osm, frame, p) {
     // The roof's shape and the year built, where OSM has them (the look of a house abroad: profile.js buildingStyle).
     const year = parseInt(String(el.tags.start_date ?? "").slice(0, 4), 10);
     return { levels: levels ? levels + (roof || 0) : undefined, height: height || undefined, type: el.tags.building, block: blockShape(b, all), axis: mainAxis(b.ring),
-      roofShape: el.tags["roof:shape"], start: year > 1000 ? year : undefined, material: el.tags["building:material"] };
+      roofShape: el.tags["roof:shape"], start: year > 1000 ? year : undefined, material: el.tags["building:material"],
+      footprint: ringArea(b.ring) - (b.rings.slice(1).reduce((a, r) => a + ringArea(r), 0)) };
   }
   return null;
 }
+const ringArea = (r) => Math.abs(r.reduce((a, [x, y], i) => { const [x2, y2] = r[(i + 1) % r.length]; return a + x * y2 - x2 * y; }, 0)) / 2;
 
 // The main axis of one footprint (principal component of its outline): its direction and the house's length and
 // width along and across it (m).
@@ -1579,7 +1581,7 @@ function blockShape(start, all) {
   const l = Math.max(...along) - Math.min(...along), w = Math.max(...across) - Math.min(...across);
   const area = (r) => Math.abs(r.reduce((a, [x, y], i) => { const [x2, y2] = r[(i + 1) % r.length]; return a + x * y2 - x2 * y; }, 0)) / 2;
   const filled = group.reduce((a, b) => a + area(b.ring), 0);
-  return { length: +l.toFixed(1), width: +w.toFixed(1), fill: +(filled / (l * w || 1)).toFixed(2), parts: group.length };
+  return { length: +l.toFixed(1), width: +w.toFixed(1), fill: +(filled / (l * w || 1)).toFixed(2), parts: group.length, area: Math.round(filled) };
 }
 
 // Street furniture, barriers and slopes found along the cut, as {kind, t}.
@@ -2442,6 +2444,8 @@ export function deriveProfile({ center, dir, half, polys, osm, frame, way, track
     if (b?.type && b.type !== "yes") edges[`${side}Info`].type = b.type;
     if (b?.roofShape) edges[`${side}Info`].roofShape = b.roofShape;
     if (b?.start) edges[`${side}Info`].start = b.start;
+    // The footprint (m²): a small house alone is a family house when nothing else is known (house-looks.js smallHouse).
+    if (b?.footprint) edges[`${side}Info`].footprint = Math.round(b.footprint);
     // The walls' material (OSM building:material): a wooden house in Estonia and the north, Malta's limestone
     // (house-looks.js); no Czech look reads it.
     if (b?.material) edges[`${side}Info`].material = b.material;

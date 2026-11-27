@@ -7,7 +7,7 @@ import { GENERIC_VEHICLES } from "./art.js";
 import { PLATES, signFile, plateFile, signLabel, signDir, SPEED_TEMPLATES } from "./signs.js";
 // tr: t is a part's type here.
 import { t as tr, num } from "./i18n.js";
-import { LOOKS, houseHash } from "./house-looks.js";
+import { LOOKS, houseHash, smallHouse } from "./house-looks.js";
 import { AMERICA, AMERICA_PALETTES } from "./houses-america-spec.js";
 import { floorsFromHeight, floorsOsmOn } from "./floors.js";
 
@@ -784,7 +784,7 @@ function derivedStyle(info) {
   // of Bratislava): what OSM knows of the house decides.
   if (city.abroad && !city.centre) return abroadStyle(info, n);
   // Nothing known about the building: a tenement in the inner city, a small house elsewhere (least misleading).
-  if (!n) return info?.km > innerKm() ? "nizky" : "sikma";
+  if (!n) return info?.km > innerKm() ? "nizky" : smallHouse(info) ? smallKind(info) : "sikma";
   return info?.km > innerKm() ? flatKind(info, n) : "sikma";
 }
 
@@ -821,6 +821,11 @@ function familyKind(info) {
   if (info?.across && old && info?.km > innerKm()) return "statek";
   return old ? "vila" : "kostka";
 }
+
+// The look of a small house alone (smallHouse): the year OSM gives (start_date) as RÚIAN's; its garage and shed joined to
+// it are no row (familyKind reads 3 joined parts as one); a footprint under 30 m² is a shed or a hut.
+const SHED_AREA = 30;
+const smallKind = (info) => (info.footprint < SHED_AREA ? "garaz" : familyKind({ ...info, built: info.start, block: undefined }));
 
 // A flat-roofed house: a panel house, or a functionalist tenement in a city block. Told apart by
 // the block the OSM building belongs to (blockShape in derive.js): a panel house is a slab at most
@@ -875,6 +880,8 @@ function flatKind(info, n) {
 // office by its type, a panel house only as a slab (or 8+ floors on its own), else a tenement: with a pitched roof,
 // flat where OSM says the roof is flat.
 function abroadStyle(info, n) {
+  // A small house alone, nothing else known of it: a family house (house-looks.js smallHouse), whatever its roof or year.
+  if (!n && !OFFICE_TYPES.has(info?.type) && smallHouse(info)) return smallKind(info);
   const y = info?.start;
   if (y) return y < 1920 || (y >= 1946 && y < 1958) ? "sikma" : flatKind({ ...info, built: y }, n);
   const rs = info?.roofShape;
