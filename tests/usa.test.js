@@ -378,3 +378,18 @@ test("Hledání Photon v USA: jméno ulice podle města (Washington Street, Bost
   assert.deepEqual(metroBox("US", [40.75, -73.99], "Boston Rd, Bronx"), METROS.US.nyc.box);
   assert.deepEqual(metroBox("US", [40.75, -73.99], "Mission St, SF"), METROS.US.sf.box);
 });
+
+test("DC: stání z inventáře se do úzké vozovky nevejde, nevyřeže se a nezakáže odhad (?off=ddotfit)", async () => {
+  const U = await import("../pilot/public/towns/usa.js");
+  const runs = (w) => [{ code: 702, s: -8, e: -w / 2 }, { code: 701, s: -w / 2, e: w / 2 }, { code: 702, s: w / 2, e: 8 }];
+  const two = { a: { TOTALPARKINGLANES: 2, TOTALPARKINGLANEWIDTH: 16 }, along: true };
+  // 7,4 m: 2 × 2,45 + 2,5 = 7,4 fits (the strips 2,45 m each, width 16 ft / 2)
+  const wide = runs(8);
+  assert.deepEqual(U.carveParking(wide, two), ["lo", "hi"]);
+  assert.equal(wide.filter((r) => r.code === 704).length, 2);
+  const narrow = runs(6), before = JSON.stringify(narrow);
+  assert.equal(U.carveParking(narrow, two), null);
+  assert.equal(JSON.stringify(narrow), before, "runs unchanged");
+  // One strip: as before.
+  assert.deepEqual(U.carveParking(runs(6), { a: { TOTALPARKINGLANES: 1, TOTALPARKINGLANEWIDTH: 8 }, along: true }), ["hi"]);
+});

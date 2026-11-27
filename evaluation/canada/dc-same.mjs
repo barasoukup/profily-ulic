@@ -6,7 +6,7 @@
 import fs from "node:fs/promises";
 import crypto from "node:crypto";
 const SITE = process.env.SITE, CACHE = new URL("data/cache/", import.meta.url);
-globalThis.location = { search: "?osm=balik", href: SITE, origin: SITE };
+globalThis.location = { search: "?osm=balik" + (process.env.QS || ""), href: SITE, origin: SITE };
 await fs.mkdir(CACHE, { recursive: true });
 const native = globalThis.fetch, sha = (s) => crypto.createHash("sha1").update(s).digest("hex");
 let last = 0;

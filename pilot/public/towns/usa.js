@@ -148,7 +148,8 @@ export function blockOf(json, c, tags = null) {
 // The block's parking strips cut off the carriageway's outer kerbs (runs changed in place). The carriageway: the
 // roadway run at the centre (or the nearest) and its neighbours of roadway or median. Sides: "lo" the run at low t,
 // "hi" at high t. wayAlong: does the OSM way run along the street's direction (for its parking:<side>). Returns the
-// sides with parking.
+// sides with parking, or null where the block's strips (two or more) do not fit the carriageway's width at the cut (Bára
+// 27. 11. 2026, evaluation/usa/ddot-fit: the inventory is not the map's there; ?off=ddotfit: the strips that fit).
 export function carveParking(runs, block, tags = {}, wayAlong = true, { bySide = true } = {}) {
   const a = block.a, n = Number(a.TOTALPARKINGLANES) || 0;
   if (!n) return [];
@@ -167,8 +168,10 @@ export function carveParking(runs, block, tags = {}, wayAlong = true, { bySide =
     const ib = Number(a.TOTALTRAVELLANESINBOUND) || 0, ob = Number(a.TOTALTRAVELLANESOUTBOUND) || 0, fewer = bySide && ib && ob && ib !== ob ? (ib < ob ? left : right) : null;
     sides = [osmAt || fewer || right];
   }
+  const fit = !off("ddotfit") && sides.length >= 2, saved = fit && runs.map((r) => ({ ...r }));
   const out = [];
   for (const s of sides) { const x = kerbStrip(s === "lo" ? runs[lo] : runs[hi], s, w, 704); if (x) out.push(x); }
+  if (fit && out.length < sides.length) { runs.splice(0, runs.length, ...saved); return null; }
   runs.push(...out);
   runs.sort((x, y) => x.s - y.s);
   return out.length ? sides : [];
@@ -209,9 +212,10 @@ function inventory(runs, { c, tags, way, wayAlong, osmElements, extra: sub }, ar
     carveTracks(runs, block, tags, { wayAlong, tracks: parallelsAt(osmElements, c, isTrack),
       way: way ? parallelsAt([way], c, () => true).sort((p, q) => Math.abs(p) - Math.abs(q))[0] ?? 0 : 0, others: parallelsAt(osmElements, c, car) });
   }
-  carveParking(runs, block, tags, wayAlong, { bySide: arterial });
+  const parked = carveParking(runs, block, tags, wayAlong, { bySide: arterial });
   const wayTags = blockTags(block, tags, wayAlong, { byDirection: arterial });
-  return { usDdot: true, noParkGuess: true, ...(Object.keys(wayTags).length && { wayTags }) };
+  // (Strips of the block that do not fit: none, nor the ban of the law's estimate; OSM's parking and the estimate stand.)
+  return { usDdot: true, ...(parked !== null && { noParkGuess: true }), ...(Object.keys(wayTags).length && { wayTags }) };
 }
 
 // DC's Planimetrics for the shared adapter (planimetrics.js). Its alleys join OSM's elements as alley areas, so that a click
