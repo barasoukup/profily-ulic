@@ -1,5 +1,5 @@
 // The A/B of the outer gaps filled from OSM alone (towns/planimetrics.js outerGaps with image: false, ?outerosm=1;
-// 26. 11. 2026, ZPRAVA.md): new arterials of Boston and Cambridge by ../outer/sample.mjs's method with a seed of their
+// 26. 11. 2026, REPORT.md): new arterials of Boston and Cambridge by ../outer/sample.mjs's method with a seed of their
 // own, none within 150 m of the fresh measurement's cuts (../fresh.json), of the first outer-gap A/B (../outer/sample.json)
 // or of each other: node evaluation/usa/boston/outer-osm/sample.mjs 280 (writes sample.json, variants def and ogosm).
 import fs from "node:fs/promises";

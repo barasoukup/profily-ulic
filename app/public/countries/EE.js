@@ -1,6 +1,6 @@
 // Estonia (EE; Bára 23. 11. 2026): what differs from the Czech rules of countries/default.js. Its sources are
 // towns/estonia.js (ETAK's buildings), the Land and Spatial Development Board's orthophoto lanes-ortho.js "ee". Sources,
-// norms and signs: evaluation/estonia/ (ZDROJE.md, NORMY.md).
+// norms and signs: evaluation/estonia/ (SOURCES.md, NORMS.md).
 import { t } from "../i18n.js";
 import { czechFurniture, TOWN_ART } from "../art.js";
 import base, { CZ_CODE } from "./default.js";
@@ -8,7 +8,7 @@ import { cycleTrackLimits } from "./cycletrack.js";
 import { GROUP } from "../norms.js";
 import { estoniaDetails, estoniaLook } from "../house-looks.js";
 
-// Norms (evaluation/estonia/NORMY.md D): the sidewalk of 1.5 m binding (the accessibility regulation of 2026 for new and
+// Norms (evaluation/estonia/NORMS.md D): the sidewalk of 1.5 m binding (the accessibility regulation of 2026 for new and
 // rebuilt streets); the rest the street standard EVS 843:2016 (second hand: paid, unread) and Tallinn's guide, so only
 // orange (min 0, as Lithuania's; hostile review 24. 11. 2026). No warning for parking (no figure found), a bus lane with
 // bikes or a tram belt.
@@ -43,7 +43,7 @@ function limitsEE(s, segs = [], i = -1) {
 
 // The signs of the state EE (app/public/signs-EE/, README there; the signs regulation "Liiklusmärgid ja nende
 // kasutamine"; Wikimedia Commons). Official texts are not protected (Autoriõiguse seadus § 5; the drawings read as part of
-// them, NORMY.md C). Estonia's law has no pedestrian zone: the zone 381 with the footpath 432 (Commons' "386") stands
+// them, NORMS.md C). Estonia's law has no pedestrian zone: the zone 381 with the footpath 432 (Commons' "386") stands
 // for it, for Bára.
 const EE_FILE = { b1: "311a", b11: "312", b8: "321", b30: "324", b28: "361", b29: "362", ip11a: "575a", ztp: "575d", ip12: "575g", ip14a: "511",
   ip20a: "525a", zona30: "381-351-30", ip26a: "573", ip27a: "386", c8a: "431", c9a: "435", c10a: "433", c7a: "432" };
@@ -79,7 +79,7 @@ export default {
   code: "EE",
   bounds: [21.6, 57.5, 28.3, 59.8],
   // Liiklusseadus § 21 (2) 7: 3 m only beside a continuous line; no general figure: 3 m a direction as elsewhere
-  // (NORMY.md B1; for Bára). A car on the sidewalk only where a sign allows it, leaving 1.5 m (§ 20 (4)).
+  // (NORMS.md B1; for Bára). A car on the sidewalk only where a sign allows it, leaving 1.5 m (§ 20 (4)).
   freeLane: 3,
   halfKerbNote: (free, need) => t("Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. V Estonsku smí auto stát na chodníku jen tam, kde to dovolí značka, a chodcům musí zůstat aspoň 1,5 m (§ 20 zákona o silničním provozu); aplikace nechává {need}.", { free, need }),
   parkGuess: true,

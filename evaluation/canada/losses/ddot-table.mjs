@@ -7,7 +7,7 @@ const W = new URL("../../../", import.meta.url).pathname;
 const SP = new URL("data/cache/", import.meta.url).pathname;
 fs.mkdirSync(SP, { recursive: true });
 globalThis.PROFILY_US = {};
-const { osmAt } = await import(W + "evaluation/kliky/osm.mjs");
+const { osmAt } = await import(W + "evaluation/clicks/osm.mjs");
 const usa = await import(W + "app/public/towns/usa.js");
 const P = await import(W + "app/public/towns/planimetrics.js");
 const { cutOfBox } = await import(W + "app/public/towns/belgium.js");

@@ -1,11 +1,11 @@
 // Italy (Bára 23. 11. 2026): the state of a cut inside states.json's "italy", which is only where an orthophoto or a
 // surface map has an open licence (the province of Bolzano, Turin, Bologna, Modena; Lombardy by its DBT since 24. 11. 2026,
-// towns/lombardy.js; evaluation/italy/ZDROJE.md). The profile is the estimate from OSM and that orthophoto
+// towns/lombardy.js; evaluation/italy/SOURCES.md). The profile is the estimate from OSM and that orthophoto
 // (lanes-ortho.js "it"), except in Lombardy (the DBT's surfaces, no orthophoto) and Bologna:
 // - Bologna's Carta tecnica comunale (opendata.comune.bologna.it, Opendatasoft, CORS *, CC BY 4.0): the road areas
 //   (aree stradali: the carriageway of the streets and of their junctions) as polygons. The sidewalks are only lines
 //   there: what lies between the roadway, OSM's buildings, green and water is paved walking area (a fill after all
-//   of them, marked as an estimate). OFF unless ?bologna=1: the A/B of 40 cuts (evaluation/italy/ab/ZPRAVA.md) showed the
+//   of them, marked as an estimate). OFF unless ?bologna=1: the A/B of 40 cuts (evaluation/italy/ab/REPORT.md) showed the
 //   road areas are the whole street space with its sidewalks (roadways of 20 m with shoulders, the sidewalks lost).
 // - Bologna's buildings (c_a944ctc_edifici_pl): the height to the eaves, so the floors (about 3.2 m a floor), and the
 //   kind (a church, a portico…). Under a portico the building behind it (within PORTICO_REACH). ?bolognadomy=0 leaves
@@ -24,7 +24,7 @@ export const AREAS = { bologna: { box: [11.22, 44.42, 11.44, 44.56] }, ...LOMBAR
 const ROADWAY = new Set(["Tracciato principale in tronco", "Tronco di intersezione tra strade a raso"]);
 
 // At most 500 areas a box (5 pages); the map is off (?bologna=1), so a cut over more just loses the rest. Before it is
-// turned on: say so, and split the fill by the kerb lines (ab/ZPRAVA.md; the review of 23. 11. 2026, finding 18).
+// turned on: say so, and split the fill by the kerb lines (ab/REPORT.md; the review of 23. 11. 2026, finding 18).
 async function records(dataset, bbox, select) {
   const [x0, y0, x1, y1] = bbox.split(",").map(Number);
   const out = [];

@@ -1,7 +1,7 @@
 // Canada (CA; Bára 25. 11. 2026): what differs from the Czech rules of countries/default.js. Only Toronto and the
 // municipalities around it are covered (states.json "canada"; the rest of Canada is closed_ca); its sources are towns/canada.js
 // (the City of Toronto's topographic mapping as the surface map), the orthophoto Toronto's current year (lanes-ortho.js
-// "ca", only over the city). Sources and norms: evaluation/canada/ (NORMY.md).
+// "ca", only over the city). Sources and norms: evaluation/canada/ (NORMS.md).
 import { t } from "../i18n.js";
 import { northAmericaLook, northAmericaDetails } from "../house-looks-america.js";
 import { LATE_BOUNDS } from "../late.js";
@@ -9,7 +9,7 @@ import { northAmericaFurniture, ownArt, NORTH_AMERICA_VEHICLES } from "../art.js
 import base, { CZ_CODE } from "./default.js";
 import { cycleTrackLimits } from "./cycletrack.js";
 
-// Norms (evaluation/canada/NORMY.md): the City of Toronto's Lane Widths Guideline (V3.0, 2025), its On-Street Bikeway Design
+// Norms (evaluation/canada/NORMS.md): the City of Toronto's Lane Widths Guideline (V3.0, 2025), its On-Street Bikeway Design
 // Guidelines (2023) and its Complete Streets Guidelines (2017). Guidelines for new design in the city, and the app
 // reads existing streets (and the suburbs), so orange only. No tram belt, angled stall nor shared path: no published
 // width was found.
@@ -45,7 +45,7 @@ export default {
   // Toronto and its surroundings (states.json "canada", the OSM pack ca_on_toronto).
   bounds: LATE_BOUNDS.CA,
   // No width that must stay free beside a parked car was found (Ontario's Highway Traffic Act s. 170 and Toronto's Municipal
-  // Code ch. 950 name none; NORMY.md), so the app's usual 3 m a direction and not their law.
+  // Code ch. 950 name none; NORMS.md), so the app's usual 3 m a direction and not their law.
   freeLane: 3,
   halfKerbNote: (free, need) => t("Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Aplikace nechává {need}.", { free, need }),
   parkGuess: true,

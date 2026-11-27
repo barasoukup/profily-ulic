@@ -13,13 +13,13 @@ vendor/
 
 # Evaluation results (orthophoto crops, cached profiles); the scripts in evaluation/ rebuild them.
 evaluation/data/
-evaluation/snapshot/
+evaluation/archive/prague-100/snapshot/
 .claude/
 
 # Local test page for building drawings (imports profile.js, never deployed)
 app/public/test-budovy.html
-# OSM-derived table (ODbL), rebuilt by evaluation/budovy-typ/labels.mjs
-evaluation/budovy-typ/labels.tsv
+# OSM-derived table (ODbL), rebuilt by evaluation/archive/building-types/labels.mjs
+evaluation/archive/building-types/labels.tsv
 
 # Local Mapy.com key (export const MAPY_KEY = "…"), never committed
 app/public/config.local.js
@@ -37,13 +37,13 @@ tools/.ca-check.pem
 
 # Bářiny dokumenty (Plus přístup), nepatří do repozitáře
 Profily-ulic-Plus.docx
-evaluation/budovy-panel/cache.json
-# Copies of evaluation scripts served to the app page during a run (evaluation/slovensko/kontrola)
+evaluation/archive/panel-buildings/cache.json
+# Copies of evaluation scripts served to the app page during a run (evaluation/slovakia/check)
 app/public/evaluation-*
 # Working files of the agents' runs in the app's folder (copies of collectors, point lists), never deployed or committed
 app/public/zz-*
-# Esri World Imagery crops of the Lombardy A/B (not to be published: evaluation/italy/lombardia/ZPRAVA.md) and its data
-evaluation/italy/lombardia/obrazky/
+# Esri World Imagery crops of the Lombardy A/B (not to be published: evaluation/italy/lombardia/REPORT.md) and its data
+evaluation/italy/lombardia/images/
 evaluation/italy/lombardia/data/
 # Images over orthophotos licensed for viewing only (Vilnius's own orthophoto, Esri), wherever an A/B keeps them
 evaluation/**/esri/

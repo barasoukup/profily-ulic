@@ -4,7 +4,7 @@
 // The facts merged as app.js does, the look the app draws (profile.js buildingStyle, the country's look). Politely: one
 // request a house and source, a pause of 1.5 s, the answers kept in data/answers.json (a second run asks nothing again).
 // Also (agreement): up to 10 OSM buildings a city with building:levels, asked the same way.
-//   node evaluation/finland/buildings-ab/run.mjs → vysledky/rezy.json, vysledky/osm-levels.json
+//   node evaluation/finland/buildings-ab/run.mjs → results/rezy.json, results/osm-levels.json
 import fs from "node:fs";
 import { setCity } from "../../../app/public/city.js";
 import { buildingStyle } from "../../../app/public/profile.js";
@@ -50,7 +50,7 @@ for (const r of sample) for (const h of r.houses) {
     osmStart: h.osm?.start ?? null, source: p?.fiBuild ?? null, answer: p, ryhti: inHki ? c : undefined,
     a: { levels: a.levels ?? null, year: a.built ?? a.start ?? null, look: buildingStyle(a) }, b: { levels: b.levels ?? null, year: b.built ?? b.start ?? null, material: b.material ?? null, look: buildingStyle(b) } });
 }
-fs.writeFileSync(new URL("vysledky/rezy.json", HERE), JSON.stringify(rows, null, 1));
+fs.writeFileSync(new URL("results/rezy.json", HERE), JSON.stringify(rows, null, 1));
 
 // OSM buildings with building:levels (seeded) in the four centres, the point inside the outline near its centroid.
 let seed = 20261129;
@@ -77,5 +77,5 @@ for (const [city, [lat0, lon0]] of Object.entries(CENTRES)) {
     lev.push({ town: city, lat, lon, building: f.properties.building, osmLevels: osm, source: p.fiBuild ?? null, total: p.total ?? null, built: p.built ?? null });
   }
 }
-fs.writeFileSync(new URL("vysledky/osm-levels.json", HERE), JSON.stringify(lev, null, 1));
+fs.writeFileSync(new URL("results/osm-levels.json", HERE), JSON.stringify(lev, null, 1));
 console.log("domů", rows.length, "OSM s podlažími", lev.length);

@@ -22,7 +22,7 @@ for (const s of pairs) {
     catch (e) { report.noOrtho.push(`${s.id} ${e.message}`); continue; }
     await new Promise((q) => setTimeout(q, 500));
   }
-  if (!L || n === 10) { await flush(); if (L) k++; n = 0; dir = path.join(DATA, `review-fork-${k}`); await fs.mkdir(dir, { recursive: true }); L = [await fs.readFile(path.join(HERE, "../../usa/fresh/POKYN-AB.md"), "utf8"), ""]; }
+  if (!L || n === 10) { await flush(); if (L) k++; n = 0; dir = path.join(DATA, `review-fork-${k}`); await fs.mkdir(dir, { recursive: true }); L = [await fs.readFile(path.join(HERE, "../../usa/fresh/BRIEF-AB.md"), "utf8"), ""]; }
   n++;
   await fs.copyFile(o, path.join(dir, `${n}-ortho.jpg`));
   const imgs = ((await (await fetch(`https://graph.mapillary.com/images?${new URLSearchParams({ access_token: TOKEN, lat: a.lat, lng: a.lon, radius: 30, limit: 100, fields: "id,captured_at,compass_angle,computed_compass_angle,is_pano,thumb_1024_url" })}`)).json()).data || []).map((d) => ({ at: d.captured_at, pano: !!d.is_pano, url: d.thumb_1024_url, c: d.computed_compass_angle ?? d.compass_angle })), ph = [];

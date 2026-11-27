@@ -252,7 +252,7 @@ export function parkFromAi(result, pAt, skip = {}) {
   const maxIn = (kerb, sg, to = 2.5) => { let m = 0; for (let d = 0.1; d < to; d += STEP) { const p = pAt(kerb + sg * d); if (p !== null) m = Math.max(m, p); } return m; };
   let changed = 0;
   // A strip the law estimated (segment k, its kerb on side sg) goes back to the roadway: shared evenly by the run's
-  // driving lanes (evaluation/sjednoceni: two lanes of 3.05 and 5.05 m where O had 4.05 and 4.05), else to the shoulder
+  // driving lanes (evaluation/archive/unification: two lanes of 3.05 and 5.05 m where O had 4.05 and 4.05), else to the shoulder
   // or lane beside it. Whether it went.
   const back = (k, sg) => {
     const X = segs[k], Y = segs[sg < 0 ? k + 1 : k - 1];
@@ -295,14 +295,14 @@ export function parkFromAi(result, pAt, skip = {}) {
     else if (!KERBSIDE.has(N?.type)) { a += b; b = 0; }
     if (a < 0.6 && b < 0.6) {
       // No cars at this kerb: a strip the law estimated goes back to the lane. In a surface map's roadway (inside) none
-      // within 2.5 m past the strip either: the map's kerb need not sit on the orthophoto's (evaluation/mapfill-cz:
+      // within 2.5 m past the strip either: the map's kerb need not sit on the orthophoto's (evaluation/archive/mapfill-cz:
       // Šatrova in Prague, MTVU's kerb 2.3 m beyond the one on the photo, the cars there read as none at the kerb).
       if (X.type === "parkovani" && X.source === "odhad" && !X.ai && maxIn(kerb, dirIn, skip.inside ? X.width + 2.5 : 2.5) < PARK.off && back(k, sg)) changed++;
       continue;
     }
     if (a + b < PARK.minW) continue;
     // A strip the law estimated where the model sees the cars stand otherwise (angled or perpendicular, or on the kerb):
-    // the strip goes back to the roadway and the model's stall takes its place (evaluation/sjednoceni, Slovakia: Trenčín
+    // the strip goes back to the roadway and the model's stall takes its place (evaluation/archive/unification, Slovakia: Trenčín
     // K výstavisku, Martin J. Mazúra, 5.4 m perpendicular rows drawn as 2 m parallel ones). Parallel cars in the roadway
     // keep the law's strip.
     if (X.type === "parkovani") {
@@ -353,7 +353,7 @@ export function parkFromAi(result, pAt, skip = {}) {
   return changed;
 }
 
-// The law's strips and the model (Bára 25. 11. 2026, evaluation/sjednoceni/slovensko-stani; ?off=lawlanes: as before). A
+// The law's strips and the model (Bára 25. 11. 2026, evaluation/archive/unification/slovakia-parking; ?off=lawlanes: as before). A
 // strip the law estimated lying in the roadway before the lanes are measured hides the orthophoto's lines (lanes-ortho.js
 // measured() wants only lanes and shoulders), and it was judged on the whole roadway, before the model's cars (a row
 // across the kerb) took their part of it. Where the model reads the cut, the lanes are measured on the profile without
@@ -389,7 +389,7 @@ function shareLanes(lanes, dw) {
   lanes.forEach((x, q) => { x.width = q === lanes.length - 1 ? r2(total - each * (lanes.length - 1)) : each; });
 }
 // A lane with a shared-lane marking is a driving lane like any other (Naglergasse in Graz, Rua António Cândido in Lisbon:
-// the only lane of the street; evaluation/sjednoceni/mereni2).
+// the only lane of the street; evaluation/archive/unification/measure2).
 const LAW_LANE = new Set(["pruh", "pruh_piktokoridor"]);
 const free = (run) => run.filter((x) => LAW_LANE.has(x.type) || x.type === "krajnice").reduce((q, x) => q + x.width, 0);
 const LAW_LANE_MIN = 2.5; // the narrowest lane beside the strip (derive.js MIN_LANE)

@@ -1,6 +1,6 @@
 // Slimming the OSM tiles as they are packed (tools/pack_osm_tiles.mjs; Bára 26. 11. 2026: Europe, the USA and Canada
 // under R2's free 10 GB, with room to spare). Only what the app never reads goes; what it reads stays exactly as it was,
-// so every profile stays the same (evaluation/osm-r2/ZPRAVA-ZMENSENI.md: the same profiles from the full and the slim
+// so every profile stays the same (evaluation/osm-r2/REPORT-SLIM.md: the same profiles from the full and the slim
 // packs). The format stays (osmpack.js VERSION 1): a slim pack and a full one are read alike.
 //   ids   the OSM id of an area or a point. The app reads it only in mergePieces (osmtile.js), to take a shape that is
 //         in two tiles once; a way keeps its id (the cut's street, joining its pieces, saved links). An area or a point

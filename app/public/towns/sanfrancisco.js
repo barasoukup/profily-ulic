@@ -101,7 +101,7 @@ const PARKING = /^(general parking|residential permit parking|accessible parking
 const ALONG = 15, KERB_NEAR = 2.5; // m
 // osmOrient(side "lo"|"hi"): OSM's orientation of the parking there (ortho-osm.js parkingOrient), which turns a side the
 // curb would park parallel angled (Indiana Street: perpendicular in OSM and on the street, the curb's zone one long one).
-// Off: the blind A/B of 30 new cuts did not show it better (12 : 11, evaluation/usa/sf/fixes/ZPRAVA.md); ?sfosmpark=1 on.
+// Off: the blind A/B of 30 new cuts did not show it better (12 : 11, evaluation/usa/sf/fixes/REPORT.md); ?sfosmpark=1 on.
 export function curbParking(runs, zones, c, osmOrient = () => null) {
   const at = carriageway(runs);
   if (!at) return { sides: [], known: [] };

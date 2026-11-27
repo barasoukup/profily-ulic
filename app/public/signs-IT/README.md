@@ -5,7 +5,7 @@ Soubory z Wikimedia Commons (série „Italian traffic signs - …“). Jméno s
 o autorském právu (L. 633/1941: „Le disposizioni di questa legge non si applicano ai testi degli atti ufficiali dello
 stato“) nejsou chráněné, a i kdyby to byla díla státu podle čl. 11, jejich práva trvají jen 20 let od zveřejnění (čl. 29),
 tedy u kreseb z let 1992 a 1996 skončila. Na Commons jsou public domain, část překreslení pod CC BY-SA 3.0 / 4.0 (II.75,
-II.90, II.322/a). Autoři a licence: `evaluation/italy/signs-licence.json`, rozbor: `evaluation/italy/NORMY.md` (oddíl C).
+II.90, II.322/a). Autoři a licence: `evaluation/italy/signs-licence.json`, rozbor: `evaluation/italy/NORMS.md` (oddíl C).
 Významy jsou podle textu Regolamenta (čl. 83, 116, 117, 120, 122, 135), ne podle popisků Commons.
 
 Souborům bez `viewBox` jsem ho doplnila podle `width` a `height`. Odvozený soubor:

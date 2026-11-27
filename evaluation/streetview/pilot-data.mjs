@@ -1,9 +1,9 @@
 // The Prague pilot of judging profiles by street-level photos (Bára 17. 11. 2026): 30 cuts of the regression set
-// (evaluation/ortofoto-osm, every third Prague cut), each with two profiles: the truth (the app's profile from IPR MTVU,
-// ab-city-stejne) and the estimate from the orthophoto and OSM (as regrese.mjs makes it). From each, the features a
+// (evaluation/ortho-osm, every third Prague cut), each with two profiles: the truth (the app's profile from IPR MTVU,
+// ab-city-stejne) and the estimate from the orthophoto and OSM (as regression.mjs makes it). From each, the features a
 // photo can show: lanes, parking per side, cycle facilities, tram, sidewalk per side, trees, median.
 //   node evaluation/streetview/pilot-data.mjs > evaluation/streetview/pilot.json
-import { cuts, osmAround, stripOf } from "../ortofoto-osm/lib.mjs";
+import { cuts, osmAround, stripOf } from "../ortho-osm/lib.mjs";
 import { orthoOsmPolys } from "../../app/public/ortho-osm.js";
 import { localFrame, deriveProfile } from "../../app/public/derive.js";
 

@@ -1,5 +1,5 @@
 // Slovenia (Bára 23. 11. 2026): the state of a cut inside states.json's "slovenia". No surface map of the streets is
-// published (evaluation/slovenia/ZDROJE.md 2): the profile is the estimate from OSM and GURS's orthophoto DOF025
+// published (evaluation/slovenia/SOURCES.md 2): the profile is the estimate from OSM and GURS's orthophoto DOF025
 // (lanes-ortho.js "si"). The houses:
 // - the buildings of the cadastre (Kataster nepremičnin, GURS WFS wfs-si-gurs-kn, layer STAVBE; CORS *, CC BY 4.0
 //   "Geodetska uprava Republike Slovenije"): the floors above the ground, the year it was built, its height, the walls
@@ -33,7 +33,7 @@ const num = (v) => (v === null || v === undefined || v === "" ? NaN : Number(v))
 
 // A building of the cadastre → the facts of app.js ruianFacts and the floors (as the Spanish Catastro):
 // - floors above the ground: STEVILO_ETAZ counts all floors, STEVILKA_PRITL_ETAZE is the number of the ground floor among
-//   them (2: one cellar below it), so ETAZ − PRITL + 1 (ZDROJE.md 3; the A/B checks it on photos, ab/ZPRAVA.md);
+//   them (2: one cellar below it), so ETAZ − PRITL + 1 (SOURCES.md 3; the A/B checks it on photos, ab/REPORT.md);
 // - the heights (Pravilnik o vodenju podatkov katastra nepremičnin, Ur. l. RS 41/2022): H1 the floor of the lowest
 //   storey (a cellar's, where there is one; empty for many houses of Maribor), H2 the highest point of the roof or the
 //   walls, H3 the terrain at the main entrance, all metres above the sea. The height above the ground is H2 − H3 (else
@@ -41,7 +41,7 @@ const num = (v) => (v === null || v === undefined || v === "" ? NaN : Number(v))
 // - the attic (Bára 23. 11. 2026): the cadastre counts a habitable attic as a floor. A house of 2 to 4 floors whose roof's
 //   top stands less than 3 m a floor + 2 m above the entrance has no room for that many full floors under a roof: its
 //   top floor is drawn in the roof (a pitched one). Tuned and scored on the same 54 houses (OSM's building:levels +
-//   roof:levels and photos, ab/ZPRAVA.md): right 31 → 37, within the noise without a held-out sample; it misses most
+//   roof:levels and photos, ab/REPORT.md): right 31 → 37, within the noise without a held-out sample; it misses most
 //   attics (the heights overlap) and takes some flat roofs for one. ?off=podkrovi turns it off (the review of 24. 11. 2026);
 // - the year LETO_IZGRADNJE;
 // - the walls: brick, stone, wood (solid; NOSILNE_KONSTRUKCIJE_NAZIV_SL); concrete says nothing of a panel house;

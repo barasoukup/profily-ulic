@@ -4,7 +4,7 @@
 // look the app draws (profile.js buildingStyle). Politely: one request a house, a pause of 1.5 s, the answers kept in
 // data/answers.json (a second run asks nothing again).
 // Also (agreement): up to 15 OSM buildings a Basque city with building:levels, asked the same way (data/<city>.geojsonl).
-//   node evaluation/spain/foral-ab/run.mjs → vysledky/rezy.json, vysledky/osm-levels.json
+//   node evaluation/spain/foral-ab/run.mjs → results/rezy.json, results/osm-levels.json
 import fs from "node:fs";
 import { setCity } from "../../../app/public/city.js";
 import { buildingStyle } from "../../../app/public/profile.js";
@@ -44,7 +44,7 @@ for (const r of sample) for (const h of r.houses) {
   rows.push({ id: `${r.id}-${h.side}`, town: r.town, street: r.street, lat: h.lat, lon: h.lon, cut: { lat: r.lat, lon: r.lon, bearing: r.bearing }, osmLevels: h.osm?.levels ?? null,
     osmStart: h.osm?.start ?? null, answer: p, a: { levels: a.levels ?? null, year: a.built ?? a.start ?? null, look: buildingStyle(a) }, b: { levels: b.levels ?? null, year: b.built ?? b.start ?? null, look: buildingStyle(b) } });
 }
-fs.writeFileSync(new URL("vysledky/rezy.json", HERE), JSON.stringify(rows, null, 1));
+fs.writeFileSync(new URL("results/rezy.json", HERE), JSON.stringify(rows, null, 1));
 
 // OSM buildings with building:levels (seeded), the point inside the outline nearest its centroid.
 let seed = 20261128;
@@ -66,5 +66,5 @@ for (const city of ["bilbao", "donostia", "vitoria", "pamplona"]) {
     lev.push({ town: city, lat, lon, building: f.properties.building, osmLevels: osm, osmStart: parseInt(String(f.properties.start_date || "").slice(0, 4), 10) || null, foral: p.total ?? null, built: p.built ?? null });
   }
 }
-fs.writeFileSync(new URL("vysledky/osm-levels.json", HERE), JSON.stringify(lev, null, 1));
+fs.writeFileSync(new URL("results/osm-levels.json", HERE), JSON.stringify(lev, null, 1));
 console.log("domů", rows.length, "OSM s podlažími", lev.length);

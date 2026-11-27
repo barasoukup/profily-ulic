@@ -194,7 +194,7 @@ export function parkingStrip(paths, depth, roadway, lat) {
 // IPR typ 3; cottages and garages as small low buildings, typ 6), the year it was completed (old
 // houses carry a summary date of 1910–1919, "before 1919") and its walls: concrete wall panels (druh
 // konstrukce 4, 41, 43) make a panel house; bricks, stone, monolith or wood (1–3, 5, 6, 11, 42, 61–66) rule one out
-// (evaluation/budovy-panel). Code 10 ("kámen, cihly, tvárnice vč. kombinací") says nothing: a third of the panel
+// (evaluation/archive/panel-buildings). Code 10 ("kámen, cihly, tvárnice vč. kombinací") says nothing: a third of the panel
 // houses of Brno-Lesná carry it.
 const RUIAN_SO = "https://ags.cuzk.gov.cz/arcgis/rest/services/RUIAN/Prohlizeci_sluzba_nad_daty_RUIAN/MapServer/3/query";
 // A farmstead (zemědělská usedlost, 2) is a village house, not a hall (Bára 16. 11. 2026).

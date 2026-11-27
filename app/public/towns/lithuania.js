@@ -1,5 +1,5 @@
 // Lithuania (Bára 24. 11. 2026): the state of a cut inside states.json's "lithuania". The national orthophoto of the
-// NŽT is licensed for viewing on geoportal.lt only (evaluation/lithuania/ZDROJE.md 1): no orthophoto at all, the profile
+// NŽT is licensed for viewing on geoportal.lt only (evaluation/lithuania/SOURCES.md 1): no orthophoto at all, the profile
 // is the estimate from OSM, except in Vilnius:
 // - Vilnius's topographic areas 1 : 500 (gis.vplanas.lt, Vilnius_basemap_LKS_su_rajonu layer 13 TEDR_PRLOTAI_P_500,
 //   ArcGIS 10.81, CORS for the origin asking): every area with its surface (KODAS) and, for the paved ones, its purpose
@@ -11,12 +11,12 @@
 //   estimate, with a note. Off by default (Bára 24. 11. 2026, after the hostile review: the universal measurement found
 // the map worse than the estimate, 53 against 75 % of the composition, and what is worse stays off); ?vilnius=1 turns it on.
 // The buildings: OSM's (the GRPK's PASK use code is undocumented and gives no floors nor year; NŽT's NTR has them but
-// no geometry nor CORS; ZDROJE.md 3), and for the facades the outlines of the GRPK (Bára 24. 11. 2026: the cut ends at
+// no geometry nor CORS; SOURCES.md 3), and for the facades the outlines of the GRPK (Bára 24. 11. 2026: the cut ends at
 // the facade): geoportal.lt NZT/GRPK layer 22 Pastatai, CORS for the origin asking, the dataset CC BY 4.0 (geoportal.lt
 // Open data), credited "budovy GRPK © Lietuvos Respublikos aplinkos ministerija (CC BY 4.0)". Everywhere in
 // Lithuania: under Vilnius's map before OSM's buildings (the nearer facade ends a side); for the estimate the houses OSM
 // lacks join OSM's (grpkAsOsm). A failure leaves OSM's alone, silently. ?grpk=0 leaves it out. A/B of 88 cuts in Vilnius
-// (evaluation/lithuania/ZPRAVA.md): 14 changed, better 5, worse 2, same 7; the universal measurement's composition the same.
+// (evaluation/lithuania/REPORT.md): 14 changed, better 5, worse 2, same 7; the universal measurement's composition the same.
 import { osmTiles, getJSON, asMtvu, asPassport } from "../gis.js";
 import { MTVU_LABELS } from "../city.js";
 import { inArea } from "../places.js";

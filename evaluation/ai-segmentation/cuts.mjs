@@ -1,11 +1,11 @@
-// Patches around the cuts of the estimate's regression (evaluation/ortofoto-osm/regrese.mjs: the cuts of
+// Patches around the cuts of the estimate's regression (evaluation/ortho-osm/regression.mjs: the cuts of
 // evaluation/<city>/data/ab-city-stejne and their truth from MTVU), so the model is measured exactly as the app's
 // estimate is: the kerbs of the carriageway and the sidewalk per side, along the same cut lines.
 //   node evaluation/ai-segmentation/cuts.mjs brno
 // OSM from the app's packs, as the training patches (osm.mjs). Writes data/ai-seg/cuts/<city>/<n>.json (patch of 83.2 m, 416 px, with the cut's lines and the truth) and .osm.json.
 import fs from "node:fs";
 import { setCity, sources } from "./labels-lib.mjs";
-const { cuts, truthOf, frame } = await import("../ortofoto-osm/lib.mjs");
+const { cuts, truthOf, frame } = await import("../ortho-osm/lib.mjs");
 const { hintsOf } = await import("./osm.mjs");
 
 const city = process.argv[2] || "brno";

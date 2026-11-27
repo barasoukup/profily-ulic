@@ -1,6 +1,6 @@
 // Malta (Bára 23. 11. 2026): the state of a cut inside states.json's "malta" (OSM's boundary with the territorial waters).
 // No street surfaces, parking nor buildings with floors are published: the profile is the estimate from OSM and the
-// Planning Authority's orthophoto of 2018 (lanes-ortho.js "mt"). Sources: evaluation/malta/ZDROJE.md.
+// Planning Authority's orthophoto of 2018 (lanes-ortho.js "mt"). Sources: evaluation/malta/SOURCES.md.
 import { osmTiles } from "../gis.js";
 
 export const sources = {

@@ -51,7 +51,7 @@ const landCode = (name) => JI_LAND.find(([re]) => re.test(name || ""))?.[1] ?? n
 // by the city in places as a strip of the road's nominal crown: I/38 as 13.0 m along kilometres, unpaved
 // verges included, where the asphalt is about 10.5 m. Where such a strip is 13 m across (12.7–13.2 m, over at
 // least SHARE of its edges; the same polygon may narrow to 9 m elsewhere, so it is judged edge by edge) it
-// is narrowed by TRIM on each side (A/B test evaluation/jihlava/PASPORT.md: 3 of 5 changed cuts better, none worse).
+// is narrowed by TRIM on each side (A/B test evaluation/jihlava/PASSPORT.md: 3 of 5 changed cuts better, none worse).
 const stateRoad = (a) => a.typ_useku === "vozovka" && /ŘSD|Krajsk/i.test(a.spravce || "") && !(a.povrch || "").trim();
 const TRIM = 1.25, MIN_STRIP = 12.7, MAX_STRIP = 13.2, SHARE = 0.3;
 // Widths of a polygon (metres) across it: from points along each edge, inwards to the next edge hit.

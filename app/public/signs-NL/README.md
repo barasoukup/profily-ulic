@@ -2,7 +2,7 @@
 
 Soubory z Wikimedia Commons („Nederlands verkeersbord …“, verze 2023), public domain: úřední díla podle čl. 11
 Auteurswet. Rychlosti A1-20 až A1-130 jsou kruh a barvy z A1 2023 s číslem jako text (Commons má jen A1-50, CC0).
-Všem doplněn `viewBox`. Rešerše: `evaluation/netherlands/NORMY.md`.
+Všem doplněn `viewBox`. Rešerše: `evaluation/netherlands/NORMS.md`.
 
 | Klíč aplikace | RVV | Soubor |
 |---|---|---|

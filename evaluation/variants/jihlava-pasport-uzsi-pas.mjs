@@ -1,7 +1,7 @@
 // Jihlava's passport with the roadways of state and regional roads that the city drew as a uniform strip of
 // the road's nominal crown (ŘSD, KSÚS, no surface recorded, 13 m across along much of it:
 // I/38 as 13.0 m; the same polygon may narrow to 9 m elsewhere, so it is judged edge by edge), narrowed by TRIM on each side: the crown includes the unpaved verges, the asphalt is about
-// 10.5 m (evaluation/jihlava/PASPORT.md). The rest as towns/jihlava.js.
+// 10.5 m (evaluation/jihlava/PASSPORT.md). The rest as towns/jihlava.js.
 import { roads, compose, passportLayer, stateRoad } from "./_jihlava.mjs";
 import { metres } from "../../app/public/gis.js";
 

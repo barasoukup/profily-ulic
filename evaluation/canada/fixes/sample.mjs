@@ -5,7 +5,7 @@
 // carriageways and tram tracks (the gaps) and cycle tracks (the tracks), as the review drew them. Which of them a fix changes
 // is told by surf.mjs (in Node), only those are cut in the app.   node evaluation/canada/fixes/sample.mjs   writes sample.json
 import fs from "node:fs/promises";
-import { osmAt, tiles } from "../../kliky/osm.mjs";
+import { osmAt, tiles } from "../../clicks/osm.mjs";
 import { TILE, mergePieces } from "../../../app/public/osmtile.js";
 import { localFrame, nearestStreet, placeCut as place } from "../../../app/public/derive.js";
 import { inside } from "../../../app/public/places.js";

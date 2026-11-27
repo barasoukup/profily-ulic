@@ -24,7 +24,7 @@ const parcelCode = (a) => LAND_USE[a.zpusobyvyuzitipozemku] ?? LAND_KIND[a.druhp
 // since, Karviná č. 56).
 //
 // Where the passport has the roadway under the cut's centre (the box's middle), the passport is the street: the
-// roadways the DTM only guesses around it are not (Bára 26. 11. 2026, evaluation/pasporty-orez; Rožnov č. 39, 43, 44,
+// roadways the DTM only guesses around it are not (Bára 26. 11. 2026, evaluation/archive/passports-trim; Rožnov č. 39, 43, 44,
 // 54, 63: 20–27 m of roadway over courtyards, driveways and the next road). A white area of the DTM's image whose
 // type was not asked (dmvs.js dtmAreas: a roadway by its colour) is left out; a road's parcel of RÚIAN that dmvs.js
 // made a roadway (the DTM's blank gap) is a verge, as dmvs.js has it outside such a gap. ?orez=0: as before.

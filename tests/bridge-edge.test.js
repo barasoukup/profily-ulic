@@ -1,4 +1,4 @@
-// A street on a bridge ends at its deck's edge, with a railing there (Bára 26. 11. 2026; evaluation/bridge-water/edge).
+// A street on a bridge ends at its deck's edge, with a railing there (Bára 26. 11. 2026; evaluation/archive/bridge-water/edge).
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { localFrame } from "../app/public/derive.js";

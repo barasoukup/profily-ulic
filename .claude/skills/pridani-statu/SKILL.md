@@ -16,7 +16,7 @@ na stát (`country === "SK"`, `city.country || "CZ"` …). Vzorový kód:
 - `credits.js` (kredit každého zdroje pod klíčem), `ortho-osm.js`, `site.js` (NETS), `search-sk.js`, `search-at.js`,
   `search-photon.js`.
 
-Zprávy jsou v `evaluation/slovensko/` a `evaluation/austria/` (ZPRAVA, NORMY, ZDROJE, ZNACKY, ab/).
+Zprávy jsou v `evaluation/slovakia/` a `evaluation/austria/` (REPORT, NORMS, SOURCES, SIGNS, ab/).
 
 ## Pravidla, která platí po celou dobu
 
@@ -264,15 +264,15 @@ Služba, která odpoví skutečnou 4xx nebo chybou ArcGIS se jménem špatného 
    - body předat souborem `app/public/zz-pts.json` (po testu smazat);
    - dlouhý sběr spustit jako `window.__run = (async…)()` a výsledek číst dalším voláním.
 3. **Obrázky rozdílných řezů nad ortofotem:** nahoře A modře, dole B červeně.
-   - Skript `evaluation/slovensko/ab/obrazky.mjs` s `IN=`, `OUT=` (složka vedle skriptu), `LA=`, `LB=`.
+   - Skript `evaluation/slovakia/ab/images.mjs` s `IN=`, `OUT=` (složka vedle skriptu), `LA=`, `LB=`.
    - Pro dlaždicové ortofoto `ORTHO=at` (lepení dlaždic přes ImageMagick).
    - Id řezů unikátní (obrázky se ukládají podle id).
-4. **Posudky okem:** lépe A / lépe B / stejně / obojí špatně / nejde posoudit. Souhrn, zpráva `ZPRAVA.md`, výchozí stav
+4. **Posudky okem:** lépe A / lépe B / stejně / obojí špatně / nejde posoudit. Souhrn, zpráva `REPORT.md`, výchozí stav
    podle výsledku.
 5. **Pro normy:** spočítat varování podle starých a nových pravidel (`checkRules`).
 
 **Regrese:** každá změna společného kódu (`ortho-osm.js`, `derive.js`, `signs.js`, `rules.js`) se zkontroluje v Česku:
-`node evaluation/ortofoto-osm/regrese.mjs` proti `vysledky/regrese.txt`. Co tam výsledky zhorší, zůstane vypnuté nebo
+`node evaluation/ortho-osm/regression.mjs` proti `results/regression.txt`. Co tam výsledky zhorší, zůstane vypnuté nebo
 se omezí na stát. Nové části odhadu dostanou vypínač (`P.off`, `?off=…`).
 
 **Po každé změně `app.js` udělat v prohlížeči řez v Česku i ve státu.** Testy `app.js` nepokrývají: nový parametr `name`
@@ -287,7 +287,7 @@ v `cutAt` zastínil pozdější `const name` a rozbil každý řez.
   - Kde veřejná hodnota chybí, nedávat červenou, jen orientační základ s textem „zdroj nenalezen“.
   - Hodnoty bez opory v rešerši nevymýšlet (nepřátelská recenze to u Rakouska našla).
   - Zbytkovou šířku při stání (judikatura) nevydávat za návrhovou normu.
-- **Doklady:** hlavička seznamu (`rulesHead`) podle předpisů státu, zpráva `evaluation/<state>/NORMY.md`, testy.
+- **Doklady:** hlavička seznamu (`rulesHead`) podle předpisů státu, zpráva `evaluation/<state>/NORMS.md`, testy.
 - **Zákony do odhadu stání:**
   - CZ a SK: 3 m na směr;
   - AT: StVO § 24 odst. 3, dva volné pruhy po asi 2,6 m (`freeLane` státu, `derive.js lawLane`);

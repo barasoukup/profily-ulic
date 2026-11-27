@@ -1,7 +1,7 @@
 // The universal accuracy measurement of Lithuania (Bára 24. 11. 2026), as evaluation/universal/score-states.mjs, for LT
-// only and twice: the app as it is (vysledky/app-lt.json: Vilnius's surface map where it has the street) and the estimate
-// from OSM alone (vysledky/lt-odhad.json, the same cuts with ?vilnius=0: what the rest of Lithuania gets). The judge's
-// profiles: vysledky/u-lt-*.jsonl. The app also with the GRPK's buildings (vysledky/app-lt-grpk.json, 24. 11. 2026;
+// only and twice: the app as it is (results/app-lt.json: Vilnius's surface map where it has the street) and the estimate
+// from OSM alone (results/lt-odhad.json, the same cuts with ?vilnius=0: what the rest of Lithuania gets). The judge's
+// profiles: results/u-lt-*.jsonl. The app also with the GRPK's buildings (results/app-lt-grpk.json, 24. 11. 2026;
 // app-lt.json is the app before them, as ?grpk=0). Sample points on service=driveway, parking_aisle or drive-through are left out (new
 // rule of 24. 11. 2026), as are footways and paths (no roadway).
 //   node evaluation/lithuania/score.mjs
@@ -10,11 +10,11 @@ import path from "node:path";
 import { compare } from "../universal/compare.mjs";
 
 const U = path.join(path.dirname(new URL(import.meta.url).pathname), "..", "universal");
-// The collections (evaluation/universal/data is not kept in git): copies in vysledky/ here.
-const OWN = path.join(path.dirname(new URL(import.meta.url).pathname), "vysledky");
+// The collections (evaluation/universal/data is not kept in git): copies in results/ here.
+const OWN = path.join(path.dirname(new URL(import.meta.url).pathname), "results");
 const load = async (f) => new Map(JSON.parse(await fs.readFile(path.join(OWN, f), "utf8")).map((r) => [r.id, r]));
 const EX = new Set(["driveway", "parking_aisle", "drive-through"]);
-const judged = (await Promise.all((await fs.readdir(path.join(U, "vysledky"))).filter((f) => /^u-lt-.*\.jsonl$/.test(f)).map((f) => fs.readFile(path.join(U, "vysledky", f), "utf8"))))
+const judged = (await Promise.all((await fs.readdir(path.join(U, "results"))).filter((f) => /^u-lt-.*\.jsonl$/.test(f)).map((f) => fs.readFile(path.join(U, "results", f), "utf8"))))
   .join("\n").split("\n").filter(Boolean).map((l) => JSON.parse(l)).filter((j) => j.usable);
 const ROAD = ["pruh", "pruh_piktokoridor", "obsluzna", "bus", "bus_cyklo", "tramvaj_v_pruhu"];
 const pct = (a, n) => `${Math.round((100 * a) / n)} %`;

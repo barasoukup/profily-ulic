@@ -1,4 +1,4 @@
-// The hold-out set measured (Bára 19. 11. 2026, steps 1 and 2 of evaluation/ortofoto/LITERATURA-2.md): runs of the
+// The hold-out set measured (Bára 19. 11. 2026, steps 1 and 2 of evaluation/orthophoto/LITERATURE-2.md): runs of the
 // replay (data/replay/out/<run> of the main repository) of the same cuts, one with the cities' maps (the truth: the surfaces along
 // the cut, MTVU codes) and any number with the estimate (?mapa=0 and switches). Per city and pooled:
 //   - composition metre by metre (roadway, parking, sidewalk, green, tram bed, other, unknown; buildings left out),
@@ -132,7 +132,7 @@ for (const run of RUNS.slice(1)) {
   }
   lines.push("");
 }
-const file = path.join(path.dirname(new URL(import.meta.url).pathname), "vysledky", `${RUNS.join("+")}.md`);
+const file = path.join(path.dirname(new URL(import.meta.url).pathname), "results", `${RUNS.join("+")}.md`);
 fs.mkdirSync(path.dirname(file), { recursive: true });
 fs.writeFileSync(file, lines.join("\n") + "\n");
 console.log(lines.join("\n"));

@@ -1,12 +1,12 @@
 // Spain (ES; Bára 23. 11. 2026): what differs from the Czech rules of countries/default.js. Its sources are
 // towns/spain.js (Zaragoza's paving map, the Catastro), IGN's PNOA orthophoto lanes-ortho.js "es". Sources, norms and
-// signs: evaluation/spain/ (ZDROJE.md, NORMY.md).
+// signs: evaluation/spain/ (SOURCES.md, NORMS.md).
 import { t } from "../i18n.js";
 import { czechFurniture, TOWN_ART } from "../art.js";
 import base, { CZ_CODE } from "./default.js";
 import { mediterraneanDetails, mediterraneanLook } from "../house-looks.js";
 
-// Norms (evaluation/spain/NORMY.md): binding only the accessibility order (Orden TMA/851/2021, art. 5.2 b: a free width
+// Norms (evaluation/spain/NORMS.md): binding only the accessibility order (Orden TMA/851/2021, art. 5.2 b: a free width
 // of 1.80 m on the accessible pedestrian route); the rest the ministry's recommendations for cycling infrastructure
 // (2023/2024), which give the city's lanes and parking too. No warning for a bus lane, a bus lane with bikes, a tram
 // belt (no source found) or a shared path (5 m undivided: it would shine almost everywhere; for Bára).
@@ -52,14 +52,14 @@ const ES_SPEEDS = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120];
 const motorway = (s) => { const r = String(s?.ref || ""); return /(^|;)\s*AP-/.test(r) ? "S-1" : /(^|;)\s*A-/.test(r) ? "S-1a" : null; };
 const num = (v) => { const m = /^(\d+)/.exec(String(v ?? "")); return m ? Number(m[1]) : undefined; };
 // A living street (OSM living_street) is S-47 Zona de coexistencia (20 km/h) unless OSM says 10 km/h: then S-28 Zona de
-// estancia y juego, which stands with R-301 10 (NORMY.md B4); with another speed no zone sign, only the speed (the
+// estancia y juego, which stands with R-301 10 (NORMS.md B4); with another speed no zone sign, only the speed (the
 // review of 23. 11. 2026: S-28 is no longer the residential street of 20 km/h).
 const esZones = (z, tags) => z.flatMap((x) => {
   if (x.k !== "ip26a") return [x];
   const v = num(tags.maxspeed);
   return v === 10 ? [x] : !v || v === 20 ? [{ k: "sdilena" }] : [];
 });
-// RGC art. 50.1 (NORMY.md B4): in a town 20 km/h on a single platform, 30 with one lane a direction, 50 with two or more
+// RGC art. 50.1 (NORMS.md B4): in a town 20 km/h on a single platform, 30 with one lane a direction, 50 with two or more
 // (lanes reserved for buses not counted). The town's speed is drawn only where it differs from these. OSM does not tell
 // a single platform: a living street is taken for one.
 function esTownSpeed(tags) {
@@ -93,7 +93,7 @@ export default {
   bounds: [-18.2, 27.6, 4.4, 43.8],
   // RGC art. 91.2 a): parking is dangerous or seriously obstructive "cuando la distancia entre el vehículo y el borde
   // opuesto de la calzada o una marca longitudinal … sea inferior a tres metros": 3 m to the opposite edge, not 3 m a
-  // direction (evaluation/spain/NORMY.md B1; the literal reading, for Bára). Parking is estimated as in Luxembourg: the
+  // direction (evaluation/spain/NORMS.md B1; the literal reading, for Bára). Parking is estimated as in Luxembourg: the
   // lanes OSM counts keep MIN_LANE each beside it (the review of 23. 11. 2026: 3 m alone left two lanes of 1.5 m).
   freeLane: 3,
   lawNeed: (oneway, lanes, minLane) => Math.max(3, minLane * Math.max(oneway ? 1 : 2, lanes)),

@@ -6,13 +6,13 @@ description: Univerzální měření přesnosti profilů Profilů ulic (stejné 
 # Měření přesnosti profilů (univerzální metoda)
 
 Postup z 17. 11. 2026 (Bára: „jednu univerzální metodu, kterou můžeme hodnotit přesnost všude“). Kód
-v `evaluation/universal/`, zpráva s výsledky a kalibrací `evaluation/universal/ZPRAVA.md`.
+v `evaluation/universal/`, zpráva s výsledky a kalibrací `evaluation/universal/REPORT.md`.
 
 **Co měříme:** nejdřív složení uličního prostoru (chodník, stání, pruhy, cyklo, tramvaj, zeleň, dělicí pás, pořadí
 A→B), pak šířku uličního prostoru, pruhy. Obruby na centimetry ne (Bára: složení je důležitější než přesnost).
 
 **Kdy:** u každého nového státu (po jeho zapojení, před nasazením) a na pokyn Báry u starých států (po větší změně).
-Výsledek vždy srovnat s minulou tabulkou (`vysledky/staty.md`, ZPRAVA.md).
+Výsledek vždy srovnat s minulou tabulkou (`results/staty.md`, REPORT.md).
 
 ## Kalibrace (hotová, opakovat jen při změně posuzovatele nebo pokynu)
 
@@ -33,16 +33,16 @@ složení; **bez fotky 28 %, tedy nepoužitelný**. Hodnotí se proto jen řezy 
 5. **Výběr a fotky** `node evaluation/universal/select.mjs <ISO>`: nejvýš 4 řezy na město, které mají fotku.
    Mapillary všude (token `evaluation/streetview/token.local`), v Česku navíc panorama Mapy.com (vlastní klíč
    `evaluation/universal/mapy-key.local`; klíč aplikace je omezený na web, Referer nepodvrhovat). Obě git ignoruje.
-6. **Posuzovatelé:** agenti Sonnet po ~20 řezech, podle `POKYN.md`, **fotky povinně** (bez toho je přeskočí),
-   profil aplikace nesmí vidět, výstup `vysledky/u-<iso>-N.jsonl`. Zkontrolovat, že každý řez má ortofoto
+6. **Posuzovatelé:** agenti Sonnet po ~20 řezech, podle `BRIEF.md`, **fotky povinně** (bez toho je přeskočí),
+   profil aplikace nesmí vidět, výstup `results/u-<iso>-N.jsonl`. Zkontrolovat, že každý řez má ortofoto
    (`data/<id>-ortho.jpg`); agent bez ortofota vymýšlí.
    Pokyn od 25. 11. 2026 (oddíl „Co do profilu patří“): každá část od asi 0,5 m včetně pásů trávy a stromů mezi chodníkem a
    obrubou, stání podle pruhu u obruby (ne jen kde stojí auto), chodník až k fasádě a po kusech, pruhy neznačené obousměrky.
-   Zadání agentovi neutrální: odkázat na `POKYN.md`, nic nepřidávat (nápověda „pásy jsou tu časté“ zvedla ve Washingtonu
+   Zadání agentovi neutrální: odkázat na `BRIEF.md`, nic nepřidávat (nápověda „pásy jsou tu časté“ zvedla ve Washingtonu
    skóre s mapou o 4 body a bez ní ho o 4 snížila). Posudky se liší i při stejném pokynu (shoda asi 75 %, skóre ±5 bodů): při změně pokynu
-   dát i kontrolu starým pokynem (`pokyn2-select.mjs`, `pokyn2-score.mjs`).
-7. **Skóre** `node evaluation/universal/score-states.mjs` (jen řezy s vozovkou), uložit do `vysledky/staty.md`,
-   doplnit ZPRAVA.md, commit.
+   dát i kontrolu starým pokynem (`brief2-select.mjs`, `brief2-score.mjs`).
+7. **Skóre** `node evaluation/universal/score-states.mjs` (jen řezy s vozovkou), uložit do `results/staty.md`,
+   doplnit REPORT.md, commit.
 8. **Úklid:** `node evaluation/universal/clean.mjs` (panoramata Mapy.com se podle podmínek nesmí uchovávat),
    smazat `app/public/zz-pts.json`.
 
@@ -65,15 +65,15 @@ Stejná posouzení, nové profily: `zz-pts.json` z posouzených řezů (`judge.j
 `collect24` z `collect.js` (řez jako odkaz `#rez=`, uloží i `highway`/`service` cesty z balíku OSM), název souboru
 `app-z…` bez číslic (jinak ho `score-states.mjs` nevezme). Před: `SKIP=<název> OLD=1 NOEX=1` s `DATA_DIRS` starých sběrů.
 Zkontrolovat, že státní služby odpovídají (24. 11. vypadlo ortofoto Geoportalu PL), a srovnat zdroje (`sources`) se
-starým sběrem. Výsledky 24. 11.: `vysledky/staty.md`.
+starým sběrem. Výsledky 24. 11.: `results/staty.md`.
 
 ## Kontrola umístění kliknutí (25. 11. 2026)
 
 Uložené řezy se otevírají přesně, takže žádné měření s uloženou polohou neukáže, kam padne kliknutí. Po každé změně v
 `derive.js` `nearestStreet`, `placeCut`, `awayFromJunctions`, `alleyMouths`, `partnerJunctions`, `centerOnStreet`:
-1. `git archive <commit před> app/public | tar -x -C <složka>`; `OLD=<složka>/app/public node evaluation/kliky/collect.mjs`
-   (440 kliků, bez prohlížeče) a `node evaluation/kliky/report.mjs vysledky/kliky.json now` (posuny, nad 25 m s příčinou, chyby).
+1. `git archive <commit před> app/public | tar -x -C <složka>`; `OLD=<složka>/app/public node evaluation/clicks/collect.mjs`
+   (440 kliků, bez prohlížeče) a `node evaluation/clicks/report.mjs results/kliky.json now` (posuny, nad 25 m s příčinou, chyby).
    Velký sběr: `times=10 seed=… city=…`. Washington jen, když je jeho balík OSM.
-2. `node --test tests/placement.test.js` (nahrané scény; nová scéna: `evaluation/kliky/scenes.json`, `record.mjs`).
-3. Kde se místa liší: proti mapám měst `podil.js`, `podil-souhrn.mjs`, naslepo `vyber.mjs`, `profily.js`, `baliky.mjs`, `skore.mjs`
-   (nové semínko, čerstvá místa, zmrazená kopie kódu). Zpráva `evaluation/kliky/ZPRAVA.md`.
+2. `node --test tests/placement.test.js` (nahrané scény; nová scéna: `evaluation/clicks/scenes.json`, `record.mjs`).
+3. Kde se místa liší: proti mapám měst `share.js`, `share-summary.mjs`, naslepo `select.mjs`, `profiles.js`, `packages.mjs`, `score.mjs`
+   (nové semínko, čerstvá místa, zmrazená kopie kódu). Zpráva `evaluation/clicks/REPORT.md`.

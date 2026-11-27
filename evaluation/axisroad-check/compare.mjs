@@ -1,4 +1,4 @@
-// The check of ?axisroad=1 (ZPRAVA.md): two runs of the harness (without and with the switch), cut by cut, the profile
+// The check of ?axisroad=1 (REPORT.md): two runs of the harness (without and with the switch), cut by cut, the profile
 // (the parts' types and widths, the edges, the status line, the cut itself). Prints the changed cuts and a count by state.
 //   node evaluation/axisroad-check/compare.mjs <run off> <run on> [sample file] [--json=<file>]
 import fs from "node:fs";

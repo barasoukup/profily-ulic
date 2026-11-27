@@ -1,4 +1,4 @@
-// Fixes from the check of 1000 Slovak cuts (evaluation/slovensko/kontrola/ZPRAVA.md, Bára 16. 11. 2026).
+// Fixes from the check of 1000 Slovak cuts (evaluation/slovakia/check/REPORT.md, Bára 16. 11. 2026).
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { splitTwoWayLane, capWideLanes } from "../app/public/derive.js";

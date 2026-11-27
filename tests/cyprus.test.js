@@ -26,7 +26,7 @@ test("Kypr: jízda vlevo, značky a normy", async () => {
   assert.equal(f({ k: "zona30" }), null, "zónu 30 Kodex nemá");
   assert.equal(f({ k: "ip27a" }), null, "pěší zónu Kodex nemá (Bára 23. 11. 2026: nekreslit)");
   assert.equal(f({ k: "c10a", walk: "left" }), "c10a-walk-left", "chodci na své straně");
-  // Each key on the sign the review checked against the Code (NORMY.md C2; signs-CY/README.md), not just some file.
+  // Each key on the sign the review checked against the Code (NORMS.md C2; signs-CY/README.md), not just some file.
   const expected = { b1: "b1", b11: "b11", b8: "b8", b30: "b30", b28: "b28", b29: "b29", ip11a: "p", ip14a: "motorway", ip15a: "expressway",
     ip20a: "bus", ip26a: "ip26a", c7a: "ped", c8a: "c8a", c9a: "c9a", c10a: "c10a" };
   for (const [k, file] of Object.entries(expected)) assert.equal(f({ k }), file, k);

@@ -12,7 +12,7 @@ const AGAIN_M = 200;
 // The gabled house looks with the gable's outline (house-looks.js; Bára to approve it, 23. 11. 2026): ?stit=1.
 if (new URLSearchParams(location.search).get("stit") === "1") HOUSE_LOOKS.gables = true;
 import { aiCut, aiKerbs, aiSurface, aiParking, parkFromAi, parkSkip, lawKerbs, layLaw, lawUnsplits, widenLaw, aiReady, onAiProgress } from "./ai-kerbs.js";
-// ?off=… switches named parts of the estimate off (the A/B tests, evaluation/ortofoto-osm/regrese.mjs).
+// ?off=… switches named parts of the estimate off (the A/B tests, evaluation/ortho-osm/regression.mjs).
 { const off = new URLSearchParams(location.search).get("off"); if (off) { ORTHO_P.off = new Set(off.split(",")); HATCH_PARAMS.off = ORTHO_P.off.has("srafy"); } }
 // A side the user stretched beyond the usual reach goes on past the last path or sidewalk (ortho-osm.js stretch): on by
 // default, no measuring (Bára 27. 11. 2026: only a hand-stretched side, a deliberate act); ?dosah=0 off. (The random A/B of
@@ -38,7 +38,7 @@ const LANES_ORTHO = new URLSearchParams(location.search).get("orto") !== "0";
 const AI_KERBS = new URLSearchParams(location.search).get("ai") !== "0";
 const AI_WAIT = 12000; // ms: the longest the first estimated cut waits for the model's download
 // ?mapa=0: the estimate from the orthophoto and OSM even where a technical map answers (its surfaces, lines, tracks and
-// parking sections left out), to compare the two (evaluation/ortofoto-osm/chyby.mjs, Bára 18. 11. 2026).
+// parking sections left out), to compare the two (evaluation/ortho-osm/errors.mjs, Bára 18. 11. 2026).
 const NO_MAP = new URLSearchParams(location.search).get("mapa") === "0";
 import { deriveSigns, SIGNS, SIGN_CHOICES, signLabel, signFits, keepDrawable, drawable, MAX_PER_PART } from "./signs.js";
 import { loadSprites, loadSigns, layoutSigns, buildSvg, setSignsShown, getSignsShown, isHole, exportCredits, mountEditor, svgString, twoLines, totalWidth, buildingStyle, artEvents, edgeInfo, underDepth, ROADWAY, nearestRoadway, BUILDING_STYLES, GABLE_LOOKS, turnLabel } from "./profile.js";
@@ -91,7 +91,7 @@ const MIN_REACH = 3; // shortest profile side the user can drag the cut end to (
 const defaultReach = () => ({ left: MAX_REACH, right: MAX_REACH });
 const WIDE_REACH = 35;
 const WIDE_END = new Set(["plocha", "delici", "zelen", "stromorad", "chodnik", "tramvaj", "railway"]); // a median's or a promenade's parts
-// A side of a new cut that may reach WIDE_REACH (evaluation/sjednoceni, Bára 25. 11. 2026: a rule of the data at the cut,
+// A side of a new cut that may reach WIDE_REACH (evaluation/archive/unification, Bára 25. 11. 2026: a rule of the data at the cut,
 // not of a state; it replaced the states' wideRoads and wideStreets: A/B of 112 cuts, 6 changed, better 4 : 2, Paris's
 // boulevards as before, the states without a map unchanged): a motorway or an expressway, or a main street ending at the reach in a median's, promenade's or
 // sidewalk's part, whose profile ends at the reach on that side, and only where the street goes on beyond it: no surface
@@ -774,11 +774,11 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wa
     // the app added around them was not): what the app adds is read on the orthophoto as the estimate reads it without
     // the map, by the same model (ai-kerbs.js): beyond the map's end its kinds (besidePassport aiSurf), in the map's
     // roadway its parked cars (parkFromAi below; the law's estimate stays where the model sees nothing to decide and where
-    // there is no orthophoto). In every state, Czechia's MTVU and technical maps too (evaluation/mapfill-cz, 25. 11.
+    // there is no orthophoto). In every state, Czechia's MTVU and technical maps too (evaluation/archive/mapfill-cz, 25. 11.
     // 2026: 7 of 89 cuts changed, better 6 : 2, Prague 1 : 0). ?off=mapfill: as before.
     const mapFill = !orthoOsm && !result.estimate && AI_KERBS && orthoHere && !ORTHO_P.off?.has("mapfill");
     const mapCut = mapFill ? await modelCut() : null;
-    // In every state (evaluation/sjednoceni, 24. 11. 2026: Czechia's nine passport towns, 2 of 47 cuts changed, better 1,
+    // In every state (evaluation/archive/unification, 24. 11. 2026: Czechia's nine passport towns, 2 of 47 cuts changed, better 1,
     // the same 1; it was off there without a measurement).
     if (!orthoOsm && m.value?.passport) {
       const beside = besidePassport({ osm, frame, dir, way: near.way, st: laneImg?.st, edges: k.status === "fulfilled" ? k.value?.edges || [] : [], symbols: k.status === "fulfilled" ? k.value?.symbols || [] : [], areas: k.status === "fulfilled" ? k.value?.areas || [] : [], polys, ...(country.besideMax && { max: country.besideMax }), aiSurf: mapCut ? aiSurface(mapCut) : null });
@@ -816,7 +816,7 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wa
     if (orthoOsm && aiPark && !ORTHO_P.off?.has("aipark")) {
       const along = !near.dir || dir[0] * near.dir[0] + dir[1] * near.dir[1] >= 0;
       // A strip the law estimated, gone back to the roadway, keeps the lane's cap there too (as in a map's roadway below;
-      // evaluation/sjednoceni, Slovakia: Royova in Bratislava, one lane of 6 m).
+      // evaluation/archive/unification, Slovakia: Royova in Bratislava, one lane of 6 m).
       const old = ORTHO_P.off?.has("parkshare");
       if (parkFromAi(result, aiPark, { ...parkSkip(near.way.tags, along, inZps === true || parking.length > 0), old }) > 0 && !old) capWideLanes(result.segments, near.way.tags);
     }
@@ -827,7 +827,7 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wa
       const along = !near.dir || dir[0] * near.dir[0] + dir[1] * near.dir[1] >= 0;
       mapParked = parkFromAi(result, mapPark, { ...parkSkip(near.way.tags, along, inZps === true || parking.length > 0), inside: true, old: ORTHO_P.off?.has("parkshare") }) > 0;
       // A strip the law estimated, gone back to its lane where no car stands, keeps the lane's cap (capWideLanes above;
-      // evaluation/mapfill-cz: Rosická in Brno 6.67 m lanes, Šatrova in Prague 5.62 m).
+      // evaluation/archive/mapfill-cz: Rosická in Brno 6.67 m lanes, Šatrova in Prague 5.62 m).
       if (mapParked) capWideLanes(result.segments, near.way.tags);
     }
     if (lawAt.length) {

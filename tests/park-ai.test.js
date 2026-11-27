@@ -1,5 +1,5 @@
 // The model's parking at the kerbs (ai-kerbs.js parkFromAi): a law strip gone back to the roadway is shared by its
-// lanes, and a law strip where the model sees perpendicular cars gives way to them (evaluation/sjednoceni, 25. 11. 2026).
+// lanes, and a law strip where the model sees perpendicular cars gives way to them (evaluation/archive/unification, 25. 11. 2026).
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { parkFromAi, lawKerbs, layLaw, lawUnsplits, widenLaw } from "../app/public/ai-kerbs.js";
@@ -37,7 +37,7 @@ test("perpendicular cars at a law strip take its place", () => {
   assert.deepEqual(q.segments.map((s) => [s.type, s.width, !!s.ai]), [["parkovani", 2, false], ["pruh", 3, false], ["pruh", 3, false], ["chodnik", 2, false]]);
 });
 
-// The law's strips after the lanes (evaluation/sjednoceni/slovensko-stani, 25. 11. 2026): A at t = 5, the roadway 8 m.
+// The law's strips after the lanes (evaluation/archive/unification/slovakia-parking, 25. 11. 2026): A at t = 5, the roadway 8 m.
 const road = (w = [4, 4]) => ({ extent: [-5, 5], segments: [...w.map((x) => ({ type: "pruh", width: x })), { type: "chodnik", width: 2 }] });
 test("the kerbs of the law's strips", () => {
   assert.deepEqual(lawKerbs(cut()), [{ t: 5, sg: -1 }]);

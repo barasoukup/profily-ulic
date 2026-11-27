@@ -1,13 +1,13 @@
 // The Netherlands (NL; Bára 20. 11. 2026): what differs from the Czech rules of countries/default.js. The national
 // large-scale topography (BGT) and the buildings of the BAG are towns/netherlands.js, PDOK's orthophoto lanes-ortho.js "nl".
-// Sources, norms and signs: evaluation/netherlands/ (ZDROJE.md, NORMY.md, RECENZE.md).
+// Sources, norms and signs: evaluation/netherlands/ (SOURCES.md, NORMS.md, REVIEW.md).
 import { t } from "../i18n.js";
 import { GROUP } from "../norms.js";
 import { TOWN_ART, czechFurniture } from "../art.js";
 import base, { CZ_CODE } from "./default.js";
 import { netherlandsLook } from "../house-looks.js";
 
-// Norms (evaluation/netherlands/NORMY.md): CROW's ASVV 2021 and Ontwerpwijzer fietsverkeer are not public: their
+// Norms (evaluation/netherlands/NORMS.md): CROW's ASVV 2021 and Ontwerpwijzer fietsverkeer are not public: their
 // values as CROW-Fietsberaad's discussion notes, CROW's GOW30 guide and Amsterdam's handbooks quote them, said so.
 // Where no source was found (a bus lane, angled parking, a tram belt, a path shared with pedestrians), no warning.
 const NL_LANE_BY_GROUP = {
@@ -70,7 +70,7 @@ export default {
   ...base,
   code: "NL",
   bounds: [3.3, 50.7, 7.3, 53.6],
-  // RVV 1990 art. 23–26 give no width left beside parked cars (evaluation/netherlands/NORMY.md): the practice is 3.5 m
+  // RVV 1990 art. 23–26 give no width left beside parked cars (evaluation/netherlands/NORMS.md): the practice is 3.5 m
   // free for the fire brigade (Handreiking Bereikbaarheid Hulpdiensten 2018) on a one-way street and a roadway of 4.5 m
   // for two-way traffic (CROW-Fietsberaad 2014, a mixed 30 km/h street); the lanes beside the cars stay drivable.
   freeLane: 3.5,

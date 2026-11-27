@@ -11,7 +11,7 @@ import os from "node:os";
 import { execFile } from "node:child_process";
 import { promisify } from "node:util";
 import { decodePng } from "../../app/public/dmvs.js";
-import { encodePng } from "../ortofoto/run.mjs";
+import { encodePng } from "../orthophoto/run.mjs";
 import { DE_ORTHO, deWmsUrl, landsAt } from "../../app/public/lanes-ortho.js";
 
 const run = promisify(execFile), R = 6378137, RES = 0.1, UA = { "User-Agent": "profily-ulic" };
@@ -138,7 +138,7 @@ async function fetchOrtho(country, b, w, h, lon, lat) {
   }
   else if (country === "LT") {
     // Lithuania: Vilnius's own orthophoto 2024 (gis.vplanas.lt, tiles of level 20, about 9 cm) for the judge only; the
-    // national NŽT orthophoto is for viewing on its geoportal only and is not used (evaluation/lithuania/ZDROJE.md 1).
+    // national NŽT orthophoto is for viewing on its geoportal only and is not used (evaluation/lithuania/SOURCES.md 1).
     if (lon < 25.02 || lon > 25.49 || lat < 54.56 || lat > 54.84) throw new Error("ortofoto: v Litvě jen Vilnius");
     return tiles("https://gis.vplanas.lt/arcgis/rest/services/Baziniai_zemelapiai/ORTO_2024_WGS/MapServer/tile", "", 20, b, w, h);
   }

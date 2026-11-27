@@ -1,7 +1,7 @@
 # Dopravní značky Finska (Tieliikennelaki 729/2018, příloha 3)
 
 Značky jsou od 1. 6. 2020 **přílohou 3 zákona o silničním provozu 729/2018** (nové kódy C37, E14 …; konsolidace Finlexu
-17. 4. 2026, `evaluation/finland/NORMY.md` oddíl C). Kresby jsou z Wikimedia Commons („Finland road sign ….svg“,
+17. 4. 2026, `evaluation/finland/NORMS.md` oddíl C). Kresby jsou z Wikimedia Commons („Finland road sign ….svg“,
 uživatel Fry1989, autor „Republic of Finland“, **Public domain**; licence všech souborů ověřené přes API Commons
 23. 11. 2026, `evaluation/finland/signs-licence.json`). Že se § 9 autorského zákona 404/1961 („no copyright in laws and
 decrees“, z anglického překladu WIPO) vztahuje i na kresby přílohy zákona, je výklad aplikace (rozhodne Bára).

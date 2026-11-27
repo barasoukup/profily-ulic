@@ -1,7 +1,7 @@
 # Dopravní značky Polska (Rozporządzenie w sprawie znaków i sygnałów drogowych, Dz.U. 2019 poz. 2310)
 
 Soubory z Wikimedia Commons, public domain: dopravní značky nejsou podle čl. 4 polského autorského zákona předmětem
-autorského práva (B-2+T-22 a D-3+T-22 CC0). Všem doplněn `viewBox`. Rešerše `evaluation/poland/NORMY.md` (oddíl C).
+autorského práva (B-2+T-22 a D-3+T-22 CC0). Všem doplněn `viewBox`. Rešerše `evaluation/poland/NORMS.md` (oddíl C).
 
 | Klíč | Značka | Soubor |
 |---|---|---|

@@ -34,7 +34,7 @@ function bedOf(cross, r) {
   }
   return { kind: "panely", source: "odhad" };
 }
-// A bed no source describes (Bára 10. 11. 2026, A/B in evaluation/pravidla-11-2026/ZPRAVA.md, section 4): grass
+// A bed no source describes (Bára 10. 11. 2026, A/B in evaluation/archive/rules-2026-11/REPORT.md, section 4): grass
 // where the orthophoto is green (ortho.js), else the rules: asphalt where buses use the tracks (nowadays mostly
 // asphalt); panels in a pedestrian street; gravel for a bed beside the street (a roadway on one side only) or
 // BED_WIDE or more between two carriageways; panels in a narrower bed between carriageways. Each stays marked
@@ -75,7 +75,7 @@ const TREE_STRIP = 1.5; // width of a tree strip carved out of a sidewalk (m)
 // A cut never hits a point: a point this close to the cut, measured along the street, is drawn in the
 // profile (m), per kind. The nearest one of a row (the same kind at about the same offset) is kept, so a
 // reach of half the usual spacing shows one at most cuts and never two of a row (Bára: tuned on the
-// Prague sample, evaluation/praha-opendata/ZPRAVA.md).
+// Prague sample, evaluation/archive/praha-opendata/REPORT.md).
 export const REACH = {
   strom: 8, // street trees, single (rows crossing the cut always count): about 8–16 m apart
   lampa: 20, // street lamps (OSM, the technical map's poles without wires): about 25–32 m apart
@@ -251,7 +251,7 @@ const LOOP_CLEARANCE = 12; // …and from any point of a roundabout's ring or a 
 // still does). On a dual carriageway a service way alone does not push the cut to where it would cross a junction of the
 // street's other carriageway: it stays (Poděbradská, Prague č. 20 of 9. 11.: from 7 m off one mouth onto the mouth of a car
 // park opposite; ?off=protejsi: it goes). A clearance of 9 m in place of a street's was tried: in Prague as good against
-// MTVU, in Brno and abroad worse (evaluation/sjednoceni/praha).
+// MTVU, in Brno and abroad worse (evaluation/archive/unification/praha).
 const PARTNER_REACH = 40; // m: how far the other carriageway may lie
 const NOT_JUNCTION_SERVICE = new Set(["driveway", "parking_aisle", "drive-through"]);
 // The mouth of an alley joins as a crossing does (Bára 24. 11. 2026, the USA pilot dc-1-1: a cut on an alley's mouth ran
@@ -347,7 +347,7 @@ function alleyMouths(el, pts, frame) {
 }
 
 // What a click on a street keeps away from (local metres): { p, clear, service, kind }: the mouths of alleys, other streets
-// and service ways that join, crossings, roundabouts and turning circles. Exported for evaluation/kliky.
+// and service ways that join, crossings, roundabouts and turning circles. Exported for evaluation/clicks.
 export function junctionHits(osm, frame, near) {
   const geom = near.way.geometry, pts = near.pts;
   const key = (g) => `${g.lat.toFixed(7)},${g.lon.toFixed(7)}`;
@@ -416,7 +416,7 @@ export function awayFromJunctions(osm, frame, near) {
   if (best && !ORTHO_P.off?.has("protejsi") && hits.some((h) => h.service) && slack(start, near.point, hits.filter((h) => !h.service)) >= 0
     && partnerJunctions(osm, frame, near).some((h) => Math.hypot(best.point[0] - h[0], best.point[1] - h[1]) < JUNCTION_CLEARANCE)) return near;
   // A service way with no free spot at all (short, all junctions and drives): the click stays where it is, not moved to the
-  // least bad spot (Bára 27. 11. 2026; evaluation/kliky: maps 32 : 13, service ways 9 : 2 and 7 : 2). ?off=obsluznevolne.
+  // least bad spot (Bára 27. 11. 2026; evaluation/clicks: maps 32 : 13, service ways 9 : 2 and 7 : 2). ?off=obsluznevolne.
   if (best && best.score >= 1e6 && near.way.tags?.highway === "service" && !ORTHO_P.off?.has("obsluznevolne")) return near;
   return best ? { ...near, point: best.point, dir: best.dir, index: best.index } : near;
 }
@@ -913,7 +913,7 @@ const LANE_CAP = {
 const LANE_CAP_DEFAULT = 4;
 // The cap by the class of the street (Prague: TSK's class, classGroup), before OSM's highway: on motorways and
 // MK I (the main network: rapid and the main collector roads) 3.75 m, as on OSM's motorways and trunks (ČSN 73
-// 6110 group A: 3.50 m lanes). A/B on the orthophoto (evaluation/pravidla-11-2026): their marked lanes are about
+// 6110 group A: 3.50 m lanes). A/B on the orthophoto (evaluation/archive/rules-2026-11): their marked lanes are about
 // 3.5 m; a cap of 4 m for MK II and 4.5 m for MK IV did not help, so there OSM decides.
 const LANE_CAP_CLASS = { dalnice: 3.75, mk1: 3.75 };
 const KRAJNICE_MIN = 1; // narrowest shoulder / hatched strip drawn (m)
@@ -1004,7 +1004,7 @@ function splitRoadway(run, ctx) {
   // 0.1 m): the stall keeps its width and the lanes give up to OSM_LANE_GIVE each (the review of the port: a narrowed
   // stall was red in Návrh at once). A measured roadway (MTVU, a technical map, a town's surface map) gives as much
   // too, unless ?off=mapfill (ctx.osmParkGive, app.js mapFill; Bára 24. 11. 2026, Apollonkatu in Helsinki: YLRE's roadway
-  // of 6.9 m dropped the tagged parallel parking for 0.1 m, the cars stand there; Czechia too, evaluation/mapfill-cz).
+  // of 6.9 m dropped the tagged parallel parking for 0.1 m, the cars stand there; Czechia too, evaluation/archive/mapfill-cz).
   for (const [side, st] of [["L", sideL], ["R", sideR]]) {
     if (!st.parking || parked.includes(side)) continue;
     const w = st.parkingWidth;
@@ -1649,7 +1649,7 @@ const centreKm = ([lon, lat]) => {
 // and the shape of the block it belongs to (blockShape).
 // The OSM buildings the built-up test was tuned on: until 15. 11. 2026 the tiles held only those with floors or a height
 // (tools/build_osm_tiles.mjs now keeps all). The look of a house reads every building, in every state (Bára 25. 11.
-// 2026; a blind test in 13 states, evaluation/all-buildings): the kind and the block are often all OSM has.
+// 2026; a blind test in 13 states, evaluation/archive/all-buildings): the kind and the block are often all OSM has.
 // ?off=vsedomy: the look reads the tuned ones only.
 const TUNED_BUILDING = (t) => !!t?.building && (t["building:levels"] !== undefined || t.height !== undefined || t["roof:levels"] !== undefined);
 export function buildingAt(osm, frame, p) {
@@ -2429,7 +2429,7 @@ export function deriveProfile({ center, dir, half, polys, osm, frame, way, track
         ["yes", "designated"].includes(c.way.tags.bus) || ["yes", "designated"].includes(c.way.tags.psv));
       // (The street's own: its axis crosses it, or, by default (ORTHO_P.axisroad; ?axisroad=0 turns it off), the axis fix above moved the axis
       // onto it: Lippard Avenue in San Francisco, the axis in the parking lane the curb carved, the rest a footway's. Off:
-      // 1 of 290 cuts of five cities changes, too few to measure; evaluation/usa/sf/fixes/ZPRAVA.md.)
+      // 1 of 290 cuts of five cities changes, too few to measure; evaluation/usa/sf/fixes/REPORT.md.)
       const ownRoad = cross.some((c) => c.way.id === way.id && inRun(c.t)) || (!!ORTHO_P.axisroad && inRun(axisT));
       if (!here.length && minor.length && !transit && !(ownRoad && !MINOR.has(way.tags.highway))) {
         const foot = minor.some((c) => ["footway", "pedestrian", "path", "steps"].includes(c.way.tags.highway));
@@ -2534,7 +2534,7 @@ export function deriveProfile({ center, dir, half, polys, osm, frame, way, track
       const trolley = [tags, ...axes.map((a) => a.tags)].some((t) => ["", ":forward", ":backward"].some((k) => t?.[`trolley_wire${k}`] === "yes"));
       // The class of the street by TSK (Prague): on collector and main roads (MK I, II, roads of the state) cars
       // do not park at the kerb, whatever OSM calls them, so no parking is estimated there. Elsewhere OSM decides
-      // (A/B: an MK III that OSM calls tertiary had no parked cars in 5 of 6 cuts, evaluation/praha-opendata).
+      // (A/B: an MK III that OSM calls tertiary had no parked cars in 5 of 6 cuts, evaluation/archive/praha-opendata).
       const cls = streetClass(lines, (r.s + r.e) / 2);
       const guessPark = noParkGuess || (cls && (cls.road || cls.motorway || cls.mk === 1 || cls.mk === 2)) ? false : undefined;
       // A state without street classes of its own here (Austria): the OSM highway gives the group (countries/AT.js).
@@ -2761,7 +2761,7 @@ export const TWO_WAY_SPLIT = 5.0;
 // stands beside the roadway, a two-way roadway of one lane is split from 4.0 m (Bára 24. 11. 2026, the USA pilot: DDOT
 // counts two lanes of 8 ft on its local streets of 16 ft, and the roadway left beside the parking strips measured
 // 4.25–4.55 m; all the judged cuts there had the strips). Without parking a roadway of 4.25 m is one lane (Odlehlá in
-// Prague, evaluation/sjednoceni/praha). ?off=pocetpruhu: 5.0 m.
+// Prague, evaluation/archive/unification/praha). ?off=pocetpruhu: 5.0 m.
 export const TWO_WAY_SPLIT_COUNTED = 4.0;
 export function splitTwoWayLane(segments, tags = {}) {
   if (ORTHO_P.off?.has("dvapruhy")) return 0;
@@ -2829,7 +2829,7 @@ const ZONE_ROAD = new Set(["pruh", "pruh_piktokoridor", "krajnice", "obsluzna"])
 // TREE_PIT_MAX between a sidewalk and the roadway's kerb (a lane, parking, a cycle lane, a shoulder) whose orthophoto along
 // the street (±LOOK_ALONG m) looks paved (surfaceLook's test) joins the sidewalk, its trees with it. Not without a
 // photo, nor where it looks green or unclear. extent: deriveProfile's; st: lanes-ortho.js laneImage's st. Returns the
-// parts joined. Off by default (the blind A/B of 24. 11. 2026, evaluation/usa/ZPRAVA.md: DC 2 : 2, Czech controls 0 : 1, a
+// parts joined. Off by default (the blind A/B of 24. 11. 2026, evaluation/usa/REPORT.md: DC 2 : 2, Czech controls 0 : 1, a
 // real grass verge read as paving); ?treepits=1 turns it on (ortho-osm.js P.treepits).
 const TREE_PIT_MAX = 1.3;
 const PIT_KERB = new Set(["pruh", "pruh_piktokoridor", "bus", "bus_cyklo", "parkovani", "cyklopruh", "ochranny_pruh", "krajnice", "obsluzna"]);

@@ -1,4 +1,4 @@
-// The Slovenian sample of the centre-line A/B (ZPRAVA.md): N points on two-way streets of the larger towns, a fixed seed,
+// The Slovenian sample of the centre-line A/B (REPORT.md): N points on two-way streets of the larger towns, a fixed seed,
 // the classes mixed (primary, secondary, tertiary, residential: the law's strip needs a wide roadway). The street, its
 // bearing and the width are the app's (a click at the point). OSM: the local extract (data/osm/si, tools/build_osm_data.sh).
 //   node evaluation/centre-line/sample.mjs [N=150] > evaluation/centre-line/si-sample.json

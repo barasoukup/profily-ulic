@@ -1,13 +1,13 @@
 // Germany (DE; Bára 17. 11. 2026): what differs from the Czech rules of countries/default.js. Its cities' street surface
 // maps (Berlin, Hamburg, Aachen) are towns/germany.js, the orthophotos of its 16 Länder lanes-ortho.js DE_ORTHO.
-// Sources, norms and signs: evaluation/germany/ (ZDROJE.md, NORMY.md, RECENZE.md).
+// Sources, norms and signs: evaluation/germany/ (SOURCES.md, NORMS.md, REVIEW.md).
 import { t } from "../i18n.js";
 import { GROUP } from "../norms.js";
 import { TOWN_ART, czechFurniture } from "../art.js";
 import { landsAt } from "../lanes-ortho.js";
 import base, { CZ_CODE } from "./default.js";
 
-// Norms (evaluation/germany/NORMY.md): RASt 06, ERA 2010, EFA 2002 and EAR 23 of the FGSV are not public: their values
+// Norms (evaluation/germany/NORMS.md): RASt 06, ERA 2010, EFA 2002 and EAR 23 of the FGSV are not public: their values
 // as Land guidelines and reports quote them (Lower Saxony's overview of ERA and VwV-StVO, DUH 2024 for EAR 23), said so.
 // Where no source was found, no warning (the hostile review of Germany).
 const DE_LANE_BY_GROUP = {
@@ -84,7 +84,7 @@ export default {
   code: "DE",
   bounds: [5.8, 47.2, 15.1, 55.1],
   // StVO § 12 Abs. 1 Nr. 1, Abs. 3 Nr. 3: no width in the law; the courts take about 3.05 m for one vehicle to pass
-  // (VG Regensburg RO 5 K 16.497, evaluation/germany/NORMY.md), and the lanes the profile keeps beside the cars stay
+  // (VG Regensburg RO 5 K 16.497, evaluation/germany/NORMS.md), and the lanes the profile keeps beside the cars stay
   // drivable (the hostile review: a two-way 5.1 m roadway gave two lanes of 1.55 m).
   freeLane: 3.05,
   lawNeed: (oneway, lanes, minLane) => Math.max(3.05, minLane * Math.max(oneway ? 1 : 2, lanes)),

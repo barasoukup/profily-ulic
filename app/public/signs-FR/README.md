@@ -2,7 +2,7 @@
 
 Soubory z Wikimedia Commons. Značky jsou úřední díla (Bára 21. 11. 2026 u Lucemburska: „značky jsou úřední dílo“);
 část souborů je na Commons překreslená uživateli pod CC BY-SA, v patičce se neuvádí, autoři jsou v rešerši
-`evaluation/france/NORMY.md` (oddíl C). Významy podle textu arrêté 1967 (konsolidace k 29. 7. 2026), ne podle popisků Commons.
+`evaluation/france/NORMS.md` (oddíl C). Významy podle textu arrêté 1967 (konsolidace k 29. 7. 2026), ne podle popisků Commons.
 B1.svg a C107.svg dostaly `viewBox`.
 
 | Klíč | Značka | Soubor |

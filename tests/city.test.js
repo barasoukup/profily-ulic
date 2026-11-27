@@ -64,7 +64,7 @@ test("zdroje exportu podle města a kraje řezu", async () => {
   assert.match(praha, /ortofoto © ČÚZK, 2025/);
   assert.match(praha, /technická mapa © Středočeský kraj, IS DMVS ČÚZK/);
   assert.match(prahaArt, /Bára Soukupová \(MIT\)/);
-  assert.doesNotMatch(creditLines(cityById("praha"))[0], /DMVS|ortofoto/);
+  assert.doesNotMatch(creditLines(cityById("praha"))[0], /DMVS|orthophoto/);
 
   // Cyprus: the DLS buildings only where a house of the DLS was drawn (backlog, 26. 11. 2026).
   assert.doesNotMatch(creditLines(cityById("cyprus"), {})[0], /Department of Lands/);

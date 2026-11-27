@@ -3,7 +3,7 @@
 // facade (Copenhagen's k101:bygning, Aarhus's BBR buildings). A = OSM only (levels, start_date), B = the town's buildings.
 // Compares the floors where OSM has them (agreement) and counts what each tells (floors, the year). Politely: one request
 // a house, a pause of 1.5 s, answers kept in data/answers.json (git ignores data/).
-//   node evaluation/denmark/buildings-ab/run.mjs → vysledky/rezy.json and a summary
+//   node evaluation/denmark/buildings-ab/run.mjs → results/rezy.json and a summary
 import fs from "node:fs";
 import { kbhBuildingUrl, aarBuildingUrl, pick, kbhBuilding, aarBuilding } from "../../../app/public/towns/denmark.js";
 
@@ -48,7 +48,7 @@ for (const [town, [lat0, lon0, dLon, dLat]] of Object.entries(CENTRES)) {
     }
   }
 }
-fs.writeFileSync(new URL("vysledky/rezy.json", HERE), JSON.stringify(rows, null, 1));
+fs.writeFileSync(new URL("results/rezy.json", HERE), JSON.stringify(rows, null, 1));
 for (const town of Object.keys(CENTRES)) {
   const r = rows.filter((x) => x.town === town), lv = r.filter((x) => x.osmLevels && x.total);
   const same = lv.filter((x) => x.total === x.osmLevels).length, near = lv.filter((x) => Math.abs(x.total - x.osmLevels) <= 1).length;

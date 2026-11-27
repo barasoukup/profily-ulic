@@ -1,6 +1,6 @@
 // Monaco (Bára 23. 11. 2026): the state of a cut inside states.json's "monaco" (the land boundary of OSM). The profile is
 // the estimate from OSM and IGN's French orthophoto, which covers Monaco (lanes-ortho.js "fr"); the principality
-// publishes no street surfaces nor buildings for a browser (evaluation/monaco/PRAVIDLA.md).
+// publishes no street surfaces nor buildings for a browser (evaluation/monaco/RULES.md).
 import { osmTiles } from "../gis.js";
 
 export const sources = {

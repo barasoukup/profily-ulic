@@ -1,7 +1,7 @@
 // Lombardy (Bára 24. 11. 2026: a surface map is better for us than an orthophoto): Regione Lombardia's Database
 // Topografico Regionale (DBT, 1 : 1 000 in the towns, 1 : 2 000 elsewhere; every one of the region's 1 502 comuni,
 // surveyed 2005–2022; CC BY 4.0, "Dati di proprietà di Regione Lombardia", the Geoportale's record
-// r_lombar:1CE0E71B-6451-4B5D-8E4D-BC0FF6E0A46F; evaluation/italy/lombardia/ZPRAVA.md). Its ArcGIS MapServer
+// r_lombar:1CE0E71B-6451-4B5D-8E4D-BC0FF6E0A46F; evaluation/italy/lombardia/REPORT.md). Its ArcGIS MapServer
 // (BaseMap/dbtr, CORS for the asking origin) gives no geometry to a query (returnGeometry is ignored: the layers have Z),
 // but identify does: one request for all the layers of the cut's box, in WGS 84 (the service is in WGS 84 / UTM 32N,
 // no datum shift). The areas of the cut as MTVU in Prague, as Vienna's FMZK (towns/austria.js): roadways, sidewalks,

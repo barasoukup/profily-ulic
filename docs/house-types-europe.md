@@ -1,7 +1,7 @@
 # Regionální vzhledy domů v Evropě (specifikace, 23. 11. 2026)
 
 > Stav 23. 11. 2026: nakreslené a zapojené (`app/public/house-looks.js`, `profile.js`), štítové domy jen s `?stit=1`;
-> zpráva a snímky `evaluation/budovy-regiony/ZPRAVA.md`.
+> zpráva a snímky `evaluation/archive/regional-buildings/REPORT.md`.
 
 Návrh nových vzhledů domu vedle profilu (`app/public/profile.js`) pro starší zástavbu mimo Česko, kde český
 činžák se šikmou střechou (`sikma`) a další české vzhledy nesedí, a pro severské státy do budoucna. Jen specifikace:
@@ -25,7 +25,7 @@ nic z toho není nakreslené ani zapojené. Číselné hodnoty jsou ve stejných
   je **`sikma`**, tj. pražský činžák. To je hlavní místo, kde se mají uplatnit nové vzhledy.
 - Z OSM se dnes čte jen `building`, `building:levels`, `roof:levels`, `height`, `roof:shape`, `start_date`.
   Dlaždice (`tools/build_osm_tiles.mjs` `BUILDING_KEYS`) nesou i `building:material`, ale `derive.js buildingAt` ho
-  nečte. `roof:material`, `roof:colour`, `building:colour` v dlaždicích nejsou. Navíc `buildingAt` bral do 25. 11. 2026 (dnes všechny, `evaluation/all-buildings`) jen domy se
+  nečte. `roof:material`, `roof:colour`, `building:colour` v dlaždicích nejsou. Navíc `buildingAt` bral do 25. 11. 2026 (dnes všechny, `evaluation/archive/all-buildings`) jen domy se
   zadanými podlažími nebo výškou (`TUNED_BUILDING`); starý dům bez nich má `info` prázdné a v cizině z něj je `sikma`.
 
 ## Navržené zapojení (pro všechny vzhledy níže)
@@ -41,7 +41,7 @@ nic z toho není nakreslené ani zapojené. Číselné hodnoty jsou ve stejných
 4. Dlaždice OSM: přidat do `BUILDING_KEYS` `roof:material`, `building:colour`, `roof:colour` (malé, celé ČR by to
    nemělo zvětšit znatelně; změřit) a v `buildingAt` číst `building:material`, `roof:material`. A zvážit, zda pro tyto
    vzhledy nebrat i domy bez podlaží (dnes `TUNED_BUILDING`): materiál a rok mají smysl i bez nich. Změna `buildingAt`
-   se dotkne i Česka, proto jen za vlajkou a s regresí (`evaluation/ortofoto-osm/regrese.mjs`, sada 100 řezů).
+   se dotkne i Česka, proto jen za vlajkou a s regresí (`evaluation/ortho-osm/regression.mjs`, sada 100 řezů).
 5. Staré město (kde má regionální vzhled přednost i bez roku): seznam center a poloměrů ve státním modulu
    (`oldTowns: [{ name, centre: [lon, lat], km }]`), vyplněný ručně pro hlavní města (Tallinn Vanalinn 59.4370 N
    24.7450 E, 0,45 km; Paříž uvnitř bulvárů Maréchaux ne: tam je Haussmann všude, nepotřebuje centrum). Žádné dotazy

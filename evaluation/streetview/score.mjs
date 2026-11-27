@@ -1,4 +1,4 @@
-// The pilot's score (Bára 17. 11. 2026): how often what the judge saw on the street-level photos (vysledky/posudky.jsonl)
+// The pilot's score (Bára 17. 11. 2026): how often what the judge saw on the street-level photos (results/posudky.jsonl)
 // agrees with the truth (the app's profile from IPR MTVU), feature by feature; and how often the estimate from the
 // orthophoto and OSM agrees with the truth and with the judge. Only "sure" answers of usable cuts count.
 //   node evaluation/streetview/score.mjs
@@ -7,7 +7,7 @@ import path from "node:path";
 
 const ROOT = path.dirname(new URL(import.meta.url).pathname);
 const rows = JSON.parse(await fs.readFile(path.join(ROOT, "pilot.json"), "utf8"));
-const judged = new Map((await fs.readFile(path.join(ROOT, "vysledky", "posudky.jsonl"), "utf8")).split("\n").filter(Boolean).map((l) => JSON.parse(l)).map((j) => [j.id, j]));
+const judged = new Map((await fs.readFile(path.join(ROOT, "results", "posudky.jsonl"), "utf8")).split("\n").filter(Boolean).map((l) => JSON.parse(l)).map((j) => [j.id, j]));
 const F = ["lanes", "parkingLeft", "parkingRight", "cycle", "tram", "sidewalkLeft", "sidewalkRight", "trees", "median"];
 const pct = (a, b) => (b ? `${Math.round((100 * a) / b)} % (${a}/${b})` : "–");
 const lines = ["| znak | AI = pravda | odhad = pravda | odhad = AI | AI si nebyla jistá |", "|---|---|---|---|---|"];

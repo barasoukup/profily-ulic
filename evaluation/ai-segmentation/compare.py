@@ -1,6 +1,6 @@
 """The app's estimate, the model and a constant measured with ONE function on the same cuts (Fable's review 18. 11. 2026):
 the carriageway nearest the axis (runs of roadway and parking, gaps up to 0.6 m bridged, within 4 m of the axis, as
-the truth in evaluation/ortofoto-osm/lib.mjs truthOf), its two kerbs; the sidewalk per side with a facade in the truth,
+the truth in evaluation/ortho-osm/lib.mjs truthOf), its two kerbs; the sidewalk per side with a facade in the truth,
 summed outward from the kerb until a building or the end of what the method gives. A method that finds no carriageway
 counts as a miss (99 m), not as a cut left out. Paired comparison per cut with a bootstrap interval.
     python evaluation/ai-segmentation/compare.py brno estimate-brno10 ai-mnv3-rgb ai-mnv3-osm …
@@ -14,7 +14,7 @@ MISS = 99.0
 CARRIAGE, SIDEWALK, BUILDING, OTHER, END = 1, 2, 7, 0, -1
 # the model's classes (train.py CLASSES) -> the measure's
 AI = {0: CARRIAGE, 1: SIDEWALK, 2: SIDEWALK, 3: CARRIAGE, 4: OTHER, 5: OTHER, 6: BUILDING, 7: OTHER, 8: OTHER, -1: END}
-# the estimate's parts (derive.js types): as regrese.mjs ROAD and SIDEWALK, a cycle track counted as the truth does (703)
+# the estimate's parts (derive.js types): as regression.mjs ROAD and SIDEWALK, a cycle track counted as the truth does (703)
 ROAD = {"pruh", "pruh_piktokoridor", "bus", "bus_cyklo", "tramvaj_v_pruhu", "tramvaj_pruh", "krajnice", "parkovani", "cyklopruh",
         "ochranny_pruh", "obsluzna"}
 WALK = {"chodnik", "chodnik_kola", "stezka_sdilena", "cyklostezka"}

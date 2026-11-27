@@ -7,7 +7,7 @@ import { asClasses, scope } from "../universal/compare.mjs";
 import { ROOT, DATA } from "./lib.mjs";
 const load = async (f) => new Map(JSON.parse(await fs.readFile(path.join(DATA, f), "utf8")).map((r) => [r.id, r]));
 const dc = await load("app-dc.json"), osm = await load("app-osm.json");
-const judged = (await Promise.all(["u-us-1.jsonl", "u-us-2.jsonl"].map((f) => fs.readFile(path.join(ROOT, "vysledky", f), "utf8")))).join("\n").split("\n").filter(Boolean).map((l) => JSON.parse(l)).filter((j) => j.usable);
+const judged = (await Promise.all(["u-us-1.jsonl", "u-us-2.jsonl"].map((f) => fs.readFile(path.join(ROOT, "results", f), "utf8")))).join("\n").split("\n").filter(Boolean).map((l) => JSON.parse(l)).filter((j) => j.usable);
 const has = (parts, judge, open, c) => scope(asClasses(parts, judge), open).parts.some(([x]) => x === c);
 console.log("| prvek | posuzovatel má | DC souhlasí | jen OSM souhlasí |\n|---|---|---|---|");
 for (const c of ["stani", "zelen", "delici", "chodnik", "cyklopruh"]) {

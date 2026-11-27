@@ -183,7 +183,7 @@ const PALETTES = {
   hala: ["#e0574f", "#3f88c5", "#4caf7d"],
   // Sorela: warm ochre, salmon and sand render over a rusticated ground floor.
   sorela: ["#dcb98c", "#d6a48c", "#cfc69c", "#d9c2a3"],
-  // Plain brick blocks of flats of the 1950s–60s (Street View of 25 houses, evaluation/budovy-panel): smooth render in
+  // Plain brick blocks of flats of the 1950s–60s (Street View of 25 houses, evaluation/archive/panel-buildings): smooth render in
   // sand, ochre, grey, a pitched tiled roof with chimneys.
   typovy: ["#d8c9a3", "#cfc2a8", "#c9c4b6", "#dcc79a"],
   // Postwar blocks of flats in the west (1946–90): plain light render (off-white, pale grey, pale yellow, pale
@@ -819,7 +819,7 @@ function derivedStyle(info) {
   if (oldCore(info, n) && roof !== "plocha") return "mestan";
   if (info?.iprKind === 6 || HOUSE_TYPES.has(info?.type) || (n && n <= 2)) return "nizky";
   // RÚIAN: walls of concrete panels. Panel houses of the panel era; a newer one (prefabricated walls are
-  // common again) looks like any new block of flats (evaluation/budovy-panel: 16 houses after 2000).
+  // common again) looks like any new block of flats (evaluation/archive/panel-buildings: 16 houses after 2000).
   if (info?.panel) return info.built > MODERN_FROM ? "moderni" : "plocha";
   if (roof) return roof === "plocha" ? flatKind(info, n) : yearLook(info, n) || roof; // a pitched roof (IPR, Plzeň's 3D buildings)
   // RÚIAN's year the house was completed, where the roof is not known (the towns): houses up to 1919
@@ -846,7 +846,7 @@ const oldCore = (info, n) => !!city.centre && info?.km <= (city.coreKm ?? 0.3) &
   && (info?.period ? info.period <= 1840 && !(info.built >= 1920) : info?.built < 1920);
 // 1958–69, walls not panels (RÚIAN code 10, bricks or none): 19 of 25 such houses drawn as panel houses were brick
 // blocks, 13 of them with a pitched roof and chimneys, 2 were panel houses (both after 1970; Street View, Bára
-// 16. 11. 2026, evaluation/budovy-panel/ZPRAVA.md). Panel walls in RÚIAN still make a panel house (above).
+// 16. 11. 2026, evaluation/archive/panel-buildings/REPORT.md). Panel walls in RÚIAN still make a panel house (above).
 const TYPOVY_TO = 1970;
 // The looks the year of a house with a pitched or unknown roof gives (RÚIAN; Plzeň's 3D buildings know the roof too):
 // sorela 1948–57, the plain brick block 1958–69 of up to 5 floors (a taller one can be a panel house). Its slab shape
@@ -879,7 +879,7 @@ const smallKind = (info) => (info.footprint < SHED_AREA ? "garaz" : familyKind({
 // PANEL_WIDTH wide filling its rectangle, a block of few long parts (an L of slabs: PANEL_PART m
 // of outline per building or more), 8+ floors, or out on the estates; a house joined into a wider
 // block of short houses round a courtyard is a tenement. Checked on 361 OSM apartment houses of 4+
-// floors with a building date (evaluation/budovy-typ): 72 % of the 1958–90 ones and 78 % of the
+// floors with a building date (evaluation/archive/building-types): 72 % of the 1958–90 ones and 78 % of the
 // 1925–45 ones come out right. Offices keep the flat style (drawn as offices by their type).
 // A modern block of flats (after 1995): IPR marks it as new against its base map (rare: only the
 // newest), or, short of a panel slab, it has a set-back floor outside the inner city (functionalist
@@ -891,7 +891,7 @@ const PANEL_WIDTH = 16, PANEL_FILL = 0.65, PANEL_PART = 30, PANEL_FLOORS = 8, es
 // the older town (the tenement look) unless it is a panel slab; by 1950 → a functionalist
 // tenement unless a panel slab or a modern set-back block further out; 1970–1990 → the panel era;
 // 2010 or later → a modern block of flats. IPR "nová budova" overrules all.
-// Not a panel house (evaluation/budovy-panel, RÚIAN walls of 780 houses in 11 towns, Bára 16. 11. 2026: "paneláků
+// Not a panel house (evaluation/archive/panel-buildings, RÚIAN walls of 780 houses in 11 towns, Bára 16. 11. 2026: "paneláků
 // máme moc"): a house completed before PANEL_FROM (the first Czech panel houses are of the mid-1950s; a slab of the
 // 1930s or 40s was drawn as one), or one whose walls RÚIAN gives as bricks, stone, monolith or wood (info.solid).
 // Such a flat-roofed block of flats is drawn as the plain flat-roofed tenement.
@@ -940,7 +940,7 @@ function abroadStyle(info, n) {
   const rs = info?.roofShape;
   if (rs && rs !== "flat") return "sikma";
   if (OFFICE_TYPES.has(info?.type)) return "plocha";
-  // Where panel houses were built, the shape of a block alone (no floors, no kind) tells none (evaluation/all-buildings).
+  // Where panel houses were built, the shape of a block alone (no floors, no kind) tells none (evaluation/archive/all-buildings).
   if ((slabOf(info?.block, info) && (n || info?.type || !socialistLooks())) || (n >= PANEL_FLOORS && !info?.block)) return "plocha";
   return rs === "flat" ? "funkce" : "sikma";
 }
@@ -2634,7 +2634,7 @@ export function buildSvg(profile, opts = {}) {
     ...segs.flatMap((s) => (s.items || []).map((it) => (it.kind === "lampa" ? (it.h || lampLight()) * 100 + 80 : it.kind === "sloup_trakce" ? 960 : 0))));
   // A tower beside a narrow street would squash the street into a strip: the view shows at most
   // TALL_SHARE of its width above the ground, and taller buildings are cut with a break line.
-  // opts.whole: the buildings whole (the sheets of evaluation/budovy-regiony).
+  // opts.whole: the buildings whole (the sheets of evaluation/archive/regional-buildings).
   const shown = opts.whole ? tallest : Math.min(tallest, Math.max(1300, view[1] * TALL_SHARE));
   // The top row (total width, cut ends A/B) sits above the tallest building and its floor label.
   const y0 = Math.min(0, GROUND - shown - 140) - 110;

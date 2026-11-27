@@ -1,10 +1,10 @@
 // Poland (Bára 21. 11. 2026): the state of a cut inside states.json's "poland". The national BDOT10k and the counties'
-// base maps are not served openly with CORS (evaluation/poland/ZDROJE.md): the profile is the estimate from OSM and
+// base maps are not served openly with CORS (evaluation/poland/SOURCES.md): the profile is the estimate from OSM and
 // GUGiK's orthophoto (lanes-ortho.js "pl"), except where a city publishes its surfaces:
 // - Kraków: the city's base map MJO (msip.um.krakow.pl, ArcGIS, CORS for the origin asking): roadways (Jezdnia),
 //   squares (Plac), sidewalks (Chodnik), paths for cyclists and walkers (Ścieżka). Off unless ?krakow=1 (Bára 26. 11. 2026:
 //   the city's rules ask for the written consent of MSIP's administrator for continuous use in another system,
-//   evaluation/licence/ZPRAVA.md; the A/B test, evaluation/poland/ab/, runs with ?krakow=1).
+//   evaluation/archive/licences/REPORT.md; the A/B test, evaluation/poland/ab/, runs with ?krakow=1).
 // As Germany's city maps: the city's surfaces with OSM's buildings before them and OSM's green and water after, only
 // where the city has a surface of the street at the cut's centre or near it; a city that does not answer: the
 // estimate, with a note.

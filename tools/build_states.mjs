@@ -246,7 +246,7 @@ const BUILD = {
   // a state of its own the app does not have yet (Bára 23. 11. 2026), GISCO draws one island.
   cyprus: () => JSON.parse(fs.readFileSync(new URL("./cyprus-border.json", import.meta.url), "utf8")).map((r) => simplify(r)),
   // Italy (23. 11. 2026): only where an orthophoto has an open licence (Bára 23. 11. 2026: AGEA's "institutional use" is
-  // not ours; evaluation/italy/ZDROJE.md): the province of Bolzano (ProvCM, COD_PROV 21) and the municipalities of Turin,
+  // not ours; evaluation/italy/SOURCES.md): the province of Bolzano (ProvCM, COD_PROV 21) and the municipalities of Turin,
   // Bologna and Modena with its exclaves (Com, PRO_COM_T 001272, 037006, 036023), from ISTAT's "Confini delle unità
   // amministrative a fini statistici al 1° gennaio 2026", not generalised (© ISTAT, CC BY 4.0; Bára 23. 11. 2026, the
   // review: GISCO's 1 : 1 000 000 took in strips of the neighbours, where the city's orthophoto is black). The shapefiles
@@ -267,7 +267,7 @@ const BUILD = {
   // Slovenia (23. 11. 2026): GISCO's, after Italy and Austria (their rings come first by the border; Croatia stays abroad).
   slovenia: () => gisco("SI"),
   // Finland (23. 11. 2026): GISCO's, with the islands and Åland (an autonomous part of Finland; the app reads it with the
-  // Finnish rules, evaluation/finland/ZDROJE.md 6).
+  // Finnish rules, evaluation/finland/SOURCES.md 6).
   finland: () => gisco("FI"),
   // Helsinki and Espoo with their sea from HSY's regional map (seutukartta above, 24. 11. 2026).
   "finland+hsy": () => seutukartta(),

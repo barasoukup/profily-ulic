@@ -57,13 +57,13 @@ async function podlaznost(lat, lon) {
 // its roadways and car parks; the borough Dúbravka's own passport), Prešov (its passport of transport and of green,
 // CC BY 4.0), Žilina and Banská Bystrica (T-MAPY PaKom, as Karviná). Around them the OSM buildings, green and water,
 // as the estimate (ortho-osm.js) has them. Where a passport has nothing at the cut the profile is the estimate.
-// ?pasport=0 leaves the passports out (the A/B test, evaluation/slovensko/AB.md).
+// ?pasport=0 leaves the passports out (the A/B test, evaluation/slovakia/AB.md).
 const ROAD = 701, WALK = 702, BIKE = 703, PARK = 704, OTHER = 1003, GREEN = 401, PLAY = 901;
 const param = (k) => (typeof location === "undefined" ? globalThis.PROFILY_SK?.[k] ?? null : new URLSearchParams(location.search).get(k));
 const AGO_BA = "https://services8.arcgis.com/pRlN1m0su5BYaFAS/arcgis/rest/services";
 // The magistrát's passport and the city's technical map lie 1.4–1.5 m east and 0.3 m south of OSM, the cadastre's
 // buildings and the ZBGIS orthophoto (Bára 19. 11. 2026: the
-// hold-out set put the estimate's streets 1.2 m off it, in Bratislava only; evaluation/slovensko/posun-ba.mjs, 1330 points
+// hold-out set put the estimate's streets 1.2 m off it, in Bratislava only; evaluation/slovakia/shift-ba.mjs, 1330 points
 // on OSM's axes in the centre, the rest 0.3 m): moved back. ?off=posunba: as it comes.
 const BA_SHIFT = { east: -1.47, north: 0.33 };
 function shiftBa(json) {
@@ -170,7 +170,7 @@ const BA_CELL = { 110: ROAD, 120: WALK, 5340: BIKE, 5370: PARK, 130: OTHER, 4060
 // items; tram tracks (5040) are the tracks (55010).
 const BA_LINE = { 2090: 61210, 2110: 61210, 2130: 61210, 2170: 71210, 4220: 71422, 5300: 61530, 5290: 71522, 5040: 55010 };
 // The technical map lies as the passport does (1.44 m east, 0.25 m south of OSM's buildings from the cadastre;
-// evaluation/slovensko/posun-ba-domy.mjs, posun-ba-tm.mjs: the passport matches it to 0.01 m): moved back the same way.
+// evaluation/slovakia/shift-ba-houses.mjs, shift-ba-tm.mjs: the passport matches it to 0.01 m): moved back the same way.
 const baQuery = (svc, layer, bbox, fields) => query(`${BA_TM}/${encodeURI(svc)}/MapServer/${layer}/query`, { ...envelope(bbox), outFields: fields, returnGeometry: "true" }).then(shiftBa);
 export async function baTechMap(bbox, fetched = null) {
   const [lines, cells, houses] = fetched || await Promise.all([
@@ -273,7 +273,7 @@ export async function osmAreas(bbox) {
 // ---------- lines of the towns' maps for the kerbs (Bára 16. 11. 2026: "zapoj je všechny") ----------
 // The drawing of the cadastral and technical maps the towns publish (ArcGIS Online, CORS *): where its lines cross the
 // cut they are candidates for the kerbs and the outer edge of a sidewalk in the estimate (ortho-osm.js). Their types
-// were looked at over the orthophoto (evaluation/slovensko/hrany): the kerbs and edges of sidewalks are in the
+// were looked at over the orthophoto (evaluation/slovakia/hrany): the kerbs and edges of sidewalks are in the
 // drawing type 1 (Nitra, Piešťany, Prešov), 1 and 60 (Zvolen), "Kresba polohopisu" (Hlohovec), in Bratislava's
 // technical map the boundaries of kinds of land. ?hrany=0 leaves them out (the A/B test).
 const EDGE_SOURCES = [
@@ -344,7 +344,7 @@ const baTm = (bbox) => {
   if (!baMemo.has(bbox)) { baMemo.clear(); baMemo.set(bbox, baTechMap(bbox).catch(() => ({ features: [], lines: [] }))); }
   return baMemo.get(bbox);
 };
-// Off unless ?tm=1: the A/B test of 16. 11. 2026 (evaluation/slovensko/ab/ZPRAVA.md) found its areas rare (few
+// Off unless ?tm=1: the A/B test of 16. 11. 2026 (evaluation/slovakia/ab/REPORT.md) found its areas rare (few
 // symbols, many lines left open: one area over the whole cut) and its fences ending profiles at front gardens.
 const useTm = (lon, lat) => param("tm") === "1" && inBa(lon, lat);
 

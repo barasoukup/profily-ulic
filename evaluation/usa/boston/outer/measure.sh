@@ -1,5 +1,5 @@
 #!/bin/sh
-# The A/B of the outer gaps (ZPRAVA.md) by the fresh measurement's code: evaluation/usa/boston/outer/measure.sh packages | score
+# The A/B of the outer gaps (REPORT.md) by the fresh measurement's code: evaluation/usa/boston/outer/measure.sh packages | score
 # Profiles: evaluation/universal/data/bos-outer.json (evaluation/usa/collect.js, variants def and og0).
 cd "$(dirname "$0")" || exit 1
 export EVAL_DIR="$PWD" EVAL_DATA=bos-outer EVAL_OFF=og0 EVAL_SAMPLE=sample.json EVAL_WHO="mezerami podle OSM a ortofota" EVAL_NO_U=1

@@ -25,7 +25,7 @@ globalThis.fetch = async (url, o) => {
 };
 const FR = await import("../../../app/public/towns/france.js"), { localFrame } = await import("../../../app/public/derive.js");
 const json = async (f) => JSON.parse(await fs.readFile(new URL(f, import.meta.url), "utf8"));
-const cuts = [...(await json("../ab/vysledky/rezy.json")).map((r) => ({ id: r.id, c: r.B })), ...(await json("../../facade-strip/vysledky/rezy-1.json")).filter((r) => r.place === "paris").map((r) => ({ id: r.id, c: r.N }))]
+const cuts = [...(await json("../ab/results/rezy.json")).map((r) => ({ id: r.id, c: r.B })), ...(await json("../../archive/facade-strip/results/rezy-1.json")).filter((r) => r.place === "paris").map((r) => ({ id: r.id, c: r.N }))]
   .filter((x) => x.c?.lat && x.c.sources?.frTown);
 const inRing = (r, x, y) => { let c = false; for (let i = 0, j = r.length - 1; i < r.length; j = i++) { const [xi, yi] = r[i], [xj, yj] = r[j]; if (yi > y !== yj > y && x < ((xj - xi) * (y - yi)) / (yj - yi) + xi) c = !c; } return c; };
 const ringsOf = (g) => (g?.type === "Polygon" ? g.coordinates : g?.type === "MultiPolygon" ? g.coordinates.flat() : null);
@@ -62,5 +62,5 @@ for (const k of ["osm", "bdtopo", "ilots"]) {
   const near = rows.map((r) => r[k]).filter((v) => v !== null && Math.abs(v) <= 1.5).sort((a, b) => a - b);
   console.log(k, JSON.stringify(c), "medián |mezery| do 1,5 m:", near.length ? Math.abs(near.map(Math.abs).sort((a, b) => a - b)[near.length >> 1]).toFixed(2) : "–");
 }
-await fs.writeFile(new URL("vysledky/gaps.json", import.meta.url), JSON.stringify(rows, null, 1));
+await fs.writeFile(new URL("results/gaps.json", import.meta.url), JSON.stringify(rows, null, 1));
 console.log(rows.length, "stran");

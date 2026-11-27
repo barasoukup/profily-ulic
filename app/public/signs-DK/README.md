@@ -3,7 +3,7 @@
 Kresby jsou z Wikimedia Commons („Denmark road sign ….svg“, většinou uživatel Gigillo83 podle předloh Vejdirektoratet,
 E 47 Westnordost; všechny **Public domain**, šablona PD-ineligible; licence ověřené přes API Commons 23. 11. 2026,
 `evaluation/denmark/signs-licence.json`). Dánský autorský zákon § 9 odst. 1 vyjímá předpisy, ale odst. 2 chrání díla,
-která v předpisu vystupují jako samostatné příspěvky (`evaluation/denmark/NORMY.md` C1). Aplikace je bere jako
+která v předpisu vystupují jako samostatné příspěvky (`evaluation/denmark/NORMS.md` C1). Aplikace je bere jako
 francouzské (úřední díla), rozhodne Bára. Autoři pod CC BY-SA mezi nimi nejsou.
 
 | Klíč | Značka | Soubor |

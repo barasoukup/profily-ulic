@@ -2,7 +2,7 @@
 // and the Land and Spatial Development Board's orthophoto (lanes-ortho.js "ee"), except in Tallinn:
 // - Tallinn's surface map (the city's base map, gis.tallinn.ee tar_maakate, ArcGIS 11.5, CORS echo): roadways, sidewalks
 //   and paths, drivable yards and car parks, shoulders, other paved areas, lawns, flower beds, yards (one request a layer;
-//   evaluation/estonia/ZDROJE.md). No licence stated; Bára 23. 11. 2026: a city's work used for nothing bad, with its
+//   evaluation/estonia/SOURCES.md). No licence stated; Bára 23. 11. 2026: a city's work used for nothing bad, with its
 //   credit. As Zaragoza's: OSM's buildings before it, OSM's green and water after, only where the map has the street
 //   under the cut's centre (hasStreet); a map that does not answer: the estimate, with a note. ?tallinn=0 leaves it out.
 // The buildings of the topographic

@@ -1,5 +1,5 @@
 // A/B test of a data source: every sampled cut of a city (evaluation/<city>/data/samples.json) derived once
-// per variant, as a click does it (run_brno.mjs, compare_dmvs.mjs). A variant is evaluation/variants/<name>.mjs
+// per variant, as a click does it (run_brno.mjs, archive/dmvs-comparison/compare_dmvs.mjs). A variant is evaluation/variants/<name>.mjs
 // and exports overrides of the five sources of sources.js (osm, surfaces, lines, parking, podlaznost; the
 // same arguments and answers); what it leaves out comes from the city's normal sources. "city" is the
 // current state (no file needed). The cut is placed once, by the first variant's OSM, so all profiles lie
@@ -13,7 +13,7 @@
 // ONLY=1,3,7: just these cuts. CACHE=mem (default): an answer of the web asked for again within the run
 // is reused (the later variants' times are then lower); CACHE=disk: also kept in data/ab-cache for reruns;
 // CACHE=0: nothing reused. PODLAZNOST=1: also the floors of the edge buildings (more requests).
-// Prague (CITY=praha): IPR's answers only from the local server's cache, as compare_dmvs.mjs; IPR is never asked.
+// Prague (CITY=praha): IPR's answers only from the local server's cache, as archive/dmvs-comparison/compare_dmvs.mjs; IPR is never asked.
 import fs from "node:fs/promises";
 import path from "node:path";
 import crypto from "node:crypto";
@@ -24,7 +24,7 @@ const ROOT = path.dirname(new URL(import.meta.url).pathname);
 const CITY = process.env.CITY || "jihlava";
 const PRAHA = CITY === "praha";
 const DATA = PRAHA ? path.join(ROOT, "praha", "data") : path.join(ROOT, CITY, "data");
-// SAMPLES=file: another sample of cuts (e.g. evaluation/praha-opendata/data/samples-zakaz.json); its pairs go
+// SAMPLES=file: another sample of cuts (e.g. evaluation/archive/praha-opendata/data/samples-zakaz.json); its pairs go
 // to ab-<a>-<b>-<file name>, its orthophotos (fetched like the towns') to ortho-<file name>.
 const OWN = process.env.SAMPLES ? path.basename(process.env.SAMPLES, ".json") : "";
 const SAMPLES = OWN ? path.resolve(process.env.SAMPLES) : PRAHA ? path.join(ROOT, "data", "samples.json") : path.join(DATA, "samples.json");
@@ -94,7 +94,7 @@ const S = await import("../app/public/sources.js");
 const G = await import("../app/public/gis.js");
 const { localFrame, nearestStreet, awayFromJunctions, centerOnStreet, mtvuPolygons, trackLines, techLines, esriPolygons, deriveProfile, MAX_REACH } = D;
 
-// The city's normal sources (Prague: OSM from the local tiles, as compare_dmvs.mjs).
+// The city's normal sources (Prague: OSM from the local tiles, as archive/dmvs-comparison/compare_dmvs.mjs).
 const NORMAL = {
   osm: PRAHA ? (lat, lon, r) => G.osmTiles(lat, lon, r) : S.osm,
   surfaces: S.mtvu, lines: S.linie, parking: S.parkovani, podlaznost: S.podlaznost,

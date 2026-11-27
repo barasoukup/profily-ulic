@@ -90,13 +90,13 @@ export function kerbBays(runs, max = 3.5) {
   return runs;
 }
 // Beyond a street's carriageway a gap of the map is not always a lawn (Boston: Street Edges has no parking lots, its
-// buildings are not all there; evaluation/usa/boston/ZPRAVA.md, 22 m of green over a lot or a house): what OSM has there
+// buildings are not all there; evaluation/usa/boston/REPORT.md, 22 m of green over a lot or a house): what OSM has there
 // takes it (spans: [{ s, e, code }] of osmAreasAlong), a building 601 in any gap outside the carriageway, a parking lot or a
 // square 1003 (704 from OUTER_LOT, a lot beside the street) only beyond the first sidewalk out from the carriageway on each
 // side (a tree strip by the kerb stays the map's green). What stays of the gaps there is marked outer, for the
 // orthophoto to tell green from paving (ortho-osm.js outerGapsByImage). Runs changed in place. A city's prepare calls it
-// (Boston's only with ?outergaps=1: not shown better, evaluation/usa/boston/outer/ZPRAVA.md). image: false leaves the
-// rest unmarked, OSM's houses and lots alone (?outerosm=1, evaluation/usa/boston/outer-osm/ZPRAVA.md).
+// (Boston's only with ?outergaps=1: not shown better, evaluation/usa/boston/outer/REPORT.md). image: false leaves the
+// rest unmarked, OSM's houses and lots alone (?outerosm=1, evaluation/usa/boston/outer-osm/REPORT.md).
 export function outerGaps(runs, spans = [], { image = true } = {}) {
   const at = carriageway(runs);
   if (!at) return runs;

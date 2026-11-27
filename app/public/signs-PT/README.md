@@ -3,10 +3,10 @@
 Soubory z Wikimedia Commons (série „Portugal road sign …“). Značky jsou v přílohách (quadros) Decreto Regulamentar,
 tedy součástí předpisu. Podle našeho výkladu nejsou chráněné: čl. 8 odst. 1 ve spojení s čl. 3 odst. 1 písm. c) zákona
 o autorském právu (Código do Direito de Autor e dos Direitos Conexos) mluví o textech zákonů a vyhlášek, o obrázcích
-výslovně ne (`evaluation/portugal/NORMY.md` C1, i k čl. 8 odst. 2). Na Commons jsou public domain
+výslovně ne (`evaluation/portugal/NORMS.md` C1, i k čl. 8 odst. 2). Na Commons jsou public domain
 („PD ineligible (road signs)“), CC0 nebo CC BY-SA (překreslení: C2, C3g, C4a, C15, C16, D6, D7a, H24, H25 a z C3g
 složená C1-plus-10e; zda autory uvést v patičce jako u Estonska, je otázka pro Báru). Autoři a
-licence: `evaluation/portugal/signs-licence.json`, rozbor: `evaluation/portugal/NORMY.md` (oddíl C). Významy jsou podle
+licence: `evaluation/portugal/signs-licence.json`, rozbor: `evaluation/portugal/NORMS.md` (oddíl C). Významy jsou podle
 textu RST 1998 a Decreto Regulamentar 6/2019, ne podle popisků Commons. Na Commons jsou dodatkové tabulky pod
 písmenem M („modelo n.º …“ v RST), např. M12a = modelo 12a. Aplikace dodatkové tabulky nekreslí, proto tu M12a a
 M12b (kolmé a šikmé stání) nejsou.

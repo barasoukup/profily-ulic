@@ -1,6 +1,6 @@
 // Spain (Bára 23. 11. 2026): the state of a cut inside states.json's "spain" (with the islands, Ceuta, Melilla and
 // Llívia). No Czech technical map, RÚIAN or ČÚZK orthophoto is asked: the profile is the estimate from OSM and IGN's
-// PNOA orthophoto (lanes-ortho.js "es"), except where a city publishes its street surfaces (evaluation/spain/ZDROJE.md):
+// PNOA orthophoto (lanes-ortho.js "es"), except where a city publishes its street surfaces (evaluation/spain/SOURCES.md):
 // - Zaragoza: the sidewalks, medians and green strips of the city's paving map of 2017 (IDEZar GeoServer WFS, GeoJSON,
 //   CORS *, no fees nor constraints in its capabilities). It has no roadway as a surface: the roadway is what lies
 //   between them along OSM's roads (a band about each road axis, after the city's surfaces and OSM's buildings, so they

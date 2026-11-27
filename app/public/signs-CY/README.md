@@ -4,18 +4,18 @@ Značky Kypru stanoví Kodex silničního provozu (Κώδικας Οδικής �
 kan. 71 předpisu 66/1984 jsou značkami ty, které jsou v Kodexu. Kodex značky **nečísluje**, jen popisuje řecky. Sada je
 směs britských značek (zákazy, příkazy, stání), dvojjazyčných tabulí (řecky a anglicky) a několika vídeňských (obytná
 zóna, kruhové příkazy pro cyklisty). Každý soubor jsem porovnal s obrázkem v Kodexu; stránky jsou v
-`evaluation/cyprus/NORMY.md` (oddíl C2).
+`evaluation/cyprus/NORMS.md` (oddíl C2).
 
 Soubory z Wikimedia Commons: kyperské (autor Gigillo83, public domain), britské „UK traffic sign …“ (UK Department for
 Transport, **Open Government Licence v1.0**, vyžaduje uvést zdroj: „Contains public sector information licensed under
 the Open Government Licence v1.0“) a vídeňské (OSN, public domain). Kyperský zákon o autorském právu (59/1976) úřední
 texty z ochrany **nevylučuje** (čl. 4 písm. γ chrání i vládní díla), proto nic nepřekresluji z Kodexu. Rozbor
-v `evaluation/cyprus/NORMY.md` (C1), autoři a licence v `evaluation/cyprus/signs-licence.json`.
+v `evaluation/cyprus/NORMS.md` (C1), autoři a licence v `evaluation/cyprus/signs-licence.json`.
 
 Souborům bez `viewBox` jsem ho doplnil podle `width` a `height`. Odvozené soubory:
 - `speed-10.svg` … `speed-100.svg`: z „Cyprus road sign maximum speed.svg“ (50) odstraněny číslice, nové číslo je
   `<text>` (Arial tučně, roztažené na šířku původních číslic). Písmo není úřední.
-- `c10a-walk-left.svg`: `c10a.svg` (UK 957) zrcadlově, chodci vlevo; Kodex ukazuje obě podoby (NORMY.md C2). Kreslí
+- `c10a-walk-left.svg`: `c10a.svg` (UK 957) zrcadlově, chodci vlevo; Kodex ukazuje obě podoby (NORMS.md C2). Kreslí
   se podle strany, na které chodci jdou (dál od vozovky), bez dat chodci vpravo jako jinde.
 
 Odchylka od Kodexu: u `c9a.svg` (UK 956) je kolo nahoře a chodci dole, Kodex (str. 137) kreslí chodce nahoře a kolo

@@ -1,4 +1,4 @@
-// Parking alone in the universal measurement (ZPRAVA.md): for each kerb (A, B: what lies before the first and after the last
+// Parking alone in the universal measurement (REPORT.md): for each kerb (A, B: what lies before the first and after the last
 // lane) of the judged cuts whether the judge and the app have parking there, without and with ?nycsigns=1.
 //   node evaluation/usa/nyc/park/parking.mjs
 import fs from "node:fs";

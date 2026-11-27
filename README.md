@@ -70,7 +70,7 @@ npm test
 - Pod profilem je řádek dopravních značek podle dat; v Návrhu se dají měnit.
 
 Podrobný popis pravidel a zdrojů je v [app/README.md](app/README.md), vyhodnocení na 100 náhodných řezech
-v [evaluation/ZPRAVA.md](evaluation/ZPRAVA.md) (další města v `evaluation/<město>/ZPRAVA.md`).
+v [evaluation/archive/prague-100/REPORT.md](evaluation/archive/prague-100/REPORT.md) (další města v `evaluation/<město>/REPORT.md`).
 
 ## Struktura
 

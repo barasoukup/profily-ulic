@@ -1,4 +1,4 @@
-// The changed cuts of the check of ?axisroad=1 (ZPRAVA.md) for a look: the orthophoto across each cut (the universal
+// The changed cuts of the check of ?axisroad=1 (REPORT.md) for a look: the orthophoto across each cut (the universal
 // measurement's evaluation/universal/ortho.mjs, the state's own orthophoto, Esri World Imagery in North America and where the
 // state has none there), A on the left, B on the right as in the profile.
 //   node evaluation/axisroad-check/review.mjs data/changed-<set>.json  → data/review/<set>-<id>.jpg

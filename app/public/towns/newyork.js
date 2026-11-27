@@ -22,7 +22,7 @@
 // - the houses (podlaznost): the building footprint under the facade (the request the cut has made already): its roof height
 //   (HEIGHT_ROOF, ft) as floors as Toronto's, its year (CONSTRUCTION_YEAR) and a garage. ?nychouse=0 leaves it out.
 // - the orthophoto of the State of New York (NYS ITS Geospatial Services, 2024, 0.5 ft; lanes-ortho.js US_ORTHO "us-nyc").
-// - off, ?nycsigns=1 on (26. 11. 2026, evaluation/usa/nyc/park/ZPRAVA.md): NYC DOT's Parking Regulation Locations and Signs
+// - off, ?nycsigns=1 on (26. 11. 2026, evaluation/usa/nyc/park/REPORT.md): NYC DOT's Parking Regulation Locations and Signs
 //   (NYC Open Data nfid-uabd, SODA with CORS *; free of restrictions by Admin. Code § 23-502, the source named) say along
 //   which kerb cars may stand: the map's roadway is one polygon from kerb to kerb, OSM tags parking on few of the city's
 //   streets (0 of the measurement's 75 ways). One request a cut (the signs within the box, by their State Plane feet).

@@ -1,4 +1,4 @@
-// The A/B of ?outerosm=1 by the kind of change (ZPRAVA.md): the profile ends earlier (by more than 2 m, a lot or a house of
+// The A/B of ?outerosm=1 by the kind of change (REPORT.md): the profile ends earlier (by more than 2 m, a lot or a house of
 // OSM where the map's lawn ran on), later, or only a little (under 2 m at the ends).   node evaluation/usa/boston/outer-osm/split.mjs
 import fs from "node:fs";
 const here = (f) => new URL(f, import.meta.url), rows = JSON.parse(fs.readFileSync(here("results/rows.json"))), key = JSON.parse(fs.readFileSync(here("results/key.json")));

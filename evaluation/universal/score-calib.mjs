@@ -1,4 +1,4 @@
-// The calibration of the universal judging in Prague (Bára 17. 11. 2026): the judge's profiles (vysledky/calib-*.jsonl)
+// The calibration of the universal judging in Prague (Bára 17. 11. 2026): the judge's profiles (results/calib-*.jsonl)
 // against the truth (the app's profile from IPR MTVU), and the app's estimate (orthophoto and OSM) against the truth and
 // against the judge, by the same measure (compare.mjs). The judge's error says how far its judging can be trusted where
 // there is no truth (SK, AT, DE).
@@ -10,8 +10,8 @@ import { compare } from "./compare.mjs";
 const ROOT = path.dirname(new URL(import.meta.url).pathname);
 const pilot = new Map(JSON.parse(await fs.readFile(path.join(ROOT, "..", "streetview", "pilot.json"), "utf8")).map((r) => [r.id, r]));
 // Which results: the files named on the command line (calib-3.jsonl calib-4.jsonl), else all calib-*.jsonl.
-const files = process.argv.length > 2 ? process.argv.slice(2) : (await fs.readdir(path.join(ROOT, "vysledky"))).filter((f) => /^calib-.*\.jsonl$/.test(f));
-const judged = (await Promise.all(files.map((f) => fs.readFile(path.join(ROOT, "vysledky", f), "utf8")))).join("\n").split("\n").filter(Boolean).map((l) => JSON.parse(l)).filter((j) => j.usable);
+const files = process.argv.length > 2 ? process.argv.slice(2) : (await fs.readdir(path.join(ROOT, "results"))).filter((f) => /^calib-.*\.jsonl$/.test(f));
+const judged = (await Promise.all(files.map((f) => fs.readFile(path.join(ROOT, "results", f), "utf8")))).join("\n").split("\n").filter(Boolean).map((l) => JSON.parse(l)).filter((j) => j.usable);
 const sum = (key) => {
   const rows = judged.map((j) => {
     const p = pilot.get(j.id);

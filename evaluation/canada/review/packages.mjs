@@ -36,7 +36,7 @@ for (const [g, [OFF, cap, from]] of Object.entries(GROUPS)) {
   const pairs = shuffle(changed).slice(0, cap);
   report[g] = { sample: sample.filter((s) => from.includes(s.group)).length, profiles: full.length, map: full.filter((s) => row(s.id, "def").sources?.cityMap).length, changed: changed.length, judged: pairs.length, photo: {} };
   for (let k = 0; k * 10 < pairs.length; k++) {
-    const dir = path.join(DATA, `review-${g}-${k + 1}`), L = [await fs.readFile(path.join(HERE, "../../usa/fresh/POKYN-AB.md"), "utf8"), ""];
+    const dir = path.join(DATA, `review-${g}-${k + 1}`), L = [await fs.readFile(path.join(HERE, "../../usa/fresh/BRIEF-AB.md"), "utf8"), ""];
     await fs.mkdir(dir, { recursive: true });
     let n = 0;
     for (const s of pairs.slice(k * 10, (k + 1) * 10)) {

@@ -89,7 +89,7 @@ názvem (nadpis je jen ulice).
   (`lanes-ortho.js`, zdroj `sk`), pro tramvajové těleso (`ortho.js`, export PNG) a je i v podkladové mapě (jen na
   Slovensku, mimo něj vrací průhledné dlaždice). Mozaika je světlá a do žluta: asfalt v Košicích měl jas 200 a o 10
   zelenější než červená a modrá, takže vypadal jako tráva a profil nevznikl (11 ze 40 řezů). Odstín se proto
-  bere vůči šedým pixelům snímku (`balance`, jen pro `sk`). Vyhodnocení `evaluation/slovensko/ZPRAVA.md`.
+  bere vůči šedým pixelům snímku (`balance`, jen pro `sk`). Vyhodnocení `evaluation/slovakia/REPORT.md`.
 - **Domy:** ZBGIS vrstva Budova (`identify`, `/query` ZBGIS vrací 503): druh stavby (hala, nízká stavba, rodinný dům)
   a výška nad terénem; podlaží = výška / 3,3 m, ale `building:levels` z OSM má přednost. Rok stavby ani podlaží
   ZBGIS nemá.
@@ -103,7 +103,7 @@ názvem (nadpis je jen ulice).
   zakresleného chodníku OSM se nepokryté kusy doplní (`ortho-osm.js` `besidePassport`), jen když ten konec leží do 15 m
   za poslední plochou. Kus dělí čáry mapy města; druh dá značka mapy, trávník nebo parkoviště ZBGIS, jinak snímek
   (zelený od 0,22). Chodník jen na straně, kde pasport chodník nemá; za chodníkem pasportu je to „plocha před domem“.
-  U dálnic a rychlostních silnic nic. Vše je odhad. A/B v `evaluation/slovensko/ab/ZPRAVA.md`; `?off=beside` vypne.
+  U dálnic a rychlostních silnic nic. Vše je odhad. A/B v `evaluation/slovakia/ab/REPORT.md`; `?off=beside` vypne.
 
 ### Rakousko (Bára 16. 11. 2026)
 
@@ -115,7 +115,7 @@ basemap.at (`lanes-ortho.js` zdroj `at`, z20).
   Neodpoví-li některá vrstva, FMZK se nepoužije (poznámka). `?wien=0` vypne. A/B v `evaluation/austria/ab/`.
 - **Normy** `countries/AT.js` (`limits`): cyklo podle RVS 03.02.13 (citováno přes NÖ Leitfaden 2024), pruhy a ostatní podle
   Wiener Projektierungshandbuch; skupina silnice z OSM `highway` (`derive.js osmGroup`). Stání napůl na chodníku
-  podle StVO § 24 odst. 3 (dva volné pruhy po asi 2,6 m). Rešerše `evaluation/austria/NORMY.md`.
+  podle StVO § 24 odst. 3 (dva volné pruhy po asi 2,6 m). Rešerše `evaluation/austria/NORMS.md`.
 - **Hledání** ve Vídni z adresních bodů města (`search-at.js`, když mapa ukazuje Vídeň nebo dotaz obsahuje „Wien“);
   adresa se řeže na své ulici (osa z grafu ulic města, ulice toho jména vyhrává v `nearestStreet`). Jinde v Rakousku
   (a ve Vídni, kde adresní body nic nenajdou) Photon od komoot (`search-photon.js`, OSM, jen výsledky AT; veřejný server
@@ -137,7 +137,7 @@ z20, dlaždice `{z}/{x}/{y}`).
 - **Normy** `countries/CH.js` (`limits`): hodnoty norem VSS podle kantonálních a městských příruček (Bern, Basel-Stadt,
   Curych, Schwyz), kde zdroj chybí, bez varování. Stání podle VRV čl. 19 a pomůcek kantonů Bern a Luzern (3 m na projetí,
   pruhy vedle stání průjezdné). Lichtenštejnsko (`countries/LI.js`) má švýcarská pravidla se svými čísly článků.
-  Rešerše `evaluation/switzerland/NORMY.md`.
+  Rešerše `evaluation/switzerland/NORMS.md`.
 - **Hledání** Photon (`photon-ch`, místní názvy: Genève, Lugano). **Značky** `signs-CH/` (SSV, stejná čísla v LI).
 - **Domy** bez paneláků (jako Rakousko), **vozidla** neutrální z `generic/`, mobiliář a označníky české.
 
@@ -154,7 +154,7 @@ Ortofoto PDOK Luchtfoto `Actueel_orthoHR` (8 cm, WMTS z21 `{z}/{x}/{y}`, `lanes-
 - **Sítě pod zemí** v Amsterdamu (`site.js`): stoky Waternetu s průměrem (obvyklá hloubka) a kabely veřejného
   osvětlení s hloubkou.
 - **Normy** `countries/NL.js` podle CROW přes příručky Amsterdamu a CROW-Fietsberaad (rešerše
-  `evaluation/netherlands/NORMY.md`); stání podle praxe (RVV 1990 šířku neuvádí): 3,5 m na jednosměrce, 4,5 m vozovky
+  `evaluation/netherlands/NORMS.md`); stání podle praxe (RVV 1990 šířku neuvádí): 3,5 m na jednosměrce, 4,5 m vozovky
   obousměrně; nestojí se vedle cyklopruhu (RVV čl. 23).
 - **Hledání** PDOK Locatieserver (`search-nl.js`). **Značky** `signs-NL/` (RVV 1990, Commons, bez dodatkových tabulek).
 - **Ilustrace** univerzální: neutrální vozidla, český mobiliář, rakouské označníky.
@@ -169,7 +169,7 @@ z ortofota a OSM.
 - **Čáry obrub** (`towns/belgium.js`): ve Flandrech GRB WGO (okraj vozovky, pásu chodců a cyklistů, nezpevněné plochy),
   ve Valonsku PICC „Voirie - Ligne“ (okraje vozovky, chodníku, stání, cyklostezky, obruby); Brusel nic. Kandidáti obrub
   v odhadu jako čáry slovenských měst. `?hrany=0` vypne. A/B `evaluation/belgium/ab/` (lépe 4, hůř 2 z 10 změněných).
-- **Normy** podle vademek Flander, Valonska a Bruselu a lucemburských směrnic (`evaluation/belgium/NORMY.md`); stání:
+- **Normy** podle vademek Flander, Valonska a Bruselu a lucemburských směrnic (`evaluation/belgium/NORMS.md`); stání:
   Belgie AR 1975 čl. 25.1, 7° (3 m volného průjezdu celkem), Lucembursko bez obecné šířky. **Značky** `signs-BE/`,
   `signs-LU/`. **Hledání** Photon. Univerzální ilustrace, bez paneláků.
 
@@ -199,10 +199,10 @@ WMS-Raster v Web Mercatoru, `lanes-ortho.js` zdroj `fr`; mimo Francii bílé, pr
   je často nemaluje), takže bez evidence zbylo stání jako krajnice.
 - **Hlavní ulice** (primary, secondary): strana, která skončí dosahem ve středovém pásu, promenádě nebo chodníku, sahá
   35 m, když ulice za dosahem pokračuje (bulvár s promenádou; od 25. 11. 2026 všude stejné pravidlo podle dat řezu, ne
-  státu: `app.js widerSides`, `evaluation/sjednoceni/ZPRAVA.md`; za dosahem není mapa povrchů, nebo je tam druhá vozovka
+  státu: `app.js widerSides`, `evaluation/archive/unification/REPORT.md`; za dosahem není mapa povrchů, nebo je tam druhá vozovka
   téže ulice z OSM, nebo plochy ulice z mapy pokračují až k vozovce; totéž dálnice a silnice pro motorová vozidla). Vozovka jen pro autobusy se stejným jménem je druhá polovina ulice, když
   jiná není (`?off=busduo`, obecně); krajnice aspoň 2,75 m u obruby s buspruhem z OSM je buspruh (`?off=buskrajnice`,
-  obecně). Zpráva `evaluation/france/ab/bulvary/ZPRAVA.md`.
+  obecně). Zpráva `evaluation/france/ab/boulevards/REPORT.md`.
 - **Budovy** z BD TOPO IGN (podlaží, výška, rok, byty, užití; `?bdtopo=0`). **Šířky vozovek** BD TOPO (celé metry) jen
   s `?sirka=1`, bez A/B.
 - **Normy:** závazná je jen přístupnost (arrêté z 15. 1. 2007: chodník 1,4 m, 1,2 m bez překážek); cyklistika podle
@@ -280,7 +280,7 @@ z PNOA nečtou (snímek Airbus, licence nevyjasněná).
   vybrané; Álava a Navarra mají proti OSM o 1–2 podlaží víc, fotky dávají za pravdu katastru: OSM ve Španělsku
   nepočítá přízemí a podkroví). Provincie podle hranic NUTS 3 z GISCO v `regions-es.json` (`node tools/build_regions_es.mjs`; Treviño patří
   Burgosu; u vnější hranice do 500 m se ptá foralního katastru a bez domu pak Catastra). Limit 25 s, paměť na bod,
-  jeden dotaz na fasádu. A/B v `evaluation/spain/foral-ab/ZPRAVA.md`.
+  jeden dotaz na fasádu. A/B v `evaluation/spain/foral-ab/REPORT.md`.
 - **Normy:** závazná přístupnost (Orden TMA/851/2021: chodník 1,8 m), ostatní podle doporučení ministerstva dopravy
   2023/2024 (cyklo, pruhy 2,5–3 m, stání). Bez varování buspruh, tramvajový pás a sdílená stezka (5 m by svítilo všude).
   **Stání:** vedle stojícího auta 3 m k protějšímu okraji vozovky (čl. 91.2 a RGC); odhad jako v Lucembursku (pruhy vedle
@@ -295,7 +295,7 @@ z PNOA nečtou (snímek Airbus, licence nevyjasněná).
 Stát `portugal` (PT), `countries/PT.js`, `towns/portugal.js`; hranice GISCO s Madeirou a Azorami. OSM jeden balík `pt`
 (Geofabrik i s ostrovy, jen R2). Ortofoto DGT (WMS, CORS *, CC BY): nejnovější let, který místo má (2025 celá pevnina
 25 cm, 2021 sever, 2018, satelit 2023; bílý snímek = žádný; jen na pevnině), v mapě jen let 2025. Madeira a Azory ortofoto DGT
-nemají (jejich služby: nejasná licence, bez CORS). Žádné město nemá mapu povrchů online (`evaluation/portugal/ZDROJE.md`),
+nemají (jejich služby: nejasná licence, bez CORS). Žádné město nemá mapu povrchů online (`evaluation/portugal/SOURCES.md`),
 profil je odhad z ortofota a OSM. Hledání Photon.
 - **Normy:** chodník 1,5 m závazně u hlavních a sběrných ulic (DL 163/2006; 1,2 m u každé pěší trasy), jinak doporučení
   IMT a příručky Lisabonu. **Stání:** čl. 49–50 Código da Estrada (bez čísla; 3 m u plné čáry), bráno jako 3 m na směr.
@@ -308,7 +308,7 @@ Stát `monaco` (MC), `countries/MC.js` (francouzská nastavení s monackým zák
 (jen R2). Ortofoto IGN (Francie, pokrývá i Monako). Stání podle zákona jen na vyznačených místech (čl. 31 Code de la
 route), proto se neodhaduje; stání na chodníku zakázané (čl. 32). Monako nemá předpisy šířek ulic: bez varování. Značky
 kresbou francouzské (Monako se řídí Ženevským protokolem 1949; podoba je pozorování), bez francouzských čísel, jen ty, které
-kodex zná: bez zóny 30, zone de rencontre, voie verte a dálnice (Bára 23. 11. 2026); rychlosti 30, 50, 70. Hledání Photon. Pravidla `evaluation/monaco/PRAVIDLA.md`.
+kodex zná: bez zóny 30, zone de rencontre, voie verte a dálnice (Bára 23. 11. 2026); rychlosti 30, 50, 70. Hledání Photon. Pravidla `evaluation/monaco/RULES.md`.
 
 ### Kypr (Bára 23. 11. 2026)
 
@@ -322,7 +322,7 @@ geometrie a seznamy po pruzích (`turn:lanes`, `bus:lanes`) se čtou od řidičo
 Normy jen z příručky odboru veřejných prací (doporučení; chodník bez červené, 2 / 2,5 m oranžově podle třídy ulice,
 pruh 3 / 3,5 m, cyklopruh v protisměru 2 m), stání bez varování; stání na chodníku zakázané. Značky `signs-CY/`
 (kyperský Kodex nečísluje, britské kresby pod OGL v1.0 s uvedením zdroje v patičce i v exportu; jednosměrka s cyklisty v protisměru
-bez značky, C 10a podle strany chodců). Měření přesnosti `evaluation/cyprus/ZPRAVA.md`.
+bez značky, C 10a podle strany chodců). Měření přesnosti `evaluation/cyprus/REPORT.md`.
 
 ### Malta (Bára 23. 11. 2026)
 
@@ -332,7 +332,7 @@ ve stupních (`lanes-ortho.js MT_ORTHO`, CRS:84). Mapa povrchů, stání ani bud
 jen oranžově (zásady přístupnosti, doporučení), kolmé stání 4,8 m (DC15), jinak bez varování. Volná šířka vedle stání:
 aspoň 4,1 m obousměrka a 3 m jednosměrka (DC15), nejméně 2,5 m na každý pruh. Značky `signs-MT/` jen z přílohy S.L. 65.05
 (maltské kresby PD, britské pod OGL v1.0, uvedeno v patičce i v exportu; jednosměrka po směru, cyklistické stezky a „Except cycles“
-se nekreslí, vlastní kresby II.E11, II.B6, II.D12 bez úředního čísla). Hledání Photon. Měření `evaluation/malta/ZPRAVA.md`.
+se nekreslí, vlastní kresby II.E11, II.B6, II.D12 bez úředního čísla). Hledání Photon. Měření `evaluation/malta/REPORT.md`.
 
 ### Itálie (Bára 23. 11. 2026)
 
@@ -342,7 +342,7 @@ AGEA regionů jsou „jen pro institucionální účely“, to nesplňujeme): pr
 Ortofota CC BY 4.0: Bologna 2023, Modena 2024 (služby regionu Emilia-Romagna), Turín 2023, Bolzano 2023 (nálet provincie
 ve spolupráci s AGEA, licenci CC BY 4.0 dává provincie) (`lanes-ortho.js IT_ORTHO`, podle obdélníku oblasti; výpadek se ohlásí). OSM po 5
 dílech Geofabriku (jen R2). Výšky budov Bologni (`?bolognadomy=0`); plochy silnic Bologni vypnuté (`?bologna=1`; jsou to
-celé uliční prostory i s chodníky, A/B `evaluation/italy/ab/ZPRAVA.md`). Normy podle D.M. 5. 11. 2001 (pruh podle třídy z OSM:
+celé uliční prostory i s chodníky, A/B `evaluation/italy/ab/REPORT.md`). Normy podle D.M. 5. 11. 2001 (pruh podle třídy z OSM:
 3,25 / 3 / 2,75 m, v obytné zóně bez varování), D.M. 557/1999 (obousměrná stezka 2,5 m, společná stezka oranžově pod 2,5 m)
 a přístupnosti (0,9 m); stání 3 m na směr (konvence aplikace, zákon dává 3 m jen u stání vlevo v jednosměrce). Značky `signs-IT/` (Regolamento, úřední díla).
 
@@ -352,7 +352,7 @@ Stát `estonia` (EE), `countries/EE.js`, `towns/estonia.js`; hranice GISCO, OSM 
 Ruumiamet z dlaždic TMS `foto@GMC` úrovně 18 (osa y odspodu, `lanes-ortho.js` `tms: true`; WMS v plném rozlišení má
 vodoznak, proto ne), podklad mapy do z21. V Tallinnu mapa povrchů města (`tar_maakate`, vrstva po vrstvě; licenci
 neuvádí, Bára: městské dílo s kreditem), před ní budovy a po ní zeleň z OSM, jen kde má vozovku nebo chodník do 15 m od
-středu řezu (`?tallinn=0`; A/B lépe 11, hůř 4, `evaluation/estonia/ab/ZPRAVA.md`). Budovy ETAK (WFS,
+středu řezu (`?tallinn=0`; A/B lépe 11, hůř 4, `evaluation/estonia/ab/REPORT.md`). Budovy ETAK (WFS,
 výška u fasády → podlaží po 3 m, `?etak=0`), hledání adres In-ADS (`search-ee.js`). Normy: chodník 1,5 / 2 m (nařízení
 o přístupnosti 2026, závazné), ostatní EVS 843 z druhé ruky; stání a tramvaj bez varování. Stání 3 m na směr, na chodníku
 jen se značkou a 1,5 m pro chodce. Značky `signs-EE/` (nařízení MKM nr 12, úřední díla; část překreslení CC BY-SA 4.0).
@@ -361,13 +361,13 @@ Paneláky jako v Česku (Lasnamäe, Mustamäe).
 ### Slovinsko (Bára 23. 11. 2026)
 
 Stát `slovenia` (SI), `countries/SI.js`, `towns/slovenia.js`; hranice GISCO (za Itálií a Rakouskem, Chorvatsko zůstává
-cizina), OSM balík `si` (jen R2). Mapa povrchů ulic není (`evaluation/slovenia/ZDROJE.md`): profil je odhad z OSM a
+cizina), OSM balík `si` (jen R2). Mapa povrchů ulic není (`evaluation/slovenia/SOURCES.md`): profil je odhad z OSM a
 ortofota GURS DOF025 (25 cm, WMS ve Web Mercatoru, `lanes-ortho.js` `si`; server buď odpoví do sekundy, nebo 30 s visí
 a vrátí 504: první dotaz má polovinu času, po 300 ms jeden další; podklad mapy jen uvnitř hranice). Budovy z katastru GURS
 (WFS `wfs-si-gurs-kn`, vrstva STAVBE, filtr FES na obrys `OBRIS_GEOM` v bodě, jinak nejbližší obrys do 6 m; podlaží nad
 zemí = `STEVILO_ETAZ` − `STEVILKA_PRITL_ETAZE` + 1, rok, výška H2 − H3 (střecha nad terénem u vchodu), nosná konstrukce, byty; katastr počítá obytné
 podkroví jako podlaží: dům o 2–4 podlažích nižší než 3 m × podlaží + 2 m má horní podlaží ve střeše; `?gurs=0`; A/B
-`evaluation/slovenia/ab/ZPRAVA.md`). Hledání: Photon ve slovinštině a čísla domů GURS `NASLOVI_HS` (`search-si.js`).
+`evaluation/slovenia/ab/REPORT.md`). Hledání: Photon ve slovinštině a čísla domů GURS `NASLOVI_HS` (`search-si.js`).
 Normy: pravidla o cyklistických plochách a o projektování silnic (dál se používají, nové k ZCes-2 nevyšly), chodník bez
 varování (minimum nenalezeno), kolmé stání bez varování. Stání 3 m na směr, na obousměrce jen se středovou čárou (OSM
 `lanes` ≥ 2, ne `lane_markings=no`) a na jednosměrce s jedním pruhem (ZPrCP čl. 65, `parkOnRoadway`), na chodníku jen se
@@ -383,12 +383,12 @@ měst, každé jen ve svém obdélníku (`lanes-ortho.js` `FI_ORTHO`, `fi`): Hel
 „Ortokartta“ (asi 30 cm), Turku 2022 (tosiortofoto 5 cm), vše CC BY 4.0; jinde profil jen z OSM. Mapa povrchů Helsinek
 z registru veřejných ploch YLRE (WFS kartta.hel.fi, jako Tallinn: budovy OSM před ní, zeleň a voda OSM po ní, jen kde má
 pod středem řezu (do 3 m) díl svého druhu, pod ulicí pro auta vozovku; `?helsinki=0`; slepé A/B ulic pro auta
-`evaluation/finland/ab2/ZPRAVA.md`: lépe 16, hůř 9; s doplněním kolem mapy na nových obytných ulicích 11 : 7, `ab3`).
+`evaluation/finland/ab2/REPORT.md`: lépe 16, hůř 9; s doplněním kolem mapy na nových obytných ulicích 11 : 7, `ab3`).
 Budovy: v Helsinkách registr budov města (podlaží, rok, materiál, fasáda, užití; `?hkibuild=0`), jinde Ryhti SYKE (body
 uvnitř obrysu domu z OSM; `?ryhti=0`); dřevěný dům jde do severských vzhledů (`house-looks.js nordicLook("FI")`; A/B
-`evaluation/finland/buildings-ab/ZPRAVA.md`). Hledání: Photon ve finštině/švédštině a adresy Ryhti `open_address`
+`evaluation/finland/buildings-ab/REPORT.md`). Hledání: Photon ve finštině/švédštině a adresy Ryhti `open_address`
 (`search-fi.js`). Normy jen doporučení (Väylä 18/2020, Helsinki „Katutilan mitoitus“ 2014): nic červeně, oranžově pod
-nejnižší doporučenou šířkou (`evaluation/finland/NORMY.md` E). Stání 3 m na směr, na chodníku zakázané. Značky
+nejnižší doporučenou šířkou (`evaluation/finland/NORMS.md` E). Stání 3 m na směr, na chodníku zakázané. Značky
 `signs-FI/` (příloha 3 zákona 729/2018, Commons public domain; README tam). Bez paneláků, neutrální vozidla, český
 mobiliář, rakouské označníky.
 
@@ -402,7 +402,7 @@ lokálně `config.local.js`). Bez tokenu nebo když ho služba odmítne (401/403
 z OSM a poznámka „Ortofoto tu není k dispozici…“; chyba serveru je výpadek („Zkuste kliknout znovu“). Kodaň (WFS
 `wfs-kbhkort.kk.dk/k101`): okraje vozovek a cyklostezek GeoDanmark `vejkant` jako čáry pro obruby (`?kbhkant=0` vypne),
 parkovací plochy `parkering_areal` s úhlem stání (`?kbhpark=0`), budovy BBR (`?kbhbyg=0`; jen potřebná pole, nikdy
-vlastník); zapnuté od 24. 11. 2026 (Bára, licence vrstev neuvedená; A/B `evaluation/denmark/ab/ZPRAVA.md`). Aarhus: budovy BBR (rok, užití, zdi, podlaží odhadem z ploch;
+vlastník); zapnuté od 24. 11. 2026 (Bára, licence vrstev neuvedená; A/B `evaluation/denmark/ab/REPORT.md`). Aarhus: budovy BBR (rok, užití, zdi, podlaží odhadem z ploch;
 CC BY 4.0, `?aarbyg=0`). Hledání GSearch (husnummer, navngivenvej; `search-dk.js`), bez tokenu Photon. Normy z vejregler
 (Tværprofiler i byer 2019, Anlæg for parkering 2023) jen oranžově, červeně obousměrná cyklostezka 2,5 m. Stání 3 m na
 směr, na chodníku v obci zakázané (§ 28). Značky `signs-DK/` (BEK 425/2023, Commons public domain; C 55 jako šablona
@@ -412,15 +412,15 @@ aplikace). Bez paneláků, severské vzhledy domů (`nordicLook("DK")`), neutrá
 
 Stát `lithuania` (LT), `countries/LT.js`, `towns/lithuania.js`; hranice GISCO (za polskou PRG), na pobřeží 400 m tolerance
 (Klaipėda, Kuršská kosa); OSM balík `lt` (jen R2). **Žádné ortofoto:** celostátní ortofoto NŽT je licencované jen
-k prohlížení na geoportal.lt (`evaluation/lithuania/ZDROJE.md`), takže `laneOrtho: "none"` (`lanes-ortho.js` nevrátí
+k prohlížení na geoportal.lt (`evaluation/lithuania/SOURCES.md`), takže `laneOrtho: "none"` (`lanes-ortho.js` nevrátí
 snímek), pruhy z ortofota ani podklad mapy nejsou; mimo Vilnius profil jen odhadem z OSM („jen odhad z OSM“). Vilnius:
 topografické plochy 1 : 500 (`gis.vplanas.lt` … `Vilnius_basemap_LKS_su_rajonu/MapServer/13`, kód povrchu `KODAS` a účel
 `Paskirtis`: `kelias` vozovka, `pėsč` chodník, `dvir` cyklo, `park` stání, `nuovaža` vjezd…) jako plochy řezu, když pod
 středem řezu (do 3 m) leží vozovka mapy (pod pěšinou i chodník); před nimi budovy OSM, po nich zeleň a voda OSM
 (`?vilnius=0` vypne). Licence neuvedená, kredit „Vilniaus miesto savivaldybė / Vilniaus planas“ (Bára jako u Kodaně).
-A/B `evaluation/lithuania/ab/ZPRAVA.md`. Vzhled domů z OSM (GRPK nemá podlaží ani rok); obrysy budov GRPK
+A/B `evaluation/lithuania/ab/REPORT.md`. Vzhled domů z OSM (GRPK nemá podlaží ani rok); obrysy budov GRPK
 (geoportal.lt `NZT/GRPK/MapServer/22`, CC BY 4.0) ukončují řez u fasády: pod mapou Vilniusu před budovami OSM, v odhadu
-jen domy, které OSM nemá (`?grpk=0` vypne; A/B v `evaluation/lithuania/ZPRAVA.md`). Hledání Photon. Normy jen
+jen domy, které OSM nemá (`?grpk=0` vypne; A/B v `evaluation/lithuania/REPORT.md`). Hledání Photon. Normy jen
 z městských příruček Vilniusu (2021) a Kaunasu (2024), oranžově. Stání 3 m na směr (KET 150.7, z druhé ruky), na
 chodníku jen se značkou. Značky `signs-LT/` (Commons, Augustasci CC BY 4.0 / public domain, tabulky Gigillo83 CC BY-SA
 4.0; 329 jako šablona aplikace). Socialistické vzhledy domů ano (sovětská sídliště jako v Estonsku), neutrální vozidla,
@@ -442,11 +442,11 @@ hranice okresů z TIGERweb Census Bureau), zbytek USA je `closed_us` s hláškou
   podle cesty řezu, chráněná cyklostezka tam, kde ji má OSM (i uprostřed ulice), blok podle druhu a jen vyplněný; kde blok je, odhad stání
   podle pravidel je vypnutý (`noParkGuess`); `?ddot=0` vypne;
 - **uličky** z planimetrie jako plochy `service=alley` v prvcích OSM (ústí uličky = křižovatka, `derive.js`);
-- **domy** z odhadních tabulek CAMA (rok, podlaží, druh, zdivo podle pozemku pod domem; `evaluation/north-america-art/cama/ZPRAVA.md`),
+- **domy** z odhadních tabulek CAMA (rok, podlaží, druh, zdivo podle pozemku pod domem; `evaluation/north-america-art/cama/REPORT.md`),
   2–3 dotazy na řez, nejdéle 3,5 s; `?cama=0` vypne;
 - **ortofoto** DC 2025 (`Ortho2025_WebMercator`, export v Web Mercatoru, jen nad Districtem podle hranice `towns-us.json` a 60 m za ní: `lanes-ortho.js us-dc`)
   pro pruhy, model obrub a podklad mapy. Mimo DC v metru jen odhad z OSM.
-Normy DDOT (DEM 2023, Bicycle Facility Design Guide 2020) a NACTO jen oranžově (`evaluation/usa/NORMY.md`), stání 3 m na
+Normy DDOT (DEM 2023, Bicycle Facility Design Guide 2020) a NACTO jen oranžově (`evaluation/usa/NORMS.md`), stání 3 m na
 směr (IFC 503.2.1, 18 DCMR § 2405), bez řádku značek, bez paneláků, severoamerické domy, mobiliář a autobus Metrobus
 (`northamerica/`, `washington/`; `evaluation/north-america-art/`). Hledání Photon v obdélníku metra. A/B a měření v `evaluation/usa/`.
 
@@ -462,9 +462,9 @@ New York oříznutý na obdélník města, 44 MB, jen R2). V New Yorku (`towns/n
   stranách zeleň, cyklostezky OSM ve vozovce mapy (`?off=roadtracks`); `?nyc=0` vypne;
 - **domy** z obrysů budov téže služby (výška střechy → podlaží jako v Torontu, rok, garáž; žádný dotaz navíc, `?nychouse=0`);
 - **ortofoto** státu New York 2024 (NYS ITS, `orthos.its.ny.gov`, export ve Web Mercatoru; jen nad městem a 30 m za ním).
-Normy NYC Street Design Manual jen oranžově (`evaluation/usa/nyc/NORMY.md`; `countries/US.js limitsNYC`, `rules.js` předává
+Normy NYC Street Design Manual jen oranžově (`evaluation/usa/nyc/NORMS.md`; `countries/US.js limitsNYC`, `rules.js` předává
 město řezu), stání 3 m na směr jako ve Washingtonu. Ilustrace `newyork/`: autobus MTA, lampa (davit) od 6 m a označník,
-přístřešek a ostatní mobiliář severoamerický; Bishop's Crook zatím bez místa. Měření `evaluation/usa/nyc/ZPRAVA.md`.
+přístřešek a ostatní mobiliář severoamerický; Bishop's Crook zatím bez místa. Měření `evaluation/usa/nyc/REPORT.md`.
 
 ### USA: San Francisco (Bára 26. 11. 2026)
 
@@ -476,10 +476,10 @@ uliční prostor (DataSF Right of Way Polygons, 2014) = chodník, mezi dvěma kr
 vozovka, dvojice obrub uvnitř = ostrůvek; budovy (DataSF Building Footprints) mimo uliční prostor (leží asi 1,4 m východně,
 mezera do 2 m k domu patří domu). Stání po stranách z digitální obruby SFMTA (Curb Zones, vrstva 56; `?sfcurb=0`), podlaží
 z výšky obrysu (`?sfhouse=0`). `?sf=0` vypne vše. Bez ortofota (otevřené pro SF není, NAIP je 0,6–1 m). Chodníky varují
-podle SFMTA Sidewalk Widths, jinak jen NACTO (`evaluation/usa/sf/NORMY.md`). Ilustrace Muni (`sanfrancisco/`: autobus,
-trolejbus, LRV4, označník). Měření `evaluation/usa/sf/ZPRAVA.md`. Vypnuté zkoušky (`evaluation/usa/sf/fixes/ZPRAVA.md`):
+podle SFMTA Sidewalk Widths, jinak jen NACTO (`evaluation/usa/sf/NORMS.md`). Ilustrace Muni (`sanfrancisco/`: autobus,
+trolejbus, LRV4, označník). Měření `evaluation/usa/sf/REPORT.md`. Vypnuté zkoušky (`evaluation/usa/sf/fixes/REPORT.md`):
 `?sfosmpark=1` orientace stání z OSM, kde obruba dá podélné. Zapnuté všude (Bára 27. 11. 2026 po kontrole 3 566 řezů ve
-24 státech beze změny, `evaluation/axisroad-check/ZPRAVA.md`): vozovka, na kterou oprava osy přesunula osu, je ulice,
+24 státech beze změny, `evaluation/axisroad-check/REPORT.md`): vozovka, na kterou oprava osy přesunula osu, je ulice,
 i když ji přechází jen chodník (Lippard Avenue); `?axisroad=0` vypne.
 
 ### USA: Boston (Bára 26. 11. 2026)
@@ -496,12 +496,12 @@ autobus a tramvaj MBTA, ortofoto MassGIS, texty a normy Bostonu) a `cambridge` (
   (zapíše `app/data/us-plan`). Řez na hranici měst bere mapu města, ve kterém leží (Memorial Drive je Cambridge).
   `?boston=0`, `?cambridge=0` vypnou, `?bostonhouse=0` vypne podlaží domů.
 - **ortofoto** MassGIS 2025 (15 cm, dlaždice z20, „No restrictions“) nad celým metrem: pruhy, obruby, podklad mapy (`lanes-ortho.js us-ma`).
-- normy Boston Complete Streets Guidelines 2013 jen oranžově (`evaluation/usa/boston/NORMY.md`), stání 3 m na směr jako DC.
+- normy Boston Complete Streets Guidelines 2013 jen oranžově (`evaluation/usa/boston/NORMS.md`), stání 3 m na směr jako DC.
 - mezery za vnějším chodníkem podle domů a parkovišť z OSM a ortofota (`planimetrics.js outerGaps`, `ortho-osm.js
-  outerGapsByImage`) jen s `?outergaps=1` (A/B 18 : 16, `evaluation/usa/boston/outer/ZPRAVA.md`); jen domy a parkoviště z OSM bez
-  ortofota s `?outerosm=1` (A/B 24 : 22, `evaluation/usa/boston/outer-osm/ZPRAVA.md`). New York: stání ze značek NYC DOT
-  (`towns/newyork.js signTags`) jen s `?nycsigns=1` (A/B 17 : 8, p 0,11, `evaluation/usa/nyc/park/ZPRAVA.md`).
-Měření `evaluation/usa/boston/ZPRAVA.md`.
+  outerGapsByImage`) jen s `?outergaps=1` (A/B 18 : 16, `evaluation/usa/boston/outer/REPORT.md`); jen domy a parkoviště z OSM bez
+  ortofota s `?outerosm=1` (A/B 24 : 22, `evaluation/usa/boston/outer-osm/REPORT.md`). New York: stání ze značek NYC DOT
+  (`towns/newyork.js signTags`) jen s `?nycsigns=1` (A/B 17 : 8, p 0,11, `evaluation/usa/nyc/park/REPORT.md`).
+Měření `evaluation/usa/boston/REPORT.md`.
 
 ### Kanada: Toronto (Bára 25. 11. 2026)
 
@@ -511,7 +511,7 @@ kódy, křižovatky, `prepare`, `adjust`), který sdílí s Washingtonem (`towns
 pás (`?off=mapgaps`), s kolejí OSM = tramvajové těleso (koleje v tunelu ne); pruh stání z parkoviště u obruby (`?off=kerbbays`); cyklostezky novější
 než mapa z OSM, samostatné i jen jako tag silnice (`?off=roadtracks`). Stát, zdroje a domy Severní Ameriky se načtou, až když tam je řez nebo mapa
 (`late.js` `ensurePlace`, `america.js`, `states-america.json`, `towns-us.json`, `towns-ca.json`).
-`?toronto=0` vypne. Ortofoto `cot_ortho`, OSM balík `ca_on_toronto`. Měření `evaluation/canada/ZPRAVA.md`. Obdobné město = popis v
+`?toronto=0` vypne. Ortofoto `cot_ortho`, OSM balík `ca_on_toronto`. Měření `evaluation/canada/REPORT.md`. Obdobné město = popis v
 `towns/…`, kredity (`cityMap`), texty.
 
 Tři společné změny z pilotu (všechny státy, každá s vypínačem): ústí uličky (OSM `service=alley` a plochy uliček) je
@@ -597,20 +597,20 @@ ulice, hala; Bára 16. 11. 2026, nové kreslené na základě starších v `prof
 1948–57 sorela, 1958–69 zděný bytový dům do 5 podlaží (i deska), jinak od 1955 panelová éra, od 1996 moderní dům;
 v Praze a Brně rok, zdi a využití domu z RÚIAN ČÚZK dalším dotazem při kliknutí, podlaží dál z IPR a KAM; stáří
 zástavby IPR zůstává v Praze pro domy, u kterých RÚIAN rok nemá). Vnitřní město a sídliště podle vzdálenosti od centra má každé město
-vlastní (`city.js` `innerKm`, `estateKm`). Panelák ne (Bára 16. 11. 2026, `evaluation/budovy-panel/ZPRAVA.md`): u domu
+vlastní (`city.js` `innerKm`, `estateKm`). Panelák ne (Bára 16. 11. 2026, `evaluation/archive/panel-buildings/REPORT.md`): u domu
 dokončeného před 1955, u zdí z cihel, kamene, monolitu či dřeva podle RÚIAN (kreslí se plochý činžák), u panelového
 domu po 1995 (moderní dům); bez centra města (zbytek ČR, Slovensko) bez roku jen podle tvaru desky nebo od 8 podlaží.
 Kód konstrukce 10 („kámen, cihly, tvárnice vč. kombinací“) nic neříká (na Lesné ho má třetina paneláků). Rodinný
 dům (RÚIAN rodinný dům, OSM house, IPR typ 6) podle roku: do 1945 vila, 1946–89 „kostka“, od 1990 nový; štítem do
 ulice (úzký půdorys, delší strana napříč ulicí, `derive.js` `gableToStreet`) a starý mimo vnitřní město venkovský dům,
-stejně zemědělská usedlost RÚIAN (dřív hala); v řadě starší městský dům. Bytový dům 1948–57 (RÚIAN) sorela, 1958–69 bez panelů v RÚIAN zděný bytový dům 50.–60. let se šikmou střechou (Street View 25 domů, `evaluation/budovy-panel/k-foceni.md`).
+stejně zemědělská usedlost RÚIAN (dřív hala); v řadě starší městský dům. Bytový dům 1948–57 (RÚIAN) sorela, 1958–69 bez panelů v RÚIAN zděný bytový dům 50.–60. let se šikmou střechou (Street View 25 domů, `evaluation/archive/panel-buildings/k-foceni.md`).
 Socialistické vzhledy (sorela, zděný bytový dům 50.–60. let, panelák) jen tam, kde se stavěly (Bára 23. 11. 2026):
 v Česku, na Slovensku, v Polsku, v Estonsku (sovětská sídliště) a v bývalé NDR (`countries/<ISO>.js` `socialistLooks`,
 v Německu podle `city.panels`). Jinde, i v „cizině“, platí `profile.js` `westernLook`: sorela, zděný dům 50.–60. let,
 panelová deska a plochý činžák z let 1946–90 jsou poválečný bytový dům (hladká omítka, pravidelné řady oken s rolety,
-balkony s barevným parapetem, plochá střecha s tenkou atikou; `evaluation/budovy-povalecny/ZPRAVA.md`), deska před 1946
+balkony s barevným parapetem, plochá střecha s tenkou atikou; `evaluation/archive/postwar-buildings/REPORT.md`), deska před 1946
 funkcionalistický dům, po 1990 moderní, kancelář zůstává kanceláří. Ručně jde poválečný dům vybrat všude.
-Regionální vzhledy starých domů (Bára 23. 11. 2026, `docs/house-types-europe.md`, `evaluation/budovy-regiony/ZPRAVA.md`):
+Regionální vzhledy starých domů (Bára 23. 11. 2026, `docs/house-types-europe.md`, `evaluation/archive/regional-buildings/REPORT.md`):
 po `westernLook` se zeptá háčku státu `countries/<ISO>.js` `houseLook(style, info, n, city)` (pravidla v `house-looks.js`,
 bez dotazů za běhu, stará města jako středy s poloměry); nahrazuje jen činžák se šikmou střechou, měšťanský a městský
 dům (dřevěné domy i vilu a venkovský dům), do roku 1919–1940 podle vzhledu nebo bez roku. Haussmannovský dům (FR, MC,
@@ -632,8 +632,8 @@ Podloubí jen podle dat (Bára): cesta OSM `covered=arcade|colonnade|building_ar
 8 m za ní, `derive.js`) → u jakéhokoli domu klenutý průchod v přízemí, v kartě „s podloubím (OSM)“. Věžák zvlášť nekreslíme: vysoký dům stejného stáří a využití vypadá po podlažích stejně (Bára).
 
 Severní Amerika má 14 vlastních vzhledů (`houses-america.js`, výběr `house-looks-america.js` `northAmericaLook`, USA i Kanada;
-`docs/house-types-north-america.md`, `evaluation/north-america-art/houses/ZPRAVA.md`); bez dat prostý řadový nebo rodinný dům.
-Vzhled domu čte všechny budovy OSM, i bez podlaží a výšky, ve všech státech (`?off=vsedomy` jen dřívější; `evaluation/all-buildings/ZPRAVA.md`);
+`docs/house-types-north-america.md`, `evaluation/north-america-art/houses/REPORT.md`); bez dat prostý řadový nebo rodinný dům.
+Vzhled domu čte všechny budovy OSM, i bez podlaží a výšky, ve všech státech (`?off=vsedomy` jen dřívější; `evaluation/archive/all-buildings/REPORT.md`);
 registr budov má přednost. Panelák jen z tvaru bloku bez podlaží a druhu se nedělá, dům v řadě bez podlaží je ve Flandrech cihlový městský.
 Sada mobiliáře smí mít vlastní lampu do 5 m (`lamp-post-top`, světlo `data-light` ve zvolené výšce, `profile.js postTopLamp`): Washington svůj glóbus, Boston je připravený.
 
@@ -641,7 +641,7 @@ Sada mobiliáře smí mít vlastní lampu do 5 m (`lamp-post-top`, světlo `data
 
 Stejně jako Praha se Brno ptá služeb města při kliknutí (přímo z prohlížeče, služby povolují CORS). Úpravy výpočtu,
 které vznikly v Brně, platí od 25. 11. 2026 všude i v Praze (`derive.js`, `city.fix` zrušené,
-`evaluation/sjednoceni/praha/ZPRAVA.md`): obslužná cesta (`service`, ne vjezd ani parkoviště) je křižovatka
+`evaluation/archive/unification/praha/REPORT.md`): obslužná cesta (`service`, ne vjezd ani parkoviště) je křižovatka
 (`?off=obsluzne`), ale na dvouvozovkové ulici neodsune řez na křižovatku protější vozovky (`?off=protejsi`); ústí uličky
 (`service=alley`, i plocha) také (`?off=ulicky`), plocha jen pro ulici, do které se otevírá (do 20 m podél osy), ne pro cestu,
 která jí vede (`?off=ulickysve`, `tests/placement.test.js`); osa OSM do 4,5 m vedle vozovky se posune na ni a zpevněná plocha pod osou
@@ -720,17 +720,17 @@ Služby města (`gis.jihlava-city.cz`, CORS povolený):
 - **Most** (`mapy.mesto-most.cz`): plochy z objektové mapy povrchové situace v otevřených datech
   (`Opendata/OpendataDtmOmps/FeatureServer/9`, kódy `KOD_OMPS`/`KOD`), linie z technické mapy (`DTM/DtmUMPS`:
   ploty, zdi, zábradlí, svodidla, osy kolejí jen do 3 m od tramvaje v OSM), stromy a lavičky z technické mapy,
-  lampy z otevřených dat; stání s orientací město nemá. Datum sedí. Kontrola 57 řezů: `evaluation/most/ZPRAVA.md`.
+  lampy z otevřených dat; stání s orientací město nemá. Datum sedí. Kontrola 57 řezů: `evaluation/most/REPORT.md`.
 - **Opava** (`mapy.opava-city.cz`, složka `external`): plochy z účelové mapy povrchové situace
   (`info_dtm_plochy_find/0`, pole `POPIS`; vozovky ulic jsou čtyři polygony přes celé město, tři s chybným popisem,
   čtou se zvlášť a zjednodušené), stání placených zón (`dopr_zps`), stromy, lavičky, kryté zastávky, stojany.
-  Služby jsou 4 m vedle OSM, dotazy s `datumTransformation=1623`. Kontrola 50 řezů: `evaluation/opava/ZPRAVA.md`.
+  Služby jsou 4 m vedle OSM, dotazy s `datumTransformation=1623`. Kontrola 50 řezů: `evaluation/opava/REPORT.md`.
 - **Plzeň** (`ags.plzen.eu`): technická mapa ve struktuře JVF DTM (`GIS_DTM/GIS_DTM_ZPS_kesovana/FeatureServer`,
   jeden dotaz na asi 45 vrstev ploch a linií), 3D budovy s výškou okapu a hřebene (`GIS_3D_budovy`), stromy,
   lavičky, stojany a sloupky z pasportů, ortofoto 2024. Služby jsou 12 m vedle OSM: dotazy s 1623, kde to vrstva
   nepřijme, posun vstupu. Osy kolejí město nezveřejňuje (z OSM), tramvajová tělesa jsou výchozí z panelů.
   Zóny placeného stání z otevřených dat (CC0, `tools/build_zones_plzen.mjs` při nasazení): podél čáry zóny se
-  u obrub nakreslí stání 2 m jako odhad. Kontrola 50 řezů: `evaluation/plzen/ZPRAVA.md`.
+  u obrub nakreslí stání 2 m jako odhad. Kontrola 50 řezů: `evaluation/plzen/REPORT.md`.
 
 ### Pasporty dalších měst (16. 11. 2026)
 
@@ -739,7 +739,7 @@ berou plochy z pasportu města a jinde DTM ČÚZK (`towns/passports.js`, `towns/
 Rožnova pod Radhoštěm (T-MAPY PaKom); Šlapanice a Kuřim (osy zimní údržby se šířkou) vyřadila Bára 26. 11. 2026 po
 slepém A/B na nových řezech (12 : 12, 14 : 16), i z kreditu. Pasport, který v okolí řezu nic nemá, nechá řez technické mapě. Nejsou
 to samostatná města (texty, ilustrace a mapy zůstávají české obecné). Zdroje našlo vlákno o Slovensku, do aplikace
-šly před A/B testem; A/B 26. 11. 2026 (`evaluation/PASPORTY-AB.md`) nechal čtyři a vyřadil Chomutov, Šumperk,
+šly před A/B testem; A/B 26. 11. 2026 (`evaluation/PASSPORTS-AB.md`) nechal čtyři a vyřadil Chomutov, Šumperk,
 Litoměřice a zeleň Prachatic a Roudnice nad Labem (nevyhrály); Šlapanice po slepém A/B na nových řezech (12 : 12); Chotěboř vyřadila Bára kvůli licenci (vrstva na demo
 účtu, ne města; uložené řezy s nimi si kredit nechají,
 `passport-names.js`). Export uvádí „pasport komunikací © <město>“.
@@ -780,7 +780,7 @@ Připojená po srovnání s celostátní DTM ČÚZK nad ortofotem (`evaluation/<
   kraje WFS 2.0 se skutečnými polygony (`…/mapservice/v1/wms/dtm_zps_plochy_bar`, GML v S-JTSK, CORS). Kraj řezu
   se pozná podle `regions-cz.json` (`node tools/build_regions_cz.mjs`), jeden dotaz, kliknutí medián 0,65 s. A/B 137 řezů
   proti obrázkům DMVS: lepší 6, horší 3, jinak stejně; ploty a zdi z WFS se nepřipojují (uříznou chodníky).
-  `evaluation/dtm-wfs/ZPRAVA.md`.
+  `evaluation/archive/dtm-wfs/REPORT.md`.
 - **Obrázky IS DMVS ČÚZK** (`app/public/dmvs.js`): jinde, při chybě WFS nebo když do 1,5 s neodpoví. Služba
   nevrací tvary, jen obrázky a typ plochy v bodě: modul stáhne obrázek ploch a hraničních linií (0,1 m/px),
   rozdělí ho podle barev legendy, obtáhne obrysy a typ bílých a šedých ploch na řezu doptá (průměrně 6 dotazů,
@@ -797,7 +797,7 @@ Připojená po srovnání s celostátní DTM ČÚZK nad ortofotem (`evaluation/<
   (server neodpověděl)“, `sources.js` `outage`), jinak by ulice vypadala jako bez tramvaje nebo bez aut.
   Testy: `tests/outages.test.js`; týdenní kontrola živých služeb viz Publikace.
 - Pardubice (`towns/pardubice.js`) nemají vlastní služby, mají jen vlastní ilustrace. Kontrola 49 řezů:
-  `evaluation/pardubice/ZPRAVA.md`.
+  `evaluation/pardubice/REPORT.md`.
 
 - **Ulice jen z čar** (Bára 12. 11. 2026, obecný postup): kde pod středem řezu technická mapa nemá plochu, ale okolo jsou
   čáry (Středočeský kraj dodává do DMVS jen linie; Kolín a Mladá Boleslav mají plochy okolo, ale ulici jen čarami),
@@ -826,7 +826,7 @@ Připojená po srovnání s celostátní DTM ČÚZK nad ortofotem (`evaluation/<
   bez CORS; varianta `evaluation/variants/hradec-pasport.mjs`.
 - **České Budějovice** nezveřejňují plochy ulic; na ArcGIS Online města (`services9.arcgis.com/8svDug0pVvBQzXWS`)
   jsou jen osy pasportu a chodníků bez šířek, trávníky, lavičky a úseky placeného stání (čáry bez způsobu stání).
-  DTM kraje má stejné díry jako DMVS (22 ze 47 řezů bez ploch). A/B: `evaluation/budejovice/ZPRAVA.md`.
+  DTM kraje má stejné díry jako DMVS (22 ze 47 řezů bez ploch). A/B: `evaluation/budejovice/REPORT.md`.
 - Bez vlastního zdroje zůstávají Olomouc, Zlín, Havířov, Třinec, Prostějov, Znojmo, Kroměříž (jen WMS nebo nic).
 - Dopravní značení z pasportů T-MAPY (Děčín, Jablonec, Tábor) je příliš řídké.
 
@@ -848,11 +848,11 @@ Připojená po srovnání s celostátní DTM ČÚZK nad ortofotem (`evaluation/<
 - Do `review.md` se místo `?` doplní verdikt `a`, `b`, `obě` nebo `žádná`. Pak
   `… node evaluation/ab.mjs --summary` vypíše shodu, mediány rozdílů a součty verdiktů; `--render [n …]` znovu
   nakreslí obrázky.
-- Příklad: pasport komunikací v Jihlavě, `evaluation/jihlava/PASPORT.md`.
+- Příklad: pasport komunikací v Jihlavě, `evaluation/jihlava/PASSPORT.md`.
 - **Změna pravidla** (ne zdroje): varianta exportuje `deriveProfile` z kopie kódu před změnou
   (`cp -R app/public/*.js app/public/towns evaluation/<složka>/data/kod-0`, vzor `variants/pred-zakon.mjs`).
   `ITEMS=1` počítá i stání a předměty, `PARTS=1` i druhy částí (např. druh tramvaje) a šířky pruhů a krajnic.
-  Příklad: `evaluation/pravidla-11-2026/ZPRAVA.md`.
+  Příklad: `evaluation/archive/rules-2026-11/REPORT.md`.
 
 ## Jak se profil skládá
 
@@ -874,7 +874,7 @@ Připojená po srovnání s celostátní DTM ČÚZK nad ortofotem (`evaluation/<
    takže sedí i na směrově rozdělených silnicích. Kde vozovkou vedou koleje, vznikne kolem každé osy koleje pruh
    s tramvají a vedle něj jízdní pruhy pro auta.
 
-   **Tři druhy tramvaje** (A/B v `evaluation/pravidla-11-2026/ZPRAVA.md`):
+   **Tři druhy tramvaje** (A/B v `evaluation/archive/rules-2026-11/REPORT.md`):
    - *Tramvaj v pruhu* (`tramvaj_v_pruhu`): koleje ve vozovce (`embedded_rails=tram`) a auta jezdí po nich, protože
      se vedle nevejdou všechny pruhy, které OSM počítá, nebo je OSM nepočítá.
    - *Tramvajový pruh* (`tramvaj_pruh`, vyhrazený ve vozovce): všechny pruhy z OSM (`lanes`, `lanes:forward`,
@@ -930,7 +930,7 @@ Připojená po srovnání s celostátní DTM ČÚZK nad ortofotem (`evaluation/<
     Úsek useknutý dosahem se celý ponechá nebo vynechá, když by z něj zbylo méně než 1,5 m.
     Plot nebo zeď (technická mapa: ploty a zdi nad 0,3 m; OSM: fence, wall, hedge) za krajní vozovkou
     profil ukončí jako okraj „plot“; plot do 1 m od fasády budovy ale okrajem zůstává budova.
-11. **Pruhy z ortofota** (`public/lanes-ortho.js`, vyhodnocení `evaluation/ortofoto/ZPRAVA.md`): při kliknutí se
+11. **Pruhy z ortofota** (`public/lanes-ortho.js`, vyhodnocení `evaluation/orthophoto/REPORT.md`): při kliknutí se
     souběžně stáhne výřez ortofota ±25 m kolem středu řezu (zarovnaný na pixely zdroje, takže tažení konců řezu
     výsledek nemění): Praha IPR 10 cm, Brno 2025 (posun 1,06 m na východ a 3,09 m na sever), Plzeň 2024, jinde ČÚZK
     12,5 cm. Na každé vozovce technické mapy se najdou čáry podél ulice (jeden směr a oblouk na vozovku, plné
@@ -946,7 +946,7 @@ Připojená po srovnání s celostátní DTM ČÚZK nad ortofotem (`evaluation/<
     - pás u obruby 1,6–2,8 m, jiný a nerovnoměrný proti hladkému asfaltu (dlažba stání), je podélné stání.
     Co nevychází (pruh pod 2,3 m nebo nad 5 m), nechá profil podle pravidel. `?orto=0` ukáže profil bez ortofota.
 11a. **Bez technické mapy: ortofoto a OSM** (`public/ortho-osm.js`, Bára 15. 11. 2026, vyhodnocení
-    `evaluation/ortofoto-osm/ZPRAVA.md`). Když technická mapa neodpoví, nic nevrátí nebo nemá u osy povrch ulice,
+    `evaluation/ortho-osm/REPORT.md`). Když technická mapa neodpoví, nic nevrátí nebo nemá u osy povrch ulice,
     profil se místo odhadu jen z OSM poskládá z ploch, které se vyrobí z ortofota (stejný výřez jako u bodu 11)
     a OSM:
     - **vozovka:** obruby jsou hrany jasu nebo zeleně, které drží podél ulice (v kusech po 5 m na ±20 m). Mezi
@@ -956,16 +956,16 @@ Připojená po srovnání s celostátní DTM ČÚZK nad ortofotem (`evaluation/<
     - **domy:** budovy OSM (čtené i ±1 a ±2 m podél ulice; dům jen vedle řezu se dokreslí přes řez). Mají přednost
       před zelenými plochami OSM (trávník, park, les), ty před chodníky; voda, zahrádky a hřbitovy profil ukončí.
       Ulice na mostě (`bridge` a úroveň nad zemí) leží nad vodou a zelení OSM: ty se pod ní neberou a ulice končí
-      za krajním chodníkem jako u map povrchů (`evaluation/bridge-water/`, `?off=mostvoda` jako dřív). Kde OSM
+      za krajním chodníkem jako u map povrchů (`evaluation/archive/bridge-water/`, `?off=mostvoda` jako dřív). Kde OSM
       nakreslí mostovku (`man_made=bridge`, v dlaždicích od 27. 11. 2026), končí ulice na její hraně (aspoň 1 m za
-      obrubou) a voda mezi dvěma mostovkami zůstane (`evaluation/bridge-water/edge/`, `?off=mostdeska`). Na okraji
+      obrubou) a voda mezi dvěma mostovkami zůstane (`evaluation/archive/bridge-water/edge/`, `?off=mostdeska`). Na okraji
       ulice na mostě se kreslí zábradlí (`?off=zabradli`).
       **Chodník** vede od obruby k domu, nejvýš 6 m. Zbytek, a s `sidewalk=no` celý prostor, je zeleň, kde je
       ortofoto převážně zelené (podíl ≥ 0,1), jinak plocha do 12 m, jinak tam profil končí. Bez domu je chodník jen
       podle OSM (`sidewalk*`, šířka `sidewalk:width` nebo 2,5 m) a za ním profil končí;
     - **domy z RÚIAN** (Česko, `countries/CZ.js estimateBuildings`, Bára 23. 11. 2026: „RÚIAN by měl mít nejlepší
       data“): budovy odhadu jsou z RÚIAN, z OSM jen tam, kde RÚIAN žádnou nemá (`gis.js withBuildings`; `?off=ruiandomy`).
-      Regrese proti MTVU (`RUIAN=first node evaluation/ortofoto-osm/regrese.mjs`): víc metrů správného složení ve všech
+      Regrese proti MTVU (`RUIAN=first node evaluation/ortho-osm/regression.mjs`): víc metrů správného složení ve všech
       čtyřech (Praha +13 a +12 m, Brno +2 a +18 m), chodník po metrech −1 p. b. Domy z RÚIAN sedí na fasádu MTVU (do
       0,25 m); horší strany kreslí chodník až k domu přes zeleň, stání nebo za špatnou obrubou (řezy 8, 74, 86, 87).
       Pole a les mapy (100, 200) pod odhadem jdou za něj: mapa, která na místě nové zástavby kreslí pole, ještě není
@@ -991,8 +991,8 @@ Připojená po srovnání s celostátní DTM ČÚZK nad ortofotem (`evaluation/<
     (11 MB, zabalený asi 2,9 MB) se stáhnou až při prvním řezu s odhadem; řez pak trvá asi 0,6–0,8 s. V cílovém území
     (pasporty Bratislavy, Prešova, Žiliny a Cáchy): obruby do 0,5 m 42 % proti 26 %, do 1 m 63 % proti 49 % (lépe 22,
     hůř 14 ze 43 řezů); Brno do 1 m 74 % proti 62 %. Obě sady posloužily i při výběru modelu (validační, ne nezávislý
-    test; `evaluation/ai-segmentation/MESTA.md`). Kredit: mapy povrchů, na kterých se model učil (credits.js aiKerbs).
-    Odkazy na proklikání `evaluation/ai-segmentation/ODKAZY.md`.
+    test; `evaluation/ai-segmentation/TOWNS.md`). Kredit: mapy povrchů, na kterých se model učil (credits.js aiKerbs).
+    Odkazy na proklikání `evaluation/ai-segmentation/LINKS.md`.
 12. Konec A je vždy západní, B východní; tlačítko **⇄ Otočit** je prohodí (zrcadlí stav, návrh i opravy, domy si
     nechají barvy).
 13. Trakční sloup dál než 4 m od kolejí (mezi nimi pruhy pro auta, 17. listopadu) nemá výložník, ale drží vodorovné
@@ -1153,7 +1153,7 @@ lože před vozovkou, na straně bez domu v řetězu věcí konce strany, v stř
 `profile.js drawRailway`, povrch částečně propustný (`shares.js`), do Streetmixu jako štěrkový dělicí pás. Vypnutí `?off=railway`.
 Dlaždice OSM: `tools/build_osm_data.sh` a `tools/build_osm_tiles.mjs` nově drží koleje `rail`, `narrow_gauge` a `subway` na povrchu
 do jedné buňky (asi 30–45 m) od silnice; **balíky na R2 je potřeba přestavět** (týdenní workflow), do té doby se železnice kreslí
-jen v místních vzorcích. Měření a postup: `evaluation/railway/ZPRAVA.md`.
+jen v místních vzorcích. Měření a postup: `evaluation/archive/railway/REPORT.md`.
 
 Samostatně `?dosah=0` vypne (výchozí zapnuto, Bára 27. 11. 2026: jen ručně natažená strana, cílená akce, neměří se): strana, kterou uživatel natáhl za obvyklý dosah (22 m), nekončí na poslední stezce či
 chodníku, ale pokračuje zelení a dalšími plochami do dosahu, k plotu nebo budově (`orthoOsmPolys` parametr `stretch`).

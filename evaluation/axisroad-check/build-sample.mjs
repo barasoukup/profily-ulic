@@ -1,4 +1,4 @@
-// The live samples of the check of ?axisroad=1 (ZPRAVA.md): the points of the universal measurement of every state
+// The live samples of the check of ?axisroad=1 (REPORT.md): the points of the universal measurement of every state
 // (evaluation/universal/sample.json), Tallinn's A/B (evaluation/estonia/ab) and North America's samples not in the earlier
 // check of 290 cuts (evaluation/usa/sf/fixes), in groups recorded side by side: ax-<group>.json, numeric ids for the harness.
 //   node evaluation/axisroad-check/build-sample.mjs

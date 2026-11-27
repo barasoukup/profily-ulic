@@ -1,4 +1,4 @@
-// The surface of a tram bed (evaluation/pravidla-11-2026/ZPRAVA.md, section 4), (c): the rule and the orthophoto
+// The surface of a tram bed (evaluation/archive/rules-2026-11/REPORT.md, section 4), (c): the rule and the orthophoto
 // of ČÚZK (ortho.js), one small image per cut with tram tracks, through ab.mjs's fetch (polite.mjs, CACHE=disk).
 // What the pixels said is kept in the result (orthoSeen) for the tuning of ortho.js.
 import { bedOrtho } from "../../app/public/ortho.js";

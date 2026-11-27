@@ -1,4 +1,4 @@
-// The junction rule and the OSM axis fixes, one for every city (Bára 25. 11. 2026, evaluation/sjednoceni/praha): service
+// The junction rule and the OSM axis fixes, one for every city (Bára 25. 11. 2026, evaluation/archive/unification/praha): service
 // ways and alleys join like streets, a paved divider between two
 // roadways under a single axis stays the median, and the counted lanes (the USA pilot). No network.
 import { test } from "node:test";

@@ -1,5 +1,5 @@
 // The attic (Bára 23. 11. 2026): GURS's cadastre counts a habitable attic as a floor. For each house of the A/B
-// (vysledky/rezy.json) and each OSM building of vysledky/osm-levels.json: the raw building of STAVBE at the same point
+// (results/rezy.json) and each OSM building of results/osm-levels.json: the raw building of STAVBE at the same point
 // (the heights H1 = the floor of the lowest storey, H2 = the highest point of the roof, H3 = the terrain at the main
 // entrance, all metres above the sea; Pravilnik o vodenju podatkov katastra nepremičnin, Ur. l. RS 41/2022) and its
 // storeys from the layer ETAZE (each storey's number, its floor above the sea, its height and its area). Politely: one
@@ -42,8 +42,8 @@ async function storeys(eid) {
   const json = await get(url); await pause(1500);
   return (json?.features || []).map((f) => f.properties).sort((a, b) => a.STEVILKA_ETAZE - b.STEVILKA_ETAZE);
 }
-const rows = JSON.parse(fs.readFileSync(new URL("vysledky/rezy.json", HERE), "utf8"));
-const lev = JSON.parse(fs.readFileSync(new URL("vysledky/osm-levels.json", HERE), "utf8"));
+const rows = JSON.parse(fs.readFileSync(new URL("results/rezy.json", HERE), "utf8"));
+const lev = JSON.parse(fs.readFileSync(new URL("results/osm-levels.json", HERE), "utf8"));
 const points = [...rows.map((r) => [r.id, r.lat, r.lon]), ...lev.map((l, i) => [`osm-${l.town}-${i}`, l.lat, l.lon])];
 for (const [id, lat, lon] of points) {
   if (raw[id]) continue;

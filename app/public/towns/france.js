@@ -53,7 +53,7 @@ export function parisFeatures(layers) {
 // map's sidewalk wins where a block overlaps it), so the profile ends at the block's line. Off, ?ilots=1 turns them on:
 // the blind A/B on 13 changed cuts of 60 new ones, with the strip at the facade already joined to the sidewalk
 // (ortho-osm.js facadeStrip), was not conclusive (5 : 2 where both judges agree, each 5 : 2 and 6 : 4; Bára 26. 11. 2026,
-// evaluation/france/facade/ZPRAVA.md), and it asks one more request a cut.
+// evaluation/france/facade/REPORT.md), and it asks one more request a cut.
 export const PARIS_BLOCKS = "plan-de-voirie-emprises-ilots-prives";
 export function parisBlocks(records) {
   return records.map((r) => ringsOf(r.geo_shape?.geometry)).filter(Boolean).map((rings) => ({ attributes: { CTVUK_KOD: 601, CTVUK_POPIS: MTVU_LABELS[601], ODHAD: 0 }, geometry: { rings } }));

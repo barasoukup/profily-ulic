@@ -1,6 +1,6 @@
 // The third A/B of Helsinki's register YLRE (Bára 24. 11. 2026): the filling around the map (app.js mapFill) on a NEW
 // sample, since ab2's was used to tune it. Candidates with a new seed within 600 m of the centres of 20 suburbs (16 each,
-// none within 60 m of an ab2 point); the page (sber.js pickResidential) keeps those within 20 m of an OSM
+// none within 60 m of an ab2 point); the page (collect.js pickResidential) keeps those within 20 m of an OSM
 // highway=residential way, at most 2 a suburb, snapped onto the way, and the first 32 in this order.
 //   node evaluation/finland/ab3/sample.mjs > evaluation/finland/ab3/kandidati.json
 import fs from "node:fs";

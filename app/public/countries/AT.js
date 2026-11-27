@@ -5,7 +5,7 @@ import { GROUP, fmt } from "../norms.js";
 import { TOWN_ART, TRAM, TROLLEY, czechFurniture } from "../art.js";
 import base, { CZ_CODE } from "./default.js";
 
-// Austria (the state of the cut AT; Bára 16. 11. 2026): evaluation/austria/NORMY.md. The cycling widths of RVS 03.02.13
+// Austria (the state of the cut AT; Bára 16. 11. 2026): evaluation/austria/NORMS.md. The cycling widths of RVS 03.02.13
 // (2022; quoted in the tables of Lower Austria's Leitfaden Förderung des Radverkehrs 2024: Ausbaustufe D the minimum,
 // C the basic width), the rest after Vienna's Projektierungshandbuch Öffentlicher Raum (MA 18, 2011). RVS 03.02.12,
 // 03.04.12 and 03.07.11 (pedestrians, cross-sections, parking) are not public.
@@ -91,7 +91,7 @@ export default {
   code: "AT",
   bounds: [9.5, 46.3, 17.2, 49.1],
   // StVO § 24 Abs. 3 lit. d, e: two lanes stay free on a two-way road, one on a one-way street; the VwGH takes a lane
-  // of about 2.6 m (evaluation/austria/NORMY.md, secondary).
+  // of about 2.6 m (evaluation/austria/NORMS.md, secondary).
   freeLane: 2.6,
   halfKerbNote: (free, need) => t("Stání napůl na chodníku z OSM: ve vozovce zůstává {free}, StVO § 24 odst. 3 žádá {need} (dva volné pruhy, v jednosměrce jeden, podle judikatury asi 2,6 m).", { free, need }),
   // The law's estimate on local streets as in Czechia (the universal judging, 17. 11. 2026: parking was missing in 14 of

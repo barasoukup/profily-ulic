@@ -74,7 +74,7 @@ test("nízká budova: sedlová jen u rodinného domu, jinak rovná", async () =>
   assert.equal(buildingStyle({ levels: 2, house: 1, km: 0.4 }), "vila");
 });
 
-// Bára 16. 11. 2026: fewer panel houses where there are none (evaluation/budovy-panel).
+// Bára 16. 11. 2026: fewer panel houses where there are none (evaluation/archive/panel-buildings).
 test("panelák ne před 1955, ne u zděných zdí, panelová novostavba je moderní", async () => {
   const { buildingStyle } = await import("../app/public/profile.js");
   const slab = { length: 60, width: 12, fill: 0.85, parts: 1 };

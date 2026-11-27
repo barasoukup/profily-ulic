@@ -8,13 +8,13 @@ Co rozhodne Bára, je označeno **(Bára)**.
 
 - ~~Most v odhadu jako voda: bez mapy povrchů řeže řez most podle vody pod ním (Most Kotlarski v Krakově,
   `evaluation/poland/ab/`). Most z OSM (`bridge`) má mít přednost před vodou.~~ Hotovo 26. 11. (`ortho-osm.js`,
-  `?off=mostvoda`; 27 mostů: lépe 18, hůř 0; regrese beze změny; `evaluation/bridge-water/ZPRAVA.md`). Zbývá: zeleň ze
-  snímku na mostě nad zelenou řekou (Turín) a ~~mezera mezi dvěma oddělenými mosty~~ (hotovo: mostovky `man_made=bridge` v dlaždicích, větev bridge-edge 27. 11., `evaluation/bridge-water/edge/ZPRAVA.md`; po nasazení
+  `?off=mostvoda`; 27 mostů: lépe 18, hůř 0; regrese beze změny; `evaluation/archive/bridge-water/REPORT.md`). Zbývá: zeleň ze
+  snímku na mostě nad zelenou řekou (Turín) a ~~mezera mezi dvěma oddělenými mosty~~ (hotovo: mostovky `man_made=bridge` v dlaždicích, větev bridge-edge 27. 11., `evaluation/archive/bridge-water/edge/REPORT.md`; po nasazení
   přestavět balíky OSM). Zbývá z toho: jiná ulice na vedlejší mostovce (e-34 Bruggy, řez končí uprostřed komunikace) a
   krajní chodník užší než na ortofotu, kde je mostovka OSM nakreslená hrubě.
 - Úzké ulice: jeden široký pruh a chybějící stání (Brusel Rue aux Choux 10,4 m, Rue du Vautour 6,6 m, Antverpy
   Koninginnestraat 5,4 m; stejně dřív Rakousko a Německo). Proč se u jednosměrky s jedním pruhem zákonné stání nepřidá,
-  když místo je (`evaluation/universal/ZPRAVA.md`, Belgie).
+  když místo je (`evaluation/universal/REPORT.md`, Belgie).
 - Strop šířky pruhu 4 m (4,5 místní) neplatí u map povrchů: Kraków kr24 pruh 4,9 m, kr31 4,62 + 4,48 m.
 ~~- Chodník s cyklostezkou (`segregated=yes`) se dělí přesně napůl (`derive.js sidewalkUse`). Někde to odpovídá (Most
   Kotlarski), jinde ne: šířka z OSM `width` nebo z norem státu, případně hranice podle červené barvy na ortofotu.
@@ -34,30 +34,30 @@ Co rozhodne Bára, je označeno **(Bára)**.
 - ~~Poznámka pod nadpisem říká „domy z OSM“, i když jsou od 23. 11. v Česku z RÚIAN: nový text ve všech jazycích.~~
   (26. 11. 2026: „domy z {houses}“ podle zdroje fasád, `ortho-osm.js houseSources`: RÚIAN, GRPK s OSM, jinak OSM)
 
-- Sjednocení, zbývající kandidáti (`evaluation/sjednoceni/AUDIT.md`): `besideMax` (SK 15 m, jinde 25 m; A/B na Slovensku),
+- Sjednocení, zbývající kandidáti (`evaluation/archive/unification/AUDIT.md`): `besideMax` (SK 15 m, jinde 25 m; A/B na Slovensku),
   `roadOnPath` (jen Praha; zkusit na DTM ČÚZK a mapách měst), `roadClassFromOsm` (CZ, SK; jen norma varování, výklad
   **(Bára)**), `orthoEstimate` (jen text, totéž co `laneOrtho !== "none"`).
-- ~~**(Bára)** Kliky: „nesplnitelné obslužné vynechat“~~ Bára 27. 11. 2026: ano, nechat kam kliknu; hotovo (`?off=obsluznevolne`). Původní bod: Kliky (`evaluation/kliky/ZPRAVA.md`): „nesplnitelné obslužné vynechat“ (mapy 32 : 13, naslepo 17 : 19; na obslužných cestách
+- ~~**(Bára)** Kliky: „nesplnitelné obslužné vynechat“~~ Bára 27. 11. 2026: ano, nechat kam kliknu; hotovo (`?off=obsluznevolne`). Původní bod: Kliky (`evaluation/clicks/REPORT.md`): „nesplnitelné obslužné vynechat“ (mapy 32 : 13, naslepo 17 : 19; na obslužných cestách
   9 : 2 a 7 : 2, změřit znovu), kliknutí do 2 m od osy obslužné cesty skončí na ulici do 10 m (`nearestStreet` přirážka),
   konec cesty, kde ulice pokračuje, posouvá kliknutí o 12 m (bez něj 37 : 209 proti mapám).
 - ~~Pravidlo obslužných cest (`?off=obsluzne`) v Berlíně proti jeho mapě 10 : 12, jediné město, kde nepomáhá
-  (Vídeň 16 : 9, Amsterdam 11 : 4, Helsinky 13 : 7; `evaluation/sjednoceni/praha/ZPRAVA.md`).~~ (25. 11. 2026: znovu mapa 13 : 2, naslepo 6 : 8, zůstává zapnuté)
+  (Vídeň 16 : 9, Amsterdam 11 : 4, Helsinky 13 : 7; `evaluation/archive/unification/praha/REPORT.md`).~~ (25. 11. 2026: znovu mapa 13 : 2, naslepo 6 : 8, zůstává zapnuté)
 - Zákonné stání po pruzích: ~~`layLaw` nebere `pruh_piktokoridor`, `markIslands` udělá z chodníku dělicí pás, jednosměrka na dva pruhy ztratí
-  zákonný pruh~~ (25. 11. 2026, `mereni2/ZPRAVA.md`). Zbývá: ~~**(Bára)** nechat `lawlanes` zapnuté (34 : 21, oficiálně 1 : 3)?~~ Bára 27. 11. 2026: nechat zapnuté.
+  zákonný pruh~~ (25. 11. 2026, `measure2/REPORT.md`). Zbývá: ~~**(Bára)** nechat `lawlanes` zapnuté (34 : 21, oficiálně 1 : 3)?~~ Bára 27. 11. 2026: nechat zapnuté.
   ~~**(Bára)** odhad stání na Slovensku (12 : 7)~~ Bára 27. 11. 2026: nechat zapnutý jako všude; model pod stromy auta nevidí (Zaragoza); slabé čáry dělí pruhy i v
   obousměrce (nl-schiedam-5) a kde se stání vejde (fr-toulouse-2); `parkFromAi` nebere piktokoridor; Belgie 2 : 5.
 - ~~Uložený řez dvouvozovkové ulice se chytí jiné cesty OSM (odkaz nemá `wayId`): 10 z 226, jiný profil u 7~~ (25. 11. 2026:
-  cesta je v odkazu; všech 10 se chytí své, `mereni2/ZPRAVA.md`).
+  cesta je v odkazu; všech 10 se chytí své, `measure2/REPORT.md`).
 - ~~Odkaz `#rez=` zaokrouhluje azimut na celé stupně~~ (25. 11. 2026: jedno desetinné místo, `share.js linkBearing`; staré odkazy
   beze změny, Worker i starší stránka desetinu berou).
-- Vzhled domu ze všech budov OSM v Rakousku: druhý čerstvý vzorek 13 : 9, všechna kola 19 : 18, nerozhodně (`evaluation/all-buildings/ZPRAVA.md`); Bára 25. 11. 2026: zůstává společné pravidlo, bez výjimky. ~~Zúžit poválečný dům z tvaru bloku kolem dvora~~ (25. 11. 2026: celkem 47 : 50, AT 17 : 10, CH 9 : 14, FI 1 : 7; není v aplikaci, `yard-rule.patch`).
+- Vzhled domu ze všech budov OSM v Rakousku: druhý čerstvý vzorek 13 : 9, všechna kola 19 : 18, nerozhodně (`evaluation/archive/all-buildings/REPORT.md`); Bára 25. 11. 2026: zůstává společné pravidlo, bez výjimky. ~~Zúžit poválečný dům z tvaru bloku kolem dvora~~ (25. 11. 2026: celkem 47 : 50, AT 17 : 10, CH 9 : 14, FI 1 : 7; není v aplikaci, `yard-rule.patch`).
 
 - Přeučit model aut a stání z ortofota se šrafami jako vlastní třídou (Bára 27. 11. 2026): model bere úzké šrafy u obruby
   za auta (Ostrava, Výškovická: stání 2,4 m na šrafách). Veto rozpoznávačem šraf auta neodliší (větev `hatch-park`:
   přísné nic nezmění, volné `?srafyvolne=1` smaže i skutečná auta v Hradci). Postup: doznačit 100–150 výřezů (Ostrava,
   Hradec, Praha, Brno; masky šraf a stání, agent + Bářina kontrola vzorku), douučit parkovací větev (`park_branch.py`,
   `export_park.py` ve větvi `ai-segmentation`, `street.onnx` 5,5 MB beze změny velikosti), A/B a regrese. Odhad 3–5 h.
-  Zpráva `evaluation/ortofoto/ZPRAVA.md`, oddíl „Šrafy a auta z modelu“.
+  Zpráva `evaluation/orthophoto/REPORT.md`, oddíl „Šrafy a auta z modelu“.
 - Zeď nebo plot za ulicí: profil v Lipsku končil 1,3 m před zdí (opraveno `?off=murkonec`); pravidlo „nový řez až
   ke zdi do 40 m“ (`?nastenu=1`) na 70 řezech nic nezměnilo, vypnuto.
 - Bulváry se zelení uprostřed: německé mapy povrchů (`towns/germany.js` STREET) mohou řez vystředěný v zeleném pásu
@@ -78,16 +78,16 @@ Co rozhodne Bára, je označeno **(Bára)**.
 - Krakov: A/B mapy povrchů slabé (lépe 7, hůř 6), od 26. 11. 2026 vypnuto (`?krakow=1`). Přepustit A/B po vrácení
   „Ścieżky“ na chodník, kdyby přišel souhlas MSIP.
 - Belgie: A/B čar GRB a PICC slabé (lépe 4, hůř 2): zapnuto.
-- Flandry, plochy GRB (WBN + WGO, `evaluation/belgium/ab-wbn/ZPRAVA.md`, lépe 10, hůř 2): zóna za obrubou je jedna,
+- Flandry, plochy GRB (WBN + WGO, `evaluation/belgium/ab-wbn/REPORT.md`, lépe 10, hůř 2): zóna za obrubou je jedna,
   s OSM `cycleway=track` vzniká „chodník s koly“ místo chodníku a cyklostezky (ge1, lex1); ulice v jedné úrovni
   (obruba jen na jedné straně) dál odhadem; bulváry se souběžnými cestami (mex2) hrubě.
 - Polsko: ortofoto GUGiK bez vlastního A/B (je v obou ramenech).
 - ~~Paříž: u fasády často pruh „plocha“ 0,65 m (mezera mezi budovou z OSM a chodníkem Plan de voirie)~~ (26. 11. 2026:
-  sdílené pravidlo proužku u fasády, `evaluation/facade-strip`; BD TOPO není blíž než OSM; soukromé bloky Plan de voirie
-  sedí na chodník do 0,2 m, ale slepé A/B jen 5 : 2, vypnuté `?ilots=1`, `evaluation/france/facade/ZPRAVA.md`). Zbývá:
+  sdílené pravidlo proužku u fasády, `evaluation/archive/facade-strip`; BD TOPO není blíž než OSM; soukromé bloky Plan de voirie
+  sedí na chodník do 0,2 m, ale slepé A/B jen 5 : 2, vypnuté `?ilots=1`, `evaluation/france/facade/REPORT.md`). Zbývá:
   ustoupená přízemí a předprostory (blok končí u chodníku, dům dál).
 - ~~Paříž: široká vozovka „pruh 4 m + krajnice“, ztracený buspruh, bulvár s promenádou~~ (23. 11. částečně:
-  `evaluation/france/ab/bulvary/ZPRAVA.md`). Zbývá: krajnice u 10 z 26 bulvárů (široké vozovky bez čar na ortofotu IGN;
+  `evaluation/france/ab/boulevards/REPORT.md`). Zbývá: krajnice u 10 z 26 bulvárů (široké vozovky bez čar na ortofotu IGN;
   zkusit pařížský PCRS 5 cm, jen soubory), řez v ústí boční ulice (Sébastopol) a na cyklostezce za koncem bulváru
   (Magenta), Quai aux Fleurs bere i nižší ulici za zdí, chybějící vrstvy mapy (ostrůvky, oddělovače, rampy). Cílené řezy:
   mosty přes Périphérique, nábřeží. Evidence stání: Rue Fromentin, Chaufourniers, Place des Alpes ztratily odhad stání
@@ -105,7 +105,7 @@ Co rozhodne Bára, je označeno **(Bára)**.
   vyjmout; už platí (`app.js` vynechá prstenec Melilly z vrstvy, `ES_NOT_PNOA`).
 - ~~Španělsko: Catastro se ptá i v Baskicku a Navaře (recenze, nález 5)~~ (Bára 23. 11. 2026: vynecháno podle hranic NUTS 2
   GISCO, `regions-es.json`, enkláva Treviño zůstává Burgosu)
-- Španělsko: foralní katastr Álavy má proti OSM soustavně o 2 podlaží víc (`evaluation/spain/foral-ab/ZPRAVA.md`):
+- Španělsko: foralní katastr Álavy má proti OSM soustavně o 2 podlaží víc (`evaluation/spain/foral-ab/REPORT.md`):
   ověřit na fotkách z ulice; potvrdí-li se nadhodnocení, vypnout `ar` ve `FORAL_ON`. A/B Pamplony bez OSM (Navarra
   chybí v lokálním výřezu i v balíku R2): zopakovat srovnání s OSM, až bude balík Navarry.
 - ~~Španělsko: rok z katastru dává v `buildingStyle` české vzhledy „sorela“ a „typový dům“~~ (vyřešeno 23. 11. 2026 v 130f161:
@@ -139,7 +139,7 @@ Co rozhodne Bára, je označeno **(Bára)**.
 - Itálie: italská značka zastávky (modrá čtvercová s autobusem) místo rakouského „H“; mapa povrchů Bologni (vypnutá):
   `records` končí bez varování na 500 plochách, výplň „zbytek je chodník“ rozdělit čarami obrub, než se zapne; 3,50 m pro
   pruhy s autobusy mimo vyhrazený pruh (D.M. 2001 bod 3.4.2) aplikace nepozná; ~~hranice obcí GISCO 1 : 1 M nahradit
-  přesnějšími (ISTAT nebo OSM)~~ (Bára 23. 11. 2026: ISTAT, `tools/italy-border.json`); měření jen 6 řezů (`evaluation/universal/ZPRAVA.md`), rozšířit.
+  přesnějšími (ISTAT nebo OSM)~~ (Bára 23. 11. 2026: ISTAT, `tools/italy-border.json`); měření jen 6 řezů (`evaluation/universal/REPORT.md`), rozšířit.
 - Estonsko: normy rozhodnuté (Bára 23. 11. 2026: chodník 2,0, pruh 2,75, 3 m na směr, pěší zóna 381 + 432, stání a tramvaj
   bez varování). Normy nekupujeme (Bára 23. 11. 2026: EVS 843 jen z druhé ruky). Mapa povrchů Tallinnu zapnutá (pole `kate` nevyužité, tl38 ztratil střední pás);
   plochy úklidu Tartu (`Puhastusala`) by šly stejně, A/B. Stáří ortofota
@@ -160,7 +160,7 @@ Co rozhodne Bára, je označeno **(Bára)**.
   s ortofotem a bez něj; pravidlo podkroví (`?off=podkrovi`) na nových domech naslepo; čísla značek proti obrázkům pravidla
   26/2024; přesná pozemní hranice GURS; čtení středové čáry z `lanes` ≥ 2 a 3 m k plné čáře ~~**(Bára)**~~ (Bára 27. 11. 2026: středovou čáru a jestli je plná číst obecně z ortofota; „3 m k plné čáře“ jako sdílená funkce pro státy, jejichž zákon to má; rozpracováno).
 - Finsko, zbytky recenze 24. 11. 2026 (edfdd21): ~~proužek „plocha“ do 1,5 m u fasády přičíst k chodníku (`besidePassport`)~~
-  (26. 11. 2026: `ortho-osm.js facadeStrip` pro všechny mapy povrchů, slepé A/B 12 : 1, `evaluation/facade-strip`);
+  (26. 11. 2026: `ortho-osm.js facadeStrip` pro všechny mapy povrchů, slepé A/B 12 : 1, `evaluation/archive/facade-strip`);
   obrázky prvního A/B v gitu; prodleva při psaní do hledání (`search.js`); Karesuando u Švédska (řešit se Švédskem);
   Ryhti má jen „07 veřejná budova“ (škola a kostel se nepoznají).
 - Dánsko, zbytky recenze 24. 11. 2026 (f55df4b): Bornholm bez vlastních vzhledů domů (chybí fotky); plocha stání kdekoli
@@ -171,11 +171,11 @@ Co rozhodne Bára, je označeno **(Bára)**.
   v albánských souřadnicích, ověřit stupně), Chorvatsko (jen přes proxy, západ), ~~Slovinsko (služby GURS neodpovídaly)~~ (přidáno 23. 11. 2026 přes `ipi.eprostor.gov.si`);
   ostatní bez otevřeného ortofota (`docs/states-survey/c-vychod-balkan.md`).
 - ~~Jihlava: pasport komunikací byl 16. 11. prázdný, ověřit~~ (26. 11. 2026: zase plný, 13 323 úseků).
-- ~~Pasporty devíti českých měst: A/B po odstávce DMVS~~ (26. 11. 2026, `evaluation/PASPORTY-AB.md`: zůstaly Rožnov,
+- ~~Pasporty devíti českých měst: A/B po odstávce DMVS~~ (26. 11. 2026, `evaluation/PASSPORTS-AB.md`: zůstaly Rožnov,
   Chotěboř, Šlapanice, Kuřim, Chotěboř pak vyřazená kvůli licenci; vyřazené Chomutov, Šumperk, Litoměřice, Prachatice, Roudnice).
 - ~~Pasporty Rožnova a Šlapanic: vozovka pasportu přes dvory a sousední komunikace (20–27 m)~~ (26. 11. 2026: byla to
   bílá plocha DTM bez typu a parcela silnice RÚIAN kolem úzké vozovky pasportu; `towns/overlay.js trimGuessedRoads`,
-  `?orez=0`, slepé A/B Rožnov 30 : 6, Šlapanice 13 : 3, kontroly 7 : 1, zapnuté, `evaluation/pasporty-orez`). Zbývá: široký polygon samotného
+  `?orez=0`, slepé A/B Rožnov 30 : 6, Šlapanice 13 : 3, kontroly 7 : 1, zapnuté, `evaluation/archive/passports-trim`). Zbývá: široký polygon samotného
   pasportu (Rožnov č. 59, 63), úzká vozovka pasportu za chodníkem dělá z chodníku „dělicí pás“ (Chomutov, Šlapanice;
   `derive.js`). Kontroly Karviné: server `gis.karvina.cz` z Node často neodpověděl (fetch failed).
 - Hlášení, která data IPR/ČÚZK potvrzují, bez fotky z ulice nerozhodnu (do seznamu připomínek pro IPR?):
@@ -188,7 +188,7 @@ Co rozhodne Bára, je označeno **(Bára)**.
   (`types.js typeFromMtvu`: 100 → „plocha“); pojmenovaná cesta už jde na odhad (Devětsilová).
 - DTM po přechodu na JVF 1.5 (19. 11.): typy se čtou z kódu JVF (číselník z vyhl. 393/2020, `dmvs.js JVF`); kód, který
   číselník nemá, se zahodí s varováním „neznámý typ“ v konzoli. ~~Uložené řezy `evaluation/replay` nahrát znovu~~
-  (26. 11. 2026: `sample-cz.json`, 56 řezů DTM, nahrávka `rec-cz`). Srovnání DMVS (`evaluation/srovnani-dmvs`) má ještě
+  (26. 11. 2026: `sample-cz.json`, 56 řezů DTM, nahrávka `rec-cz`). Srovnání DMVS (`evaluation/archive/dmvs-comparison`) má ještě
   staré odpovědi.
 - **Kanada (Toronto, `evaluation/canada`):** řez uprostřed The Queensway (t-48) mapu nenajde; podium s věží, komerční domy a řady se kreslí jako
   `baygable`; A/B výšek domů (`?torontohouse=0`); mapa je z 2021, cyklostezky z OSM u křižovatky ulic ukrajují i sousední (1 z 9); kosé a kolmé
@@ -262,7 +262,7 @@ Co rozhodne Bára, je označeno **(Bára)**.
 ~~- Domy: chata nebo jiná stavba bez počtu podlaží v RÚIAN dostane výchozí 2 NP (hlášení u silnice 506338718
   v Královéhradeckém kraji: 1 NP a podkroví). Výchozí hodnota pro rekreační stavby (RÚIAN 8)? **(Bára)**~~
   (27. 11. 2026: chata bez počtu podlaží = 1 NP a podkroví (Bára), `gis.js`, `?off=chata`)
-- ~~Podkroví z RÚIAN~~ Bára 27. 11. 2026: rodinný dům a chata se 2+ NP dál s posledním podlažím ve střeše (měření Prahy: 2 NP 37 %, 3 NP 70 %; `evaluation/small-fixes/podkrovi.mjs`).
+- ~~Podkroví z RÚIAN~~ Bára 27. 11. 2026: rodinný dům a chata se 2+ NP dál s posledním podlažím ve střeše (měření Prahy: 2 NP 37 %, 3 NP 70 %; `evaluation/archive/small-fixes/attic.mjs`).
 
 ## Hledání
 
@@ -278,7 +278,7 @@ Co rozhodne Bára, je označeno **(Bára)**.
 
 - Finsko (Bára 23. 11. 2026, nenasazené; body 1–7 rozhodnuté podle doporučení: prahy nechat, 3 m na směr nechat, značky
   volně jako ve Francii, sídliště jako „povalecny“, Alandy s finskými pravidly, Turku 2022, Tampere až s proxy): (1) normy jen doporučení, oranžově pod nejnižší doporučenou šířkou
-  (chodník 2,0, cyklopruh 1,5…; `evaluation/finland/NORMY.md` E): chceš jiné prahy?; (2) stání 3 m na směr, zákon to dává
+  (chodník 2,0, cyklopruh 1,5…; `evaluation/finland/NORMS.md` E): chceš jiné prahy?; (2) stání 3 m na směr, zákon to dává
   jen u plné čáry (§ 37 odst. 2 bod 9): ponechat?; (3) značky z přílohy zákona jako volné dílo (§ 9 zák. 404/1961 jen
   v překladu WIPO): potvrdit; dodatkové tabulky H nekreslíme; (4) betonová sídliště 60.–80. let (BES) jako „povalecny“,
   ne panelák (Ryhti `construction_method` 01 = prvek by je poznal, nepoužito); (5) Alandy s finskými pravidly (vlastní
@@ -288,14 +288,14 @@ Co rozhodne Bára, je označeno **(Bára)**.
   v obrysu OSM se dvorní budovou bere nejbližší bod (he7); (9) ortofoto MML přes proxy (viz Nasazení).
 
 - Dánsko (Bára 23. 11. 2026, nenasazené; otázky): (1) ~~licence kodaňských vrstev `vejkant`, `parkering_areal`, `bygning`~~
-  (Bára 24. 11. 2026: použít; zapnuté, A/B `evaluation/denmark/ab/ZPRAVA.md`); zbývá u stání: mezery mezi plochami a
+  (Bára 24. 11. 2026: použít; zapnuté, A/B `evaluation/denmark/ab/REPORT.md`); zbývá u stání: mezery mezi plochami a
   plocha kdekoli v okolí vypne odhad stání na obou stranách (Refshalevej, Dannevirkegade); (2) před nasazením: proměnná
   repozitáře `DK_TOKEN`, workflow OSM tiles se `states: dk`; po 30. 11.
   ověřit Dataforsyningen na nové platformě (náhrada Datafordeler s klíčem na 2 roky); (3) normy z vejregler 2019 (vydání
   31. 5. 2024 nečteno), jen oranžově; pruh 2,75 m (§ 164 vyhl. 426/2023 platí jen mezi čarami); (4) stání 3 m na směr,
   zákon je dává jen u plné čáry (§ 29 odst. 1 bod 8); (5) značky z Commons jako úřední díla (§ 9 odst. 2); zóna 30 (E 68)
   nemá kresbu se 30, nekreslí se; jednosměrka E 19 vynechána; (6) Aarhus: podlaží jen odhadem z ploch (OSM má přednost);
-  (7) GetCapabilities Dataforsyningen vrací cizí přihlašovací údaje Datafordeleru (ZDROJE.md 7): dát vědět
+  (7) GetCapabilities Dataforsyningen vrací cizí přihlašovací údaje Datafordeleru (SOURCES.md 7): dát vědět
   poskytovateli?; (8) překlady strojové, sv.js cituje færdselsloven volně jako „trafiklagen“.
 
 ## Nasazení a provoz
@@ -311,7 +311,7 @@ Co rozhodne Bára, je označeno **(Bára)**.
 - ~~**Až budou dlaždice NL, BE, LU, PL, FR a ES na R2**: vrátit texty o nových státech.~~ Hotovo 23. 11. 2026: dlaždice všech 92 balíků jsou na R2 a v `index.json`, texty vrácené v `d6c8c6c`; oprava indexu (kódy o 3–4 písmenech) v `d412dda`.
 - **Proxy pro ortofota s klíčem (Bára 23. 11. 2026: uděláme, ale později):** Cloudflare Worker, který drží klíč
   a dlaždice ukládá do mezipaměti; Bára založí účet a Worker. Nejdřív Finsko: celostátní ortofoto MML (0,5 m, CC BY 4.0,
-  klíč osobní, podmínky: ne pro velký provoz, klíč chránit; `evaluation/finland/ZDROJE.md`), pak pruhy z ortofota
+  klíč osobní, podmínky: ne pro velký provoz, klíč chránit; `evaluation/finland/SOURCES.md`), pak pruhy z ortofota
   i v Tampere, Oulu a menších městech. S proxy i mapa povrchů Tampere (bez CORS). Totéž by šlo pro Švédsko (Lantmäteriet, jen po žádosti) a Dánsko, kdyby token
   nechtěla mít viditelný.
 
@@ -320,11 +320,11 @@ Co rozhodne Bára, je označeno **(Bára)**.
   (3c77136ac2204662b9287050fefc67de). Pravidlo Massachusetts o volném pruhu při stání nenalezeno (platí 3 m jako DC). ~~**(Bára)**~~ (Bára 27. 11. 2026: nechat 3 m, „odhad“)
 
 - ~~Ortofoto PDOK (Nizozemsko), Flandry, Valonsko, ACT Lucembursko (ortho_latest)~~: licence ověřené a v kreditech
-  (`evaluation/licence/ZPRAVA.md`, kredity opravené 26. 11. 2026 ve větvi credits-fix, i GRB, Most, Jihlava, Dúbravka).
+  (`evaluation/archive/licences/REPORT.md`, kredity opravené 26. 11. 2026 ve větvi credits-fix, i GRB, Most, Jihlava, Dúbravka).
 - Sítě Amsterdamu: kredit sjednocený („Creative Commons Naamsvermelding, verze neuvedena“), zeptat se datapunt@amsterdam.nl na verzi.
-- ~~Mapa Krakova: potřebuje písemný souhlas MSIP (ZPRAVA.md), rozhodnout o vypnutí~~ (Bára 26. 11. 2026: vypnutá, `?krakow=1`).
+- ~~Mapa Krakova: potřebuje písemný souhlas MSIP (REPORT.md), rozhodnout o vypnutí~~ (Bára 26. 11. 2026: vypnutá, `?krakow=1`).
 - ~~Pasport Chotěboře na demo účtu~~ (Bára 26. 11. 2026: vyřazený).
-- Služby českých a slovenských měst (MTVU, UMPS, pasporty): licence nikde neuvedená, zeptat se měst (ZPRAVA.md, Koho se zeptat).
+- Služby českých a slovenských měst (MTVU, UMPS, pasporty): licence nikde neuvedená, zeptat se měst (REPORT.md, Koho se zeptat).
 
 ## Nepřátelské recenze 26. 11. 2026 (větev canada)
 
@@ -356,7 +356,8 @@ Co rozhodne Bára, je označeno **(Bára)**.
   Záchranná síť: přehrávka `evaluation/replay` ve 4 jazycích stejná před a po.
 - ~~Přejmenovat na logické anglické názvy: `pilot` → `app`, české názvy složek a souborů aplikace a nástrojů~~ (větev
   `english-names`, 27. 11. 2026: `znacky/` → `signs-CZ/`, `towns.json`, `states.json`, `towns/slovakia.js`, ilustrace, testy).
-  Zbývá: `evaluation/<česky>/` a `ZPRAVA.md` (spolu s archivací), id `cesko`/`slovensko`… v datech řezů (uložené řezy
+  ~~`evaluation/<česky>/` a `ZPRAVA.md` (spolu s archivací)~~ (27. 11. 2026: `evaluation/archive/`, anglické názvy,
+  `REPORT.md`, `.claude/skills/measure-accuracy`, `add-state`, `LICENSES-AND-SOURCES.md`). Zbývá: id `cesko`/`slovensko`… v datech řezů (uložené řezy
   a odkazy se staršími id musí dál fungovat); ~~složky dat webu `data/vyvoj`, `parkovani`, `zony.json`~~ (27. 11. 2026: `data/built-up-age`,
   `data/brno/parking`, `data/plzen/zones.json`, nové klíče mezipaměti Actions `brno-parking-v2`, `plzen-zones-v2`).
 - Úklid `.claude/worktrees/` (47 kopií, 25 GB): data, na která se odkazuje (nahrávky, balíky, cache měření), přesunout do

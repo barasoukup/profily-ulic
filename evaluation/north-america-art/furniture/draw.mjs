@@ -1,10 +1,10 @@
 // Draws the North American furniture (Bára 25. 11. 2026): node evaluation/north-america-art/furniture/draw.mjs
-// Own drawings by dimensions and photos listed in ZDROJE.md; 1 px = 1 cm, the bottom edge = the sidewalk. Each picture is
+// Own drawings by dimensions and photos listed in SOURCES.md; 1 px = 1 cm, the bottom edge = the sidewalk. Each picture is
 // drawn for the left half of the street (the roadway on the right; a lamp's "left" picture has its arm to the left, as
 // Prague's), the right one is its mirror. The pictograms are symmetric, so the mirror needs no text of its own.
 import fs from "node:fs";
 const PUB = new URL("../../../app/public/", import.meta.url);
-const PROP = new URL("./navrhy/", import.meta.url);
+const PROP = new URL("./drafts/", import.meta.url);
 const R = (x, y, w, h, f, rx) => `<rect x="${+x.toFixed(2)}" y="${+y.toFixed(2)}" width="${+w.toFixed(2)}" height="${+h.toFixed(2)}"${rx ? ` rx="${rx}"` : ""} fill="${f}"/>`;
 const P = (d, f) => `<path d="${d}" fill="${f}"/>`;
 const L = (d, s, w, cap = "butt") => `<path d="${d}" stroke="${s}" stroke-width="${w}" fill="none" stroke-linecap="${cap}" stroke-linejoin="round"/>`;
@@ -79,7 +79,7 @@ pair("newyork/lamp-bishop", 370, 930, "New York Bishop's Crook (historic distric
     shaft(348, 642, 772, 9, 12, BLACK), wrapBands, ring(348, 770, 7, 16, BLACK), P("M335 777 H361 Q366 790 365 806 H331 Q330 790 335 777 Z", BLACK[0]), P("M353 777 H361 Q366 790 365 806 H354 Z", BLACK[1]), L("M338 780 Q335 792 335 804 M344 780 Q342 792 342 804", BLACK[2], 1.2),
     ring(348, 804, 6, 18, BLACK), P("M333 810 H363 L366 896 H330 Z", BLACK[0]), P("M352 810 H363 L366 896 H353 Z", BLACK[1]), R(336, 822, 13, 56, BLACK[2], 1), R(337.2, 823.4, 11.6, 54, BLACK[0], 1), R(327, 896, 42, 10, BLACK[0], 1), R(352, 896, 17, 10, BLACK[1], 1), R(326, 906, 44, 24, BLACK[0]), R(352, 906, 18, 24, BLACK[1]), R(326, 906, 26, 1.6, BLACK[2])]);
 
-// Post-top lamps (centred in a 140 cm wide picture), not wired: the park lamp of the app (up to 5 m) has no picture (ZDROJE.md).
+// Post-top lamps (centred in a 140 cm wide picture), not wired: the park lamp of the app (up to 5 m) has no picture (SOURCES.md).
 const X = 70, CREAM = ["#f1ecd9", "#ded6ba", "#fbf9f0"];
 const globe = (x, y) => [ // Washington globe, 43 cm wide, fullest above the middle, 58 high from its cup
   P(`M${x - 13} ${y} H${x + 13} C${x + 20} ${y - 10} ${x + 23.5} ${y - 22} ${x + 21.5} ${y - 36} C${x + 20} ${y - 46} ${x + 14} ${y - 53} ${x + 9} ${y - 58} H${x - 9} C${x - 14} ${y - 53} ${x - 20} ${y - 46} ${x - 21.5} ${y - 36} C${x - 23.5} ${y - 22} ${x - 20} ${y - 10} ${x - 13} ${y} Z`, CREAM[0]),

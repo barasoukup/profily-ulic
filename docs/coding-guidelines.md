@@ -41,7 +41,7 @@ vnitřní podobu kódu.
 | Jazyk ≠ stát: jazyky malými (cs, sk, en), státy velkými ISO (CZ, SK, AT). Podmínka na stát jen v `app/public/countries/<ISO>.js`, jinde ne. | test (podmínky na stát, dnešní výjimky jen méně) |
 | Sdílený kód bez výjimek pro jedno město nebo stát: oprava je obecná. Výjimka jen s měřením, že obecná oprava škodí; jinak se výjimka odstraní. | recenzent |
 | Každá změna odhadu (ortofoto, OSM, odvození profilu) má vypínač `?off=…` a slepé A/B na malém vzorku dotčených řezů (najít bez prohlížeče, asi 20–40) plus kontrolní sadě (30–50), která se nesmí změnit. | recenzent |
-| Změna `ortho-osm.js` projde regresí Praha/Brno: `node evaluation/ortofoto-osm/regrese.mjs`. | recenzent |
+| Změna `ortho-osm.js` projde regresí Praha/Brno: `node evaluation/ortho-osm/regression.mjs`. | recenzent |
 | Před commitem: `node tools/check_syntax.mjs && node tools/check_imports.mjs && node node_modules/eslint/bin/eslint.js && node --test tests/*.test.js` (`npm test` je totéž; na Bářině Macu s Node 26 `npm` a `npx` tiše končí kódem 194, spouštěj node přímo). | CI (`pages.yml`, job test) |
 | Zprávy commitů anglicky, popisné: co se změnilo a proč, s datem Bářina rozhodnutí. Commit po logickém kroku. | recenzent |
 | Nikdy nepushovat bez Bářina „nasaď“; push na `main` je nasazení. | recenzent |

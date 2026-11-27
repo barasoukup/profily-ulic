@@ -1,13 +1,13 @@
 // Lithuania (LT; Bára 24. 11. 2026): what differs from the Czech rules of countries/default.js. Its sources are
 // towns/lithuania.js (Vilnius's topographic areas 1 : 500); no orthophoto (the NŽT's is for viewing on geoportal.lt only),
-// so the profile is the estimate from OSM elsewhere. Sources, norms and signs: evaluation/lithuania/ (ZDROJE.md,
-// NORMY.md).
+// so the profile is the estimate from OSM elsewhere. Sources, norms and signs: evaluation/lithuania/ (SOURCES.md,
+// NORMS.md).
 import { t } from "../i18n.js";
 import { czechFurniture, TOWN_ART } from "../art.js";
 import base, { CZ_CODE } from "./default.js";
 import { cycleTrackLimits } from "./cycletrack.js";
 
-// Norms (evaluation/lithuania/NORMY.md D): the state's STR 2.06.04:2014 was not read (e-seimas blocked), so only the
+// Norms (evaluation/lithuania/NORMS.md D): the state's STR 2.06.04:2014 was not read (e-seimas blocked), so only the
 // street guides of Vilnius (2021) and Kaunas (2024), which call themselves recommendations: orange only. Lithuania has
 // no trams: no tram belt.
 const PARKED = (segs, i) => [segs[i - 1], segs[i + 1]].find((x) => x?.type === "parkovani");
@@ -41,7 +41,7 @@ function limitsLT(s, segs = [], i = -1) {
 // The signs of the state LT (app/public/signs-LT/, README there; the annex 1 of the traffic rules KET, government
 // resolution 1950/2002): the drawings from Wikimedia Commons, by Augustasci (CC BY 4.0, the 4xx Public domain) and
 // Gigillo83 (the plates 846 and 853, CC BY-SA 4.0), credited in the footer. Numbers and names by lt.wikipedia
-// (second hand, NORMY.md C2). The speed sign 329 is the app's template (the ring of 302, the number filled in).
+// (second hand, NORMS.md C2). The speed sign 329 is the app's template (the ring of 302, the number filled in).
 // Not drawn: the pedestrian zone and the shared zone (Lithuania has none found), the plates of the way of parking
 // (830–838, not on Commons) and the plate "except service" (not found).
 const LT_FILE = { b1: "302", b11: "303", b8: "309", b30: "310", b28: "332", b29: "333", ip11a: "528", ztp: "528", ip12: "531", ip14a: "501",
@@ -76,7 +76,7 @@ export default {
   ...base,
   code: "LT",
   bounds: [20.9, 53.85, 26.9, 56.5],
-  // KET 150.7 (second hand, NORMY.md B): no stopping where less than 3 m stays beside a solid line; read for both sides
+  // KET 150.7 (second hand, NORMS.md B): no stopping where less than 3 m stays beside a solid line; read for both sides
   // of a narrow street by the commentaries: 3 m a direction as elsewhere. 150.5: no parking on the sidewalk unless a
   // sign of the way of parking allows it; the width left to pedestrians was not found.
   freeLane: 3,

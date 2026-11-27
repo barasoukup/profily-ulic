@@ -131,7 +131,7 @@ export function bedFeatures(rows) {
 
 // Grass where at least GRASS of the lit pixels are green; nothing else is told apart. Gravel shows its sleepers
 // only at 0.1 m/px (sleepers, ab.mjs variant tram-orto-10) and even then they part gravel from paving in half of
-// the beds only; asphalt and panels look alike (evaluation/pravidla-11-2026/ZPRAVA.md, section 4). Too few lit
+// the beds only; asphalt and panels look alike (evaluation/archive/rules-2026-11/REPORT.md, section 4). Too few lit
 // pixels (shade, trees, outside the image): null.
 const GRASS = 0.35, MIN_PIXELS = 40;
 export function classifyBed(rows) {

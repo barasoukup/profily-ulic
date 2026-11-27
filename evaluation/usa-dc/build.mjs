@@ -1,7 +1,7 @@
 // The DC pilot (phase 1, Bára 24. 11. 2026): the profile of each cut from DC's open data, built with the app's shared
 // code (derive.js deriveProfile and the steps app.js cutAt runs after it), no new rules beyond the mapping below.
 //
-// Mapping (documented in ZPRAVA.md):
+// Mapping (documented in REPORT.md):
 // - DC Planimetrics 2023 (OCTO, CC BY 4.0): Roads (10), Sidewalks (11), Building Footprints (1) in the cut's box. The
 //   kinds are read along the cut every 0.1 m (as towns/belgium.js grbSurfaces does with GRB) and handed to the app as
 //   MTVU-coded strips 2 m along the street:
@@ -139,7 +139,7 @@ function finish(result, tags, near, dir, osm, frame, estimate) {
 
 const rows = JSON.parse(await fs.readFile(path.join(ROOT, "sample.json"), "utf8"));
 const outDc = [], outOsm = [], outDc2 = [];
-// Variant (after the first score, so tuned on this sample: ZPRAVA.md says so): the inventory's TOTALTRAVELLANES kept
+// Variant (after the first score, so tuned on this sample: REPORT.md says so): the inventory's TOTALTRAVELLANES kept
 // where the app's rule of 2 × 2.5 m from 5.0 m (derive.js splitTwoWayLane) merged a two-way roadway of 16 ft into one
 // lane: the widest lane is halved while there are fewer lanes than the inventory's and it is 4 m or wider.
 function inventoryLanes(parts, n) {

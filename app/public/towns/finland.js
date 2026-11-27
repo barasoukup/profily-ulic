@@ -1,5 +1,5 @@
 // Finland (Bára 23. 11. 2026): the state of a cut inside states.json's "finland" (with Åland). There is no national
-// orthophoto without a key (evaluation/finland/ZDROJE.md 1): the profile is the estimate from OSM, with the town's own
+// orthophoto without a key (evaluation/finland/SOURCES.md 1): the profile is the estimate from OSM, with the town's own
 // orthophoto in Helsinki, Espoo and Turku (lanes-ortho.js "fi"). Its own sources:
 // - Helsinki's register of public areas YLRE (Yleisten alueiden rekisteri, kartta.hel.fi WFS, CORS *, CC BY 4.0 on HRI
 //   "Helsingin kaupunki"): the parts of the streets (roadway, sidewalk, separated cycle track, island, divider, lawn,
@@ -37,7 +37,7 @@ export const AREAS = { helsinki: { box: ringsBox(HELSINKI_RINGS) } };
 export const inHelsinki = (lon, lat) => inArea(AREAS.helsinki, lon, lat) && inRings(HELSINKI_RINGS, lon, lat);
 
 // ---------- YLRE: the parts of Helsinki's streets ----------
-// The register's kinds (paatyyppi / alatyyppi, counted over four districts, ZDROJE.md 2) → MTVU codes (city.js
+// The register's kinds (paatyyppi / alatyyppi, counted over four districts, SOURCES.md 2) → MTVU codes (city.js
 // MTVU_LABELS). A bridge's parts ("Ajorata (Silta)") are the same parts. Furniture, walls, gutters, steps' cheeks and
 // play areas are left to what lies under them (OSM). A divider (Erotusalue) is paved unless its material is grass.
 // After the hostile review (24. 11. 2026, bod 9): a square (Aukiot) is paving, not a sidewalk (as in Vilnius); a

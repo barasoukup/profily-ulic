@@ -1,9 +1,9 @@
-// The samples of the A/Bs the second review found missing (evaluation/canada/review/README in ../ZPRAVA.md): drawn after the code was
+// The samples of the A/Bs the second review found missing (evaluation/canada/review/README in ../REPORT.md): drawn after the code was
 // frozen (00c6995), a fixed seed, none within 150 m of a point used before in evaluation/usa*, evaluation/canada* nor of another
 // drawn here. No condition of a photo (the first measurement lost two thirds of the local and service streets to it).
 //   node evaluation/canada/review/sample.mjs      writes sample.json
 import fs from "node:fs/promises";
-import { osmAt, tiles } from "../../kliky/osm.mjs";
+import { osmAt, tiles } from "../../clicks/osm.mjs";
 import { TILE, mergePieces } from "../../../app/public/osmtile.js";
 import { localFrame, nearestStreet, placeCut as place, snapToWay } from "../../../app/public/derive.js";
 import { inside } from "../../../app/public/places.js";

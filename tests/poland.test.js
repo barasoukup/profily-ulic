@@ -11,7 +11,7 @@ test("Polsko: mapa povrchů Krakova (druhy MJO na kódy MTVU), ve výchozím sta
   assert.equal(P.krakowCode({ kod_nz: "Plac (KTPL01)" }), 1003);
   assert.equal(P.krakowCode({ kod_nz: "Krawężnik (KTKR01)" }), null);
   assert.equal(P.krakowCode({ kod_nz: "Ścieżka (KTCR04)" }), 702, "pěší a cyklistický pás: rozdělí ho OSM (Most Kotlarski: chodník a cyklopruh vedle sebe)");
-  // Bára 26. 11. 2026: off until MSIP gives its written consent (evaluation/licence/ZPRAVA.md); no request without ?krakow=1.
+  // Bára 26. 11. 2026: off until MSIP gives its written consent (evaluation/archive/licences/REPORT.md); no request without ?krakow=1.
   const fetched = globalThis.fetch; let asked = 0;
   globalThis.fetch = async () => { asked++; throw new Error("no network"); };
   try { assert.deepEqual(await P.sources.surfaces("19.936,50.060,19.939,50.062"), { features: [], abroad: true }); } finally { globalThis.fetch = fetched; }

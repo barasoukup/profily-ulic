@@ -1,5 +1,5 @@
 #!/bin/sh
-# The A/B of the outer gaps from OSM alone (?outerosm=1, ZPRAVA.md) by the fresh measurement's code:
+# The A/B of the outer gaps from OSM alone (?outerosm=1, REPORT.md) by the fresh measurement's code:
 #   evaluation/usa/boston/outer-osm/measure.sh packages | score
 # Profiles: evaluation/universal/data/bos-outer-osm.json (evaluation/usa/collect.js, variants def and ogosm), a copy in results/rows.json.
 cd "$(dirname "$0")" || exit 1

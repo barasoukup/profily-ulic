@@ -27,7 +27,7 @@ for (const [id, r] of Object.entries(est)) {
   stats.cuts++;
   const c = r.cut;
   if (!c?.lat || !r.segs?.length) continue;
-  // Without a span (an estimate without one) the profile is centred on the cut's point (as evaluation/slovensko/kontrola).
+  // Without a span (an estimate without one) the profile is centred on the cut's point (as evaluation/slovakia/check).
   const width = r.segs.reduce((a, x) => a + x[1], 0);
   c.span ||= { left: width / 2, right: width / 2 };
   setCity(r.town === "aachen" ? "germany" : "slovensko");
@@ -76,7 +76,7 @@ for (const [id, r] of Object.entries(est)) {
   fs.writeFileSync(`${dir}/${n}.json`, JSON.stringify({ id: "target", n, point: id, town: r.town, src: SRC[r.town], lat: c.lat, lon: c.lon, box, half: HALF, px: PX, feats: [],
     cut: c, truth: { way, facade, side }, ts: lt, lines }));
   fs.writeFileSync(`${dir}/${n}.osm.json`, JSON.stringify(hintsOf(osm, box)));
-  // The estimate's parts, laid from A (t = +span.left) as regrese.mjs laid().
+  // The estimate's parts, laid from A (t = +span.left) as regression.mjs laid().
   const parts = [];
   let t = c.span.left;
   for (const [type, w] of r.segs) { parts.push({ type, s: +(t - w).toFixed(3), e: +t.toFixed(3) }); t -= w; }

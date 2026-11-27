@@ -1,6 +1,6 @@
 // Address search in Finland (Bára 23. 11. 2026): Photon of komoot in Finnish and Swedish for free text (search-photon.js
 // "photon-fi"), and for a query with a house number the national addresses of Ryhti (SYKE, OGC API Features
-// open_address, CORS *, CC BY 4.0; evaluation/finland/ZDROJE.md 4): the Finnish or Swedish name of the street with the
+// open_address, CORS *, CC BY 4.0; evaluation/finland/SOURCES.md 4): the Finnish or Swedish name of the street with the
 // number (a CQL filter on the fields, no full text), the town by its post office. One request a pause in typing (search.js
 // debounces and cancels), a second only when the first finds nothing.
 export const RYHTI_ADDRESS = "https://paikkatiedot.ymparisto.fi/geoserver/ryhti_building/ogc/features/v1/collections/open_address/items";

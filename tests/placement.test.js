@@ -1,5 +1,5 @@
-// Where a click lands (evaluation/kliky): recorded scenes, OSM © its contributors, ODbL 1.0 (tests/placement-scenes.json,
-// evaluation/kliky/record.mjs): the way a click takes and how far the cut may move from it. No network.
+// Where a click lands (evaluation/clicks): recorded scenes, OSM © its contributors, ODbL 1.0 (tests/placement-scenes.json,
+// evaluation/clicks/record.mjs): the way a click takes and how far the cut may move from it. No network.
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";

@@ -1,12 +1,12 @@
 // Malta (MT; Bára 23. 11. 2026): what differs from the Czech rules of countries/default.js. Traffic keeps LEFT (reg. 75
 // of S.L. 65.11; derive.js turns only the directions). Its source is towns/malta.js (the estimate), the Planning
-// Authority's orthophoto of 2018 lanes-ortho.js "mt". Sources, norms and signs: evaluation/malta/ (ZDROJE.md, NORMY.md).
+// Authority's orthophoto of 2018 lanes-ortho.js "mt". Sources, norms and signs: evaluation/malta/ (SOURCES.md, NORMS.md).
 import { t } from "../i18n.js";
 import { czechFurniture, TOWN_ART } from "../art.js";
 import base, { CZ_CODE } from "./default.js";
 import { mediterraneanLook } from "../house-looks.js";
 
-// Norms (evaluation/malta/NORMY.md): no binding widths of streets; the sidewalk by Access for All (CRPD, 1.2 m for an
+// Norms (evaluation/malta/NORMS.md): no binding widths of streets; the sidewalk by Access for All (CRPD, 1.2 m for an
 // accessible route) only orange (the review of 23. 11. 2026: guidance for routes to buildings, not a law for public
 // sidewalks; the Road Geometry Handbook's 1.5 m is from its Table 1A, whose 1.30 / 1.50 m look swapped: not used until
 // the table is read as an image), perpendicular parking by the Planning Authority's DC15 (4.8 m). No Maltese
@@ -64,7 +64,7 @@ export default {
   // Traffic keeps left.
   leftHand: true,
   // No free width in the law (only "obstruction", reg. 74 and 77 of S.L. 65.11); the Planning Authority's DC15: two cars
-  // pass on 4.1 m, an aisle beside parallel parking 3 m (NORMY.md B1). Parking on the sidewalk banned (reg. 79 d) but
+  // pass on 4.1 m, an aisle beside parallel parking 3 m (NORMS.md B1). Parking on the sidewalk banned (reg. 79 d) but
   // where the sign III.B8–B10 allows it.
   freeLane: 3,
   // At least DC15's 4.1 m (two-way) or 3 m (one-way), and the lanes OSM counts keep MIN_LANE (2.5 m) each beside it

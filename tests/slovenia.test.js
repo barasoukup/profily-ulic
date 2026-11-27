@@ -113,7 +113,7 @@ test("Slovinsko: podkroví podle výšky katastru GURS", async () => {
   // Full floors stay full: 5 floors (more than 4) and a modern house of 3 floors in 11.1 m.
   assert.deepEqual(floors("ma2-left"), [5, 0, 5, 19.9, undefined]);
   assert.deepEqual(floors("lj13-right"), [3, 0, 3, 11.1, undefined]);
-  // An attic the rule misses (8.4 m for 2 floors): the heights overlap (ab/ZPRAVA.md).
+  // An attic the rule misses (8.4 m for 2 floors): the heights overlap (ab/REPORT.md).
   assert.deepEqual(floors("ma3-right"), [2, 0, 2, 8.4, undefined]);
   // Without H3 the height counts from H1 (the lowest floor); without either there is no height and no attic.
   assert.equal(S.gursBuilding({ ...fx["lj12-left"].properties, VISINA_H3: null }).height, 12.3);

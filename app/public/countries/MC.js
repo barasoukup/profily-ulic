@@ -1,12 +1,12 @@
 // Monaco (MC; Bára 23. 11. 2026): France's settings where Monaco has nothing of its own, its own where it has
-// (evaluation/monaco/PRAVIDLA.md): the source is towns/monaco.js (the estimate), the orthophoto IGN's French one
+// (evaluation/monaco/RULES.md): the source is towns/monaco.js (the estimate), the orthophoto IGN's French one
 // (lanes-ortho.js "fr", which covers Monaco).
 import { t } from "../i18n.js";
 import FR from "./FR.js";
 import { CZ_CODE } from "./default.js";
 import { mediterraneanDetails, monacoLook } from "../house-looks.js";
 
-// The signs with a footing in Monaco's Code de la route (evaluation/monaco/PRAVIDLA.md 1; Bára 23. 11. 2026: no French
+// The signs with a footing in Monaco's Code de la route (evaluation/monaco/RULES.md 1; Bára 23. 11. 2026: no French
 // sign the code does not know): entry bans, parking, one-way, the reserved lane (art. 32), the cycle track (art. 1), the
 // aire piétonne (art. 1), speeds only 30, 50 and 70 (art. 11). Not drawn: zone 30, zone de rencontre (not in the code),
 // the voie verte, the motorway and the route express (French notions), the path for pedestrians, the contraflow plate
@@ -36,7 +36,7 @@ export default {
   // apply there.
   limits: () => null,
   // The look of France's signs (Monaco follows the Geneva protocol of 1949, ordonnance 793/1953; that its signs look
-  // French is an observation, PRAVIDLA.md 3), without the French numbers. No zone sign is drawn, so none hides a speed
+  // French is an observation, RULES.md 3), without the French numbers. No zone sign is drawn, so none hides a speed
   // but the aire piétonne's.
   signs: { ...FR.signs, file: signFile, drawable: (x, seg) => !!signFile(x, seg), label: (x, own, label) => label.replace(CZ_CODE, ""), zoneSpeed: { ip27a: 20 } },
   // IGN's French orthophoto covers Monaco; no tram, no panorama; contraflow as France.

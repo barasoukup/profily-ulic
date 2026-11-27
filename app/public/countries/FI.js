@@ -1,7 +1,7 @@
 // Finland (FI; Bára 23. 11. 2026): what differs from the Czech rules of countries/default.js. Its sources are
 // towns/finland.js (Helsinki's register of public areas YLRE, Helsinki's buildings, Ryhti's), the towns' orthophotos
-// lanes-ortho.js "fi" (Helsinki, Espoo, Turku; none elsewhere). Sources, norms and signs: evaluation/finland/ (ZDROJE.md,
-// NORMY.md). Åland is in (GISCO counts it to Finland) with the Finnish rules; its own road act is not read.
+// lanes-ortho.js "fi" (Helsinki, Espoo, Turku; none elsewhere). Sources, norms and signs: evaluation/finland/ (SOURCES.md,
+// NORMS.md). Åland is in (GISCO counts it to Finland) with the Finnish rules; its own road act is not read.
 import { t } from "../i18n.js";
 import { fmt } from "../norms.js";
 import { czechFurniture, TOWN_ART } from "../art.js";
@@ -9,7 +9,7 @@ import base, { CZ_CODE } from "./default.js";
 import { cycleTrackLimits } from "./cycletrack.js";
 import { nordicDetails, nordicLook } from "../house-looks.js";
 
-// Norms (evaluation/finland/NORMY.md A, D): Finland has no binding widths of streets; only guides: the national
+// Norms (evaluation/finland/NORMS.md A, D): Finland has no binding widths of streets; only guides: the national
 // Väyläviraston ohjeita 18/2020 for cycling, Helsinki's "Katutilan mitoitus" (05/2014) for the rest. So nothing red,
 // orange below the lowest width the guide recommends for an ordinary street (its default given in the text).
 const BESIDE_BIKE = new Set(["cyklopruh", "ochranny_pruh"]);
@@ -44,7 +44,7 @@ function limitsFI(s, segs = [], i = -1) {
 
 // The signs of the state FI (app/public/signs-FI/, README there): appendix 3 of the road traffic act 729/2018, the
 // drawings from Wikimedia Commons ("Finland road sign …", public domain, "Republic of Finland"). That the act's appendix
-// is free (Tekijänoikeuslaki 404/1961 § 9: no copyright in laws and decrees) is the app's reading (NORMY.md C1; Bára to
+// is free (Tekijänoikeuslaki 404/1961 § 9: no copyright in laws and decrees) is the app's reading (NORMS.md C1; Bára to
 // confirm). Finland has no shared zone; plates (H) are not drawn (their licences on Commons not checked).
 const FI_FILE = { b1: "C1", b11: "C2", b8: "C11", b30: "C13", b28: "C37", b29: "C38", ip11a: "E2", ip14a: "E15", ip15a: "E17", ip20a: "E9.1",
   zona30: "C34-30", ip26a: "E24", ip27a: "E26", cyklozona: "E28", c8a: "D5", c9a: "D6", c10a: "D7.1", c7a: "D4" };
@@ -75,7 +75,7 @@ export default {
   code: "FI",
   bounds: [19.0, 59.4, 31.7, 70.1],
   // Tieliikennelaki 729/2018 § 37 (2) 9: no stopping where less than 3 m is left to a solid line; no general figure. The
-  // app keeps its convention of 3 m a direction (NORMY.md B1, the app's reading, for Bára). § 37 (2) 1: no parking on the
+  // app keeps its convention of 3 m a direction (NORMS.md B1, the app's reading, for Bára). § 37 (2) 1: no parking on the
   // sidewalk; only the plate H13 allows it.
   freeLane: 3,
   halfKerbNote: (free, need) => t("Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Ve Finsku je stání na chodníku zakázané (§ 37 zákona o silničním provozu), dovolit ho může jen dodatková tabulka; aplikace nechává {need}.", { free, need }),
@@ -97,7 +97,7 @@ export default {
   panorama: false,
   art: { finland: { ...czechFurniture, ...atPosts } },
   // Finland's concrete estates of the 1960s–80s are not drawn as the Czech panel houses (Bára's memory: the socialist
-  // looks only in CZ, SK, PL, EE and the GDR); question 4 of ZDROJE.md decided so (docs/backlog.md, Bára 23. 11. 2026:
+  // looks only in CZ, SK, PL, EE and the GDR); question 4 of SOURCES.md decided so (docs/backlog.md, Bára 23. 11. 2026:
   // the estates as "povalecny").
   socialistLooks: false,
   search: ["photon-fi", "ryhti"],

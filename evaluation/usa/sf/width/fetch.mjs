@@ -1,4 +1,4 @@
-// The open data around each cut of the width check (ZPRAVA.md here), asked once and kept in ../data/width-cache (git
+// The open data around each cut of the width check (REPORT.md here), asked once and kept in ../data/width-cache (git
 // ignores it): DataSF Sidewalk Widths (4g86-grxu, AECOM 2014, PDDL) within 60 m, and for the shift of the footprints the
 // same layers the app's map reads (towns/sanfrancisco.js): Right of Way Polygons (h8n7-e4ns) and Building Footprints
 // (ynuv-fyni) in a box of ±90 m. One request at a time, 0.5 s apart.   node evaluation/usa/sf/width/fetch.mjs

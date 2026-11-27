@@ -156,7 +156,7 @@ Líně už dnes (a dál) jen zdroje měst a hledání.
    - Snímek tabulek: složený `city` pro všechna id × 4 jazyky, hlášky výpadků (`sources.js` 65–74), paleta značek
      v Návrhu (`app.js` 1716–1732), `signFile`/`plateFile`/`signLabel` × státy, `limits` × státy, načtení
      uloženého souboru (`validate.js`).
-   - Dál `npm test` a `evaluation/ortofoto-osm/regrese.mjs`.
+   - Dál `npm test` a `evaluation/ortho-osm/regression.mjs`.
 1. **Levné a nezávislé:** `city.id === "praha"` / `"brno"` → vlastnosti města (`fix.roadOnPath`, `slowServer`,
    `builtAge`, vrstva v `maplayers`); smazat nepoužívaný `storeSuffix`.
 2. **Kredit u zdroje** a `validate.js` podle seznamu zdrojů a států: `cleanSources` propustí klíče všech zdrojů

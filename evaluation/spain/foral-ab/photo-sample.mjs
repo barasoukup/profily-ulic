@@ -6,7 +6,7 @@
 // 50 m around the camera, one request), the point 4 m inside it. Then the house asked as the app asks (towns/spain.js
 // podlaznost, ?foral=1) and its OSM facts (derive.js buildingAt). Up to 12 houses a city, one building once.
 // Politely: a pause of 1.5 s after each request to a cadastre, 0.3 s after Mapillary.
-//   node evaluation/spain/foral-ab/photo-sample.mjs → vysledky/foto.json, data/foto2/<id>.jpg
+//   node evaluation/spain/foral-ab/photo-sample.mjs → results/foto.json, data/foto2/<id>.jpg
 import fs from "node:fs";
 import { buildingAt, localFrame } from "../../../app/public/derive.js";
 import { setCity } from "../../../app/public/city.js";
@@ -115,4 +115,4 @@ for (const [city, [lat0, lon0]] of Object.entries(CITIES)) {
     console.log(id, `${best.t.toFixed(0)} m`, `OSM ${of?.levels ?? "–"}`, `katastr ${p.total ?? "–"}`, A.levels ?? "–", buildingStyle(A), "→", buildingStyle(B));
   }
 }
-fs.writeFileSync(new URL("vysledky/foto.json", HERE), JSON.stringify(rows, null, 1));
+fs.writeFileSync(new URL("results/foto.json", HERE), JSON.stringify(rows, null, 1));

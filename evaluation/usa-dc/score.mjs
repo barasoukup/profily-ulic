@@ -1,6 +1,6 @@
 // The DC pilot's score, by the universal measurement (evaluation/universal/compare.mjs, today's rules: a side without a
 // facade counts only up to the street's edge; only cuts with a roadway; the sample has no service roads at all, so the
-// exclusion of driveways, parking aisles and drive-throughs leaves nothing out). The judges' profiles vysledky/u-us-*.jsonl
+// exclusion of driveways, parking aisles and drive-throughs leaves nothing out). The judges' profiles results/u-us-*.jsonl
 // against data/app-dc.json (DC's surface map) and data/app-osm.json (OSM alone).
 //   node evaluation/usa-dc/score.mjs            the summary and a table per cut (Markdown)
 import fs from "node:fs/promises";
@@ -11,7 +11,7 @@ import { ROOT, DATA } from "./lib.mjs";
 const sample = new Map(JSON.parse(await fs.readFile(path.join(ROOT, "sample.json"), "utf8")).map((r) => [r.id, r]));
 const load = async (f) => new Map(JSON.parse(await fs.readFile(path.join(DATA, f), "utf8")).map((r) => [r.id, r]));
 const dc = await load("app-dc.json"), osm = await load("app-osm.json"), dc2 = await load("app-dc-lanes.json");
-const judged = (await Promise.all((await fs.readdir(path.join(ROOT, "vysledky"))).filter((f) => /^u-.*\.jsonl$/.test(f)).map((f) => fs.readFile(path.join(ROOT, "vysledky", f), "utf8"))))
+const judged = (await Promise.all((await fs.readdir(path.join(ROOT, "results"))).filter((f) => /^u-.*\.jsonl$/.test(f)).map((f) => fs.readFile(path.join(ROOT, "results", f), "utf8"))))
   .join("\n").split("\n").filter(Boolean).map((l) => JSON.parse(l));
 const LANE = ["pruh", "pruh_piktokoridor", "obsluzna", "bus", "bus_cyklo", "tramvaj_v_pruhu"];
 const usable = judged.filter((j) => j.usable && dc.get(j.id)?.parts?.length).filter((j) => [...dc.get(j.id).parts.map((p) => p[0]), ...j.parts.map((p) => String(p[0]).replace("?", ""))].some((t) => LANE.includes(t)));
@@ -30,7 +30,7 @@ console.log(summary("DC: mapa povrchů + inventář DDOT", a));
 for (const k of ["residential", "collector", "arterial"]) console.log(summary(`DC – ${k}`, byKind(a, k)));
 console.log(summary("DC + pruhy z inventáře (varianta)", rowsOf(dc2)));
 console.log(summary("jen OSM (bez mapy, bez ortofota)", b));
-// A check of the judge (ZPRAVA.md): the same composition with the green strips beside the roadway left out of both
+// A check of the judge (REPORT.md): the same composition with the green strips beside the roadway left out of both
 // profiles (scope() first, so green between lanes stays a median): the judges left out narrow grass strips the
 // orthophoto shows (dc-5-1, dc-8-4, dc-3-4), which the map has.
 function noGreen(app) {

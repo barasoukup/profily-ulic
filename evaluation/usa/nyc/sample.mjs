@@ -1,4 +1,4 @@
-// The fresh measurement of New York's map (26. 11. 2026; ZPRAVA.md here), drawn after the code was frozen (18945f8): 50 random
+// The fresh measurement of New York's map (26. 11. 2026; REPORT.md here), drawn after the code was frozen (18945f8): 50 random
 // cuts of the five boroughs' streets in the proportion of the network (a random point of the whole length, so each type as
 // often as it is long; a fixed seed), at least 150 m apart and away from the points tried while the code was written. A
 // Mapillary photo within 30 m is counted (photos) but not required: required, it dropped 56 local streets and the sample
@@ -22,7 +22,7 @@ const KIND = { motorway: "motorway", motorway_link: "motorway", trunk: "arterial
   tertiary: "collector", tertiary_link: "collector", residential: "local", unclassified: "local", living_street: "local", service: "service" };
 const NOT = new Set(["driveway", "parking_aisle", "drive-through", "emergency_access"]);
 // PHOTO=1: the second draw for the universal measurement only (it judges by photos): 25 cuts with a photo, away from the first
-// draw's, into sample-u.json (another seed; the proportion of the network does not hold, see ZPRAVA.md).
+// draw's, into sample-u.json (another seed; the proportion of the network does not hold, see REPORT.md).
 const PHOTO = process.env.PHOTO === "1", N = Number(process.env.N || (PHOTO ? 25 : 50));
 if (PHOTO) OLD.push(...await read("sample.json"));
 let seed = PHOTO ? 20261128 : 20261127;

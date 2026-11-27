@@ -1,4 +1,4 @@
-// New cuts of San Francisco for the width check (26. 11. 2026, ZPRAVA.md here): the method of ../sample.mjs (a random
+// New cuts of San Francisco for the width check (26. 11. 2026, REPORT.md here): the method of ../sample.mjs (a random
 // point of the network's whole length, placed as a click places it), seed 20261127, only streets with sidewalks to
 // compare (local, collector, arterial; no service roads, no motorways), none within 150 m of the cuts of the earlier SF
 // measurements (../fresh.json, ../fixes/sample.json, ../curb/fresh.json) or of each other. No photo needed (no judge).

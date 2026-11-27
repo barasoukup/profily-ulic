@@ -9,7 +9,7 @@ import os from "node:os";
 import { execFile } from "node:child_process";
 import { promisify } from "node:util";
 import { decodePng } from "../../app/public/dmvs.js";
-import { encodePng } from "../ortofoto/run.mjs";
+import { encodePng } from "../orthophoto/run.mjs";
 import { ROOT, DATA } from "./lib.mjs";
 
 const run = promisify(execFile), R = 6378137, RES = 0.1, ALONG = 15;

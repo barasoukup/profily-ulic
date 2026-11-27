@@ -1,5 +1,5 @@
 // The universal comparison of two profiles (Bára 17. 11. 2026: the composition first, then the width of the whole
-// street): both as the judge's classes (POKYN.md), A→B. Composition: the sequence of classes with neighbours of the same
+// street): both as the judge's classes (BRIEF.md), A→B. Composition: the sequence of classes with neighbours of the same
 // class merged, within the street space (core()) and without the shoulders ("krajnice"); compared by edit distance
 // (a part missing, added or of another class is one edit). Lanes: their count. Width: the street space (core()).
 export const CLASS = {
@@ -8,7 +8,7 @@ export const CLASS = {
   parkovani: "stani", pruh: "pruh", pruh_piktokoridor: "pruh", obsluzna: "pruh", bus: "bus", bus_cyklo: "bus",
   tramvaj: "tramvaj", tramvaj_pruh: "tramvaj", tramvaj_v_pruhu: "tramvaj",
   zelen: "zelen", stromorad: "stromy", delici: "delici", krajnice: "krajnice",
-  railway: "zeleznice", // a railway beside the street (27. 11. 2026; the judge's code in evaluation/railway/POKYN.md)
+  railway: "zeleznice", // a railway beside the street (27. 11. 2026; the judge's code in evaluation/archive/railway/BRIEF.md)
 };
 const KNOWN = new Set(["chodnik", "stani", "pruh", "bus", "cyklopruh", "cyklostezka", "tramvaj", "zelen", "stromy", "delici", "nastupiste", "krajnice", "zeleznice", "jine"]);
 // Parts as [class, width]: an app profile ([type, width] or {type, width}) or the judge's ([code, width, …], "?" dropped).

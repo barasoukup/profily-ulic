@@ -1,12 +1,12 @@
 // Belgium (BE; Bára 20. 11. 2026): what differs from the Czech rules of countries/default.js. Its sources are
 // towns/belgium.js (the lines of Flanders' GRB and Wallonia's PICC for the kerbs), the regions' orthophotos
-// lanes-ortho.js "be". Sources, norms and signs: evaluation/belgium/ (ZDROJE.md, NORMY.md, ab/).
+// lanes-ortho.js "be". Sources, norms and signs: evaluation/belgium/ (SOURCES.md, NORMS.md, ab/).
 import { t } from "../i18n.js";
 import { czechFurniture, TOWN_ART } from "../art.js";
 import base, { CZ_CODE } from "./default.js";
 import { belgiumDetails, belgiumLook } from "../house-looks.js";
 
-// Norms (evaluation/belgium/NORMY.md): the three regions have guidelines of their own and the app does not tell them
+// Norms (evaluation/belgium/NORMS.md): the three regions have guidelines of their own and the app does not tell them
 // apart, so the lowest of them is the minimum, Flanders' figure the base, each quoted. No warning for a lane (Flanders'
 // 3.2 m is for its main regional roads only), a tram belt or parking (the 2 m of parallel parking is only derived:
 // the hostile review).

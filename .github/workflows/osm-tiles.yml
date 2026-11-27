@@ -6,7 +6,7 @@
 # tools/countries.mjs DAYS puts each pack on a day of the week, the days about as big, so each pack is rebuilt once a week.
 # As soon as a pack is on R2, its job asks for the index (osm-index.yml): one run at a time writes index.json from what R2
 # holds (the newest file of each state) and deletes the older files at once, so R2 never holds two whole sets, only the
-# whole set and the few new files waiting for the index (evaluation/osm-r2/ZPRAVA-ZMENSENI.md, tools/osm_peak.mjs).
+# whole set and the few new files waiting for the index (evaluation/osm-r2/REPORT-SLIM.md, tools/osm_peak.mjs).
 # The Czech and Slovak files are copied onto Pages as a fallback by the site's deploy (pages.yml), which osm-index.yml
 # starts when they change. A new state: its line in tools/countries.mjs (and its MB in tools/osm-sizes.json).
 # Runs daily (that day's packs) and by hand (the packs named, a day, or all); not on a push: a change of the tile scripts

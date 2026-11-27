@@ -1,4 +1,4 @@
-// The check of ?axisroad=1 (ZPRAVA.md): evaluation/replay/server.mjs with the recording and the outputs elsewhere.
+// The check of ?axisroad=1 (REPORT.md): evaluation/replay/server.mjs with the recording and the outputs elsewhere.
 //   DATA=<recording folder> OUT=<outputs folder> node evaluation/axisroad-check/server.mjs <port>
 // The samples from this folder or evaluation/replay; the harness is this folder's (evaluation/replay/harness.js with &pause=).
 // ---

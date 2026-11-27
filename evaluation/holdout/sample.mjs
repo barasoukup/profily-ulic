@@ -1,4 +1,4 @@
-// The frozen hold-out set (Bára 19. 11. 2026, step 1 of evaluation/ortofoto/LITERATURA-2.md): cuts never looked at
+// The frozen hold-out set (Bára 19. 11. 2026, step 1 of evaluation/orthophoto/LITERATURE-2.md): cuts never looked at
 // while tuning rules or the model, drawn once with a fixed seed, stratified by the class of the street, in the cities
 // with a map of surfaces (the truth) and in Plzeň as a city new to everything. Points within 60 m of any cut used so
 // far (the regression's, the replay's, the AI's patches and target points) are left out.

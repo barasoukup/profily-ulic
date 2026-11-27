@@ -6,7 +6,7 @@ autorského zákona (Autoriõiguse seadus: zákon se nevztahuje na „õigusakti
 seadlused, määrused …)“) nejsou chráněné. Na Commons jsou překreslení od Gigillo83 a „Government of Estonia“ (521, 573) jako public domain,
 od uživatele มองโกเลีย๔๔ část public domain (311a, 331) a část pod CC BY-SA 4.0 (312, 321, 324, 351, 361, 362, 511,
 575g, 836; s uvedením autora, odvozeniny pod stejnou licencí). Autoři a licence: `evaluation/estonia/signs-licence.json`,
-rozbor: `evaluation/estonia/NORMY.md` (oddíl C). Významy jsou podle textu nařízení (§ 9, 11, 13, 15, 21), ne podle
+rozbor: `evaluation/estonia/NORMS.md` (oddíl C). Významy jsou podle textu nařízení (§ 9, 11, 13, 15, 21), ne podle
 popisků Commons.
 
 Všechny soubory mají `viewBox`. Odvozené soubory:

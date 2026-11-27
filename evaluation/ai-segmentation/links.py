@@ -1,7 +1,7 @@
 """Links to click through the trial of the AI kerbs (Bára 18. 11. 2026): every target point the app cut, with and
 without ?ai=1, the carriageway's width in both and, where the town's map gives the truth, the error of the kerbs.
     python evaluation/ai-segmentation/links.py data/ai-seg/target/estimate.json data/ai-seg/target/estimate-ai.json
-Writes evaluation/ai-segmentation/ODKAZY.md (localhost:5293, the OSM packs on disk: R2 answers only localhost:5173).
+Writes evaluation/ai-segmentation/LINKS.md (localhost:5293, the OSM packs on disk: R2 answers only localhost:5173).
 """
 import json, sys
 from pathlib import Path
@@ -62,7 +62,7 @@ def main():
     for town, name, wa, wb, ea, eb, v, rez, _, has_map in rows:
         links = f"[ortofoto]({BASE}{rez}) · [AI]({BASE}&ai=1{rez})" + (f" · [mapa]({MAP}{rez})" if has_map else "")
         out.append(f"| {town} | {name} | {wa:.1f} | {wb:.1f} | {ea} | {eb} | {v} | {links} |")
-    Path(__file__).with_name("ODKAZY.md").write_text("\n".join(out) + "\n")
+    Path(__file__).with_name("LINKS.md").write_text("\n".join(out) + "\n")
     print(len(rows), "rows,", changed, "changed")
 
 

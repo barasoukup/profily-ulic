@@ -1,11 +1,11 @@
-// Lanes and shoulders from the orthophoto (Bára 11.–12. 11. 2026; evaluation/ortofoto/ZPRAVA.md): the road markings
+// Lanes and shoulders from the orthophoto (Bára 11.–12. 11. 2026; evaluation/orthophoto/REPORT.md): the road markings
 // along the street split the carriageway, where the rules only divide it evenly. On a click one image of the
 // orthophoto around the cut (±25 m, snapped to the source's pixels: Prague IPR 10 cm, Brno 2025 with its shift,
 // Plzeň 2024, else ČÚZK 12.5 cm) is asked in parallel with the other sources; once the profile is derived, the
 // lines running along each carriageway of the surface map are found and the profile's lanes and shoulders between
 // them are redrawn (source "ortofoto"), and parking paved apart from the asphalt is split off. The map and these
 // orthophotos agree within about 0.2 m, so the image is used as it is, without fitting.
-// The detector (evaluation/ortofoto/cary.mjs m4, m5): per pixel "brighter than its row's surroundings", per column
+// The detector (evaluation/orthophoto/lines.mjs m4, m5): per pixel "brighter than its row's surroundings", per column
 // the share of such pixels along ±20 m in pieces of 5 m (a line repeats, an arrow does not), searched turned and
 // bent (one direction and curve per carriageway), narrow peaks, solid or dashed by their gaps; then the lines whose
 // gaps look like lanes, chosen together. Anything doubtful leaves the rules' profile as it is.
@@ -15,9 +15,9 @@ import { inArea } from "./places.js";
 import { inLombardy } from "./towns/lombardy-area.js";
 const R = 6378137, ALONG = 20, TIMEOUT = 4000;
 const merc = (lon, lat) => [(R * lon * Math.PI) / 180, R * Math.log(Math.tan(Math.PI / 4 + (lat * Math.PI) / 360))];
-// Each city's best orthophoto (evaluation/ortofoto/ZPRAVA.md; the key: city.js laneOrtho of the city, else the state's,
+// Each city's best orthophoto (evaluation/orthophoto/REPORT.md; the key: city.js laneOrtho of the city, else the state's,
 // countries/<ISO>.js): Prague IPR 10 cm (summer 2024), Brno's 2025 (tiles of
-// about 10 cm, shifted against ČÚZK by 1.06 m east and 3.09 m north: evaluation/ortofoto/posun.mjs), Plzeň's 2024
+// about 10 cm, shifted against ČÚZK by 1.06 m east and 3.09 m north: evaluation/orthophoto/shift.mjs), Plzeň's 2024
 // (5 cm, asked at 10 cm, no shift), elsewhere ČÚZK 12.5 cm. shift: where the image shows a point, east and north (m).
 // Slovakia (Bára 15. 11. 2026): the ZBGIS orthophoto mosaic of ÚGKK SR (GKÚ, NLC), its cache in Web Mercator to level 19
 // (about 10 cm on the ground; Bratislava 2023, Košice 2025), CORS for any origin, tiles cached a day.
@@ -51,7 +51,7 @@ export const FR_ORTHO = (b, w, h, format = "image/jpeg") => `https://data.geopf.
 // Spain (Bára 23. 11. 2026): IGN's PNOA máxima actualidad (WMS, 25 cm, the latest flight; CORS *, CC BY 4.0 scne.es).
 // Beyond Spain the service draws MODIS and Sentinel-2 (the map's layer is kept inside Spain, app.js insideOnly).
 export const ES_ORTHO = (b, w, h, format = "image/jpeg") => `https://www.ign.es/wms-inspire/pnoa-ma?${new URLSearchParams({ SERVICE: "WMS", REQUEST: "GetMap", VERSION: "1.3.0", LAYERS: "OI.OrthoimageCoverage", STYLES: "", CRS: "EPSG:3857", BBOX: b.join(","), WIDTH: w, HEIGHT: h, FORMAT: format })}`;
-// Portugal (Bára 23. 11. 2026): DGT's orthophotos (WMS, EPSG:3857, CORS *, CC BY; evaluation/portugal/ZDROJE.md): the
+// Portugal (Bára 23. 11. 2026): DGT's orthophotos (WMS, EPSG:3857, CORS *, CC BY; evaluation/portugal/SOURCES.md): the
 // aerial of 2025 (25 cm, the whole mainland), else 2021 (30 cm, the north only), else 2018 (25 cm), else the satellite
 // mosaic of 2023 (30 cm, softer). An image white where a flight has no photo (laneImage tries the next one); Madeira and
 // the Azores have none of them (their own services: unclear licence, no CORS).
@@ -64,7 +64,7 @@ export const PT_ORTHO = {
 };
 // The mainland's box (states.json "portugal": the mainland ring and the Berlengas): DGT has no photo on Madeira and the
 // Azores, so they are not asked there (the review of 23. 11. 2026). Melilla's box (states.json "spain"): PNOA has a
-// Pléiades Neo image © Airbus DS there under a licence not yet cleared (evaluation/spain/ZDROJE.md 1): not read there.
+// Pléiades Neo image © Airbus DS there under a licence not yet cleared (evaluation/spain/SOURCES.md 1): not read there.
 export const PT_MAINLAND = [-9.6, 36.9, -6.1, 42.2];
 export const ES_NOT_PNOA = [[-2.98, 35.26, -2.92, 35.33]];
 const inBox = ([x0, y0, x1, y1], lon, lat) => lon >= x0 && lon <= x1 && lat >= y0 && lat <= y1;
@@ -79,7 +79,7 @@ export const CY_ORTHO = "https://eservices.dls.moi.gov.cy/arcgis/rest/services/B
 // hundred metres a degree's image and a Mercator one differ by under a centimetre. Black beyond the islands.
 const mercToDeg = ([x0, y0, x1, y1]) => [x0, y0, x1, y1].map((v, i) => (i % 2 === 0 ? (v / R) * (180 / Math.PI) : (Math.atan(Math.sinh(v / R)) * 180) / Math.PI));
 export const MT_ORTHO = (b, w, h, format = "image/jpeg") => `https://malta.coverage.wetransform.eu/wms/ortho_2018/ows?${new URLSearchParams({ SERVICE: "WMS", REQUEST: "GetMap", VERSION: "1.3.0", LAYERS: "OI.OrthoimageCoverage", STYLES: "", CRS: "CRS:84", BBOX: mercToDeg(b).join(","), WIDTH: w, HEIGHT: h, FORMAT: format })}`;
-// Italy (Bára 23. 11. 2026): only orthophotos with an open licence (CC BY 4.0, evaluation/italy/ZDROJE.md), each with its
+// Italy (Bára 23. 11. 2026): only orthophotos with an open licence (CC BY 4.0, evaluation/italy/SOURCES.md), each with its
 // box: Bologna 2023 and Modena 2024 (Emilia-Romagna's services), Turin 2023 (the Comune's), the province of Bolzano 2023
 // (flown in collaboration with AGEA under the monitoring plan; the province's metadata license it CC BY 4.0, Bára
 // 23. 11. 2026: use it). AGEA's own layers (the rest of Italy) are for institutional use only. All WMS in EPSG:3857 with
@@ -101,10 +101,10 @@ export const IT_ORTHO = {
 export const itOrthoAt = (lon, lat) => Object.keys(IT_ORTHO).filter((k) => { const [x0, y0, x1, y1] = IT_ORTHO[k].box; return lon >= x0 && lon <= x1 && lat >= y0 && lat <= y1 && !IT_ORTHO[k].outside?.(lon, lat); });
 // Estonia (Bára 23. 11. 2026): the Land and Spatial Development Board's orthophoto as TMS tiles in Web Mercator (the y axis
 // flipped; CORS *; its open-data licence of 1. 1. 2025), clean but only to level 18 (about 30 cm at 59° N). The WMS of
-// full resolution (to 3 cm in Tallinn) carries a watermark on a 400 px grid that would read as lines (ZDROJE.md).
+// full resolution (to 3 cm in Tallinn) carries a watermark on a 400 px grid that would read as lines (SOURCES.md).
 export const EE_ORTHO = "https://tiles.maaamet.ee/tm/tms/1.0.0/foto@GMC";
 // Slovenia (Bára 23. 11. 2026): GURS's colour orthophoto DOF025 (25 cm) in its own Web Mercator pyramid (WMS of the
-// Geodetska uprava RS, CORS *, CC BY 4.0; evaluation/slovenia/ZDROJE.md). The server answers within a second or hangs
+// Geodetska uprava RS, CORS *, CC BY 4.0; evaluation/slovenia/SOURCES.md). The server answers within a second or hangs
 // for 30 s and gives 504 (also inside Slovenia, at random; always beyond it, so the map's layer is kept inside, app.js
 // insideOnly). Measured 23. 11. 2026: two thirds of the requests hung at times, an answer came within 3.3 s, and a hang
 // is random (the same box answers on another try). So laneImage tries again, each try cut short at SI_RETRY.timeout
@@ -152,7 +152,7 @@ const siFetch = async (url, init) => {
 };
 export const SI_ORTHO = (b, w, h, format = "image/jpeg") => `https://ipi.eprostor.gov.si/wms-si-gurs-dts/wms?${new URLSearchParams({ SERVICE: "WMS", REQUEST: "GetMap", VERSION: "1.3.0", LAYERS: "SI.GURS.ZPDZ:DOF025_3857", STYLES: "", CRS: "EPSG:3857", BBOX: b.join(","), WIDTH: w, HEIGHT: h, FORMAT: format })}`;
 // Finland (Bára 23. 11. 2026): no national orthophoto without a key (the MML's needs a personal one, which would show in
-// the browser; evaluation/finland/ZDROJE.md 1), so only the towns' own WMS in Web Mercator with CORS *, each CC BY 4.0 on
+// the browser; evaluation/finland/SOURCES.md 1), so only the towns' own WMS in Web Mercator with CORS *, each CC BY 4.0 on
 // HRI / avoindata.fi (checked 23. 11. 2026): Helsinki's of 2026 (5 cm, a true orthophoto), Espoo's latest "Ortokartta"
 // (about 30 cm) and Turku's true orthophoto of 2022 (5 cm; its layer of 2025 has no licence of its own published). Each
 // only over its town's box (Helsinki first where the boxes overlap); elsewhere in Finland no orthophoto (laneImage null:
@@ -201,7 +201,7 @@ const BOXED = { fi: fiOrthoAt, us: usOrthoAt, ca: caOrthoAt };
 export const orthoHereAt = (source, lon, lat) => !!source && source !== "none" && (SOURCES[source] || ["de", "be", "pt", "es", "it", ...Object.keys(BOXED)].includes(source)) && (source === "it" ? itOrthoAt(lon, lat).length > 0 : source === "pt" ? ptKeys(lon, lat).length > 0 : source === "es" ? esKeys(lon, lat).length > 0 : BOXED[source] ? BOXED[source](lon, lat).length > 0 : true);
 // Denmark (Bára 23. 11. 2026): the spring orthophoto of GeoDanmark (Klimadatastyrelsen, "Ortofoto forår", 10–12.5 cm, a
 // new national mosaic each spring) as WMTS tiles in Web Mercator to level 20 (DFD_GoogleMapsCompatible, about 8 cm a pixel
-// in Copenhagen), CORS for the origin asking, free data with credit (evaluation/denmark/ZDROJE.md 1). Only with the app's
+// in Copenhagen), CORS for the origin asking, free data with credit (evaluation/denmark/SOURCES.md 1). Only with the app's
 // own token of Dataforsyningen (keys.js dkToken: config.js on the site from the repository variable DK_TOKEN, locally
 // config.local.js); without it laneImage throws an error marked noKey (app.js: the estimate from OSM, said so), as it
 // does when the service turns the token away (401/403 on every tile). Dataforsyningen is moving to a new platform (a
@@ -332,7 +332,7 @@ function blank(img) {
 // One tile or image asked politely: a 429 (Denmark's Dataforsyningen under load) is asked once more after a pause, within
 // the same signal: Retry-After where the server gives it (at most 2 s), else a random 0.5–2 s, so that the 30 tiles of a
 // cut that all got a 429 do not come back at once (the hostile review of 26. 11. 2026). A 429 again is an outage (503).
-// An answer of 200 that is not an image (not image/*: Malta's ServiceExceptionReport, evaluation/malta/ZDROJE.md; XML, text,
+// An answer of 200 that is not an image (not image/*: Malta's ServiceExceptionReport, evaluation/malta/SOURCES.md; XML, text,
 // JSON, an SVG) is the WMS's own exception, mostly outside its coverage: a lasting state, so "no image" (404), not an outage
 // (the hostile review: it was told as one since the review of Malta). An outage stays a network error, a 5xx and a 429
 // after the retry. A body not used is cancelled.

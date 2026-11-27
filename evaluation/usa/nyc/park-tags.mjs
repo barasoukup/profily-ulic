@@ -1,4 +1,4 @@
-// How much of New York's street network OSM tags with parking (the parking split of 26. 11. 2026, park/ZPRAVA.md): for
+// How much of New York's street network OSM tags with parking (the parking split of 26. 11. 2026, park/REPORT.md): for
 // each point of a sample the tags parking:* of the cut's way.  SITE=http://localhost:5463 node evaluation/usa/nyc/park-tags.mjs [sample.json]
 import fs from "node:fs/promises";
 const SITE = process.env.SITE;

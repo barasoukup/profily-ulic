@@ -1,4 +1,4 @@
-// The Brno version of run.mjs: every sampled cut (brno/data/samples.json) through the live pilot code as a
+// The Brno version of archive/prague-100/run.mjs: every sampled cut (brno/data/samples.json) through the live pilot code as a
 // click on the Brno site does it (city "brno", data from app/data/brno, read by app/public/sources.js),
 // plus Brno's 2025 orthophoto tiles around each cut (gis.brno.cz, 90 × 90 m, about 20 cm/px).
 // Usage: node evaluation/run_brno.mjs [from] [to] → evaluation/brno/data/results/<n>.json, ortho/<n>.jpg

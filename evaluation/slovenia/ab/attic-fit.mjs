@@ -1,5 +1,5 @@
 // The attic rule of towns/slovenia.js gursBuilding against what is known of the houses (Bára 23. 11. 2026): the
-// photo-judged houses of the A/B (data/raw.json, ZPRAVA.md) and the OSM buildings with building:levels and
+// photo-judged houses of the A/B (data/raw.json, REPORT.md) and the OSM buildings with building:levels and
 // roof:levels (data/raw-osm.json from attic-osm.mjs: GURS's floors = building:levels + roof:levels with roof:levels ≥ 1
 // → its top floor is in the roof; = building:levels → it is not; any other count is left out). Asks nothing.
 //   node evaluation/slovenia/ab/attic-fit.mjs

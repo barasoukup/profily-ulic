@@ -1,4 +1,4 @@
-// Rules of 11/2026 (evaluation/pravidla-11-2026/ZPRAVA.md): parked cars estimated by the law, three kinds of
+// Rules of 11/2026 (evaluation/archive/rules-2026-11/REPORT.md): parked cars estimated by the law, three kinds of
 // tram, driving lanes by the class of the street (Prague's TSK).
 import { test } from "node:test";
 import assert from "node:assert/strict";
@@ -430,7 +430,7 @@ test("osy kolejí blíž než 2,5 m jsou jedna kolej (výhybka v křižovatce), 
   assert.equal(trams([0]), 1);
 });
 
-// Calle de Yolanda de Bar, Avenida Sáinz de Varanda in Zaragoza (evaluation/sjednoceni/mereni2, 25. 11. 2026).
+// Calle de Yolanda de Bar, Avenida Sáinz de Varanda in Zaragoza (evaluation/archive/unification/measure2, 25. 11. 2026).
 test("chodník mezi dvěma vozovkami zůstane chodníkem, když se zákonné stání odloží", () => {
   const poly = [rect(601, -24, -19), rect(702, -19, -16), rect(701, -16, -8), rect(702, -8, -4), rect(701, -4, 4), rect(702, 4, 7), rect(601, 7, 12)];
   const ways = [1, 2].map((id) => ({ type: "way", id, tags: { highway: "residential", oneway: "yes", lanes: "1" }, geometry: line(id === 1 ? 0 : -12) }));

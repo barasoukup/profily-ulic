@@ -1,5 +1,5 @@
-// The street from the orthophoto and OSM where no technical map answers (Bára 15. 11. 2026; evaluation/ortofoto-osm/
-// ZPRAVA.md, method M2): the surfaces derive.js needs are made up of the OSM buildings, a carriageway whose kerbs are
+// The street from the orthophoto and OSM where no technical map answers (Bára 15. 11. 2026; evaluation/ortho-osm/
+// REPORT.md, method M2): the surfaces derive.js needs are made up of the OSM buildings, a carriageway whose kerbs are
 // read on the orthophoto of the click (lanes-ortho.js laneImage) near where OSM expects them (width, lanes, parking,
 // tram tracks), and sidewalks from the kerbs to the buildings. Every surface but the buildings is an estimate
 // (guess: the parts are "odhad"). Against MTVU (Prague, Brno, simple cuts): kerbs within 0.5 m at 39–49 %, within 1 m
@@ -118,7 +118,7 @@ export function deckSpans(elements, frame, dir, way) {
 export const deckAt = (decks, t, tol = 0) => decks?.spans.find((x) => x.s - tol <= t && t <= x.e + tol) || null;
 // A stretch [a, b] of the cut less the decks: the pieces of it off them (the ground beside or between the decks). The
 // water beside the outer deck ends the street at the deck's edge too (derive.js): keeping only the gap between two decks
-// lost 6 of the blind A/B's wins for 2 of its losses (evaluation/bridge-water/edge/ZPRAVA.md).
+// lost 6 of the blind A/B's wins for 2 of its losses (evaluation/archive/bridge-water/edge/REPORT.md).
 export const offDecks = (a, b, decks) => {
   let out = [[a, b]];
   for (const d of decks?.spans || []) out = out.flatMap(([x, y]) => (d.e <= x || d.s >= y ? [[x, y]] : [...(d.s > x ? [[x, d.s]] : []), ...(d.e < y ? [[d.e, y]] : [])]));
@@ -275,7 +275,7 @@ export function limits(o, axis) {
 // kerbs are read as the clicked one's; the strip between them is a median.
 // How far the other carriageway of a street of two one-way ones may lie: 35 m / 40 m (`before`); 80 m with ?partner80=1
 // (Bára 27. 11. 2026, Paseo de la Casa de Campo in Madrid). Off by default: the blind A/B of 43 changed cuts of 72 (two
-// judges, only the aerial) gave 24 : 28 for 80 m, no gain (evaluation/sjednoceni/amiens-far).
+// judges, only the aerial) gave 24 : 28 for 80 m, no gain (evaluation/archive/unification/amiens-far).
 export const partnerReach = (before) => (P.partner80 ? 80 : before);
 export function partnerOf(o) {
   const own = o.own, tg = own.tags;
@@ -318,7 +318,7 @@ export function columns(st) {
       bs[b][i] = vs.length ? median(vs) : NaN;
     }
     medL[i] = median(Array.from(bl, (x) => x[i]));
-    // Yellowness ((R+G)/2 − B; LITERATURA-2.md: dry grass is yellow, a shadow blue), where the image has it.
+    // Yellowness ((R+G)/2 − B; LITERATURE-2.md: dry grass is yellow, a shadow blue), where the image has it.
     if (st.Y) { const yv = []; for (let j = 0; j < nu; j += 2) { const q = j * nt + i; if (!Number.isNaN(L[q])) yv.push(st.Y[q]); } yel[i] = yv.length ? median(yv) : NaN; } else yel[i] = NaN;
     green[i] = n ? gn / n : st.canopy ? 0 : NaN; sat[i] = median(sv); seen[i] = v_seen(i) / nu;
   }
@@ -504,7 +504,7 @@ function alongSpread(st, a, b) {
 // Parked cars told by their colours (Bára 19. 11. 2026: "když tam stojí dost aut, musí to vychýlit histogram toho pásu"):
 // per metre along the street the strip's mean saturation; cars of all colours and the gaps between them make it vary
 // (spread ≥ CAR_SAT_SD), a shadow (dark, CAR_DARK) or treetops (green, CAR_GREEN) do not count. Checked by eye on 125
-// kerb strips of Prague and Brno (evaluation/ortofoto-osm/AUTA.md): 13 found, none false; the brightness spread alone
+// kerb strips of Prague and Brno (evaluation/ortho-osm/CARS.md): 13 found, none false; the brightness spread alone
 // (carsSeen) fired as often on shadows and trees.
 const CAR_SAT_SD = 10, CAR_DARK = 0.15, CAR_GREEN = 0.05;
 export function carsColoured(st, a, b) {
@@ -552,7 +552,7 @@ const DECK_MIN = 1.0;
 // e-43: its twin 35 m off, beyond a motorway's two decks, is not the same cross-section)
 const TWIN_DECK = 20;
 const LAST_WALK = 15, LAST_NONE = 2; // m: the next thing of the street at most this far on; with none, this past the kerb
-const ALONG = 10, SIDEWALK = 2.5, SIDEWALK_MAX = 6, REST_MAX = 12, HOUSE = 5, GREEN_AREA = 0.1; // evaluation/ortofoto-osm/zelen.mjs: on ČÚZK 12.5 cm 67 % (Prague) and 82 % (Brno) of the metres right
+const ALONG = 10, SIDEWALK = 2.5, SIDEWALK_MAX = 6, REST_MAX = 12, HOUSE = 5, GREEN_AREA = 0.1; // evaluation/ortho-osm/green.mjs: on ČÚZK 12.5 cm 67 % (Prague) and 82 % (Brno) of the metres right
 const STREET = /^(motorway|trunk|primary|secondary|tertiary|unclassified|residential|living_street|service|pedestrian|road)(_link)?$/;
 // frame: derive.js localFrame of the cut (its centre is [0, 0]); dir: the street's direction in it; way: the clicked
 // OSM way; st: laneImage's image (null or blank: the kerbs where OSM expects them). Returns the polygons (as derive.js
@@ -651,8 +651,8 @@ export function orthoOsmPolys({ osm, frame, dir, way, st, mapRuns = [], edges = 
   const cars = [], carsOut = {};
   for (const [side, sg] of [["A", -1], ["B", 1]]) {
     if (pair && side === (pair.t < o.own.t ? "A" : "B")) continue; // towards the other carriageway: a median, no kerb
-    // Off (P.cars false): the regression of 16. 11. 2026 (evaluation/ortofoto-osm/regrese.mjs) found it adding parking
-    // where none is (Prague 33 against 5, Brno 52 against 7), as the hand detector of evaluation/ortofoto/AUTA-DL.md
+    // Off (P.cars false): the regression of 16. 11. 2026 (evaluation/ortho-osm/regression.mjs) found it adding parking
+    // where none is (Prague 33 against 5, Brno 52 against 7), as the hand detector of evaluation/orthophoto/CARS-DL.md
     // (56 % precision: shadows, trees, roofs); a trained detector there did far better but its licence does not fit.
     // P.carsColour (?auta=1, 19. 11. 2026): by their colours (carsColoured), in local streets only (on main roads moving
     // cars colour the lanes too); off: the regression found Prague's kerbs a little better (median 1.00 → 0.90 m) but
@@ -733,7 +733,7 @@ export function orthoOsmPolys({ osm, frame, dir, way, st, mapRuns = [], edges = 
   // ?off=mostvoda: as before.
   const overGround = levelOf(o.own.tags) > 0 && o.own.tags.bridge && o.own.tags.bridge !== "no" && !P.off?.has("mostvoda");
   // With the bridge's deck mapped (deckSpans) only what lies under the deck goes: water or green beside it or between
-  // two decks of one bridge (Vilnius, w-9 of evaluation/bridge-water/blind) stays.
+  // two decks of one bridge (Vilnius, w-9 of evaluation/archive/bridge-water/blind) stays.
   for (const el of o.greens) {
     const [code, label] = GREEN(el.tags) ? [401, "zeleň (OSM)"] : ["allotments", "cemetery"].includes(el.tags.landuse) ? [300, "zahrady (OSM)"] : [501, "voda (OSM)"];
     if (overGround && Number(el.tags.layer || 0) < levelOf(o.own.tags) && (WATER(el.tags) || GREEN(el.tags))) {
@@ -850,7 +850,7 @@ export function orthoOsmPolys({ osm, frame, dir, way, st, mapRuns = [], edges = 
     // The side the user stretched beyond the usual reach (Bára 27. 11. 2026, Tikkurilantie in Vantaa and Via Leopardi in Merano:
     // the profile stopped at the cycle track or sidewalk with a lawn and a wood beyond it): no end at the last thing; the
     // lawn, other areas and things go on to the reach, or to a house, a fence or a wall (above). stretch: { A: true, B: false }
-    // from app.js (a reach beyond MAX_REACH that the user set). on by default, ?dosah=0 off (Bára 27. 11. 2026; evaluation/railway/ZPRAVA.md).
+    // from app.js (a reach beyond MAX_REACH that the user set). on by default, ?dosah=0 off (Bára 27. 11. 2026; evaluation/archive/railway/REPORT.md).
     if (stretch?.[side] && P.stretchOn) { ends[side] = null; continue; }
     ends[side] = lastW ? (sg > 0 ? Math.max : Math.min)(last + sg * halfOf(lastW), ...chain[side].map((w) => w.t + sg * halfOf(w))) : kerbT + sg * LAST_NONE;
     if (!lastW) (ends.soft ??= {})[side] = true;
@@ -999,7 +999,7 @@ export function orthoOsmPolys({ osm, frame, dir, way, st, mapRuns = [], edges = 
   }
   // Between the street's own sidewalk and the end the last thing of the street sets (a path, a cycle track, tracks,
   // another carriageway OSM maps there; Bára 18. 11. 2026: "Neurčeno" beyond the street in 67 of 87 Prague cuts, under
-  // it MTVU's green, paths and side roads; evaluation/ortofoto-osm/chyby.mjs): each such thing drawn as what it is, the
+  // it MTVU's green, paths and side roads; evaluation/ortho-osm/errors.mjs): each such thing drawn as what it is, the
   // gaps between them green where the image is mostly green, else paved. ?off=vyplnkonec: as before. A side road
   // there is a roadway of its own (?off=soubezna: it ends the filling).
   if (!FILL_OFF) for (const [side, sg] of [["A", -1], ["B", 1]]) {
@@ -1025,7 +1025,7 @@ export function orthoOsmPolys({ osm, frame, dir, way, st, mapRuns = [], edges = 
     }
   }
   // Whatever is left uncovered beyond the street (a yard, a lawn past a path, ground up to a house farther than REST_MAX:
-  // "Neurčeno" in most cuts, chyby.mjs, Bára 18. 11. 2026): green or paved by the image, in runs of at least
+  // "Neurčeno" in most cuts, errors.mjs, Bára 18. 11. 2026): green or paved by the image, in runs of at least
   // BACK_MIN, behind everything else (the order is the priority; trimToEnds does not reach out for them). ?off=pozadi.
   if (k.cols && !P.off?.has("pozadi")) {
     const c = k.cols, half = Math.round(1 / c.res), isG = [];
@@ -1072,7 +1072,7 @@ export function orthoOsmPolys({ osm, frame, dir, way, st, mapRuns = [], edges = 
   // narrower deck than the roadway is OSM's mistake), a hard end wherever the side would reach past it (trimToEnds).
   // ends.deck: the sides so ended (bridgeRailings). ?off=mostdeska: none (deckSpans gives null).
   // The other carriageway of the street on a deck of its own (two bridges side by side, the gap between them: e-12, e-36
-  // of evaluation/bridge-water/edge) belongs to the street: the end is that deck's edge. Such a carriageway: a road of
+  // of evaluation/archive/bridge-water/edge) belongs to the street: the end is that deck's edge. Such a carriageway: a road of
   // the street's level within 40 m, of its name or ref (one of them unnamed: of its class, both one-way; Autoroute des
   // Cigognes and its unnamed twin, M 35 both). A soft end (nothing of OSM beyond the kerb, trimToEnds reaches out to the
   // street's own last part) stays soft, only never past the deck (cap). A road of another name on the next deck (a
@@ -1162,7 +1162,7 @@ export function edgeBeyond({ osm, frame, dir, way, from }) {
 // A surface map's gaps beyond the outer sidewalk (towns/planimetrics.js outerGaps: what OSM had no building or lot for),
 // at least OUTER_WIDE m wide (a front yard stays the map's green), told on the orthophoto: paving where the part the image
 // covers (OUTER_SEEN m of it at least) is neither green (GREEN_AREA, as the estimate's rest) nor yellowish or saturated
-// as a lawn is out of leaf (MassGIS's photos are of April: OUTER_YELLOW, OUTER_SAT; evaluation/usa/boston/outer/ZPRAVA.md).
+// as a lawn is out of leaf (MassGIS's photos are of April: OUTER_YELLOW, OUTER_SAT; evaluation/usa/boston/outer/REPORT.md).
 // A paved gap of OPEN_LAND or more is a lot beside the street (704: the profile ends at it, as at a wide lawn), a
 // narrower one a paved area (1003). polys: derive.js mtvuPolygons (changed in place); dir: the street's direction in
 // frame; st: laneImage's. Returns how many changed.
@@ -1412,7 +1412,7 @@ export function besidePassport({ osm, frame, dir, way, st, edges = [], symbols =
     }
     // A strip of paving up to FACADE_STRIP wide between a sidewalk and the house it ends at is the sidewalk's own (the
     // house's outline drawn a little off the map's sidewalk: Rue des Tournelles in Paris 0.65 m, Helsinki's YLRE; Bára
-    // 26. 11. 2026, evaluation/facade-strip). ?off=fasada: as before.
+    // 26. 11. 2026, evaluation/archive/facade-strip). ?off=fasada: as before.
     if (!farEnd && !P.off?.has("fasada") && (to === house || to === o.facade[side]) && out.length > before) facadeStrip(out, before, to, sg, at);
     // The house found beside the cut only: its front across the cut, the profile ends at it.
     // With ?off=mapfill only where the surfaces have no house farther on (Tammitie in Helsinki: OSM's house beside the

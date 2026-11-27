@@ -5,7 +5,7 @@ např. II.D1 = Part II, odstavec D, značka (1). Podoby: Malta má vlastní vzor
 tabulí. Commons má maltské kresby jen u několika značek (Gigillo83, „derivated by Italian road signs“, PD-self); kde
 maltská kresba chybí a britská podoba TSRGD je stejná jako vzor v příloze S.L. 65.05, beru britskou kresbu z Commons
 (Crown copyright, UK Department for Transport, **Open Government Licence v1.0**; uvést „Contains public sector
-information licensed under the Open Government Licence v1.0“). Rozbor: `evaluation/malta/NORMY.md` (oddíl C), autoři a
+information licensed under the Open Government Licence v1.0“). Rozbor: `evaluation/malta/NORMS.md` (oddíl C), autoři a
 licence: `evaluation/malta/signs-licence.json`.
 
 **Jen značky přílohy S.L. 65.05** (recenze 23. 11. 2026): předpis uznává jen značky ze své přílohy (reg. 2), Highway

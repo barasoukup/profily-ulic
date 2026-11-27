@@ -1,6 +1,6 @@
 # Opravy proher Severní Ameriky: slepé A/B (27. 11. 2026)
 
-Navazuje na rozbor proher (`ZPRAVA.md`). Z něj vzešly tři společné opravy mapy povrchů (Planimetrics, mapa Toronta),
+Navazuje na rozbor proher (`REPORT.md`). Z něj vzešly tři společné opravy mapy povrchů (Planimetrics, mapa Toronta),
 každá s vypínačem:
 
 - `?off=gapsortho`: mezera mapy mezi dvěma vozovkami, vzatá jako střední pás, se označí a ortofoto rozliší trávník (zeleň)
@@ -22,7 +22,7 @@ Opravy DDOT (Washington) a domy Toronta tu nejsou (Bára 26. 11. 2026: jen spole
 - Rozlišení po opravách (běh bez jedné opravy, `gapsfix0` a `ta0`) doběhlo jen u 37 ze 72 řezů; u zbylých 35 se neví,
   která oprava profil změnila. Rozhoduje proto srovnání všech tří oprav dohromady.
 - Balíky `../fixes/packages.mjs` (skupina `all`, všech 72 dvojic, X a Y náhodně, bez zdrojů, ortofoto města a fotky
-  Mapillary do 30 m s rokem; fotka u 68 dvojic), pokyn `evaluation/usa/fresh/POKYN-AB.md` s poznámkou, že ortofoto má
+  Mapillary do 30 m s rokem; fotka u 68 dvojic), pokyn `evaluation/usa/fresh/BRIEF-AB.md` s poznámkou, že ortofoto má
   přednost před starší fotkou. Dva slepí posuzovatelé (Sonnet) na balík, každý zvlášť. Klíč `results/key.json` se četl až po
   posouzení. Výsledek `../fixes/results/score.md` (`node evaluation/canada/fixes/score.mjs`).
 
@@ -61,5 +61,5 @@ průkazné nejsou jen proto, že rozlišení po opravách nedoběhlo; nikde nevy
 ## Kontroly
 
 - `npm test`: 528 testů, vše prošlo.
-- `node evaluation/ortofoto-osm/regrese.mjs`: řádky bez `#` beze změny proti `vysledky/regrese.txt`.
+- `node evaluation/ortho-osm/regression.mjs`: řádky bez `#` beze změny proti `results/regression.txt`.
 - `node evaluation/canada/dc-same.mjs` (Washington, 100 řezů): výstup kódu před opravami (HEAD) a po nich je stejný.

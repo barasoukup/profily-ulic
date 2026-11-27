@@ -1,7 +1,7 @@
 # Dopravní značky Slovinska (Pravilnik o prometni signalizaciji in prometni opremi na cestah, Uradni list RS 26/24 …)
 
 Jméno souboru je **číslo značky podle pravidla z roku 2015, které převzalo pravidlo z roku 2024** (2202, 2421 …; čísla
-z brožury AVP k pravidlu 2015, tedy z druhé ruky, `evaluation/slovenia/NORMY.md` oddíl C). Kresby jsou z Wikimedia
+z brožury AVP k pravidlu 2015, tedy z druhé ruky, `evaluation/slovenia/NORMS.md` oddíl C). Kresby jsou z Wikimedia
 Commons, většinou podle **starého pravidla z roku 2000** (soubory „Slovenia road sign II-3.svg“ …, „Public domain,
 Government of Slovenia“, šablona PD-Slovenia-exempt). Nová čísla mají na Commons jen 2401 (CC BY-SA 4.0, Rokbreznikar),
 2421 a 2445. Zda se piktogramy mezi lety 2000 a 2024 změnily, není ověřeno. Úřední texty nejsou chráněné (ZASP čl. 9

@@ -1,4 +1,4 @@
-// The fresh measurement of Boston's and Cambridge's surface maps (Bára 26. 11. 2026; ZPRAVA.md here), the method of
+// The fresh measurement of Boston's and Cambridge's surface maps (Bára 26. 11. 2026; REPORT.md here), the method of
 // evaluation/usa/fresh/sample.mjs and evaluation/canada/sample.mjs: random cuts in the proportion of the street network of
 // the two cities (a random point of the whole length, a fixed seed), none within 150 m of the points tried while the maps
 // were wired (TRIED), each with a Mapillary photo within 30 m. Variants: def (the map) and bos0 (?boston=0&cambridge=0).

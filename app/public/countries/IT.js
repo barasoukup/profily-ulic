@@ -1,17 +1,17 @@
 // Italy (IT; Bára 23. 11. 2026): what differs from the Czech rules of countries/default.js. Only where an orthophoto has
 // an open licence (states.json "italy"). Its sources are towns/italy.js (Bologna's road areas and buildings), the open
-// orthophotos lanes-ortho.js "it". Sources, norms and signs: evaluation/italy/ (ZDROJE.md, NORMY.md).
+// orthophotos lanes-ortho.js "it". Sources, norms and signs: evaluation/italy/ (SOURCES.md, NORMS.md).
 import { t } from "../i18n.js";
 import { GROUP } from "../norms.js";
 import { czechFurniture, TOWN_ART } from "../art.js";
 import base, { CZ_CODE } from "./default.js";
 import { mediterraneanDetails, mediterraneanLook } from "../house-looks.js";
 
-// Norms (evaluation/italy/NORMY.md): the accessibility route 0.9 m binding (D.M. 236/1989 8.2.1 through D.P.R. 503/1996);
+// Norms (evaluation/italy/NORMS.md): the accessibility route 0.9 m binding (D.M. 236/1989 8.2.1 through D.P.R. 503/1996);
 // the rest D.M. 5. 11. 2001 (binding for new roads, so only orange) and D.M. 557/1999 for cycling. No warning for a bus
 // lane with bikes or a tram belt (no source found).
 // The lane by the street's class (D.M. 5. 11. 2001 tab. 3.4.a, urban columns): the OSM class as the Codice's category is
-// the app's reading (NORMY.md A3): motorway/trunk in a town as D "urbana di scorrimento" 3.25 m, primary/secondary as E
+// the app's reading (NORMS.md A3): motorway/trunk in a town as D "urbana di scorrimento" 3.25 m, primary/secondary as E
 // "urbana di quartiere" 3.00 m, the rest as F "locale" 2.75 m. Residential zones are outside the table (chap. 1 and 3.5).
 const IT_LANE_BY_GROUP = {
   A: { min: 0, zaklad: 3.25, why: t("jízdní pruh městské průjezdní silnice (kategorie D): 3,25 m (vyhláška o silnicích z 5. 11. 2001, tab. 3.4.a)") },
@@ -55,7 +55,7 @@ function limitsIT(s, segs = [], i = -1) {
 
 // The signs of the state IT (app/public/signs-IT/, README there; the Regolamento of the Codice della strada, D.P.R.
 // 495/1992, figures II.x; Wikimedia Commons). Texts of official acts are not protected (art. 5 of L. 633/1941), the
-// figures read as part of them (NORMY.md C). Italy has no sign of a shared zone, a cycle street or a cycle zone; a
+// figures read as part of them (NORMS.md C). Italy has no sign of a shared zone, a cycle street or a cycle zone; a
 // reserved bus lane is a panel "Uso corsie" (II.337–340) Commons does not draw: no sign.
 const IT_FILE = { b1: "II-46", b11: "II-58", b8: "II-55", b30: "II-54", b28: "II-75", b29: "II-74", ip11a: "II-76", ztp: "II-79a-invalidi", ip14a: "II-345-autostrada",
   ip15a: "II-314", zona30: "II-323a-30", ip26a: "II-318", ip27a: "II-320", c8a: "II-90", c9a: "II-92b", c10a: "II-92a", c7a: "II-88" };
@@ -67,13 +67,13 @@ function signFile(s, seg) {
   // in contraflow II.47 with the plate II.4/b and a bicycle (drawn in the file).
   if (s.k === "oneway") return dir === "backward" ? (s.plate === "protismer" ? "II-47-plus-II-4b" : "II-47") : "II-349";
   if (s.k === "b20a") return IT_SPEEDS.includes(s.v) ? `II-50-${s.v}` : null;
-  // An area pedonale lets bikes in by itself (CdS art. 3 point 2; NORMY.md B3): no plate needed.
+  // An area pedonale lets bikes in by itself (CdS art. 3 point 2; NORMS.md B3): no plate needed.
   if (s.k === "ip27a") return IT_FILE.ip27a;
   if (s.plate && !["podelne", "kolme", "sikme", "protismer"].includes(s.plate)) return null;
   return IT_FILE[s.k] || null;
 }
 // A one-way sign from the data has no direction of its own (signs.js; signFile takes the part's): the label names both
-// figures then, as the Czech "IP 4b / B 2". II.58 bans "autoveicoli", not motorcycles (NORMY.md C2): its own name.
+// figures then, as the Czech "IP 4b / B 2". II.58 bans "autoveicoli", not motorcycles (NORMS.md C2): its own name.
 const onewayCode = (x) => (x.dir === "backward" ? "II.47" : x.dir === "forward" ? "II.349" : "II.349 / II.47") + (x.plate === "protismer" && x.dir !== "forward" ? " + II.4/b" : "");
 const signLabel = (x, own, label) => {
   if (x.k === "b11") return `${IT_CODE.b11} ${t("Zákaz vjezdu automobilů (motocykly smějí)")}`;
@@ -90,7 +90,7 @@ export default {
   bounds: [6.6, 35.4, 18.6, 47.1],
   // Codice della strada art. 157 c. 4 gives 3 m free only beside a car parked on the left of a one-way street; the law has
   // no figure for a two-way street. 3 m a direction is the app's convention, as in every state (Bára 23. 11. 2026;
-  // NORMY.md B1), not the law's. Parking on the sidewalk banned (art. 158 c. 1 h) but where signs allow it.
+  // NORMS.md B1), not the law's. Parking on the sidewalk banned (art. 158 c. 1 h) but where signs allow it.
   freeLane: 3,
   halfKerbNote: (free, need) => t("Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Stání na chodníku je v Itálii zakázané (čl. 158 zákona o silničním provozu), ledaže ho povolí značka; aplikace nechává {need}.", { free, need }),
   parkGuess: true,

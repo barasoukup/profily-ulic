@@ -1,4 +1,4 @@
-// The fresh measurement of DC's map after the hostile review (25. 11. 2026; ZPRAVA.md here): 60 random cuts of
+// The fresh measurement of DC's map after the hostile review (25. 11. 2026; REPORT.md here): 60 random cuts of
 // Washington's streets in the proportion of the network (a random point of the whole length, so each type as often as it
 // is long; a fixed seed), none within 150 m of any point used before in evaluation/usa* or tried while the review's
 // findings were fixed, each with a Mapillary photo within 30 m. No tunnels, bridges nor covered ways; of service roads

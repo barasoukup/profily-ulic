@@ -2,7 +2,7 @@
 // ordinary streets of flats beyond the inner city, and controls. Random points with a fixed seed within 500 m of the
 // centres of 6 inner districts (3 each) and 15 suburbs (4 each); controls in Espoo and Vantaa inside the old box
 // (5 places, 2 each: the register must not be asked there), and the four cuts the review named (hk6, hk31, hk33, hk36).
-// The app snaps each point to its nearest way; the kind of way is read after the collection (sber.js).
+// The app snaps each point to its nearest way; the kind of way is read after the collection (collect.js).
 //   node evaluation/finland/ab2/sample.mjs > evaluation/finland/ab2/sample.json
 let seed = 20261124;
 const rnd = () => ((seed = (seed * 16807) % 2147483647) / 2147483647);

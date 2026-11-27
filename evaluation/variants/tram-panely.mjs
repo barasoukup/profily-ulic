@@ -1,4 +1,4 @@
-// The surface of a tram bed (evaluation/pravidla-11-2026/ZPRAVA.md, section 4), (a): as before 11/2026, panels
+// The surface of a tram bed (evaluation/archive/rules-2026-11/REPORT.md, section 4), (a): as before 11/2026, panels
 // wherever OSM says nothing (and OSM's asphalt as panels too); the rest of the derivation is today's.
 //   CITY=praha VARIANTS=tram-panely,tram-pravidlo,tram-orto PARTS=1 CACHE=disk node evaluation/ab.mjs
 import { deriveProfile as derive } from "../../app/public/derive.js";

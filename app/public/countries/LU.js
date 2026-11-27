@@ -1,12 +1,12 @@
 // Luxembourg (LU; Bára 20. 11. 2026): what differs from the Czech rules of countries/default.js. Its sources are
 // towns/luxembourg.js (OSM), the ACT's orthophoto lanes-ortho.js "lu". Sources, norms and signs:
-// evaluation/luxembourg/ (ZDROJE.md, NORMY.md).
+// evaluation/luxembourg/ (SOURCES.md, NORMS.md).
 import { t } from "../i18n.js";
 import { czechFurniture, TOWN_ART } from "../art.js";
 import base, { CZ_CODE } from "./default.js";
 import { luxembourgLook } from "../house-looks.js";
 
-// Norms (evaluation/luxembourg/NORMY.md): the ministry's guidelines on calming (Apaisement 2023) and the Commission de
+// Norms (evaluation/luxembourg/NORMS.md): the ministry's guidelines on calming (Apaisement 2023) and the Commission de
 // circulation's opinion on cycling of 2001 (the guidelines of 2018 not found); Luxembourg gives the roadway's width,
 // not a lane's: no warning for a lane, a tram belt or parking.
 function limitsLU(s) {

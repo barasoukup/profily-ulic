@@ -1,6 +1,6 @@
 # Dopravní značky Belgie (AR 1. 12. 1975, příloha 1)
 
-Soubory z Wikimedia Commons, public domain (úřední díla). Rešerše `evaluation/belgium/NORMY.md` (oddíl C). Všem doplněn
+Soubory z Wikimedia Commons, public domain (úřední díla). Rešerše `evaluation/belgium/NORMS.md` (oddíl C). Všem doplněn
 `viewBox`. AR 1975 platí do 31. 5. 2027 (pak federální Code de la voie publique a kódy regionů): čísla zkontrolovat.
 
 | Klíč | Značka | Soubor |

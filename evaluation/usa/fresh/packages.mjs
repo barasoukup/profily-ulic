@@ -2,7 +2,7 @@
 // def and dc0) 1. the pairs of the blind A/B, X and Y in a random order (a fixed seed), without sources, in packages of at
 // most 10, each with DC's orthophoto and the Mapillary photos both ways within 30 m (data/ab-<k>/, git ignores data/;
 // the key results/key.json, not read before the judging is done); 2. the universal measurement of 30 of the cuts (drawn
-// with the same seed, in the proportion of the types): the images of ../../universal/POKYN.md without any profile
+// with the same seed, in the proportion of the types): the images of ../../universal/BRIEF.md without any profile
 // (data/u-<k>/).   node evaluation/usa/fresh/packages.mjs
 import fs from "node:fs/promises";
 import path from "node:path";
@@ -44,7 +44,7 @@ const pairs = shuffle(full.filter((s) => differs(row(s.id, "def"), row(s.id, OFF
 console.log("dvojic", pairs.length, "beze změny:", full.filter((s) => !pairs.includes(s)).map((s) => s.id).join(", ") || "žádný");
 const key = {}, noPhoto = [];
 for (let k = 0; k * 10 < pairs.length; k++) {
-  const dir = path.join(HERE, "data", `ab-${k + 1}`), L = [await fs.readFile(new URL("POKYN-AB.md", import.meta.url), "utf8"), ""];
+  const dir = path.join(HERE, "data", `ab-${k + 1}`), L = [await fs.readFile(new URL("BRIEF-AB.md", import.meta.url), "utf8"), ""];
   await fs.mkdir(dir, { recursive: true });
   let n = 0;
   for (const s of pairs.slice(k * 10, (k + 1) * 10)) {

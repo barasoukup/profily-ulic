@@ -1,4 +1,4 @@
-// San Francisco's widths against an independent source (ZPRAVA.md here, 26. 11. 2026).
+// San Francisco's widths against an independent source (REPORT.md here, 26. 11. 2026).
 // 1. Sidewalks: the app's sidewalk side of each end (from the end to the first part of the roadway: sidewalk, tree strip,
 //    green) with the map (def) and without it (sf0), and the judges' of the universal measurement (../results/q*.jsonl),
 //    against DataSF Sidewalk Widths (4g86-grxu, AECOM 2014, PDDL; the whole set, ../data/width-cache/sidewalk-widths-all.json):

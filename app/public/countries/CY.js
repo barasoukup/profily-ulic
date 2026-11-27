@@ -1,14 +1,14 @@
 // Cyprus (CY; Bára 23. 11. 2026): what differs from the Czech rules of countries/default.js. Traffic keeps LEFT
 // (leftHand: derive.js reads the directions of a two-way roadway the other way round, every part in place). Its sources
 // are towns/cyprus.js (the estimate, the DLS buildings), the DLS orthophoto lanes-ortho.js "cy". Sources, norms and
-// signs: evaluation/cyprus/ (ZDROJE.md, NORMY.md).
+// signs: evaluation/cyprus/ (SOURCES.md, NORMS.md).
 import { t } from "../i18n.js";
 import { GROUP } from "../norms.js";
 import { czechFurniture, TOWN_ART } from "../art.js";
 import base, { CZ_CODE } from "./default.js";
 import { mediterraneanDetails, mediterraneanLook } from "../house-looks.js";
 
-// Norms (evaluation/cyprus/NORMY.md D): no binding widths of streets found; all from the Public Works Department's
+// Norms (evaluation/cyprus/NORMS.md D): no binding widths of streets found; all from the Public Works Department's
 // design manual (recommendations). No warning for parking (no figure found) or a tram (none in Cyprus).
 // The manual's distributors (primary and secondary) by OSM's class (primary, secondary, trunk: GROUP A and B; derive.js
 // osmGroup); the rest are its local distributors and access roads.
@@ -76,9 +76,9 @@ export default {
   // Traffic keeps left.
   leftHand: true,
   // The Highway Code gives no free width beside parked cars ("so that two cars can pass"): read as 3 m a direction as
-  // elsewhere (NORMY.md B1; for Bára). Parking on the sidewalk is banned without exception (reg. 58(4) and 58(9)).
+  // elsewhere (NORMS.md B1; for Bára). Parking on the sidewalk is banned without exception (reg. 58(4) and 58(9)).
   freeLane: 3,
-  // Art. 58(4) read in its text of 1984 (the consolidated one not opened; NORMY.md B2): said so.
+  // Art. 58(4) read in its text of 1984 (the consolidated one not opened; NORMS.md B2): said so.
   halfKerbNote: (free, need) => t("Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Na Kypru je stání i zastavení na chodníku zakázané bez výjimky (předpis 66/1984, čl. 58 odst. 4 v původním znění; Kodex silničního provozu 2012); aplikace nechává {need}.", { free, need }),
   parkGuess: true,
   parkByCycleLane: true,

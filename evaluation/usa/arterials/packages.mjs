@@ -37,7 +37,7 @@ for (const id of new Set(rows.map((r) => r.id))) {
 for (let i = todo.length - 1; i > 0; i--) { const j = Math.floor(rnd() * (i + 1)); [todo[i], todo[j]] = [todo[j], todo[i]]; }
 const PER = Number(process.env.PER) || 13, key = {}, fmt = (r) => r.parts.map(([t, w]) => `${t} ${w}`).join(" | ");
 for (let k = 0; k * PER < todo.length; k++) {
-  const dir = path.join(HERE, "data", `${name}-${k + 1}`), L = [await fs.readFile(path.join(HERE, "POKYN.md"), "utf8"), ""];
+  const dir = path.join(HERE, "data", `${name}-${k + 1}`), L = [await fs.readFile(path.join(HERE, "BRIEF.md"), "utf8"), ""];
   await fs.mkdir(dir, { recursive: true });
   let n = 0;
   for (const [a, b] of todo.slice(k * PER, (k + 1) * PER)) {

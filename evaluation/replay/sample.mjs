@@ -3,7 +3,7 @@
 // Austria (Vienna with its map of surfaces, Graz, Linz, Salzburg with its signs, Innsbruck, Klagenfurt, smaller
 // towns, motorways), Prague and Brno (few in Prague, to spare IPR) and the margins abroad. The Czech towns asking
 // the national DTM of ČÚZK come after its outage (from 19. 11. 2026) in sample-cz.json. Points on named streets,
-// from the local OSM pack (app/data/osm-pack), as evaluation/slovensko/kontrola/vzorek-ulice.mjs.
+// from the local OSM pack (app/data/osm-pack), as evaluation/slovakia/check/sample-streets.mjs.
 //   node evaluation/replay/sample.mjs   → sample.json
 import fs from "node:fs";
 import path from "node:path";
@@ -101,7 +101,7 @@ if (process.argv[2] === "states") {
 const all = [];
 // Slovakia: the checked streets of 16. 11. 2026, by town (Bratislava and the passport towns more).
 const SK_N = { bratislava: 45, kosice: 20, presov: 12, zilina: 12, "banska-bystrica": 12, nitra: 10, zvolen: 8, piestany: 8, trnava: 6, trencin: 6, martin: 6, poprad: 6 };
-const sk = JSON.parse(fs.readFileSync(new URL("../slovensko/kontrola/vzorek-ulice.json", import.meta.url)));
+const sk = JSON.parse(fs.readFileSync(new URL("../slovakia/check/vzorek-ulice.json", import.meta.url)));
 const byTown = {};
 for (const p of sk) (byTown[p.town] ||= []).push(p);
 for (const [town, list] of Object.entries(byTown)) {
@@ -122,7 +122,7 @@ for (const [town, c, n] of [["graz", [47.0707, 15.4395, 2500], 12], ["linz", [48
 all.push(...await streets("at-autobahn", [48.19, 16.42, 5000], 4, ROADS, false));
 all.push(...await streets("at-autobahn", [47.05, 15.43, 6000], 2, ROADS, false));
 // Prague and Brno (the Czech sample of the A/B; few in Prague) and a few Prague streets of the rules (trams, a bus lane).
-const cz = JSON.parse(fs.readFileSync(new URL("../slovensko/kontrola/vzorek-ulice-cz.json", import.meta.url)));
+const cz = JSON.parse(fs.readFileSync(new URL("../slovakia/check/vzorek-ulice-cz.json", import.meta.url)));
 all.push(...cz.filter((p) => p.town === "praha").slice(0, 14).map((p) => ({ town: "praha", lat: p.lat, lon: p.lon, street: p.street, highway: p.highway })));
 all.push(...[[50.081704, 14.417590, "Národní"], [50.080164, 14.422601, "Spálená"], [50.084097, 14.454861, "Olšanská"], [50.075487, 14.430251, "Vinohradská"], [50.1003, 14.3920, "Evropská"], [50.0680, 14.4006, "Plzeňská"]]
   .map(([lat, lon, street]) => ({ town: "praha", lat, lon, street })));

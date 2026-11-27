@@ -1,7 +1,7 @@
-// The A/B of the outer gaps (towns/planimetrics.js outerGaps, 26. 11. 2026; ZPRAVA.md): new arterials of Boston and
+// The A/B of the outer gaps (towns/planimetrics.js outerGaps, 26. 11. 2026; REPORT.md): new arterials of Boston and
 // Cambridge, by sample.mjs's method with a seed of their own and none within 150 m of the fresh measurement's cuts (fresh.json)
 // or of each other: node evaluation/usa/boston/outer/sample.mjs 90 (writes sample.json, variants def and og0).
-// sample.mjs's head: the fresh measurement of Boston's and Cambridge's surface maps (Bára 26. 11. 2026; ZPRAVA.md here), the method of
+// sample.mjs's head: the fresh measurement of Boston's and Cambridge's surface maps (Bára 26. 11. 2026; REPORT.md here), the method of
 // evaluation/usa/fresh/sample.mjs and evaluation/canada/sample.mjs: random cuts in the proportion of the street network of
 // the two cities (a random point of the whole length, a fixed seed), none within 150 m of the points tried while the maps
 // were wired (TRIED), each with a Mapillary photo within 30 m. Variants: def (the map) and bos0 (?boston=0&cambridge=0).

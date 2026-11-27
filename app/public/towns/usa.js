@@ -1,4 +1,4 @@
-// The USA (Bára 24. 11. 2026, phase 2 of the North America pilot; evaluation/usa-dc/ZPRAVA.md, evaluation/usa/): the state
+// The USA (Bára 24. 11. 2026, phase 2 of the North America pilot; evaluation/usa-dc/REPORT.md, evaluation/usa/): the state
 // of a cut inside states.json's "usa", the metros of Washington DC, New York City (towns/newyork.js), San Francisco (its
 // own map: towns/sanfrancisco.js, asked by sources.surfaces and podlaznost where it has the place) and Boston (Bára
 // 26. 11. 2026: Boston's and Cambridge's surface maps in towns/boston.js, picked below by the place). Outside the cities'

@@ -1,5 +1,5 @@
 // The surroundings of Washington and Toronto (no map of surfaces): 30 random cuts by the network's length (sample.json usout, caout),
-// the images of ../../universal/POKYN.md without any profile: the orthophoto (USGS National Map; Ontario's 16 cm imagery 2023–2027, only
+// the images of ../../universal/BRIEF.md without any profile: the orthophoto (USGS National Map; Ontario's 16 cm imagery 2023–2027, only
 // looked at) and Mapillary's photos where there are any.   TOKEN=<file> node outside.mjs      data/review-out-<k>/
 import fs from "node:fs/promises";
 import path from "node:path";

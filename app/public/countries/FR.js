@@ -1,12 +1,12 @@
 // France (FR; Bára 22. 11. 2026): what differs from the Czech rules of countries/default.js. Its sources are
 // towns/france.js (Paris's Plan de voirie, IGN's BD TOPO), IGN's orthophoto lanes-ortho.js "fr". Sources, norms and
-// signs: evaluation/france/ (ZDROJE.md, NORMY.md, ab/).
+// signs: evaluation/france/ (SOURCES.md, NORMS.md, ab/).
 import { t } from "../i18n.js";
 import { czechFurniture, TOWN_ART } from "../art.js";
 import base, { CZ_CODE } from "./default.js";
 import { franceDetails, franceLook } from "../house-looks.js";
 
-// Norms (evaluation/france/NORMY.md): France has no binding national table of widths beyond accessibility (the arrêté
+// Norms (evaluation/france/NORMS.md): France has no binding national table of widths beyond accessibility (the arrêté
 // of 15. 1. 2007 on the accessibility of streets: a sidewalk's free passage 1.4 m, 1.2 m where nothing stands beside
 // it). Cycling by CEREMA's national recommendations (second hand: the ministry's annex and Paris's guide citing them)
 // and Paris's guide of 2023; parking by Paris's guide; lanes by Grand Lyon's reference of 2010, only as the base
@@ -16,7 +16,7 @@ function limitsFR(s, segs) {
   switch (s.type) {
     case "chodnik": case "chodnik_kola":
       // 1.2 m only with no wall nor obstacle on either side (de part et d'autre): a sidewalk at a facade has one (the
-      // hostile review); the arrêté as published in 2007, a later amendment not verified (NORMY.md).
+      // hostile review); the arrêté as published in 2007, a later amendment not verified (NORMS.md).
       return { min: 1.4, zaklad: 1.8, why: t("chodník: volný průchod nejméně 1,4 m, 1,2 m jen bez zdi a překážek po obou stranách (vyhláška o přístupnosti ulic z 15. 1. 2007, čl. 1, znění z roku 2007); Paříž doporučuje 1,8 m") };
     case "stezka_sdilena":
       return { min: 0, zaklad: 3, why: t("zelená cesta (voie verte) pro chodce a cyklisty: doporučeno 3 m, při silném provozu 3,5–4 m (doporučení CEREMA)") };

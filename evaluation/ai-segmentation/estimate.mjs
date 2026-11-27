@@ -1,4 +1,4 @@
-// The app's estimate from the orthophoto and OSM (ortho-osm.js + derive.js, as regrese.mjs runs it) on the cuts of
+// The app's estimate from the orthophoto and OSM (ortho-osm.js + derive.js, as regression.mjs runs it) on the cuts of
 // cuts.mjs, saved as the parts laid across the cut, so compare.py measures it with the same function as the model.
 // OSM from the app's own packs (as the model's hints, Fable's review: the old local tiles lack green).
 //   node evaluation/ai-segmentation/estimate.mjs brno [brno10|brno20|cuzk12]
@@ -7,7 +7,7 @@ import fs from "node:fs";
 import { setCity, sources } from "./labels-lib.mjs";
 // After labels-lib (the app's config.js as published, STATIC = true: OSM from the packs); static imports would load
 // the app's modules before it.
-const { cuts, truthOf, stripOf } = await import("../ortofoto-osm/lib.mjs");
+const { cuts, truthOf, stripOf } = await import("../ortho-osm/lib.mjs");
 const { orthoOsmPolys, trimToEnds, P } = await import("../../app/public/ortho-osm.js");
 const { localFrame, deriveProfile } = await import("../../app/public/derive.js");
 

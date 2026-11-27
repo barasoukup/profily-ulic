@@ -1,13 +1,13 @@
 // Switzerland (CH; Bára 17. 11. 2026): what differs from the Czech rules of countries/default.js. The land cover of the
 // official cadastral survey (Amtliche Vermessung, geodienste.ch) is towns/switzerland.js, the orthophoto swisstopo's
 // SWISSIMAGE (lanes-ortho.js "ch"). Liechtenstein (countries/LI.js) takes these rules with its own law's names.
-// Sources, norms and signs: evaluation/switzerland/ (ZDROJE.md, NORMY.md, ZNACKY.md, RECENZE.md).
+// Sources, norms and signs: evaluation/switzerland/ (SOURCES.md, NORMS.md, SIGNS.md, REVIEW.md).
 import { t } from "../i18n.js";
 import { GROUP } from "../norms.js";
 import { czechFurniture } from "../art.js";
 import base, { CZ_CODE } from "./default.js";
 
-// Norms (evaluation/switzerland/NORMY.md): the VSS norms (SN 640 070, 640 201, 640 060, 40 252, 40 291) are not
+// Norms (evaluation/switzerland/NORMS.md): the VSS norms (SN 640 070, 640 201, 640 060, 40 252, 40 291) are not
 // public: their values as cantonal and city guidelines quote them (Kanton Bern TBA 2021 and 2026, Basel-Stadt
 // Standards Fuss- und Veloverkehr 2024, Kanton Zürich Standards Veloverkehr 2023, Kanton Schwyz Normalie D 2.01),
 // said so. Where no source was found (a lane of a local street, a pure bus lane, angled parking, a tram belt), no

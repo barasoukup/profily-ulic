@@ -9,7 +9,7 @@ import fs from "node:fs/promises";
 const HERE = new URL("./", import.meta.url), OUT = new URL("data/foto/", HERE);
 const TOKEN = process.env.MAPILLARY_TOKEN || (await fs.readFile(new URL("../../streetview/token.local", HERE), "utf8").catch(() => "")).trim();
 if (!TOKEN) { console.error("chybí token Mapillary"); process.exit(1); }
-const rows = JSON.parse(await fs.readFile(new URL("vysledky/rezy.json", HERE), "utf8"));
+const rows = JSON.parse(await fs.readFile(new URL("results/rezy.json", HERE), "utf8"));
 await fs.mkdir(OUT, { recursive: true });
 const UA = { "User-Agent": "profily-ulic" };
 const angle = (a, b) => Math.abs(((a - b + 540) % 360) - 180);

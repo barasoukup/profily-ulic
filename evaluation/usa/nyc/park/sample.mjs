@@ -1,4 +1,4 @@
-// The A/B of the parking by NYC DOT's signs (towns/newyork.js signTags, ?nycsigns=1; 26. 11. 2026, ZPRAVA.md here): new
+// The A/B of the parking by NYC DOT's signs (towns/newyork.js signTags, ?nycsigns=1; 26. 11. 2026, REPORT.md here): new
 // cuts of the five boroughs by ../sample.mjs's method (a random point of the network's length, a seed of its own), each
 // with a Mapillary photo within 30 m (the judges and the universal measurement look at the kerbs), none within 150 m of
 // the measurement's 75 cuts (../sample-all.json), of the points tried while the code was written or of each other.

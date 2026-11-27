@@ -1,14 +1,14 @@
 // Denmark (DK; Bára 23. 11. 2026): what differs from the Czech rules of countries/default.js. Its sources are
 // towns/denmark.js (Copenhagen's and Aarhus's buildings, Copenhagen's kerb lines and parking areas), the spring
 // orthophoto of GeoDanmark through Dataforsyningen with the app's token (lanes-ortho.js "dk", keys.js). Sources, norms
-// and signs: evaluation/denmark/ (ZDROJE.md, NORMY.md). Bornholm is in; the Faroes and Greenland are not (GISCO's FO, GL).
+// and signs: evaluation/denmark/ (SOURCES.md, NORMS.md). Bornholm is in; the Faroes and Greenland are not (GISCO's FO, GL).
 import { t } from "../i18n.js";
 import { czechFurniture, TOWN_ART } from "../art.js";
 import base, { CZ_CODE } from "./default.js";
 import { cycleTrackLimits } from "./cycletrack.js";
 import { nordicDetails, nordicLook } from "../house-looks.js";
 
-// Norms (evaluation/denmark/NORMY.md A, D): the Danish vejregler are recommendations (vejledende), so orange only:
+// Norms (evaluation/denmark/NORMS.md A, D): the Danish vejregler are recommendations (vejledende), so orange only:
 // below the guide's minimum, the normal width said in the text. Red only where a binding rule is quoted: a two-way cycle
 // track of 2.5 m (circular 95/1984, binding for the road authorities; quoted in the guide).
 const PARKED = (segs, i) => [segs[i - 1], segs[i + 1]].find((x) => x?.type === "parkovani");
@@ -27,7 +27,7 @@ function limitsDK(s, segs = [], i = -1) {
     case "cyklostezka":
       // A half of a two-way track by the whole track; one-way, or without a direction (derive.js gives OSM's one-way
       // tracks none), by the one-way figure (countries/cycletrack.js). Orange only (the review of 24. 11. 2026): the
-      // circular 95/1984 is known only as the handbook cites it (NORMY.md: second hand), its text and validity unread.
+      // circular 95/1984 is known only as the handbook cites it (NORMS.md: second hand), its text and validity unread.
       return cycleTrackLimits(s, segs, i, { min: 0, zaklad: 1.8, why: t("jednosměrná stezka pro cyklisty: běžně 2,25 m, nejméně 1,8 m (dánská příručka Tværprofiler i byer, 2019; doporučení)") },
         { min: 0, zaklad: 2.5, why: t("obousměrná stezka pro cyklisty podél silnice: nejméně 2,5 m (oběžník 95/1984, závazný pro správce silnic, citovaný v příručce Tværprofiler i byer)") });
     case "bus":
@@ -51,7 +51,7 @@ function limitsDK(s, segs = [], i = -1) {
 // from Wikimedia Commons ("Denmark road sign …", Public domain, PD-ineligible; licences checked through Commons' API
 // 23. 11. 2026, evaluation/denmark/signs-licence.json). The Danish copyright act § 9 (2) keeps the copyright of works
 // that appear in a regulation as independent contributions; treated as France's (official works, Bára to confirm;
-// NORMY.md C1). The speed sign C 55 is the app's template (the red ring of C 21, the number filled in). Not drawn: the
+// NORMS.md C1). The speed sign C 55 is the app's template (the red ring of C 21, the number filled in). Not drawn: the
 // one-way arrow E 19 (a sign along the street, as in Austria), the plates (text), a zone of 30 (E 68 on Commons has 40),
 // the bus lane (a road marking), the reserved and the disabled's parking (plates). Denmark has no shared zone.
 const DK_FILE = { b1: "C21", b11: "C22.1", b8: "C25.1", b30: "C26.2", b28: "C61", b29: "C62", ip11a: "E33.1", ip14a: "E42", ip15a: "E43",
@@ -82,14 +82,14 @@ export default {
   code: "DK",
   bounds: [7.9, 54.5, 15.3, 57.8],
   // Færdselsloven (LBK 118/2026) § 29 (1) 8: no stopping beside a solid line leaving less than 3 m; no general free width
-  // beside parked cars (§ 28 (1): no danger or nuisance). The app keeps its convention of 3 m a direction (NORMY.md B1,
+  // beside parked cars (§ 28 (1): no danger or nuisance). The app keeps its convention of 3 m a direction (NORMS.md B1,
   // the app's reading, for Bára). § 28 (3): no parking on a sidewalk, cycle track or path; partly on the sidewalk only
   // outside built-up areas.
   freeLane: 3,
   halfKerbNote: (free, need) => t("Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. V Dánsku je stání na chodníku v obci zakázané (§ 28 odst. 3 zákona o silničním provozu), obec ho ale může místní úpravou povolit (§ 92); mimo obec smí vozidlo stát částí na chodníku. Zákon volnou šířku vozovky uvádí jen vedle plné čáry (3 m, § 29), aplikace nechává {need}.", { free, need }),
   parkGuess: true,
   // A cycle track OSM tags on the road (derive.js trackAlongRoad) without a width of its own: the usual one-way track of
-  // the handbook Tværprofiler i byer (2019), 2.25 m (the review of 24. 11. 2026, bod 2; evaluation/denmark/ab/STEZKY.md).
+  // the handbook Tværprofiler i byer (2019), 2.25 m (the review of 24. 11. 2026, bod 2; evaluation/denmark/ab/CYCLE-TRACKS.md).
   trackWidth: 2.25,
   parkByCycleLane: true,
   roadClassFromOsm: true,
@@ -105,7 +105,7 @@ export default {
   besideMax: 25,
   panorama: false,
   art: { denmark: { ...czechFurniture, ...atPosts } },
-  // The estates of the 1960s–70s (almene boliger) are not socialist panel houses (ZDROJE.md 6).
+  // The estates of the 1960s–70s (almene boliger) are not socialist panel houses (SOURCES.md 6).
   socialistLooks: false,
   // GSearch of Dataforsyningen with the token (search-dk.js), Photon without it.
   search: ["gsearch", "photon-dk"],

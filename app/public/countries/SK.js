@@ -6,7 +6,7 @@ import { TOWN_ART, TRAM, TROLLEY, czechFurniture } from "../art.js";
 import base, { CZ_CODE, lawNote } from "./default.js";
 
 // Slovakia (the state of the cut SK; Bára 16. 11. 2026): the Slovak rules where they are public, after
-// evaluation/slovensko/NORMY.md: TP 117 (2023, signs and markings: the minimum widths of marked lanes), TP 118, TP 73 6110
+// evaluation/slovakia/NORMS.md: TP 117 (2023, signs and markings: the minimum widths of marked lanes), TP 118, TP 73 6110
 // (2024), TP 085 (2019, cycling), vyhláška 532/2002 Z. z. (sidewalk), IDS BK (platforms). STN 73 6110:2024 itself is
 // not public: lanes by class after its 2004 values and TP 117/118. No public Slovak width of a tram belt: no warning.
 const SK_LANE = { min: 2.75, zaklad: 3, why: t("jízdní pruh v obci: min. 2,75 m, základ 3 m (TP 117, 2.12.2)") };
@@ -126,7 +126,7 @@ function signLabel(x, own, label, plates) {
 // The Slovak towns' vehicles (Bára 16. 11. 2026; app/public/<town>/, drawn after photos of Wikimedia Commons): a cut in
 // Slovakia draws the trams, trolleybuses and buses of its town (by a box around it), elsewhere the neutral ones (generic/); the
 // furniture is the Czech set's ("../cesko/…": the files of cesko/).
-// The stop posts carry the Slovak sign 331 Zastávka (Bára 16. 11. 2026; slovensko/, for every Slovak town).
+// The stop posts carry the Slovak sign 331 Zastávka (Bára 16. 11. 2026; slovakia/, for every Slovak town).
 const skPosts = Object.fromEntries(["stop-post-left", "stop-post-right", "stop-post-tram-left", "stop-post-tram-right", "transit-shelter-01-left", "transit-shelter-01-right",
   "transit-shelter-green-left", "transit-shelter-green-right"].map((k) => [k, `../slovensko/${TOWN_ART[k]}`]));
 const skArt = (tram, trolley, bus = true) => ({ ...czechFurniture, ...skPosts, ...(bus ? { "bus-inbound": "bus-inbound", "bus-outbound": "bus-outbound" } : {}), ...(tram ? TRAM : {}), ...(trolley ? TROLLEY : {}) });
@@ -147,7 +147,7 @@ export default {
   halfKerbNote: lawNote("§ 23 ods. 1 zák. 8/2009 Z. z."),
   // The law's parking as everywhere (§ 23 ods. 1 zák. 8/2009 Z. z., 3 m per direction as Czechia's § 25 odst. 3). Off until
   // 25. 11. 2026: its losses were a fault of the shared code (ai-kerbs.js layLaw), without it Slovakia 6 : 7 on 148
-  // local streets, Czechia 5 : 5 on 63 (evaluation/sjednoceni/slovensko-stani).
+  // local streets, Czechia 5 : 5 on 63 (evaluation/archive/unification/slovakia-parking).
   parkGuess: true,
   limits: limitsSK,
   // Slovakia: 3.75 m in a town, 3.5 m where it cannot be had, 4.75 m with much cycling or freight (TP 117, tab. 4).

@@ -1,13 +1,13 @@
 // Slovenia (SI; Bára 23. 11. 2026): what differs from the Czech rules of countries/default.js. Its sources are
 // towns/slovenia.js (the buildings of GURS's cadastre), GURS's orthophoto lanes-ortho.js "si". Sources, norms and signs:
-// evaluation/slovenia/ (ZDROJE.md, NORMY.md).
+// evaluation/slovenia/ (SOURCES.md, NORMS.md).
 import { t } from "../i18n.js";
 import { GROUP } from "../norms.js";
 import { czechFurniture, TOWN_ART } from "../art.js";
 import base, { CZ_CODE } from "./default.js";
 import { cycleTrackLimits } from "./cycletrack.js";
 
-// Norms (evaluation/slovenia/NORMY.md A): the Pravilnik o kolesarskih površinah (36/18) and the Pravilnik o projektiranju
+// Norms (evaluation/slovenia/NORMS.md A): the Pravilnik o kolesarskih površinah (36/18) and the Pravilnik o projektiranju
 // cest (91/05 …), both "no longer in force but still applied" until the rules of ZCes-2 come: binding for new roads, so the
 // design widths orange and only the cycling minima red. No minimum width of a sidewalk was found (none warned), nor of
 // perpendicular or angled parking; there are no trams.
@@ -34,7 +34,7 @@ function limitsSI(s, segs = [], i = -1) {
       return s.orient === "kolme" || s.orient === "sikme" ? null : { min: 0, zaklad: 2.5, why: t("podélné stání: 2,5 m (pravidlo o projektování silnic, čl. 33)") };
     case "pruh": case "pruh_piktokoridor":
       if (s.turn) return { min: 0, zaklad: 3, why: t("řadicí pruh pro odbočení vlevo ve městě: 3 m, při málo nákladních vozidlech 2,75 m (pravidlo o projektování silnic, čl. 28)") };
-      // The OSM class as the regulation's kind of road is the app's reading (NORMY.md A): a motorway or trunk road as a
+      // The OSM class as the regulation's kind of road is the app's reading (NORMS.md A): a motorway or trunk road as a
       // "daljinska cesta", a primary or secondary one (GROUP B) none: it may be a collector street of 50 km/h (2.5 m) or a
       // "povezovalna cesta" of 60–90 km/h (2.75–3.5 m) and the app knows neither its kind nor its design speed (the review
       // of 24. 11. 2026); the rest as the local and collector streets of 50 km/h.
@@ -58,7 +58,7 @@ const CONTRA_SI = { lo: 3, base: 3.2, why: t("jednosměrka s cyklisty v protism�
 export const contraflowSI = (parked, run) => (Array.isArray(run) && run.some((x) => ["A", "B", "C"].includes(GROUP[x?.roadClass])) ? CONTRA_SI : null);
 
 // The signs of the state SI (app/public/signs-SI/, README there). The numbers are those of the rule of 2015 kept by
-// the Pravilnik o prometni signalizaciji of 2024 (from the AVP's booklet, second hand; NORMY.md C); the drawings on
+// the Pravilnik o prometni signalizaciji of 2024 (from the AVP's booklet, second hand; NORMS.md C); the drawings on
 // Wikimedia Commons are mostly of the rule of 2000 (II-x, III-x), the file named by the current number. Official texts are
 // not protected (ZASP čl. 9/1/2; that it covers the drawings is Commons' reading, Bára to confirm). Slovenia has no
 // cycle street or zone, and no drawing of the reserved parking space 2441 nor of the road for motor vehicles 2405.
@@ -89,7 +89,7 @@ export default {
   ...base,
   code: "SI",
   bounds: [13.3, 45.4, 16.7, 46.9],
-  // ZPrCP čl. 65 odst. 4 bod 10: no stopping where less than 3 m is left beside the car (NORMY.md B), 3 m a direction as
+  // ZPrCP čl. 65 odst. 4 bod 10: no stopping where less than 3 m is left beside the car (NORMS.md B), 3 m a direction as
   // elsewhere. Odst. 4 bod 12: none on the roadway of a two-way street in a town without a centre line; bod 14: none on
   // a one-way carriageway of two or more lanes. A centre line is read from OSM (two lanes or more, lane_markings not
   // "no"): a street without a lanes tag gets no estimate.

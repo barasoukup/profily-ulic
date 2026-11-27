@@ -1,4 +1,4 @@
-// The control of 26. 11. 2026 (ZPRAVA.md, Kontroly): the default profiles (no switch) of the measurements' cuts of New York
+// The control of 26. 11. 2026 (REPORT.md, Kontroly): the default profiles (no switch) of the measurements' cuts of New York
 // (../sample.json, 50), San Francisco (../../sf/fresh.json, 60) and Boston (../../boston/fresh.json, 60), collected in the
 // app (../../collect.js way, variant def) with the code and with the code without ?outerosm and ?nycsigns (HEAD with
 // f34574a, 927fbcb and 71e7026 reverted), must be equal.   node control.mjs <without.json> <with.json> > results/control.txt

@@ -5,7 +5,7 @@
 // Boston and Cambridge, evaluation/usa/boston/);
 // its sources are towns/usa.js (DC's Planimetrics 2023 as the surface map, DDOT's Roadway SubBlock inventory for the
 // lanes and parking), the orthophotos DC's of 2025 over DC and MassGIS's of 2025 over Boston's metro (lanes-ortho.js "us").
-// Sources and norms: evaluation/usa/ (NORMY.md), evaluation/usa/boston/ (NORMY.md), the pilot evaluation/usa-dc/.
+// Sources and norms: evaluation/usa/ (NORMS.md), evaluation/usa/boston/ (NORMS.md), the pilot evaluation/usa-dc/.
 import { t } from "../i18n.js";
 import { northAmericaLook, northAmericaDetails } from "../house-looks-america.js";
 import { LATE_BOUNDS } from "../late.js";
@@ -14,12 +14,12 @@ import base, { CZ_CODE } from "./default.js";
 import { cycleTrackLimits } from "./cycletrack.js";
 import { city } from "../city.js";
 
-// Norms (evaluation/usa/NORMY.md): DDOT's Design and Engineering Manual (DEM, December 2023), its Bicycle Facility Design
+// Norms (evaluation/usa/NORMS.md): DDOT's Design and Engineering Manual (DEM, December 2023), its Bicycle Facility Design
 // Guide (v2, 2020) and NACTO's guides. The DEM is binding for new streets in DC, but DDOT may keep existing conditions
 // and the app reads existing streets (and the metro beyond DC), so orange only (Bára 24. 11. 2026: no invented values).
 // No tram belt: neither NACTO nor DC's Streetcar Design Criteria give one.
 const PARKED = (segs, i) => [segs[i - 1], segs[i + 1]].find((x) => x?.type === "parkovani");
-// San Francisco (26. 11. 2026, evaluation/usa/sf/NORMY.md): DDOT's manual is not its law. The sidewalks by the minimums of
+// San Francisco (26. 11. 2026, evaluation/usa/sf/NORMS.md): DDOT's manual is not its law. The sidewalks by the minimums of
 // the Better Streets Plan's street types as SFMTA's dataset Sidewalk Widths of 2014 (DataSF 4g86-grxu, a study by AECOM)
 // gives them to each block: the least 10 ft in neighbourhood residential streets, 12 ft in most others, 6 ft in alleys,
 // 8 ft in industrial ones; a bike lane beside parking and a bus lane by NACTO as in DC; nothing else (no source of the
@@ -73,7 +73,7 @@ function limitsUS(s, segs = [], i = -1, place = city, street = null) {
   }
 }
 
-// New York City (26. 11. 2026, evaluation/usa/nyc/NORMY.md): NYC DOT's Street Design Manual (the online edition,
+// New York City (26. 11. 2026, evaluation/usa/nyc/NORMS.md): NYC DOT's Street Design Manual (the online edition,
 // nycstreetdesign.info, Geometry: Lanes, Curb Bus Lane, Bike Lane Table), orange only as DC's. The manual gives no clear path
 // of the sidewalk (it refers to the ADA), no width of a turn lane nor of an angled or perpendicular stall: none.
 function limitsNYC(s, segs, i) {
@@ -93,7 +93,7 @@ function limitsNYC(s, segs, i) {
       return null;
   }
 }
-// Boston's metro (Bára 26. 11. 2026; evaluation/usa/boston/NORMY.md): the Boston Complete Streets Guidelines (Boston
+// Boston's metro (Bára 26. 11. 2026; evaluation/usa/boston/NORMS.md): the Boston Complete Streets Guidelines (Boston
 // Transportation Department, 2013), its tables "Preferred and Minimum Widths for Sidewalk Zones" (p. 23) and "Minimum Widths
 // for Roadway Lanes" (p. 103). Guidelines for the city's own design, and the app reads existing streets (and the cities
 // around), so orange only. No figure for a cycle track, a shared path, an angled or perpendicular stall was read in
@@ -127,7 +127,7 @@ const usa = { ...northAmericaFurniture, "bus-inbound": "../washington/bus-inboun
 const washington = { ...usa, ...ownArt(["stop-post-left", "stop-post-right",
   "transit-shelter-01-left", "transit-shelter-01-right", "transit-shelter-green-left", "transit-shelter-green-right"]), "lamp-post-top": "lamp-globe-left" };
 // In New York (26. 11. 2026) MTA's bus, the city's davit lamp from 6 m and its bus stop (newyork/; evaluation/north-america-art/
-// furniture/ZDROJE.md); the shelter and the rest of North America's. The Bishop's Crook (lamp-bishop-*) has no place yet: the
+// furniture/SOURCES.md); the shelter and the rest of North America's. The Bishop's Crook (lamp-bishop-*) has no place yet: the
 // app has one lamp over the street.
 const newyork = { ...northAmericaFurniture, ...NORTH_AMERICA_VEHICLES.newyork, ...ownArt(["lamp-modern-left", "lamp-modern-right", "stop-post-left", "stop-post-right"]) };
 // San Francisco (26. 11. 2026): Muni's bus (Xcelsior XDE40), trolleybus (XT40) and light rail (LRV4, where OSM has tracks) and its
@@ -148,9 +148,9 @@ export default {
   bounds: LATE_BOUNDS.US,
   // The International Fire Code 503.2.1 (adopted by DC with its supplement, 12 DCMR H): a fire apparatus access road
   // keeps 20 ft (6.10 m) unobstructed, about 3 m a direction; 18 DCMR 2405.2(g) forbids parking where less than 10 ft of
-  // open roadway stays (NORMY.md B). So the app's 3 m a direction. DC itself parks on both sides of local streets of
+  // open roadway stays (NORMS.md B). So the app's 3 m a direction. DC itself parks on both sides of local streets of
   // 16 ft lanes and 16 ft parking (about 8.75–9.75 m, DDOT's inventory); where the inventory answers it decides the
-  // parking, not this estimate (towns/usa.js), so the 3 m work in Maryland and Virginia, for which NORMY.md has no source
+  // parking, not this estimate (towns/usa.js), so the 3 m work in Maryland and Virginia, for which NORMS.md has no source
   // of their own: the app's usual width, not their law.
   freeLane: 3,
   halfKerbNote: (free, need) => t("Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Aplikace nechává {need}.", { free, need }),

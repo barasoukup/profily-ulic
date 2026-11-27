@@ -1,7 +1,7 @@
 // The buildings of the four foral cadastres (Bára 23. 11. 2026), where the national Catastro has none: Navarre (IDENA,
 // Registro de la Riqueza Territorial) and the three Basque provinces Álava, Bizkaia and Gipuzkoa, each a public INSPIRE
 // WFS of buildings (BU) with floors above ground, year, use and dwellings, CORS for the app's site
-// (evaluation/spain/KATASTRY-FORALNI.md). Asked as the Catastro is (towns/spain.js podlaznost): only on a click, the
+// (evaluation/spain/FORAL-CADASTRES.md). Asked as the Catastro is (towns/spain.js podlaznost): only on a click, the
 // building at the facade's point (a window of about half a metre), one request a facade, a time limit, the answer kept
 // by the rounded point. None has building parts: the building's own floors.
 // Each service is a little different: the feature type, how the bbox names its CRS (Bizkaia refuses the URI form),
@@ -17,10 +17,10 @@ export const FORAL = {
   bi: { url: "https://geo.bizkaia.eus/arcgisserverinspire/rest/services/Catastro/Buildings/MapServer/exts/InspireFeatureDownload/service", type: "bu-core2d:Building", srs: null, bboxCrs: "EPSG:4258", lonLat: false },
   ar: { url: "https://geo.araba.eus/WFS_INSPIRE_BU", type: "INSPIRE_BU:BU.Building", srs: "EPSG:4326", bboxCrs: "EPSG:4326", lonLat: true },
 };
-// Which cadastres are asked without a switch: the A/B of 23. 11. 2026 (evaluation/spain/foral-ab/ZPRAVA.md).
+// Which cadastres are asked without a switch: the A/B of 23. 11. 2026 (evaluation/spain/foral-ab/REPORT.md).
 // ?foral=0 none, ?foral=1 all four, ?foral=nc,gi those named.
 // All four on. Álava and Navarre count 1–2 floors more than OSM's building:levels: the photos (Pamplona, Vitoria,
-// evaluation/spain/foral-ab/ZPRAVA.md) side with the cadastres; Spanish mappers write "B+4" (planta baja + 4) as 4 and
+// evaluation/spain/foral-ab/REPORT.md) side with the cadastres; Spanish mappers write "B+4" (planta baja + 4) as 4 and
 // leave out the attic, the cadastre counts every floor above ground (Bára 23. 11. 2026).
 export const FORAL_ON = new Set(["nc", "gi", "bi", "ar"]);
 export function foralEnabled(code, sw) {

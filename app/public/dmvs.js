@@ -29,7 +29,7 @@ const MAX_INFO = 16; // GetFeatureInfo requests per click
 const SIMPLIFY = 0.2; // m, Douglas–Peucker tolerance of the outlines
 const MAX_GAP = 25; // m, the widest blank roadway between areas of the DTM read as a street drawn in part
 const PAD = 0.0004; // degrees around the cut in the envelope app.js and run_brno.mjs ask for
-const TIMEOUT = 8000; // a slower answer is not waited for (srovnani-dmvs: once 21 s in Most)
+const TIMEOUT = 8000; // a slower answer is not waited for (evaluation/archive/dmvs-comparison: once 21 s in Most)
 
 // ---------- PNG ----------
 export async function inflate(bytes) {
@@ -315,7 +315,7 @@ const TYPES = [
   [/^obvod (pozemní komunikace|mostu)/, null], // the outline of a road or bridge over its areas
   [/podchod|tunel|podzemní|zastřešen/, null], // under the ground; roofs over it (a stop's canopy)
   [/tramvajov/, 705], [/cyklostezk/, 703], [/parkovišt|odstavn/, 704],
-  [/mostní konstrukc|mostovk/, 700], // a bridge deck ("plocha mostovky") too (srovnani-dmvs: Hlávkův most)
+  [/mostní konstrukc|mostovk/, 700], // a bridge deck ("plocha mostovky") too (evaluation/archive/dmvs-comparison: Hlávkův most)
   [/provozní plocha pozemní komunikace|mostní váh|přidružen/, 701],
   [/chodník|nájezd|nástupišt|ostrův|schodišt|ramp/, 702],
   [/děl[ií]c|zelen|travnat|vegetační mís|stromů a keřů/, 401],
@@ -711,7 +711,7 @@ export async function surfaces(bbox, labels, opts = {}) {
     else if (f.attributes.ODHAD && f.attributes.CTVUK_KOD === 701) f.attributes.ROAD_PARCEL = 1;
   }
   // Where the DTM has nothing around the cut (local streets of regions that map only the main roads),
-  // RÚIAN alone is no profile: none of it, so the profile is the admitted estimate from OSM (srovnani-dmvs:
+  // RÚIAN alone is no profile: none of it, so the profile is the admitted estimate from OSM (evaluation/archive/dmvs-comparison:
   // Brno č. 95, one "Neurčeno" of 33 m between RÚIAN's houses).
   const anyDtm = dtm.features.some((f) => f.attributes.level === 0);
   if (!anyDtm) fill.features = [];

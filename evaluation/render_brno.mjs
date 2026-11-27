@@ -1,4 +1,4 @@
-// Review image per Brno cut (as render.mjs for Prague): Brno's 2025 orthophoto turned so the profile runs
+// Review image per Brno cut (as archive/prague-100/render.mjs for Prague): Brno's 2025 orthophoto turned so the profile runs
 // left → right, segment boundaries on the cut line, the profile as a bar and the parts in a table.
 // One square SVG per cut (Quick Look renders squares), then PNG:
 //   node evaluation/render_brno.mjs && for f in evaluation/brno/data/png/*.svg; do qlmanage -t -s 1100 -o evaluation/brno/data/png "$f"; done

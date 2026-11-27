@@ -1,5 +1,5 @@
 // The app without the trim of the roadways the DTM only guesses around a passport's roadway (towns/overlay.js
-// trimGuessedRoads, ?orez=0), against "city" (with it). Bára 26. 11. 2026, evaluation/pasporty-orez.
+// trimGuessedRoads, ?orez=0), against "city" (with it). Bára 26. 11. 2026, evaluation/archive/passports-trim.
 //   CITY=roznov VARIANTS=pasport-bez-orezu,city CACHE=disk node evaluation/ab.mjs
 import * as S from "../../app/public/sources.js";
 export const about = "bez ořezu odhadnutých vozovek kolem pasportu";

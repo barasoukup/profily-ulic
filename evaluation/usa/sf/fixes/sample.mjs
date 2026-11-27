@@ -1,4 +1,4 @@
-// The A/B of the fixes of 26. 11. 2026 (ZPRAVA.md): random cuts on the streets a fix touches, by sample.mjs's method
+// The A/B of the fixes of 26. 11. 2026 (REPORT.md): random cuts on the streets a fix touches, by sample.mjs's method
 // (a random point of their length, a fixed seed, a Mapillary photo within 30 m), none within 150 m of the fresh measurement's
 // cuts (fresh.json) or of each other: node evaluation/usa/sf/fixes/sample.mjs angled 45 (the ways OSM tags with diagonal or
 // perpendicular parking on a side; writes sample.json; variants def and sfold: ?off=sfosmpark,axisroad).

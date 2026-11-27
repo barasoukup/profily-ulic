@@ -1,7 +1,7 @@
 // Floors from a building's height (m), one function for every place that has a height and wants floors (Bára 27. 11. 2026:
 // "that conversion we could finish, and use it elsewhere"). Floors that are known (OSM building:levels, an official count)
 // always come first: this is only for a height alone. The height is to the top (the ridge of a pitched roof, the parapet of
-// a flat one). Rules, each judged on photographs (evaluation/floors-height/ZPRAVA.md):
+// a flat one). Rules, each judged on photographs (evaluation/archive/floors-height/REPORT.md):
 // - a flat or unknown roof: 2.2 m of roof and plinth over floors of 3.3 m (3.05 m from 25 m up: Toronto's review of 25. 11. 2026),
 //   but under 8 m the boundary of one and two floors lies at 6.0 m (a two-storey house of 6.4–6.8 m came out of one);
 // - a roof known to be pitched (OSM roof:shape, or the caller's `pitched`): PITCHED m of roof taken off before the floors

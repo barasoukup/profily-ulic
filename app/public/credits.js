@@ -45,7 +45,7 @@ export const SOURCE_CREDITS = {
     "us-nyc": () => t("ortofoto © NYS ITS Geospatial Services, 2024"),
     "us-ma": () => t("ortofoto © MassGIS (Bureau of Geographic Information), 2025"),
     "ca-tor": () => t("ortofoto © City of Toronto, 2025 (Open Government Licence – Toronto)"),
-    // Denmark: GeoDanmark's spring orthophoto through Dataforsyningen, credited as its terms ask (evaluation/denmark/ZDROJE.md 1).
+    // Denmark: GeoDanmark's spring orthophoto through Dataforsyningen, credited as its terms ask (evaluation/denmark/SOURCES.md 1).
     dk: () => t("ortofoto: Indeholder data fra Styrelsen for Dataforsyning og Infrastruktur, Ortofoto forår, WMTS-tjeneste"),
     "it-bo": () => t("ortofoto © Comune di Bologna, Regione Emilia-Romagna (CC BY 4.0)"),
     "it-mo": () => t("ortofoto © Comune di Modena, Regione Emilia-Romagna (CC BY 4.0)"),

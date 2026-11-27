@@ -2,7 +2,7 @@
 
 > Drawn and wired: `app/public/houses-america.js` (measures and drawing), `house-looks.js` `northAmericaLook` and
 > `northAmericaDetails` (which house gets which look), `countries/US.js`; Canada's module is to use the same two functions.
-> The overview `evaluation/north-america-art/houses/prehled.png`, the check of the choice `evaluation/north-america-art/houses/ZPRAVA.md`.
+> The overview `evaluation/north-america-art/houses/prehled.png`, the check of the choice `evaluation/north-america-art/houses/REPORT.md`.
 
 Houses are drawn in code in the same side view as the European ones (`docs/house-types-europe.md`): a strip 4 m deep seen
 along the street, what stands before the facade (bay, porch, stoop, fire escape, balcony) in profile over the sidewalk,
@@ -49,9 +49,9 @@ The postwar block of the west (`povalecny`) is not used: roller shutters and col
 The look reads every OSM building, not only those with floors
 or a height. In DC proper 159 780 OSM buildings: floors 37 %, a height 0.2 %, year 0.1 %, roof shape 0.2 %, material
 0.05 %; the kind (not `yes`) 69 %. The built-up test is not touched
-(since 25. 11. 2026 in every state, `evaluation/all-buildings/ZPRAVA.md`).
+(since 25. 11. 2026 in every state, `evaluation/archive/all-buildings/REPORT.md`).
 
-Used in Washington: DC's CAMA tables (`towns/usa.js podlaznost`, `evaluation/north-america-art/cama/ZPRAVA.md`). Not used yet,
+Used in Washington: DC's CAMA tables (`towns/usa.js podlaznost`, `evaluation/north-america-art/cama/REPORT.md`). Not used yet,
 would decide the year and floors: NYC PLUTO (`yearbuilt`, `numfloors`, `bldgclass`), Boston's property assessment (`YR_BUILT`, `RES_FLOOR`, `LU`), Toronto has 3D Massing
 (height). Field names from memory, to be checked when wired.
 

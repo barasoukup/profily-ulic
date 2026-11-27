@@ -1,13 +1,13 @@
-// The centre-line detector (lanes-ortho.js centreLine) against the lines marked by eye (evaluation/ortofoto/labels,
-// OZNACOVANI.md): per marked carriageway of a two-way road, is there a line down the middle and is it solid or dashed.
+// The centre-line detector (lanes-ortho.js centreLine) against the lines marked by eye (evaluation/orthophoto/labels,
+// LABELLING.md): per marked carriageway of a two-way road, is there a line down the middle and is it solid or dashed.
 // Truth: a marked line of kind solid / double / dashed at least 2.2 m from the marked edges and within a fifth of the
-// width of the middle (as the detector looks). Uses the cached orthophotos of evaluation/ortofoto/data (no request).
+// width of the middle (as the detector looks). Uses the cached orthophotos of evaluation/orthophoto/data (no request).
 //   DATA=/path/to/streetdesign/evaluation node evaluation/centre-line/detect.mjs [maxWidth=10] [city …]
 //   SRC=cuzk12 …   the 12.5 cm image of ČÚZK instead of the city's finest
 import fs from "node:fs/promises";
 import path from "node:path";
 import { decodePng } from "../../app/public/dmvs.js";
-import { ALL, strip } from "../ortofoto/run.mjs";
+import { ALL, strip } from "../orthophoto/run.mjs";
 import { centreLine, CENTRE, brightMap } from "../../app/public/lanes-ortho.js";
 
 const DATA = process.env.DATA || "/Users/barasoukupova/streetdesign/evaluation";
@@ -17,14 +17,14 @@ const MAXW = +(process.argv[2] || 10), CITIES = process.argv.slice(3).length ? p
 const EDGE = CENTRE.edge, PAD = 3;
 const rows = [];
 for (const city of CITIES) {
-  const key = process.env.SRC || FINEST[city] || "cuzk12", dir = path.join(DATA, "ortofoto", "data", city);
+  const key = process.env.SRC || FINEST[city] || "cuzk12", dir = path.join(DATA, "orthophoto", "data", city);
   const abDir = path.join(DATA, city === "hradec3" || city === "hradec2" ? "hradec" : city, "data", "ab-city-stejne");
   const index = Object.fromEntries(JSON.parse(await fs.readFile(path.join(dir, "oznac", "index.json"), "utf8")).map((x) => [x.name, x]));
   const seen = new Set();
   // hradec3 (cuts at the passport's hatched areas) has its cuts in results.json only.
   const results = city === "hradec3" ? Object.fromEntries(JSON.parse(await fs.readFile(path.join(dir, "results.json"), "utf8")).map((x) => [x.n, { cut: x.cut, a: { extent: x.extent } }])) : null;
   for (const who of WHO[city]) {
-    let lab; try { lab = JSON.parse(await fs.readFile(path.join(DATA, "ortofoto", "labels", `oznac-${city}-${who}.json`), "utf8")); } catch { continue; }
+    let lab; try { lab = JSON.parse(await fs.readFile(path.join(DATA, "orthophoto", "labels", `oznac-${city}-${who}.json`), "utf8")); } catch { continue; }
     for (const [name, m] of Object.entries(lab)) {
       const ix = index[name];
       if (!ix || m.quality !== "ok" || (m.edges || []).length < 2 || seen.has(name)) continue;

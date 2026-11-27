@@ -1,4 +1,4 @@
-// The packets of the blind A/B judging (ZPRAVA.md): for each cut whose profile changed between two runs of the replay
+// The packets of the blind A/B judging (REPORT.md): for each cut whose profile changed between two runs of the replay
 // (off = ?off=stredcara, on), one PNG: the orthophoto of the cut turned north-up across the street, 20 px a metre, with the
 // two profiles as bars below (A above B, order random by a fixed seed, which is which in key.json), and the text of both.
 //   REC=<recording folder> OUT=<outputs of the runs> PACK=<where the packets go> node evaluation/centre-line/judge-packets.mjs <run off> <run on> [sample file]
@@ -7,7 +7,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { execFileSync } from "node:child_process";
 import { decodePng } from "../../app/public/dmvs.js";
-import { encodePng } from "../ortofoto/run.mjs";
+import { encodePng } from "../orthophoto/run.mjs";
 
 const [OFF, ON, SAMPLE] = process.argv.slice(2);
 const REC = process.env.REC, OUT = process.env.OUT, PACK = process.env.PACK;

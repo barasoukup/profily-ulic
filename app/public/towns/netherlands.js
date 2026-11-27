@@ -223,7 +223,7 @@ async function podlaznost(lat, lon) {
 // angled); soort FISCAAL is paid, MULDER free; e_type a reserved use (E6a the disabled, E7 loading, E8 charging, E9
 // permit holders). As Prague's TSK sections: a space is a section of one stall, its length along the street tells the
 // orientation, given by the city (derive.js esriPolygons ORIENT). Off unless ?amspark=1: the A/B of 16 Amsterdam cuts
-// (evaluation/netherlands/ab/PARKOVANI.md) was mixed: parking found where the BGT had none and angled parking kept, but
+// (evaluation/netherlands/ab/PARKING.md) was mixed: parking found where the BGT had none and angled parking kept, but
 // the gaps between single spaces cut a parking strip into a shoulder and one side lost its parking.
 export const AMS_PARKING = "https://api.data.amsterdam.nl/v1/wfs/parkeervakken/v1";
 export const AMS_BOX = [4.72, 52.27, 5.08, 52.43];

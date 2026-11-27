@@ -1,5 +1,5 @@
 // Belgium (Bára 20. 11. 2026): the state of a cut inside states.json's "belgium". No region publishes a map of street
-// surfaces with the sidewalks as a web service (evaluation/belgium/ZDROJE.md): the profile is the estimate from OSM and
+// surfaces with the sidewalks as a web service (evaluation/belgium/SOURCES.md): the profile is the estimate from OSM and
 // the region's orthophoto (lanes-ortho.js "be": Flanders' or Wallonia's), with the lines of the regions' large-scale
 // maps as candidates for the kerbs (ortho-osm.js edges), as the Slovak towns' drawings:
 // - Flanders: GRB (Grootschalig Referentiebestand, Digitaal Vlaanderen, WFS geo.api.vlaanderen.be, CORS *), the lines

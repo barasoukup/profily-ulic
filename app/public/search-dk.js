@@ -1,5 +1,5 @@
 // Address search in Denmark (Bára 23. 11. 2026): GSearch of Dataforsyningen (Klimadatastyrelsen, api.dataforsyningen.dk/rest/gsearch/v2.0,
-// CORS for the origin asking; only with the app's token, keys.js; evaluation/denmark/ZDROJE.md 4): a query with a house
+// CORS for the origin asking; only with the app's token, keys.js; evaluation/denmark/SOURCES.md 4): a query with a house
 // number asks the house numbers (husnummer), other text the named streets (navngivenvej); positions in WGS 84 (srid
 // 4326). Without the token, or when GSearch fails or finds nothing, Photon of komoot (search-photon.js "photon-dk"). One request a pause in typing (search.js
 // debounces and cancels). DAWA, the old service, is gone (410).

@@ -1,5 +1,5 @@
 // Denmark (Bára 23. 11. 2026): the state of a cut inside states.json's "denmark" (with Bornholm). No surface map of the
-// streets exists as polygons (evaluation/denmark/ZDROJE.md 2): the profile is the estimate from OSM and the spring
+// streets exists as polygons (evaluation/denmark/SOURCES.md 2): the profile is the estimate from OSM and the spring
 // orthophoto of GeoDanmark (lanes-ortho.js "dk", with the app's token; without it OSM alone, said so). Its own sources:
 // - Copenhagen (Københavns Kommune's WFS wfs-kbhkort.kk.dk/k101, CORS *, no key; asked only inside its box):
 //   - the kerb lines of GeoDanmark (k101:vejkant: the edges of roadways and of cycle tracks along a road) as candidates
@@ -12,7 +12,7 @@
 //   The catalogue opendata.dk states no licence for these three layers (its other layers of the city, among them the
 //   parking lines p_pladser, are CC BY 4.0; the kerb lines and outlines are GeoDanmark's data, CC BY 4.0). Bára
 //   24. 11. 2026 decided to use them all the same ("Kodaňská data bych použila"), credited to GeoDanmark and Københavns
-//   Kommune (credits.js). A/B (evaluation/denmark/ab/ZPRAVA.md, 72 cuts): the kerb lines better 5, worse 2; the parking
+//   Kommune (credits.js). A/B (evaluation/denmark/ab/REPORT.md, 72 cuts): the kerb lines better 5, worse 2; the parking
 //   areas better 7, worse 2; the buildings (buildings-ab) floors in 23 houses of 30 against OSM's 15, the year in 22.
 // - Aarhus (Aarhus Kommune's WFS webkort.aarhuskommune.dk, CORS *): the buildings of BBR (geokodede_bbr_bygninger: the
 //   year, the use, walls and roof, the areas the floors are estimated from), the dataset "BBR-ejendomme og

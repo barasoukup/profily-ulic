@@ -1,12 +1,12 @@
 // Poland (PL; Bára 21. 11. 2026): what differs from the Czech rules of countries/default.js. Its sources are
 // towns/poland.js (Kraków's base map), GUGiK's orthophoto lanes-ortho.js "pl". Sources, norms and signs:
-// evaluation/poland/ (ZDROJE.md, NORMY.md, ab/).
+// evaluation/poland/ (SOURCES.md, NORMS.md, ab/).
 import { t } from "../i18n.js";
 import { GROUP, fmt } from "../norms.js";
 import { czechFurniture, TOWN_ART } from "../art.js";
 import base, { CZ_CODE } from "./default.js";
 
-// Norms (evaluation/poland/NORMY.md): the binding regulation on the technical conditions of public roads (RMI 2022,
+// Norms (evaluation/poland/NORMS.md): the binding regulation on the technical conditions of public roads (RMI 2022,
 // Dz.U. 2022 poz. 1518) gives the minimum and the standard; where it is silent (bus lane, parking, tram belt) the
 // ministry's non-binding recommendations WR-D only as the base, said so. The class of a road (GP, G, Z, L, D) is not
 // in the data: the app's groups by OSM, main streets as Z (the cautious figure), local L, calmed D.
