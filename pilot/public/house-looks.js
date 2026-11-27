@@ -15,6 +15,37 @@ const STIT = typeof location !== "undefined" ? new URLSearchParams(location.sear
 // 23. 11. 2026 chose it over the whole symmetric gable, which ?stit=cely still draws).
 export const LOOKS = { gables: STIT !== "0", gableCut: STIT !== "cely" };
 
+// A small house standing alone, of which OSM knows nothing else (no floors, no height): a family house, not a block of
+// flats (Bára 27. 11. 2026: Girbigsdorfer Straße, a village, two small houses drawn as five-floor tenements). Its own
+// footprint up to SMALL_HOUSE_AREA m², at most 3 buildings joined to it (the house with its garage and shed) and all of
+// them together up to SMALL_BLOCK_AREA m². ?off=vesnice: as before.
+export const SMALL_HOUSE_AREA = 250, SMALL_BLOCK_AREA = 450, SMALL_BLOCK_PARTS = 3;
+export const villageOff = () => ((typeof location === "undefined" ? globalThis.PROFILY_CA?.off : new URLSearchParams(location.search).get("off")) || "").split(",").includes("vesnice");
+export const smallHouse = (info) => !villageOff() && info?.footprint > 0 && info.footprint <= SMALL_HOUSE_AREA
+  && !!info.block && info.block.parts <= SMALL_BLOCK_PARTS && info.block.area <= SMALL_BLOCK_AREA;
+
+// A panel house abroad (Bára 27. 11. 2026: Leipzig, two town houses of 6 floors drawn as panel houses): the shape alone makes
+// one only as a long compact slab, filling its box (a street row of town houses in a bent line does not: its 4 parts
+// filled 29 % of the box); stronger evidence is a year of the panel era (flatKind) or OSM's own word (info.panel).
+// NOT the default: the blind A/B on photographs (EE, LT, PL, 36 houses, two judges) came 11 : 12 and 14 : 10
+// (evaluation/village-houses/ZPRAVA.md). ?panel2=1 turns it on (globalThis.PROFILY_CA.panel2 in scripts).
+export const panelOn = () => (typeof location === "undefined" ? globalThis.PROFILY_CA?.panel2 : new URLSearchParams(location.search).get("panel2")) === "1";
+// Where the house's own outline and surroundings are known (derive.js own, around), the panel house needs a clear agreement of
+// several signs (Bára 27. 11. 2026: "better no panel house than a false one"): an exact rectangle, a big building, free
+// space round it (little built over within 80 m; green adds), the estate of slabs rather than the town's street. Score:
+// rectangle (own outline fills its smallest rectangle; under 0.7 no panel house at all) 0.7 → 1, 0.8 → 1.5; built share round 0.2 → 1, 0.12 → 1.5;
+// size (footprint 500 m² or 8+ floors) 1; green 20 % of the ground round +0.5. At least PANEL_SCORE. Without them (a saved
+// cut) the old shape rule (profile.js isSlab).
+export const PANEL_SCORE = 3;
+export function panelScore(info) {
+  const o = info?.own, a = info?.around;
+  if (!o || !a) return null;
+  if (o.rect < 0.7) return 0; // not an exact rectangle: no panel house, whatever else
+  return (o.rect >= 0.8 ? 1.5 : o.rect >= 0.7 ? 1 : 0) + (a.built <= 0.12 ? 1.5 : a.built <= 0.2 ? 1 : 0)
+    + (info.footprint >= 500 || info.levels >= 8 ? 1 : 0) + (a.green >= 0.2 ? 0.5 : 0);
+}
+export const strictSlab = (b) => !!b && ((b.fill >= 0.8 && b.width <= 16 && b.length >= 25) || (b.parts >= 2 && b.fill >= 0.5 && b.width <= 20 && (b.length + b.width) / b.parts >= 30));
+
 const OLD = new Set(["sikma", "mestan", "nizky"]);
 export const yearOf = (info) => info?.built ?? info?.start;
 // The house's place: derive.js point while the cut is made, app.js at (rounded) in the profile kept and saved.

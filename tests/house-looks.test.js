@@ -192,3 +192,28 @@ test("Vzhled čte všechny budovy OSM, panelák ne z tvaru samotného, řadový 
   assert.equal(brickLook()("nizky", { type: "house", block: { parts: 5 } }, null), "cihlovy");
   assert.equal(brickLook()("nizky", { type: "house", block: { parts: 5 } }, 1), undefined);
 });
+
+// A small house standing alone, of which OSM knows no floors and no height (Bára 27. 11. 2026, Girbigsdorfer Straße): a family
+// house, not a five-floor tenement; a big or joined one and one with known floors keep their looks; ?off=vesnice as before.
+test("malý dům o samotě bez dalších údajů je rodinný dům", () => {
+  const alone = (area, extra = {}) => ({ footprint: area, block: { length: 12, width: 10, fill: 0.7, parts: 1, area }, km: 99, ...extra });
+  for (const id of ["germany", "austria", "cizina", "poland"]) {
+    at(id);
+    assert.equal(buildingStyle(alone(120)), "vila", id);
+    assert.equal(buildingStyle(alone(120, { start: 1985 })), "kostka", id);
+    assert.equal(buildingStyle(alone(120, { roofShape: "gabled" })), "vila", id);
+    assert.equal(buildingStyle(alone(20)), "garaz", id);
+    assert.equal(buildingStyle(alone(120, { levels: 5, type: "apartments" })), buildingStyle({ levels: 5, type: "apartments", km: 99, block: alone(120).block }), id);
+    // a big building, a joined row, a block of many buildings: as before
+    assert.equal(buildingStyle(alone(600)), buildingStyle({ km: 99, block: alone(600).block }), id);
+    assert.notEqual(buildingStyle(alone(120, { block: { length: 40, width: 12, fill: 0.8, parts: 5, area: 400 } })), "vila", id);
+    assert.notEqual(buildingStyle(alone(120, { block: { length: 30, width: 12, fill: 0.8, parts: 2, area: 520 } })), "vila", id);
+    // office types stay offices
+    assert.notEqual(buildingStyle(alone(120, { type: "office" })), "vila", id);
+  }
+  globalThis.PROFILY_CA = { off: "vesnice" };
+  at("germany");
+  assert.notEqual(buildingStyle(alone(120)), "vila"); // (a slab of 12 m filling its box: the old reading, a post-war block)
+  delete globalThis.PROFILY_CA;
+  setCity("praha");
+});

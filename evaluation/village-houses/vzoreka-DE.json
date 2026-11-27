@@ -1,0 +1,8697 @@
+{
+ "stat": {
+  "houses": 558,
+  "noData": 243,
+  "changed": 55,
+  "regCut": 0,
+  "noPhoto": 39,
+  "dataChanged": 0,
+  "villages": 49,
+  "pairs": {
+   "sikma>vila": 35,
+   "povalecny>vila": 16,
+   "funkce>vila": 1,
+   "plocha>vila": 2,
+   "sikma>garaz": 1
+  }
+ },
+ "rows": [
+  {
+   "id": "DEa01",
+   "town": "hamburg",
+   "far": false,
+   "city": "germany",
+   "point": [
+    10.006959,
+    53.5446314
+   ],
+   "mapillary": "1422298899404911",
+   "pano": false,
+   "dist": 9.6,
+   "off": 15.4,
+   "panels": false,
+   "before": {
+    "look": "funkce",
+    "info": {
+     "point": [
+      10.006958983235165,
+      53.54463137185431
+     ],
+     "km": 99,
+     "block": {
+      "length": 9.9,
+      "width": 9,
+      "fill": 0.54,
+      "parts": 1,
+      "area": 48
+     },
+     "tint": 0,
+     "start": 1923,
+     "material": "brick",
+     "footprint": 48.272856343146486
+    }
+   },
+   "after": {
+    "look": "vila",
+    "info": {
+     "point": [
+      10.006958983235165,
+      53.54463137185431
+     ],
+     "km": 99,
+     "block": {
+      "length": 9.9,
+      "width": 9,
+      "fill": 0.54,
+      "parts": 1,
+      "area": 48
+     },
+     "tint": 0,
+     "start": 1923,
+     "material": "brick",
+     "footprint": 48.272856343146486
+    }
+   }
+  },
+  {
+   "id": "DEa02",
+   "town": "frankfurt",
+   "far": true,
+   "city": "germany",
+   "point": [
+    8.5851822,
+    50.181034
+   ],
+   "mapillary": "1939528556800405",
+   "pano": true,
+   "dist": 16.2,
+   "off": 81.9,
+   "panels": false,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "point": [
+      8.585182182929694,
+      50.18103400683855
+     ],
+     "km": 99,
+     "block": {
+      "length": 28.4,
+      "width": 15.4,
+      "fill": 0.57,
+      "parts": 3,
+      "area": 249
+     },
+     "tint": 0,
+     "footprint": 65.42295285688749
+    }
+   },
+   "after": {
+    "look": "vila",
+    "info": {
+     "point": [
+      8.585182182929694,
+      50.18103400683855
+     ],
+     "km": 99,
+     "block": {
+      "length": 28.4,
+      "width": 15.4,
+      "fill": 0.57,
+      "parts": 3,
+      "area": 249
+     },
+     "tint": 0,
+     "footprint": 65.42295285688749
+    }
+   }
+  },
+  {
+   "id": "DEa03",
+   "town": "dresden",
+   "far": true,
+   "city": "germany",
+   "point": [
+    13.7792785,
+    51.0698849
+   ],
+   "mapillary": "2767191433578936",
+   "pano": false,
+   "dist": 16.9,
+   "off": 21.1,
+   "panels": true,
+   "before": {
+    "look": "plocha",
+    "info": {
+     "point": [
+      13.779278501823057,
+      51.069884855908434
+     ],
+     "km": 99,
+     "block": {
+      "length": 22.1,
+      "width": 15.8,
+      "fill": 0.66,
+      "parts": 1,
+      "area": 230
+     },
+     "tint": 0,
+     "type": "apartments",
+     "footprint": 229.72604570252088
+    }
+   },
+   "after": {
+    "look": "vila",
+    "info": {
+     "point": [
+      13.779278501823057,
+      51.069884855908434
+     ],
+     "km": 99,
+     "block": {
+      "length": 22.1,
+      "width": 15.8,
+      "fill": 0.66,
+      "parts": 1,
+      "area": 230
+     },
+     "tint": 0,
+     "type": "apartments",
+     "footprint": 229.72604570252088
+    }
+   }
+  },
+  {
+   "id": "DEa04",
+   "town": "frankfurt",
+   "far": false,
+   "city": "germany",
+   "point": [
+    8.6795743,
+    50.100203
+   ],
+   "mapillary": "1203389270691035",
+   "pano": false,
+   "dist": 22.4,
+   "off": 21.6,
+   "panels": false,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "point": [
+      8.679574347669616,
+      50.10020302879541
+     ],
+     "km": 99,
+     "block": {
+      "length": 32.5,
+      "width": 23.8,
+      "fill": 0.49,
+      "parts": 2,
+      "area": 380
+     },
+     "tint": 0,
+     "footprint": 191.86358311741316
+    }
+   },
+   "after": {
+    "look": "vila",
+    "info": {
+     "point": [
+      8.679574347669616,
+      50.10020302879541
+     ],
+     "km": 99,
+     "block": {
+      "length": 32.5,
+      "width": 23.8,
+      "fill": 0.49,
+      "parts": 2,
+      "area": 380
+     },
+     "tint": 0,
+     "footprint": 191.86358311741316
+    }
+   }
+  },
+  {
+   "id": "DEa05",
+   "town": "muenchen",
+   "far": true,
+   "city": "germany",
+   "point": [
+    11.4598501,
+    48.1910697
+   ],
+   "mapillary": "624595808907268",
+   "pano": false,
+   "dist": 21.9,
+   "off": -9.6,
+   "panels": false,
+   "before": {
+    "look": "povalecny",
+    "info": {
+     "point": [
+      11.459850141830449,
+      48.19106969377759
+     ],
+     "km": 99,
+     "block": {
+      "length": 17.3,
+      "width": 13.7,
+      "fill": 0.68,
+      "parts": 1,
+      "area": 161
+     },
+     "tint": 0,
+     "footprint": 160.83361641054228
+    }
+   },
+   "after": {
+    "look": "vila",
+    "info": {
+     "point": [
+      11.459850141830449,
+      48.19106969377759
+     ],
+     "km": 99,
+     "block": {
+      "length": 17.3,
+      "width": 13.7,
+      "fill": 0.68,
+      "parts": 1,
+      "area": 161
+     },
+     "tint": 0,
+     "footprint": 160.83361641054228
+    }
+   }
+  },
+  {
+   "id": "DEa06",
+   "town": "leipzig",
+   "far": true,
+   "city": "germany",
+   "point": [
+    12.301119,
+    51.2696159
+   ],
+   "mapillary": "307004507691486",
+   "pano": false,
+   "dist": 23.4,
+   "off": 30.3,
+   "panels": true,
+   "before": {
+    "look": "plocha",
+    "info": {
+     "point": [
+      12.301119023631227,
+      51.26961590253688
+     ],
+     "km": 99,
+     "block": {
+      "length": 15.6,
+      "width": 10.2,
+      "fill": 0.74,
+      "parts": 2,
+      "area": 117
+     },
+     "tint": 0,
+     "type": "residential",
+     "footprint": 58.52834131383406
+    }
+   },
+   "after": {
+    "look": "vila",
+    "info": {
+     "point": [
+      12.301119023631227,
+      51.26961590253688
+     ],
+     "km": 99,
+     "block": {
+      "length": 15.6,
+      "width": 10.2,
+      "fill": 0.74,
+      "parts": 2,
+      "area": 117
+     },
+     "tint": 0,
+     "type": "residential",
+     "footprint": 58.52834131383406
+    }
+   }
+  },
+  {
+   "id": "DEa07",
+   "town": "muenchen",
+   "far": true,
+   "city": "germany",
+   "point": [
+    11.4277383,
+    48.1276904
+   ],
+   "mapillary": "854085913056055",
+   "pano": false,
+   "dist": 19.2,
+   "off": 32.9,
+   "panels": false,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "point": [
+      11.42773829119443,
+      48.127690406074045
+     ],
+     "km": 99,
+     "block": {
+      "length": 26.5,
+      "width": 19.3,
+      "fill": 0.53,
+      "parts": 3,
+      "area": 270
+     },
+     "tint": 0,
+     "footprint": 118.31164047408674
+    }
+   },
+   "after": {
+    "look": "vila",
+    "info": {
+     "point": [
+      11.42773829119443,
+      48.127690406074045
+     ],
+     "km": 99,
+     "block": {
+      "length": 26.5,
+      "width": 19.3,
+      "fill": 0.53,
+      "parts": 3,
+      "area": 270
+     },
+     "tint": 0,
+     "footprint": 118.31164047408674
+    }
+   }
+  },
+  {
+   "id": "DEa08",
+   "town": "frankfurt",
+   "far": false,
+   "city": "germany",
+   "point": [
+    8.6851645,
+    50.1068065
+   ],
+   "mapillary": "1191762496077419",
+   "pano": false,
+   "dist": 17.8,
+   "off": -22.1,
+   "panels": false,
+   "before": {
+    "look": "povalecny",
+    "info": {
+     "point": [
+      8.685164516287406,
+      50.10680652870292
+     ],
+     "km": 99,
+     "block": {
+      "length": 32.4,
+      "width": 13.5,
+      "fill": 0.81,
+      "parts": 2,
+      "area": 353
+     },
+     "tint": 0,
+     "footprint": 169.3354794465431
+    }
+   },
+   "after": {
+    "look": "vila",
+    "info": {
+     "point": [
+      8.685164516287406,
+      50.10680652870292
+     ],
+     "km": 99,
+     "block": {
+      "length": 32.4,
+      "width": 13.5,
+      "fill": 0.81,
+      "parts": 2,
+      "area": 353
+     },
+     "tint": 0,
+     "footprint": 169.3354794465431
+    }
+   }
+  },
+  {
+   "id": "DEa09",
+   "town": "nuernberg",
+   "far": true,
+   "city": "germany",
+   "point": [
+    11.186259,
+    49.4726729
+   ],
+   "mapillary": "1574052270789514",
+   "pano": false,
+   "dist": 24.6,
+   "off": -25.9,
+   "panels": false,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "point": [
+      11.186258950825222,
+      49.472672920119315
+     ],
+     "km": 99,
+     "block": {
+      "length": 17,
+      "width": 16.3,
+      "fill": 0.55,
+      "parts": 1,
+      "area": 151
+     },
+     "tint": 0,
+     "footprint": 151.17407717234124
+    }
+   },
+   "after": {
+    "look": "vila",
+    "info": {
+     "point": [
+      11.186258950825222,
+      49.472672920119315
+     ],
+     "km": 99,
+     "block": {
+      "length": 17,
+      "width": 16.3,
+      "fill": 0.55,
+      "parts": 1,
+      "area": 151
+     },
+     "tint": 0,
+     "footprint": 151.17407717234124
+    }
+   }
+  },
+  {
+   "id": "DEa10",
+   "town": "freiburg",
+   "far": true,
+   "city": "germany",
+   "point": [
+    7.85565,
+    48.0986272
+   ],
+   "mapillary": "4113741365511137",
+   "pano": true,
+   "dist": 18.6,
+   "off": -94.1,
+   "panels": false,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "point": [
+      7.855649956876319,
+      48.09862719625507
+     ],
+     "km": 99,
+     "block": {
+      "length": 15.6,
+      "width": 20.5,
+      "fill": 0.74,
+      "parts": 2,
+      "area": 236
+     },
+     "tint": 0,
+     "footprint": 92.89507383772889
+    }
+   },
+   "after": {
+    "look": "vila",
+    "info": {
+     "point": [
+      7.855649956876319,
+      48.09862719625507
+     ],
+     "km": 99,
+     "block": {
+      "length": 15.6,
+      "width": 20.5,
+      "fill": 0.74,
+      "parts": 2,
+      "area": 236
+     },
+     "tint": 0,
+     "footprint": 92.89507383772889
+    }
+   }
+  },
+  {
+   "id": "DEa11",
+   "town": "hamburg",
+   "far": true,
+   "city": "germany",
+   "point": [
+    9.9953817,
+    53.4652092
+   ],
+   "mapillary": "1059820932773272",
+   "pano": false,
+   "dist": 24.8,
+   "off": 23.8,
+   "panels": false,
+   "before": {
+    "look": "povalecny",
+    "info": {
+     "point": [
+      9.995381684505052,
+      53.46520921077775
+     ],
+     "km": 99,
+     "block": {
+      "length": 9.2,
+      "width": 8.9,
+      "fill": 0.76,
+      "parts": 1,
+      "area": 63
+     },
+     "tint": 0,
+     "footprint": 62.65336746959383
+    }
+   },
+   "after": {
+    "look": "vila",
+    "info": {
+     "point": [
+      9.995381684505052,
+      53.46520921077775
+     ],
+     "km": 99,
+     "block": {
+      "length": 9.2,
+      "width": 8.9,
+      "fill": 0.76,
+      "parts": 1,
+      "area": 63
+     },
+     "tint": 0,
+     "footprint": 62.65336746959383
+    }
+   }
+  },
+  {
+   "id": "DEa12",
+   "town": "muenchen",
+   "far": true,
+   "city": "germany",
+   "point": [
+    11.4780508,
+    48.1300286
+   ],
+   "mapillary": "225297825772956",
+   "pano": false,
+   "dist": 25.6,
+   "off": -23.4,
+   "panels": false,
+   "before": {
+    "look": "povalecny",
+    "info": {
+     "point": [
+      11.478050765744932,
+      48.130028562875395
+     ],
+     "km": 99,
+     "block": {
+      "length": 18,
+      "width": 12.8,
+      "fill": 0.69,
+      "parts": 1,
+      "area": 159
+     },
+     "tint": 0,
+     "type": "apartments",
+     "footprint": 158.56035144723103
+    }
+   },
+   "after": {
+    "look": "vila",
+    "info": {
+     "point": [
+      11.478050765744932,
+      48.130028562875395
+     ],
+     "km": 99,
+     "block": {
+      "length": 18,
+      "width": 12.8,
+      "fill": 0.69,
+      "parts": 1,
+      "area": 159
+     },
+     "tint": 0,
+     "type": "apartments",
+     "footprint": 158.56035144723103
+    }
+   }
+  },
+  {
+   "id": "DEa13",
+   "town": "frankfurt",
+   "far": true,
+   "city": "germany",
+   "point": [
+    8.5855898,
+    50.083629
+   ],
+   "mapillary": "305514504394541",
+   "pano": false,
+   "dist": 22.2,
+   "off": 30.6,
+   "panels": false,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "point": [
+      8.58558982709975,
+      50.08362898460737
+     ],
+     "km": 99,
+     "block": {
+      "length": 25,
+      "width": 18.1,
+      "fill": 0.52,
+      "parts": 2,
+      "area": 234
+     },
+     "tint": 0,
+     "footprint": 116.10836532857911
+    }
+   },
+   "after": {
+    "look": "vila",
+    "info": {
+     "point": [
+      8.58558982709975,
+      50.08362898460737
+     ],
+     "km": 99,
+     "block": {
+      "length": 25,
+      "width": 18.1,
+      "fill": 0.52,
+      "parts": 2,
+      "area": 234
+     },
+     "tint": 0,
+     "footprint": 116.10836532857911
+    }
+   }
+  },
+  {
+   "id": "DEa14",
+   "town": "berlin",
+   "far": true,
+   "city": "germany",
+   "point": [
+    13.3844854,
+    52.6170911
+   ],
+   "mapillary": "1066433901275918",
+   "pano": false,
+   "dist": 23,
+   "off": 19.5,
+   "panels": true,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "point": [
+      13.384485353587465,
+      52.61709107341563
+     ],
+     "km": 99,
+     "block": {
+      "length": 19.7,
+      "width": 15.8,
+      "fill": 0.6,
+      "parts": 2,
+      "area": 187
+     },
+     "tint": 0,
+     "footprint": 101.63691625581976
+    }
+   },
+   "after": {
+    "look": "vila",
+    "info": {
+     "point": [
+      13.384485353587465,
+      52.61709107341563
+     ],
+     "km": 99,
+     "block": {
+      "length": 19.7,
+      "width": 15.8,
+      "fill": 0.6,
+      "parts": 2,
+      "area": 187
+     },
+     "tint": 0,
+     "footprint": 101.63691625581976
+    }
+   }
+  },
+  {
+   "id": "DEa15",
+   "town": "frankfurt",
+   "far": true,
+   "city": "germany",
+   "point": [
+    8.7253027,
+    50.0947009
+   ],
+   "mapillary": "3834053083550313",
+   "pano": false,
+   "dist": 8.7,
+   "off": 24.3,
+   "panels": false,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "point": [
+      8.725302659697231,
+      50.09470090505195
+     ],
+     "km": 99,
+     "block": {
+      "length": 28.2,
+      "width": 13.8,
+      "fill": 0.62,
+      "parts": 2,
+      "area": 240
+     },
+     "tint": 0,
+     "type": "apartments",
+     "footprint": 200.57061825836877
+    }
+   },
+   "after": {
+    "look": "vila",
+    "info": {
+     "point": [
+      8.725302659697231,
+      50.09470090505195
+     ],
+     "km": 99,
+     "block": {
+      "length": 28.2,
+      "width": 13.8,
+      "fill": 0.62,
+      "parts": 2,
+      "area": 240
+     },
+     "tint": 0,
+     "type": "apartments",
+     "footprint": 200.57061825836877
+    }
+   }
+  },
+  {
+   "id": "DEa16",
+   "town": "berlin",
+   "far": true,
+   "city": "germany",
+   "point": [
+    13.3007469,
+    52.441307
+   ],
+   "mapillary": "475749607179447",
+   "pano": false,
+   "dist": 20.6,
+   "off": 5.7,
+   "panels": true,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "point": [
+      13.30074688138184,
+      52.441306999037195
+     ],
+     "km": 99,
+     "block": {
+      "length": 29.1,
+      "width": 23.6,
+      "fill": 0.54,
+      "parts": 2,
+      "area": 368
+     },
+     "tint": 0,
+     "type": "apartments",
+     "footprint": 180.08124033681923
+    }
+   },
+   "after": {
+    "look": "vila",
+    "info": {
+     "point": [
+      13.30074688138184,
+      52.441306999037195
+     ],
+     "km": 99,
+     "block": {
+      "length": 29.1,
+      "width": 23.6,
+      "fill": 0.54,
+      "parts": 2,
+      "area": 368
+     },
+     "tint": 0,
+     "type": "apartments",
+     "footprint": 180.08124033681923
+    }
+   }
+  }
+ ],
+ "controls": [
+  {
+   "town": "berlin",
+   "point": [
+    13.29192561560194,
+    52.47319192771263
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     13.29192561560194,
+     52.47319192771263
+    ],
+    "km": 99,
+    "block": {
+     "length": 189.2,
+     "width": 74.5,
+     "fill": 0.27,
+     "parts": 10,
+     "area": 3797
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 455.5022926813949
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "frankfurt",
+   "point": [
+    8.695468821764841,
+    50.104009475088574
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     8.695468821764841,
+     50.104009475088574
+    ],
+    "km": 99,
+    "block": {
+     "length": 29.6,
+     "width": 25.4,
+     "fill": 0.57,
+     "parts": 4,
+     "area": 433
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "side_hipped",
+    "footprint": 123.56083386813862
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "koeln",
+   "point": [
+    6.975246937591645,
+    50.93558968362056
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     6.975246937591645,
+     50.93558968362056
+    ],
+    "km": 99,
+    "block": {
+     "length": 84.2,
+     "width": 41.9,
+     "fill": 0.55,
+     "parts": 37,
+     "area": 1924
+    },
+    "tint": 0,
+    "type": "terrace",
+    "roofShape": "gabled",
+    "footprint": 95.80195697761405
+   },
+   "look": "nizky"
+  },
+  {
+   "town": "koeln",
+   "point": [
+    6.948344353322426,
+    50.93140928430434
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     6.948344353322426,
+     50.93140928430434
+    ],
+    "km": 99,
+    "block": {
+     "length": 88.7,
+     "width": 32.7,
+     "fill": 0.38,
+     "parts": 9,
+     "area": 1096
+    },
+    "tint": 0,
+    "roofShape": "hipped",
+    "footprint": 202.48060867881213
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "dresden",
+   "point": [
+    13.73782877057171,
+    51.03927581115972
+   ],
+   "info": {
+    "levels": 3,
+    "point": [
+     13.73782877057171,
+     51.03927581115972
+    ],
+    "km": 99,
+    "block": {
+     "length": 54.6,
+     "width": 42.2,
+     "fill": 0.61,
+     "parts": 1,
+     "area": 1396
+    },
+    "tint": 0,
+    "type": "office",
+    "roofShape": "flat",
+    "footprint": 1395.51323620321
+   },
+   "look": "plocha"
+  },
+  {
+   "town": "hamburg",
+   "point": [
+    9.974791497670834,
+    53.452316600832944
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     9.974791497670834,
+     53.452316600832944
+    ],
+    "km": 99,
+    "block": {
+     "length": 186.2,
+     "width": 104.5,
+     "fill": 0.16,
+     "parts": 19,
+     "area": 3081
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "gabled",
+    "footprint": 170.79127353657077
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "leipzig",
+   "point": [
+    12.369273016897642,
+    51.331835457884715
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     12.369273016897642,
+     51.331835457884715
+    ],
+    "km": 99,
+    "block": {
+     "length": 114.1,
+     "width": 47.2,
+     "fill": 0.65,
+     "parts": 1,
+     "area": 3498
+    },
+    "tint": 0,
+    "type": "school",
+    "roofShape": "flat",
+    "footprint": 3498.13799695721
+   },
+   "look": "skola"
+  },
+  {
+   "town": "hamburg",
+   "point": [
+    10.003407485096682,
+    53.540641325517576
+   ],
+   "info": {
+    "levels": 7,
+    "point": [
+     10.003407485096682,
+     53.540641325517576
+    ],
+    "km": 99,
+    "block": {
+     "length": 74.1,
+     "width": 28.2,
+     "fill": 0.63,
+     "parts": 1,
+     "area": 1326
+    },
+    "tint": 0,
+    "type": "commercial",
+    "footprint": 1325.8188334043284
+   },
+   "look": "kancelar"
+  },
+  {
+   "town": "muenchen",
+   "point": [
+    11.571951734680573,
+    48.12903329115622
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     11.571951734680573,
+     48.12903329115622
+    ],
+    "km": 99,
+    "block": {
+     "length": 235.4,
+     "width": 200.1,
+     "fill": 0.24,
+     "parts": 40,
+     "area": 11092
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "hipped",
+    "footprint": 212.7852179812253
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "leipzig",
+   "point": [
+    12.380995162260605,
+    51.34255767768768
+   ],
+   "info": {
+    "levels": 11,
+    "height": 31,
+    "point": [
+     12.380995162260605,
+     51.34255767768768
+    ],
+    "km": 99,
+    "block": {
+     "length": 81.7,
+     "width": 83.9,
+     "fill": 0.45,
+     "parts": 4,
+     "area": 3059
+    },
+    "tint": 0,
+    "type": "hotel",
+    "roofShape": "quadruple_saltbox",
+    "footprint": 1075.6773396921526
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "berlin",
+   "point": [
+    13.398579383003447,
+    52.52661898614395
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     13.398579383003447,
+     52.52661898614395
+    ],
+    "km": 99,
+    "block": {
+     "length": 181.2,
+     "width": 121.1,
+     "fill": 0.34,
+     "parts": 40,
+     "area": 7373
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 1142.0013697259087
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "hamburg",
+   "point": [
+    9.979929182430194,
+    53.546995043904516
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     9.979929182430194,
+     53.546995043904516
+    ],
+    "km": 99,
+    "block": {
+     "length": 70.6,
+     "width": 58.1,
+     "fill": 0.33,
+     "parts": 9,
+     "area": 1368
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 98.00315570000475
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "freiburg",
+   "point": [
+    7.864888838094973,
+    47.991359885307
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     7.864888838094973,
+     47.991359885307
+    ],
+    "km": 99,
+    "block": {
+     "length": 45.3,
+     "width": 18.7,
+     "fill": 0.75,
+     "parts": 4,
+     "area": 632
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "half-hipped",
+    "footprint": 303.9747483254598
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "aachen",
+   "point": [
+    6.098420704546674,
+    50.767608419264924
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     6.098420704546674,
+     50.767608419264924
+    ],
+    "km": 99,
+    "block": {
+     "length": 162.2,
+     "width": 123.8,
+     "fill": 0.35,
+     "parts": 25,
+     "area": 6951
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 205.14119166851924
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "dresden",
+   "point": [
+    13.72058976020841,
+    51.05602806055759
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     13.72058976020841,
+     51.05602806055759
+    ],
+    "km": 99,
+    "block": {
+     "length": 121.4,
+     "width": 72.3,
+     "fill": 0.29,
+     "parts": 7,
+     "area": 2535
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "gabled",
+    "footprint": 177.17842212141932
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "berlin",
+   "point": [
+    13.397661403871572,
+    52.52962012592447
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     13.397661403871572,
+     52.52962012592447
+    ],
+    "km": 99,
+    "block": {
+     "length": 242.3,
+     "width": 142.7,
+     "fill": 0.25,
+     "parts": 41,
+     "area": 8635
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 317.8717525634743
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "nuernberg",
+   "point": [
+    11.090486465742014,
+    49.44886325625122
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     11.090486465742014,
+     49.44886325625122
+    ],
+    "km": 99,
+    "block": {
+     "length": 82.9,
+     "width": 12.2,
+     "fill": 0.88,
+     "parts": 3,
+     "area": 886
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "gabled",
+    "footprint": 306.5020162799369
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "muenchen",
+   "point": [
+    11.579016573553117,
+    48.144006688954
+   ],
+   "info": {
+    "levels": 3,
+    "height": 11,
+    "point": [
+     11.579016573553117,
+     48.144006688954
+    ],
+    "km": 99,
+    "block": {
+     "length": 487.6,
+     "width": 378.7,
+     "fill": 0.25,
+     "parts": 14,
+     "area": 45901
+    },
+    "tint": 0,
+    "roofShape": "hipped",
+    "start": 1779,
+    "footprint": 2287.4415131404726
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "nuernberg",
+   "point": [
+    11.061080260056917,
+    49.46054943221727
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     11.061080260056917,
+     49.46054943221727
+    ],
+    "km": 99,
+    "block": {
+     "length": 134.8,
+     "width": 93,
+     "fill": 0.38,
+     "parts": 29,
+     "area": 4737
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "gabled",
+    "footprint": 632.4409549713756
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "aachen",
+   "point": [
+    6.091465598392777,
+    50.77728680183064
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     6.091465598392777,
+     50.77728680183064
+    ],
+    "km": 99,
+    "block": {
+     "length": 156.8,
+     "width": 155,
+     "fill": 0.5,
+     "parts": 40,
+     "area": 12105
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "flat",
+    "footprint": 266.19469328876403
+   },
+   "look": "funkce"
+  },
+  {
+   "town": "koeln",
+   "point": [
+    7.095188145700765,
+    50.928395848079894
+   ],
+   "info": {
+    "levels": 1,
+    "point": [
+     7.095188145700765,
+     50.928395848079894
+    ],
+    "km": 99,
+    "block": {
+     "length": 28.1,
+     "width": 15.2,
+     "fill": 0.54,
+     "parts": 5,
+     "area": 229
+    },
+    "tint": 0,
+    "footprint": 68.27489942936245
+   },
+   "look": "nizky"
+  },
+  {
+   "town": "berlin",
+   "point": [
+    13.338316593239913,
+    52.4587538067826
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     13.338316593239913,
+     52.4587538067826
+    ],
+    "km": 99,
+    "block": {
+     "length": 85.1,
+     "width": 73,
+     "fill": 0.28,
+     "parts": 7,
+     "area": 1744
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 197.63965435741488
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "hamburg",
+   "point": [
+    9.997626755952997,
+    53.54558321082334
+   ],
+   "info": {
+    "levels": 8,
+    "point": [
+     9.997626755952997,
+     53.54558321082334
+    ],
+    "km": 99,
+    "block": {
+     "length": 73.3,
+     "width": 24.3,
+     "fill": 0.86,
+     "parts": 1,
+     "area": 1538
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 1538.0549774912006
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "koeln",
+   "point": [
+    7.030072072151148,
+    50.90052958453974
+   ],
+   "info": {
+    "levels": 1,
+    "point": [
+     7.030072072151148,
+     50.90052958453974
+    ],
+    "km": 99,
+    "block": {
+     "length": 22.4,
+     "width": 17.4,
+     "fill": 0.7,
+     "parts": 4,
+     "area": 272
+    },
+    "tint": 0,
+    "type": "house",
+    "footprint": 128.0922649930626
+   },
+   "look": "nizky"
+  },
+  {
+   "town": "hamburg",
+   "point": [
+    10.004172507705919,
+    53.54153746287922
+   ],
+   "info": {
+    "levels": 8,
+    "point": [
+     10.004172507705919,
+     53.54153746287922
+    ],
+    "km": 99,
+    "block": {
+     "length": 98.5,
+     "width": 98.5,
+     "fill": 0.34,
+     "parts": 3,
+     "area": 3324
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 1678.6406092227244
+   },
+   "look": "povalecny"
+  },
+  {
+   "town": "koeln",
+   "point": [
+    6.980719404623052,
+    50.9370155352123
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     6.980719404623052,
+     50.9370155352123
+    ],
+    "km": 99,
+    "block": {
+     "length": 241,
+     "width": 59.9,
+     "fill": 0.47,
+     "parts": 31,
+     "area": 6821
+    },
+    "tint": 0,
+    "type": "house",
+    "roofShape": "flat",
+    "footprint": 416.53752176572834
+   },
+   "look": "nizky"
+  },
+  {
+   "town": "berlin",
+   "point": [
+    13.43568404540589,
+    52.537348230601346
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     13.43568404540589,
+     52.537348230601346
+    ],
+    "km": 99,
+    "block": {
+     "length": 188.4,
+     "width": 172.1,
+     "fill": 0.18,
+     "parts": 2,
+     "area": 5771
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "hipped",
+    "footprint": 4364.071606388463
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "leipzig",
+   "point": [
+    12.379179798112425,
+    51.33445534608829
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     12.379179798112425,
+     51.33445534608829
+    ],
+    "km": 99,
+    "block": {
+     "length": 312.1,
+     "width": 214.1,
+     "fill": 0.24,
+     "parts": 23,
+     "area": 16281
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "gabled",
+    "footprint": 270.7037691437331
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "freiburg",
+   "point": [
+    7.8626543183076665,
+    48.001293113705735
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     7.8626543183076665,
+     48.001293113705735
+    ],
+    "km": 99,
+    "block": {
+     "length": 21.6,
+     "width": 12.5,
+     "fill": 0.72,
+     "parts": 2,
+     "area": 194
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "hipped",
+    "footprint": 167.19781923722076
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "nuernberg",
+   "point": [
+    11.079316984574056,
+    49.46595069085298
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     11.079316984574056,
+     49.46595069085298
+    ],
+    "km": 99,
+    "block": {
+     "length": 52.3,
+     "width": 12.1,
+     "fill": 0.91,
+     "parts": 6,
+     "area": 571
+    },
+    "tint": 0,
+    "type": "house",
+    "roofShape": "gabled",
+    "footprint": 95.99820758736587
+   },
+   "look": "nizky"
+  },
+  {
+   "town": "muenchen",
+   "point": [
+    11.59330017303471,
+    48.132140811062754
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     11.59330017303471,
+     48.132140811062754
+    ],
+    "km": 99,
+    "block": {
+     "length": 151.3,
+     "width": 83.5,
+     "fill": 0.38,
+     "parts": 14,
+     "area": 4768
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 365.9900599797074
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "leipzig",
+   "point": [
+    12.272012702865656,
+    51.31559121531027
+   ],
+   "info": {
+    "levels": 2,
+    "point": [
+     12.272012702865656,
+     51.31559121531027
+    ],
+    "km": 99,
+    "block": {
+     "length": 16.8,
+     "width": 15.1,
+     "fill": 0.59,
+     "parts": 1,
+     "area": 148
+    },
+    "tint": 0,
+    "type": "house",
+    "roofShape": "gabled",
+    "footprint": 148.48175357882064
+   },
+   "look": "vila"
+  },
+  {
+   "town": "koeln",
+   "point": [
+    6.952010145089908,
+    50.94724066944362
+   ],
+   "info": {
+    "levels": 3,
+    "point": [
+     6.952010145089908,
+     50.94724066944362
+    ],
+    "km": 99,
+    "block": {
+     "length": 112.7,
+     "width": 61.9,
+     "fill": 0.53,
+     "parts": 39,
+     "area": 3704
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "gabled",
+    "footprint": 350.5481129732443
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "hamburg",
+   "point": [
+    9.88861215477979,
+    53.576213655572346
+   ],
+   "info": {
+    "levels": 7,
+    "point": [
+     9.88861215477979,
+     53.576213655572346
+    ],
+    "km": 99,
+    "block": {
+     "length": 42,
+     "width": 47.7,
+     "fill": 0.42,
+     "parts": 1,
+     "area": 839
+    },
+    "tint": 0,
+    "type": "commercial",
+    "roofShape": "flat",
+    "footprint": 838.6772827015093
+   },
+   "look": "kancelar"
+  },
+  {
+   "town": "hamburg",
+   "point": [
+    9.98249306221084,
+    53.556639487060906
+   ],
+   "info": {
+    "levels": 4,
+    "height": 20,
+    "point": [
+     9.98249306221084,
+     53.556639487060906
+    ],
+    "km": 99,
+    "block": {
+     "length": 79,
+     "width": 59.3,
+     "fill": 0.64,
+     "parts": 1,
+     "area": 3018
+    },
+    "tint": 0,
+    "type": "public",
+    "roofShape": "quadruple_saltbox",
+    "material": "brick",
+    "footprint": 3018.4646012682583
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "muenchen",
+   "point": [
+    11.580343592363182,
+    48.12615412372172
+   ],
+   "info": {
+    "levels": 7,
+    "point": [
+     11.580343592363182,
+     48.12615412372172
+    ],
+    "km": 99,
+    "block": {
+     "length": 182.2,
+     "width": 88.6,
+     "fill": 0.49,
+     "parts": 35,
+     "area": 7843
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "gambrel",
+    "footprint": 168.42771128603312
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "aachen",
+   "point": [
+    6.0679718054534195,
+    50.77489419463349
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     6.0679718054534195,
+     50.77489419463349
+    ],
+    "km": 99,
+    "block": {
+     "length": 90.9,
+     "width": 28.5,
+     "fill": 0.47,
+     "parts": 2,
+     "area": 1212
+    },
+    "tint": 0,
+    "type": "dormitory",
+    "footprint": 593.5199417246031
+   },
+   "look": "povalecny"
+  },
+  {
+   "town": "frankfurt",
+   "point": [
+    8.640378997915489,
+    50.079569288162205
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     8.640378997915489,
+     50.079569288162205
+    ],
+    "km": 99,
+    "block": {
+     "length": 42.4,
+     "width": 12.4,
+     "fill": 0.87,
+     "parts": 2,
+     "area": 457
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 228.6785565197365
+   },
+   "look": "povalecny"
+  },
+  {
+   "town": "frankfurt",
+   "point": [
+    8.693040273277058,
+    50.11480377598612
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     8.693040273277058,
+     50.11480377598612
+    ],
+    "km": 99,
+    "block": {
+     "length": 145.2,
+     "width": 136,
+     "fill": 0.38,
+     "parts": 12,
+     "area": 7578
+    },
+    "tint": 0,
+    "type": "office",
+    "footprint": 1848.2032078208424
+   },
+   "look": "kancelar"
+  },
+  {
+   "town": "hamburg",
+   "point": [
+    9.98699469405362,
+    53.55420156881056
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     9.98699469405362,
+     53.55420156881056
+    ],
+    "km": 99,
+    "block": {
+     "length": 201.6,
+     "width": 153.7,
+     "fill": 0.34,
+     "parts": 16,
+     "area": 10545
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 122.11859828089837
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "aachen",
+   "point": [
+    6.094166719316673,
+    50.77141550311092
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     6.094166719316673,
+     50.77141550311092
+    ],
+    "km": 99,
+    "block": {
+     "length": 178.1,
+     "width": 68.9,
+     "fill": 0.4,
+     "parts": 41,
+     "area": 4924
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 78.2328766270075
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "aachen",
+   "point": [
+    6.071392108004188,
+    50.7858914022664
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     6.071392108004188,
+     50.7858914022664
+    ],
+    "km": 99,
+    "block": {
+     "length": 137.3,
+     "width": 128.4,
+     "fill": 0.4,
+     "parts": 26,
+     "area": 6988
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 684.0508016512554
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "frankfurt",
+   "point": [
+    8.661780698988032,
+    50.10819555598772
+   ],
+   "info": {
+    "levels": 7,
+    "point": [
+     8.661780698988032,
+     50.10819555598772
+    ],
+    "km": 99,
+    "block": {
+     "length": 48.6,
+     "width": 34.5,
+     "fill": 0.58,
+     "parts": 1,
+     "area": 977
+    },
+    "tint": 0,
+    "type": "hotel",
+    "roofShape": "mansard",
+    "material": "stone",
+    "footprint": 976.5480119267431
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "koeln",
+   "point": [
+    6.975096782743976,
+    50.932485129207755
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     6.975096782743976,
+     50.932485129207755
+    ],
+    "km": 99,
+    "block": {
+     "length": 118.9,
+     "width": 71.4,
+     "fill": 0.42,
+     "parts": 18,
+     "area": 3527
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 271.12670121649387
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "muenchen",
+   "point": [
+    11.557506176445369,
+    48.08890938782052
+   ],
+   "info": {
+    "levels": 2,
+    "point": [
+     11.557506176445369,
+     48.08890938782052
+    ],
+    "km": 99,
+    "block": {
+     "length": 15.9,
+     "width": 13,
+     "fill": 0.68,
+     "parts": 1,
+     "area": 141
+    },
+    "tint": 0,
+    "roofShape": "gabled",
+    "footprint": 140.60220669402452
+   },
+   "look": "nizky"
+  },
+  {
+   "town": "nuernberg",
+   "point": [
+    11.084840783342749,
+    49.45269733696003
+   ],
+   "info": {
+    "levels": 3,
+    "point": [
+     11.084840783342749,
+     49.45269733696003
+    ],
+    "km": 99,
+    "block": {
+     "length": 102,
+     "width": 56.8,
+     "fill": 0.55,
+     "parts": 1,
+     "area": 3181
+    },
+    "tint": 0,
+    "type": "school",
+    "roofShape": "flat",
+    "footprint": 2694.576773860405
+   },
+   "look": "skola"
+  },
+  {
+   "town": "hamburg",
+   "point": [
+    9.99677601381693,
+    53.53905932909381
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     9.99677601381693,
+     53.53905932909381
+    ],
+    "km": 99,
+    "block": {
+     "length": 164.9,
+     "width": 92.4,
+     "fill": 0.74,
+     "parts": 2,
+     "area": 11201
+    },
+    "tint": 0,
+    "footprint": 10319.197101614121
+   },
+   "look": "povalecny"
+  },
+  {
+   "town": "muenchen",
+   "point": [
+    11.581276958153076,
+    48.135180202360395
+   ],
+   "info": {
+    "levels": 8,
+    "point": [
+     11.581276958153076,
+     48.135180202360395
+    ],
+    "km": 99,
+    "block": {
+     "length": 74.7,
+     "width": 56.5,
+     "fill": 0.57,
+     "parts": 11,
+     "area": 2414
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "hipped",
+    "footprint": 277.66518351378
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "koeln",
+   "point": [
+    6.953996951639294,
+    50.93703337699156
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     6.953996951639294,
+     50.93703337699156
+    ],
+    "km": 99,
+    "block": {
+     "length": 59.6,
+     "width": 52.6,
+     "fill": 0.9,
+     "parts": 14,
+     "area": 2824
+    },
+    "tint": 0,
+    "roofShape": "flat",
+    "footprint": 69.81143876393435
+   },
+   "look": "funkce"
+  },
+  {
+   "town": "nuernberg",
+   "point": [
+    11.078682745437508,
+    49.44290328348616
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     11.078682745437508,
+     49.44290328348616
+    ],
+    "km": 99,
+    "block": {
+     "length": 121.8,
+     "width": 109.5,
+     "fill": 0.37,
+     "parts": 12,
+     "area": 4988
+    },
+    "tint": 0,
+    "type": "house",
+    "roofShape": "flat",
+    "footprint": 506.2225309607297
+   },
+   "look": "nizky"
+  },
+  {
+   "town": "nuernberg",
+   "point": [
+    10.957279560863098,
+    49.50724865037793
+   ],
+   "info": {
+    "levels": 2,
+    "point": [
+     10.957279560863098,
+     49.50724865037793
+    ],
+    "km": 99,
+    "block": {
+     "length": 27.6,
+     "width": 23.3,
+     "fill": 0.45,
+     "parts": 2,
+     "area": 289
+    },
+    "tint": 0,
+    "type": "civic",
+    "footprint": 227.79713931365268
+   },
+   "look": "nizky"
+  },
+  {
+   "town": "freiburg",
+   "point": [
+    7.847144262580623,
+    48.006322315135606
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     7.847144262580623,
+     48.006322315135606
+    ],
+    "km": 99,
+    "block": {
+     "length": 71.5,
+     "width": 35.8,
+     "fill": 0.4,
+     "parts": 5,
+     "area": 1020
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "gabled",
+    "footprint": 261.06830612225895
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "berlin",
+   "point": [
+    13.404844318910305,
+    52.513731548177084
+   ],
+   "info": {
+    "levels": 7,
+    "point": [
+     13.404844318910305,
+     52.513731548177084
+    ],
+    "km": 99,
+    "block": {
+     "length": 58.8,
+     "width": 26.9,
+     "fill": 0.86,
+     "parts": 1,
+     "area": 1361
+    },
+    "tint": 0,
+    "type": "hotel",
+    "roofShape": "flat",
+    "footprint": 1360.7744453756459
+   },
+   "look": "plocha"
+  },
+  {
+   "town": "koeln",
+   "point": [
+    6.819440996244776,
+    50.90744843679827
+   ],
+   "info": {
+    "levels": 2,
+    "point": [
+     6.819440996244776,
+     50.90744843679827
+    ],
+    "km": 99,
+    "block": {
+     "length": 77.5,
+     "width": 62.9,
+     "fill": 0.47,
+     "parts": 3,
+     "area": 2304
+    },
+    "tint": 0,
+    "footprint": 1227.5256125979295
+   },
+   "look": "nizky"
+  },
+  {
+   "town": "hamburg",
+   "point": [
+    10.010389830637852,
+    53.6319415219032
+   ],
+   "info": {
+    "levels": 3,
+    "point": [
+     10.010389830637852,
+     53.6319415219032
+    ],
+    "km": 99,
+    "block": {
+     "length": 36.4,
+     "width": 14,
+     "fill": 0.85,
+     "parts": 1,
+     "area": 436
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "gabled",
+    "footprint": 436.4825726827421
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "berlin",
+   "point": [
+    13.444987687153068,
+    52.49747027444967
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     13.444987687153068,
+     52.49747027444967
+    ],
+    "km": 99,
+    "block": {
+     "length": 211.1,
+     "width": 145,
+     "fill": 0.33,
+     "parts": 37,
+     "area": 10024
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "gabled",
+    "footprint": 344.3342253264647
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "hamburg",
+   "point": [
+    10.07093131497104,
+    53.60946610114471
+   ],
+   "info": {
+    "levels": 3,
+    "point": [
+     10.07093131497104,
+     53.60946610114471
+    ],
+    "km": 99,
+    "block": {
+     "length": 25.7,
+     "width": 9.6,
+     "fill": 0.87,
+     "parts": 6,
+     "area": 215
+    },
+    "tint": 0,
+    "type": "house",
+    "roofShape": "gabled",
+    "footprint": 36.879637965523784
+   },
+   "look": "nizky"
+  },
+  {
+   "town": "aachen",
+   "point": [
+    6.085017878900375,
+    50.772243203487825
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     6.085017878900375,
+     50.772243203487825
+    ],
+    "km": 99,
+    "block": {
+     "length": 205.6,
+     "width": 79.4,
+     "fill": 0.57,
+     "parts": 30,
+     "area": 9390
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 93.02498131941957
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "nuernberg",
+   "point": [
+    11.072355407801188,
+    49.46381521012996
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     11.072355407801188,
+     49.46381521012996
+    ],
+    "km": 99,
+    "block": {
+     "length": 55,
+     "width": 39,
+     "fill": 0.4,
+     "parts": 6,
+     "area": 855
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "half-hipped",
+    "footprint": 192.40487255625885
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "freiburg",
+   "point": [
+    7.857073109486553,
+    48.00718565806504
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     7.857073109486553,
+     48.00718565806504
+    ],
+    "km": 99,
+    "block": {
+     "length": 94.2,
+     "width": 55.4,
+     "fill": 0.45,
+     "parts": 5,
+     "area": 2324
+    },
+    "tint": 0,
+    "type": "hospital",
+    "roofShape": "flat",
+    "footprint": 1544.090263947116
+   },
+   "look": "kancelar"
+  },
+  {
+   "town": "berlin",
+   "point": [
+    13.420549543702265,
+    52.518870548653325
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     13.420549543702265,
+     52.518870548653325
+    ],
+    "km": 99,
+    "block": {
+     "length": 163.8,
+     "width": 50.1,
+     "fill": 0.59,
+     "parts": 6,
+     "area": 4840
+    },
+    "tint": 0,
+    "type": "commercial",
+    "footprint": 1716.393888592448
+   },
+   "look": "plocha"
+  },
+  {
+   "town": "dresden",
+   "point": [
+    13.715941161521588,
+    51.08079553852032
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     13.715941161521588,
+     51.08079553852032
+    ],
+    "km": 99,
+    "block": {
+     "length": 22.1,
+     "width": 20.4,
+     "fill": 0.66,
+     "parts": 1,
+     "area": 298
+    },
+    "tint": 0,
+    "type": "house",
+    "roofShape": "mansard",
+    "footprint": 298.49496286041904
+   },
+   "look": "nizky"
+  },
+  {
+   "town": "berlin",
+   "point": [
+    13.348764041386397,
+    52.46126210752198
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     13.348764041386397,
+     52.46126210752198
+    ],
+    "km": 99,
+    "block": {
+     "length": 191.1,
+     "width": 93.8,
+     "fill": 0.3,
+     "parts": 28,
+     "area": 5348
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 226.49880689517772
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "muenchen",
+   "point": [
+    11.572050124972487,
+    48.13077194233171
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     11.572050124972487,
+     48.13077194233171
+    ],
+    "km": 99,
+    "block": {
+     "length": 108.1,
+     "width": 55.7,
+     "fill": 0.55,
+     "parts": 11,
+     "area": 3293
+    },
+    "tint": 0,
+    "type": "residential",
+    "roofShape": "gabled",
+    "footprint": 427.6036221086283
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "berlin",
+   "point": [
+    13.396814379858395,
+    52.51568873526641
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     13.396814379858395,
+     52.51568873526641
+    ],
+    "km": 99,
+    "block": {
+     "length": 78.1,
+     "width": 35.7,
+     "fill": 0.48,
+     "parts": 1,
+     "area": 1347
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 1347.1841647779675
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "koeln",
+   "point": [
+    7.001552102986387,
+    50.965619627256615
+   ],
+   "info": {
+    "levels": 3,
+    "point": [
+     7.001552102986387,
+     50.965619627256615
+    ],
+    "km": 99,
+    "block": {
+     "length": 145.1,
+     "width": 106.8,
+     "fill": 0.28,
+     "parts": 40,
+     "area": 4285
+    },
+    "tint": 0,
+    "type": "terrace",
+    "footprint": 150.39107420294113
+   },
+   "look": "nizky"
+  },
+  {
+   "town": "berlin",
+   "point": [
+    13.391877660769039,
+    52.52503503560427
+   ],
+   "info": {
+    "levels": 7,
+    "point": [
+     13.391877660769039,
+     52.52503503560427
+    ],
+    "km": 99,
+    "block": {
+     "length": 378,
+     "width": 168.1,
+     "fill": 0.44,
+     "parts": 26,
+     "area": 28204
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "double_saltbox",
+    "footprint": 1542.3771717927386
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "dresden",
+   "point": [
+    13.722759047954376,
+    51.04231804503863
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     13.722759047954376,
+     51.04231804503863
+    ],
+    "km": 99,
+    "block": {
+     "length": 41.5,
+     "width": 25.4,
+     "fill": 0.87,
+     "parts": 1,
+     "area": 917
+    },
+    "tint": 0,
+    "type": "industrial",
+    "roofShape": "flat",
+    "footprint": 917.4992528673058
+   },
+   "look": "funkce"
+  },
+  {
+   "town": "nuernberg",
+   "point": [
+    11.060540156319478,
+    49.45231648146948
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     11.060540156319478,
+     49.45231648146948
+    ],
+    "km": 99,
+    "block": {
+     "length": 203.9,
+     "width": 114,
+     "fill": 0.36,
+     "parts": 2,
+     "area": 8269
+    },
+    "tint": 0,
+    "type": "office",
+    "roofShape": "gabled",
+    "footprint": 6401.039708693444
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "muenchen",
+   "point": [
+    11.569241890660628,
+    48.14408728381112
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     11.569241890660628,
+     48.14408728381112
+    ],
+    "km": 99,
+    "block": {
+     "length": 184.5,
+     "width": 156.9,
+     "fill": 0.34,
+     "parts": 21,
+     "area": 9715
+    },
+    "tint": 0,
+    "type": "commercial",
+    "footprint": 475.95634119604165
+   },
+   "look": "kancelar"
+  },
+  {
+   "town": "dresden",
+   "point": [
+    13.74992325279397,
+    51.05055796312138
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     13.74992325279397,
+     51.05055796312138
+    ],
+    "km": 99,
+    "block": {
+     "length": 194.5,
+     "width": 154.1,
+     "fill": 0.33,
+     "parts": 3,
+     "area": 9938
+    },
+    "tint": 0,
+    "type": "industrial",
+    "footprint": 4869.547708577782
+   },
+   "look": "plocha"
+  },
+  {
+   "town": "berlin",
+   "point": [
+    13.350182551671232,
+    52.454442681507416
+   ],
+   "info": {
+    "levels": 3,
+    "point": [
+     13.350182551671232,
+     52.454442681507416
+    ],
+    "km": 99,
+    "block": {
+     "length": 30.4,
+     "width": 16.3,
+     "fill": 0.62,
+     "parts": 1,
+     "area": 308
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "flat",
+    "footprint": 307.5489270635723
+   },
+   "look": "funkce"
+  },
+  {
+   "town": "freiburg",
+   "point": [
+    7.85321057146671,
+    47.98523896769057
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     7.85321057146671,
+     47.98523896769057
+    ],
+    "km": 99,
+    "block": {
+     "length": 48.2,
+     "width": 20.5,
+     "fill": 0.67,
+     "parts": 3,
+     "area": 665
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 158.18514290776784
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "nuernberg",
+   "point": [
+    11.080455182154838,
+    49.45324671680675
+   ],
+   "info": {
+    "levels": 6,
+    "height": 16,
+    "point": [
+     11.080455182154838,
+     49.45324671680675
+    ],
+    "km": 99,
+    "block": {
+     "length": 174.8,
+     "width": 65.9,
+     "fill": 0.5,
+     "parts": 6,
+     "area": 5732
+    },
+    "tint": 0,
+    "type": "dormitory",
+    "roofShape": "hipped",
+    "footprint": 1357.9102857988644
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "muenchen",
+   "point": [
+    11.569933714379303,
+    48.12858071576853
+   ],
+   "info": {
+    "levels": 7,
+    "point": [
+     11.569933714379303,
+     48.12858071576853
+    ],
+    "km": 99,
+    "block": {
+     "length": 137.7,
+     "width": 67.1,
+     "fill": 0.6,
+     "parts": 24,
+     "area": 5515
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "hipped",
+    "footprint": 310.55661654719756
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "berlin",
+   "point": [
+    13.400846810748108,
+    52.52208151473386
+   ],
+   "info": {
+    "levels": 7,
+    "point": [
+     13.400846810748108,
+     52.52208151473386
+    ],
+    "km": 99,
+    "block": {
+     "length": 137.5,
+     "width": 127.2,
+     "fill": 0.4,
+     "parts": 12,
+     "area": 7050
+    },
+    "tint": 0,
+    "type": "office",
+    "footprint": 2205.267146889922
+   },
+   "look": "plocha"
+  },
+  {
+   "town": "frankfurt",
+   "point": [
+    8.675441407688904,
+    50.122853154681614
+   ],
+   "info": {
+    "levels": 8,
+    "point": [
+     8.675441407688904,
+     50.122853154681614
+    ],
+    "km": 99,
+    "block": {
+     "length": 38.8,
+     "width": 30.4,
+     "fill": 0.48,
+     "parts": 2,
+     "area": 569
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 254.52178930241598
+   },
+   "look": "povalecny"
+  },
+  {
+   "town": "koeln",
+   "point": [
+    6.957856126042539,
+    50.93644115978675
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     6.957856126042539,
+     50.93644115978675
+    ],
+    "km": 99,
+    "block": {
+     "length": 105.3,
+     "width": 66,
+     "fill": 0.51,
+     "parts": 20,
+     "area": 3564
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "flat",
+    "footprint": 276.9251127296768
+   },
+   "look": "funkce"
+  },
+  {
+   "town": "frankfurt",
+   "point": [
+    8.669983440506261,
+    50.204585283678185
+   ],
+   "info": {
+    "levels": 2,
+    "point": [
+     8.669983440506261,
+     50.204585283678185
+    ],
+    "km": 99,
+    "block": {
+     "length": 18.4,
+     "width": 14.3,
+     "fill": 0.52,
+     "parts": 1,
+     "area": 137
+    },
+    "tint": 0,
+    "type": "detached",
+    "roofShape": "hipped",
+    "footprint": 137.08829608521046
+   },
+   "look": "vila"
+  },
+  {
+   "town": "nuernberg",
+   "point": [
+    11.062563869691408,
+    49.44882168622382
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     11.062563869691408,
+     49.44882168622382
+    ],
+    "km": 99,
+    "block": {
+     "length": 272.6,
+     "width": 180.3,
+     "fill": 0.31,
+     "parts": 17,
+     "area": 15130
+    },
+    "tint": 0,
+    "type": "office",
+    "roofShape": "flat",
+    "footprint": 2874.853307846057
+   },
+   "look": "kancelar"
+  },
+  {
+   "town": "freiburg",
+   "point": [
+    7.853680476565111,
+    47.99209040180827
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     7.853680476565111,
+     47.99209040180827
+    ],
+    "km": 99,
+    "block": {
+     "length": 68.7,
+     "width": 54.2,
+     "fill": 0.52,
+     "parts": 3,
+     "area": 1940
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "flat",
+    "footprint": 1508.35709447292
+   },
+   "look": "povalecny"
+  },
+  {
+   "town": "nuernberg",
+   "point": [
+    11.07453091632669,
+    49.441571812819554
+   ],
+   "info": {
+    "levels": 2,
+    "point": [
+     11.07453091632669,
+     49.441571812819554
+    ],
+    "km": 99,
+    "block": {
+     "length": 115.2,
+     "width": 96.9,
+     "fill": 0.67,
+     "parts": 12,
+     "area": 7429
+    },
+    "tint": 0,
+    "type": "retail",
+    "roofShape": "flat",
+    "footprint": 5246.848535221487
+   },
+   "look": "hala"
+  },
+  {
+   "town": "berlin",
+   "point": [
+    13.30652206616828,
+    52.50646041746353
+   ],
+   "info": {
+    "levels": 8,
+    "point": [
+     13.30652206616828,
+     52.50646041746353
+    ],
+    "km": 99,
+    "block": {
+     "length": 277.9,
+     "width": 115,
+     "fill": 0.44,
+     "parts": 28,
+     "area": 14085
+    },
+    "tint": 0,
+    "type": "residential",
+    "roofShape": "flat",
+    "footprint": 679.155100678508
+   },
+   "look": "funkce"
+  },
+  {
+   "town": "berlin",
+   "point": [
+    13.413268351747307,
+    52.51134658618933
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     13.413268351747307,
+     52.51134658618933
+    ],
+    "km": 99,
+    "block": {
+     "length": 130.4,
+     "width": 122.4,
+     "fill": 0.37,
+     "parts": 13,
+     "area": 5928
+    },
+    "tint": 0,
+    "footprint": 549.122867757399
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "hamburg",
+   "point": [
+    9.955421526931572,
+    53.554099037815384
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     9.955421526931572,
+     53.554099037815384
+    ],
+    "km": 99,
+    "block": {
+     "length": 54,
+     "width": 11.9,
+     "fill": 0.87,
+     "parts": 4,
+     "area": 560
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "flat",
+    "footprint": 141.49427182286314
+   },
+   "look": "povalecny"
+  },
+  {
+   "town": "dresden",
+   "point": [
+    13.751157319182344,
+    51.05977688880099
+   ],
+   "info": {
+    "levels": 1,
+    "point": [
+     13.751157319182344,
+     51.05977688880099
+    ],
+    "km": 99,
+    "block": {
+     "length": 53.9,
+     "width": 47.4,
+     "fill": 0.57,
+     "parts": 1,
+     "area": 1469
+    },
+    "tint": 0,
+    "type": "sports_hall",
+    "roofShape": "flat",
+    "footprint": 1469.0936631693512
+   },
+   "look": "hala"
+  },
+  {
+   "town": "leipzig",
+   "point": [
+    12.374091802261841,
+    51.3369009956317
+   ],
+   "info": {
+    "levels": 6,
+    "height": 15,
+    "point": [
+     12.374091802261841,
+     51.3369009956317
+    ],
+    "km": 99,
+    "block": {
+     "length": 209.1,
+     "width": 118.7,
+     "fill": 0.59,
+     "parts": 16,
+     "area": 14556
+    },
+    "tint": 0,
+    "roofShape": "flat",
+    "footprint": 1441.8412762621087
+   },
+   "look": "funkce"
+  },
+  {
+   "town": "berlin",
+   "point": [
+    13.417141617030133,
+    52.51761129138664
+   ],
+   "info": {
+    "levels": 7,
+    "point": [
+     13.417141617030133,
+     52.51761129138664
+    ],
+    "km": 99,
+    "block": {
+     "length": 117.7,
+     "width": 62.6,
+     "fill": 0.79,
+     "parts": 1,
+     "area": 5828
+    },
+    "tint": 0,
+    "type": "office",
+    "roofShape": "many",
+    "footprint": 4865.954381624239
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "berlin",
+   "point": [
+    13.41561537336072,
+    52.52563620136373
+   ],
+   "info": {
+    "levels": 9,
+    "point": [
+     13.41561537336072,
+     52.52563620136373
+    ],
+    "km": 99,
+    "block": {
+     "length": 109.1,
+     "width": 85.6,
+     "fill": 0.44,
+     "parts": 3,
+     "area": 4151
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "flat",
+    "footprint": 848.1522651972264
+   },
+   "look": "plocha"
+  },
+  {
+   "town": "koeln",
+   "point": [
+    6.949768415706487,
+    50.931833392440524
+   ],
+   "info": {
+    "levels": 3,
+    "point": [
+     6.949768415706487,
+     50.931833392440524
+    ],
+    "km": 99,
+    "block": {
+     "length": 117.1,
+     "width": 35.7,
+     "fill": 0.4,
+     "parts": 14,
+     "area": 1687
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "gabled",
+    "footprint": 179.9766139910903
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "nuernberg",
+   "point": [
+    11.058559527256614,
+    49.47975232645692
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     11.058559527256614,
+     49.47975232645692
+    ],
+    "km": 99,
+    "block": {
+     "length": 32.1,
+     "width": 15.6,
+     "fill": 0.77,
+     "parts": 1,
+     "area": 383
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "gabled",
+    "footprint": 383.0851104023677
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "berlin",
+   "point": [
+    13.262857449535092,
+    52.52014062900753
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     13.262857449535092,
+     52.52014062900753
+    ],
+    "km": 99,
+    "block": {
+     "length": 62.9,
+     "width": 31.3,
+     "fill": 0.55,
+     "parts": 1,
+     "area": 1085
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "hipped",
+    "footprint": 1085.3090138035236
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "freiburg",
+   "point": [
+    7.855123963705735,
+    48.00316586382508
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     7.855123963705735,
+     48.00316586382508
+    ],
+    "km": 99,
+    "block": {
+     "length": 93.5,
+     "width": 62.3,
+     "fill": 0.31,
+     "parts": 4,
+     "area": 1829
+    },
+    "tint": 0,
+    "type": "bridge",
+    "roofShape": "flat",
+    "footprint": 40.76862710304613
+   },
+   "look": "povalecny"
+  },
+  {
+   "town": "berlin",
+   "point": [
+    13.403671144793384,
+    52.51584636696204
+   ],
+   "info": {
+    "levels": 4,
+    "height": 22,
+    "point": [
+     13.403671144793384,
+     52.51584636696204
+    ],
+    "km": 99,
+    "block": {
+     "length": 282.5,
+     "width": 94.8,
+     "fill": 0.59,
+     "parts": 7,
+     "area": 15810
+    },
+    "tint": 0,
+    "roofShape": "gabled",
+    "material": "plaster",
+    "footprint": 483.8847149090043
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "hamburg",
+   "point": [
+    9.825460553019782,
+    53.583333442395826
+   ],
+   "info": {
+    "levels": 2,
+    "point": [
+     9.825460553019782,
+     53.583333442395826
+    ],
+    "km": 99,
+    "block": {
+     "length": 17.7,
+     "width": 13.9,
+     "fill": 0.59,
+     "parts": 2,
+     "area": 145
+    },
+    "tint": 0,
+    "type": "semidetached_house",
+    "roofShape": "gabled",
+    "footprint": 70.14823944326236
+   },
+   "look": "vila"
+  },
+  {
+   "town": "berlin",
+   "point": [
+    13.391110494886597,
+    52.527114241597836
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     13.391110494886597,
+     52.527114241597836
+    ],
+    "km": 99,
+    "block": {
+     "length": 380,
+     "width": 93,
+     "fill": 0.47,
+     "parts": 40,
+     "area": 16611
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 486.0161177614556
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "muenchen",
+   "point": [
+    11.562343735019892,
+    48.13110896710908
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     11.562343735019892,
+     48.13110896710908
+    ],
+    "km": 99,
+    "block": {
+     "length": 191.1,
+     "width": 150.8,
+     "fill": 0.32,
+     "parts": 40,
+     "area": 9116
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 210.3172166611921
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "hamburg",
+   "point": [
+    10.028107167859963,
+    53.61769091327369
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     10.028107167859963,
+     53.61769091327369
+    ],
+    "km": 99,
+    "block": {
+     "length": 155.4,
+     "width": 39.7,
+     "fill": 0.36,
+     "parts": 10,
+     "area": 2205
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 154.42460416790945
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "nuernberg",
+   "point": [
+    11.09040326391881,
+    49.441308551816256
+   ],
+   "info": {
+    "levels": 7,
+    "point": [
+     11.09040326391881,
+     49.441308551816256
+    ],
+    "km": 99,
+    "block": {
+     "length": 169,
+     "width": 77.2,
+     "fill": 0.43,
+     "parts": 15,
+     "area": 5600
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "flat",
+    "footprint": 1089.6878294379344
+   },
+   "look": "funkce"
+  },
+  {
+   "town": "berlin",
+   "point": [
+    13.283311523008104,
+    52.58959958550239
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     13.283311523008104,
+     52.58959958550239
+    ],
+    "km": 99,
+    "block": {
+     "length": 239.4,
+     "width": 156.1,
+     "fill": 0.34,
+     "parts": 39,
+     "area": 12745
+    },
+    "tint": 0,
+    "type": "office",
+    "footprint": 623.2851780488918
+   },
+   "look": "plocha"
+  },
+  {
+   "town": "muenchen",
+   "point": [
+    11.566311792252094,
+    48.087618921905715
+   ],
+   "info": {
+    "levels": 3,
+    "point": [
+     11.566311792252094,
+     48.087618921905715
+    ],
+    "km": 99,
+    "block": {
+     "length": 17.3,
+     "width": 13.6,
+     "fill": 0.7,
+     "parts": 1,
+     "area": 164
+    },
+    "tint": 0,
+    "roofShape": "flat",
+    "footprint": 164.03820468528693
+   },
+   "look": "povalecny"
+  },
+  {
+   "town": "leipzig",
+   "point": [
+    12.354394169205264,
+    51.33363048024166
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     12.354394169205264,
+     51.33363048024166
+    ],
+    "km": 99,
+    "block": {
+     "length": 33.3,
+     "width": 20.1,
+     "fill": 0.83,
+     "parts": 1,
+     "area": 556
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 556.0325942723211
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "freiburg",
+   "point": [
+    7.8467778947529325,
+    47.998745673982135
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     7.8467778947529325,
+     47.998745673982135
+    ],
+    "km": 99,
+    "block": {
+     "length": 191.2,
+     "width": 83.9,
+     "fill": 0.32,
+     "parts": 9,
+     "area": 5131
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "gabled",
+    "footprint": 495.8482107756572
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "berlin",
+   "point": [
+    13.35604305118623,
+    52.519291633035756
+   ],
+   "info": {
+    "levels": 7,
+    "point": [
+     13.35604305118623,
+     52.519291633035756
+    ],
+    "km": 99,
+    "block": {
+     "length": 327.2,
+     "width": 120.1,
+     "fill": 0.21,
+     "parts": 2,
+     "area": 8364
+    },
+    "tint": 0,
+    "type": "commercial",
+    "roofShape": "flat",
+    "material": "brick",
+    "footprint": 830.6613637157984
+   },
+   "look": "plocha"
+  },
+  {
+   "town": "dresden",
+   "point": [
+    13.748646691106943,
+    51.06360742844694
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     13.748646691106943,
+     51.06360742844694
+    ],
+    "km": 99,
+    "block": {
+     "length": 107.6,
+     "width": 67.5,
+     "fill": 0.27,
+     "parts": 10,
+     "area": 1941
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "hipped",
+    "footprint": 297.829051986143
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "muenchen",
+   "point": [
+    11.560567188660984,
+    48.14260547060496
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     11.560567188660984,
+     48.14260547060496
+    ],
+    "km": 99,
+    "block": {
+     "length": 273,
+     "width": 150.7,
+     "fill": 0.38,
+     "parts": 40,
+     "area": 15672
+    },
+    "tint": 0,
+    "type": "school",
+    "footprint": 1370.873711564314
+   },
+   "look": "skola"
+  },
+  {
+   "town": "aachen",
+   "point": [
+    6.102813127127863,
+    50.781032505248895
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     6.102813127127863,
+     50.781032505248895
+    ],
+    "km": 99,
+    "block": {
+     "length": 210.7,
+     "width": 127.4,
+     "fill": 0.31,
+     "parts": 40,
+     "area": 8273
+    },
+    "tint": 0,
+    "type": "office",
+    "footprint": 319.0955966085603
+   },
+   "look": "kancelar"
+  },
+  {
+   "town": "nuernberg",
+   "point": [
+    11.066748222315306,
+    49.446643230029686
+   ],
+   "info": {
+    "levels": 1,
+    "point": [
+     11.066748222315306,
+     49.446643230029686
+    ],
+    "km": 99,
+    "block": {
+     "length": 53.3,
+     "width": 33,
+     "fill": 0.47,
+     "parts": 2,
+     "area": 821
+    },
+    "tint": 0,
+    "type": "garage",
+    "footprint": 401.3372413329466
+   },
+   "look": "garaz"
+  },
+  {
+   "town": "aachen",
+   "point": [
+    6.081262430718599,
+    50.7785220384308
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     6.081262430718599,
+     50.7785220384308
+    ],
+    "km": 99,
+    "block": {
+     "length": 120,
+     "width": 52.9,
+     "fill": 0.57,
+     "parts": 10,
+     "area": 3630
+    },
+    "tint": 0,
+    "type": "university",
+    "footprint": 217.53920684220338
+   },
+   "look": "kancelar"
+  },
+  {
+   "town": "berlin",
+   "point": [
+    13.450418640007086,
+    52.447808728538135
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     13.450418640007086,
+     52.447808728538135
+    ],
+    "km": 99,
+    "block": {
+     "length": 40,
+     "width": 13.3,
+     "fill": 0.83,
+     "parts": 3,
+     "area": 442
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "hipped",
+    "footprint": 136.16816185424068
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "hamburg",
+   "point": [
+    10.060239748765483,
+    53.63071386630891
+   ],
+   "info": {
+    "levels": 3,
+    "point": [
+     10.060239748765483,
+     53.63071386630891
+    ],
+    "km": 99,
+    "block": {
+     "length": 14.6,
+     "width": 12.3,
+     "fill": 0.68,
+     "parts": 1,
+     "area": 123
+    },
+    "tint": 0,
+    "type": "detached",
+    "roofShape": "hipped",
+    "material": "brick",
+    "footprint": 123.35389462389685
+   },
+   "look": "vila"
+  },
+  {
+   "town": "freiburg",
+   "point": [
+    7.847170910881593,
+    47.98442131142905
+   ],
+   "info": {
+    "levels": 3,
+    "point": [
+     7.847170910881593,
+     47.98442131142905
+    ],
+    "km": 99,
+    "block": {
+     "length": 19.4,
+     "width": 16.9,
+     "fill": 0.72,
+     "parts": 2,
+     "area": 237
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "many",
+    "footprint": 216.68237442837653
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "berlin",
+   "point": [
+    13.328620634957327,
+    52.44648235921414
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     13.328620634957327,
+     52.44648235921414
+    ],
+    "km": 99,
+    "block": {
+     "length": 173.2,
+     "width": 160.2,
+     "fill": 0.36,
+     "parts": 17,
+     "area": 9864
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "gabled",
+    "footprint": 1611.8803482031587
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "aachen",
+   "point": [
+    6.089044353261086,
+    50.77317452457019
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     6.089044353261086,
+     50.77317452457019
+    ],
+    "km": 99,
+    "block": {
+     "length": 80.2,
+     "width": 72.4,
+     "fill": 0.5,
+     "parts": 11,
+     "area": 2921
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "gabled",
+    "footprint": 84.45552409158574
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "aachen",
+   "point": [
+    6.084972365027426,
+    50.776441760699754
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     6.084972365027426,
+     50.776441760699754
+    ],
+    "km": 99,
+    "block": {
+     "length": 143.4,
+     "width": 67.6,
+     "fill": 0.66,
+     "parts": 37,
+     "area": 6367
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 145.1677039855706
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "berlin",
+   "point": [
+    13.409820832249768,
+    52.52459453875545
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     13.409820832249768,
+     52.52459453875545
+    ],
+    "km": 99,
+    "block": {
+     "length": 218.9,
+     "width": 78.7,
+     "fill": 0.38,
+     "parts": 25,
+     "area": 6545
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 1007.659076290558
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "leipzig",
+   "point": [
+    12.384581092057863,
+    51.33595263200615
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     12.384581092057863,
+     51.33595263200615
+    ],
+    "km": 99,
+    "block": {
+     "length": 102.5,
+     "width": 70.6,
+     "fill": 0.33,
+     "parts": 6,
+     "area": 2421
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "double_saltbox",
+    "footprint": 285.3121534270058
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "hamburg",
+   "point": [
+    9.978820581972508,
+    53.54764194429506
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     9.978820581972508,
+     53.54764194429506
+    ],
+    "km": 99,
+    "block": {
+     "length": 120.8,
+     "width": 70.6,
+     "fill": 0.36,
+     "parts": 18,
+     "area": 3102
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "hipped",
+    "footprint": 142.61040247803498
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "muenchen",
+   "point": [
+    11.538746023292823,
+    48.11303348672912
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     11.538746023292823,
+     48.11303348672912
+    ],
+    "km": 99,
+    "block": {
+     "length": 161.7,
+     "width": 135.4,
+     "fill": 0.25,
+     "parts": 17,
+     "area": 5408
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 320.5156599628114
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "muenchen",
+   "point": [
+    11.581598840829251,
+    48.144944091614434
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     11.581598840829251,
+     48.144944091614434
+    ],
+    "km": 99,
+    "block": {
+     "length": 197.5,
+     "width": 97,
+     "fill": 0.54,
+     "parts": 34,
+     "area": 10264
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 275.1346921567309
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "aachen",
+   "point": [
+    6.099700230659948,
+    50.769133476388454
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     6.099700230659948,
+     50.769133476388454
+    ],
+    "km": 99,
+    "block": {
+     "length": 146.5,
+     "width": 161.6,
+     "fill": 0.36,
+     "parts": 42,
+     "area": 8546
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 111.7109239899828
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "koeln",
+   "point": [
+    7.01031384905877,
+    50.849029833489055
+   ],
+   "info": {
+    "levels": 2,
+    "height": 6,
+    "point": [
+     7.01031384905877,
+     50.849029833489055
+    ],
+    "km": 99,
+    "block": {
+     "length": 63.5,
+     "width": 33,
+     "fill": 0.4,
+     "parts": 7,
+     "area": 837
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "flat",
+    "footprint": 301.9274063694786
+   },
+   "look": "nizky"
+  },
+  {
+   "town": "nuernberg",
+   "point": [
+    11.065364722694497,
+    49.45710872813069
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     11.065364722694497,
+     49.45710872813069
+    ],
+    "km": 99,
+    "block": {
+     "length": 9.8,
+     "width": 7.7,
+     "fill": 0.7,
+     "parts": 1,
+     "area": 52
+    },
+    "tint": 0,
+    "type": "residential",
+    "roofShape": "half-hipped",
+    "footprint": 52.40689464955449
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "aachen",
+   "point": [
+    6.09508387015573,
+    50.76969549855738
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     6.09508387015573,
+     50.76969549855738
+    ],
+    "km": 99,
+    "block": {
+     "length": 181.2,
+     "width": 144.8,
+     "fill": 0.26,
+     "parts": 40,
+     "area": 6907
+    },
+    "tint": 0,
+    "type": "commercial",
+    "roofShape": "flat",
+    "footprint": 776.5144072195972
+   },
+   "look": "kancelar"
+  },
+  {
+   "town": "berlin",
+   "point": [
+    13.38579289796038,
+    52.518057983385006
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     13.38579289796038,
+     52.518057983385006
+    ],
+    "km": 99,
+    "block": {
+     "length": 189.4,
+     "width": 58.3,
+     "fill": 0.9,
+     "parts": 4,
+     "area": 9941
+    },
+    "tint": 0,
+    "type": "office",
+    "start": 1887,
+    "footprint": 1806.6823033995033
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "aachen",
+   "point": [
+    6.065246633368093,
+    50.77698555447732
+   ],
+   "info": {
+    "levels": 1,
+    "point": [
+     6.065246633368093,
+     50.77698555447732
+    ],
+    "km": 99,
+    "block": {
+     "length": 24.2,
+     "width": 12.3,
+     "fill": 0.46,
+     "parts": 2,
+     "area": 137
+    },
+    "tint": 0,
+    "roofShape": "gabled",
+    "footprint": 112.08282970166461
+   },
+   "look": "nizky"
+  },
+  {
+   "town": "frankfurt",
+   "point": [
+    8.663974151749413,
+    50.109399157165655
+   ],
+   "info": {
+    "levels": 9,
+    "point": [
+     8.663974151749413,
+     50.109399157165655
+    ],
+    "km": 99,
+    "block": {
+     "length": 144.4,
+     "width": 116.5,
+     "fill": 0.38,
+     "parts": 14,
+     "area": 6426
+    },
+    "tint": 0,
+    "type": "office",
+    "footprint": 1328.9731301462402
+   },
+   "look": "kancelar"
+  },
+  {
+   "town": "koeln",
+   "point": [
+    6.893262147679449,
+    51.00980851952907
+   ],
+   "info": {
+    "levels": 2,
+    "point": [
+     6.893262147679449,
+     51.00980851952907
+    ],
+    "km": 99,
+    "block": {
+     "length": 95.7,
+     "width": 24.8,
+     "fill": 0.44,
+     "parts": 9,
+     "area": 1037
+    },
+    "tint": 0,
+    "type": "house",
+    "footprint": 344.26194587082955
+   },
+   "look": "nizky"
+  },
+  {
+   "town": "berlin",
+   "point": [
+    13.292699766833328,
+    52.57586827663102
+   ],
+   "info": {
+    "height": 5,
+    "point": [
+     13.292699766833328,
+     52.57586827663102
+    ],
+    "km": 99,
+    "block": {
+     "length": 33.3,
+     "width": 16.2,
+     "fill": 0.76,
+     "parts": 1,
+     "area": 410
+    },
+    "tint": 0,
+    "footprint": 409.54159473435357
+   },
+   "look": "nizky"
+  },
+  {
+   "town": "berlin",
+   "point": [
+    13.401616206941643,
+    52.52374441502626
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     13.401616206941643,
+     52.52374441502626
+    ],
+    "km": 99,
+    "block": {
+     "length": 267.3,
+     "width": 187,
+     "fill": 0.36,
+     "parts": 40,
+     "area": 18181
+    },
+    "tint": 0,
+    "type": "residential",
+    "footprint": 1282.156739599789
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "freiburg",
+   "point": [
+    7.865114044958082,
+    47.988272506999024
+   ],
+   "info": {
+    "levels": 3,
+    "point": [
+     7.865114044958082,
+     47.988272506999024
+    ],
+    "km": 99,
+    "block": {
+     "length": 30.9,
+     "width": 13.5,
+     "fill": 0.81,
+     "parts": 2,
+     "area": 339
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "gabled",
+    "footprint": 163.11713137977392
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "koeln",
+   "point": [
+    6.892403556499022,
+    50.968706342480424
+   ],
+   "info": {
+    "levels": 8,
+    "point": [
+     6.892403556499022,
+     50.968706342480424
+    ],
+    "km": 99,
+    "block": {
+     "length": 82.5,
+     "width": 34.2,
+     "fill": 0.43,
+     "parts": 4,
+     "area": 1223
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "flat",
+    "footprint": 477.5118166778484
+   },
+   "look": "funkce"
+  },
+  {
+   "town": "frankfurt",
+   "point": [
+    8.679641794248008,
+    50.11485002984062
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     8.679641794248008,
+     50.11485002984062
+    ],
+    "km": 99,
+    "block": {
+     "length": 266.1,
+     "width": 266.3,
+     "fill": 0.46,
+     "parts": 13,
+     "area": 32277
+    },
+    "tint": 0,
+    "type": "retail",
+    "footprint": 3904.799290666341
+   },
+   "look": "povalecny"
+  },
+  {
+   "town": "nuernberg",
+   "point": [
+    11.088272231130757,
+    49.46121918404505
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     11.088272231130757,
+     49.46121918404505
+    ],
+    "km": 99,
+    "block": {
+     "length": 17.1,
+     "width": 14.2,
+     "fill": 0.68,
+     "parts": 1,
+     "area": 166
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 165.60824475801724
+   },
+   "look": "povalecny"
+  },
+  {
+   "town": "koeln",
+   "point": [
+    6.9557230171094435,
+    50.94924156829061
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     6.9557230171094435,
+     50.94924156829061
+    ],
+    "km": 99,
+    "block": {
+     "length": 178.5,
+     "width": 83.6,
+     "fill": 0.44,
+     "parts": 41,
+     "area": 6518
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 81.8151789802398
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "aachen",
+   "point": [
+    6.085832552698976,
+    50.773512931625405
+   ],
+   "info": {
+    "levels": 3,
+    "point": [
+     6.085832552698976,
+     50.773512931625405
+    ],
+    "km": 99,
+    "block": {
+     "length": 170.1,
+     "width": 155.4,
+     "fill": 0.49,
+     "parts": 40,
+     "area": 12827
+    },
+    "tint": 0,
+    "footprint": 163.85442837031133
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "koeln",
+   "point": [
+    6.950851037272532,
+    50.92766073282407
+   ],
+   "info": {
+    "levels": 3,
+    "point": [
+     6.950851037272532,
+     50.92766073282407
+    ],
+    "km": 99,
+    "block": {
+     "length": 169.4,
+     "width": 59.1,
+     "fill": 0.39,
+     "parts": 42,
+     "area": 3856
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "gabled",
+    "footprint": 90.77273481507359
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "berlin",
+   "point": [
+    13.391191760218131,
+    52.51591991130213
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     13.391191760218131,
+     52.51591991130213
+    ],
+    "km": 99,
+    "block": {
+     "length": 175.9,
+     "width": 120.2,
+     "fill": 0.58,
+     "parts": 8,
+     "area": 12327
+    },
+    "tint": 0,
+    "type": "office",
+    "roofShape": "flat",
+    "footprint": 2783.1498269974263
+   },
+   "look": "plocha"
+  },
+  {
+   "town": "hamburg",
+   "point": [
+    9.996288430792115,
+    53.54455134848543
+   ],
+   "info": {
+    "levels": 7,
+    "height": 24,
+    "point": [
+     9.996288430792115,
+     53.54455134848543
+    ],
+    "km": 99,
+    "block": {
+     "length": 103.2,
+     "width": 33.1,
+     "fill": 0.8,
+     "parts": 7,
+     "area": 2734
+    },
+    "tint": 0,
+    "type": "warehouse",
+    "material": "brick",
+    "footprint": 315.9590595201198
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "muenchen",
+   "point": [
+    11.56953636717141,
+    48.15036530257028
+   ],
+   "info": {
+    "levels": 4,
+    "height": 16,
+    "point": [
+     11.56953636717141,
+     48.15036530257028
+    ],
+    "km": 99,
+    "block": {
+     "length": 110.7,
+     "width": 28.9,
+     "fill": 0.89,
+     "parts": 2,
+     "area": 2844
+    },
+    "tint": 0,
+    "type": "university",
+    "roofShape": "flat",
+    "footprint": 1819.8557197755642
+   },
+   "look": "kancelar"
+  },
+  {
+   "town": "muenchen",
+   "point": [
+    11.581483807272571,
+    48.1244139940371
+   ],
+   "info": {
+    "levels": 5,
+    "height": 17.5,
+    "point": [
+     11.581483807272571,
+     48.1244139940371
+    ],
+    "km": 99,
+    "block": {
+     "length": 213.7,
+     "width": 146.1,
+     "fill": 0.39,
+     "parts": 11,
+     "area": 12158
+    },
+    "tint": 0,
+    "type": "school",
+    "roofShape": "hipped",
+    "footprint": 1304.7488316760373
+   },
+   "look": "skola"
+  },
+  {
+   "town": "frankfurt",
+   "point": [
+    8.675936280017888,
+    50.109480845710124
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     8.675936280017888,
+     50.109480845710124
+    ],
+    "km": 99,
+    "block": {
+     "length": 153.5,
+     "width": 118.1,
+     "fill": 0.52,
+     "parts": 19,
+     "area": 9492
+    },
+    "tint": 0,
+    "type": "office",
+    "footprint": 1086.6444217662547
+   },
+   "look": "kancelar"
+  },
+  {
+   "town": "nuernberg",
+   "point": [
+    11.078405526612446,
+    49.453852280632944
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     11.078405526612446,
+     49.453852280632944
+    ],
+    "km": 99,
+    "block": {
+     "length": 35.3,
+     "width": 14.5,
+     "fill": 0.68,
+     "parts": 1,
+     "area": 347
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "gabled",
+    "footprint": 346.8682931672926
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "aachen",
+   "point": [
+    6.095485522971698,
+    50.77479653447994
+   ],
+   "info": {
+    "levels": 1,
+    "point": [
+     6.095485522971698,
+     50.77479653447994
+    ],
+    "km": 99,
+    "block": {
+     "length": 82.4,
+     "width": 69.4,
+     "fill": 0.44,
+     "parts": 11,
+     "area": 2490
+    },
+    "tint": 0,
+    "type": "retail",
+    "roofShape": "flat",
+    "footprint": 205.10421157856695
+   },
+   "look": "hala"
+  },
+  {
+   "town": "muenchen",
+   "point": [
+    11.569234896348755,
+    48.132708087244815
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     11.569234896348755,
+     48.132708087244815
+    ],
+    "km": 99,
+    "block": {
+     "length": 186.8,
+     "width": 122.8,
+     "fill": 0.49,
+     "parts": 25,
+     "area": 11342
+    },
+    "tint": 0,
+    "type": "fire_station",
+    "roofShape": "gabled",
+    "start": 1904,
+    "footprint": 1582.2386503189057
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "dresden",
+   "point": [
+    13.736580854650684,
+    51.044125662693176
+   ],
+   "info": {
+    "levels": 12,
+    "height": 35,
+    "point": [
+     13.736580854650684,
+     51.044125662693176
+    ],
+    "km": 99,
+    "block": {
+     "length": 240.8,
+     "width": 20.3,
+     "fill": 0.85,
+     "parts": 1,
+     "area": 4145
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "flat",
+    "footprint": 4144.7413669640355
+   },
+   "look": "funkce"
+  },
+  {
+   "town": "nuernberg",
+   "point": [
+    11.00730223661568,
+    49.407615909443656
+   ],
+   "info": {
+    "levels": 2,
+    "point": [
+     11.00730223661568,
+     49.407615909443656
+    ],
+    "km": 99,
+    "block": {
+     "length": 16.4,
+     "width": 13.9,
+     "fill": 0.61,
+     "parts": 1,
+     "area": 139
+    },
+    "tint": 0,
+    "type": "detached",
+    "footprint": 139.35641801872248
+   },
+   "look": "vila"
+  },
+  {
+   "town": "koeln",
+   "point": [
+    6.977108503674118,
+    50.93317584230987
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     6.977108503674118,
+     50.93317584230987
+    ],
+    "km": 99,
+    "block": {
+     "length": 181.5,
+     "width": 74.1,
+     "fill": 0.38,
+     "parts": 28,
+     "area": 5056
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "hipped",
+    "footprint": 154.37739745189083
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "muenchen",
+   "point": [
+    11.508299965220465,
+    48.05184744190883
+   ],
+   "info": {
+    "levels": 3,
+    "point": [
+     11.508299965220465,
+     48.05184744190883
+    ],
+    "km": 99,
+    "block": {
+     "length": 16,
+     "width": 13.5,
+     "fill": 0.78,
+     "parts": 1,
+     "area": 169
+    },
+    "tint": 0,
+    "type": "semidetached_house",
+    "roofShape": "gabled",
+    "footprint": 169.49811691339937
+   },
+   "look": "vila"
+  },
+  {
+   "town": "dresden",
+   "point": [
+    13.72433056295895,
+    51.04708999065801
+   ],
+   "info": {
+    "levels": 5,
+    "height": 20,
+    "point": [
+     13.72433056295895,
+     51.04708999065801
+    ],
+    "km": 99,
+    "block": {
+     "length": 79,
+     "width": 13,
+     "fill": 0.83,
+     "parts": 1,
+     "area": 847
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "gabled",
+    "material": "plaster",
+    "footprint": 846.9805821248765
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "muenchen",
+   "point": [
+    11.443999613705422,
+    48.15787777009683
+   ],
+   "info": {
+    "levels": 3,
+    "point": [
+     11.443999613705422,
+     48.15787777009683
+    ],
+    "km": 99,
+    "block": {
+     "length": 49.9,
+     "width": 31.6,
+     "fill": 0.41,
+     "parts": 7,
+     "area": 645
+    },
+    "tint": 0,
+    "type": "house",
+    "roofShape": "gabled",
+    "footprint": 62.405344382900466
+   },
+   "look": "nizky"
+  },
+  {
+   "town": "koeln",
+   "point": [
+    6.947602103702171,
+    50.93287869124803
+   ],
+   "info": {
+    "levels": 3,
+    "point": [
+     6.947602103702171,
+     50.93287869124803
+    ],
+    "km": 99,
+    "block": {
+     "length": 119.7,
+     "width": 76.2,
+     "fill": 0.36,
+     "parts": 40,
+     "area": 3269
+    },
+    "tint": 0,
+    "roofShape": "gabled",
+    "footprint": 118.68806632758569
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "dresden",
+   "point": [
+    13.840179265788528,
+    51.00626748195822
+   ],
+   "info": {
+    "levels": 3,
+    "point": [
+     13.840179265788528,
+     51.00626748195822
+    ],
+    "km": 99,
+    "block": {
+     "length": 36.8,
+     "width": 12.8,
+     "fill": 0.86,
+     "parts": 1,
+     "area": 406
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "pyramidal",
+    "footprint": 406.2478560571176
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "leipzig",
+   "point": [
+    12.377320630009086,
+    51.34903816210105
+   ],
+   "info": {
+    "levels": 8,
+    "point": [
+     12.377320630009086,
+     51.34903816210105
+    ],
+    "km": 99,
+    "block": {
+     "length": 84.2,
+     "width": 73.7,
+     "fill": 0.41,
+     "parts": 9,
+     "area": 2524
+    },
+    "tint": 0,
+    "type": "office",
+    "footprint": 206.0423494663146
+   },
+   "look": "plocha"
+  },
+  {
+   "town": "freiburg",
+   "point": [
+    7.842038473716053,
+    47.99380895260324
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     7.842038473716053,
+     47.99380895260324
+    ],
+    "km": 99,
+    "block": {
+     "length": 114.4,
+     "width": 89.6,
+     "fill": 0.34,
+     "parts": 32,
+     "area": 3524
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "gabled",
+    "footprint": 142.92207166382468
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "nuernberg",
+   "point": [
+    11.071129976467764,
+    49.45512632007169
+   ],
+   "info": {
+    "height": 17,
+    "point": [
+     11.071129976467764,
+     49.45512632007169
+    ],
+    "km": 99,
+    "block": {
+     "length": 7.9,
+     "width": 7.5,
+     "fill": 0.49,
+     "parts": 1,
+     "area": 29
+    },
+    "tint": 0,
+    "roofShape": "pyramidal",
+    "footprint": 29.204774048104355
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "aachen",
+   "point": [
+    6.106581096075223,
+    50.77989260338973
+   ],
+   "info": {
+    "levels": 1,
+    "height": 6,
+    "point": [
+     6.106581096075223,
+     50.77989260338973
+    ],
+    "km": 99,
+    "block": {
+     "length": 72.9,
+     "width": 30.6,
+     "fill": 0.79,
+     "parts": 1,
+     "area": 1773
+    },
+    "tint": 0,
+    "type": "commercial",
+    "roofShape": "flat",
+    "material": "glass",
+    "footprint": 1772.6151555687993
+   },
+   "look": "nizky"
+  },
+  {
+   "town": "dresden",
+   "point": [
+    13.714941622454146,
+    51.08957629159216
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     13.714941622454146,
+     51.08957629159216
+    ],
+    "km": 99,
+    "block": {
+     "length": 25.7,
+     "width": 23.8,
+     "fill": 0.68,
+     "parts": 1,
+     "area": 417
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "quadruple_saltbox",
+    "footprint": 416.7150924309053
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "nuernberg",
+   "point": [
+    11.060054704750094,
+    49.45103646179717
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     11.060054704750094,
+     49.45103646179717
+    ],
+    "km": 99,
+    "block": {
+     "length": 203.9,
+     "width": 114,
+     "fill": 0.36,
+     "parts": 2,
+     "area": 8269
+    },
+    "tint": 0,
+    "type": "office",
+    "roofShape": "gabled",
+    "footprint": 6401.129398242283
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "berlin",
+   "point": [
+    13.268002093055681,
+    52.5088484369544
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     13.268002093055681,
+     52.5088484369544
+    ],
+    "km": 99,
+    "block": {
+     "length": 120.2,
+     "width": 37.4,
+     "fill": 0.38,
+     "parts": 1,
+     "area": 1698
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "flat",
+    "footprint": 1698.3297732874516
+   },
+   "look": "funkce"
+  },
+  {
+   "town": "leipzig",
+   "point": [
+    12.374502558460092,
+    51.35338228249374
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     12.374502558460092,
+     51.35338228249374
+    ],
+    "km": 99,
+    "block": {
+     "length": 39.3,
+     "width": 32.2,
+     "fill": 0.54,
+     "parts": 2,
+     "area": 686
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "hipped",
+    "footprint": 475.85293197194915
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "nuernberg",
+   "point": [
+    11.063119835158318,
+    49.460055992499775
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     11.063119835158318,
+     49.460055992499775
+    ],
+    "km": 99,
+    "block": {
+     "length": 132,
+     "width": 107.4,
+     "fill": 0.27,
+     "parts": 18,
+     "area": 3866
+    },
+    "tint": 0,
+    "type": "residential",
+    "roofShape": "gabled",
+    "footprint": 291.61792752299516
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "freiburg",
+   "point": [
+    7.8303998371206305,
+    47.980831345350026
+   ],
+   "info": {
+    "levels": 3,
+    "point": [
+     7.8303998371206305,
+     47.980831345350026
+    ],
+    "km": 99,
+    "block": {
+     "length": 16.4,
+     "width": 11.1,
+     "fill": 0.72,
+     "parts": 3,
+     "area": 132
+    },
+    "tint": 0,
+    "roofShape": "gabled",
+    "footprint": 58.91348387558128
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "nuernberg",
+   "point": [
+    11.091048595407191,
+    49.45298720361237
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     11.091048595407191,
+     49.45298720361237
+    ],
+    "km": 99,
+    "block": {
+     "length": 129.7,
+     "width": 107.1,
+     "fill": 0.44,
+     "parts": 3,
+     "area": 6091
+    },
+    "tint": 0,
+    "type": "school",
+    "roofShape": "flat",
+    "footprint": 4196.524606347772
+   },
+   "look": "skola"
+  },
+  {
+   "town": "berlin",
+   "point": [
+    13.387047992749391,
+    52.511810205830706
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     13.387047992749391,
+     52.511810205830706
+    ],
+    "km": 99,
+    "block": {
+     "length": 191.7,
+     "width": 103.4,
+     "fill": 0.48,
+     "parts": 14,
+     "area": 9564
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 320.2506845545512
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "frankfurt",
+   "point": [
+    8.687008485296253,
+    50.098702723215645
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     8.687008485296253,
+     50.098702723215645
+    ],
+    "km": 99,
+    "block": {
+     "length": 56.6,
+     "width": 34,
+     "fill": 0.51,
+     "parts": 8,
+     "area": 981
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "mansard",
+    "footprint": 100.27685413792733
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "leipzig",
+   "point": [
+    12.419403629150878,
+    51.344469699273134
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     12.419403629150878,
+     51.344469699273134
+    ],
+    "km": 99,
+    "block": {
+     "length": 100.9,
+     "width": 63.9,
+     "fill": 0.5,
+     "parts": 12,
+     "area": 3212
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "gabled",
+    "footprint": 159.1578087504315
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "freiburg",
+   "point": [
+    7.851096726630929,
+    48.00788642876498
+   ],
+   "info": {
+    "levels": 8,
+    "point": [
+     7.851096726630929,
+     48.00788642876498
+    ],
+    "km": 99,
+    "block": {
+     "length": 46.7,
+     "width": 15.3,
+     "fill": 0.63,
+     "parts": 1,
+     "area": 455
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "flat",
+    "footprint": 454.5826455111269
+   },
+   "look": "funkce"
+  },
+  {
+   "town": "freiburg",
+   "point": [
+    7.846251445431485,
+    48.000528618545324
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     7.846251445431485,
+     48.000528618545324
+    ],
+    "km": 99,
+    "block": {
+     "length": 79.4,
+     "width": 21.9,
+     "fill": 0.56,
+     "parts": 5,
+     "area": 978
+    },
+    "tint": 0,
+    "type": "hotel",
+    "roofShape": "gabled",
+    "footprint": 338.506274742952
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "muenchen",
+   "point": [
+    11.564289717699582,
+    48.1365221202702
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     11.564289717699582,
+     48.1365221202702
+    ],
+    "km": 99,
+    "block": {
+     "length": 231.4,
+     "width": 114.7,
+     "fill": 0.54,
+     "parts": 40,
+     "area": 14365
+    },
+    "tint": 0,
+    "type": "office",
+    "roofShape": "flat",
+    "footprint": 201.6723098192101
+   },
+   "look": "kancelar"
+  },
+  {
+   "town": "berlin",
+   "point": [
+    13.397040491934412,
+    52.51907710301164
+   ],
+   "info": {
+    "levels": 5,
+    "height": 22,
+    "point": [
+     13.397040491934412,
+     52.51907710301164
+    ],
+    "km": 99,
+    "block": {
+     "length": 85.6,
+     "width": 64.4,
+     "fill": 0.67,
+     "parts": 2,
+     "area": 3685
+    },
+    "tint": 0,
+    "type": "civic",
+    "roofShape": "gabled",
+    "material": "sandstone",
+    "footprint": 1513.6928929354788
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "nuernberg",
+   "point": [
+    11.06653356774743,
+    49.45331889334437
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     11.06653356774743,
+     49.45331889334437
+    ],
+    "km": 99,
+    "block": {
+     "length": 212.5,
+     "width": 115.5,
+     "fill": 0.33,
+     "parts": 5,
+     "area": 8165
+    },
+    "tint": 0,
+    "type": "office",
+    "roofShape": "flat",
+    "footprint": 1449.5479905445213
+   },
+   "look": "kancelar"
+  },
+  {
+   "town": "berlin",
+   "point": [
+    13.391815732837589,
+    52.52991573811771
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     13.391815732837589,
+     52.52991573811771
+    ],
+    "km": 99,
+    "block": {
+     "length": 281.3,
+     "width": 196,
+     "fill": 0.23,
+     "parts": 41,
+     "area": 12681
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 577.3436929356906
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "berlin",
+   "point": [
+    13.414631477223594,
+    52.52384902499465
+   ],
+   "info": {
+    "levels": 10,
+    "height": 38,
+    "point": [
+     13.414631477223594,
+     52.52384902499465
+    ],
+    "km": 99,
+    "block": {
+     "length": 289.3,
+     "width": 205,
+     "fill": 0.26,
+     "parts": 4,
+     "area": 15392
+    },
+    "tint": 0,
+    "type": "office",
+    "roofShape": "flat",
+    "footprint": 4856.889165749598
+   },
+   "look": "plocha"
+  },
+  {
+   "town": "freiburg",
+   "point": [
+    7.860816047852809,
+    48.00613437164696
+   ],
+   "info": {
+    "levels": 3,
+    "point": [
+     7.860816047852809,
+     48.00613437164696
+    ],
+    "km": 99,
+    "block": {
+     "length": 15.4,
+     "width": 9.8,
+     "fill": 0.77,
+     "parts": 1,
+     "area": 116
+    },
+    "tint": 0,
+    "type": "residential",
+    "roofShape": "hipped",
+    "footprint": 115.70637032901641
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "freiburg",
+   "point": [
+    7.846962569101633,
+    48.00536905353597
+   ],
+   "info": {
+    "levels": 3,
+    "point": [
+     7.846962569101633,
+     48.00536905353597
+    ],
+    "km": 99,
+    "block": {
+     "length": 80.9,
+     "width": 65.8,
+     "fill": 0.35,
+     "parts": 14,
+     "area": 1848
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "gabled",
+    "footprint": 78.23881606016062
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "leipzig",
+   "point": [
+    12.379727964663264,
+    51.33933423818173
+   ],
+   "info": {
+    "levels": 6,
+    "height": 28,
+    "point": [
+     12.379727964663264,
+     51.33933423818173
+    ],
+    "km": 99,
+    "block": {
+     "length": 30.4,
+     "width": 28.3,
+     "fill": 0.63,
+     "parts": 1,
+     "area": 538
+    },
+    "tint": 0,
+    "type": "office",
+    "roofShape": "skillion",
+    "material": "glass",
+    "footprint": 538.279097086644
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "frankfurt",
+   "point": [
+    8.668383178770657,
+    50.11414481509728
+   ],
+   "info": {
+    "height": 22,
+    "point": [
+     8.668383178770657,
+     50.11414481509728
+    ],
+    "km": 99,
+    "block": {
+     "length": 137.4,
+     "width": 117.4,
+     "fill": 0.48,
+     "parts": 1,
+     "area": 7760
+    },
+    "tint": 0,
+    "type": "office",
+    "start": 1984,
+    "material": "mirror",
+    "footprint": 7759.8722011482705
+   },
+   "look": "kancelar"
+  },
+  {
+   "town": "dresden",
+   "point": [
+    13.733726067521994,
+    51.04846610950868
+   ],
+   "info": {
+    "levels": 8,
+    "point": [
+     13.733726067521994,
+     51.04846610950868
+    ],
+    "km": 99,
+    "block": {
+     "length": 49.2,
+     "width": 29,
+     "fill": 0.78,
+     "parts": 1,
+     "area": 1118
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "flat",
+    "footprint": 1118.201910157186
+   },
+   "look": "funkce"
+  },
+  {
+   "town": "nuernberg",
+   "point": [
+    11.07657038617853,
+    49.45457166622451
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     11.07657038617853,
+     49.45457166622451
+    ],
+    "km": 99,
+    "block": {
+     "length": 76.3,
+     "width": 51.9,
+     "fill": 0.61,
+     "parts": 6,
+     "area": 2432
+    },
+    "tint": 0,
+    "type": "office",
+    "footprint": 1297.0363175146128
+   },
+   "look": "kancelar"
+  },
+  {
+   "town": "berlin",
+   "point": [
+    13.423987027271915,
+    52.5083450219771
+   ],
+   "info": {
+    "levels": 8,
+    "point": [
+     13.423987027271915,
+     52.5083450219771
+    ],
+    "km": 99,
+    "block": {
+     "length": 177.1,
+     "width": 152.1,
+     "fill": 0.37,
+     "parts": 14,
+     "area": 9850
+    },
+    "tint": 0,
+    "type": "residential",
+    "roofShape": "flat",
+    "footprint": 597.0981420513757
+   },
+   "look": "funkce"
+  },
+  {
+   "town": "frankfurt",
+   "point": [
+    8.696829837639566,
+    50.10953443136858
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     8.696829837639566,
+     50.10953443136858
+    ],
+    "km": 99,
+    "block": {
+     "length": 81.9,
+     "width": 41.6,
+     "fill": 0.35,
+     "parts": 6,
+     "area": 1188
+    },
+    "tint": 0,
+    "type": "office",
+    "footprint": 316.5548126216106
+   },
+   "look": "kancelar"
+  },
+  {
+   "town": "berlin",
+   "point": [
+    13.284544141767132,
+    52.495859928088066
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     13.284544141767132,
+     52.495859928088066
+    ],
+    "km": 99,
+    "block": {
+     "length": 135.3,
+     "width": 92.6,
+     "fill": 0.33,
+     "parts": 12,
+     "area": 4088
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "gabled",
+    "footprint": 215.82597562200294
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "nuernberg",
+   "point": [
+    11.082086115046021,
+    49.43930960895548
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     11.082086115046021,
+     49.43930960895548
+    ],
+    "km": 99,
+    "block": {
+     "length": 128.2,
+     "width": 90.4,
+     "fill": 0.52,
+     "parts": 22,
+     "area": 5992
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "hipped",
+    "footprint": 246.52005718565306
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "aachen",
+   "point": [
+    6.074729242715957,
+    50.77979679975789
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     6.074729242715957,
+     50.77979679975789
+    ],
+    "km": 99,
+    "block": {
+     "length": 73.3,
+     "width": 16.5,
+     "fill": 0.92,
+     "parts": 2,
+     "area": 1118
+    },
+    "tint": 0,
+    "type": "university",
+    "roofShape": "hipped",
+    "footprint": 562.31225314924
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "muenchen",
+   "point": [
+    11.589991597320504,
+    48.14110810596427
+   ],
+   "info": {
+    "levels": 5,
+    "height": 19,
+    "point": [
+     11.589991597320504,
+     48.14110810596427
+    ],
+    "km": 99,
+    "block": {
+     "length": 106.5,
+     "width": 131.5,
+     "fill": 0.47,
+     "parts": 14,
+     "area": 6526
+    },
+    "tint": 0,
+    "type": "public",
+    "material": "plaster",
+    "footprint": 882.1699048292514
+   },
+   "look": "kancelar"
+  },
+  {
+   "town": "freiburg",
+   "point": [
+    7.8508250390013306,
+    48.00051854662
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     7.8508250390013306,
+     48.00051854662
+    ],
+    "km": 99,
+    "block": {
+     "length": 49.6,
+     "width": 11.9,
+     "fill": 0.86,
+     "parts": 1,
+     "area": 505
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "hipped",
+    "footprint": 504.89396108967514
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "berlin",
+   "point": [
+    13.412352195519041,
+    52.52838086318185
+   ],
+   "info": {
+    "levels": 8,
+    "point": [
+     13.412352195519041,
+     52.52838086318185
+    ],
+    "km": 99,
+    "block": {
+     "length": 237.7,
+     "width": 149.2,
+     "fill": 0.42,
+     "parts": 16,
+     "area": 14758
+    },
+    "tint": 0,
+    "type": "retail",
+    "footprint": 1359.5434552697834
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "frankfurt",
+   "point": [
+    8.700198827513608,
+    50.11341617747777
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     8.700198827513608,
+     50.11341617747777
+    ],
+    "km": 99,
+    "block": {
+     "length": 101.8,
+     "width": 51.5,
+     "fill": 0.34,
+     "parts": 10,
+     "area": 1796
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "gabled",
+    "footprint": 95.51249114462553
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "leipzig",
+   "point": [
+    12.423726191676028,
+    51.31578778047206
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     12.423726191676028,
+     51.31578778047206
+    ],
+    "km": 99,
+    "block": {
+     "length": 61.5,
+     "width": 12.1,
+     "fill": 0.81,
+     "parts": 1,
+     "area": 599
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "gabled",
+    "footprint": 598.5701795180066
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "berlin",
+   "point": [
+    13.383278236802823,
+    52.492170866063574
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     13.383278236802823,
+     52.492170866063574
+    ],
+    "km": 99,
+    "block": {
+     "length": 203.5,
+     "width": 127.9,
+     "fill": 0.4,
+     "parts": 41,
+     "area": 10347
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 316.6528147624447
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "aachen",
+   "point": [
+    6.089039806112562,
+    50.78220584421138
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     6.089039806112562,
+     50.78220584421138
+    ],
+    "km": 99,
+    "block": {
+     "length": 140.4,
+     "width": 57.8,
+     "fill": 0.38,
+     "parts": 15,
+     "area": 3051
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 140.08711931685866
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "berlin",
+   "point": [
+    13.399343178009524,
+    52.51340583356542
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     13.399343178009524,
+     52.51340583356542
+    ],
+    "km": 99,
+    "block": {
+     "length": 312,
+     "width": 146.1,
+     "fill": 0.53,
+     "parts": 7,
+     "area": 24358
+    },
+    "tint": 0,
+    "type": "public",
+    "roofShape": "hipped",
+    "footprint": 17521.97976183857
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "hamburg",
+   "point": [
+    10.004487208658249,
+    53.547219465801376
+   ],
+   "info": {
+    "levels": 10,
+    "point": [
+     10.004487208658249,
+     53.547219465801376
+    ],
+    "km": 99,
+    "block": {
+     "length": 125.4,
+     "width": 54.1,
+     "fill": 0.43,
+     "parts": 1,
+     "area": 2936
+    },
+    "tint": 0,
+    "type": "office",
+    "roofShape": "flat",
+    "start": 2009,
+    "footprint": 2936.425841622734
+   },
+   "look": "kancelar"
+  },
+  {
+   "town": "freiburg",
+   "point": [
+    7.8633233860444145,
+    48.00555092576518
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     7.8633233860444145,
+     48.00555092576518
+    ],
+    "km": 99,
+    "block": {
+     "length": 65.4,
+     "width": 13.2,
+     "fill": 0.85,
+     "parts": 4,
+     "area": 729
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "gabled",
+    "footprint": 211.23510719869068
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "muenchen",
+   "point": [
+    11.57017108650144,
+    48.16491007375975
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     11.57017108650144,
+     48.16491007375975
+    ],
+    "km": 99,
+    "block": {
+     "length": 139.3,
+     "width": 119.1,
+     "fill": 0.25,
+     "parts": 17,
+     "area": 4126
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 235.21957901691258
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "aachen",
+   "point": [
+    6.085547091263759,
+    50.772038701379074
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     6.085547091263759,
+     50.772038701379074
+    ],
+    "km": 99,
+    "block": {
+     "length": 270.5,
+     "width": 190.8,
+     "fill": 0.34,
+     "parts": 40,
+     "area": 17688
+    },
+    "tint": 0,
+    "type": "retail",
+    "footprint": 223.01976205345727
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "freiburg",
+   "point": [
+    7.894984124567264,
+    47.97613801402622
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     7.894984124567264,
+     47.97613801402622
+    ],
+    "km": 99,
+    "block": {
+     "length": 23.6,
+     "width": 15,
+     "fill": 0.74,
+     "parts": 1,
+     "area": 261
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "gabled",
+    "footprint": 260.8031598866503
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "berlin",
+   "point": [
+    13.39319346096735,
+    52.52166954876999
+   ],
+   "info": {
+    "levels": 2,
+    "point": [
+     13.39319346096735,
+     52.52166954876999
+    ],
+    "km": 99,
+    "block": {
+     "length": 203.6,
+     "width": 122.6,
+     "fill": 0.27,
+     "parts": 3,
+     "area": 6720
+    },
+    "tint": 0,
+    "footprint": 1560.8135005365248
+   },
+   "look": "nizky"
+  },
+  {
+   "town": "dresden",
+   "point": [
+    13.739028385685465,
+    51.06178346779595
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     13.739028385685465,
+     51.06178346779595
+    ],
+    "km": 99,
+    "block": {
+     "length": 151.7,
+     "width": 128.2,
+     "fill": 0.3,
+     "parts": 11,
+     "area": 5747
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 1279.5281523899898
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "koeln",
+   "point": [
+    6.975973548408105,
+    50.92960538508786
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     6.975973548408105,
+     50.92960538508786
+    ],
+    "km": 99,
+    "block": {
+     "length": 148.5,
+     "width": 54.2,
+     "fill": 0.25,
+     "parts": 11,
+     "area": 1984
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 199.76764651245958
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "aachen",
+   "point": [
+    6.086902565272166,
+    50.7682000492897
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     6.086902565272166,
+     50.7682000492897
+    ],
+    "km": 99,
+    "block": {
+     "length": 23.6,
+     "width": 14.5,
+     "fill": 0.79,
+     "parts": 1,
+     "area": 271
+    },
+    "tint": 0,
+    "roofShape": "hipped",
+    "material": "stone",
+    "footprint": 270.92268285136265
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "nuernberg",
+   "point": [
+    10.977858354152138,
+    49.43629727097492
+   ],
+   "info": {
+    "levels": 3,
+    "point": [
+     10.977858354152138,
+     49.43629727097492
+    ],
+    "km": 99,
+    "block": {
+     "length": 13.4,
+     "width": 12.8,
+     "fill": 0.54,
+     "parts": 1,
+     "area": 93
+    },
+    "tint": 0,
+    "type": "detached",
+    "roofShape": "hipped",
+    "footprint": 92.85268247511522
+   },
+   "look": "vila"
+  },
+  {
+   "town": "frankfurt",
+   "point": [
+    8.677139427878693,
+    50.11983411669785
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     8.677139427878693,
+     50.11983411669785
+    ],
+    "km": 99,
+    "block": {
+     "length": 113.8,
+     "width": 87.7,
+     "fill": 0.3,
+     "parts": 11,
+     "area": 2954
+    },
+    "tint": 0,
+    "type": "office",
+    "footprint": 319.24123465567925
+   },
+   "look": "kancelar"
+  },
+  {
+   "town": "leipzig",
+   "point": [
+    12.363742585418096,
+    51.345075215497985
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     12.363742585418096,
+     51.345075215497985
+    ],
+    "km": 99,
+    "block": {
+     "length": 25.2,
+     "width": 17,
+     "fill": 0.8,
+     "parts": 1,
+     "area": 342
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 341.7636102282313
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "berlin",
+   "point": [
+    13.401396206605858,
+    52.526898934618075
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     13.401396206605858,
+     52.526898934618075
+    ],
+    "km": 99,
+    "block": {
+     "length": 242.7,
+     "width": 146.9,
+     "fill": 0.22,
+     "parts": 27,
+     "area": 8020
+    },
+    "tint": 0,
+    "type": "residential",
+    "footprint": 204.06114483176862
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "muenchen",
+   "point": [
+    11.503817161024191,
+    48.11362285849168
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     11.503817161024191,
+     48.11362285849168
+    ],
+    "km": 99,
+    "block": {
+     "length": 20.6,
+     "width": 18.2,
+     "fill": 0.53,
+     "parts": 1,
+     "area": 199
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 199.29850096058817
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "berlin",
+   "point": [
+    13.40490048077419,
+    52.52837741579976
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     13.40490048077419,
+     52.52837741579976
+    ],
+    "km": 99,
+    "block": {
+     "length": 91.3,
+     "width": 35.2,
+     "fill": 0.48,
+     "parts": 9,
+     "area": 1531
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "double_saltbox",
+    "footprint": 159.5054160704144
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "muenchen",
+   "point": [
+    11.630208043831313,
+    48.14975708317455
+   ],
+   "info": {
+    "levels": 3,
+    "point": [
+     11.630208043831313,
+     48.14975708317455
+    ],
+    "km": 99,
+    "block": {
+     "length": 18.6,
+     "width": 22.1,
+     "fill": 0.59,
+     "parts": 1,
+     "area": 244
+    },
+    "tint": 0,
+    "type": "detached",
+    "roofShape": "gabled",
+    "footprint": 244.3275910249393
+   },
+   "look": "vila"
+  },
+  {
+   "town": "aachen",
+   "point": [
+    6.090041718717042,
+    50.77822002571736
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     6.090041718717042,
+     50.77822002571736
+    ],
+    "km": 99,
+    "block": {
+     "length": 134.8,
+     "width": 105,
+     "fill": 0.49,
+     "parts": 27,
+     "area": 6898
+    },
+    "tint": 0,
+    "footprint": 2484.0086678174594
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "hamburg",
+   "point": [
+    9.98775798939816,
+    53.55215092274454
+   ],
+   "info": {
+    "levels": 7,
+    "point": [
+     9.98775798939816,
+     53.55215092274454
+    ],
+    "km": 99,
+    "block": {
+     "length": 266.2,
+     "width": 215.7,
+     "fill": 0.36,
+     "parts": 15,
+     "area": 20864
+    },
+    "tint": 0,
+    "type": "office",
+    "footprint": 5828.649412969637
+   },
+   "look": "kancelar"
+  },
+  {
+   "town": "koeln",
+   "point": [
+    6.960213812713377,
+    50.924181629307
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     6.960213812713377,
+     50.924181629307
+    ],
+    "km": 99,
+    "block": {
+     "length": 78.3,
+     "width": 72.2,
+     "fill": 0.32,
+     "parts": 40,
+     "area": 1816
+    },
+    "tint": 0,
+    "roofShape": "gabled",
+    "footprint": 78.36465871082282
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "hamburg",
+   "point": [
+    9.988529021670166,
+    53.55661450461214
+   ],
+   "info": {
+    "levels": 7,
+    "point": [
+     9.988529021670166,
+     53.55661450461214
+    ],
+    "km": 99,
+    "block": {
+     "length": 122.3,
+     "width": 78.5,
+     "fill": 0.58,
+     "parts": 5,
+     "area": 5591
+    },
+    "tint": 0,
+    "type": "public",
+    "roofShape": "flat",
+    "start": 1953,
+    "footprint": 2860.162069357274
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "aachen",
+   "point": [
+    6.094827952762689,
+    50.77446990751683
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     6.094827952762689,
+     50.77446990751683
+    ],
+    "km": 99,
+    "block": {
+     "length": 89,
+     "width": 61.2,
+     "fill": 0.46,
+     "parts": 16,
+     "area": 2518
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "gabled",
+    "footprint": 141.67108396685853
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "nuernberg",
+   "point": [
+    11.085067833314632,
+    49.45506503580671
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     11.085067833314632,
+     49.45506503580671
+    ],
+    "km": 99,
+    "block": {
+     "length": 138.8,
+     "width": 38.4,
+     "fill": 0.31,
+     "parts": 5,
+     "area": 1631
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "gabled",
+    "footprint": 652.5041356848176
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "berlin",
+   "point": [
+    13.401027821806053,
+    52.51005592024912
+   ],
+   "info": {
+    "levels": 7,
+    "point": [
+     13.401027821806053,
+     52.51005592024912
+    ],
+    "km": 99,
+    "block": {
+     "length": 166.5,
+     "width": 94.7,
+     "fill": 0.35,
+     "parts": 5,
+     "area": 5552
+    },
+    "tint": 0,
+    "type": "embassy",
+    "roofShape": "flat",
+    "footprint": 1036.8375734553106
+   },
+   "look": "plocha"
+  },
+  {
+   "town": "nuernberg",
+   "point": [
+    11.077755208002367,
+    49.439549941360895
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     11.077755208002367,
+     49.439549941360895
+    ],
+    "km": 99,
+    "block": {
+     "length": 131.6,
+     "width": 51.7,
+     "fill": 0.62,
+     "parts": 24,
+     "area": 4200
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "gabled",
+    "footprint": 228.1086778974318
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "koeln",
+   "point": [
+    6.974526513454217,
+    50.93558607815613
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     6.974526513454217,
+     50.93558607815613
+    ],
+    "km": 99,
+    "block": {
+     "length": 84.2,
+     "width": 41.9,
+     "fill": 0.55,
+     "parts": 37,
+     "area": 1924
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "gabled",
+    "footprint": 53.91297244751786
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "berlin",
+   "point": [
+    13.411194882537405,
+    52.53094813377315
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     13.411194882537405,
+     52.53094813377315
+    ],
+    "km": 99,
+    "block": {
+     "length": 232.4,
+     "width": 167.4,
+     "fill": 0.28,
+     "parts": 40,
+     "area": 10775
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 339.9439583597641
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "frankfurt",
+   "point": [
+    8.679914902152529,
+    50.10319925463341
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     8.679914902152529,
+     50.10319925463341
+    ],
+    "km": 99,
+    "block": {
+     "length": 133,
+     "width": 74.6,
+     "fill": 0.42,
+     "parts": 24,
+     "area": 4118
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 114.08727103819137
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "leipzig",
+   "point": [
+    12.371191214476319,
+    51.33492279094818
+   ],
+   "info": {
+    "levels": 8,
+    "point": [
+     12.371191214476319,
+     51.33492279094818
+    ],
+    "km": 99,
+    "block": {
+     "length": 131,
+     "width": 109.5,
+     "fill": 0.39,
+     "parts": 13,
+     "area": 5553
+    },
+    "tint": 0,
+    "type": "office",
+    "roofShape": "round_gabled",
+    "footprint": 1202.403745583674
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "nuernberg",
+   "point": [
+    11.060566655290328,
+    49.45432096107891
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     11.060566655290328,
+     49.45432096107891
+    ],
+    "km": 99,
+    "block": {
+     "length": 104.2,
+     "width": 69.7,
+     "fill": 0.31,
+     "parts": 12,
+     "area": 2263
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "half-hipped",
+    "footprint": 230.04613448819808
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "freiburg",
+   "point": [
+    7.844931101370068,
+    47.99900801680764
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     7.844931101370068,
+     47.99900801680764
+    ],
+    "km": 99,
+    "block": {
+     "length": 27,
+     "width": 15.5,
+     "fill": 0.87,
+     "parts": 1,
+     "area": 365
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "flat",
+    "footprint": 364.88275146846354
+   },
+   "look": "povalecny"
+  },
+  {
+   "town": "nuernberg",
+   "point": [
+    11.064333561511559,
+    49.449440992467515
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     11.064333561511559,
+     49.449440992467515
+    ],
+    "km": 99,
+    "block": {
+     "length": 143.3,
+     "width": 94.6,
+     "fill": 0.33,
+     "parts": 11,
+     "area": 4431
+    },
+    "tint": 0,
+    "type": "office",
+    "roofShape": "hipped",
+    "footprint": 486.5342542768294
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "muenchen",
+   "point": [
+    11.563086510551974,
+    48.136430013836474
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     11.563086510551974,
+     48.136430013836474
+    ],
+    "km": 99,
+    "block": {
+     "length": 248.8,
+     "width": 101.5,
+     "fill": 0.56,
+     "parts": 40,
+     "area": 14202
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 171.68925892306652
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "leipzig",
+   "point": [
+    12.364600242543816,
+    51.33200778808807
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     12.364600242543816,
+     51.33200778808807
+    ],
+    "km": 99,
+    "block": {
+     "length": 24.2,
+     "width": 19.4,
+     "fill": 0.74,
+     "parts": 1,
+     "area": 348
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "gambrel",
+    "start": 1892,
+    "footprint": 348.3929849259535
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "aachen",
+   "point": [
+    6.083627283113901,
+    50.77293740171963
+   ],
+   "info": {
+    "levels": 3,
+    "point": [
+     6.083627283113901,
+     50.77293740171963
+    ],
+    "km": 99,
+    "block": {
+     "length": 36.9,
+     "width": 37.8,
+     "fill": 0.5,
+     "parts": 1,
+     "area": 697
+    },
+    "tint": 0,
+    "type": "school",
+    "roofShape": "flat",
+    "footprint": 697.4671431389806
+   },
+   "look": "skola"
+  },
+  {
+   "town": "dresden",
+   "point": [
+    13.737807222926735,
+    51.052457202024435
+   ],
+   "info": {
+    "height": 24.5,
+    "point": [
+     13.737807222926735,
+     51.052457202024435
+    ],
+    "km": 99,
+    "block": {
+     "length": 91.7,
+     "width": 72.5,
+     "fill": 0.53,
+     "parts": 1,
+     "area": 3550
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "gabled",
+    "footprint": 3444.7355483085644
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "berlin",
+   "point": [
+    13.39493358134698,
+    52.52428064351188
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     13.39493358134698,
+     52.52428064351188
+    ],
+    "km": 99,
+    "block": {
+     "length": 174.5,
+     "width": 159.7,
+     "fill": 0.36,
+     "parts": 4,
+     "area": 9979
+    },
+    "tint": 0,
+    "type": "commercial",
+    "roofShape": "mansard",
+    "footprint": 5311.251377780519
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "freiburg",
+   "point": [
+    7.837537774088236,
+    47.999078229985784
+   ],
+   "info": {
+    "levels": 3,
+    "point": [
+     7.837537774088236,
+     47.999078229985784
+    ],
+    "km": 99,
+    "block": {
+     "length": 52.1,
+     "width": 30.4,
+     "fill": 0.36,
+     "parts": 5,
+     "area": 577
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "hipped",
+    "footprint": 191.50498658299693
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "dresden",
+   "point": [
+    13.72535709296468,
+    51.05775473635814
+   ],
+   "info": {
+    "levels": 7,
+    "point": [
+     13.72535709296468,
+     51.05775473635814
+    ],
+    "km": 99,
+    "block": {
+     "length": 43.4,
+     "width": 32.2,
+     "fill": 0.56,
+     "parts": 1,
+     "area": 786
+    },
+    "tint": 0,
+    "type": "hotel",
+    "footprint": 786.4414396198565
+   },
+   "look": "plocha"
+  },
+  {
+   "town": "berlin",
+   "point": [
+    13.407971117299285,
+    52.526647817174485
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     13.407971117299285,
+     52.526647817174485
+    ],
+    "km": 99,
+    "block": {
+     "length": 256.9,
+     "width": 92.3,
+     "fill": 0.43,
+     "parts": 36,
+     "area": 10256
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 219.798367353289
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "leipzig",
+   "point": [
+    12.381674270847858,
+    51.335355222866
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     12.381674270847858,
+     51.335355222866
+    ],
+    "km": 99,
+    "block": {
+     "length": 312.1,
+     "width": 214.1,
+     "fill": 0.24,
+     "parts": 23,
+     "area": 16280
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "double_saltbox",
+    "footprint": 1979.8337675541857
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "koeln",
+   "point": [
+    6.975328576504068,
+    50.939005433050355
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     6.975328576504068,
+     50.939005433050355
+    ],
+    "km": 99,
+    "block": {
+     "length": 156.3,
+     "width": 96.2,
+     "fill": 0.3,
+     "parts": 24,
+     "area": 4584
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "gabled",
+    "footprint": 209.81247390619092
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "berlin",
+   "point": [
+    13.390296828466841,
+    52.524319738742605
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     13.390296828466841,
+     52.524319738742605
+    ],
+    "km": 99,
+    "block": {
+     "length": 183.3,
+     "width": 100.9,
+     "fill": 0.45,
+     "parts": 16,
+     "area": 8395
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 855.6302019878854
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "frankfurt",
+   "point": [
+    8.6863199196464,
+    50.11863670443743
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     8.6863199196464,
+     50.11863670443743
+    ],
+    "km": 99,
+    "block": {
+     "length": 174.2,
+     "width": 63.9,
+     "fill": 0.39,
+     "parts": 9,
+     "area": 4329
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 357.93542789215644
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "dresden",
+   "point": [
+    13.731408926671742,
+    51.0510952842508
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     13.731408926671742,
+     51.0510952842508
+    ],
+    "km": 99,
+    "block": {
+     "length": 119.8,
+     "width": 57.8,
+     "fill": 0.42,
+     "parts": 1,
+     "area": 2878
+    },
+    "tint": 0,
+    "type": "commercial",
+    "footprint": 2877.6514585485215
+   },
+   "look": "plocha"
+  },
+  {
+   "town": "dresden",
+   "point": [
+    13.735098486033282,
+    51.046827855847184
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     13.735098486033282,
+     51.046827855847184
+    ],
+    "km": 99,
+    "block": {
+     "length": 105.3,
+     "width": 27.1,
+     "fill": 0.74,
+     "parts": 2,
+     "area": 2099
+    },
+    "tint": 0,
+    "roofShape": "mansard",
+    "footprint": 1090.3449146862026
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "koeln",
+   "point": [
+    6.975201655693031,
+    50.942603229630656
+   ],
+   "info": {
+    "levels": 8,
+    "point": [
+     6.975201655693031,
+     50.942603229630656
+    ],
+    "km": 99,
+    "block": {
+     "length": 175.6,
+     "width": 140.4,
+     "fill": 0.43,
+     "parts": 5,
+     "area": 10523
+    },
+    "tint": 0,
+    "type": "commercial",
+    "roofShape": "flat",
+    "material": "brick",
+    "footprint": 3485.4466461813654
+   },
+   "look": "kancelar"
+  },
+  {
+   "town": "frankfurt",
+   "point": [
+    8.684130264498274,
+    50.09696873079922
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     8.684130264498274,
+     50.09696873079922
+    ],
+    "km": 99,
+    "block": {
+     "length": 75.5,
+     "width": 27.9,
+     "fill": 0.56,
+     "parts": 5,
+     "area": 1185
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 252.672702754066
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "dresden",
+   "point": [
+    13.736242328149052,
+    51.033548598748254
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     13.736242328149052,
+     51.033548598748254
+    ],
+    "km": 99,
+    "block": {
+     "length": 87.1,
+     "width": 14.2,
+     "fill": 0.91,
+     "parts": 3,
+     "area": 1127
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 686.6145473374052
+   },
+   "look": "plocha"
+  },
+  {
+   "town": "berlin",
+   "point": [
+    13.390050847393152,
+    52.52337157211266
+   ],
+   "info": {
+    "levels": 3,
+    "point": [
+     13.390050847393152,
+     52.52337157211266
+    ],
+    "km": 99,
+    "block": {
+     "length": 166.7,
+     "width": 96.9,
+     "fill": 0.28,
+     "parts": 9,
+     "area": 4543
+    },
+    "tint": 0,
+    "type": "university",
+    "footprint": 659.8036034454524
+   },
+   "look": "plocha"
+  },
+  {
+   "town": "muenchen",
+   "point": [
+    11.564615030236245,
+    48.138220710773815
+   ],
+   "info": {
+    "levels": 7,
+    "point": [
+     11.564615030236245,
+     48.138220710773815
+    ],
+    "km": 99,
+    "block": {
+     "length": 67.9,
+     "width": 38.6,
+     "fill": 0.61,
+     "parts": 3,
+     "area": 1605
+    },
+    "tint": 0,
+    "roofShape": "hipped",
+    "footprint": 413.99742851659283
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "hamburg",
+   "point": [
+    9.980152177790558,
+    53.54616382794209
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     9.980152177790558,
+     53.54616382794209
+    ],
+    "km": 99,
+    "block": {
+     "length": 218.6,
+     "width": 135.2,
+     "fill": 0.54,
+     "parts": 1,
+     "area": 16033
+    },
+    "tint": 0,
+    "type": "office",
+    "footprint": 16033.41668465194
+   },
+   "look": "kancelar"
+  },
+  {
+   "town": "muenchen",
+   "point": [
+    11.557736078205508,
+    48.14162808227087
+   ],
+   "info": {
+    "levels": 6,
+    "height": 20,
+    "point": [
+     11.557736078205508,
+     48.14162808227087
+    ],
+    "km": 99,
+    "block": {
+     "length": 315.5,
+     "width": 274.3,
+     "fill": 0.47,
+     "parts": 4,
+     "area": 41055
+    },
+    "tint": 0,
+    "type": "train_station",
+    "roofShape": "flat",
+    "footprint": 37576.0117573449
+   },
+   "look": "povalecny"
+  },
+  {
+   "town": "leipzig",
+   "point": [
+    12.37379112847654,
+    51.34503226738647
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     12.37379112847654,
+     51.34503226738647
+    ],
+    "km": 99,
+    "block": {
+     "length": 161.1,
+     "width": 83.7,
+     "fill": 0.54,
+     "parts": 14,
+     "area": 7301
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 390.58824079665465
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "hamburg",
+   "point": [
+    9.988205115666906,
+    53.54561720860965
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     9.988205115666906,
+     53.54561720860965
+    ],
+    "km": 99,
+    "block": {
+     "length": 172.6,
+     "width": 49.3,
+     "fill": 0.4,
+     "parts": 9,
+     "area": 3381
+    },
+    "tint": 0,
+    "type": "office",
+    "roofShape": "flat",
+    "footprint": 785.8573550370318
+   },
+   "look": "kancelar"
+  },
+  {
+   "town": "koeln",
+   "point": [
+    7.051043873454039,
+    50.96831858689159
+   ],
+   "info": {
+    "levels": 2,
+    "point": [
+     7.051043873454039,
+     50.96831858689159
+    ],
+    "km": 99,
+    "block": {
+     "length": 52.2,
+     "width": 16.4,
+     "fill": 0.59,
+     "parts": 11,
+     "area": 506
+    },
+    "tint": 0,
+    "type": "semidetached_house",
+    "footprint": 68.9900753684883
+   },
+   "look": "nizky"
+  },
+  {
+   "town": "frankfurt",
+   "point": [
+    8.66466543695588,
+    50.10532834856651
+   ],
+   "info": {
+    "levels": 11,
+    "point": [
+     8.66466543695588,
+     50.10532834856651
+    ],
+    "km": 99,
+    "block": {
+     "length": 187.6,
+     "width": 114.3,
+     "fill": 0.27,
+     "parts": 19,
+     "area": 5798
+    },
+    "tint": 0,
+    "type": "commercial",
+    "footprint": 635.5220565854411
+   },
+   "look": "kancelar"
+  },
+  {
+   "town": "freiburg",
+   "point": [
+    7.854735860606863,
+    48.00808700993119
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     7.854735860606863,
+     48.00808700993119
+    ],
+    "km": 99,
+    "block": {
+     "length": 101.7,
+     "width": 30.3,
+     "fill": 0.46,
+     "parts": 10,
+     "area": 1415
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "mansard",
+    "footprint": 266.40610043368576
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "freiburg",
+   "point": [
+    7.852411009310456,
+    48.00895634839318
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     7.852411009310456,
+     48.00895634839318
+    ],
+    "km": 99,
+    "block": {
+     "length": 169.2,
+     "width": 86.3,
+     "fill": 0.27,
+     "parts": 41,
+     "area": 3988
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "gabled",
+    "footprint": 150.28748661470445
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "berlin",
+   "point": [
+    13.310629003222596,
+    52.51824061880991
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     13.310629003222596,
+     52.51824061880991
+    ],
+    "km": 99,
+    "block": {
+     "length": 64.5,
+     "width": 36.8,
+     "fill": 0.5,
+     "parts": 3,
+     "area": 1179
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "flat",
+    "footprint": 244.17565595956512
+   },
+   "look": "plocha"
+  },
+  {
+   "town": "aachen",
+   "point": [
+    6.088506334587139,
+    50.77582217144758
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     6.088506334587139,
+     50.77582217144758
+    ],
+    "km": 99,
+    "block": {
+     "length": 97.5,
+     "width": 49.6,
+     "fill": 0.51,
+     "parts": 28,
+     "area": 2486
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 172.79755883762527
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "berlin",
+   "point": [
+    13.394856487172454,
+    52.51498057752723
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     13.394856487172454,
+     52.51498057752723
+    ],
+    "km": 99,
+    "block": {
+     "length": 242.4,
+     "width": 85.8,
+     "fill": 0.58,
+     "parts": 25,
+     "area": 12155
+    },
+    "tint": 0,
+    "type": "hotel",
+    "footprint": 718.7444733857544
+   },
+   "look": "plocha"
+  },
+  {
+   "town": "nuernberg",
+   "point": [
+    11.130196830214265,
+    49.460303285838236
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     11.130196830214265,
+     49.460303285838236
+    ],
+    "km": 99,
+    "block": {
+     "length": 19.1,
+     "width": 19.5,
+     "fill": 0.56,
+     "parts": 1,
+     "area": 209
+    },
+    "tint": 0,
+    "roofShape": "gabled",
+    "footprint": 208.81917847846944
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "freiburg",
+   "point": [
+    7.849702446206949,
+    47.98517965826387
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     7.849702446206949,
+     47.98517965826387
+    ],
+    "km": 99,
+    "block": {
+     "length": 15.7,
+     "width": 16.6,
+     "fill": 0.65,
+     "parts": 2,
+     "area": 169
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 139.23925337575747
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "muenchen",
+   "point": [
+    11.58057531294592,
+    48.14513001643508
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     11.58057531294592,
+     48.14513001643508
+    ],
+    "km": 99,
+    "block": {
+     "length": 197.5,
+     "width": 97,
+     "fill": 0.54,
+     "parts": 34,
+     "area": 10264
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 372.8731205648071
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "berlin",
+   "point": [
+    13.403023061094647,
+    52.51065707502945
+   ],
+   "info": {
+    "levels": 10,
+    "point": [
+     13.403023061094647,
+     52.51065707502945
+    ],
+    "km": 99,
+    "block": {
+     "length": 239.8,
+     "width": 139.6,
+     "fill": 0.3,
+     "parts": 8,
+     "area": 9904
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 3062.1479707484827
+   },
+   "look": "plocha"
+  },
+  {
+   "town": "berlin",
+   "point": [
+    13.395167389633084,
+    52.52965418329221
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     13.395167389633084,
+     52.52965418329221
+    ],
+    "km": 99,
+    "block": {
+     "length": 225.1,
+     "width": 191.1,
+     "fill": 0.36,
+     "parts": 39,
+     "area": 15586
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 741.6892214925738
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "koeln",
+   "point": [
+    6.945401031384022,
+    50.932396875888855
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     6.945401031384022,
+     50.932396875888855
+    ],
+    "km": 99,
+    "block": {
+     "length": 135.9,
+     "width": 63.2,
+     "fill": 0.42,
+     "parts": 40,
+     "area": 3618
+    },
+    "tint": 0,
+    "roofShape": "hipped",
+    "footprint": 374.3189608560415
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "koeln",
+   "point": [
+    6.952959662535307,
+    50.938758365531186
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     6.952959662535307,
+     50.938758365531186
+    ],
+    "km": 99,
+    "block": {
+     "length": 59.5,
+     "width": 38.6,
+     "fill": 0.66,
+     "parts": 7,
+     "area": 1525
+    },
+    "tint": 0,
+    "footprint": 370.3780729298205
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "freiburg",
+   "point": [
+    7.86122572336385,
+    47.998455080200095
+   ],
+   "info": {
+    "levels": 1,
+    "point": [
+     7.86122572336385,
+     47.998455080200095
+    ],
+    "km": 99,
+    "block": {
+     "length": 31.9,
+     "width": 21.8,
+     "fill": 0.63,
+     "parts": 2,
+     "area": 438
+    },
+    "tint": 0,
+    "type": "university",
+    "roofShape": "flat",
+    "footprint": 412.2448804670154
+   },
+   "look": "nizky"
+  },
+  {
+   "town": "muenchen",
+   "point": [
+    11.591406315120322,
+    48.132082267291985
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     11.591406315120322,
+     48.132082267291985
+    ],
+    "km": 99,
+    "block": {
+     "length": 151.3,
+     "width": 83.5,
+     "fill": 0.38,
+     "parts": 14,
+     "area": 4768
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 470.72930925673165
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "koeln",
+   "point": [
+    6.953157936175741,
+    50.92885964611608
+   ],
+   "info": {
+    "levels": 3,
+    "point": [
+     6.953157936175741,
+     50.92885964611608
+    ],
+    "km": 99,
+    "block": {
+     "length": 135.3,
+     "width": 33.1,
+     "fill": 0.36,
+     "parts": 11,
+     "area": 1626
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "gabled",
+    "footprint": 170.68560784971214
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "nuernberg",
+   "point": [
+    11.07872394320735,
+    49.45528596513943
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     11.07872394320735,
+     49.45528596513943
+    ],
+    "km": 99,
+    "block": {
+     "length": 127.5,
+     "width": 83.8,
+     "fill": 0.35,
+     "parts": 20,
+     "area": 3746
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "gabled",
+    "footprint": 194.8309083113454
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "frankfurt",
+   "point": [
+    8.662594197054814,
+    50.10875214778871
+   ],
+   "info": {
+    "levels": 7,
+    "point": [
+     8.662594197054814,
+     50.10875214778871
+    ],
+    "km": 99,
+    "block": {
+     "length": 172.8,
+     "width": 216.3,
+     "fill": 0.36,
+     "parts": 40,
+     "area": 13486
+    },
+    "tint": 0,
+    "type": "hotel",
+    "roofShape": "flat",
+    "footprint": 152.35790985066114
+   },
+   "look": "kancelar"
+  },
+  {
+   "town": "berlin",
+   "point": [
+    13.286063031461772,
+    52.503323195980094
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     13.286063031461772,
+     52.503323195980094
+    ],
+    "km": 99,
+    "block": {
+     "length": 117.7,
+     "width": 77.6,
+     "fill": 0.28,
+     "parts": 4,
+     "area": 2573
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 591.1724031865529
+   },
+   "look": "plocha"
+  },
+  {
+   "town": "aachen",
+   "point": [
+    6.075321250673101,
+    50.783323821284675
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     6.075321250673101,
+     50.783323821284675
+    ],
+    "km": 99,
+    "block": {
+     "length": 152.6,
+     "width": 58.7,
+     "fill": 0.47,
+     "parts": 21,
+     "area": 4182
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "gabled",
+    "footprint": 108.17481075805063
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "hamburg",
+   "point": [
+    10.074665288320949,
+    53.59007877504914
+   ],
+   "info": {
+    "levels": 2,
+    "point": [
+     10.074665288320949,
+     53.59007877504914
+    ],
+    "km": 99,
+    "block": {
+     "length": 10.6,
+     "width": 10,
+     "fill": 0.74,
+     "parts": 1,
+     "area": 78
+    },
+    "tint": 0,
+    "type": "detached",
+    "footprint": 78.17815818764302
+   },
+   "look": "vila"
+  },
+  {
+   "town": "frankfurt",
+   "point": [
+    8.675130035120189,
+    50.113706765298176
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     8.675130035120189,
+     50.113706765298176
+    ],
+    "km": 99,
+    "block": {
+     "length": 142.5,
+     "width": 33,
+     "fill": 0.66,
+     "parts": 11,
+     "area": 3108
+    },
+    "tint": 0,
+    "type": "retail",
+    "footprint": 355.60271535547326
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "hamburg",
+   "point": [
+    9.985224310237824,
+    53.5882673196267
+   ],
+   "info": {
+    "levels": 3,
+    "point": [
+     9.985224310237824,
+     53.5882673196267
+    ],
+    "km": 99,
+    "block": {
+     "length": 23,
+     "width": 13.7,
+     "fill": 0.6,
+     "parts": 1,
+     "area": 188
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 188.145590240837
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "nuernberg",
+   "point": [
+    11.076682038268752,
+    49.439831098815716
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     11.076682038268752,
+     49.439831098815716
+    ],
+    "km": 99,
+    "block": {
+     "length": 63.1,
+     "width": 53,
+     "fill": 0.65,
+     "parts": 13,
+     "area": 2176
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "gabled",
+    "footprint": 253.7228416036828
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "berlin",
+   "point": [
+    13.332949501647313,
+    52.577172431647604
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     13.332949501647313,
+     52.577172431647604
+    ],
+    "km": 99,
+    "block": {
+     "length": 140,
+     "width": 45.5,
+     "fill": 0.36,
+     "parts": 7,
+     "area": 2280
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "gabled",
+    "footprint": 649.2673259635578
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "koeln",
+   "point": [
+    6.958254523004977,
+    50.94511595383434
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     6.958254523004977,
+     50.94511595383434
+    ],
+    "km": 99,
+    "block": {
+     "length": 91.7,
+     "width": 70.6,
+     "fill": 0.39,
+     "parts": 31,
+     "area": 2548
+    },
+    "tint": 0,
+    "roofShape": "flat",
+    "footprint": 202.80858558742193
+   },
+   "look": "funkce"
+  },
+  {
+   "town": "freiburg",
+   "point": [
+    7.871934857412942,
+    48.06813352131871
+   ],
+   "info": {
+    "levels": 3,
+    "point": [
+     7.871934857412942,
+     48.06813352131871
+    ],
+    "km": 99,
+    "block": {
+     "length": 58.4,
+     "width": 14.1,
+     "fill": 0.68,
+     "parts": 12,
+     "area": 563
+    },
+    "tint": 0,
+    "type": "house",
+    "roofShape": "gabled",
+    "footprint": 68.27207571421968
+   },
+   "look": "nizky"
+  },
+  {
+   "town": "muenchen",
+   "point": [
+    11.570838347227179,
+    48.12544774053553
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     11.570838347227179,
+     48.12544774053553
+    ],
+    "km": 99,
+    "block": {
+     "length": 53.8,
+     "width": 26,
+     "fill": 0.69,
+     "parts": 2,
+     "area": 965
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "hipped",
+    "footprint": 488.87957774915276
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "berlin",
+   "point": [
+    13.430291076744952,
+    52.53019282394243
+   ],
+   "info": {
+    "levels": 6,
+    "height": 22,
+    "point": [
+     13.430291076744952,
+     52.53019282394243
+    ],
+    "km": 99,
+    "block": {
+     "length": 83.5,
+     "width": 28.8,
+     "fill": 0.41,
+     "parts": 1,
+     "area": 987
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "gambrel",
+    "footprint": 986.9392662390064
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "berlin",
+   "point": [
+    13.414955719437657,
+    52.51726493874623
+   ],
+   "info": {
+    "levels": 10,
+    "point": [
+     13.414955719437657,
+     52.51726493874623
+    ],
+    "km": 99,
+    "block": {
+     "length": 270.5,
+     "width": 102.7,
+     "fill": 0.52,
+     "parts": 6,
+     "area": 14527
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 431.440184746534
+   },
+   "look": "plocha"
+  },
+  {
+   "town": "nuernberg",
+   "point": [
+    11.003996353186366,
+    49.40103526057465
+   ],
+   "info": {
+    "levels": 2,
+    "point": [
+     11.003996353186366,
+     49.40103526057465
+    ],
+    "km": 99,
+    "block": {
+     "length": 13.1,
+     "width": 11.1,
+     "fill": 0.61,
+     "parts": 1,
+     "area": 88
+    },
+    "tint": 0,
+    "type": "detached",
+    "roofShape": "gabled",
+    "footprint": 88.11080880292957
+   },
+   "look": "vila"
+  },
+  {
+   "town": "nuernberg",
+   "point": [
+    11.070779310718406,
+    49.44099665226873
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     11.070779310718406,
+     49.44099665226873
+    ],
+    "km": 99,
+    "block": {
+     "length": 120.5,
+     "width": 95,
+     "fill": 0.45,
+     "parts": 23,
+     "area": 5178
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "gabled",
+    "footprint": 236.10795877312808
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "koeln",
+   "point": [
+    6.975253767727318,
+    50.942225056210866
+   ],
+   "info": {
+    "levels": 8,
+    "point": [
+     6.975253767727318,
+     50.942225056210866
+    ],
+    "km": 99,
+    "block": {
+     "length": 175.6,
+     "width": 140.4,
+     "fill": 0.43,
+     "parts": 5,
+     "area": 10523
+    },
+    "tint": 0,
+    "type": "commercial",
+    "roofShape": "flat",
+    "material": "brick",
+    "footprint": 3485.4921760072248
+   },
+   "look": "kancelar"
+  },
+  {
+   "town": "frankfurt",
+   "point": [
+    8.719665206472516,
+    50.14217085995685
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     8.719665206472516,
+     50.14217085995685
+    ],
+    "km": 99,
+    "block": {
+     "length": 21.5,
+     "width": 22.2,
+     "fill": 0.68,
+     "parts": 1,
+     "area": 323
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "flat",
+    "footprint": 323.4420042741077
+   },
+   "look": "funkce"
+  },
+  {
+   "town": "berlin",
+   "point": [
+    13.343942882430081,
+    52.56518042393632
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     13.343942882430081,
+     52.56518042393632
+    ],
+    "km": 99,
+    "block": {
+     "length": 86.3,
+     "width": 14.1,
+     "fill": 0.75,
+     "parts": 1,
+     "area": 906
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 906.4849503804148
+   },
+   "look": "plocha"
+  },
+  {
+   "town": "hamburg",
+   "point": [
+    9.830070015991101,
+    53.558111598697515
+   ],
+   "info": {
+    "levels": 3,
+    "point": [
+     9.830070015991101,
+     53.558111598697515
+    ],
+    "km": 99,
+    "block": {
+     "length": 27.7,
+     "width": 17.7,
+     "fill": 0.78,
+     "parts": 1,
+     "area": 382
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "hipped",
+    "footprint": 381.6764396018566
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "koeln",
+   "point": [
+    6.978362341666482,
+    50.938346371464405
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     6.978362341666482,
+     50.938346371464405
+    ],
+    "km": 99,
+    "block": {
+     "length": 154.8,
+     "width": 118.7,
+     "fill": 0.21,
+     "parts": 14,
+     "area": 3768
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "gabled",
+    "footprint": 215.62806358706985
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "frankfurt",
+   "point": [
+    8.760124027680005,
+    50.10636037594443
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     8.760124027680005,
+     50.10636037594443
+    ],
+    "km": 99,
+    "block": {
+     "length": 157,
+     "width": 72.4,
+     "fill": 0.62,
+     "parts": 18,
+     "area": 7089
+    },
+    "tint": 0,
+    "type": "office",
+    "roofShape": "flat",
+    "footprint": 2861.0461736719026
+   },
+   "look": "kancelar"
+  },
+  {
+   "town": "hamburg",
+   "point": [
+    10.000054627209797,
+    53.55309054215517
+   ],
+   "info": {
+    "levels": 8,
+    "point": [
+     10.000054627209797,
+     53.55309054215517
+    ],
+    "km": 99,
+    "block": {
+     "length": 318.1,
+     "width": 68.3,
+     "fill": 0.7,
+     "parts": 4,
+     "area": 15130
+    },
+    "tint": 0,
+    "type": "commercial",
+    "footprint": 7373.048699646466
+   },
+   "look": "kancelar"
+  },
+  {
+   "town": "aachen",
+   "point": [
+    6.100342150321002,
+    50.782706326844796
+   ],
+   "info": {
+    "levels": 2,
+    "point": [
+     6.100342150321002,
+     50.782706326844796
+    ],
+    "km": 99,
+    "block": {
+     "length": 78.7,
+     "width": 30,
+     "fill": 0.39,
+     "parts": 11,
+     "area": 920
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "flat",
+    "footprint": 117.90769427165287
+   },
+   "look": "nizky"
+  },
+  {
+   "town": "hamburg",
+   "point": [
+    9.99030269968216,
+    53.56048951898527
+   ],
+   "info": {
+    "height": 6,
+    "point": [
+     9.99030269968216,
+     53.56048951898527
+    ],
+    "km": 99,
+    "block": {
+     "length": 136.8,
+     "width": 45.4,
+     "fill": 0.77,
+     "parts": 2,
+     "area": 4758
+    },
+    "tint": 0,
+    "footprint": 461.34775312954685
+   },
+   "look": "nizky"
+  },
+  {
+   "town": "nuernberg",
+   "point": [
+    10.995127900537584,
+    49.39301226187447
+   ],
+   "info": {
+    "levels": 3,
+    "point": [
+     10.995127900537584,
+     49.39301226187447
+    ],
+    "km": 99,
+    "block": {
+     "length": 25,
+     "width": 18,
+     "fill": 0.66,
+     "parts": 2,
+     "area": 296
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "gabled",
+    "footprint": 153.01817487521294
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "nuernberg",
+   "point": [
+    11.078092947887763,
+    49.45454060539857
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     11.078092947887763,
+     49.45454060539857
+    ],
+    "km": 99,
+    "block": {
+     "length": 144.2,
+     "width": 98.4,
+     "fill": 0.48,
+     "parts": 11,
+     "area": 6754
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "gabled",
+    "footprint": 900.9837012505168
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "leipzig",
+   "point": [
+    12.361399155228654,
+    51.33698981057457
+   ],
+   "info": {
+    "levels": 3,
+    "point": [
+     12.361399155228654,
+     51.33698981057457
+    ],
+    "km": 99,
+    "block": {
+     "length": 34.4,
+     "width": 26.3,
+     "fill": 0.73,
+     "parts": 1,
+     "area": 656
+    },
+    "tint": 0,
+    "type": "school",
+    "roofShape": "flat",
+    "footprint": 655.5747615016764
+   },
+   "look": "skola"
+  },
+  {
+   "town": "muenchen",
+   "point": [
+    11.500659581192705,
+    48.09150346748289
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     11.500659581192705,
+     48.09150346748289
+    ],
+    "km": 99,
+    "block": {
+     "length": 96.3,
+     "width": 45.8,
+     "fill": 0.5,
+     "parts": 4,
+     "area": 2184
+    },
+    "tint": 0,
+    "type": "dormitory",
+    "roofShape": "gabled",
+    "footprint": 1779.9712618278936
+   },
+   "look": "sikma"
+  }
+ ]
+}

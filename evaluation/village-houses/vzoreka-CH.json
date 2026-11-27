@@ -1,0 +1,4748 @@
+{
+ "stat": {
+  "houses": 571,
+  "noData": 393,
+  "changed": 116,
+  "regCut": 0,
+  "noPhoto": 100,
+  "dataChanged": 0,
+  "villages": 60,
+  "pairs": {
+   "sikma>vila": 75,
+   "povalecny>vila": 41
+  }
+ },
+ "rows": [
+  {
+   "id": "CHa01",
+   "town": "stgallen",
+   "far": true,
+   "city": "switzerland",
+   "point": [
+    9.3739184,
+    47.3894204
+   ],
+   "mapillary": "311434543813326",
+   "pano": false,
+   "dist": 22,
+   "off": -18.4,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "point": [
+      9.373918353612586,
+      47.389420442162496
+     ],
+     "km": 99,
+     "block": {
+      "length": 15.4,
+      "width": 16.3,
+      "fill": 0.51,
+      "parts": 1,
+      "area": 128
+     },
+     "tint": 0,
+     "footprint": 128.33080305133512
+    }
+   },
+   "after": {
+    "look": "vila",
+    "info": {
+     "point": [
+      9.373918353612586,
+      47.389420442162496
+     ],
+     "km": 99,
+     "block": {
+      "length": 15.4,
+      "width": 16.3,
+      "fill": 0.51,
+      "parts": 1,
+      "area": 128
+     },
+     "tint": 0,
+     "footprint": 128.33080305133512
+    }
+   }
+  },
+  {
+   "id": "CHa02",
+   "town": "zurich",
+   "far": false,
+   "city": "switzerland",
+   "point": [
+    8.5458983,
+    47.3792077
+   ],
+   "mapillary": "1112321222580864",
+   "pano": true,
+   "dist": 12.8,
+   "off": -41.2,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "point": [
+      8.54589832372853,
+      47.37920768521897
+     ],
+     "km": 99,
+     "block": {
+      "length": 24.9,
+      "width": 18.7,
+      "fill": 0.61,
+      "parts": 2,
+      "area": 286
+     },
+     "tint": 0,
+     "footprint": 145.02746328339617
+    }
+   },
+   "after": {
+    "look": "vila",
+    "info": {
+     "point": [
+      8.54589832372853,
+      47.37920768521897
+     ],
+     "km": 99,
+     "block": {
+      "length": 24.9,
+      "width": 18.7,
+      "fill": 0.61,
+      "parts": 2,
+      "area": 286
+     },
+     "tint": 0,
+     "footprint": 145.02746328339617
+    }
+   }
+  },
+  {
+   "id": "CHa03",
+   "town": "luzern",
+   "far": false,
+   "city": "switzerland",
+   "point": [
+    8.3130421,
+    47.0546232
+   ],
+   "mapillary": "1269458218444470",
+   "pano": true,
+   "dist": 14.2,
+   "off": -139.9,
+   "before": {
+    "look": "povalecny",
+    "info": {
+     "point": [
+      8.313042074211621,
+      47.054623220418605
+     ],
+     "km": 99,
+     "block": {
+      "length": 17.6,
+      "width": 13.7,
+      "fill": 0.66,
+      "parts": 1,
+      "area": 160
+     },
+     "tint": 0,
+     "footprint": 159.75273636919792
+    }
+   },
+   "after": {
+    "look": "vila",
+    "info": {
+     "point": [
+      8.313042074211621,
+      47.054623220418605
+     ],
+     "km": 99,
+     "block": {
+      "length": 17.6,
+      "width": 13.7,
+      "fill": 0.66,
+      "parts": 1,
+      "area": 160
+     },
+     "tint": 0,
+     "footprint": 159.75273636919792
+    }
+   }
+  },
+  {
+   "id": "CHa04",
+   "town": "zurich",
+   "far": true,
+   "city": "switzerland",
+   "point": [
+    8.5531298,
+    47.3985652
+   ],
+   "mapillary": "540723247306204",
+   "pano": true,
+   "dist": 14.6,
+   "off": -179.3,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "point": [
+      8.553129782485135,
+      47.39856520307637
+     ],
+     "km": 99,
+     "block": {
+      "length": 19.5,
+      "width": 15.4,
+      "fill": 0.5,
+      "parts": 1,
+      "area": 149
+     },
+     "tint": 0,
+     "type": "apartments",
+     "footprint": 149.14496329951453
+    }
+   },
+   "after": {
+    "look": "vila",
+    "info": {
+     "point": [
+      8.553129782485135,
+      47.39856520307637
+     ],
+     "km": 99,
+     "block": {
+      "length": 19.5,
+      "width": 15.4,
+      "fill": 0.5,
+      "parts": 1,
+      "area": 149
+     },
+     "tint": 0,
+     "type": "apartments",
+     "footprint": 149.14496329951453
+    }
+   }
+  },
+  {
+   "id": "CHa05",
+   "town": "lugano",
+   "far": false,
+   "city": "switzerland",
+   "point": [
+    8.9451667,
+    45.9982599
+   ],
+   "mapillary": "1469458188068449",
+   "pano": false,
+   "dist": 22.4,
+   "off": 8.3,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "point": [
+      8.945166695240456,
+      45.998259872429614
+     ],
+     "km": 99,
+     "block": {
+      "length": 24.9,
+      "width": 14.7,
+      "fill": 0.64,
+      "parts": 1,
+      "area": 233
+     },
+     "tint": 0,
+     "footprint": 233.01441932073703
+    }
+   },
+   "after": {
+    "look": "vila",
+    "info": {
+     "point": [
+      8.945166695240456,
+      45.998259872429614
+     ],
+     "km": 99,
+     "block": {
+      "length": 24.9,
+      "width": 14.7,
+      "fill": 0.64,
+      "parts": 1,
+      "area": 233
+     },
+     "tint": 0,
+     "footprint": 233.01441932073703
+    }
+   }
+  },
+  {
+   "id": "CHa06",
+   "town": "lausanne",
+   "far": false,
+   "city": "switzerland",
+   "point": [
+    6.6198164,
+    46.5164798
+   ],
+   "mapillary": "289306519354298",
+   "pano": false,
+   "dist": 22.4,
+   "off": -2,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "point": [
+      6.619816446542669,
+      46.516479841153696
+     ],
+     "km": 99,
+     "block": {
+      "length": 18.5,
+      "width": 15.3,
+      "fill": 0.6,
+      "parts": 1,
+      "area": 168
+     },
+     "tint": 0,
+     "footprint": 168.14240573216694
+    }
+   },
+   "after": {
+    "look": "vila",
+    "info": {
+     "point": [
+      6.619816446542669,
+      46.516479841153696
+     ],
+     "km": 99,
+     "block": {
+      "length": 18.5,
+      "width": 15.3,
+      "fill": 0.6,
+      "parts": 1,
+      "area": 168
+     },
+     "tint": 0,
+     "footprint": 168.14240573216694
+    }
+   }
+  },
+  {
+   "id": "CHa07",
+   "town": "zurich",
+   "far": false,
+   "city": "switzerland",
+   "point": [
+    8.5558737,
+    47.380083
+   ],
+   "mapillary": "249080503640030",
+   "pano": false,
+   "dist": 13,
+   "off": 7.7,
+   "before": {
+    "look": "povalecny",
+    "info": {
+     "point": [
+      8.555873686441723,
+      47.38008298266428
+     ],
+     "km": 99,
+     "block": {
+      "length": 35.2,
+      "width": 14.3,
+      "fill": 0.87,
+      "parts": 2,
+      "area": 440
+     },
+     "tint": 0,
+     "footprint": 245.88179256285002
+    }
+   },
+   "after": {
+    "look": "vila",
+    "info": {
+     "point": [
+      8.555873686441723,
+      47.38008298266428
+     ],
+     "km": 99,
+     "block": {
+      "length": 35.2,
+      "width": 14.3,
+      "fill": 0.87,
+      "parts": 2,
+      "area": 440
+     },
+     "tint": 0,
+     "footprint": 245.88179256285002
+    }
+   }
+  },
+  {
+   "id": "CHa08",
+   "town": "zurich",
+   "far": true,
+   "city": "switzerland",
+   "point": [
+    8.6271315,
+    47.4039757
+   ],
+   "mapillary": "491616052049971",
+   "pano": true,
+   "dist": 14.1,
+   "off": 27.7,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "point": [
+      8.627131452312929,
+      47.40397567667833
+     ],
+     "km": 99,
+     "block": {
+      "length": 13.3,
+      "width": 13.5,
+      "fill": 0.5,
+      "parts": 1,
+      "area": 91
+     },
+     "tint": 0,
+     "footprint": 90.81117421862291
+    }
+   },
+   "after": {
+    "look": "vila",
+    "info": {
+     "point": [
+      8.627131452312929,
+      47.40397567667833
+     ],
+     "km": 99,
+     "block": {
+      "length": 13.3,
+      "width": 13.5,
+      "fill": 0.5,
+      "parts": 1,
+      "area": 91
+     },
+     "tint": 0,
+     "footprint": 90.81117421862291
+    }
+   }
+  },
+  {
+   "id": "CHa09",
+   "town": "bern",
+   "far": false,
+   "city": "switzerland",
+   "point": [
+    7.4417153,
+    46.9348611
+   ],
+   "mapillary": "544378716721872",
+   "pano": false,
+   "dist": 14.7,
+   "off": 19.6,
+   "before": {
+    "look": "povalecny",
+    "info": {
+     "point": [
+      7.441715310273448,
+      46.93486111899753
+     ],
+     "km": 99,
+     "block": {
+      "length": 21.8,
+      "width": 14.1,
+      "fill": 0.78,
+      "parts": 2,
+      "area": 240
+     },
+     "tint": 0,
+     "type": "apartments",
+     "footprint": 122.29172596838589
+    }
+   },
+   "after": {
+    "look": "vila",
+    "info": {
+     "point": [
+      7.441715310273448,
+      46.93486111899753
+     ],
+     "km": 99,
+     "block": {
+      "length": 21.8,
+      "width": 14.1,
+      "fill": 0.78,
+      "parts": 2,
+      "area": 240
+     },
+     "tint": 0,
+     "type": "apartments",
+     "footprint": 122.29172596838589
+    }
+   }
+  },
+  {
+   "id": "CHa10",
+   "town": "luzern",
+   "far": false,
+   "city": "switzerland",
+   "point": [
+    8.2927117,
+    47.0545176
+   ],
+   "mapillary": "207286745572670",
+   "pano": false,
+   "dist": 7.4,
+   "off": -25.3,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "point": [
+      8.292711741554477,
+      47.05451758765377
+     ],
+     "km": 99,
+     "block": {
+      "length": 18.7,
+      "width": 16.2,
+      "fill": 0.59,
+      "parts": 1,
+      "area": 179
+     },
+     "tint": 0,
+     "footprint": 179.0512965923017
+    }
+   },
+   "after": {
+    "look": "vila",
+    "info": {
+     "point": [
+      8.292711741554477,
+      47.05451758765377
+     ],
+     "km": 99,
+     "block": {
+      "length": 18.7,
+      "width": 16.2,
+      "fill": 0.59,
+      "parts": 1,
+      "area": 179
+     },
+     "tint": 0,
+     "footprint": 179.0512965923017
+    }
+   }
+  },
+  {
+   "id": "CHa11",
+   "town": "winterthur",
+   "far": false,
+   "city": "switzerland",
+   "point": [
+    8.7093345,
+    47.5101627
+   ],
+   "mapillary": "459839671986220",
+   "pano": false,
+   "dist": 15.3,
+   "off": 23.2,
+   "before": {
+    "look": "povalecny",
+    "info": {
+     "point": [
+      8.709334473791802,
+      47.51016274448795
+     ],
+     "km": 99,
+     "block": {
+      "length": 28.2,
+      "width": 12.3,
+      "fill": 0.81,
+      "parts": 2,
+      "area": 281
+     },
+     "tint": 0,
+     "footprint": 138.0204497123732
+    }
+   },
+   "after": {
+    "look": "vila",
+    "info": {
+     "point": [
+      8.709334473791802,
+      47.51016274448795
+     ],
+     "km": 99,
+     "block": {
+      "length": 28.2,
+      "width": 12.3,
+      "fill": 0.81,
+      "parts": 2,
+      "area": 281
+     },
+     "tint": 0,
+     "footprint": 138.0204497123732
+    }
+   }
+  },
+  {
+   "id": "CHa12",
+   "town": "biel",
+   "far": false,
+   "city": "switzerland",
+   "point": [
+    7.2538579,
+    47.1299119
+   ],
+   "mapillary": "1824900068759215",
+   "pano": false,
+   "dist": 20,
+   "off": 9.2,
+   "before": {
+    "look": "povalecny",
+    "info": {
+     "point": [
+      7.253857944630376,
+      47.12991187964121
+     ],
+     "km": 99,
+     "block": {
+      "length": 8.1,
+      "width": 5.3,
+      "fill": 0.72,
+      "parts": 1,
+      "area": 31
+     },
+     "tint": 0,
+     "footprint": 30.98522887488957
+    }
+   },
+   "after": {
+    "look": "vila",
+    "info": {
+     "point": [
+      7.253857944630376,
+      47.12991187964121
+     ],
+     "km": 99,
+     "block": {
+      "length": 8.1,
+      "width": 5.3,
+      "fill": 0.72,
+      "parts": 1,
+      "area": 31
+     },
+     "tint": 0,
+     "footprint": 30.98522887488957
+    }
+   }
+  },
+  {
+   "id": "CHa13",
+   "town": "zurich",
+   "far": false,
+   "city": "switzerland",
+   "point": [
+    8.5492737,
+    47.3806183
+   ],
+   "mapillary": "941577819818770",
+   "pano": true,
+   "dist": 22.4,
+   "off": -47.3,
+   "before": {
+    "look": "povalecny",
+    "info": {
+     "point": [
+      8.549273699849772,
+      47.38061827732771
+     ],
+     "km": 99,
+     "block": {
+      "length": 20.1,
+      "width": 14.4,
+      "fill": 0.68,
+      "parts": 2,
+      "area": 196
+     },
+     "tint": 0,
+     "footprint": 117.1015329347938
+    }
+   },
+   "after": {
+    "look": "vila",
+    "info": {
+     "point": [
+      8.549273699849772,
+      47.38061827732771
+     ],
+     "km": 99,
+     "block": {
+      "length": 20.1,
+      "width": 14.4,
+      "fill": 0.68,
+      "parts": 2,
+      "area": 196
+     },
+     "tint": 0,
+     "footprint": 117.1015329347938
+    }
+   }
+  },
+  {
+   "id": "CHa14",
+   "town": "lugano",
+   "far": true,
+   "city": "switzerland",
+   "point": [
+    8.8998608,
+    45.9384067
+   ],
+   "mapillary": "930367091681990",
+   "pano": false,
+   "dist": 17.2,
+   "off": -32,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "point": [
+      8.899860826453557,
+      45.93840669189645
+     ],
+     "km": 99,
+     "block": {
+      "length": 27.8,
+      "width": 14.3,
+      "fill": 0.47,
+      "parts": 2,
+      "area": 188
+     },
+     "tint": 0,
+     "footprint": 162.2198034423218
+    }
+   },
+   "after": {
+    "look": "vila",
+    "info": {
+     "point": [
+      8.899860826453557,
+      45.93840669189645
+     ],
+     "km": 99,
+     "block": {
+      "length": 27.8,
+      "width": 14.3,
+      "fill": 0.47,
+      "parts": 2,
+      "area": 188
+     },
+     "tint": 0,
+     "footprint": 162.2198034423218
+    }
+   }
+  },
+  {
+   "id": "CHa15",
+   "town": "lugano",
+   "far": false,
+   "city": "switzerland",
+   "point": [
+    8.957517,
+    46.0066376
+   ],
+   "mapillary": "930301777750646",
+   "pano": false,
+   "dist": 13.3,
+   "off": -4.1,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "point": [
+      8.95751698139314,
+      46.00663758936946
+     ],
+     "km": 99,
+     "block": {
+      "length": 19.9,
+      "width": 17.3,
+      "fill": 0.71,
+      "parts": 1,
+      "area": 242
+     },
+     "tint": 0,
+     "footprint": 241.955022147416
+    }
+   },
+   "after": {
+    "look": "vila",
+    "info": {
+     "point": [
+      8.95751698139314,
+      46.00663758936946
+     ],
+     "km": 99,
+     "block": {
+      "length": 19.9,
+      "width": 17.3,
+      "fill": 0.71,
+      "parts": 1,
+      "area": 242
+     },
+     "tint": 0,
+     "footprint": 241.955022147416
+    }
+   }
+  },
+  {
+   "id": "CHa16",
+   "town": "bern",
+   "far": false,
+   "city": "switzerland",
+   "point": [
+    7.4437678,
+    46.9603778
+   ],
+   "mapillary": "1110315842823370",
+   "pano": false,
+   "dist": 5.1,
+   "off": 25.6,
+   "before": {
+    "look": "povalecny",
+    "info": {
+     "point": [
+      7.443767761562048,
+      46.960377787808135
+     ],
+     "km": 99,
+     "block": {
+      "length": 20.2,
+      "width": 11.9,
+      "fill": 0.76,
+      "parts": 1,
+      "area": 182
+     },
+     "tint": 0,
+     "footprint": 182.29986801475388
+    }
+   },
+   "after": {
+    "look": "vila",
+    "info": {
+     "point": [
+      7.443767761562048,
+      46.960377787808135
+     ],
+     "km": 99,
+     "block": {
+      "length": 20.2,
+      "width": 11.9,
+      "fill": 0.76,
+      "parts": 1,
+      "area": 182
+     },
+     "tint": 0,
+     "footprint": 182.29986801475388
+    }
+   }
+  }
+ ],
+ "controls": [
+  {
+   "town": "zurich",
+   "point": [
+    8.53841201233924,
+    47.36904678813364
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     8.53841201233924,
+     47.36904678813364
+    ],
+    "km": 99,
+    "block": {
+     "length": 39.7,
+     "width": 19.1,
+     "fill": 0.72,
+     "parts": 2,
+     "area": 544
+    },
+    "tint": 0,
+    "type": "office",
+    "footprint": 233.84006133319437
+   },
+   "look": "kancelar"
+  },
+  {
+   "town": "biel",
+   "point": [
+    7.262027298687322,
+    47.13482188319189
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     7.262027298687322,
+     47.13482188319189
+    ],
+    "km": 99,
+    "block": {
+     "length": 26.8,
+     "width": 10.5,
+     "fill": 0.84,
+     "parts": 1,
+     "area": 236
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "hipped",
+    "footprint": 236.13835604652786
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "zurich",
+   "point": [
+    8.51074299034444,
+    47.377933987910936
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     8.51074299034444,
+     47.377933987910936
+    ],
+    "km": 99,
+    "block": {
+     "length": 118.8,
+     "width": 93.5,
+     "fill": 0.31,
+     "parts": 12,
+     "area": 3460
+    },
+    "tint": 0,
+    "type": "residential",
+    "footprint": 191.71059281669955
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "zurich",
+   "point": [
+    8.531811430258244,
+    47.384224572432444
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     8.531811430258244,
+     47.384224572432444
+    ],
+    "km": 99,
+    "block": {
+     "length": 85.8,
+     "width": 36.7,
+     "fill": 0.63,
+     "parts": 9,
+     "area": 1978
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 176.26936734083824
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "winterthur",
+   "point": [
+    8.724089194277026,
+    47.50256991819974
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     8.724089194277026,
+     47.50256991819974
+    ],
+    "km": 99,
+    "block": {
+     "length": 89.7,
+     "width": 66.8,
+     "fill": 0.39,
+     "parts": 8,
+     "area": 2362
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 289.3730440711979
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "bern",
+   "point": [
+    7.436907829420868,
+    46.951834867745234
+   ],
+   "info": {
+    "levels": 3,
+    "point": [
+     7.436907829420868,
+     46.951834867745234
+    ],
+    "km": 99,
+    "block": {
+     "length": 18.2,
+     "width": 14.4,
+     "fill": 0.5,
+     "parts": 1,
+     "area": 130
+    },
+    "tint": 0,
+    "type": "detached",
+    "roofShape": "gabled",
+    "footprint": 130.23355341112438
+   },
+   "look": "vila"
+  },
+  {
+   "town": "basel",
+   "point": [
+    7.572503163393816,
+    47.5600811370111
+   ],
+   "info": {
+    "levels": 7,
+    "point": [
+     7.572503163393816,
+     47.5600811370111
+    ],
+    "km": 99,
+    "block": {
+     "length": 52.3,
+     "width": 33.2,
+     "fill": 0.46,
+     "parts": 4,
+     "area": 801
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 306.08787343397137
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "biel",
+   "point": [
+    7.263175377279169,
+    47.13460224725525
+   ],
+   "info": {
+    "levels": 3,
+    "point": [
+     7.263175377279169,
+     47.13460224725525
+    ],
+    "km": 99,
+    "block": {
+     "length": 15.1,
+     "width": 9.5,
+     "fill": 0.75,
+     "parts": 1,
+     "area": 107
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "hipped",
+    "footprint": 107.18103083649737
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "lausanne",
+   "point": [
+    6.639189353176921,
+    46.51263762142632
+   ],
+   "info": {
+    "levels": 3,
+    "point": [
+     6.639189353176921,
+     46.51263762142632
+    ],
+    "km": 99,
+    "block": {
+     "length": 27.6,
+     "width": 24.2,
+     "fill": 0.51,
+     "parts": 2,
+     "area": 338
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 170.26740388286976
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "winterthur",
+   "point": [
+    8.72406332354423,
+    47.50028595904805
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     8.72406332354423,
+     47.50028595904805
+    ],
+    "km": 99,
+    "block": {
+     "length": 229.8,
+     "width": 47.5,
+     "fill": 0.53,
+     "parts": 6,
+     "area": 5746
+    },
+    "tint": 0,
+    "type": "train_station",
+    "roofShape": "hipped",
+    "footprint": 2492.6965354801755
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "zurich",
+   "point": [
+    8.528392721678701,
+    47.38574846001483
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     8.528392721678701,
+     47.38574846001483
+    ],
+    "km": 99,
+    "block": {
+     "length": 149.5,
+     "width": 82.3,
+     "fill": 0.33,
+     "parts": 20,
+     "area": 4112
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 248.77083873254747
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "basel",
+   "point": [
+    7.602840217437484,
+    47.55309311094775
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     7.602840217437484,
+     47.55309311094775
+    ],
+    "km": 99,
+    "block": {
+     "length": 145.1,
+     "width": 59.7,
+     "fill": 0.29,
+     "parts": 10,
+     "area": 2499
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 341.8545873061803
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "lausanne",
+   "point": [
+    6.61575300497876,
+    46.524869965040324
+   ],
+   "info": {
+    "levels": 7,
+    "point": [
+     6.61575300497876,
+     46.524869965040324
+    ],
+    "km": 99,
+    "block": {
+     "length": 43.2,
+     "width": 35.5,
+     "fill": 0.68,
+     "parts": 1,
+     "area": 1051
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "flat",
+    "footprint": 1051.0274083466786
+   },
+   "look": "funkce"
+  },
+  {
+   "town": "winterthur",
+   "point": [
+    8.732316012652772,
+    47.492598646812255
+   ],
+   "info": {
+    "levels": 3,
+    "point": [
+     8.732316012652772,
+     47.492598646812255
+    ],
+    "km": 99,
+    "block": {
+     "length": 15,
+     "width": 13.1,
+     "fill": 0.76,
+     "parts": 2,
+     "area": 148
+    },
+    "tint": 0,
+    "type": "house",
+    "roofShape": "gabled",
+    "footprint": 73.60727115655573
+   },
+   "look": "vila"
+  },
+  {
+   "town": "geneve",
+   "point": [
+    6.1326745642212535,
+    46.19917894365685
+   ],
+   "info": {
+    "levels": 9,
+    "point": [
+     6.1326745642212535,
+     46.19917894365685
+    ],
+    "km": 99,
+    "block": {
+     "length": 132.3,
+     "width": 98.1,
+     "fill": 0.5,
+     "parts": 17,
+     "area": 6505
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 330.14330708939485
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "luzern",
+   "point": [
+    8.29908027233696,
+    47.04209451980189
+   ],
+   "info": {
+    "levels": 3,
+    "point": [
+     8.29908027233696,
+     47.04209451980189
+    ],
+    "km": 99,
+    "block": {
+     "length": 15.5,
+     "width": 14.2,
+     "fill": 0.64,
+     "parts": 1,
+     "area": 142
+    },
+    "tint": 0,
+    "footprint": 141.75951319893727
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "luzern",
+   "point": [
+    8.305127718325618,
+    47.04848160772698
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     8.305127718325618,
+     47.04848160772698
+    ],
+    "km": 99,
+    "block": {
+     "length": 186.7,
+     "width": 148.5,
+     "fill": 0.33,
+     "parts": 18,
+     "area": 9254
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 257.0735010159442
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "winterthur",
+   "point": [
+    8.726216983274075,
+    47.49099058476898
+   ],
+   "info": {
+    "levels": 3,
+    "point": [
+     8.726216983274075,
+     47.49099058476898
+    ],
+    "km": 99,
+    "block": {
+     "length": 17.1,
+     "width": 10.7,
+     "fill": 0.78,
+     "parts": 2,
+     "area": 143
+    },
+    "tint": 0,
+    "roofShape": "side_hipped",
+    "footprint": 71.94471728145959
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "basel",
+   "point": [
+    7.596919632172347,
+    47.478187567135464
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     7.596919632172347,
+     47.478187567135464
+    ],
+    "km": 99,
+    "block": {
+     "length": 159.7,
+     "width": 134.8,
+     "fill": 0.45,
+     "parts": 1,
+     "area": 9759
+    },
+    "tint": 0,
+    "type": "industrial",
+    "footprint": 9758.911518269804
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "bern",
+   "point": [
+    7.424034273039606,
+    46.95501492639476
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     7.424034273039606,
+     46.95501492639476
+    ],
+    "km": 99,
+    "block": {
+     "length": 89.8,
+     "width": 24.3,
+     "fill": 0.51,
+     "parts": 9,
+     "area": 1113
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "gabled",
+    "footprint": 212.57127327837134
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "lausanne",
+   "point": [
+    6.6403154284776384,
+    46.51158491606853
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     6.6403154284776384,
+     46.51158491606853
+    ],
+    "km": 99,
+    "block": {
+     "length": 37.1,
+     "width": 13.5,
+     "fill": 0.96,
+     "parts": 2,
+     "area": 479
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "double_saltbox",
+    "footprint": 235.5006258108874
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "geneve",
+   "point": [
+    6.137878780164254,
+    46.19705208371851
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     6.137878780164254,
+     46.19705208371851
+    ],
+    "km": 99,
+    "block": {
+     "length": 55.9,
+     "width": 37.6,
+     "fill": 0.6,
+     "parts": 5,
+     "area": 1258
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 282.86181292966785
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "biel",
+   "point": [
+    7.264792633774963,
+    47.13985798657212
+   ],
+   "info": {
+    "levels": 3,
+    "point": [
+     7.264792633774963,
+     47.13985798657212
+    ],
+    "km": 99,
+    "block": {
+     "length": 17.8,
+     "width": 14,
+     "fill": 0.7,
+     "parts": 1,
+     "area": 173
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "gabled",
+    "footprint": 173.31656971483375
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "zurich",
+   "point": [
+    8.552500263485374,
+    47.36738877556649
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     8.552500263485374,
+     47.36738877556649
+    ],
+    "km": 99,
+    "block": {
+     "length": 19.3,
+     "width": 18.9,
+     "fill": 0.92,
+     "parts": 3,
+     "area": 337
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "mansard",
+    "footprint": 246.3589158693403
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "winterthur",
+   "point": [
+    8.712280059531112,
+    47.50759290577422
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     8.712280059531112,
+     47.50759290577422
+    ],
+    "km": 99,
+    "block": {
+     "length": 41.5,
+     "width": 11.7,
+     "fill": 0.85,
+     "parts": 2,
+     "area": 412
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "side_hipped",
+    "footprint": 206.2048904828349
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "basel",
+   "point": [
+    7.594926185641832,
+    47.57055661232127
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     7.594926185641832,
+     47.57055661232127
+    ],
+    "km": 99,
+    "block": {
+     "length": 181,
+     "width": 68.8,
+     "fill": 0.38,
+     "parts": 23,
+     "area": 4695
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 257.86498403628366
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "bern",
+   "point": [
+    7.435010276372397,
+    46.94033100447952
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     7.435010276372397,
+     46.94033100447952
+    ],
+    "km": 99,
+    "block": {
+     "length": 132,
+     "width": 28,
+     "fill": 0.64,
+     "parts": 1,
+     "area": 2351
+    },
+    "tint": 0,
+    "type": "office",
+    "footprint": 2351.487887861574
+   },
+   "look": "kancelar"
+  },
+  {
+   "town": "zurich",
+   "point": [
+    8.533703423907312,
+    47.3782136792209
+   ],
+   "info": {
+    "levels": 8,
+    "point": [
+     8.533703423907312,
+     47.3782136792209
+    ],
+    "km": 99,
+    "block": {
+     "length": 123.4,
+     "width": 103.9,
+     "fill": 0.46,
+     "parts": 4,
+     "area": 5863
+    },
+    "tint": 0,
+    "type": "office",
+    "start": 2013,
+    "footprint": 1685.3928273662207
+   },
+   "look": "kancelar"
+  },
+  {
+   "town": "winterthur",
+   "point": [
+    8.71940859274515,
+    47.49996884869576
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     8.71940859274515,
+     47.49996884869576
+    ],
+    "km": 99,
+    "block": {
+     "length": 25,
+     "width": 15.5,
+     "fill": 0.77,
+     "parts": 2,
+     "area": 297
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "gabled",
+    "footprint": 150.52074923506007
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "basel",
+   "point": [
+    7.607406915164004,
+    47.56268898803662
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     7.607406915164004,
+     47.56268898803662
+    ],
+    "km": 99,
+    "block": {
+     "length": 120.6,
+     "width": 12.1,
+     "fill": 0.83,
+     "parts": 7,
+     "area": 1207
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 134.5578748054479
+   },
+   "look": "povalecny"
+  },
+  {
+   "town": "winterthur",
+   "point": [
+    8.722280420905827,
+    47.500751736545546
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     8.722280420905827,
+     47.500751736545546
+    ],
+    "km": 99,
+    "block": {
+     "length": 193.6,
+     "width": 60.5,
+     "fill": 0.66,
+     "parts": 26,
+     "area": 7706
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "gabled",
+    "footprint": 146.35960070118836
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "winterthur",
+   "point": [
+    8.70702263197548,
+    47.48961580331193
+   ],
+   "info": {
+    "levels": 3,
+    "point": [
+     8.70702263197548,
+     47.48961580331193
+    ],
+    "km": 99,
+    "block": {
+     "length": 20.8,
+     "width": 13,
+     "fill": 0.69,
+     "parts": 1,
+     "area": 186
+    },
+    "tint": 0,
+    "type": "retail",
+    "roofShape": "gabled",
+    "footprint": 185.90227996448266
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "winterthur",
+   "point": [
+    8.715601610090019,
+    47.50476934965929
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     8.715601610090019,
+     47.50476934965929
+    ],
+    "km": 99,
+    "block": {
+     "length": 15.8,
+     "width": 11,
+     "fill": 0.77,
+     "parts": 1,
+     "area": 134
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "gambrel",
+    "footprint": 133.87215503245807
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "luzern",
+   "point": [
+    8.304883363507825,
+    47.06167938237782
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     8.304883363507825,
+     47.06167938237782
+    ],
+    "km": 99,
+    "block": {
+     "length": 23.4,
+     "width": 18,
+     "fill": 0.68,
+     "parts": 1,
+     "area": 289
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 288.86607966141463
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "bern",
+   "point": [
+    7.432865688434277,
+    46.94263428463152
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     7.432865688434277,
+     46.94263428463152
+    ],
+    "km": 99,
+    "block": {
+     "length": 51.8,
+     "width": 40.3,
+     "fill": 0.62,
+     "parts": 2,
+     "area": 1288
+    },
+    "tint": 0,
+    "type": "residential",
+    "footprint": 765.1566544387915
+   },
+   "look": "povalecny"
+  },
+  {
+   "town": "basel",
+   "point": [
+    7.595300777203975,
+    47.558785959399906
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     7.595300777203975,
+     47.558785959399906
+    ],
+    "km": 99,
+    "block": {
+     "length": 41.5,
+     "width": 25.9,
+     "fill": 0.57,
+     "parts": 5,
+     "area": 607
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 98.43240719899657
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "basel",
+   "point": [
+    7.600130638578092,
+    47.56815214438299
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     7.600130638578092,
+     47.56815214438299
+    ],
+    "km": 99,
+    "block": {
+     "length": 130.4,
+     "width": 40.6,
+     "fill": 0.59,
+     "parts": 13,
+     "area": 3150
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 148.2473327462602
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "stgallen",
+   "point": [
+    9.373329489873875,
+    47.43153403233696
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     9.373329489873875,
+     47.43153403233696
+    ],
+    "km": 99,
+    "block": {
+     "length": 25.6,
+     "width": 20.1,
+     "fill": 0.71,
+     "parts": 1,
+     "area": 365
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "pyramidal",
+    "footprint": 364.70653854575903
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "winterthur",
+   "point": [
+    8.735325825969426,
+    47.49449902110831
+   ],
+   "info": {
+    "levels": 2,
+    "point": [
+     8.735325825969426,
+     47.49449902110831
+    ],
+    "km": 99,
+    "block": {
+     "length": 86.7,
+     "width": 22.6,
+     "fill": 0.72,
+     "parts": 1,
+     "area": 1411
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "flat",
+    "footprint": 1411.3738167774154
+   },
+   "look": "nizky"
+  },
+  {
+   "town": "geneve",
+   "point": [
+    6.152498871768371,
+    46.2114783894466
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     6.152498871768371,
+     46.2114783894466
+    ],
+    "km": 99,
+    "block": {
+     "length": 166.7,
+     "width": 86.2,
+     "fill": 0.42,
+     "parts": 20,
+     "area": 5985
+    },
+    "tint": 0,
+    "footprint": 689.9477868661222
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "biel",
+   "point": [
+    7.261700433354764,
+    47.13705395894785
+   ],
+   "info": {
+    "levels": 3,
+    "point": [
+     7.261700433354764,
+     47.13705395894785
+    ],
+    "km": 99,
+    "block": {
+     "length": 28.4,
+     "width": 11.8,
+     "fill": 0.82,
+     "parts": 1,
+     "area": 274
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "hipped",
+    "footprint": 273.8001483855691
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "luzern",
+   "point": [
+    8.29930495871584,
+    47.04615490246263
+   ],
+   "info": {
+    "levels": 3,
+    "point": [
+     8.29930495871584,
+     47.04615490246263
+    ],
+    "km": 99,
+    "block": {
+     "length": 16,
+     "width": 16.1,
+     "fill": 0.73,
+     "parts": 1,
+     "area": 188
+    },
+    "tint": 0,
+    "footprint": 188.30287618484817
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "zurich",
+   "point": [
+    8.63387880886565,
+    47.44136606451309
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     8.63387880886565,
+     47.44136606451309
+    ],
+    "km": 99,
+    "block": {
+     "length": 49,
+     "width": 15.9,
+     "fill": 0.84,
+     "parts": 3,
+     "area": 655
+    },
+    "tint": 0,
+    "type": "residential",
+    "footprint": 236.02154333295948
+   },
+   "look": "povalecny"
+  },
+  {
+   "town": "basel",
+   "point": [
+    7.58988731266254,
+    47.55416328324225
+   ],
+   "info": {
+    "levels": 3,
+    "point": [
+     7.58988731266254,
+     47.55416328324225
+    ],
+    "km": 99,
+    "block": {
+     "length": 59,
+     "width": 44.2,
+     "fill": 0.74,
+     "parts": 1,
+     "area": 1928
+    },
+    "tint": 0,
+    "type": "public",
+    "footprint": 1927.7071644648622
+   },
+   "look": "kancelar"
+  },
+  {
+   "town": "luzern",
+   "point": [
+    8.301222683285829,
+    47.06063595128982
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     8.301222683285829,
+     47.06063595128982
+    ],
+    "km": 99,
+    "block": {
+     "length": 39.8,
+     "width": 23.5,
+     "fill": 0.6,
+     "parts": 1,
+     "area": 566
+    },
+    "tint": 0,
+    "type": "office",
+    "footprint": 565.5885426593436
+   },
+   "look": "kancelar"
+  },
+  {
+   "town": "winterthur",
+   "point": [
+    8.794968324464485,
+    47.49863219692376
+   ],
+   "info": {
+    "levels": 2,
+    "point": [
+     8.794968324464485,
+     47.49863219692376
+    ],
+    "km": 99,
+    "block": {
+     "length": 14.4,
+     "width": 15.7,
+     "fill": 0.57,
+     "parts": 1,
+     "area": 129
+    },
+    "tint": 0,
+    "type": "train_station",
+    "roofShape": "hipped",
+    "footprint": 129.31780897300501
+   },
+   "look": "nizky"
+  },
+  {
+   "town": "lausanne",
+   "point": [
+    6.638140829932518,
+    46.52125328696516
+   ],
+   "info": {
+    "levels": 7,
+    "point": [
+     6.638140829932518,
+     46.52125328696516
+    ],
+    "km": 99,
+    "block": {
+     "length": 163.7,
+     "width": 93,
+     "fill": 0.43,
+     "parts": 6,
+     "area": 6573
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "quadruple_saltbox",
+    "footprint": 266.80034651629103
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "luzern",
+   "point": [
+    8.311967626245668,
+    47.06182066541437
+   ],
+   "info": {
+    "levels": 2,
+    "point": [
+     8.311967626245668,
+     47.06182066541437
+    ],
+    "km": 99,
+    "block": {
+     "length": 19.2,
+     "width": 15.8,
+     "fill": 0.46,
+     "parts": 1,
+     "area": 139
+    },
+    "tint": 0,
+    "footprint": 139.1898878096149
+   },
+   "look": "nizky"
+  },
+  {
+   "town": "bern",
+   "point": [
+    7.43508165833516,
+    46.946456953261034
+   ],
+   "info": {
+    "levels": 10,
+    "point": [
+     7.43508165833516,
+     46.946456953261034
+    ],
+    "km": 99,
+    "block": {
+     "length": 160.9,
+     "width": 81.2,
+     "fill": 0.63,
+     "parts": 13,
+     "area": 8175
+    },
+    "tint": 0,
+    "type": "office",
+    "roofShape": "flat",
+    "footprint": 807.1179343902859
+   },
+   "look": "kancelar"
+  },
+  {
+   "town": "stgallen",
+   "point": [
+    9.374057917600993,
+    47.43286115848706
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     9.374057917600993,
+     47.43286115848706
+    ],
+    "km": 99,
+    "block": {
+     "length": 22.8,
+     "width": 15.2,
+     "fill": 0.78,
+     "parts": 1,
+     "area": 271
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "gabled",
+    "footprint": 270.6136450326321
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "winterthur",
+   "point": [
+    8.724578315200427,
+    47.50836401200029
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     8.724578315200427,
+     47.50836401200029
+    ],
+    "km": 99,
+    "block": {
+     "length": 22.1,
+     "width": 21.7,
+     "fill": 0.51,
+     "parts": 1,
+     "area": 243
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "flat",
+    "footprint": 242.78637970219876
+   },
+   "look": "funkce"
+  },
+  {
+   "town": "bern",
+   "point": [
+    7.438333668229708,
+    46.945227125345475
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     7.438333668229708,
+     46.945227125345475
+    ],
+    "km": 99,
+    "block": {
+     "length": 131.4,
+     "width": 108.7,
+     "fill": 0.57,
+     "parts": 1,
+     "area": 8167
+    },
+    "tint": 0,
+    "roofShape": "flat",
+    "footprint": 6313.5408558823065
+   },
+   "look": "funkce"
+  },
+  {
+   "town": "stgallen",
+   "point": [
+    9.372104478690613,
+    47.42124812391798
+   ],
+   "info": {
+    "levels": 3,
+    "point": [
+     9.372104478690613,
+     47.42124812391798
+    ],
+    "km": 99,
+    "block": {
+     "length": 134.9,
+     "width": 64,
+     "fill": 0.39,
+     "parts": 5,
+     "area": 3343
+    },
+    "tint": 0,
+    "type": "office",
+    "footprint": 650.0351967207239
+   },
+   "look": "kancelar"
+  },
+  {
+   "town": "lausanne",
+   "point": [
+    6.627144924269814,
+    46.5182215792147
+   ],
+   "info": {
+    "levels": 7,
+    "point": [
+     6.627144924269814,
+     46.5182215792147
+    ],
+    "km": 99,
+    "block": {
+     "length": 256.2,
+     "width": 81.3,
+     "fill": 0.28,
+     "parts": 15,
+     "area": 5848
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "double_saltbox",
+    "footprint": 251.56587727095462
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "bern",
+   "point": [
+    7.45004227387001,
+    46.958842698949866
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     7.45004227387001,
+     46.958842698949866
+    ],
+    "km": 99,
+    "block": {
+     "length": 25.6,
+     "width": 17.9,
+     "fill": 0.63,
+     "parts": 1,
+     "area": 289
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 289.4149576177633
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "zurich",
+   "point": [
+    8.54710817466662,
+    47.364909074170164
+   ],
+   "info": {
+    "height": 32.9,
+    "point": [
+     8.54710817466662,
+     47.364909074170164
+    ],
+    "km": 99,
+    "block": {
+     "length": 73.1,
+     "width": 82.7,
+     "fill": 0.82,
+     "parts": 2,
+     "area": 4936
+    },
+    "tint": 0,
+    "start": 1891,
+    "footprint": 2175.582090159057
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "basel",
+   "point": [
+    7.5905383993749735,
+    47.57058019953077
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     7.5905383993749735,
+     47.57058019953077
+    ],
+    "km": 99,
+    "block": {
+     "length": 129.1,
+     "width": 71.7,
+     "fill": 0.46,
+     "parts": 27,
+     "area": 4266
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 274.0542869400524
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "zurich",
+   "point": [
+    8.537098041148212,
+    47.38012881513884
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     8.537098041148212,
+     47.38012881513884
+    ],
+    "km": 99,
+    "block": {
+     "length": 35.3,
+     "width": 32.9,
+     "fill": 0.63,
+     "parts": 3,
+     "area": 726
+    },
+    "tint": 0,
+    "type": "office",
+    "footprint": 213.79409440090149
+   },
+   "look": "kancelar"
+  },
+  {
+   "town": "basel",
+   "point": [
+    7.578945660660791,
+    47.569470345171766
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     7.578945660660791,
+     47.569470345171766
+    ],
+    "km": 99,
+    "block": {
+     "length": 55.3,
+     "width": 43,
+     "fill": 0.73,
+     "parts": 10,
+     "area": 1746
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 184.36771469088308
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "zurich",
+   "point": [
+    8.524762998581076,
+    47.375325221553034
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     8.524762998581076,
+     47.375325221553034
+    ],
+    "km": 99,
+    "block": {
+     "length": 42.1,
+     "width": 31,
+     "fill": 0.58,
+     "parts": 1,
+     "area": 765
+    },
+    "tint": 0,
+    "type": "office",
+    "footprint": 764.8141693123065
+   },
+   "look": "kancelar"
+  },
+  {
+   "town": "luzern",
+   "point": [
+    8.305853067563056,
+    47.048421731197095
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     8.305853067563056,
+     47.048421731197095
+    ],
+    "km": 99,
+    "block": {
+     "length": 75.5,
+     "width": 62.3,
+     "fill": 0.68,
+     "parts": 14,
+     "area": 3192
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 147.61319858560523
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "winterthur",
+   "point": [
+    8.714303093121814,
+    47.50478469481583
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     8.714303093121814,
+     47.50478469481583
+    ],
+    "km": 99,
+    "block": {
+     "length": 26.1,
+     "width": 16.3,
+     "fill": 0.62,
+     "parts": 2,
+     "area": 263
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "hipped",
+    "footprint": 251.53090005315744
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "winterthur",
+   "point": [
+    8.740038040146597,
+    47.50182842433838
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     8.740038040146597,
+     47.50182842433838
+    ],
+    "km": 99,
+    "block": {
+     "length": 21.4,
+     "width": 21.3,
+     "fill": 0.51,
+     "parts": 1,
+     "area": 235
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "gabled",
+    "footprint": 234.50052853953616
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "winterthur",
+   "point": [
+    8.72138038921297,
+    47.48982261330264
+   ],
+   "info": {
+    "levels": 2,
+    "point": [
+     8.72138038921297,
+     47.48982261330264
+    ],
+    "km": 99,
+    "block": {
+     "length": 27.6,
+     "width": 9.5,
+     "fill": 0.86,
+     "parts": 2,
+     "area": 226
+    },
+    "tint": 0,
+    "type": "semidetached_house",
+    "roofShape": "side_hipped",
+    "footprint": 116.86280874225758
+   },
+   "look": "vila"
+  },
+  {
+   "town": "bern",
+   "point": [
+    7.460489660287573,
+    46.95290299606307
+   ],
+   "info": {
+    "levels": 5,
+    "height": 14,
+    "point": [
+     7.460489660287573,
+     46.95290299606307
+    ],
+    "km": 99,
+    "block": {
+     "length": 43.8,
+     "width": 13.2,
+     "fill": 0.86,
+     "parts": 2,
+     "area": 500
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "gabled",
+    "footprint": 276.0096331668233
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "bern",
+   "point": [
+    7.441496111206316,
+    46.943404904730244
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     7.441496111206316,
+     46.943404904730244
+    ],
+    "km": 99,
+    "block": {
+     "length": 18.6,
+     "width": 15.7,
+     "fill": 0.58,
+     "parts": 1,
+     "area": 170
+    },
+    "tint": 0,
+    "type": "residential",
+    "roofShape": "hipped",
+    "footprint": 170.17678060824028
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "winterthur",
+   "point": [
+    8.7186247999579,
+    47.50800134340545
+   ],
+   "info": {
+    "levels": 3,
+    "point": [
+     8.7186247999579,
+     47.50800134340545
+    ],
+    "km": 99,
+    "block": {
+     "length": 14.6,
+     "width": 13.1,
+     "fill": 0.62,
+     "parts": 1,
+     "area": 119
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "gabled",
+    "footprint": 118.89893450921129
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "lausanne",
+   "point": [
+    6.619825122280744,
+    46.52370144323013
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     6.619825122280744,
+     46.52370144323013
+    ],
+    "km": 99,
+    "block": {
+     "length": 25.4,
+     "width": 14.1,
+     "fill": 0.79,
+     "parts": 1,
+     "area": 282
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "quadruple_saltbox",
+    "footprint": 281.60980113619735
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "zurich",
+   "point": [
+    8.54629608670522,
+    47.38864604095435
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     8.54629608670522,
+     47.38864604095435
+    ],
+    "km": 99,
+    "block": {
+     "length": 37.4,
+     "width": 14.1,
+     "fill": 0.8,
+     "parts": 3,
+     "area": 422
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 140.0058737512245
+   },
+   "look": "povalecny"
+  },
+  {
+   "town": "basel",
+   "point": [
+    7.605004177575378,
+    47.561419924481136
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     7.605004177575378,
+     47.561419924481136
+    ],
+    "km": 99,
+    "block": {
+     "length": 98.4,
+     "width": 16.6,
+     "fill": 0.81,
+     "parts": 10,
+     "area": 1323
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 112.13178084181936
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "basel",
+   "point": [
+    7.582380050531533,
+    47.56387080184645
+   ],
+   "info": {
+    "levels": 7,
+    "point": [
+     7.582380050531533,
+     47.56387080184645
+    ],
+    "km": 99,
+    "block": {
+     "length": 120.8,
+     "width": 64.3,
+     "fill": 0.55,
+     "parts": 18,
+     "area": 4253
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 443.5338618382475
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "winterthur",
+   "point": [
+    8.714616666838914,
+    47.50932932490222
+   ],
+   "info": {
+    "levels": 3,
+    "point": [
+     8.714616666838914,
+     47.50932932490222
+    ],
+    "km": 99,
+    "block": {
+     "length": 27,
+     "width": 16.7,
+     "fill": 0.48,
+     "parts": 3,
+     "area": 217
+    },
+    "tint": 0,
+    "roofShape": "gabled",
+    "footprint": 115.9847289187419
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "basel",
+   "point": [
+    7.604805915791879,
+    47.55865015102364
+   ],
+   "info": {
+    "levels": 2,
+    "point": [
+     7.604805915791879,
+     47.55865015102364
+    ],
+    "km": 99,
+    "block": {
+     "length": 53.8,
+     "width": 13.7,
+     "fill": 0.85,
+     "parts": 7,
+     "area": 630
+    },
+    "tint": 0,
+    "type": "house",
+    "roofShape": "gabled",
+    "footprint": 90.95919812586499
+   },
+   "look": "nizky"
+  },
+  {
+   "town": "luzern",
+   "point": [
+    8.31684627568157,
+    47.038646776201915
+   ],
+   "info": {
+    "levels": 2,
+    "point": [
+     8.31684627568157,
+     47.038646776201915
+    ],
+    "km": 99,
+    "block": {
+     "length": 22.3,
+     "width": 13.8,
+     "fill": 0.75,
+     "parts": 1,
+     "area": 232
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 231.52927778092703
+   },
+   "look": "nizky"
+  },
+  {
+   "town": "winterthur",
+   "point": [
+    8.744378347603169,
+    47.598253773561574
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     8.744378347603169,
+     47.598253773561574
+    ],
+    "km": 99,
+    "block": {
+     "length": 26.1,
+     "width": 18.7,
+     "fill": 0.68,
+     "parts": 1,
+     "area": 334
+    },
+    "tint": 0,
+    "type": "farm",
+    "roofShape": "gabled",
+    "footprint": 333.67125594549395
+   },
+   "look": "nizky"
+  },
+  {
+   "town": "zurich",
+   "point": [
+    8.530749211998119,
+    47.38167567449025
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     8.530749211998119,
+     47.38167567449025
+    ],
+    "km": 99,
+    "block": {
+     "length": 57.8,
+     "width": 46,
+     "fill": 0.58,
+     "parts": 10,
+     "area": 1544
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 158.7714192816502
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "lausanne",
+   "point": [
+    6.6273753555947765,
+    46.5239118412299
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     6.6273753555947765,
+     46.5239118412299
+    ],
+    "km": 99,
+    "block": {
+     "length": 42.3,
+     "width": 36.8,
+     "fill": 0.44,
+     "parts": 3,
+     "area": 680
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 142.2841198167414
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "zurich",
+   "point": [
+    8.551699546852694,
+    47.3697938437612
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     8.551699546852694,
+     47.3697938437612
+    ],
+    "km": 99,
+    "block": {
+     "length": 18.7,
+     "width": 17.5,
+     "fill": 0.6,
+     "parts": 1,
+     "area": 198
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "quadruple_saltbox",
+    "footprint": 197.57720277580893
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "stgallen",
+   "point": [
+    9.371250913877509,
+    47.420016894298804
+   ],
+   "info": {
+    "levels": 7,
+    "point": [
+     9.371250913877509,
+     47.420016894298804
+    ],
+    "km": 99,
+    "block": {
+     "length": 59.4,
+     "width": 15.2,
+     "fill": 0.81,
+     "parts": 1,
+     "area": 730
+    },
+    "tint": 0,
+    "type": "office",
+    "footprint": 729.9932141973686
+   },
+   "look": "kancelar"
+  },
+  {
+   "town": "basel",
+   "point": [
+    7.589914758419438,
+    47.568480244290384
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     7.589914758419438,
+     47.568480244290384
+    ],
+    "km": 99,
+    "block": {
+     "length": 112.7,
+     "width": 87.9,
+     "fill": 0.26,
+     "parts": 12,
+     "area": 2586
+    },
+    "tint": 0,
+    "footprint": 690.1587110181958
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "zurich",
+   "point": [
+    8.579681458906359,
+    47.36026507050503
+   ],
+   "info": {
+    "levels": 2,
+    "point": [
+     8.579681458906359,
+     47.36026507050503
+    ],
+    "km": 99,
+    "block": {
+     "length": 30,
+     "width": 11,
+     "fill": 0.95,
+     "parts": 1,
+     "area": 314
+    },
+    "tint": 0,
+    "roofShape": "gabled",
+    "footprint": 314.3397781253284
+   },
+   "look": "nizky"
+  },
+  {
+   "town": "lausanne",
+   "point": [
+    6.6449484430600165,
+    46.515778625818676
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     6.6449484430600165,
+     46.515778625818676
+    ],
+    "km": 99,
+    "block": {
+     "length": 27.6,
+     "width": 14.4,
+     "fill": 0.78,
+     "parts": 1,
+     "area": 309
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 308.74616501326454
+   },
+   "look": "povalecny"
+  },
+  {
+   "town": "lugano",
+   "point": [
+    8.962190831484714,
+    46.00983844552821
+   ],
+   "info": {
+    "levels": 3,
+    "point": [
+     8.962190831484714,
+     46.00983844552821
+    ],
+    "km": 99,
+    "block": {
+     "length": 26,
+     "width": 13.4,
+     "fill": 0.69,
+     "parts": 1,
+     "area": 242
+    },
+    "tint": 0,
+    "footprint": 241.9334447231522
+   },
+   "look": "povalecny"
+  },
+  {
+   "town": "geneve",
+   "point": [
+    6.13963470768176,
+    46.21155661600013
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     6.13963470768176,
+     46.21155661600013
+    ],
+    "km": 99,
+    "block": {
+     "length": 108.9,
+     "width": 50.8,
+     "fill": 0.4,
+     "parts": 13,
+     "area": 2204
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 358.593755329038
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "lausanne",
+   "point": [
+    6.6165078259702454,
+    46.52690522395025
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     6.6165078259702454,
+     46.52690522395025
+    ],
+    "km": 99,
+    "block": {
+     "length": 44.1,
+     "width": 15.2,
+     "fill": 0.92,
+     "parts": 3,
+     "area": 616
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 206.63994075211042
+   },
+   "look": "povalecny"
+  },
+  {
+   "town": "winterthur",
+   "point": [
+    8.639019908308844,
+    47.588152360974526
+   ],
+   "info": {
+    "levels": 3,
+    "point": [
+     8.639019908308844,
+     47.588152360974526
+    ],
+    "km": 99,
+    "block": {
+     "length": 38.9,
+     "width": 28.1,
+     "fill": 0.61,
+     "parts": 1,
+     "area": 669
+    },
+    "tint": 0,
+    "type": "farm",
+    "roofShape": "gabled",
+    "footprint": 669.1483676148987
+   },
+   "look": "nizky"
+  },
+  {
+   "town": "luzern",
+   "point": [
+    8.309070861553652,
+    47.06139276348738
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     8.309070861553652,
+     47.06139276348738
+    ],
+    "km": 99,
+    "block": {
+     "length": 24.6,
+     "width": 19.1,
+     "fill": 0.61,
+     "parts": 2,
+     "area": 284
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 145.90211585520456
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "winterthur",
+   "point": [
+    8.711537739556828,
+    47.50709608922452
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     8.711537739556828,
+     47.50709608922452
+    ],
+    "km": 99,
+    "block": {
+     "length": 41,
+     "width": 20.7,
+     "fill": 0.71,
+     "parts": 1,
+     "area": 604
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "hipped",
+    "footprint": 604.4692777752134
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "bern",
+   "point": [
+    7.441060263521599,
+    46.946925748772884
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     7.441060263521599,
+     46.946925748772884
+    ],
+    "km": 99,
+    "block": {
+     "length": 82.2,
+     "width": 55.6,
+     "fill": 0.68,
+     "parts": 11,
+     "area": 3124
+    },
+    "tint": 0,
+    "roofShape": "gabled",
+    "footprint": 289.4815299064985
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "zurich",
+   "point": [
+    8.588416387905951,
+    47.406838475246026
+   ],
+   "info": {
+    "levels": 1,
+    "point": [
+     8.588416387905951,
+     47.406838475246026
+    ],
+    "km": 99,
+    "block": {
+     "length": 24.8,
+     "width": 24,
+     "fill": 0.61,
+     "parts": 1,
+     "area": 362
+    },
+    "tint": 0,
+    "type": "industrial",
+    "footprint": 361.5471503304392
+   },
+   "look": "hala"
+  },
+  {
+   "town": "geneve",
+   "point": [
+    6.131756121194314,
+    46.20106660176411
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     6.131756121194314,
+     46.20106660176411
+    ],
+    "km": 99,
+    "block": {
+     "length": 99,
+     "width": 74.6,
+     "fill": 0.47,
+     "parts": 24,
+     "area": 3459
+    },
+    "tint": 0,
+    "footprint": 169.115533188698
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "basel",
+   "point": [
+    7.5975194470171985,
+    47.56378660008438
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     7.5975194470171985,
+     47.56378660008438
+    ],
+    "km": 99,
+    "block": {
+     "length": 189.8,
+     "width": 99.4,
+     "fill": 0.56,
+     "parts": 29,
+     "area": 10634
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 268.27844346510483
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "luzern",
+   "point": [
+    8.30389432040922,
+    47.04662103762005
+   ],
+   "info": {
+    "levels": 7,
+    "point": [
+     8.30389432040922,
+     47.04662103762005
+    ],
+    "km": 99,
+    "block": {
+     "length": 191.5,
+     "width": 39.3,
+     "fill": 0.53,
+     "parts": 5,
+     "area": 4010
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 861.3797231184744
+   },
+   "look": "povalecny"
+  },
+  {
+   "town": "biel",
+   "point": [
+    7.264177353702875,
+    47.13590740922124
+   ],
+   "info": {
+    "levels": 2,
+    "point": [
+     7.264177353702875,
+     47.13590740922124
+    ],
+    "km": 99,
+    "block": {
+     "length": 13.7,
+     "width": 12,
+     "fill": 0.62,
+     "parts": 1,
+     "area": 102
+    },
+    "tint": 0,
+    "type": "detached",
+    "roofShape": "gabled",
+    "footprint": 102.1540433683449
+   },
+   "look": "vila"
+  },
+  {
+   "town": "winterthur",
+   "point": [
+    8.717113314843296,
+    47.49875030742091
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     8.717113314843296,
+     47.49875030742091
+    ],
+    "km": 99,
+    "block": {
+     "length": 20.6,
+     "width": 13.8,
+     "fill": 0.75,
+     "parts": 1,
+     "area": 212
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "gabled",
+    "footprint": 211.64827245557206
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "zurich",
+   "point": [
+    8.54916170505667,
+    47.370045117820155
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     8.54916170505667,
+     47.370045117820155
+    ],
+    "km": 99,
+    "block": {
+     "length": 134.7,
+     "width": 69.5,
+     "fill": 0.51,
+     "parts": 11,
+     "area": 4777
+    },
+    "tint": 0,
+    "type": "civic",
+    "footprint": 758.2112379003993
+   },
+   "look": "kancelar"
+  },
+  {
+   "town": "luzern",
+   "point": [
+    8.295616338916235,
+    47.047630865428786
+   ],
+   "info": {
+    "levels": 3,
+    "point": [
+     8.295616338916235,
+     47.047630865428786
+    ],
+    "km": 99,
+    "block": {
+     "length": 17,
+     "width": 14.7,
+     "fill": 0.62,
+     "parts": 1,
+     "area": 153
+    },
+    "tint": 0,
+    "footprint": 153.4889198948606
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "winterthur",
+   "point": [
+    8.616471854439279,
+    47.559172310986256
+   ],
+   "info": {
+    "levels": 2,
+    "point": [
+     8.616471854439279,
+     47.559172310986256
+    ],
+    "km": 99,
+    "block": {
+     "length": 21.1,
+     "width": 15.2,
+     "fill": 0.78,
+     "parts": 1,
+     "area": 252
+    },
+    "tint": 0,
+    "type": "residential",
+    "footprint": 252.10037154712472
+   },
+   "look": "nizky"
+  },
+  {
+   "town": "lausanne",
+   "point": [
+    6.647171696783231,
+    46.525433057211245
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     6.647171696783231,
+     46.525433057211245
+    ],
+    "km": 99,
+    "block": {
+     "length": 19.6,
+     "width": 15.7,
+     "fill": 0.67,
+     "parts": 1,
+     "area": 206
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 205.79758124766113
+   },
+   "look": "povalecny"
+  },
+  {
+   "town": "lausanne",
+   "point": [
+    6.623330678539306,
+    46.52805335570758
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     6.623330678539306,
+     46.52805335570758
+    ],
+    "km": 99,
+    "block": {
+     "length": 67.7,
+     "width": 29.8,
+     "fill": 0.61,
+     "parts": 1,
+     "area": 1228
+    },
+    "tint": 0,
+    "type": "school",
+    "roofShape": "hipped",
+    "footprint": 1228.3987024358794
+   },
+   "look": "skola"
+  },
+  {
+   "town": "bern",
+   "point": [
+    7.459933033668462,
+    46.954819776406474
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     7.459933033668462,
+     46.954819776406474
+    ],
+    "km": 99,
+    "block": {
+     "length": 44.8,
+     "width": 25.5,
+     "fill": 0.89,
+     "parts": 1,
+     "area": 1014
+    },
+    "tint": 0,
+    "type": "residential",
+    "footprint": 1014.1193071801576
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "geneve",
+   "point": [
+    6.131577413864743,
+    46.205921936743096
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     6.131577413864743,
+     46.205921936743096
+    ],
+    "km": 99,
+    "block": {
+     "length": 65.7,
+     "width": 38.5,
+     "fill": 0.5,
+     "parts": 4,
+     "area": 1268
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 434.8719493828612
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "basel",
+   "point": [
+    7.592133266384025,
+    47.56817283636664
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     7.592133266384025,
+     47.56817283636664
+    ],
+    "km": 99,
+    "block": {
+     "length": 128.2,
+     "width": 92.6,
+     "fill": 0.55,
+     "parts": 36,
+     "area": 6580
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 117.10210445280654
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "basel",
+   "point": [
+    7.5934547598947875,
+    47.561906513537814
+   ],
+   "info": {
+    "levels": 7,
+    "point": [
+     7.5934547598947875,
+     47.561906513537814
+    ],
+    "km": 99,
+    "block": {
+     "length": 108.6,
+     "width": 83.3,
+     "fill": 0.61,
+     "parts": 10,
+     "area": 5547
+    },
+    "tint": 0,
+    "type": "office",
+    "roofShape": "flat",
+    "footprint": 294.8735948984968
+   },
+   "look": "kancelar"
+  },
+  {
+   "town": "lausanne",
+   "point": [
+    6.639291708963962,
+    46.512053659580545
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     6.639291708963962,
+     46.512053659580545
+    ],
+    "km": 99,
+    "block": {
+     "length": 66.2,
+     "width": 49.4,
+     "fill": 0.48,
+     "parts": 5,
+     "area": 1555
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 363.83158881641975
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "bern",
+   "point": [
+    7.429814632539201,
+    46.945521529726356
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     7.429814632539201,
+     46.945521529726356
+    ],
+    "km": 99,
+    "block": {
+     "length": 72.9,
+     "width": 69.6,
+     "fill": 0.53,
+     "parts": 8,
+     "area": 2695
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 520.5914071603534
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "biel",
+   "point": [
+    7.241896471575247,
+    47.126677101329285
+   ],
+   "info": {
+    "levels": 3,
+    "point": [
+     7.241896471575247,
+     47.126677101329285
+    ],
+    "km": 99,
+    "block": {
+     "length": 28.1,
+     "width": 12,
+     "fill": 0.66,
+     "parts": 3,
+     "area": 222
+    },
+    "tint": 0,
+    "type": "house",
+    "footprint": 69.51071281816405
+   },
+   "look": "nizky"
+  },
+  {
+   "town": "basel",
+   "point": [
+    7.599095863581894,
+    47.56697763144616
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     7.599095863581894,
+     47.56697763144616
+    ],
+    "km": 99,
+    "block": {
+     "length": 146.1,
+     "width": 101.7,
+     "fill": 0.4,
+     "parts": 21,
+     "area": 5989
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 214.2763421088091
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "bern",
+   "point": [
+    7.4556193477192725,
+    46.957781285373414
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     7.4556193477192725,
+     46.957781285373414
+    ],
+    "km": 99,
+    "block": {
+     "length": 143.8,
+     "width": 42.9,
+     "fill": 0.59,
+     "parts": 27,
+     "area": 3669
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 139.0422487185033
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "lugano",
+   "point": [
+    8.963127139754802,
+    46.01161163513596
+   ],
+   "info": {
+    "levels": 3,
+    "point": [
+     8.963127139754802,
+     46.01161163513596
+    ],
+    "km": 99,
+    "block": {
+     "length": 36.8,
+     "width": 21.7,
+     "fill": 0.53,
+     "parts": 2,
+     "area": 425
+    },
+    "tint": 0,
+    "footprint": 169.2678160144187
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "biel",
+   "point": [
+    7.253805774075353,
+    47.13764908527224
+   ],
+   "info": {
+    "levels": 8,
+    "point": [
+     7.253805774075353,
+     47.13764908527224
+    ],
+    "km": 99,
+    "block": {
+     "length": 87,
+     "width": 50.1,
+     "fill": 0.35,
+     "parts": 1,
+     "area": 1523
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 1522.6556013660743
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "winterthur",
+   "point": [
+    8.731236622556926,
+    47.48974956216373
+   ],
+   "info": {
+    "levels": 3,
+    "point": [
+     8.731236622556926,
+     47.48974956216373
+    ],
+    "km": 99,
+    "block": {
+     "length": 37.4,
+     "width": 15,
+     "fill": 0.76,
+     "parts": 2,
+     "area": 428
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "flat",
+    "footprint": 169.6740001871906
+   },
+   "look": "povalecny"
+  },
+  {
+   "town": "lausanne",
+   "point": [
+    6.62238304772194,
+    46.526351175640706
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     6.62238304772194,
+     46.526351175640706
+    ],
+    "km": 99,
+    "block": {
+     "length": 140.1,
+     "width": 117.1,
+     "fill": 0.3,
+     "parts": 7,
+     "area": 4937
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 743.9913461088902
+   },
+   "look": "povalecny"
+  },
+  {
+   "town": "basel",
+   "point": [
+    7.594768524778917,
+    47.56049157231919
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     7.594768524778917,
+     47.56049157231919
+    ],
+    "km": 99,
+    "block": {
+     "length": 144.2,
+     "width": 81.6,
+     "fill": 0.65,
+     "parts": 37,
+     "area": 7644
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 300.6877040735353
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "winterthur",
+   "point": [
+    8.717432497276345,
+    47.51173883541116
+   ],
+   "info": {
+    "levels": 3,
+    "point": [
+     8.717432497276345,
+     47.51173883541116
+    ],
+    "km": 99,
+    "block": {
+     "length": 25.6,
+     "width": 10.2,
+     "fill": 0.82,
+     "parts": 2,
+     "area": 213
+    },
+    "tint": 0,
+    "type": "house",
+    "footprint": 99.76952991181497
+   },
+   "look": "vila"
+  },
+  {
+   "town": "winterthur",
+   "point": [
+    8.729968689148635,
+    47.50323383961486
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     8.729968689148635,
+     47.50323383961486
+    ],
+    "km": 99,
+    "block": {
+     "length": 43.6,
+     "width": 13.4,
+     "fill": 0.84,
+     "parts": 2,
+     "area": 493
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "side_hipped",
+    "footprint": 251.54317289098935
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "geneve",
+   "point": [
+    6.130010093054348,
+    46.21373674663976
+   ],
+   "info": {
+    "levels": 8,
+    "point": [
+     6.130010093054348,
+     46.21373674663976
+    ],
+    "km": 99,
+    "block": {
+     "length": 108.4,
+     "width": 66.1,
+     "fill": 0.59,
+     "parts": 9,
+     "area": 4197
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "flat",
+    "footprint": 588.9868195181703
+   },
+   "look": "funkce"
+  },
+  {
+   "town": "basel",
+   "point": [
+    7.602344721562048,
+    47.56883494190719
+   ],
+   "info": {
+    "levels": 10,
+    "point": [
+     7.602344721562048,
+     47.56883494190719
+    ],
+    "km": 99,
+    "block": {
+     "length": 67.8,
+     "width": 41.9,
+     "fill": 0.4,
+     "parts": 4,
+     "area": 1144
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 313.10735575531066
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "stgallen",
+   "point": [
+    9.379386656222158,
+    47.435637732059845
+   ],
+   "info": {
+    "levels": 2,
+    "point": [
+     9.379386656222158,
+     47.435637732059845
+    ],
+    "km": 99,
+    "block": {
+     "length": 30,
+     "width": 19.4,
+     "fill": 0.66,
+     "parts": 1,
+     "area": 387
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 386.75601973178414
+   },
+   "look": "nizky"
+  },
+  {
+   "town": "luzern",
+   "point": [
+    8.419765956195771,
+    47.03633496095516
+   ],
+   "info": {
+    "levels": 3,
+    "point": [
+     8.419765956195771,
+     47.03633496095516
+    ],
+    "km": 99,
+    "block": {
+     "length": 222.2,
+     "width": 166.3,
+     "fill": 0.29,
+     "parts": 12,
+     "area": 10888
+    },
+    "tint": 0,
+    "type": "industrial",
+    "footprint": 2820.8677028570755
+   },
+   "look": "povalecny"
+  },
+  {
+   "town": "zurich",
+   "point": [
+    8.53082409550382,
+    47.37417751553681
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     8.53082409550382,
+     47.37417751553681
+    ],
+    "km": 99,
+    "block": {
+     "length": 112.2,
+     "width": 57.2,
+     "fill": 0.64,
+     "parts": 5,
+     "area": 4080
+    },
+    "tint": 0,
+    "type": "commercial",
+    "start": 1932,
+    "footprint": 1735.0939813283057
+   },
+   "look": "kancelar"
+  },
+  {
+   "town": "zurich",
+   "point": [
+    8.540689510124016,
+    47.37666579492827
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     8.540689510124016,
+     47.37666579492827
+    ],
+    "km": 99,
+    "block": {
+     "length": 94.7,
+     "width": 65.3,
+     "fill": 0.58,
+     "parts": 6,
+     "area": 3561
+    },
+    "tint": 0,
+    "type": "commercial",
+    "start": 1956,
+    "footprint": 495.13186261858027
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "luzern",
+   "point": [
+    8.30710829089527,
+    47.048743244262226
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     8.30710829089527,
+     47.048743244262226
+    ],
+    "km": 99,
+    "block": {
+     "length": 60.7,
+     "width": 65,
+     "fill": 0.48,
+     "parts": 6,
+     "area": 1910
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 245.3195195875669
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "zurich",
+   "point": [
+    8.513261742056962,
+    47.376198313870105
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     8.513261742056962,
+     47.376198313870105
+    ],
+    "km": 99,
+    "block": {
+     "length": 119.5,
+     "width": 118.2,
+     "fill": 0.22,
+     "parts": 17,
+     "area": 3113
+    },
+    "tint": 0,
+    "type": "apartments",
+    "start": 1919,
+    "footprint": 197.54695130190635
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "winterthur",
+   "point": [
+    8.581224428882528,
+    47.45764705307519
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     8.581224428882528,
+     47.45764705307519
+    ],
+    "km": 99,
+    "block": {
+     "length": 38.5,
+     "width": 13.3,
+     "fill": 0.77,
+     "parts": 2,
+     "area": 396
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "gabled",
+    "footprint": 213.06486658696394
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "basel",
+   "point": [
+    7.574755761263289,
+    47.564435689130136
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     7.574755761263289,
+     47.564435689130136
+    ],
+    "km": 99,
+    "block": {
+     "length": 215.6,
+     "width": 64,
+     "fill": 0.33,
+     "parts": 40,
+     "area": 4488
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 95.51793057137843
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "luzern",
+   "point": [
+    8.299873916583795,
+    47.03851235573249
+   ],
+   "info": {
+    "levels": 2,
+    "point": [
+     8.299873916583795,
+     47.03851235573249
+    ],
+    "km": 99,
+    "block": {
+     "length": 129.5,
+     "width": 43,
+     "fill": 0.52,
+     "parts": 2,
+     "area": 2917
+    },
+    "tint": 0,
+    "footprint": 1251.9973866602863
+   },
+   "look": "nizky"
+  },
+  {
+   "town": "luzern",
+   "point": [
+    8.309734590132443,
+    47.04591956036378
+   ],
+   "info": {
+    "levels": 7,
+    "point": [
+     8.309734590132443,
+     47.04591956036378
+    ],
+    "km": 99,
+    "block": {
+     "length": 108.6,
+     "width": 63.9,
+     "fill": 0.6,
+     "parts": 9,
+     "area": 4162
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 236.11564234558932
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "luzern",
+   "point": [
+    8.302854736528344,
+    47.05067484001575
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     8.302854736528344,
+     47.05067484001575
+    ],
+    "km": 99,
+    "block": {
+     "length": 94.5,
+     "width": 41.7,
+     "fill": 0.51,
+     "parts": 12,
+     "area": 2015
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 220.9939551623769
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "winterthur",
+   "point": [
+    8.725528020520898,
+    47.50153522033446
+   ],
+   "info": {
+    "levels": 7,
+    "point": [
+     8.725528020520898,
+     47.50153522033446
+    ],
+    "km": 99,
+    "block": {
+     "length": 64.4,
+     "width": 59,
+     "fill": 0.47,
+     "parts": 6,
+     "area": 1773
+    },
+    "tint": 0,
+    "type": "office",
+    "roofShape": "gabled",
+    "footprint": 236.99874894121194
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "winterthur",
+   "point": [
+    8.706709513711287,
+    47.48503145603896
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     8.706709513711287,
+     47.48503145603896
+    ],
+    "km": 99,
+    "block": {
+     "length": 140.1,
+     "width": 46.4,
+     "fill": 0.51,
+     "parts": 2,
+     "area": 3336
+    },
+    "tint": 0,
+    "type": "office",
+    "roofShape": "flat",
+    "footprint": 1208.2088276713575
+   },
+   "look": "kancelar"
+  },
+  {
+   "town": "lausanne",
+   "point": [
+    6.620093290583006,
+    46.52816755788739
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     6.620093290583006,
+     46.52816755788739
+    ],
+    "km": 99,
+    "block": {
+     "length": 20.6,
+     "width": 14.8,
+     "fill": 0.81,
+     "parts": 1,
+     "area": 246
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 245.59481909668693
+   },
+   "look": "povalecny"
+  },
+  {
+   "town": "lausanne",
+   "point": [
+    6.624908365737146,
+    46.530244360643486
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     6.624908365737146,
+     46.530244360643486
+    ],
+    "km": 99,
+    "block": {
+     "length": 20.9,
+     "width": 15,
+     "fill": 0.72,
+     "parts": 1,
+     "area": 227
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 226.9545159098534
+   },
+   "look": "povalecny"
+  },
+  {
+   "town": "luzern",
+   "point": [
+    8.297901751443318,
+    47.04561984384213
+   ],
+   "info": {
+    "levels": 3,
+    "point": [
+     8.297901751443318,
+     47.04561984384213
+    ],
+    "km": 99,
+    "block": {
+     "length": 20.3,
+     "width": 19.3,
+     "fill": 0.52,
+     "parts": 1,
+     "area": 202
+    },
+    "tint": 0,
+    "footprint": 201.72365954537963
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "winterthur",
+   "point": [
+    8.72032852679008,
+    47.49833381210923
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     8.72032852679008,
+     47.49833381210923
+    ],
+    "km": 99,
+    "block": {
+     "length": 128.1,
+     "width": 86.3,
+     "fill": 0.39,
+     "parts": 3,
+     "area": 4365
+    },
+    "tint": 0,
+    "type": "office",
+    "footprint": 1220.008010991533
+   },
+   "look": "kancelar"
+  },
+  {
+   "town": "basel",
+   "point": [
+    7.5896786009287585,
+    47.57119741340749
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     7.5896786009287585,
+     47.57119741340749
+    ],
+    "km": 99,
+    "block": {
+     "length": 124.3,
+     "width": 48.2,
+     "fill": 0.4,
+     "parts": 2,
+     "area": 2380
+    },
+    "tint": 0,
+    "type": "office",
+    "footprint": 2135.5453920672253
+   },
+   "look": "kancelar"
+  },
+  {
+   "town": "winterthur",
+   "point": [
+    8.704540211865552,
+    47.494499580935134
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     8.704540211865552,
+     47.494499580935134
+    ],
+    "km": 99,
+    "block": {
+     "length": 70.9,
+     "width": 17.8,
+     "fill": 0.89,
+     "parts": 3,
+     "area": 1126
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "flat",
+    "footprint": 370.50933508171556
+   },
+   "look": "funkce"
+  },
+  {
+   "town": "bern",
+   "point": [
+    7.444279624545903,
+    46.94826732990983
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     7.444279624545903,
+     46.94826732990983
+    ],
+    "km": 99,
+    "block": {
+     "length": 234.1,
+     "width": 101.5,
+     "fill": 0.76,
+     "parts": 40,
+     "area": 17986
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 236.1186578602808
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "winterthur",
+   "point": [
+    8.723650192077063,
+    47.49854302930047
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     8.723650192077063,
+     47.49854302930047
+    ],
+    "km": 99,
+    "block": {
+     "length": 105.7,
+     "width": 52.9,
+     "fill": 0.55,
+     "parts": 8,
+     "area": 3064
+    },
+    "tint": 0,
+    "type": "office",
+    "roofShape": "hipped",
+    "footprint": 330.9791065947695
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "winterthur",
+   "point": [
+    8.710707796762394,
+    47.49101618650278
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     8.710707796762394,
+     47.49101618650278
+    ],
+    "km": 99,
+    "block": {
+     "length": 36.9,
+     "width": 14.8,
+     "fill": 0.67,
+     "parts": 2,
+     "area": 363
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "gabled",
+    "footprint": 187.97004584357774
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "winterthur",
+   "point": [
+    8.73145495743157,
+    47.50940212247855
+   ],
+   "info": {
+    "levels": 2,
+    "point": [
+     8.73145495743157,
+     47.50940212247855
+    ],
+    "km": 99,
+    "block": {
+     "length": 28.9,
+     "width": 13.1,
+     "fill": 0.92,
+     "parts": 2,
+     "area": 348
+    },
+    "tint": 0,
+    "type": "house",
+    "roofShape": "flat",
+    "footprint": 168.7795304275839
+   },
+   "look": "vila"
+  },
+  {
+   "town": "zurich",
+   "point": [
+    8.571477768586842,
+    47.444084265844
+   ],
+   "info": {
+    "levels": 3,
+    "point": [
+     8.571477768586842,
+     47.444084265844
+    ],
+    "km": 99,
+    "block": {
+     "length": 184.5,
+     "width": 61.5,
+     "fill": 0.46,
+     "parts": 6,
+     "area": 5208
+    },
+    "tint": 0,
+    "type": "office",
+    "footprint": 2329.6710512609484
+   },
+   "look": "kancelar"
+  },
+  {
+   "town": "winterthur",
+   "point": [
+    8.733261546031505,
+    47.49056249236498
+   ],
+   "info": {
+    "levels": 3,
+    "point": [
+     8.733261546031505,
+     47.49056249236498
+    ],
+    "km": 99,
+    "block": {
+     "length": 14.7,
+     "width": 13.5,
+     "fill": 0.57,
+     "parts": 1,
+     "area": 113
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 113.11403373573103
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "basel",
+   "point": [
+    7.585018480503668,
+    47.55730025337905
+   ],
+   "info": {
+    "levels": 3,
+    "point": [
+     7.585018480503668,
+     47.55730025337905
+    ],
+    "km": 99,
+    "block": {
+     "length": 89.2,
+     "width": 66.2,
+     "fill": 0.52,
+     "parts": 32,
+     "area": 3055
+    },
+    "tint": 0,
+    "roofShape": "side_mansard",
+    "footprint": 96.35759959800907
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "bern",
+   "point": [
+    7.435162827114474,
+    46.9508514143036
+   ],
+   "info": {
+    "levels": 7,
+    "point": [
+     7.435162827114474,
+     46.9508514143036
+    ],
+    "km": 99,
+    "block": {
+     "length": 108.3,
+     "width": 46.3,
+     "fill": 0.34,
+     "parts": 7,
+     "area": 1712
+    },
+    "tint": 0,
+    "roofShape": "mansard",
+    "footprint": 244.0956795075972
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "biel",
+   "point": [
+    7.259759963411715,
+    47.13356318347922
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     7.259759963411715,
+     47.13356318347922
+    ],
+    "km": 99,
+    "block": {
+     "length": 21.2,
+     "width": 14.5,
+     "fill": 0.4,
+     "parts": 2,
+     "area": 121
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "half-hipped",
+    "footprint": 98.80948841210147
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "winterthur",
+   "point": [
+    8.717509399920958,
+    47.506770513121054
+   ],
+   "info": {
+    "levels": 3,
+    "point": [
+     8.717509399920958,
+     47.506770513121054
+    ],
+    "km": 99,
+    "block": {
+     "length": 38.7,
+     "width": 16.9,
+     "fill": 0.57,
+     "parts": 3,
+     "area": 370
+    },
+    "tint": 0,
+    "type": "house",
+    "footprint": 114.7453197934974
+   },
+   "look": "nizky"
+  },
+  {
+   "town": "luzern",
+   "point": [
+    8.26953890897554,
+    47.09766128964818
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     8.26953890897554,
+     47.09766128964818
+    ],
+    "km": 99,
+    "block": {
+     "length": 73.5,
+     "width": 70.6,
+     "fill": 0.55,
+     "parts": 1,
+     "area": 2832
+    },
+    "tint": 0,
+    "type": "school",
+    "footprint": 2832.2755995690113
+   },
+   "look": "skola"
+  }
+ ]
+}

@@ -1,0 +1,1560 @@
+{
+ "stat": {
+  "houses": 442,
+  "noData": 394,
+  "changed": 47,
+  "regCut": 0,
+  "noPhoto": 31,
+  "dataChanged": 0,
+  "villages": 37,
+  "pairs": {
+   "povalecny>vila": 27,
+   "sikma>vila": 10,
+   "cihlovy>vila": 7,
+   "sikma>garaz": 1,
+   "povalecny>garaz": 2
+  }
+ },
+ "rows": [
+  {
+   "id": "BEa01",
+   "town": "namur",
+   "far": true,
+   "city": "belgium",
+   "point": [
+    4.7164003,
+    50.5114493
+   ],
+   "mapillary": "1294682972777115",
+   "pano": true,
+   "dist": 24.8,
+   "off": 92.8,
+   "before": {
+    "look": "povalecny",
+    "info": {
+     "point": [
+      4.7164003021041285,
+      50.511449254874165
+     ],
+     "km": 99,
+     "block": {
+      "length": 18.5,
+      "width": 11.7,
+      "fill": 0.76,
+      "parts": 1,
+      "area": 166
+     },
+     "tint": 0,
+     "footprint": 165.55244840753403
+    }
+   },
+   "after": {
+    "look": "vila",
+    "info": {
+     "point": [
+      4.7164003021041285,
+      50.511449254874165
+     ],
+     "km": 99,
+     "block": {
+      "length": 18.5,
+      "width": 11.7,
+      "fill": 0.76,
+      "parts": 1,
+      "area": 166
+     },
+     "tint": 0,
+     "footprint": 165.55244840753403
+    }
+   }
+  },
+  {
+   "id": "BEa02",
+   "town": "mons",
+   "far": true,
+   "city": "belgium",
+   "point": [
+    3.8902195,
+    50.5160987
+   ],
+   "mapillary": "369244002474080",
+   "pano": true,
+   "dist": 19.2,
+   "off": 125.3,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "point": [
+      3.8902195383486218,
+      50.51609874694353
+     ],
+     "km": 99,
+     "block": {
+      "length": 18.4,
+      "width": 12.6,
+      "fill": 0.51,
+      "parts": 1,
+      "area": 119
+     },
+     "tint": 0,
+     "footprint": 118.58101186370641
+    }
+   },
+   "after": {
+    "look": "vila",
+    "info": {
+     "point": [
+      3.8902195383486218,
+      50.51609874694353
+     ],
+     "km": 99,
+     "block": {
+      "length": 18.4,
+      "width": 12.6,
+      "fill": 0.51,
+      "parts": 1,
+      "area": 119
+     },
+     "tint": 0,
+     "footprint": 118.58101186370641
+    }
+   }
+  },
+  {
+   "id": "BEa03",
+   "town": "leuven",
+   "far": true,
+   "city": "belgium",
+   "point": [
+    4.7566154,
+    50.8469091
+   ],
+   "mapillary": "442236328588398",
+   "pano": true,
+   "dist": 12.6,
+   "off": 118.6,
+   "before": {
+    "look": "cihlovy",
+    "info": {
+     "point": [
+      4.756615446944182,
+      50.84690908079385
+     ],
+     "km": 99,
+     "block": {
+      "length": 17.4,
+      "width": 17.1,
+      "fill": 0.57,
+      "parts": 1,
+      "area": 169
+     },
+     "tint": 0,
+     "footprint": 169.4328906460587
+    }
+   },
+   "after": {
+    "look": "vila",
+    "info": {
+     "point": [
+      4.756615446944182,
+      50.84690908079385
+     ],
+     "km": 99,
+     "block": {
+      "length": 17.4,
+      "width": 17.1,
+      "fill": 0.57,
+      "parts": 1,
+      "area": 169
+     },
+     "tint": 0,
+     "footprint": 169.4328906460587
+    }
+   }
+  },
+  {
+   "id": "BEa04",
+   "town": "mons",
+   "far": false,
+   "city": "belgium",
+   "point": [
+    3.9594835,
+    50.4660804
+   ],
+   "mapillary": "1107678543755382",
+   "pano": true,
+   "dist": 12.6,
+   "off": -30.3,
+   "before": {
+    "look": "povalecny",
+    "info": {
+     "point": [
+      3.959483506255566,
+      50.46608041062739
+     ],
+     "km": 99,
+     "block": {
+      "length": 8.5,
+      "width": 5.5,
+      "fill": 0.66,
+      "parts": 1,
+      "area": 31
+     },
+     "tint": 0,
+     "footprint": 30.94873805972952
+    }
+   },
+   "after": {
+    "look": "vila",
+    "info": {
+     "point": [
+      3.959483506255566,
+      50.46608041062739
+     ],
+     "km": 99,
+     "block": {
+      "length": 8.5,
+      "width": 5.5,
+      "fill": 0.66,
+      "parts": 1,
+      "area": 31
+     },
+     "tint": 0,
+     "footprint": 30.94873805972952
+    }
+   }
+  },
+  {
+   "id": "BEa05",
+   "town": "mechelen",
+   "far": true,
+   "city": "belgium",
+   "point": [
+    4.5318271,
+    50.9559364
+   ],
+   "mapillary": "1908799749610780",
+   "pano": true,
+   "dist": 10.4,
+   "off": -127.3,
+   "before": {
+    "look": "cihlovy",
+    "info": {
+     "point": [
+      4.531827139594654,
+      50.95593640260491
+     ],
+     "km": 99,
+     "block": {
+      "length": 16.2,
+      "width": 15.6,
+      "fill": 0.55,
+      "parts": 1,
+      "area": 139
+     },
+     "tint": 0,
+     "footprint": 138.7927296911639
+    }
+   },
+   "after": {
+    "look": "vila",
+    "info": {
+     "point": [
+      4.531827139594654,
+      50.95593640260491
+     ],
+     "km": 99,
+     "block": {
+      "length": 16.2,
+      "width": 15.6,
+      "fill": 0.55,
+      "parts": 1,
+      "area": 139
+     },
+     "tint": 0,
+     "footprint": 138.7927296911639
+    }
+   }
+  },
+  {
+   "id": "BEa06",
+   "town": "mechelen",
+   "far": true,
+   "city": "belgium",
+   "point": [
+    4.5123988,
+    50.929756
+   ],
+   "mapillary": "230816805472805",
+   "pano": false,
+   "dist": 19.7,
+   "off": 19.1,
+   "before": {
+    "look": "cihlovy",
+    "info": {
+     "point": [
+      4.512398832535178,
+      50.92975598030125
+     ],
+     "km": 99,
+     "block": {
+      "length": 15.6,
+      "width": 13.1,
+      "fill": 0.47,
+      "parts": 1,
+      "area": 96
+     },
+     "tint": 0,
+     "footprint": 95.81593481652453
+    }
+   },
+   "after": {
+    "look": "vila",
+    "info": {
+     "point": [
+      4.512398832535178,
+      50.92975598030125
+     ],
+     "km": 99,
+     "block": {
+      "length": 15.6,
+      "width": 13.1,
+      "fill": 0.47,
+      "parts": 1,
+      "area": 96
+     },
+     "tint": 0,
+     "footprint": 95.81593481652453
+    }
+   }
+  },
+  {
+   "id": "BEa07",
+   "town": "namur",
+   "far": false,
+   "city": "belgium",
+   "point": [
+    4.8779268,
+    50.4549855
+   ],
+   "mapillary": "1506216003476992",
+   "pano": true,
+   "dist": 20.2,
+   "off": -78.7,
+   "before": {
+    "look": "povalecny",
+    "info": {
+     "point": [
+      4.877926827814989,
+      50.45498552344952
+     ],
+     "km": 99,
+     "block": {
+      "length": 19.1,
+      "width": 10.7,
+      "fill": 0.78,
+      "parts": 1,
+      "area": 159
+     },
+     "tint": 0,
+     "footprint": 158.6986576101549
+    }
+   },
+   "after": {
+    "look": "vila",
+    "info": {
+     "point": [
+      4.877926827814989,
+      50.45498552344952
+     ],
+     "km": 99,
+     "block": {
+      "length": 19.1,
+      "width": 10.7,
+      "fill": 0.78,
+      "parts": 1,
+      "area": 159
+     },
+     "tint": 0,
+     "footprint": 158.6986576101549
+    }
+   }
+  },
+  {
+   "id": "BEa08",
+   "town": "namur",
+   "far": true,
+   "city": "belgium",
+   "point": [
+    4.8832799,
+    50.4798829
+   ],
+   "mapillary": "418522393869731",
+   "pano": true,
+   "dist": 14.5,
+   "off": 57,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "point": [
+      4.8832798662659265,
+      50.47988289014575
+     ],
+     "km": 99,
+     "block": {
+      "length": 18.8,
+      "width": 14.1,
+      "fill": 0.48,
+      "parts": 1,
+      "area": 128
+     },
+     "tint": 0,
+     "footprint": 127.67465197641741
+    }
+   },
+   "after": {
+    "look": "vila",
+    "info": {
+     "point": [
+      4.8832798662659265,
+      50.47988289014575
+     ],
+     "km": 99,
+     "block": {
+      "length": 18.8,
+      "width": 14.1,
+      "fill": 0.48,
+      "parts": 1,
+      "area": 128
+     },
+     "tint": 0,
+     "footprint": 127.67465197641741
+    }
+   }
+  },
+  {
+   "id": "BEa09",
+   "town": "leuven",
+   "far": false,
+   "city": "belgium",
+   "point": [
+    4.6864284,
+    50.8738376
+   ],
+   "mapillary": "1391410491228243",
+   "pano": false,
+   "dist": 15.9,
+   "off": 1.6,
+   "before": {
+    "look": "povalecny",
+    "info": {
+     "point": [
+      4.686428446074185,
+      50.87383758669044
+     ],
+     "km": 99,
+     "block": {
+      "length": 7,
+      "width": 10.2,
+      "fill": 0.92,
+      "parts": 2,
+      "area": 66
+     },
+     "tint": 0,
+     "footprint": 37.28443782693694
+    }
+   },
+   "after": {
+    "look": "vila",
+    "info": {
+     "point": [
+      4.686428446074185,
+      50.87383758669044
+     ],
+     "km": 99,
+     "block": {
+      "length": 7,
+      "width": 10.2,
+      "fill": 0.92,
+      "parts": 2,
+      "area": 66
+     },
+     "tint": 0,
+     "footprint": 37.28443782693694
+    }
+   }
+  },
+  {
+   "id": "BEa10",
+   "town": "brugge",
+   "far": true,
+   "city": "belgium",
+   "point": [
+    3.3183211,
+    51.2339373
+   ],
+   "mapillary": "467272964579792",
+   "pano": false,
+   "dist": 14,
+   "off": 1.1,
+   "before": {
+    "look": "povalecny",
+    "info": {
+     "point": [
+      3.318321144708475,
+      51.233937335285155
+     ],
+     "km": 99,
+     "block": {
+      "length": 15.7,
+      "width": 12.2,
+      "fill": 0.74,
+      "parts": 1,
+      "area": 143
+     },
+     "tint": 0,
+     "footprint": 142.96804240335996
+    }
+   },
+   "after": {
+    "look": "vila",
+    "info": {
+     "point": [
+      3.318321144708475,
+      51.233937335285155
+     ],
+     "km": 99,
+     "block": {
+      "length": 15.7,
+      "width": 12.2,
+      "fill": 0.74,
+      "parts": 1,
+      "area": 143
+     },
+     "tint": 0,
+     "footprint": 142.96804240335996
+    }
+   }
+  },
+  {
+   "id": "BEa11",
+   "town": "bruxelles",
+   "far": true,
+   "city": "belgium",
+   "point": [
+    4.501513,
+    50.8199413
+   ],
+   "mapillary": "509595654143044",
+   "pano": true,
+   "dist": 16.1,
+   "off": -99.4,
+   "before": {
+    "look": "povalecny",
+    "info": {
+     "point": [
+      4.501513019198707,
+      50.819941326383756
+     ],
+     "km": 99,
+     "block": {
+      "length": 18,
+      "width": 10.8,
+      "fill": 0.76,
+      "parts": 3,
+      "area": 147
+     },
+     "tint": 0,
+     "footprint": 49.76917215425942
+    }
+   },
+   "after": {
+    "look": "vila",
+    "info": {
+     "point": [
+      4.501513019198707,
+      50.819941326383756
+     ],
+     "km": 99,
+     "block": {
+      "length": 18,
+      "width": 10.8,
+      "fill": 0.76,
+      "parts": 3,
+      "area": 147
+     },
+     "tint": 0,
+     "footprint": 49.76917215425942
+    }
+   }
+  },
+  {
+   "id": "BEa12",
+   "town": "mechelen",
+   "far": true,
+   "city": "belgium",
+   "point": [
+    4.3567092,
+    51.0393367
+   ],
+   "mapillary": "2997642223894512",
+   "pano": false,
+   "dist": 22,
+   "off": 1.1,
+   "before": {
+    "look": "povalecny",
+    "info": {
+     "point": [
+      4.356709151990595,
+      51.03933669982813
+     ],
+     "km": 99,
+     "block": {
+      "length": 17,
+      "width": 14.7,
+      "fill": 0.71,
+      "parts": 1,
+      "area": 178
+     },
+     "tint": 0,
+     "footprint": 177.6311842182272
+    }
+   },
+   "after": {
+    "look": "vila",
+    "info": {
+     "point": [
+      4.356709151990595,
+      51.03933669982813
+     ],
+     "km": 99,
+     "block": {
+      "length": 17,
+      "width": 14.7,
+      "fill": 0.71,
+      "parts": 1,
+      "area": 178
+     },
+     "tint": 0,
+     "footprint": 177.6311842182272
+    }
+   }
+  },
+  {
+   "id": "BEa13",
+   "town": "leuven",
+   "far": false,
+   "city": "belgium",
+   "point": [
+    4.6989834,
+    50.8854591
+   ],
+   "mapillary": "1341905803381059",
+   "pano": true,
+   "dist": 7.9,
+   "off": -70.2,
+   "before": {
+    "look": "povalecny",
+    "info": {
+     "point": [
+      4.6989833620072945,
+      50.885459118002814
+     ],
+     "km": 99,
+     "block": {
+      "length": 20.2,
+      "width": 15.4,
+      "fill": 0.72,
+      "parts": 1,
+      "area": 223
+     },
+     "tint": 0,
+     "type": "residential",
+     "footprint": 222.8707409954958
+    }
+   },
+   "after": {
+    "look": "vila",
+    "info": {
+     "point": [
+      4.6989833620072945,
+      50.885459118002814
+     ],
+     "km": 99,
+     "block": {
+      "length": 20.2,
+      "width": 15.4,
+      "fill": 0.72,
+      "parts": 1,
+      "area": 223
+     },
+     "tint": 0,
+     "type": "residential",
+     "footprint": 222.8707409954958
+    }
+   }
+  },
+  {
+   "id": "BEa14",
+   "town": "bruxelles",
+   "far": true,
+   "city": "belgium",
+   "point": [
+    4.5068364,
+    50.8327172
+   ],
+   "mapillary": "1203100706800689",
+   "pano": false,
+   "dist": 17.1,
+   "off": -30.9,
+   "before": {
+    "look": "povalecny",
+    "info": {
+     "point": [
+      4.506836395375136,
+      50.83271716664584
+     ],
+     "km": 99,
+     "block": {
+      "length": 12.1,
+      "width": 10.1,
+      "fill": 0.67,
+      "parts": 1,
+      "area": 82
+     },
+     "tint": 0,
+     "footprint": 81.62932108263954
+    }
+   },
+   "after": {
+    "look": "vila",
+    "info": {
+     "point": [
+      4.506836395375136,
+      50.83271716664584
+     ],
+     "km": 99,
+     "block": {
+      "length": 12.1,
+      "width": 10.1,
+      "fill": 0.67,
+      "parts": 1,
+      "area": 82
+     },
+     "tint": 0,
+     "footprint": 81.62932108263954
+    }
+   }
+  },
+  {
+   "id": "BEa15",
+   "town": "mons",
+   "far": true,
+   "city": "belgium",
+   "point": [
+    3.8708643,
+    50.5303939
+   ],
+   "mapillary": "1151026823781623",
+   "pano": true,
+   "dist": 14,
+   "off": -107.6,
+   "before": {
+    "look": "povalecny",
+    "info": {
+     "point": [
+      3.870864287876655,
+      50.53039389743647
+     ],
+     "km": 99,
+     "block": {
+      "length": 25,
+      "width": 11.9,
+      "fill": 0.81,
+      "parts": 1,
+      "area": 240
+     },
+     "tint": 0,
+     "footprint": 239.81309776007765
+    }
+   },
+   "after": {
+    "look": "vila",
+    "info": {
+     "point": [
+      3.870864287876655,
+      50.53039389743647
+     ],
+     "km": 99,
+     "block": {
+      "length": 25,
+      "width": 11.9,
+      "fill": 0.81,
+      "parts": 1,
+      "area": 240
+     },
+     "tint": 0,
+     "footprint": 239.81309776007765
+    }
+   }
+  },
+  {
+   "id": "BEa16",
+   "town": "mons",
+   "far": true,
+   "city": "belgium",
+   "point": [
+    3.8693965,
+    50.5456363
+   ],
+   "mapillary": "1278034026867047",
+   "pano": true,
+   "dist": 15.8,
+   "off": 13.3,
+   "before": {
+    "look": "povalecny",
+    "info": {
+     "point": [
+      3.869396489348725,
+      50.54563631881875
+     ],
+     "km": 99,
+     "block": {
+      "length": 21.7,
+      "width": 6.9,
+      "fill": 0.91,
+      "parts": 1,
+      "area": 136
+     },
+     "tint": 0,
+     "footprint": 136.49675624590782
+    }
+   },
+   "after": {
+    "look": "vila",
+    "info": {
+     "point": [
+      3.869396489348725,
+      50.54563631881875
+     ],
+     "km": 99,
+     "block": {
+      "length": 21.7,
+      "width": 6.9,
+      "fill": 0.91,
+      "parts": 1,
+      "area": 136
+     },
+     "tint": 0,
+     "footprint": 136.49675624590782
+    }
+   }
+  }
+ ],
+ "controls": [
+  {
+   "town": "leuven",
+   "point": [
+    4.698160610691772,
+    50.886950444880405
+   ],
+   "info": {
+    "levels": 3,
+    "point": [
+     4.698160610691772,
+     50.886950444880405
+    ],
+    "km": 99,
+    "block": {
+     "length": 120.5,
+     "width": 74,
+     "fill": 0.37,
+     "parts": 40,
+     "area": 3300
+    },
+    "tint": 0,
+    "type": "house",
+    "footprint": 74.54562033036376
+   },
+   "look": "cihlovy"
+  },
+  {
+   "town": "mechelen",
+   "point": [
+    4.492242807550488,
+    51.031238254897914
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     4.492242807550488,
+     51.031238254897914
+    ],
+    "km": 99,
+    "block": {
+     "length": 184.3,
+     "width": 88.6,
+     "fill": 0.15,
+     "parts": 40,
+     "area": 2450
+    },
+    "tint": 0,
+    "type": "house",
+    "footprint": 79.73349911384673
+   },
+   "look": "cihlovy"
+  },
+  {
+   "town": "gent",
+   "point": [
+    3.72148170264835,
+    51.05415560311881
+   ],
+   "info": {
+    "height": 7,
+    "point": [
+     3.72148170264835,
+     51.05415560311881
+    ],
+    "km": 99,
+    "block": {
+     "length": 64.4,
+     "width": 61.1,
+     "fill": 0.68,
+     "parts": 3,
+     "area": 2671
+    },
+    "tint": 0,
+    "footprint": 2273.3080392976917
+   },
+   "look": "cihlovy"
+  },
+  {
+   "town": "leuven",
+   "point": [
+    4.704265101969934,
+    50.875476320952544
+   ],
+   "info": {
+    "levels": 3,
+    "point": [
+     4.704265101969934,
+     50.875476320952544
+    ],
+    "km": 99,
+    "block": {
+     "length": 187.4,
+     "width": 27.6,
+     "fill": 0.56,
+     "parts": 40,
+     "area": 2909
+    },
+    "tint": 0,
+    "type": "house",
+    "roofShape": "gabled",
+    "footprint": 66.02251434012851
+   },
+   "look": "cihlovy"
+  },
+  {
+   "town": "leuven",
+   "point": [
+    4.703074525330341,
+    50.88565268497667
+   ],
+   "info": {
+    "levels": 3,
+    "point": [
+     4.703074525330341,
+     50.88565268497667
+    ],
+    "km": 99,
+    "block": {
+     "length": 142.6,
+     "width": 74.8,
+     "fill": 0.43,
+     "parts": 40,
+     "area": 4533
+    },
+    "tint": 0,
+    "type": "house",
+    "footprint": 58.24097836407782
+   },
+   "look": "cihlovy"
+  },
+  {
+   "town": "namur",
+   "point": [
+    4.866025143371334,
+    50.46304405496887
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     4.866025143371334,
+     50.46304405496887
+    ],
+    "km": 99,
+    "block": {
+     "length": 56.3,
+     "width": 48.1,
+     "fill": 0.79,
+     "parts": 32,
+     "area": 2146
+    },
+    "tint": 0,
+    "type": "commercial",
+    "footprint": 70.91143585973168
+   },
+   "look": "kancelar"
+  },
+  {
+   "town": "antwerpen",
+   "point": [
+    4.409644035992127,
+    51.21667764673113
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     4.409644035992127,
+     51.21667764673113
+    ],
+    "km": 99,
+    "block": {
+     "length": 158,
+     "width": 112.4,
+     "fill": 0.52,
+     "parts": 29,
+     "area": 9297
+    },
+    "tint": 0,
+    "footprint": 191.98132359678357
+   },
+   "look": "cihlovy"
+  },
+  {
+   "town": "gent",
+   "point": [
+    3.725309969441412,
+    51.04335008954448
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     3.725309969441412,
+     51.04335008954448
+    ],
+    "km": 99,
+    "block": {
+     "length": 67.7,
+     "width": 37.7,
+     "fill": 0.68,
+     "parts": 18,
+     "area": 1730
+    },
+    "tint": 0,
+    "type": "house",
+    "roofShape": "gabled",
+    "footprint": 138.52794707213525
+   },
+   "look": "cihlovy"
+  },
+  {
+   "town": "gent",
+   "point": [
+    3.7311246904652764,
+    51.05351730686112
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     3.7311246904652764,
+     51.05351730686112
+    ],
+    "km": 99,
+    "block": {
+     "length": 215.6,
+     "width": 190.4,
+     "fill": 0.29,
+     "parts": 37,
+     "area": 11702
+    },
+    "tint": 0,
+    "type": "house",
+    "roofShape": "flat",
+    "footprint": 117.2223629290728
+   },
+   "look": "cihlovy"
+  },
+  {
+   "town": "antwerpen",
+   "point": [
+    4.496155931390436,
+    51.24608243011822
+   ],
+   "info": {
+    "levels": 2,
+    "point": [
+     4.496155931390436,
+     51.24608243011822
+    ],
+    "km": 99,
+    "block": {
+     "length": 22.5,
+     "width": 21,
+     "fill": 0.47,
+     "parts": 2,
+     "area": 222
+    },
+    "tint": 0,
+    "type": "semidetached_house",
+    "footprint": 113.65447211396622
+   },
+   "look": "vila"
+  },
+  {
+   "town": "mechelen",
+   "point": [
+    4.479692205508648,
+    51.0288550246443
+   ],
+   "info": {
+    "height": 28,
+    "point": [
+     4.479692205508648,
+     51.0288550246443
+    ],
+    "km": 99,
+    "block": {
+     "length": 116.1,
+     "width": 53,
+     "fill": 0.69,
+     "parts": 1,
+     "area": 4223
+    },
+    "tint": 0,
+    "type": "cathedral",
+    "start": 1312,
+    "footprint": 4222.734960416217
+   },
+   "look": "kostel"
+  },
+  {
+   "town": "leuven",
+   "point": [
+    4.689935810005386,
+    50.87504801979818
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     4.689935810005386,
+     50.87504801979818
+    ],
+    "km": 99,
+    "block": {
+     "length": 122.3,
+     "width": 68.5,
+     "fill": 0.29,
+     "parts": 40,
+     "area": 2424
+    },
+    "tint": 0,
+    "type": "house",
+    "footprint": 83.10979011460495
+   },
+   "look": "cihlovy"
+  },
+  {
+   "town": "bruxelles",
+   "point": [
+    4.337310536487619,
+    50.85259741218244
+   ],
+   "info": {
+    "levels": 3,
+    "point": [
+     4.337310536487619,
+     50.85259741218244
+    ],
+    "km": 99,
+    "block": {
+     "length": 113.4,
+     "width": 81.8,
+     "fill": 0.43,
+     "parts": 23,
+     "area": 4000
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 38.077675460983414
+   },
+   "look": "haussmann"
+  },
+  {
+   "town": "namur",
+   "point": [
+    4.876083261644382,
+    50.49609984133486
+   ],
+   "info": {
+    "levels": 3,
+    "point": [
+     4.876083261644382,
+     50.49609984133486
+    ],
+    "km": 99,
+    "block": {
+     "length": 16.8,
+     "width": 12.1,
+     "fill": 0.79,
+     "parts": 1,
+     "area": 160
+    },
+    "tint": 0,
+    "type": "detached",
+    "roofShape": "gabled",
+    "footprint": 160.1359835762487
+   },
+   "look": "vila"
+  },
+  {
+   "town": "mechelen",
+   "point": [
+    4.484622639203345,
+    51.01934650755124
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     4.484622639203345,
+     51.01934650755124
+    ],
+    "km": 99,
+    "block": {
+     "length": 110.3,
+     "width": 30.4,
+     "fill": 0.84,
+     "parts": 1,
+     "area": 2818
+    },
+    "tint": 0,
+    "footprint": 2818.113800902752
+   },
+   "look": "cihlovy"
+  },
+  {
+   "town": "antwerpen",
+   "point": [
+    4.415381266410642,
+    51.21910438995569
+   ],
+   "info": {
+    "levels": 7,
+    "point": [
+     4.415381266410642,
+     51.21910438995569
+    ],
+    "km": 99,
+    "block": {
+     "length": 160.1,
+     "width": 35.9,
+     "fill": 0.79,
+     "parts": 31,
+     "area": 4550
+    },
+    "tint": 0,
+    "footprint": 119.11506653933225
+   },
+   "look": "cihlovy"
+  },
+  {
+   "town": "mechelen",
+   "point": [
+    4.486423337935605,
+    51.021234529545815
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     4.486423337935605,
+     51.021234529545815
+    ],
+    "km": 99,
+    "block": {
+     "length": 141.8,
+     "width": 76.9,
+     "fill": 0.38,
+     "parts": 40,
+     "area": 4101
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 196.27854692642086
+   },
+   "look": "cihlovy"
+  },
+  {
+   "town": "gent",
+   "point": [
+    3.7090924754713237,
+    51.06073856259202
+   ],
+   "info": {
+    "levels": 1,
+    "point": [
+     3.7090924754713237,
+     51.06073856259202
+    ],
+    "km": 99,
+    "block": {
+     "length": 197.2,
+     "width": 150.6,
+     "fill": 0.4,
+     "parts": 4,
+     "area": 11971
+    },
+    "tint": 0,
+    "type": "school",
+    "footprint": 4386.805562322929
+   },
+   "look": "skola"
+  },
+  {
+   "town": "antwerpen",
+   "point": [
+    4.408472354678751,
+    51.23077057729702
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     4.408472354678751,
+     51.23077057729702
+    ],
+    "km": 99,
+    "block": {
+     "length": 106.8,
+     "width": 90.5,
+     "fill": 0.53,
+     "parts": 24,
+     "area": 5170
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 156.8533988583614
+   },
+   "look": "cihlovy"
+  },
+  {
+   "town": "liege",
+   "point": [
+    5.569677591551422,
+    50.634542165231814
+   ],
+   "info": {
+    "levels": 11,
+    "point": [
+     5.569677591551422,
+     50.634542165231814
+    ],
+    "km": 99,
+    "block": {
+     "length": 229,
+     "width": 103.5,
+     "fill": 0.41,
+     "parts": 36,
+     "area": 9739
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 201.81327047701598
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "namur",
+   "point": [
+    4.866040516419786,
+    50.47197861476465
+   ],
+   "info": {
+    "levels": 3,
+    "point": [
+     4.866040516419786,
+     50.47197861476465
+    ],
+    "km": 99,
+    "block": {
+     "length": 122.8,
+     "width": 58.8,
+     "fill": 0.32,
+     "parts": 41,
+     "area": 2282
+    },
+    "tint": 0,
+    "type": "terrace",
+    "roofShape": "gabled",
+    "footprint": 43.479608891138014
+   },
+   "look": "nizky"
+  },
+  {
+   "town": "bruxelles",
+   "point": [
+    4.34587563763777,
+    50.84805344698353
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     4.34587563763777,
+     50.84805344698353
+    ],
+    "km": 99,
+    "block": {
+     "length": 142.8,
+     "width": 71.5,
+     "fill": 0.42,
+     "parts": 37,
+     "area": 4274
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 59.84393696455959
+   },
+   "look": "haussmann"
+  },
+  {
+   "town": "liege",
+   "point": [
+    5.571569114047454,
+    50.6367792458115
+   ],
+   "info": {
+    "levels": 8,
+    "point": [
+     5.571569114047454,
+     50.6367792458115
+    ],
+    "km": 99,
+    "block": {
+     "length": 123.7,
+     "width": 105,
+     "fill": 0.33,
+     "parts": 26,
+     "area": 4322
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 272.8585671273805
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "mechelen",
+   "point": [
+    4.480357333146978,
+    51.02893745841891
+   ],
+   "info": {
+    "levels": 2,
+    "point": [
+     4.480357333146978,
+     51.02893745841891
+    ],
+    "km": 99,
+    "block": {
+     "length": 68.8,
+     "width": 44.4,
+     "fill": 0.57,
+     "parts": 19,
+     "area": 1729
+    },
+    "tint": 0,
+    "type": "house",
+    "footprint": 317.39918444573823
+   },
+   "look": "cihlovy"
+  },
+  {
+   "town": "mechelen",
+   "point": [
+    4.477357568422272,
+    51.024435019142956
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     4.477357568422272,
+     51.024435019142956
+    ],
+    "km": 99,
+    "block": {
+     "length": 112.5,
+     "width": 87,
+     "fill": 0.41,
+     "parts": 30,
+     "area": 3994
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 508.6569102620915
+   },
+   "look": "cihlovy"
+  },
+  {
+   "town": "mechelen",
+   "point": [
+    4.476213129635603,
+    51.02745307312242
+   ],
+   "info": {
+    "levels": 3,
+    "point": [
+     4.476213129635603,
+     51.02745307312242
+    ],
+    "km": 99,
+    "block": {
+     "length": 128,
+     "width": 81.1,
+     "fill": 0.41,
+     "parts": 25,
+     "area": 4259
+    },
+    "tint": 0,
+    "footprint": 708.3738617452228
+   },
+   "look": "cihlovy"
+  },
+  {
+   "town": "bruxelles",
+   "point": [
+    4.360688825090703,
+    50.850696993816335
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     4.360688825090703,
+     50.850696993816335
+    ],
+    "km": 99,
+    "block": {
+     "length": 92.7,
+     "width": 43.2,
+     "fill": 0.75,
+     "parts": 1,
+     "area": 2997
+    },
+    "tint": 0,
+    "type": "government",
+    "roofShape": "gabled",
+    "footprint": 2997.359876280776
+   },
+   "look": "haussmann"
+  }
+ ]
+}

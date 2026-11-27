@@ -1,0 +1,4576 @@
+{
+ "stat": {
+  "houses": 649,
+  "noData": 476,
+  "changed": 79,
+  "regCut": 19,
+  "noPhoto": 63,
+  "dataChanged": 0,
+  "villages": 57,
+  "pairs": {
+   "povalecny>garaz": 4,
+   "povalecny>vila": 35,
+   "dansky>vila": 39,
+   "dansky>garaz": 1
+  }
+ },
+ "rows": [
+  {
+   "id": "DKa01",
+   "town": "odense",
+   "far": false,
+   "city": "denmark",
+   "point": [
+    10.3817509,
+    55.3844546
+   ],
+   "mapillary": "278655730572125",
+   "pano": false,
+   "dist": 24.2,
+   "off": 18,
+   "before": {
+    "look": "povalecny",
+    "info": {
+     "point": [
+      10.381750892872663,
+      55.384454624915264
+     ],
+     "km": 99,
+     "block": {
+      "length": 4.7,
+      "width": 2.8,
+      "fill": 0.81,
+      "parts": 1,
+      "area": 10
+     },
+     "tint": 0,
+     "footprint": 10.488560553325215
+    }
+   },
+   "after": {
+    "look": "garaz",
+    "info": {
+     "point": [
+      10.381750892872663,
+      55.384454624915264
+     ],
+     "km": 99,
+     "block": {
+      "length": 4.7,
+      "width": 2.8,
+      "fill": 0.81,
+      "parts": 1,
+      "area": 10
+     },
+     "tint": 0,
+     "footprint": 10.488560553325215
+    }
+   }
+  },
+  {
+   "id": "DKa02",
+   "town": "odense",
+   "far": false,
+   "city": "denmark",
+   "point": [
+    10.374277,
+    55.392177
+   ],
+   "mapillary": "1728280951243184",
+   "pano": false,
+   "dist": 18.5,
+   "off": -13.4,
+   "before": {
+    "look": "dansky",
+    "info": {
+     "point": [
+      10.374276995801086,
+      55.392177023467056
+     ],
+     "km": 99,
+     "block": {
+      "length": 18,
+      "width": 16.8,
+      "fill": 0.69,
+      "parts": 1,
+      "area": 209
+     },
+     "tint": 0,
+     "footprint": 209.38413937198345
+    }
+   },
+   "after": {
+    "look": "vila",
+    "info": {
+     "point": [
+      10.374276995801086,
+      55.392177023467056
+     ],
+     "km": 99,
+     "block": {
+      "length": 18,
+      "width": 16.8,
+      "fill": 0.69,
+      "parts": 1,
+      "area": 209
+     },
+     "tint": 0,
+     "footprint": 209.38413937198345
+    }
+   }
+  },
+  {
+   "id": "DKa03",
+   "town": "aalborg",
+   "far": true,
+   "city": "denmark",
+   "point": [
+    10.0193067,
+    57.0469878
+   ],
+   "mapillary": "191820203836127",
+   "pano": false,
+   "dist": 25.7,
+   "off": 29.8,
+   "before": {
+    "look": "dansky",
+    "info": {
+     "point": [
+      10.019306710608669,
+      57.04698776021695
+     ],
+     "km": 99,
+     "block": {
+      "length": 18.2,
+      "width": 8.2,
+      "fill": 0.5,
+      "parts": 1,
+      "area": 74
+     },
+     "tint": 0,
+     "footprint": 73.98451415424461
+    }
+   },
+   "after": {
+    "look": "vila",
+    "info": {
+     "point": [
+      10.019306710608669,
+      57.04698776021695
+     ],
+     "km": 99,
+     "block": {
+      "length": 18.2,
+      "width": 8.2,
+      "fill": 0.5,
+      "parts": 1,
+      "area": 74
+     },
+     "tint": 0,
+     "footprint": 73.98451415424461
+    }
+   }
+  },
+  {
+   "id": "DKa04",
+   "town": "odense",
+   "far": true,
+   "city": "denmark",
+   "point": [
+    10.498194,
+    55.3701839
+   ],
+   "mapillary": "995587797848488",
+   "pano": false,
+   "dist": 11.6,
+   "off": -22.9,
+   "before": {
+    "look": "povalecny",
+    "info": {
+     "point": [
+      10.498193977483446,
+      55.37018392309682
+     ],
+     "km": 99,
+     "block": {
+      "length": 11.6,
+      "width": 5.4,
+      "fill": 0.82,
+      "parts": 1,
+      "area": 52
+     },
+     "tint": 0,
+     "footprint": 52.11364994612177
+    }
+   },
+   "after": {
+    "look": "vila",
+    "info": {
+     "point": [
+      10.498193977483446,
+      55.37018392309682
+     ],
+     "km": 99,
+     "block": {
+      "length": 11.6,
+      "width": 5.4,
+      "fill": 0.82,
+      "parts": 1,
+      "area": 52
+     },
+     "tint": 0,
+     "footprint": 52.11364994612177
+    }
+   }
+  },
+  {
+   "id": "DKa05",
+   "town": "odense",
+   "far": true,
+   "city": "denmark",
+   "point": [
+    10.2658482,
+    55.3780794
+   ],
+   "mapillary": "511290220240314",
+   "pano": false,
+   "dist": 13.4,
+   "off": 25.8,
+   "before": {
+    "look": "dansky",
+    "info": {
+     "point": [
+      10.2658482441705,
+      55.37807939276486
+     ],
+     "km": 99,
+     "block": {
+      "length": 19.5,
+      "width": 12.4,
+      "fill": 0.56,
+      "parts": 1,
+      "area": 135
+     },
+     "tint": 0,
+     "footprint": 134.97376801157384
+    }
+   },
+   "after": {
+    "look": "vila",
+    "info": {
+     "point": [
+      10.2658482441705,
+      55.37807939276486
+     ],
+     "km": 99,
+     "block": {
+      "length": 19.5,
+      "width": 12.4,
+      "fill": 0.56,
+      "parts": 1,
+      "area": 135
+     },
+     "tint": 0,
+     "footprint": 134.97376801157384
+    }
+   }
+  },
+  {
+   "id": "DKa06",
+   "town": "kobenhavn",
+   "far": true,
+   "city": "denmark",
+   "point": [
+    12.6365722,
+    55.6005091
+   ],
+   "mapillary": "182919360376437",
+   "pano": false,
+   "dist": 21.5,
+   "off": 23.2,
+   "before": {
+    "look": "povalecny",
+    "info": {
+     "point": [
+      12.636572233014318,
+      55.600509102348816
+     ],
+     "km": 99,
+     "block": {
+      "length": 23.4,
+      "width": 12.5,
+      "fill": 0.72,
+      "parts": 1,
+      "area": 212
+     },
+     "tint": 0,
+     "footprint": 211.75460647126192
+    }
+   },
+   "after": {
+    "look": "vila",
+    "info": {
+     "point": [
+      12.636572233014318,
+      55.600509102348816
+     ],
+     "km": 99,
+     "block": {
+      "length": 23.4,
+      "width": 12.5,
+      "fill": 0.72,
+      "parts": 1,
+      "area": 212
+     },
+     "tint": 0,
+     "footprint": 211.75460647126192
+    }
+   }
+  },
+  {
+   "id": "DKa07",
+   "town": "odense",
+   "far": false,
+   "city": "denmark",
+   "point": [
+    10.4092018,
+    55.3999162
+   ],
+   "mapillary": "809610313939117",
+   "pano": false,
+   "dist": 17.6,
+   "off": 3.2,
+   "before": {
+    "look": "povalecny",
+    "info": {
+     "point": [
+      10.409201815797251,
+      55.39991615161551
+     ],
+     "km": 99,
+     "block": {
+      "length": 17.5,
+      "width": 14.8,
+      "fill": 0.7,
+      "parts": 1,
+      "area": 182
+     },
+     "tint": 0,
+     "footprint": 181.73471426995638
+    }
+   },
+   "after": {
+    "look": "vila",
+    "info": {
+     "point": [
+      10.409201815797251,
+      55.39991615161551
+     ],
+     "km": 99,
+     "block": {
+      "length": 17.5,
+      "width": 14.8,
+      "fill": 0.7,
+      "parts": 1,
+      "area": 182
+     },
+     "tint": 0,
+     "footprint": 181.73471426995638
+    }
+   }
+  },
+  {
+   "id": "DKa08",
+   "town": "kobenhavn",
+   "far": true,
+   "city": "denmark",
+   "point": [
+    12.441855,
+    55.6571762
+   ],
+   "mapillary": "142775091619467",
+   "pano": true,
+   "dist": 18.9,
+   "off": 142.8,
+   "before": {
+    "look": "povalecny",
+    "info": {
+     "point": [
+      12.441854951568484,
+      55.65717616944845
+     ],
+     "km": 99,
+     "block": {
+      "length": 21,
+      "width": 14.8,
+      "fill": 0.67,
+      "parts": 1,
+      "area": 208
+     },
+     "tint": 0,
+     "footprint": 207.97679963533164
+    }
+   },
+   "after": {
+    "look": "vila",
+    "info": {
+     "point": [
+      12.441854951568484,
+      55.65717616944845
+     ],
+     "km": 99,
+     "block": {
+      "length": 21,
+      "width": 14.8,
+      "fill": 0.67,
+      "parts": 1,
+      "area": 208
+     },
+     "tint": 0,
+     "footprint": 207.97679963533164
+    }
+   }
+  },
+  {
+   "id": "DKa09",
+   "town": "aarhus",
+   "far": true,
+   "city": "denmark",
+   "point": [
+    10.1634836,
+    56.1600017
+   ],
+   "mapillary": "2794576417461848",
+   "pano": false,
+   "dist": 25,
+   "off": 13.3,
+   "before": {
+    "look": "dansky",
+    "info": {
+     "point": [
+      10.163483640922344,
+      56.16000167316577
+     ],
+     "km": 99,
+     "block": {
+      "length": 34.5,
+      "width": 22.7,
+      "fill": 0.4,
+      "parts": 3,
+      "area": 310
+     },
+     "tint": 0,
+     "footprint": 113.79065897674172
+    }
+   },
+   "after": {
+    "look": "vila",
+    "info": {
+     "point": [
+      10.163483640922344,
+      56.16000167316577
+     ],
+     "km": 99,
+     "block": {
+      "length": 34.5,
+      "width": 22.7,
+      "fill": 0.4,
+      "parts": 3,
+      "area": 310
+     },
+     "tint": 0,
+     "footprint": 113.79065897674172
+    }
+   }
+  },
+  {
+   "id": "DKa10",
+   "town": "kobenhavn",
+   "far": true,
+   "city": "denmark",
+   "point": [
+    12.5755002,
+    55.7459562
+   ],
+   "mapillary": "5503679623035968",
+   "pano": false,
+   "dist": 23.4,
+   "off": 30.6,
+   "before": {
+    "look": "dansky",
+    "info": {
+     "point": [
+      12.575500234037245,
+      55.74595621018666
+     ],
+     "km": 99,
+     "block": {
+      "length": 19,
+      "width": 16.3,
+      "fill": 0.58,
+      "parts": 1,
+      "area": 179
+     },
+     "tint": 0,
+     "footprint": 179.09159980691584
+    }
+   },
+   "after": {
+    "look": "vila",
+    "info": {
+     "point": [
+      12.575500234037245,
+      55.74595621018666
+     ],
+     "km": 99,
+     "block": {
+      "length": 19,
+      "width": 16.3,
+      "fill": 0.58,
+      "parts": 1,
+      "area": 179
+     },
+     "tint": 0,
+     "footprint": 179.09159980691584
+    }
+   }
+  },
+  {
+   "id": "DKa11",
+   "town": "odense",
+   "far": false,
+   "city": "denmark",
+   "point": [
+    10.3974793,
+    55.388838
+   ],
+   "mapillary": "807371168062394",
+   "pano": false,
+   "dist": 20,
+   "off": -16.9,
+   "before": {
+    "look": "povalecny",
+    "info": {
+     "point": [
+      10.397479302928465,
+      55.3888379736841
+     ],
+     "km": 99,
+     "block": {
+      "length": 22.8,
+      "width": 12.8,
+      "fill": 0.75,
+      "parts": 1,
+      "area": 220
+     },
+     "tint": 0,
+     "type": "apartments",
+     "footprint": 219.5428694740085
+    }
+   },
+   "after": {
+    "look": "vila",
+    "info": {
+     "point": [
+      10.397479302928465,
+      55.3888379736841
+     ],
+     "km": 99,
+     "block": {
+      "length": 22.8,
+      "width": 12.8,
+      "fill": 0.75,
+      "parts": 1,
+      "area": 220
+     },
+     "tint": 0,
+     "type": "apartments",
+     "footprint": 219.5428694740085
+    }
+   }
+  },
+  {
+   "id": "DKa12",
+   "town": "kobenhavn",
+   "far": true,
+   "city": "denmark",
+   "point": [
+    12.4146419,
+    55.6184598
+   ],
+   "mapillary": "117821920902216",
+   "pano": true,
+   "dist": 13.1,
+   "off": -86.1,
+   "before": {
+    "look": "povalecny",
+    "info": {
+     "point": [
+      12.414641948489205,
+      55.618459825007236
+     ],
+     "km": 99,
+     "block": {
+      "length": 19.4,
+      "width": 11.8,
+      "fill": 0.75,
+      "parts": 2,
+      "area": 172
+     },
+     "tint": 0,
+     "footprint": 28.151163125091443
+    }
+   },
+   "after": {
+    "look": "garaz",
+    "info": {
+     "point": [
+      12.414641948489205,
+      55.618459825007236
+     ],
+     "km": 99,
+     "block": {
+      "length": 19.4,
+      "width": 11.8,
+      "fill": 0.75,
+      "parts": 2,
+      "area": 172
+     },
+     "tint": 0,
+     "footprint": 28.151163125091443
+    }
+   }
+  },
+  {
+   "id": "DKa13",
+   "town": "odense",
+   "far": false,
+   "city": "denmark",
+   "point": [
+    10.3745203,
+    55.393818
+   ],
+   "mapillary": "300946711509602",
+   "pano": false,
+   "dist": 10.4,
+   "off": -30.5,
+   "before": {
+    "look": "dansky",
+    "info": {
+     "point": [
+      10.374520303308634,
+      55.39381800594426
+     ],
+     "km": 99,
+     "block": {
+      "length": 10.9,
+      "width": 7.7,
+      "fill": 0.64,
+      "parts": 2,
+      "area": 53
+     },
+     "tint": 0,
+     "footprint": 19.224988434944862
+    }
+   },
+   "after": {
+    "look": "garaz",
+    "info": {
+     "point": [
+      10.374520303308634,
+      55.39381800594426
+     ],
+     "km": 99,
+     "block": {
+      "length": 10.9,
+      "width": 7.7,
+      "fill": 0.64,
+      "parts": 2,
+      "area": 53
+     },
+     "tint": 0,
+     "footprint": 19.224988434944862
+    }
+   }
+  },
+  {
+   "id": "DKa14",
+   "town": "odense",
+   "far": false,
+   "city": "denmark",
+   "point": [
+    10.3946432,
+    55.4077524
+   ],
+   "mapillary": "307907530961123",
+   "pano": false,
+   "dist": 21.1,
+   "off": 21.1,
+   "before": {
+    "look": "povalecny",
+    "info": {
+     "point": [
+      10.394643166828121,
+      55.40775237249508
+     ],
+     "km": 99,
+     "block": {
+      "length": 13,
+      "width": 10.4,
+      "fill": 0.74,
+      "parts": 1,
+      "area": 101
+     },
+     "tint": 0,
+     "footprint": 100.62872750864562
+    }
+   },
+   "after": {
+    "look": "vila",
+    "info": {
+     "point": [
+      10.394643166828121,
+      55.40775237249508
+     ],
+     "km": 99,
+     "block": {
+      "length": 13,
+      "width": 10.4,
+      "fill": 0.74,
+      "parts": 1,
+      "area": 101
+     },
+     "tint": 0,
+     "footprint": 100.62872750864562
+    }
+   }
+  },
+  {
+   "id": "DKa15",
+   "town": "odense",
+   "far": true,
+   "city": "denmark",
+   "point": [
+    10.36551,
+    55.4560607
+   ],
+   "mapillary": "758768031488382",
+   "pano": false,
+   "dist": 20.8,
+   "off": 21,
+   "before": {
+    "look": "povalecny",
+    "info": {
+     "point": [
+      10.365509988318026,
+      55.45606072393171
+     ],
+     "km": 99,
+     "block": {
+      "length": 23.6,
+      "width": 10.8,
+      "fill": 0.7,
+      "parts": 1,
+      "area": 177
+     },
+     "tint": 0,
+     "footprint": 177.2887380336806
+    }
+   },
+   "after": {
+    "look": "vila",
+    "info": {
+     "point": [
+      10.365509988318026,
+      55.45606072393171
+     ],
+     "km": 99,
+     "block": {
+      "length": 23.6,
+      "width": 10.8,
+      "fill": 0.7,
+      "parts": 1,
+      "area": 177
+     },
+     "tint": 0,
+     "footprint": 177.2887380336806
+    }
+   }
+  },
+  {
+   "id": "DKa16",
+   "town": "odense",
+   "far": false,
+   "city": "denmark",
+   "point": [
+    10.4048059,
+    55.4000138
+   ],
+   "mapillary": "1084686330884984",
+   "pano": true,
+   "dist": 15.8,
+   "off": -54.9,
+   "before": {
+    "look": "povalecny",
+    "info": {
+     "point": [
+      10.404805854349911,
+      55.40001383904543
+     ],
+     "km": 99,
+     "block": {
+      "length": 27.5,
+      "width": 10.2,
+      "fill": 0.81,
+      "parts": 1,
+      "area": 227
+     },
+     "tint": 0,
+     "footprint": 227.16503840107976
+    }
+   },
+   "after": {
+    "look": "vila",
+    "info": {
+     "point": [
+      10.404805854349911,
+      55.40001383904543
+     ],
+     "km": 99,
+     "block": {
+      "length": 27.5,
+      "width": 10.2,
+      "fill": 0.81,
+      "parts": 1,
+      "area": 227
+     },
+     "tint": 0,
+     "footprint": 227.16503840107976
+    }
+   }
+  }
+ ],
+ "controls": [
+  {
+   "town": "kobenhavn",
+   "point": [
+    12.549340163763326,
+    55.69505481506521
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     12.549340163763326,
+     55.69505481506521
+    ],
+    "km": 99,
+    "block": {
+     "length": 198.4,
+     "width": 94,
+     "fill": 0.27,
+     "parts": 18,
+     "area": 4943
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 266.05139272256383
+   },
+   "look": "dansky"
+  },
+  {
+   "town": "aarhus",
+   "point": [
+    10.187223966427577,
+    56.152798287045066
+   ],
+   "info": {
+    "levels": 10,
+    "height": 36,
+    "point": [
+     10.187223966427577,
+     56.152798287045066
+    ],
+    "km": 99,
+    "block": {
+     "length": 22.9,
+     "width": 21.7,
+     "fill": 0.57,
+     "parts": 1,
+     "area": 281
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "flat",
+    "footprint": 280.7587734781878
+   },
+   "look": "funkce"
+  },
+  {
+   "town": "kobenhavn",
+   "point": [
+    12.58116464259331,
+    55.66735451903202
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     12.58116464259331,
+     55.66735451903202
+    ],
+    "km": 99,
+    "block": {
+     "length": 97.3,
+     "width": 86.6,
+     "fill": 0.31,
+     "parts": 1,
+     "area": 2607
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 2606.807588920845
+   },
+   "look": "dansky"
+  },
+  {
+   "town": "aalborg",
+   "point": [
+    9.939921213252076,
+    57.04207830871542
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     9.939921213252076,
+     57.04207830871542
+    ],
+    "km": 99,
+    "block": {
+     "length": 117.5,
+     "width": 82.4,
+     "fill": 0.34,
+     "parts": 14,
+     "area": 3339
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 495.1997191926029
+   },
+   "look": "dansky"
+  },
+  {
+   "town": "aarhus",
+   "point": [
+    10.204220505749007,
+    56.14197914564297
+   ],
+   "info": {
+    "levels": 7,
+    "point": [
+     10.204220505749007,
+     56.14197914564297
+    ],
+    "km": 99,
+    "block": {
+     "length": 138,
+     "width": 95.2,
+     "fill": 0.57,
+     "parts": 1,
+     "area": 7444
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 3821.419142607942
+   },
+   "look": "dansky"
+  },
+  {
+   "town": "aalborg",
+   "point": [
+    9.924745229396807,
+    57.041543946813135
+   ],
+   "info": {
+    "height": 3,
+    "point": [
+     9.924745229396807,
+     57.041543946813135
+    ],
+    "km": 99,
+    "block": {
+     "length": 18.8,
+     "width": 6.5,
+     "fill": 0.86,
+     "parts": 1,
+     "area": 104
+    },
+    "tint": 0,
+    "footprint": 104.46169751813432
+   },
+   "look": "nizky"
+  },
+  {
+   "town": "aarhus",
+   "point": [
+    10.201997879309856,
+    56.14679164663403
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     10.201997879309856,
+     56.14679164663403
+    ],
+    "km": 99,
+    "block": {
+     "length": 81.5,
+     "width": 14.2,
+     "fill": 0.7,
+     "parts": 1,
+     "area": 809
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 809.4628590586292
+   },
+   "look": "povalecny"
+  },
+  {
+   "town": "aalborg",
+   "point": [
+    9.917286138775149,
+    57.05107770708039
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     9.917286138775149,
+     57.05107770708039
+    ],
+    "km": 99,
+    "block": {
+     "length": 75.9,
+     "width": 37.3,
+     "fill": 0.55,
+     "parts": 10,
+     "area": 1545
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 209.21576547457107
+   },
+   "look": "dansky"
+  },
+  {
+   "town": "kobenhavn",
+   "point": [
+    12.583033499502426,
+    55.678430758882214
+   ],
+   "info": {
+    "height": 13,
+    "point": [
+     12.583033499502426,
+     55.678430758882214
+    ],
+    "km": 99,
+    "block": {
+     "length": 60.2,
+     "width": 57.7,
+     "fill": 0.42,
+     "parts": 2,
+     "area": 1445
+    },
+    "tint": 0,
+    "footprint": 1264.8824820218806
+   },
+   "look": "povalecny"
+  },
+  {
+   "town": "kobenhavn",
+   "point": [
+    12.57534833295907,
+    55.670630561995964
+   ],
+   "info": {
+    "levels": 15,
+    "point": [
+     12.57534833295907,
+     55.670630561995964
+    ],
+    "km": 99,
+    "block": {
+     "length": 70.1,
+     "width": 36.6,
+     "fill": 0.58,
+     "parts": 1,
+     "area": 1484
+    },
+    "tint": 0,
+    "type": "office",
+    "roofShape": "skillion",
+    "footprint": 1484.4977901456725
+   },
+   "look": "dansky"
+  },
+  {
+   "town": "aalborg",
+   "point": [
+    9.939580635444413,
+    57.040052791762974
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     9.939580635444413,
+     57.040052791762974
+    ],
+    "km": 99,
+    "block": {
+     "length": 304.8,
+     "width": 261.4,
+     "fill": 0.11,
+     "parts": 1,
+     "area": 8656
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 8655.973771842695
+   },
+   "look": "dansky"
+  },
+  {
+   "town": "aarhus",
+   "point": [
+    10.203943456865193,
+    56.15805473637661
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     10.203943456865193,
+     56.15805473637661
+    ],
+    "km": 99,
+    "block": {
+     "length": 54.3,
+     "width": 44.5,
+     "fill": 0.46,
+     "parts": 2,
+     "area": 1117
+    },
+    "tint": 0,
+    "roofShape": "hipped",
+    "material": "brick",
+    "footprint": 1090.325191514607
+   },
+   "look": "dansky"
+  },
+  {
+   "town": "kobenhavn",
+   "point": [
+    12.559185244920133,
+    55.67319201070183
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     12.559185244920133,
+     55.67319201070183
+    ],
+    "km": 99,
+    "block": {
+     "length": 183.3,
+     "width": 139.1,
+     "fill": 0.28,
+     "parts": 16,
+     "area": 7051
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 467.8383104052033
+   },
+   "look": "dansky"
+  },
+  {
+   "town": "kobenhavn",
+   "point": [
+    12.562589048373264,
+    55.670273828185415
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     12.562589048373264,
+     55.670273828185415
+    ],
+    "km": 99,
+    "block": {
+     "length": 95.9,
+     "width": 60.1,
+     "fill": 0.34,
+     "parts": 5,
+     "area": 1963
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "double_saltbox",
+    "footprint": 372.43183814102395
+   },
+   "look": "dansky"
+  },
+  {
+   "town": "odense",
+   "point": [
+    10.340479410329426,
+    55.41378301811888
+   ],
+   "info": {
+    "levels": 1,
+    "point": [
+     10.340479410329426,
+     55.41378301811888
+    ],
+    "km": 99,
+    "block": {
+     "length": 132.7,
+     "width": 58.8,
+     "fill": 0.62,
+     "parts": 1,
+     "area": 4832
+    },
+    "tint": 0,
+    "type": "retail",
+    "roofShape": "flat",
+    "footprint": 4832.174847695513
+   },
+   "look": "hala"
+  },
+  {
+   "town": "aalborg",
+   "point": [
+    9.915158388144274,
+    57.0492446634314
+   ],
+   "info": {
+    "levels": 3,
+    "point": [
+     9.915158388144274,
+     57.0492446634314
+    ],
+    "km": 99,
+    "block": {
+     "length": 62.4,
+     "width": 44.3,
+     "fill": 0.5,
+     "parts": 6,
+     "area": 1370
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 335.4247882046441
+   },
+   "look": "dansky"
+  },
+  {
+   "town": "aarhus",
+   "point": [
+    10.201045599704393,
+    56.14378569961407
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     10.201045599704393,
+     56.14378569961407
+    ],
+    "km": 99,
+    "block": {
+     "length": 124.7,
+     "width": 90.3,
+     "fill": 0.55,
+     "parts": 1,
+     "area": 6178
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 2648.613095530738
+   },
+   "look": "dansky"
+  },
+  {
+   "town": "kobenhavn",
+   "point": [
+    12.546943370270913,
+    55.67996112632111
+   ],
+   "info": {
+    "levels": 3,
+    "point": [
+     12.546943370270913,
+     55.67996112632111
+    ],
+    "km": 99,
+    "block": {
+     "length": 60.1,
+     "width": 23.4,
+     "fill": 0.53,
+     "parts": 2,
+     "area": 741
+    },
+    "tint": 0,
+    "type": "detached",
+    "footprint": 182.5210999512159
+   },
+   "look": "vila"
+  },
+  {
+   "town": "kobenhavn",
+   "point": [
+    12.569847507556728,
+    55.66944638095686
+   ],
+   "info": {
+    "levels": 9,
+    "point": [
+     12.569847507556728,
+     55.66944638095686
+    ],
+    "km": 99,
+    "block": {
+     "length": 187.7,
+     "width": 104.7,
+     "fill": 0.58,
+     "parts": 1,
+     "area": 11407
+    },
+    "tint": 0,
+    "type": "office",
+    "start": 2023,
+    "material": "brick",
+    "footprint": 11407.24913992624
+   },
+   "look": "kancelar"
+  },
+  {
+   "town": "aarhus",
+   "point": [
+    10.202504671245249,
+    56.14379995571676
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     10.202504671245249,
+     56.14379995571676
+    ],
+    "km": 99,
+    "block": {
+     "length": 124.7,
+     "width": 90.3,
+     "fill": 0.55,
+     "parts": 1,
+     "area": 6178
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 2648.6441123618874
+   },
+   "look": "dansky"
+  },
+  {
+   "town": "kobenhavn",
+   "point": [
+    12.565870162020856,
+    55.68305548718476
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     12.565870162020856,
+     55.68305548718476
+    ],
+    "km": 99,
+    "block": {
+     "length": 145.5,
+     "width": 82.6,
+     "fill": 0.38,
+     "parts": 25,
+     "area": 4621
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "double_saltbox",
+    "footprint": 413.25070456823573
+   },
+   "look": "dansky"
+  },
+  {
+   "town": "odense",
+   "point": [
+    10.384787600592109,
+    55.408331665529076
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     10.384787600592109,
+     55.408331665529076
+    ],
+    "km": 99,
+    "block": {
+     "length": 54.9,
+     "width": 40.4,
+     "fill": 0.5,
+     "parts": 1,
+     "area": 1116
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 945.5161097576354
+   },
+   "look": "dansky"
+  },
+  {
+   "town": "aalborg",
+   "point": [
+    9.916071767496751,
+    57.052702301553154
+   ],
+   "info": {
+    "levels": 2,
+    "point": [
+     9.916071767496751,
+     57.052702301553154
+    ],
+    "km": 99,
+    "block": {
+     "length": 106,
+     "width": 60.1,
+     "fill": 0.47,
+     "parts": 4,
+     "area": 2998
+    },
+    "tint": 0,
+    "type": "retail",
+    "footprint": 1159.8015702818989
+   },
+   "look": "hala"
+  },
+  {
+   "town": "aalborg",
+   "point": [
+    9.923770429580085,
+    57.04195081340222
+   ],
+   "info": {
+    "levels": 7,
+    "point": [
+     9.923770429580085,
+     57.04195081340222
+    ],
+    "km": 99,
+    "block": {
+     "length": 104.5,
+     "width": 54.4,
+     "fill": 0.52,
+     "parts": 1,
+     "area": 2950
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 2950.451456291012
+   },
+   "look": "dansky"
+  },
+  {
+   "town": "kobenhavn",
+   "point": [
+    12.564808968015193,
+    55.68540571710725
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     12.564808968015193,
+     55.68540571710725
+    ],
+    "km": 99,
+    "block": {
+     "length": 195.3,
+     "width": 156.4,
+     "fill": 0.28,
+     "parts": 23,
+     "area": 8454
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 2425.970026380761
+   },
+   "look": "dansky"
+  },
+  {
+   "town": "aalborg",
+   "point": [
+    9.916985863490343,
+    57.05985584862764
+   ],
+   "info": {
+    "levels": 3,
+    "point": [
+     9.916985863490343,
+     57.05985584862764
+    ],
+    "km": 99,
+    "block": {
+     "length": 112,
+     "width": 80.4,
+     "fill": 0.62,
+     "parts": 1,
+     "area": 5594
+    },
+    "tint": 0,
+    "footprint": 5594.402307572191
+   },
+   "look": "dansky"
+  },
+  {
+   "town": "kobenhavn",
+   "point": [
+    12.570005199257489,
+    55.68332415215324
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     12.570005199257489,
+     55.68332415215324
+    ],
+    "km": 99,
+    "block": {
+     "length": 84.4,
+     "width": 78,
+     "fill": 0.78,
+     "parts": 1,
+     "area": 5121
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 3908.314564075925
+   },
+   "look": "dansky"
+  },
+  {
+   "town": "kobenhavn",
+   "point": [
+    12.567970395928231,
+    55.675340534493664
+   ],
+   "info": {
+    "levels": 8,
+    "point": [
+     12.567970395928231,
+     55.675340534493664
+    ],
+    "km": 99,
+    "block": {
+     "length": 135.4,
+     "width": 82.7,
+     "fill": 0.61,
+     "parts": 1,
+     "area": 6885
+    },
+    "tint": 0,
+    "type": "office",
+    "roofShape": "flat",
+    "start": 1979,
+    "footprint": 6885.067846811218
+   },
+   "look": "kancelar"
+  },
+  {
+   "town": "kobenhavn",
+   "point": [
+    12.55260009177125,
+    55.68515291884431
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     12.55260009177125,
+     55.68515291884431
+    ],
+    "km": 99,
+    "block": {
+     "length": 63.6,
+     "width": 41.1,
+     "fill": 0.5,
+     "parts": 2,
+     "area": 1299
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 1154.3106534270337
+   },
+   "look": "povalecny"
+  },
+  {
+   "town": "aarhus",
+   "point": [
+    10.197126093252615,
+    56.158779476107824
+   ],
+   "info": {
+    "levels": 3,
+    "point": [
+     10.197126093252615,
+     56.158779476107824
+    ],
+    "km": 99,
+    "block": {
+     "length": 64.9,
+     "width": 33,
+     "fill": 0.32,
+     "parts": 2,
+     "area": 694
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 615.5845853985402
+   },
+   "look": "povalecny"
+  },
+  {
+   "town": "aarhus",
+   "point": [
+    10.201094473597168,
+    56.15954907907184
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     10.201094473597168,
+     56.15954907907184
+    ],
+    "km": 99,
+    "block": {
+     "length": 198.4,
+     "width": 102,
+     "fill": 0.58,
+     "parts": 1,
+     "area": 11704
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "mansard",
+    "material": "brick",
+    "footprint": 4053.671781461113
+   },
+   "look": "dansky"
+  },
+  {
+   "town": "kobenhavn",
+   "point": [
+    12.563163975592884,
+    55.68869030965403
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     12.563163975592884,
+     55.68869030965403
+    ],
+    "km": 99,
+    "block": {
+     "length": 132.1,
+     "width": 115.3,
+     "fill": 0.19,
+     "parts": 3,
+     "area": 2960
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 2707.0692215915155
+   },
+   "look": "povalecny"
+  },
+  {
+   "town": "kobenhavn",
+   "point": [
+    12.585926156153045,
+    55.6773785442776
+   ],
+   "info": {
+    "height": 20,
+    "point": [
+     12.585926156153045,
+     55.6773785442776
+    ],
+    "km": 99,
+    "block": {
+     "length": 145.8,
+     "width": 109.5,
+     "fill": 0.71,
+     "parts": 2,
+     "area": 11412
+    },
+    "tint": 0,
+    "type": "office",
+    "footprint": 4535.946176696579
+   },
+   "look": "kancelar"
+  },
+  {
+   "town": "aalborg",
+   "point": [
+    9.91850324289956,
+    57.0449041852992
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     9.91850324289956,
+     57.0449041852992
+    ],
+    "km": 99,
+    "block": {
+     "length": 89.5,
+     "width": 66,
+     "fill": 0.34,
+     "parts": 13,
+     "area": 1998
+    },
+    "tint": 0,
+    "type": "apartments",
+    "material": "plaster",
+    "footprint": 201.2112251444014
+   },
+   "look": "stenstad"
+  },
+  {
+   "town": "kobenhavn",
+   "point": [
+    12.554715254574413,
+    55.70599095190635
+   ],
+   "info": {
+    "levels": 3,
+    "point": [
+     12.554715254574413,
+     55.70599095190635
+    ],
+    "km": 99,
+    "block": {
+     "length": 80.5,
+     "width": 10.1,
+     "fill": 0.87,
+     "parts": 1,
+     "area": 709
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 708.7778093425429
+   },
+   "look": "povalecny"
+  },
+  {
+   "town": "kobenhavn",
+   "point": [
+    12.550705612978849,
+    55.67250512053897
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     12.550705612978849,
+     55.67250512053897
+    ],
+    "km": 99,
+    "block": {
+     "length": 302,
+     "width": 75.3,
+     "fill": 0.27,
+     "parts": 10,
+     "area": 6058
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 143.68398050993153
+   },
+   "look": "povalecny"
+  },
+  {
+   "town": "aarhus",
+   "point": [
+    10.212277476528136,
+    56.16995431278963
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     10.212277476528136,
+     56.16995431278963
+    ],
+    "km": 99,
+    "block": {
+     "length": 71.7,
+     "width": 68.3,
+     "fill": 0.35,
+     "parts": 3,
+     "area": 1705
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "gambrel",
+    "footprint": 861.759750704334
+   },
+   "look": "dansky"
+  },
+  {
+   "town": "kobenhavn",
+   "point": [
+    12.56119622927591,
+    55.68159353072021
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     12.56119622927591,
+     55.68159353072021
+    ],
+    "km": 99,
+    "block": {
+     "length": 89.5,
+     "width": 86.7,
+     "fill": 0.36,
+     "parts": 10,
+     "area": 2755
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 716.8657428401948
+   },
+   "look": "dansky"
+  },
+  {
+   "town": "aalborg",
+   "point": [
+    9.917894831680881,
+    57.06005078300458
+   ],
+   "info": {
+    "levels": 3,
+    "point": [
+     9.917894831680881,
+     57.06005078300458
+    ],
+    "km": 99,
+    "block": {
+     "length": 112,
+     "width": 80.4,
+     "fill": 0.62,
+     "parts": 1,
+     "area": 5594
+    },
+    "tint": 0,
+    "footprint": 5594.184900205478
+   },
+   "look": "dansky"
+  },
+  {
+   "town": "aarhus",
+   "point": [
+    10.204056504297865,
+    56.145130726700366
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     10.204056504297865,
+     56.145130726700366
+    ],
+    "km": 99,
+    "block": {
+     "length": 61.8,
+     "width": 20.6,
+     "fill": 0.64,
+     "parts": 1,
+     "area": 819
+    },
+    "tint": 0,
+    "type": "office",
+    "footprint": 819.4188524665174
+   },
+   "look": "kancelar"
+  },
+  {
+   "town": "aarhus",
+   "point": [
+    10.212443656425641,
+    56.15689888853835
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     10.212443656425641,
+     56.15689888853835
+    ],
+    "km": 99,
+    "block": {
+     "length": 189.9,
+     "width": 64.6,
+     "fill": 0.43,
+     "parts": 7,
+     "area": 5263
+    },
+    "tint": 0,
+    "type": "school",
+    "footprint": 602.9070189581844
+   },
+   "look": "skola"
+  },
+  {
+   "town": "aalborg",
+   "point": [
+    9.905014750142042,
+    57.05766339908827
+   ],
+   "info": {
+    "levels": 2,
+    "point": [
+     9.905014750142042,
+     57.05766339908827
+    ],
+    "km": 99,
+    "block": {
+     "length": 51,
+     "width": 31,
+     "fill": 0.42,
+     "parts": 2,
+     "area": 670
+    },
+    "tint": 0,
+    "type": "boathouse",
+    "footprint": 222.2291595338147
+   },
+   "look": "nizky"
+  },
+  {
+   "town": "aarhus",
+   "point": [
+    10.189205211770595,
+    56.152629380050875
+   ],
+   "info": {
+    "levels": 10,
+    "height": 36,
+    "point": [
+     10.189205211770595,
+     56.152629380050875
+    ],
+    "km": 99,
+    "block": {
+     "length": 22.6,
+     "width": 20.4,
+     "fill": 0.64,
+     "parts": 1,
+     "area": 295
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "flat",
+    "footprint": 295.48069093932145
+   },
+   "look": "funkce"
+  },
+  {
+   "town": "kobenhavn",
+   "point": [
+    12.560199457666654,
+    55.67071907476494
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     12.560199457666654,
+     55.67071907476494
+    ],
+    "km": 99,
+    "block": {
+     "length": 93.3,
+     "width": 58,
+     "fill": 0.31,
+     "parts": 1,
+     "area": 1683
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 1682.6555606056627
+   },
+   "look": "dansky"
+  },
+  {
+   "town": "aalborg",
+   "point": [
+    9.931418951307593,
+    57.039869407049515
+   ],
+   "info": {
+    "levels": 4,
+    "height": 12,
+    "point": [
+     9.931418951307593,
+     57.039869407049515
+    ],
+    "km": 99,
+    "block": {
+     "length": 86.7,
+     "width": 78.5,
+     "fill": 0.6,
+     "parts": 1,
+     "area": 4096
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "gabled",
+    "start": 1927,
+    "footprint": 2170.129651242814
+   },
+   "look": "funkce"
+  },
+  {
+   "town": "kobenhavn",
+   "point": [
+    12.54045710953369,
+    55.664280771314964
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     12.54045710953369,
+     55.664280771314964
+    ],
+    "km": 99,
+    "block": {
+     "length": 89.4,
+     "width": 63.3,
+     "fill": 0.67,
+     "parts": 1,
+     "area": 3812
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 2156.7139738025608
+   },
+   "look": "dansky"
+  },
+  {
+   "town": "aalborg",
+   "point": [
+    9.916363558911986,
+    57.0330696408741
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     9.916363558911986,
+     57.0330696408741
+    ],
+    "km": 99,
+    "block": {
+     "length": 24.2,
+     "width": 14.7,
+     "fill": 0.6,
+     "parts": 2,
+     "area": 214
+    },
+    "tint": 0,
+    "type": "detached",
+    "roofShape": "hipped",
+    "footprint": 207.97155742042742
+   },
+   "look": "nizky"
+  },
+  {
+   "town": "aalborg",
+   "point": [
+    9.927731431855465,
+    57.04854676427607
+   ],
+   "info": {
+    "levels": 3,
+    "height": 12,
+    "point": [
+     9.927731431855465,
+     57.04854676427607
+    ],
+    "km": 99,
+    "block": {
+     "length": 85.2,
+     "width": 48.7,
+     "fill": 0.48,
+     "parts": 1,
+     "area": 2008
+    },
+    "tint": 0,
+    "type": "hotel",
+    "roofShape": "hipped",
+    "footprint": 2007.5394237033815
+   },
+   "look": "dansky"
+  },
+  {
+   "town": "aalborg",
+   "point": [
+    9.91939901749442,
+    57.05844037314561
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     9.91939901749442,
+     57.05844037314561
+    ],
+    "km": 99,
+    "block": {
+     "length": 184.1,
+     "width": 34.1,
+     "fill": 0.35,
+     "parts": 1,
+     "area": 2217
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 2217.2157483633964
+   },
+   "look": "dansky"
+  },
+  {
+   "town": "kobenhavn",
+   "point": [
+    12.551747915292424,
+    55.676446936801696
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     12.551747915292424,
+     55.676446936801696
+    ],
+    "km": 99,
+    "block": {
+     "length": 51.9,
+     "width": 25.2,
+     "fill": 0.7,
+     "parts": 1,
+     "area": 917
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 917.2165203857121
+   },
+   "look": "dansky"
+  },
+  {
+   "town": "aalborg",
+   "point": [
+    9.923380555587112,
+    57.045740428060455
+   ],
+   "info": {
+    "levels": 2,
+    "point": [
+     9.923380555587112,
+     57.045740428060455
+    ],
+    "km": 99,
+    "block": {
+     "length": 59.9,
+     "width": 49.7,
+     "fill": 0.34,
+     "parts": 6,
+     "area": 999
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 167.0604307151175
+   },
+   "look": "dansky"
+  },
+  {
+   "town": "kobenhavn",
+   "point": [
+    12.548727522128079,
+    55.68006854951571
+   ],
+   "info": {
+    "levels": 7,
+    "point": [
+     12.548727522128079,
+     55.68006854951571
+    ],
+    "km": 99,
+    "block": {
+     "length": 83.2,
+     "width": 48,
+     "fill": 0.36,
+     "parts": 8,
+     "area": 1449
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 638.8119010979581
+   },
+   "look": "dansky"
+  },
+  {
+   "town": "kobenhavn",
+   "point": [
+    12.58474265124542,
+    55.684964088159056
+   ],
+   "info": {
+    "levels": 8,
+    "point": [
+     12.58474265124542,
+     55.684964088159056
+    ],
+    "km": 99,
+    "block": {
+     "length": 144.6,
+     "width": 92.3,
+     "fill": 0.26,
+     "parts": 1,
+     "area": 3531
+    },
+    "tint": 0,
+    "footprint": 3531.2359956459654
+   },
+   "look": "dansky"
+  },
+  {
+   "town": "aarhus",
+   "point": [
+    10.190502236244475,
+    56.15215574514419
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     10.190502236244475,
+     56.15215574514419
+    ],
+    "km": 99,
+    "block": {
+     "length": 81,
+     "width": 53.7,
+     "fill": 0.64,
+     "parts": 1,
+     "area": 2773
+    },
+    "tint": 0,
+    "type": "office",
+    "footprint": 2772.9405521372987
+   },
+   "look": "kancelar"
+  },
+  {
+   "town": "kobenhavn",
+   "point": [
+    12.553205685854994,
+    55.67837594696377
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     12.553205685854994,
+     55.67837594696377
+    ],
+    "km": 99,
+    "block": {
+     "length": 60.7,
+     "width": 40.1,
+     "fill": 0.43,
+     "parts": 1,
+     "area": 1056
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 1055.6616443602193
+   },
+   "look": "dansky"
+  },
+  {
+   "town": "kobenhavn",
+   "point": [
+    12.561013341627119,
+    55.6879311996474
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     12.561013341627119,
+     55.6879311996474
+    ],
+    "km": 99,
+    "block": {
+     "length": 223.5,
+     "width": 110.3,
+     "fill": 0.29,
+     "parts": 30,
+     "area": 7227
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 335.14338461072794
+   },
+   "look": "dansky"
+  },
+  {
+   "town": "aarhus",
+   "point": [
+    10.200402653831445,
+    56.144263960190315
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     10.200402653831445,
+     56.144263960190315
+    ],
+    "km": 99,
+    "block": {
+     "length": 124.5,
+     "width": 92.6,
+     "fill": 0.64,
+     "parts": 1,
+     "area": 7435
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 3338.183986221823
+   },
+   "look": "dansky"
+  },
+  {
+   "town": "kobenhavn",
+   "point": [
+    12.555579349594977,
+    55.687842195613435
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     12.555579349594977,
+     55.687842195613435
+    ],
+    "km": 99,
+    "block": {
+     "length": 202.4,
+     "width": 95.2,
+     "fill": 0.26,
+     "parts": 21,
+     "area": 5061
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 338.26666352819143
+   },
+   "look": "dansky"
+  },
+  {
+   "town": "aarhus",
+   "point": [
+    10.204310103199365,
+    56.150850041039384
+   ],
+   "info": {
+    "levels": 6,
+    "height": 23,
+    "point": [
+     10.204310103199365,
+     56.150850041039384
+    ],
+    "km": 99,
+    "block": {
+     "length": 260.7,
+     "width": 88,
+     "fill": 0.54,
+     "parts": 6,
+     "area": 12427
+    },
+    "tint": 0,
+    "type": "office",
+    "roofShape": "mansard",
+    "footprint": 9496.473044021079
+   },
+   "look": "dansky"
+  },
+  {
+   "town": "odense",
+   "point": [
+    10.388975200854487,
+    55.40008920442326
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     10.388975200854487,
+     55.40008920442326
+    ],
+    "km": 99,
+    "block": {
+     "length": 147.1,
+     "width": 91.8,
+     "fill": 0.34,
+     "parts": 2,
+     "area": 4636
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 3198.752426174153
+   },
+   "look": "povalecny"
+  },
+  {
+   "town": "aarhus",
+   "point": [
+    10.204895662068486,
+    56.148587370021964
+   ],
+   "info": {
+    "levels": 3,
+    "height": 12,
+    "point": [
+     10.204895662068486,
+     56.148587370021964
+    ],
+    "km": 99,
+    "block": {
+     "length": 283.8,
+     "width": 210.1,
+     "fill": 0.45,
+     "parts": 6,
+     "area": 27013
+    },
+    "tint": 0,
+    "type": "retail",
+    "footprint": 15916.30383582821
+   },
+   "look": "povalecny"
+  },
+  {
+   "town": "aarhus",
+   "point": [
+    10.189598720886046,
+    56.15694973109991
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     10.189598720886046,
+     56.15694973109991
+    ],
+    "km": 99,
+    "block": {
+     "length": 89.8,
+     "width": 39.8,
+     "fill": 0.31,
+     "parts": 7,
+     "area": 1103
+    },
+    "tint": 0,
+    "material": "glass",
+    "footprint": 480.88523341767177
+   },
+   "look": "dansky"
+  },
+  {
+   "town": "aarhus",
+   "point": [
+    10.188551991434784,
+    56.14406159514251
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     10.188551991434784,
+     56.14406159514251
+    ],
+    "km": 99,
+    "block": {
+     "length": 109.7,
+     "width": 69.8,
+     "fill": 0.79,
+     "parts": 1,
+     "area": 6077
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 3051.1872390758626
+   },
+   "look": "dansky"
+  },
+  {
+   "town": "kobenhavn",
+   "point": [
+    12.559428716453203,
+    55.68479010558063
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     12.559428716453203,
+     55.68479010558063
+    ],
+    "km": 99,
+    "block": {
+     "length": 230.3,
+     "width": 43.4,
+     "fill": 0.46,
+     "parts": 17,
+     "area": 4619
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 105.82155499701412
+   },
+   "look": "dansky"
+  },
+  {
+   "town": "kobenhavn",
+   "point": [
+    12.577228349545695,
+    55.715006814983326
+   ],
+   "info": {
+    "levels": 3,
+    "point": [
+     12.577228349545695,
+     55.715006814983326
+    ],
+    "km": 99,
+    "block": {
+     "length": 142.4,
+     "width": 100.9,
+     "fill": 0.28,
+     "parts": 12,
+     "area": 3993
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "gabled",
+    "footprint": 221.87785729323423
+   },
+   "look": "dansky"
+  },
+  {
+   "town": "aalborg",
+   "point": [
+    9.916739202659668,
+    57.03271020957177
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     9.916739202659668,
+     57.03271020957177
+    ],
+    "km": 99,
+    "block": {
+     "length": 110.1,
+     "width": 71,
+     "fill": 0.21,
+     "parts": 1,
+     "area": 1643
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 1642.6716673999056
+   },
+   "look": "dansky"
+  },
+  {
+   "town": "kobenhavn",
+   "point": [
+    12.562648386661511,
+    55.68186870584164
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     12.562648386661511,
+     55.68186870584164
+    ],
+    "km": 99,
+    "block": {
+     "length": 177.1,
+     "width": 122.8,
+     "fill": 0.29,
+     "parts": 19,
+     "area": 6361
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 936.4914529024654
+   },
+   "look": "dansky"
+  },
+  {
+   "town": "aarhus",
+   "point": [
+    10.188142084327835,
+    56.16000195380355
+   ],
+   "info": {
+    "levels": 2,
+    "point": [
+     10.188142084327835,
+     56.16000195380355
+    ],
+    "km": 99,
+    "block": {
+     "length": 14.1,
+     "width": 13.1,
+     "fill": 0.56,
+     "parts": 1,
+     "area": 104
+    },
+    "tint": 0,
+    "type": "detached",
+    "roofShape": "gabled",
+    "footprint": 103.84972144157382
+   },
+   "look": "vila"
+  },
+  {
+   "town": "aarhus",
+   "point": [
+    10.194201042587899,
+    56.15064052341137
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     10.194201042587899,
+     56.15064052341137
+    ],
+    "km": 99,
+    "block": {
+     "length": 165.3,
+     "width": 135,
+     "fill": 0.16,
+     "parts": 2,
+     "area": 3554
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 2105.148390505096
+   },
+   "look": "povalecny"
+  },
+  {
+   "town": "kobenhavn",
+   "point": [
+    12.574520563369619,
+    55.680108813687994
+   ],
+   "info": {
+    "levels": 3,
+    "point": [
+     12.574520563369619,
+     55.680108813687994
+    ],
+    "km": 99,
+    "block": {
+     "length": 115.7,
+     "width": 56.9,
+     "fill": 0.39,
+     "parts": 7,
+     "area": 2590
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 679.4316935878107
+   },
+   "look": "dansky"
+  },
+  {
+   "town": "aalborg",
+   "point": [
+    9.92320228944737,
+    57.04170009866885
+   ],
+   "info": {
+    "levels": 8,
+    "point": [
+     9.92320228944737,
+     57.04170009866885
+    ],
+    "km": 99,
+    "block": {
+     "length": 36.2,
+     "width": 26.5,
+     "fill": 0.76,
+     "parts": 1,
+     "area": 727
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 726.8795295865852
+   },
+   "look": "dansky"
+  },
+  {
+   "town": "kobenhavn",
+   "point": [
+    12.571176424019123,
+    55.677374289031754
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     12.571176424019123,
+     55.677374289031754
+    ],
+    "km": 99,
+    "block": {
+     "length": 120.9,
+     "width": 69.8,
+     "fill": 0.46,
+     "parts": 14,
+     "area": 3899
+    },
+    "tint": 0,
+    "type": "retail",
+    "start": 1906,
+    "footprint": 713.8440110165802
+   },
+   "look": "dansky"
+  },
+  {
+   "town": "aarhus",
+   "point": [
+    10.211785539374477,
+    56.15694048390555
+   ],
+   "info": {
+    "levels": 3,
+    "point": [
+     10.211785539374477,
+     56.15694048390555
+    ],
+    "km": 99,
+    "block": {
+     "length": 189.9,
+     "width": 64.6,
+     "fill": 0.43,
+     "parts": 7,
+     "area": 5264
+    },
+    "tint": 0,
+    "type": "school",
+    "footprint": 495.98247385358263
+   },
+   "look": "skola"
+  },
+  {
+   "town": "aalborg",
+   "point": [
+    9.915849493718861,
+    57.045360883881045
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     9.915849493718861,
+     57.045360883881045
+    ],
+    "km": 99,
+    "block": {
+     "length": 250,
+     "width": 69.1,
+     "fill": 0.31,
+     "parts": 38,
+     "area": 5330
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 206.90560920223652
+   },
+   "look": "dansky"
+  },
+  {
+   "town": "aarhus",
+   "point": [
+    10.2097427750597,
+    56.14833737404398
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     10.2097427750597,
+     56.14833737404398
+    ],
+    "km": 99,
+    "block": {
+     "length": 63.9,
+     "width": 47.2,
+     "fill": 0.7,
+     "parts": 1,
+     "area": 2118
+    },
+    "tint": 0,
+    "type": "office",
+    "footprint": 2117.760436867128
+   },
+   "look": "kancelar"
+  },
+  {
+   "town": "kobenhavn",
+   "point": [
+    12.557920045760563,
+    55.68338109992398
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     12.557920045760563,
+     55.68338109992398
+    ],
+    "km": 99,
+    "block": {
+     "length": 107.7,
+     "width": 91.4,
+     "fill": 0.35,
+     "parts": 10,
+     "area": 3474
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 426.7693575258718
+   },
+   "look": "dansky"
+  },
+  {
+   "town": "kobenhavn",
+   "point": [
+    12.56497697711248,
+    55.673548465870965
+   ],
+   "info": {
+    "levels": 3,
+    "height": 20,
+    "point": [
+     12.56497697711248,
+     55.673548465870965
+    ],
+    "km": 99,
+    "block": {
+     "length": 302.8,
+     "width": 190.9,
+     "fill": 0.45,
+     "parts": 5,
+     "area": 25965
+    },
+    "tint": 0,
+    "type": "train_station",
+    "start": 1911,
+    "material": "brick",
+    "footprint": 12694.793162602971
+   },
+   "look": "dansky"
+  },
+  {
+   "town": "aalborg",
+   "point": [
+    9.923408839779487,
+    57.059001586865044
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     9.923408839779487,
+     57.059001586865044
+    ],
+    "km": 99,
+    "block": {
+     "length": 58.1,
+     "width": 42.2,
+     "fill": 0.43,
+     "parts": 1,
+     "area": 1066
+    },
+    "tint": 0,
+    "type": "town_hall",
+    "footprint": 1065.5981696868832
+   },
+   "look": "dansky"
+  },
+  {
+   "town": "aarhus",
+   "point": [
+    10.206764583856929,
+    56.15268507354869
+   ],
+   "info": {
+    "levels": 3,
+    "point": [
+     10.206764583856929,
+     56.15268507354869
+    ],
+    "km": 99,
+    "block": {
+     "length": 161.7,
+     "width": 76.2,
+     "fill": 0.4,
+     "parts": 2,
+     "area": 4914
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 4335.429063280756
+   },
+   "look": "povalecny"
+  },
+  {
+   "town": "aalborg",
+   "point": [
+    9.914865566448402,
+    57.046607407131326
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     9.914865566448402,
+     57.046607407131326
+    ],
+    "km": 99,
+    "block": {
+     "length": 65.7,
+     "width": 19.1,
+     "fill": 0.52,
+     "parts": 4,
+     "area": 648
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 142.61270649930702
+   },
+   "look": "dansky"
+  },
+  {
+   "town": "odense",
+   "point": [
+    10.384720121730219,
+    55.35081973684465
+   ],
+   "info": {
+    "levels": 2,
+    "point": [
+     10.384720121730219,
+     55.35081973684465
+    ],
+    "km": 99,
+    "block": {
+     "length": 130.1,
+     "width": 33.4,
+     "fill": 0.37,
+     "parts": 2,
+     "area": 1614
+    },
+    "tint": 0,
+    "type": "terrace",
+    "roofShape": "gabled",
+    "footprint": 1605.698628390839
+   },
+   "look": "nizky"
+  },
+  {
+   "town": "odense",
+   "point": [
+    10.38740742766714,
+    55.39792138255127
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     10.38740742766714,
+     55.39792138255127
+    ],
+    "km": 99,
+    "block": {
+     "length": 161.2,
+     "width": 64.7,
+     "fill": 0.43,
+     "parts": 5,
+     "area": 4436
+    },
+    "tint": 0,
+    "roofShape": "gabled",
+    "material": "brick",
+    "footprint": 354.7464422018156
+   },
+   "look": "dansky"
+  },
+  {
+   "town": "kobenhavn",
+   "point": [
+    12.550189377701054,
+    55.682350234954505
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     12.550189377701054,
+     55.682350234954505
+    ],
+    "km": 99,
+    "block": {
+     "length": 72.6,
+     "width": 53.1,
+     "fill": 0.44,
+     "parts": 6,
+     "area": 1696
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "pyramidal",
+    "footprint": 284.5248729036213
+   },
+   "look": "dansky"
+  },
+  {
+   "town": "aalborg",
+   "point": [
+    9.924932394195437,
+    57.043243969678485
+   ],
+   "info": {
+    "height": 24,
+    "point": [
+     9.924932394195437,
+     57.043243969678485
+    ],
+    "km": 99,
+    "block": {
+     "length": 77.8,
+     "width": 52.4,
+     "fill": 0.53,
+     "parts": 1,
+     "area": 2152
+    },
+    "tint": 0,
+    "type": "police",
+    "footprint": 2151.911038040158
+   },
+   "look": "dansky"
+  },
+  {
+   "town": "aalborg",
+   "point": [
+    9.91030307436265,
+    57.04693224667467
+   ],
+   "info": {
+    "levels": 3,
+    "point": [
+     9.91030307436265,
+     57.04693224667467
+    ],
+    "km": 99,
+    "block": {
+     "length": 26,
+     "width": 11.4,
+     "fill": 0.98,
+     "parts": 1,
+     "area": 292
+    },
+    "tint": 0,
+    "roofShape": "half-hipped",
+    "footprint": 291.5908012279043
+   },
+   "look": "dansky"
+  },
+  {
+   "town": "aalborg",
+   "point": [
+    9.925399496466364,
+    57.042087741492324
+   ],
+   "info": {
+    "levels": 7,
+    "height": 22,
+    "point": [
+     9.925399496466364,
+     57.042087741492324
+    ],
+    "km": 99,
+    "block": {
+     "length": 70.2,
+     "width": 25.9,
+     "fill": 0.52,
+     "parts": 3,
+     "area": 945
+    },
+    "tint": 0,
+    "type": "hotel",
+    "footprint": 441.9544358657622
+   },
+   "look": "kancelar"
+  },
+  {
+   "town": "kobenhavn",
+   "point": [
+    12.567604204967838,
+    55.671377103414365
+   ],
+   "info": {
+    "levels": 5,
+    "height": 2,
+    "point": [
+     12.567604204967838,
+     55.671377103414365
+    ],
+    "km": 99,
+    "block": {
+     "length": 127.3,
+     "width": 87.8,
+     "fill": 0.57,
+     "parts": 1,
+     "area": 6392
+    },
+    "tint": 0,
+    "type": "commercial",
+    "material": "brick",
+    "footprint": 5234.3609970517
+   },
+   "look": "kancelar"
+  },
+  {
+   "town": "kobenhavn",
+   "point": [
+    12.63110241788372,
+    55.632188289312076
+   ],
+   "info": {
+    "levels": 1,
+    "point": [
+     12.63110241788372,
+     55.632188289312076
+    ],
+    "km": 99,
+    "block": {
+     "length": 14,
+     "width": 8.8,
+     "fill": 0.61,
+     "parts": 1,
+     "area": 75
+    },
+    "tint": 0,
+    "type": "allotment_house",
+    "start": 1965,
+    "material": "wood",
+    "footprint": 75.39097678057306
+   },
+   "look": "nizky"
+  },
+  {
+   "town": "kobenhavn",
+   "point": [
+    12.528176490740943,
+    55.690100584382705
+   ],
+   "info": {
+    "levels": 6,
+    "height": 20,
+    "point": [
+     12.528176490740943,
+     55.690100584382705
+    ],
+    "km": 99,
+    "block": {
+     "length": 253.3,
+     "width": 83.2,
+     "fill": 0.22,
+     "parts": 3,
+     "area": 4576
+    },
+    "tint": 0,
+    "type": "apartments",
+    "start": 1963,
+    "footprint": 3017.1204259351234
+   },
+   "look": "povalecny"
+  },
+  {
+   "town": "aalborg",
+   "point": [
+    9.92027731183079,
+    57.05781392259518
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     9.92027731183079,
+     57.05781392259518
+    ],
+    "km": 99,
+    "block": {
+     "length": 44.2,
+     "width": 22.7,
+     "fill": 0.61,
+     "parts": 1,
+     "area": 611
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 611.4504500248963
+   },
+   "look": "dansky"
+  },
+  {
+   "town": "aalborg",
+   "point": [
+    9.916350786789343,
+    57.04487390149754
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     9.916350786789343,
+     57.04487390149754
+    ],
+    "km": 99,
+    "block": {
+     "length": 250,
+     "width": 69.1,
+     "fill": 0.31,
+     "parts": 38,
+     "area": 5330
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 151.65863461051958
+   },
+   "look": "dansky"
+  },
+  {
+   "town": "aalborg",
+   "point": [
+    9.939479985931767,
+    57.040571752693424
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     9.939479985931767,
+     57.040571752693424
+    ],
+    "km": 99,
+    "block": {
+     "length": 113.9,
+     "width": 79.2,
+     "fill": 0.43,
+     "parts": 23,
+     "area": 3866
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 136.27979578318428
+   },
+   "look": "dansky"
+  },
+  {
+   "town": "kobenhavn",
+   "point": [
+    12.554823155316644,
+    55.69017325077328
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     12.554823155316644,
+     55.69017325077328
+    ],
+    "km": 99,
+    "block": {
+     "length": 159.8,
+     "width": 89,
+     "fill": 0.21,
+     "parts": 7,
+     "area": 2935
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 810.0637743333
+   },
+   "look": "povalecny"
+  },
+  {
+   "town": "aalborg",
+   "point": [
+    9.910874363124753,
+    57.05288143055291
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     9.910874363124753,
+     57.05288143055291
+    ],
+    "km": 99,
+    "block": {
+     "length": 110.2,
+     "width": 29.4,
+     "fill": 0.52,
+     "parts": 4,
+     "area": 1673
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 1178.5722588893861
+   },
+   "look": "povalecny"
+  },
+  {
+   "town": "kobenhavn",
+   "point": [
+    12.564621185325871,
+    55.68975181834482
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     12.564621185325871,
+     55.68975181834482
+    ],
+    "km": 99,
+    "block": {
+     "length": 102.8,
+     "width": 52.6,
+     "fill": 0.55,
+     "parts": 7,
+     "area": 2967
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 353.16316067573666
+   },
+   "look": "dansky"
+  },
+  {
+   "town": "kobenhavn",
+   "point": [
+    12.60582896180034,
+    55.681460266315725
+   ],
+   "info": {
+    "levels": 3,
+    "point": [
+     12.60582896180034,
+     55.681460266315725
+    ],
+    "km": 99,
+    "block": {
+     "length": 111.1,
+     "width": 67.4,
+     "fill": 0.55,
+     "parts": 2,
+     "area": 4137
+    },
+    "tint": 0,
+    "type": "university",
+    "roofShape": "flat",
+    "footprint": 2703.672963670475
+   },
+   "look": "kancelar"
+  },
+  {
+   "town": "kobenhavn",
+   "point": [
+    12.555238860274722,
+    55.67002974192684
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     12.555238860274722,
+     55.67002974192684
+    ],
+    "km": 99,
+    "block": {
+     "length": 204.2,
+     "width": 54.7,
+     "fill": 0.64,
+     "parts": 1,
+     "area": 7142
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "many",
+    "footprint": 4152.65943092761
+   },
+   "look": "dansky"
+  },
+  {
+   "town": "kobenhavn",
+   "point": [
+    12.55516148884744,
+    55.674446497147635
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     12.55516148884744,
+     55.674446497147635
+    ],
+    "km": 99,
+    "block": {
+     "length": 98.2,
+     "width": 34.5,
+     "fill": 0.46,
+     "parts": 2,
+     "area": 1555
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "flat",
+    "footprint": 671.868859155576
+   },
+   "look": "povalecny"
+  },
+  {
+   "town": "odense",
+   "point": [
+    10.385554773243854,
+    55.3983516461813
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     10.385554773243854,
+     55.3983516461813
+    ],
+    "km": 99,
+    "block": {
+     "length": 53.6,
+     "width": 44.2,
+     "fill": 0.86,
+     "parts": 1,
+     "area": 2036
+    },
+    "tint": 0,
+    "type": "public",
+    "footprint": 2036.1627772984405
+   },
+   "look": "kancelar"
+  },
+  {
+   "town": "kobenhavn",
+   "point": [
+    12.58332443319291,
+    55.681663475397485
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     12.58332443319291,
+     55.681663475397485
+    ],
+    "km": 99,
+    "block": {
+     "length": 88.8,
+     "width": 71.9,
+     "fill": 0.45,
+     "parts": 21,
+     "area": 2887
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "double_saltbox",
+    "footprint": 89.52201864582594
+   },
+   "look": "dansky"
+  },
+  {
+   "town": "kobenhavn",
+   "point": [
+    12.565682231789046,
+    55.65318230479317
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     12.565682231789046,
+     55.65318230479317
+    ],
+    "km": 99,
+    "block": {
+     "length": 73.7,
+     "width": 19.1,
+     "fill": 0.68,
+     "parts": 1,
+     "area": 951
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 950.7494709566881
+   },
+   "look": "dansky"
+  },
+  {
+   "town": "aarhus",
+   "point": [
+    10.198778395571907,
+    56.146958867473366
+   ],
+   "info": {
+    "levels": 3,
+    "point": [
+     10.198778395571907,
+     56.146958867473366
+    ],
+    "km": 99,
+    "block": {
+     "length": 111,
+     "width": 102.1,
+     "fill": 0.23,
+     "parts": 2,
+     "area": 2623
+    },
+    "tint": 0,
+    "type": "house",
+    "roofShape": "gabled",
+    "footprint": 675.745265223366
+   },
+   "look": "vila"
+  },
+  {
+   "town": "kobenhavn",
+   "point": [
+    12.632749573175895,
+    55.64690710429506
+   ],
+   "info": {
+    "levels": 1,
+    "point": [
+     12.632749573175895,
+     55.64690710429506
+    ],
+    "km": 99,
+    "block": {
+     "length": 78.2,
+     "width": 16,
+     "fill": 0.49,
+     "parts": 1,
+     "area": 614
+    },
+    "tint": 0,
+    "material": "brick",
+    "footprint": 613.6562949082509
+   },
+   "look": "nizky"
+  },
+  {
+   "town": "odense",
+   "point": [
+    10.38135260774358,
+    55.39275409470743
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     10.38135260774358,
+     55.39275409470743
+    ],
+    "km": 99,
+    "block": {
+     "length": 64.2,
+     "width": 55.9,
+     "fill": 0.52,
+     "parts": 1,
+     "area": 1857
+    },
+    "tint": 0,
+    "type": "civic",
+    "footprint": 1857.1332867397377
+   },
+   "look": "kancelar"
+  },
+  {
+   "town": "kobenhavn",
+   "point": [
+    12.56504139548539,
+    55.66633803271109
+   ],
+   "info": {
+    "levels": 13,
+    "point": [
+     12.56504139548539,
+     55.66633803271109
+    ],
+    "km": 99,
+    "block": {
+     "length": 91,
+     "width": 41.1,
+     "fill": 0.51,
+     "parts": 1,
+     "area": 1925
+    },
+    "tint": 0,
+    "type": "hotel",
+    "roofShape": "flat",
+    "footprint": 1924.7462964840602
+   },
+   "look": "kancelar"
+  },
+  {
+   "town": "aalborg",
+   "point": [
+    9.934888519525003,
+    57.04019755211771
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     9.934888519525003,
+     57.04019755211771
+    ],
+    "km": 99,
+    "block": {
+     "length": 166.5,
+     "width": 19.2,
+     "fill": 0.68,
+     "parts": 1,
+     "area": 2186
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "hipped",
+    "footprint": 2185.7998931120546
+   },
+   "look": "dansky"
+  },
+  {
+   "town": "aarhus",
+   "point": [
+    10.201332318639311,
+    56.14293501566002
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     10.201332318639311,
+     56.14293501566002
+    ],
+    "km": 99,
+    "block": {
+     "length": 72,
+     "width": 53,
+     "fill": 0.33,
+     "parts": 1,
+     "area": 1247
+    },
+    "tint": 0,
+    "type": "college",
+    "footprint": 1247.0644958885337
+   },
+   "look": "dansky"
+  },
+  {
+   "town": "kobenhavn",
+   "point": [
+    12.555398955541117,
+    55.67248518978676
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     12.555398955541117,
+     55.67248518978676
+    ],
+    "km": 99,
+    "block": {
+     "length": 153.1,
+     "width": 128,
+     "fill": 0.56,
+     "parts": 26,
+     "area": 10989
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 824.9794378482729
+   },
+   "look": "dansky"
+  },
+  {
+   "town": "aarhus",
+   "point": [
+    10.20492228073946,
+    56.145278838286764
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     10.20492228073946,
+     56.145278838286764
+    ],
+    "km": 99,
+    "block": {
+     "length": 103.3,
+     "width": 63.1,
+     "fill": 0.4,
+     "parts": 1,
+     "area": 2608
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 2607.5166635056744
+   },
+   "look": "dansky"
+  },
+  {
+   "town": "kobenhavn",
+   "point": [
+    12.553068728484035,
+    55.6883828663561
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     12.553068728484035,
+     55.6883828663561
+    ],
+    "km": 99,
+    "block": {
+     "length": 97.3,
+     "width": 61.1,
+     "fill": 0.33,
+     "parts": 11,
+     "area": 1988
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 337.9073462765508
+   },
+   "look": "dansky"
+  },
+  {
+   "town": "aarhus",
+   "point": [
+    10.192427906187275,
+    56.1577462897369
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     10.192427906187275,
+     56.1577462897369
+    ],
+    "km": 99,
+    "block": {
+     "length": 138.9,
+     "width": 30.1,
+     "fill": 0.4,
+     "parts": 2,
+     "area": 1663
+    },
+    "tint": 0,
+    "footprint": 1137.5997630992038
+   },
+   "look": "povalecny"
+  },
+  {
+   "town": "aalborg",
+   "point": [
+    9.93988465189435,
+    57.047084568024424
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     9.93988465189435,
+     57.047084568024424
+    ],
+    "km": 99,
+    "block": {
+     "length": 99.7,
+     "width": 65.1,
+     "fill": 0.47,
+     "parts": 1,
+     "area": 3068
+    },
+    "tint": 0,
+    "type": "office",
+    "footprint": 3067.5689654285848
+   },
+   "look": "kancelar"
+  },
+  {
+   "town": "kobenhavn",
+   "point": [
+    12.589525732651076,
+    55.67357913453337
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     12.589525732651076,
+     55.67357913453337
+    ],
+    "km": 99,
+    "block": {
+     "length": 117.7,
+     "width": 72.6,
+     "fill": 0.55,
+     "parts": 17,
+     "area": 4716
+    },
+    "tint": 0,
+    "material": "brick",
+    "footprint": 951.6628182611012
+   },
+   "look": "dansky"
+  },
+  {
+   "town": "kobenhavn",
+   "point": [
+    12.574309086216541,
+    55.69207209764726
+   ],
+   "info": {
+    "levels": 3,
+    "point": [
+     12.574309086216541,
+     55.69207209764726
+    ],
+    "km": 99,
+    "block": {
+     "length": 142.9,
+     "width": 10,
+     "fill": 0.81,
+     "parts": 1,
+     "area": 1151
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 1150.7036780957005
+   },
+   "look": "povalecny"
+  },
+  {
+   "town": "kobenhavn",
+   "point": [
+    12.574939588623703,
+    55.6906026796869
+   ],
+   "info": {
+    "levels": 3,
+    "point": [
+     12.574939588623703,
+     55.6906026796869
+    ],
+    "km": 99,
+    "block": {
+     "length": 172.4,
+     "width": 12.6,
+     "fill": 0.66,
+     "parts": 1,
+     "area": 1431
+    },
+    "tint": 0,
+    "type": "terrace",
+    "footprint": 1430.6297694143018
+   },
+   "look": "nizky"
+  },
+  {
+   "town": "kobenhavn",
+   "point": [
+    12.537421411491138,
+    55.66774464678938
+   ],
+   "info": {
+    "levels": 3,
+    "point": [
+     12.537421411491138,
+     55.66774464678938
+    ],
+    "km": 99,
+    "block": {
+     "length": 67.1,
+     "width": 8.8,
+     "fill": 0.91,
+     "parts": 1,
+     "area": 538
+    },
+    "tint": 0,
+    "type": "terrace",
+    "roofShape": "gabled",
+    "footprint": 538.365481842244
+   },
+   "look": "nizky"
+  },
+  {
+   "town": "aarhus",
+   "point": [
+    10.204770446777898,
+    56.19713325743801
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     10.204770446777898,
+     56.19713325743801
+    ],
+    "km": 99,
+    "block": {
+     "length": 64.5,
+     "width": 39.5,
+     "fill": 0.36,
+     "parts": 1,
+     "area": 910
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 910.0924212656058
+   },
+   "look": "dansky"
+  },
+  {
+   "town": "kobenhavn",
+   "point": [
+    12.56279530752778,
+    55.67899434306556
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     12.56279530752778,
+     55.67899434306556
+    ],
+    "km": 99,
+    "block": {
+     "length": 156.8,
+     "width": 74.4,
+     "fill": 0.46,
+     "parts": 7,
+     "area": 5356
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 1515.09660715127
+   },
+   "look": "povalecny"
+  },
+  {
+   "town": "aalborg",
+   "point": [
+    9.906334629973948,
+    57.05206249663471
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     9.906334629973948,
+     57.05206249663471
+    ],
+    "km": 99,
+    "block": {
+     "length": 142.2,
+     "width": 79.9,
+     "fill": 0.32,
+     "parts": 29,
+     "area": 3597
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 116.14750990163247
+   },
+   "look": "dansky"
+  },
+  {
+   "town": "kobenhavn",
+   "point": [
+    12.572239916586245,
+    55.69055584934623
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     12.572239916586245,
+     55.69055584934623
+    ],
+    "km": 99,
+    "block": {
+     "length": 197.8,
+     "width": 39.7,
+     "fill": 0.54,
+     "parts": 3,
+     "area": 4212
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 2343.0126975781054
+   },
+   "look": "povalecny"
+  },
+  {
+   "town": "kobenhavn",
+   "point": [
+    12.555248794860564,
+    55.68444394087409
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     12.555248794860564,
+     55.68444394087409
+    ],
+    "km": 99,
+    "block": {
+     "length": 169.7,
+     "width": 102.5,
+     "fill": 0.18,
+     "parts": 6,
+     "area": 3198
+    },
+    "tint": 0,
+    "footprint": 171.05667037891453
+   },
+   "look": "povalecny"
+  },
+  {
+   "town": "kobenhavn",
+   "point": [
+    12.55669697611525,
+    55.68194552291063
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     12.55669697611525,
+     55.68194552291063
+    ],
+    "km": 99,
+    "block": {
+     "length": 75.6,
+     "width": 68.8,
+     "fill": 0.62,
+     "parts": 1,
+     "area": 3216
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 2920.8399192021657
+   },
+   "look": "dansky"
+  },
+  {
+   "town": "aarhus",
+   "point": [
+    10.1972882848457,
+    56.155004783210984
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     10.1972882848457,
+     56.155004783210984
+    ],
+    "km": 99,
+    "block": {
+     "length": 154.6,
+     "width": 83.9,
+     "fill": 0.34,
+     "parts": 25,
+     "area": 4354
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 102.49330840004495
+   },
+   "look": "dansky"
+  },
+  {
+   "town": "kobenhavn",
+   "point": [
+    12.578320441975082,
+    55.667535086569906
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     12.578320441975082,
+     55.667535086569906
+    ],
+    "km": 99,
+    "block": {
+     "length": 79,
+     "width": 56.1,
+     "fill": 0.74,
+     "parts": 1,
+     "area": 3270
+    },
+    "tint": 0,
+    "type": "residential",
+    "footprint": 2083.396491329526
+   },
+   "look": "dansky"
+  },
+  {
+   "town": "aarhus",
+   "point": [
+    10.195097832269562,
+    56.15749256024717
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     10.195097832269562,
+     56.15749256024717
+    ],
+    "km": 99,
+    "block": {
+     "length": 214.1,
+     "width": 123.1,
+     "fill": 0.2,
+     "parts": 27,
+     "area": 5362
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "gabled",
+    "footprint": 229.9856429112374
+   },
+   "look": "dansky"
+  },
+  {
+   "town": "kobenhavn",
+   "point": [
+    12.574761937412653,
+    55.69021759382351
+   ],
+   "info": {
+    "levels": 3,
+    "point": [
+     12.574761937412653,
+     55.69021759382351
+    ],
+    "km": 99,
+    "block": {
+     "length": 184.2,
+     "width": 10.7,
+     "fill": 0.75,
+     "parts": 1,
+     "area": 1484
+    },
+    "tint": 0,
+    "type": "terrace",
+    "footprint": 1484.1531802042518
+   },
+   "look": "nizky"
+  },
+  {
+   "town": "aarhus",
+   "point": [
+    10.194062229797966,
+    56.15483354800551
+   ],
+   "info": {
+    "levels": 7,
+    "point": [
+     10.194062229797966,
+     56.15483354800551
+    ],
+    "km": 99,
+    "block": {
+     "length": 203.3,
+     "width": 55.9,
+     "fill": 0.85,
+     "parts": 1,
+     "area": 9645
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "hipped",
+    "material": "bricks",
+    "footprint": 4347.4844467220755
+   },
+   "look": "dansky"
+  },
+  {
+   "town": "aarhus",
+   "point": [
+    10.196316189194928,
+    56.15205730320613
+   ],
+   "info": {
+    "levels": 2,
+    "point": [
+     10.196316189194928,
+     56.15205730320613
+    ],
+    "km": 99,
+    "block": {
+     "length": 54.7,
+     "width": 50.8,
+     "fill": 0.46,
+     "parts": 1,
+     "area": 1275
+    },
+    "tint": 0,
+    "type": "commercial",
+    "footprint": 1275.2713298412273
+   },
+   "look": "nizky"
+  },
+  {
+   "town": "kobenhavn",
+   "point": [
+    12.553968140314545,
+    55.64844171527486
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     12.553968140314545,
+     55.64844171527486
+    ],
+    "km": 99,
+    "block": {
+     "length": 95.7,
+     "width": 87.9,
+     "fill": 0.56,
+     "parts": 1,
+     "area": 4692
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 2731.731067351876
+   },
+   "look": "dansky"
+  },
+  {
+   "town": "aalborg",
+   "point": [
+    9.923098128554269,
+    57.05807169501287
+   ],
+   "info": {
+    "levels": 3,
+    "point": [
+     9.923098128554269,
+     57.05807169501287
+    ],
+    "km": 99,
+    "block": {
+     "length": 49.1,
+     "width": 14.2,
+     "fill": 0.78,
+     "parts": 1,
+     "area": 541
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 541.1663564997825
+   },
+   "look": "povalecny"
+  },
+  {
+   "town": "kobenhavn",
+   "point": [
+    12.52483684699244,
+    55.64644751682027
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     12.52483684699244,
+     55.64644751682027
+    ],
+    "km": 99,
+    "block": {
+     "length": 129.9,
+     "width": 63.4,
+     "fill": 0.25,
+     "parts": 1,
+     "area": 2022
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "gabled",
+    "footprint": 2021.5723227072358
+   },
+   "look": "dansky"
+  },
+  {
+   "town": "aarhus",
+   "point": [
+    10.201320131044396,
+    56.150541102554534
+   ],
+   "info": {
+    "height": 24,
+    "point": [
+     10.201320131044396,
+     56.150541102554534
+    ],
+    "km": 99,
+    "block": {
+     "length": 158.5,
+     "width": 69.1,
+     "fill": 0.39,
+     "parts": 6,
+     "area": 4311
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 2279.7692957728323
+   },
+   "look": "povalecny"
+  },
+  {
+   "town": "kobenhavn",
+   "point": [
+    12.545030332113466,
+    55.68917295379734
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     12.545030332113466,
+     55.68917295379734
+    ],
+    "km": 99,
+    "block": {
+     "length": 75.4,
+     "width": 42,
+     "fill": 0.39,
+     "parts": 2,
+     "area": 1244
+    },
+    "tint": 0,
+    "type": "school",
+    "footprint": 672.3268212782027
+   },
+   "look": "skola"
+  },
+  {
+   "town": "aarhus",
+   "point": [
+    10.196226060384587,
+    56.16648131114752
+   ],
+   "info": {
+    "levels": 2,
+    "point": [
+     10.196226060384587,
+     56.16648131114752
+    ],
+    "km": 99,
+    "block": {
+     "length": 11.5,
+     "width": 10.7,
+     "fill": 0.7,
+     "parts": 1,
+     "area": 85
+    },
+    "tint": 0,
+    "type": "detached",
+    "roofShape": "mansard",
+    "footprint": 85.32805285021368
+   },
+   "look": "vila"
+  },
+  {
+   "town": "aalborg",
+   "point": [
+    9.903576878827932,
+    57.05089211069817
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     9.903576878827932,
+     57.05089211069817
+    ],
+    "km": 99,
+    "block": {
+     "length": 80.2,
+     "width": 45.9,
+     "fill": 0.45,
+     "parts": 12,
+     "area": 1654
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 107.11459733848642
+   },
+   "look": "dansky"
+  },
+  {
+   "town": "kobenhavn",
+   "point": [
+    12.559532388578376,
+    55.67666964927342
+   ],
+   "info": {
+    "levels": 8,
+    "point": [
+     12.559532388578376,
+     55.67666964927342
+    ],
+    "km": 99,
+    "block": {
+     "length": 153.2,
+     "width": 62.3,
+     "fill": 0.53,
+     "parts": 5,
+     "area": 5073
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 1398.1544812092598
+   },
+   "look": "povalecny"
+  },
+  {
+   "town": "kobenhavn",
+   "point": [
+    12.589901277449028,
+    55.68496743665359
+   ],
+   "info": {
+    "levels": 3,
+    "point": [
+     12.589901277449028,
+     55.68496743665359
+    ],
+    "km": 99,
+    "block": {
+     "length": 54.7,
+     "width": 45.3,
+     "fill": 0.72,
+     "parts": 1,
+     "area": 1773
+    },
+    "tint": 0,
+    "type": "church",
+    "roofShape": "onion",
+    "start": 1894,
+    "material": "marble",
+    "footprint": 1772.939853341351
+   },
+   "look": "kostel"
+  },
+  {
+   "town": "odense",
+   "point": [
+    10.387255560746668,
+    55.39442352297637
+   ],
+   "info": {
+    "levels": 1,
+    "height": 4.5,
+    "point": [
+     10.387255560746668,
+     55.39442352297637
+    ],
+    "km": 99,
+    "block": {
+     "length": 78.9,
+     "width": 84,
+     "fill": 0.55,
+     "parts": 5,
+     "area": 3612
+    },
+    "tint": 0,
+    "type": "residential",
+    "roofShape": "gabled",
+    "material": "brick",
+    "footprint": 289.4162809512827
+   },
+   "look": "dansky"
+  },
+  {
+   "town": "odense",
+   "point": [
+    10.382883425997251,
+    55.40511141672451
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     10.382883425997251,
+     55.40511141672451
+    ],
+    "km": 99,
+    "block": {
+     "length": 144.4,
+     "width": 69.2,
+     "fill": 0.77,
+     "parts": 1,
+     "area": 7730
+    },
+    "tint": 0,
+    "start": 2025,
+    "footprint": 6103.639444074819
+   },
+   "look": "moderni"
+  },
+  {
+   "town": "aarhus",
+   "point": [
+    10.198191792060216,
+    56.1583772810954
+   ],
+   "info": {
+    "levels": 3,
+    "point": [
+     10.198191792060216,
+     56.1583772810954
+    ],
+    "km": 99,
+    "block": {
+     "length": 210,
+     "width": 65.6,
+     "fill": 0.44,
+     "parts": 3,
+     "area": 6125
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 5767.913678284289
+   },
+   "look": "povalecny"
+  },
+  {
+   "town": "aalborg",
+   "point": [
+    9.912439580579534,
+    57.046785326072836
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     9.912439580579534,
+     57.046785326072836
+    ],
+    "km": 99,
+    "block": {
+     "length": 104.5,
+     "width": 56.1,
+     "fill": 0.31,
+     "parts": 8,
+     "area": 1801
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "flat",
+    "footprint": 121.18905903806399
+   },
+   "look": "funkce"
+  }
+ ]
+}

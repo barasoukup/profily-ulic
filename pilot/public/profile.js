@@ -7,7 +7,7 @@ import { GENERIC_VEHICLES } from "./art.js";
 import { PLATES, signFile, plateFile, signLabel, signDir, SPEED_TEMPLATES } from "./signs.js";
 // tr: t is a part's type here.
 import { t as tr, num } from "./i18n.js";
-import { LOOKS, houseHash } from "./house-looks.js";
+import { LOOKS, houseHash, smallHouse, strictSlab, panelOn, panelScore, PANEL_SCORE } from "./house-looks.js";
 import { AMERICA, AMERICA_PALETTES } from "./houses-america-spec.js";
 import { floorsFromHeight, floorsOsmOn } from "./floors.js";
 
@@ -819,7 +819,7 @@ function derivedStyle(info) {
   // of Bratislava): what OSM knows of the house decides.
   if (city.abroad && !city.centre) return abroadStyle(info, n);
   // Nothing known about the building: a tenement in the inner city, a small house elsewhere (least misleading).
-  if (!n) return info?.km > innerKm() ? "nizky" : "sikma";
+  if (!n) return info?.km > innerKm() ? "nizky" : smallHouse(info) ? smallKind(info) : "sikma";
   return info?.km > innerKm() ? flatKind(info, n) : "sikma";
 }
 
@@ -857,6 +857,11 @@ function familyKind(info) {
   return old ? "vila" : "kostka";
 }
 
+// The look of a small house alone (smallHouse): the year OSM gives (start_date) as RÚIAN's; its garage and shed joined to
+// it are no row (familyKind reads 3 joined parts as one); a footprint under 30 m² is a shed or a hut.
+const SHED_AREA = 30;
+const smallKind = (info) => (info.footprint < SHED_AREA ? "garaz" : familyKind({ ...info, built: info.start, block: undefined }));
+
 // A flat-roofed house: a panel house, or a functionalist tenement in a city block. Told apart by
 // the block the OSM building belongs to (blockShape in derive.js): a panel house is a slab at most
 // PANEL_WIDTH wide filling its rectangle, a block of few long parts (an L of slabs: PANEL_PART m
@@ -880,11 +885,17 @@ const PANEL_WIDTH = 16, PANEL_FILL = 0.65, PANEL_PART = 30, PANEL_FLOORS = 8, es
 // Such a flat-roofed block of flats is drawn as the plain flat-roofed tenement.
 const OLD_SETBACK_KM = 4.5, PANEL_FROM = 1955, MODERN_FROM = 1995;
 const isSlab = (b) => !!b && ((b.fill >= PANEL_FILL && b.width <= PANEL_WIDTH) || (b.parts >= 2 && (b.length + b.width) / b.parts >= PANEL_PART));
+// Abroad, where panel houses were built (socialistLooks), the shape alone makes a panel house only as a long compact slab (house-looks.js strictSlab); Czechia keeps isSlab.
+const slabOf = (b, info) => {
+  if (!(city.abroad && socialistLooks() && panelOn())) return isSlab(b);
+  const sc = panelScore(info);
+  return sc === null ? strictSlab(b) : sc >= PANEL_SCORE;
+};
 function flatKind(info, n) {
   if (OFFICE_TYPES.has(info?.type) || (info?.office && !FLAT_RESIDENTIAL.has(info?.type))) return "kancelar";
   if (info?.newBuild) return "moderni"; // IPR "nová budova"
   const b = info?.block;
-  const slab = isSlab(b);
+  const slab = slabOf(b, info);
   const setback = !slab && n < PANEL_FLOORS && info?.roof >= 1;
   // The year of the house (RÚIAN) before the age of the area; it is exact, so modern from 1996.
   const p = info?.built ?? info?.period;
@@ -910,13 +921,15 @@ function flatKind(info, n) {
 // office by its type, a panel house only as a slab (or 8+ floors on its own), else a tenement: with a pitched roof,
 // flat where OSM says the roof is flat.
 function abroadStyle(info, n) {
+  // A small house alone, nothing else known of it: a family house (house-looks.js smallHouse), whatever its roof or year.
+  if (!n && !OFFICE_TYPES.has(info?.type) && smallHouse(info)) return smallKind(info);
   const y = info?.start;
   if (y) return y < 1920 || (y >= 1946 && y < 1958) ? "sikma" : flatKind({ ...info, built: y }, n);
   const rs = info?.roofShape;
   if (rs && rs !== "flat") return "sikma";
   if (OFFICE_TYPES.has(info?.type)) return "plocha";
   // Where panel houses were built, the shape of a block alone (no floors, no kind) tells none (evaluation/all-buildings).
-  if ((isSlab(info?.block) && (n || info?.type || !socialistLooks())) || (n >= PANEL_FLOORS && !info?.block)) return "plocha";
+  if ((slabOf(info?.block, info) && (n || info?.type || !socialistLooks())) || (n >= PANEL_FLOORS && !info?.block)) return "plocha";
   return rs === "flat" ? "funkce" : "sikma";
 }
 

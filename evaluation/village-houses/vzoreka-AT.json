@@ -1,0 +1,3958 @@
+{
+ "stat": {
+  "houses": 371,
+  "noData": 227,
+  "changed": 82,
+  "regCut": 0,
+  "noPhoto": 66,
+  "dataChanged": 0,
+  "villages": 40,
+  "pairs": {
+   "povalecny>vila": 33,
+   "sikma>vila": 49
+  }
+ },
+ "rows": [
+  {
+   "id": "ATa01",
+   "town": "graz",
+   "far": true,
+   "city": "austria",
+   "point": [
+    15.5452589,
+    47.0905242
+   ],
+   "mapillary": "808009049862660",
+   "pano": false,
+   "dist": 22.9,
+   "off": 22.4,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "point": [
+      15.54525894046547,
+      47.09052415404852
+     ],
+     "km": 99,
+     "block": {
+      "length": 13.7,
+      "width": 13.3,
+      "fill": 0.51,
+      "parts": 1,
+      "area": 94
+     },
+     "tint": 0,
+     "footprint": 93.86078013868928
+    }
+   },
+   "after": {
+    "look": "vila",
+    "info": {
+     "point": [
+      15.54525894046547,
+      47.09052415404852
+     ],
+     "km": 99,
+     "block": {
+      "length": 13.7,
+      "width": 13.3,
+      "fill": 0.51,
+      "parts": 1,
+      "area": 94
+     },
+     "tint": 0,
+     "footprint": 93.86078013868928
+    }
+   }
+  },
+  {
+   "id": "ATa02",
+   "town": "salzburg",
+   "far": false,
+   "city": "salzburg",
+   "point": [
+    13.0316818,
+    47.8037149
+   ],
+   "mapillary": "1545911457149208",
+   "pano": true,
+   "dist": 13.5,
+   "off": 149.4,
+   "before": {
+    "look": "povalecny",
+    "info": {
+     "point": [
+      13.031681793859489,
+      47.8037149208647
+     ],
+     "km": 99,
+     "block": {
+      "length": 27.7,
+      "width": 15,
+      "fill": 0.82,
+      "parts": 2,
+      "area": 343
+     },
+     "tint": 0,
+     "footprint": 199.6662899856301
+    }
+   },
+   "after": {
+    "look": "vila",
+    "info": {
+     "point": [
+      13.031681793859489,
+      47.8037149208647
+     ],
+     "km": 99,
+     "block": {
+      "length": 27.7,
+      "width": 15,
+      "fill": 0.82,
+      "parts": 2,
+      "area": 343
+     },
+     "tint": 0,
+     "footprint": 199.6662899856301
+    }
+   }
+  },
+  {
+   "id": "ATa03",
+   "town": "villach",
+   "far": false,
+   "city": "austria",
+   "point": [
+    13.8607931,
+    46.6079036
+   ],
+   "mapillary": "1488124967710975",
+   "pano": true,
+   "dist": 15.1,
+   "off": 91.9,
+   "before": {
+    "look": "povalecny",
+    "info": {
+     "point": [
+      13.860793116770385,
+      46.60790357829101
+     ],
+     "km": 99,
+     "block": {
+      "length": 8.7,
+      "width": 7,
+      "fill": 0.67,
+      "parts": 1,
+      "area": 41
+     },
+     "tint": 0,
+     "footprint": 40.58965856250188
+    }
+   },
+   "after": {
+    "look": "vila",
+    "info": {
+     "point": [
+      13.860793116770385,
+      46.60790357829101
+     ],
+     "km": 99,
+     "block": {
+      "length": 8.7,
+      "width": 7,
+      "fill": 0.67,
+      "parts": 1,
+      "area": 41
+     },
+     "tint": 0,
+     "footprint": 40.58965856250188
+    }
+   }
+  },
+  {
+   "id": "ATa04",
+   "town": "villach",
+   "far": false,
+   "city": "austria",
+   "point": [
+    13.8707931,
+    46.6161376
+   ],
+   "mapillary": "1414677587541617",
+   "pano": true,
+   "dist": 17.8,
+   "off": 84.9,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "point": [
+      13.870793083873414,
+      46.61613759772004
+     ],
+     "km": 99,
+     "block": {
+      "length": 14.6,
+      "width": 14.6,
+      "fill": 0.53,
+      "parts": 1,
+      "area": 112
+     },
+     "tint": 0,
+     "footprint": 111.60295155210315
+    }
+   },
+   "after": {
+    "look": "vila",
+    "info": {
+     "point": [
+      13.870793083873414,
+      46.61613759772004
+     ],
+     "km": 99,
+     "block": {
+      "length": 14.6,
+      "width": 14.6,
+      "fill": 0.53,
+      "parts": 1,
+      "area": 112
+     },
+     "tint": 0,
+     "footprint": 111.60295155210315
+    }
+   }
+  },
+  {
+   "id": "ATa05",
+   "town": "innsbruck",
+   "far": true,
+   "city": "austria",
+   "point": [
+    11.2487815,
+    47.247293
+   ],
+   "mapillary": "821645028452854",
+   "pano": false,
+   "dist": 18.2,
+   "off": 30.7,
+   "before": {
+    "look": "povalecny",
+    "info": {
+     "point": [
+      11.248781493181678,
+      47.247292955711956
+     ],
+     "km": 99,
+     "block": {
+      "length": 22.3,
+      "width": 15.2,
+      "fill": 0.68,
+      "parts": 1,
+      "area": 231
+     },
+     "tint": 0,
+     "footprint": 230.6283979750242
+    }
+   },
+   "after": {
+    "look": "vila",
+    "info": {
+     "point": [
+      11.248781493181678,
+      47.247292955711956
+     ],
+     "km": 99,
+     "block": {
+      "length": 22.3,
+      "width": 15.2,
+      "fill": 0.68,
+      "parts": 1,
+      "area": 231
+     },
+     "tint": 0,
+     "footprint": 230.6283979750242
+    }
+   }
+  },
+  {
+   "id": "ATa06",
+   "town": "dornbirn",
+   "far": true,
+   "city": "austria",
+   "point": [
+    9.7720939,
+    47.4926601
+   ],
+   "mapillary": "3333132386879918",
+   "pano": false,
+   "dist": 25.5,
+   "off": -29.1,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "point": [
+      9.77209391698099,
+      47.49266013744073
+     ],
+     "km": 99,
+     "block": {
+      "length": 20.9,
+      "width": 18.2,
+      "fill": 0.61,
+      "parts": 1,
+      "area": 231
+     },
+     "tint": 0,
+     "footprint": 230.79277192325526
+    }
+   },
+   "after": {
+    "look": "vila",
+    "info": {
+     "point": [
+      9.77209391698099,
+      47.49266013744073
+     ],
+     "km": 99,
+     "block": {
+      "length": 20.9,
+      "width": 18.2,
+      "fill": 0.61,
+      "parts": 1,
+      "area": 231
+     },
+     "tint": 0,
+     "footprint": 230.79277192325526
+    }
+   }
+  },
+  {
+   "id": "ATa07",
+   "town": "klagenfurt",
+   "far": false,
+   "city": "austria",
+   "point": [
+    14.2943403,
+    46.620002
+   ],
+   "mapillary": "470384307408037",
+   "pano": false,
+   "dist": 21.5,
+   "off": 28.1,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "point": [
+      14.294340280180384,
+      46.62000197277663
+     ],
+     "km": 99,
+     "block": {
+      "length": 21.5,
+      "width": 9.9,
+      "fill": 0.86,
+      "parts": 2,
+      "area": 183
+     },
+     "tint": 0,
+     "type": "residential",
+     "roofShape": "hipped",
+     "footprint": 144.14581819401323
+    }
+   },
+   "after": {
+    "look": "vila",
+    "info": {
+     "point": [
+      14.294340280180384,
+      46.62000197277663
+     ],
+     "km": 99,
+     "block": {
+      "length": 21.5,
+      "width": 9.9,
+      "fill": 0.86,
+      "parts": 2,
+      "area": 183
+     },
+     "tint": 0,
+     "type": "residential",
+     "roofShape": "hipped",
+     "footprint": 144.14581819401323
+    }
+   }
+  },
+  {
+   "id": "ATa08",
+   "town": "stpoelten",
+   "far": false,
+   "city": "austria",
+   "point": [
+    15.6248527,
+    48.2153726
+   ],
+   "mapillary": "251160763512471",
+   "pano": true,
+   "dist": 23.8,
+   "off": 105.3,
+   "before": {
+    "look": "povalecny",
+    "info": {
+     "point": [
+      15.624852720113624,
+      48.21537256968586
+     ],
+     "km": 99,
+     "block": {
+      "length": 17.4,
+      "width": 11.9,
+      "fill": 0.7,
+      "parts": 1,
+      "area": 146
+     },
+     "tint": 0,
+     "type": "apartments",
+     "footprint": 145.99727739872515
+    }
+   },
+   "after": {
+    "look": "vila",
+    "info": {
+     "point": [
+      15.624852720113624,
+      48.21537256968586
+     ],
+     "km": 99,
+     "block": {
+      "length": 17.4,
+      "width": 11.9,
+      "fill": 0.7,
+      "parts": 1,
+      "area": 146
+     },
+     "tint": 0,
+     "type": "apartments",
+     "footprint": 145.99727739872515
+    }
+   }
+  },
+  {
+   "id": "ATa09",
+   "town": "dornbirn",
+   "far": false,
+   "city": "austria",
+   "point": [
+    9.7527489,
+    47.4072554
+   ],
+   "mapillary": "1403659191356841",
+   "pano": false,
+   "dist": 19.7,
+   "off": 2,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "point": [
+      9.752748903884047,
+      47.40725541570138
+     ],
+     "km": 99,
+     "block": {
+      "length": 21.5,
+      "width": 13.3,
+      "fill": 0.49,
+      "parts": 1,
+      "area": 140
+     },
+     "tint": 0,
+     "footprint": 139.9566654605842
+    }
+   },
+   "after": {
+    "look": "vila",
+    "info": {
+     "point": [
+      9.752748903884047,
+      47.40725541570138
+     ],
+     "km": 99,
+     "block": {
+      "length": 21.5,
+      "width": 13.3,
+      "fill": 0.49,
+      "parts": 1,
+      "area": 140
+     },
+     "tint": 0,
+     "footprint": 139.9566654605842
+    }
+   }
+  },
+  {
+   "id": "ATa10",
+   "town": "dornbirn",
+   "far": false,
+   "city": "austria",
+   "point": [
+    9.7527519,
+    47.4078936
+   ],
+   "mapillary": "1529283684947236",
+   "pano": false,
+   "dist": 23.4,
+   "off": 3.4,
+   "before": {
+    "look": "povalecny",
+    "info": {
+     "point": [
+      9.75275185630475,
+      47.40789355449229
+     ],
+     "km": 99,
+     "block": {
+      "length": 17.2,
+      "width": 15.2,
+      "fill": 0.73,
+      "parts": 1,
+      "area": 192
+     },
+     "tint": 0,
+     "footprint": 192.0183548255061
+    }
+   },
+   "after": {
+    "look": "vila",
+    "info": {
+     "point": [
+      9.75275185630475,
+      47.40789355449229
+     ],
+     "km": 99,
+     "block": {
+      "length": 17.2,
+      "width": 15.2,
+      "fill": 0.73,
+      "parts": 1,
+      "area": 192
+     },
+     "tint": 0,
+     "footprint": 192.0183548255061
+    }
+   }
+  },
+  {
+   "id": "ATa11",
+   "town": "dornbirn",
+   "far": false,
+   "city": "austria",
+   "point": [
+    9.7345109,
+    47.4190646
+   ],
+   "mapillary": "407047231949941",
+   "pano": false,
+   "dist": 18.4,
+   "off": -24.3,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "point": [
+      9.734510859446296,
+      47.41906459115878
+     ],
+     "km": 99,
+     "block": {
+      "length": 25.9,
+      "width": 19.4,
+      "fill": 0.46,
+      "parts": 1,
+      "area": 229
+     },
+     "tint": 0,
+     "footprint": 229.03382675914054
+    }
+   },
+   "after": {
+    "look": "vila",
+    "info": {
+     "point": [
+      9.734510859446296,
+      47.41906459115878
+     ],
+     "km": 99,
+     "block": {
+      "length": 25.9,
+      "width": 19.4,
+      "fill": 0.46,
+      "parts": 1,
+      "area": 229
+     },
+     "tint": 0,
+     "footprint": 229.03382675914054
+    }
+   }
+  },
+  {
+   "id": "ATa12",
+   "town": "linz",
+   "far": true,
+   "city": "austria",
+   "point": [
+    14.2446406,
+    48.2238146
+   ],
+   "mapillary": "291764095748636",
+   "pano": false,
+   "dist": 18,
+   "off": 21,
+   "before": {
+    "look": "povalecny",
+    "info": {
+     "point": [
+      14.244640640850738,
+      48.223814620265046
+     ],
+     "km": 99,
+     "block": {
+      "length": 21.8,
+      "width": 12.4,
+      "fill": 0.77,
+      "parts": 1,
+      "area": 208
+     },
+     "tint": 0,
+     "footprint": 207.8891276792583
+    }
+   },
+   "after": {
+    "look": "vila",
+    "info": {
+     "point": [
+      14.244640640850738,
+      48.223814620265046
+     ],
+     "km": 99,
+     "block": {
+      "length": 21.8,
+      "width": 12.4,
+      "fill": 0.77,
+      "parts": 1,
+      "area": 208
+     },
+     "tint": 0,
+     "footprint": 207.8891276792583
+    }
+   }
+  },
+  {
+   "id": "ATa13",
+   "town": "wels",
+   "far": true,
+   "city": "austria",
+   "point": [
+    13.9965815,
+    48.172923
+   ],
+   "mapillary": "209435630702838",
+   "pano": false,
+   "dist": 9,
+   "off": -28.8,
+   "before": {
+    "look": "povalecny",
+    "info": {
+     "point": [
+      13.9965814843396,
+      48.17292302604161
+     ],
+     "km": 99,
+     "block": {
+      "length": 20.9,
+      "width": 14.2,
+      "fill": 0.75,
+      "parts": 3,
+      "area": 223
+     },
+     "tint": 0,
+     "footprint": 143.24236379778256
+    }
+   },
+   "after": {
+    "look": "vila",
+    "info": {
+     "point": [
+      13.9965814843396,
+      48.17292302604161
+     ],
+     "km": 99,
+     "block": {
+      "length": 20.9,
+      "width": 14.2,
+      "fill": 0.75,
+      "parts": 3,
+      "area": 223
+     },
+     "tint": 0,
+     "footprint": 143.24236379778256
+    }
+   }
+  },
+  {
+   "id": "ATa14",
+   "town": "wels",
+   "far": true,
+   "city": "austria",
+   "point": [
+    14.0723509,
+    48.151831
+   ],
+   "mapillary": "856283075095887",
+   "pano": false,
+   "dist": 17.2,
+   "off": 6.1,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "point": [
+      14.072350868133016,
+      48.151831028494136
+     ],
+     "km": 99,
+     "block": {
+      "length": 25.9,
+      "width": 18.3,
+      "fill": 0.39,
+      "parts": 2,
+      "area": 187
+     },
+     "tint": 0,
+     "footprint": 147.40705149255587
+    }
+   },
+   "after": {
+    "look": "vila",
+    "info": {
+     "point": [
+      14.072350868133016,
+      48.151831028494136
+     ],
+     "km": 99,
+     "block": {
+      "length": 25.9,
+      "width": 18.3,
+      "fill": 0.39,
+      "parts": 2,
+      "area": 187
+     },
+     "tint": 0,
+     "footprint": 147.40705149255587
+    }
+   }
+  },
+  {
+   "id": "ATa15",
+   "town": "wien",
+   "far": true,
+   "city": "wien",
+   "point": [
+    16.4454774,
+    48.2846706
+   ],
+   "mapillary": "1213353513992772",
+   "pano": false,
+   "dist": 8.8,
+   "off": -10,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "point": [
+      16.44547735428659,
+      48.284670561351874
+     ],
+     "km": 99,
+     "block": {
+      "length": 16,
+      "width": 16.2,
+      "fill": 0.51,
+      "parts": 1,
+      "area": 131
+     },
+     "tint": 0,
+     "footprint": 131.45858188277361
+    }
+   },
+   "after": {
+    "look": "vila",
+    "info": {
+     "point": [
+      16.44547735428659,
+      48.284670561351874
+     ],
+     "km": 99,
+     "block": {
+      "length": 16,
+      "width": 16.2,
+      "fill": 0.51,
+      "parts": 1,
+      "area": 131
+     },
+     "tint": 0,
+     "footprint": 131.45858188277361
+    }
+   }
+  },
+  {
+   "id": "ATa16",
+   "town": "wels",
+   "far": false,
+   "city": "austria",
+   "point": [
+    14.0264425,
+    48.1694626
+   ],
+   "mapillary": "1129100565027459",
+   "pano": true,
+   "dist": 12.5,
+   "off": -128.8,
+   "before": {
+    "look": "povalecny",
+    "info": {
+     "point": [
+      14.0264425391672,
+      48.16946257921379
+     ],
+     "km": 99,
+     "block": {
+      "length": 21.9,
+      "width": 8.7,
+      "fill": 0.71,
+      "parts": 1,
+      "area": 135
+     },
+     "tint": 0,
+     "footprint": 135.04538392464747
+    }
+   },
+   "after": {
+    "look": "vila",
+    "info": {
+     "point": [
+      14.0264425391672,
+      48.16946257921379
+     ],
+     "km": 99,
+     "block": {
+      "length": 21.9,
+      "width": 8.7,
+      "fill": 0.71,
+      "parts": 1,
+      "area": 135
+     },
+     "tint": 0,
+     "footprint": 135.04538392464747
+    }
+   }
+  }
+ ],
+ "controls": [
+  {
+   "town": "salzburg",
+   "point": [
+    13.035021116088085,
+    47.80991125779403
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     13.035021116088085,
+     47.80991125779403
+    ],
+    "km": 99,
+    "block": {
+     "length": 35.9,
+     "width": 23.8,
+     "fill": 0.58,
+     "parts": 3,
+     "area": 493
+    },
+    "tint": 0,
+    "type": "school",
+    "footprint": 279.82371096306815
+   },
+   "look": "skola"
+  },
+  {
+   "town": "wels",
+   "point": [
+    14.127104251121951,
+    48.16431431316864
+   ],
+   "info": {
+    "levels": 2,
+    "point": [
+     14.127104251121951,
+     48.16431431316864
+    ],
+    "km": 99,
+    "block": {
+     "length": 59.8,
+     "width": 42.5,
+     "fill": 0.44,
+     "parts": 5,
+     "area": 1113
+    },
+    "tint": 0,
+    "footprint": 589.0613244356964
+   },
+   "look": "nizky"
+  },
+  {
+   "town": "innsbruck",
+   "point": [
+    11.394097991994876,
+    47.26271692167426
+   ],
+   "info": {
+    "levels": 3,
+    "point": [
+     11.394097991994876,
+     47.26271692167426
+    ],
+    "km": 99,
+    "block": {
+     "length": 283.3,
+     "width": 199.6,
+     "fill": 0.33,
+     "parts": 39,
+     "area": 18792
+    },
+    "tint": 0,
+    "footprint": 1008.2660153812849
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "stpoelten",
+   "point": [
+    15.617304723027285,
+    48.195645431602294
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     15.617304723027285,
+     48.195645431602294
+    ],
+    "km": 99,
+    "block": {
+     "length": 47.4,
+     "width": 18.1,
+     "fill": 0.72,
+     "parts": 1,
+     "area": 616
+    },
+    "tint": 0,
+    "type": "apartments",
+    "start": 1904,
+    "footprint": 615.8022817676192
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "salzburg",
+   "point": [
+    13.035005309975924,
+    47.80601884151408
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     13.035005309975924,
+     47.80601884151408
+    ],
+    "km": 99,
+    "block": {
+     "length": 154.1,
+     "width": 182.9,
+     "fill": 0.27,
+     "parts": 18,
+     "area": 7486
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 143.43621445619874
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "graz",
+   "point": [
+    15.428778688551878,
+    47.08680580862593
+   ],
+   "info": {
+    "levels": 8,
+    "point": [
+     15.428778688551878,
+     47.08680580862593
+    ],
+    "km": 99,
+    "block": {
+     "length": 82,
+     "width": 28,
+     "fill": 0.53,
+     "parts": 1,
+     "area": 1212
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "flat",
+    "footprint": 1212.311697337398
+   },
+   "look": "funkce"
+  },
+  {
+   "town": "wien",
+   "point": [
+    16.35424935100484,
+    48.27755186149165
+   ],
+   "info": {
+    "levels": 1,
+    "point": [
+     16.35424935100484,
+     48.27755186149165
+    ],
+    "km": 99,
+    "block": {
+     "length": 36.7,
+     "width": 19.3,
+     "fill": 0.8,
+     "parts": 1,
+     "area": 568
+    },
+    "tint": 0,
+    "type": "civic",
+    "roofShape": "gabled",
+    "footprint": 567.7101121398866
+   },
+   "look": "nizky"
+  },
+  {
+   "town": "salzburg",
+   "point": [
+    13.044975920984424,
+    47.80027376430171
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     13.044975920984424,
+     47.80027376430171
+    ],
+    "km": 99,
+    "block": {
+     "length": 279.3,
+     "width": 77.6,
+     "fill": 0.55,
+     "parts": 40,
+     "area": 11856
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "flat",
+    "footprint": 76.89539229615275
+   },
+   "look": "funkce"
+  },
+  {
+   "town": "linz",
+   "point": [
+    14.288270663363967,
+    48.31377830504098
+   ],
+   "info": {
+    "levels": 10,
+    "point": [
+     14.288270663363967,
+     48.31377830504098
+    ],
+    "km": 99,
+    "block": {
+     "length": 24.7,
+     "width": 19.4,
+     "fill": 0.73,
+     "parts": 1,
+     "area": 352
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "flat",
+    "footprint": 352.01441081709254
+   },
+   "look": "funkce"
+  },
+  {
+   "town": "innsbruck",
+   "point": [
+    11.396107154940745,
+    47.27639852081929
+   ],
+   "info": {
+    "levels": 3,
+    "point": [
+     11.396107154940745,
+     47.27639852081929
+    ],
+    "km": 99,
+    "block": {
+     "length": 27.1,
+     "width": 15.1,
+     "fill": 0.8,
+     "parts": 1,
+     "area": 327
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 326.53358263522136
+   },
+   "look": "povalecny"
+  },
+  {
+   "town": "salzburg",
+   "point": [
+    13.042060929498538,
+    47.8117124978487
+   ],
+   "info": {
+    "levels": 8,
+    "point": [
+     13.042060929498538,
+     47.8117124978487
+    ],
+    "km": 99,
+    "block": {
+     "length": 96.3,
+     "width": 64.3,
+     "fill": 0.41,
+     "parts": 4,
+     "area": 2537
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "flat",
+    "footprint": 518.3013560651639
+   },
+   "look": "povalecny"
+  },
+  {
+   "town": "wien",
+   "point": [
+    16.308041797266412,
+    48.20449142080664
+   ],
+   "info": {
+    "levels": 7,
+    "point": [
+     16.308041797266412,
+     48.20449142080664
+    ],
+    "km": 99,
+    "block": {
+     "length": 173.6,
+     "width": 141.4,
+     "fill": 0.4,
+     "parts": 9,
+     "area": 9707
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 1854.4465443969268
+   },
+   "look": "povalecny"
+  },
+  {
+   "town": "innsbruck",
+   "point": [
+    11.40048890120289,
+    47.27752529624699
+   ],
+   "info": {
+    "levels": 3,
+    "point": [
+     11.40048890120289,
+     47.27752529624699
+    ],
+    "km": 99,
+    "block": {
+     "length": 18.6,
+     "width": 19.8,
+     "fill": 0.6,
+     "parts": 1,
+     "area": 221
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 221.31033127279215
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "linz",
+   "point": [
+    14.2983768297554,
+    48.31267256039829
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     14.2983768297554,
+     48.31267256039829
+    ],
+    "km": 99,
+    "block": {
+     "length": 176.8,
+     "width": 25.4,
+     "fill": 0.62,
+     "parts": 4,
+     "area": 2791
+    },
+    "tint": 0,
+    "type": "office",
+    "roofShape": "flat",
+    "footprint": 925.0772965801825
+   },
+   "look": "kancelar"
+  },
+  {
+   "town": "wien",
+   "point": [
+    16.36222983586383,
+    48.2145252286188
+   ],
+   "info": {
+    "levels": 6,
+    "height": 34,
+    "point": [
+     16.36222983586383,
+     48.2145252286188
+    ],
+    "km": 99,
+    "block": {
+     "length": 89.7,
+     "width": 48.3,
+     "fill": 0.9,
+     "parts": 3,
+     "area": 3907
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "mansard",
+    "footprint": 1450.529174354991
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "graz",
+   "point": [
+    15.435088146621974,
+    47.07399023870375
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     15.435088146621974,
+     47.07399023870375
+    ],
+    "km": 99,
+    "block": {
+     "length": 163,
+     "width": 49,
+     "fill": 0.46,
+     "parts": 10,
+     "area": 3657
+    },
+    "tint": 0,
+    "roofShape": "flat",
+    "footprint": 325.68185339588854
+   },
+   "look": "funkce"
+  },
+  {
+   "town": "salzburg",
+   "point": [
+    13.042598172112468,
+    47.80648311076992
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     13.042598172112468,
+     47.80648311076992
+    ],
+    "km": 99,
+    "block": {
+     "length": 127.8,
+     "width": 79.2,
+     "fill": 0.6,
+     "parts": 6,
+     "area": 6020
+    },
+    "tint": 0,
+    "type": "office",
+    "roofShape": "gabled",
+    "footprint": 2062.26351513599
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "salzburg",
+   "point": [
+    13.051781244177244,
+    47.806826719898204
+   ],
+   "info": {
+    "levels": 2,
+    "point": [
+     13.051781244177244,
+     47.806826719898204
+    ],
+    "km": 99,
+    "block": {
+     "length": 99.3,
+     "width": 40.6,
+     "fill": 0.43,
+     "parts": 7,
+     "area": 1715
+    },
+    "tint": 0,
+    "type": "retail",
+    "roofShape": "gabled",
+    "footprint": 181.04706021722814
+   },
+   "look": "hala"
+  },
+  {
+   "town": "graz",
+   "point": [
+    15.452463020378627,
+    47.058988403238764
+   ],
+   "info": {
+    "levels": 1,
+    "point": [
+     15.452463020378627,
+     47.058988403238764
+    ],
+    "km": 99,
+    "block": {
+     "length": 40.7,
+     "width": 10.1,
+     "fill": 0.86,
+     "parts": 3,
+     "area": 353
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "pitched",
+    "footprint": 139.19740546672074
+   },
+   "look": "nizky"
+  },
+  {
+   "town": "innsbruck",
+   "point": [
+    11.391479216444951,
+    47.261963862805295
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     11.391479216444951,
+     47.261963862805295
+    ],
+    "km": 99,
+    "block": {
+     "length": 107.8,
+     "width": 73.7,
+     "fill": 0.67,
+     "parts": 21,
+     "area": 5326
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 262.71393643892725
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "wien",
+   "point": [
+    16.343353106188204,
+    48.22318607762863
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     16.343353106188204,
+     48.22318607762863
+    ],
+    "km": 99,
+    "block": {
+     "length": 85.6,
+     "width": 62.8,
+     "fill": 0.66,
+     "parts": 11,
+     "area": 3569
+    },
+    "tint": 0,
+    "footprint": 348.5236844844153
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "salzburg",
+   "point": [
+    13.044815968665928,
+    47.80607868594058
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     13.044815968665928,
+     47.80607868594058
+    ],
+    "km": 99,
+    "block": {
+     "length": 122.3,
+     "width": 118.2,
+     "fill": 0.38,
+     "parts": 12,
+     "area": 5435
+    },
+    "tint": 0,
+    "type": "retail",
+    "footprint": 469.16725452533456
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "graz",
+   "point": [
+    15.439832249655511,
+    47.07401029836298
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     15.439832249655511,
+     47.07401029836298
+    ],
+    "km": 99,
+    "block": {
+     "length": 77.4,
+     "width": 55.3,
+     "fill": 0.33,
+     "parts": 4,
+     "area": 1430
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "hipped",
+    "start": 1832,
+    "footprint": 768.3296043082944
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "wien",
+   "point": [
+    16.388628808075254,
+    48.207056272330156
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     16.388628808075254,
+     48.207056272330156
+    ],
+    "km": 99,
+    "block": {
+     "length": 91.1,
+     "width": 64.1,
+     "fill": 0.58,
+     "parts": 7,
+     "area": 3398
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "gabled",
+    "footprint": 592.677312859839
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "dornbirn",
+   "point": [
+    9.739759443521594,
+    47.419711831027
+   ],
+   "info": {
+    "levels": 2,
+    "point": [
+     9.739759443521594,
+     47.419711831027
+    ],
+    "km": 99,
+    "block": {
+     "length": 19.7,
+     "width": 15,
+     "fill": 0.59,
+     "parts": 2,
+     "area": 175
+    },
+    "tint": 0,
+    "type": "detached",
+    "footprint": 15.408310603197606
+   },
+   "look": "vila"
+  },
+  {
+   "town": "innsbruck",
+   "point": [
+    11.38470386480064,
+    47.263370339145496
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     11.38470386480064,
+     47.263370339145496
+    ],
+    "km": 99,
+    "block": {
+     "length": 234.3,
+     "width": 144.9,
+     "fill": 0.42,
+     "parts": 10,
+     "area": 14363
+    },
+    "tint": 0,
+    "type": "university",
+    "footprint": 4400.059538657999
+   },
+   "look": "kancelar"
+  },
+  {
+   "town": "dornbirn",
+   "point": [
+    9.743400362353313,
+    47.416999724860176
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     9.743400362353313,
+     47.416999724860176
+    ],
+    "km": 99,
+    "block": {
+     "length": 28.4,
+     "width": 22.1,
+     "fill": 0.71,
+     "parts": 1,
+     "area": 447
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 447.2591844505382
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "wels",
+   "point": [
+    14.019987514740382,
+    48.16902000723662
+   ],
+   "info": {
+    "levels": 3,
+    "point": [
+     14.019987514740382,
+     48.16902000723662
+    ],
+    "km": 99,
+    "block": {
+     "length": 38.3,
+     "width": 11.8,
+     "fill": 0.95,
+     "parts": 2,
+     "area": 431
+    },
+    "tint": 0,
+    "roofShape": "gabled",
+    "footprint": 207.29313435555468
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "wien",
+   "point": [
+    16.390688144852806,
+    48.21269647042546
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     16.390688144852806,
+     48.21269647042546
+    ],
+    "km": 99,
+    "block": {
+     "length": 118.5,
+     "width": 45.5,
+     "fill": 0.83,
+     "parts": 8,
+     "area": 4449
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "gabled",
+    "footprint": 1284.0937520978516
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "wien",
+   "point": [
+    16.357207495105325,
+    48.205329797845536
+   ],
+   "info": {
+    "height": 14,
+    "point": [
+     16.357207495105325,
+     48.205329797845536
+    ],
+    "km": 99,
+    "block": {
+     "length": 80,
+     "width": 52.5,
+     "fill": 0.6,
+     "parts": 1,
+     "area": 2499
+    },
+    "tint": 0,
+    "roofShape": "flat",
+    "start": 1889,
+    "footprint": 2499.201208416569
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "salzburg",
+   "point": [
+    13.049718716507249,
+    47.804888789782524
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     13.049718716507249,
+     47.804888789782524
+    ],
+    "km": 99,
+    "block": {
+     "length": 110,
+     "width": 91.2,
+     "fill": 0.37,
+     "parts": 11,
+     "area": 3708
+    },
+    "tint": 0,
+    "type": "hotel",
+    "roofShape": "hipped",
+    "footprint": 892.0707549577851
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "wien",
+   "point": [
+    16.372388868148686,
+    48.206072535664724
+   ],
+   "info": {
+    "height": 28,
+    "point": [
+     16.372388868148686,
+     48.206072535664724
+    ],
+    "km": 99,
+    "block": {
+     "length": 128.1,
+     "width": 88.7,
+     "fill": 0.76,
+     "parts": 14,
+     "area": 8682
+    },
+    "tint": 0,
+    "footprint": 469.64271201894826
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "klagenfurt",
+   "point": [
+    14.307929756097504,
+    46.63801724138391
+   ],
+   "info": {
+    "levels": 3,
+    "point": [
+     14.307929756097504,
+     46.63801724138391
+    ],
+    "km": 99,
+    "block": {
+     "length": 25.5,
+     "width": 19.3,
+     "fill": 0.77,
+     "parts": 1,
+     "area": 378
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 378.2133823489057
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "wien",
+   "point": [
+    16.382827573861483,
+    48.197838315312964
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     16.382827573861483,
+     48.197838315312964
+    ],
+    "km": 99,
+    "block": {
+     "length": 84.5,
+     "width": 81.9,
+     "fill": 0.59,
+     "parts": 8,
+     "area": 4049
+    },
+    "tint": 0,
+    "footprint": 1234.78760823226
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "salzburg",
+   "point": [
+    13.047002339804374,
+    47.81188006185915
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     13.047002339804374,
+     47.81188006185915
+    ],
+    "km": 99,
+    "block": {
+     "length": 42.7,
+     "width": 11.9,
+     "fill": 0.87,
+     "parts": 1,
+     "area": 442
+    },
+    "tint": 0,
+    "type": "dormitory",
+    "roofShape": "flat",
+    "footprint": 441.831935692906
+   },
+   "look": "povalecny"
+  },
+  {
+   "town": "klagenfurt",
+   "point": [
+    14.310607602617015,
+    46.616328675371264
+   ],
+   "info": {
+    "levels": 11,
+    "point": [
+     14.310607602617015,
+     46.616328675371264
+    ],
+    "km": 99,
+    "block": {
+     "length": 36.2,
+     "width": 15.5,
+     "fill": 0.83,
+     "parts": 1,
+     "area": 465
+    },
+    "tint": 0,
+    "type": "residential",
+    "footprint": 465.4497293843506
+   },
+   "look": "povalecny"
+  },
+  {
+   "town": "linz",
+   "point": [
+    14.300045501718577,
+    48.30835992989865
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     14.300045501718577,
+     48.30835992989865
+    ],
+    "km": 99,
+    "block": {
+     "length": 165.3,
+     "width": 55.4,
+     "fill": 0.31,
+     "parts": 2,
+     "area": 2874
+    },
+    "tint": 0,
+    "type": "office",
+    "footprint": 2394.342177251609
+   },
+   "look": "kancelar"
+  },
+  {
+   "town": "innsbruck",
+   "point": [
+    11.407948294082459,
+    47.26910168605309
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     11.407948294082459,
+     47.26910168605309
+    ],
+    "km": 99,
+    "block": {
+     "length": 47.9,
+     "width": 20.3,
+     "fill": 0.64,
+     "parts": 3,
+     "area": 618
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 257.6708773932961
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "wien",
+   "point": [
+    16.382959895206017,
+    48.182464599901095
+   ],
+   "info": {
+    "levels": 3,
+    "point": [
+     16.382959895206017,
+     48.182464599901095
+    ],
+    "km": 99,
+    "block": {
+     "length": 70.4,
+     "width": 45.2,
+     "fill": 0.51,
+     "parts": 1,
+     "area": 1622
+    },
+    "tint": 0,
+    "type": "office",
+    "roofShape": "flat",
+    "footprint": 1622.1623060333427
+   },
+   "look": "kancelar"
+  },
+  {
+   "town": "graz",
+   "point": [
+    15.444491006833957,
+    47.0802714170655
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     15.444491006833957,
+     47.0802714170655
+    ],
+    "km": 99,
+    "block": {
+     "length": 126.1,
+     "width": 108,
+     "fill": 0.3,
+     "parts": 7,
+     "area": 4109
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "gabled",
+    "footprint": 539.8108917128109
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "innsbruck",
+   "point": [
+    11.380706744307481,
+    47.26398757214642
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     11.380706744307481,
+     47.26398757214642
+    ],
+    "km": 99,
+    "block": {
+     "length": 127,
+     "width": 102.2,
+     "fill": 0.27,
+     "parts": 17,
+     "area": 3485
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "gabled",
+    "footprint": 209.2511055994055
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "salzburg",
+   "point": [
+    13.048751538346014,
+    47.799007048177735
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     13.048751538346014,
+     47.799007048177735
+    ],
+    "km": 99,
+    "block": {
+     "length": 92.5,
+     "width": 68.5,
+     "fill": 0.51,
+     "parts": 10,
+     "area": 3216
+    },
+    "tint": 0,
+    "type": "public",
+    "roofShape": "gabled",
+    "footprint": 1014.5200811350887
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "salzburg",
+   "point": [
+    13.03907057370008,
+    47.81077342721108
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     13.03907057370008,
+     47.81077342721108
+    ],
+    "km": 99,
+    "block": {
+     "length": 185.7,
+     "width": 94,
+     "fill": 0.21,
+     "parts": 12,
+     "area": 3744
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "flat",
+    "footprint": 299.2544670078455
+   },
+   "look": "funkce"
+  },
+  {
+   "town": "salzburg",
+   "point": [
+    13.03996995921017,
+    47.80040396865252
+   ],
+   "info": {
+    "levels": 5,
+    "height": 16,
+    "point": [
+     13.03996995921017,
+     47.80040396865252
+    ],
+    "km": 99,
+    "block": {
+     "length": 271.1,
+     "width": 90.7,
+     "fill": 0.43,
+     "parts": 40,
+     "area": 10646
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "hipped",
+    "footprint": 751.9890457933225
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "klagenfurt",
+   "point": [
+    14.310686041986171,
+    46.62574098539322
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     14.310686041986171,
+     46.62574098539322
+    ],
+    "km": 99,
+    "block": {
+     "length": 101.6,
+     "width": 72.8,
+     "fill": 0.24,
+     "parts": 3,
+     "area": 1778
+    },
+    "tint": 0,
+    "type": "residential",
+    "footprint": 843.2452123410658
+   },
+   "look": "povalecny"
+  },
+  {
+   "town": "wien",
+   "point": [
+    16.38470199766183,
+    48.20503013791439
+   ],
+   "info": {
+    "levels": 9,
+    "point": [
+     16.38470199766183,
+     48.20503013791439
+    ],
+    "km": 99,
+    "block": {
+     "length": 224.7,
+     "width": 166.9,
+     "fill": 0.56,
+     "parts": 5,
+     "area": 20925
+    },
+    "tint": 0,
+    "type": "office",
+    "footprint": 10899.343306332506
+   },
+   "look": "kancelar"
+  },
+  {
+   "town": "klagenfurt",
+   "point": [
+    14.303091090490147,
+    46.632155635036696
+   ],
+   "info": {
+    "levels": 3,
+    "point": [
+     14.303091090490147,
+     46.632155635036696
+    ],
+    "km": 99,
+    "block": {
+     "length": 126.4,
+     "width": 66.9,
+     "fill": 0.44,
+     "parts": 2,
+     "area": 3747
+    },
+    "tint": 0,
+    "type": "hospital",
+    "footprint": 2446.1209872606682
+   },
+   "look": "kancelar"
+  },
+  {
+   "town": "wels",
+   "point": [
+    13.972530658114605,
+    48.23092072303309
+   ],
+   "info": {
+    "levels": 2,
+    "point": [
+     13.972530658114605,
+     48.23092072303309
+    ],
+    "km": 99,
+    "block": {
+     "length": 18.9,
+     "width": 12,
+     "fill": 0.79,
+     "parts": 2,
+     "area": 180
+    },
+    "tint": 0,
+    "roofShape": "gabled",
+    "footprint": 139.39091530232406
+   },
+   "look": "nizky"
+  },
+  {
+   "town": "innsbruck",
+   "point": [
+    11.40556830678996,
+    47.28458916656517
+   ],
+   "info": {
+    "levels": 3,
+    "point": [
+     11.40556830678996,
+     47.28458916656517
+    ],
+    "km": 99,
+    "block": {
+     "length": 17.9,
+     "width": 18.3,
+     "fill": 0.52,
+     "parts": 1,
+     "area": 171
+    },
+    "tint": 0,
+    "type": "detached",
+    "roofShape": "flat",
+    "footprint": 171.1779419368404
+   },
+   "look": "vila"
+  },
+  {
+   "town": "innsbruck",
+   "point": [
+    11.39145879806226,
+    47.26795178227567
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     11.39145879806226,
+     47.26795178227567
+    ],
+    "km": 99,
+    "block": {
+     "length": 113.8,
+     "width": 58.4,
+     "fill": 0.67,
+     "parts": 11,
+     "area": 4443
+    },
+    "tint": 0,
+    "type": "hotel",
+    "footprint": 778.8862295609829
+   },
+   "look": "kancelar"
+  },
+  {
+   "town": "innsbruck",
+   "point": [
+    11.413677047467324,
+    47.28296477865694
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     11.413677047467324,
+     47.28296477865694
+    ],
+    "km": 99,
+    "block": {
+     "length": 55,
+     "width": 51.6,
+     "fill": 0.44,
+     "parts": 4,
+     "area": 1239
+    },
+    "tint": 0,
+    "type": "detached",
+    "start": 1538,
+    "footprint": 658.4005220725094
+   },
+   "look": "nizky"
+  },
+  {
+   "town": "stpoelten",
+   "point": [
+    15.632175998403408,
+    48.19868042404005
+   ],
+   "info": {
+    "levels": 7,
+    "point": [
+     15.632175998403408,
+     48.19868042404005
+    ],
+    "km": 99,
+    "block": {
+     "length": 209.6,
+     "width": 108.5,
+     "fill": 0.44,
+     "parts": 16,
+     "area": 9939
+    },
+    "tint": 0,
+    "footprint": 1216.7640049672846
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "wels",
+   "point": [
+    14.03913054533321,
+    48.16670198383902
+   ],
+   "info": {
+    "levels": 3,
+    "point": [
+     14.03913054533321,
+     48.16670198383902
+    ],
+    "km": 99,
+    "block": {
+     "length": 66,
+     "width": 9.9,
+     "fill": 0.9,
+     "parts": 3,
+     "area": 590
+    },
+    "tint": 0,
+    "roofShape": "gabled",
+    "footprint": 216.3258416044847
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "wien",
+   "point": [
+    16.370746641365297,
+    48.210263144789046
+   ],
+   "info": {
+    "levels": 5,
+    "height": 29.5,
+    "point": [
+     16.370746641365297,
+     48.210263144789046
+    ],
+    "km": 99,
+    "block": {
+     "length": 104.1,
+     "width": 49.3,
+     "fill": 0.64,
+     "parts": 10,
+     "area": 3258
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 593.0460507163613
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "innsbruck",
+   "point": [
+    11.396727936306972,
+    47.263352624176335
+   ],
+   "info": {
+    "levels": 7,
+    "point": [
+     11.396727936306972,
+     47.263352624176335
+    ],
+    "km": 99,
+    "block": {
+     "length": 198.9,
+     "width": 107.9,
+     "fill": 0.55,
+     "parts": 28,
+     "area": 11897
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "flat",
+    "footprint": 332.8848756237157
+   },
+   "look": "funkce"
+  },
+  {
+   "town": "linz",
+   "point": [
+    14.27895925531682,
+    48.31355639674641
+   ],
+   "info": {
+    "levels": 3,
+    "point": [
+     14.27895925531682,
+     48.31355639674641
+    ],
+    "km": 99,
+    "block": {
+     "length": 114.1,
+     "width": 27.9,
+     "fill": 0.49,
+     "parts": 9,
+     "area": 1548
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "gabled",
+    "footprint": 125.24762847624788
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "wien",
+   "point": [
+    16.37402906050475,
+    48.20988857874242
+   ],
+   "info": {
+    "levels": 6,
+    "height": 29.5,
+    "point": [
+     16.37402906050475,
+     48.20988857874242
+    ],
+    "km": 99,
+    "block": {
+     "length": 174.3,
+     "width": 70.5,
+     "fill": 0.74,
+     "parts": 13,
+     "area": 9132
+    },
+    "tint": 0,
+    "footprint": 1370.692358725169
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "linz",
+   "point": [
+    14.28184013825817,
+    48.31003454573495
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     14.28184013825817,
+     48.31003454573495
+    ],
+    "km": 99,
+    "block": {
+     "length": 168.3,
+     "width": 142.5,
+     "fill": 0.54,
+     "parts": 2,
+     "area": 12953
+    },
+    "tint": 0,
+    "type": "government",
+    "roofShape": "many",
+    "footprint": 9391.429448310337
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "salzburg",
+   "point": [
+    13.035818910611615,
+    47.78997919962864
+   ],
+   "info": {
+    "height": 6.5,
+    "point": [
+     13.035818910611615,
+     47.78997919962864
+    ],
+    "km": 99,
+    "block": {
+     "length": 38.5,
+     "width": 10.7,
+     "fill": 0.89,
+     "parts": 1,
+     "area": 366
+    },
+    "tint": 0,
+    "footprint": 366.350397056528
+   },
+   "look": "nizky"
+  },
+  {
+   "town": "klagenfurt",
+   "point": [
+    14.302634424299464,
+    46.61630028631489
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     14.302634424299464,
+     46.61630028631489
+    ],
+    "km": 99,
+    "block": {
+     "length": 46,
+     "width": 12.4,
+     "fill": 0.86,
+     "parts": 3,
+     "area": 492
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 169.94426614248277
+   },
+   "look": "povalecny"
+  },
+  {
+   "town": "graz",
+   "point": [
+    15.445078189987212,
+    47.07631318352998
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     15.445078189987212,
+     47.07631318352998
+    ],
+    "km": 99,
+    "block": {
+     "length": 120.5,
+     "width": 94.7,
+     "fill": 0.45,
+     "parts": 18,
+     "area": 5106
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "gabled",
+    "footprint": 425.02120645910645
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "wien",
+   "point": [
+    16.37280006852367,
+    48.20972643389086
+   ],
+   "info": {
+    "levels": 6,
+    "height": 28,
+    "point": [
+     16.37280006852367,
+     48.20972643389086
+    ],
+    "km": 99,
+    "block": {
+     "length": 110.8,
+     "width": 40.3,
+     "fill": 0.63,
+     "parts": 5,
+     "area": 2800
+    },
+    "tint": 0,
+    "start": 1894,
+    "footprint": 694.3666788291112
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "wels",
+   "point": [
+    14.026926618302229,
+    48.16079235421375
+   ],
+   "info": {
+    "levels": 2,
+    "point": [
+     14.026926618302229,
+     48.16079235421375
+    ],
+    "km": 99,
+    "block": {
+     "length": 72.8,
+     "width": 43.4,
+     "fill": 0.32,
+     "parts": 3,
+     "area": 995
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 201.57195748563663
+   },
+   "look": "nizky"
+  },
+  {
+   "town": "wels",
+   "point": [
+    14.029748236269775,
+    48.16483460508596
+   ],
+   "info": {
+    "levels": 3,
+    "point": [
+     14.029748236269775,
+     48.16483460508596
+    ],
+    "km": 99,
+    "block": {
+     "length": 33.6,
+     "width": 19.7,
+     "fill": 0.6,
+     "parts": 2,
+     "area": 399
+    },
+    "tint": 0,
+    "roofShape": "flat",
+    "footprint": 228.2372445591418
+   },
+   "look": "funkce"
+  },
+  {
+   "town": "graz",
+   "point": [
+    15.447940294315664,
+    47.06638528853217
+   ],
+   "info": {
+    "levels": 3,
+    "point": [
+     15.447940294315664,
+     47.06638528853217
+    ],
+    "km": 99,
+    "block": {
+     "length": 41.2,
+     "width": 17.2,
+     "fill": 0.63,
+     "parts": 2,
+     "area": 446
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "half-hipped",
+    "footprint": 258.6535850939972
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "wien",
+   "point": [
+    16.366275731973012,
+    48.210156337439294
+   ],
+   "info": {
+    "levels": 3,
+    "height": 25.5,
+    "point": [
+     16.366275731973012,
+     48.210156337439294
+    ],
+    "km": 99,
+    "block": {
+     "length": 135.8,
+     "width": 97.4,
+     "fill": 0.65,
+     "parts": 13,
+     "area": 8654
+    },
+    "tint": 0,
+    "start": 1698,
+    "footprint": 1229.192858594603
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "innsbruck",
+   "point": [
+    11.382906869036,
+    47.25947271664608
+   ],
+   "info": {
+    "levels": 3,
+    "point": [
+     11.382906869036,
+     47.25947271664608
+    ],
+    "km": 99,
+    "block": {
+     "length": 70,
+     "width": 37.2,
+     "fill": 0.41,
+     "parts": 1,
+     "area": 1078
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 1078.4749593561091
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "graz",
+   "point": [
+    15.44699092986189,
+    47.06506445951564
+   ],
+   "info": {
+    "levels": 1,
+    "point": [
+     15.44699092986189,
+     47.06506445951564
+    ],
+    "km": 99,
+    "block": {
+     "length": 204.2,
+     "width": 158.6,
+     "fill": 0.35,
+     "parts": 40,
+     "area": 11413
+    },
+    "tint": 0,
+    "type": "retail",
+    "roofShape": "gabled",
+    "footprint": 127.4443492077045
+   },
+   "look": "hala"
+  },
+  {
+   "town": "linz",
+   "point": [
+    14.286480019951966,
+    48.3136652683205
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     14.286480019951966,
+     48.3136652683205
+    ],
+    "km": 99,
+    "block": {
+     "length": 100.6,
+     "width": 31.7,
+     "fill": 0.87,
+     "parts": 3,
+     "area": 2777
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "flat",
+    "footprint": 852.1906701346006
+   },
+   "look": "povalecny"
+  },
+  {
+   "town": "wien",
+   "point": [
+    16.472585699785686,
+    48.143526985008506
+   ],
+   "info": {
+    "levels": 4,
+    "height": 17,
+    "point": [
+     16.472585699785686,
+     48.143526985008506
+    ],
+    "km": 99,
+    "block": {
+     "length": 139.9,
+     "width": 50.7,
+     "fill": 0.44,
+     "parts": 7,
+     "area": 3117
+    },
+    "tint": 0,
+    "roofShape": "gabled",
+    "footprint": 376.5809025862377
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "klagenfurt",
+   "point": [
+    14.312699500685904,
+    46.61596573442158
+   ],
+   "info": {
+    "levels": 3,
+    "point": [
+     14.312699500685904,
+     46.61596573442158
+    ],
+    "km": 99,
+    "block": {
+     "length": 158.1,
+     "width": 129.7,
+     "fill": 0.22,
+     "parts": 2,
+     "area": 4609
+    },
+    "tint": 0,
+    "type": "train_station",
+    "roofShape": "hipped",
+    "footprint": 3781.388719481589
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "salzburg",
+   "point": [
+    13.042006264251565,
+    47.81088527073049
+   ],
+   "info": {
+    "levels": 8,
+    "point": [
+     13.042006264251565,
+     47.81088527073049
+    ],
+    "km": 99,
+    "block": {
+     "length": 171.7,
+     "width": 89.1,
+     "fill": 0.26,
+     "parts": 8,
+     "area": 3953
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "hipped",
+    "footprint": 562.5206457933973
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "graz",
+   "point": [
+    15.444986650822655,
+    47.07038327038212
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     15.444986650822655,
+     47.07038327038212
+    ],
+    "km": 99,
+    "block": {
+     "length": 118.4,
+     "width": 79.8,
+     "fill": 0.47,
+     "parts": 8,
+     "area": 4489
+    },
+    "tint": 0,
+    "type": "office",
+    "roofShape": "gabled",
+    "footprint": 305.59082230655804
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "graz",
+   "point": [
+    15.436853924129144,
+    47.06621357622902
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     15.436853924129144,
+     47.06621357622902
+    ],
+    "km": 99,
+    "block": {
+     "length": 92.9,
+     "width": 85.8,
+     "fill": 0.39,
+     "parts": 6,
+     "area": 3118
+    },
+    "tint": 0,
+    "type": "public",
+    "roofShape": "gabled",
+    "footprint": 1670.1502161932904
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "wien",
+   "point": [
+    16.390410238917273,
+    48.20240329940018
+   ],
+   "info": {
+    "height": 27.5,
+    "point": [
+     16.390410238917273,
+     48.20240329940018
+    ],
+    "km": 99,
+    "block": {
+     "length": 98.7,
+     "width": 66,
+     "fill": 0.69,
+     "parts": 7,
+     "area": 4501
+    },
+    "tint": 0,
+    "type": "church",
+    "roofShape": "gabled",
+    "footprint": 1462.3764378396913
+   },
+   "look": "kostel"
+  },
+  {
+   "town": "wels",
+   "point": [
+    14.034784681671812,
+    48.16023297913531
+   ],
+   "info": {
+    "levels": 1,
+    "height": 5,
+    "point": [
+     14.034784681671812,
+     48.16023297913531
+    ],
+    "km": 99,
+    "block": {
+     "length": 58.1,
+     "width": 15,
+     "fill": 0.85,
+     "parts": 1,
+     "area": 742
+    },
+    "tint": 0,
+    "type": "industrial",
+    "footprint": 742.2467091318208
+   },
+   "look": "hala"
+  },
+  {
+   "town": "graz",
+   "point": [
+    15.424271092482808,
+    47.071658106793485
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     15.424271092482808,
+     47.071658106793485
+    ],
+    "km": 99,
+    "block": {
+     "length": 200.7,
+     "width": 75.9,
+     "fill": 0.36,
+     "parts": 10,
+     "area": 5495
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 988.4160403774932
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "wien",
+   "point": [
+    16.361470803772512,
+    48.202311107560995
+   ],
+   "info": {
+    "levels": 7,
+    "point": [
+     16.361470803772512,
+     48.202311107560995
+    ],
+    "km": 99,
+    "block": {
+     "length": 118.1,
+     "width": 68.3,
+     "fill": 0.72,
+     "parts": 8,
+     "area": 5838
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 847.4684645308425
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "wien",
+   "point": [
+    16.388432889828216,
+    48.20100564565416
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     16.388432889828216,
+     48.20100564565416
+    ],
+    "km": 99,
+    "block": {
+     "length": 402.1,
+     "width": 232,
+     "fill": 0.28,
+     "parts": 40,
+     "area": 26349
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 172.2945030729179
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "wels",
+   "point": [
+    14.014580157095516,
+    48.16337906342094
+   ],
+   "info": {
+    "levels": 3,
+    "point": [
+     14.014580157095516,
+     48.16337906342094
+    ],
+    "km": 99,
+    "block": {
+     "length": 28.3,
+     "width": 13.6,
+     "fill": 0.77,
+     "parts": 1,
+     "area": 296
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 296.3892407731978
+   },
+   "look": "povalecny"
+  },
+  {
+   "town": "salzburg",
+   "point": [
+    13.026669591914633,
+    47.80620417272794
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     13.026669591914633,
+     47.80620417272794
+    ],
+    "km": 99,
+    "block": {
+     "length": 48.7,
+     "width": 26.5,
+     "fill": 0.93,
+     "parts": 2,
+     "area": 1193
+    },
+    "tint": 0,
+    "type": "retail",
+    "roofShape": "flat",
+    "footprint": 825.8975539076138
+   },
+   "look": "povalecny"
+  },
+  {
+   "town": "wien",
+   "point": [
+    16.363758886594226,
+    48.198288516672854
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     16.363758886594226,
+     48.198288516672854
+    ],
+    "km": 99,
+    "block": {
+     "length": 109.6,
+     "width": 102.8,
+     "fill": 0.48,
+     "parts": 11,
+     "area": 5463
+    },
+    "tint": 0,
+    "type": "hotel",
+    "footprint": 264.1905283324114
+   },
+   "look": "kancelar"
+  },
+  {
+   "town": "salzburg",
+   "point": [
+    13.048619927021326,
+    47.80682524996154
+   ],
+   "info": {
+    "levels": 3,
+    "point": [
+     13.048619927021326,
+     47.80682524996154
+    ],
+    "km": 99,
+    "block": {
+     "length": 34.3,
+     "width": 19.7,
+     "fill": 0.64,
+     "parts": 2,
+     "area": 432
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 151.70148864927705
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "linz",
+   "point": [
+    14.284994977932248,
+    48.30997721759105
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     14.284994977932248,
+     48.30997721759105
+    ],
+    "km": 99,
+    "block": {
+     "length": 119.4,
+     "width": 41.7,
+     "fill": 0.63,
+     "parts": 1,
+     "area": 3124
+    },
+    "tint": 0,
+    "type": "commercial",
+    "roofShape": "flat",
+    "material": "glass",
+    "footprint": 3123.7069715470443
+   },
+   "look": "kancelar"
+  },
+  {
+   "town": "wels",
+   "point": [
+    14.022572619474186,
+    48.16833325203692
+   ],
+   "info": {
+    "levels": 2,
+    "point": [
+     14.022572619474186,
+     48.16833325203692
+    ],
+    "km": 99,
+    "block": {
+     "length": 60.9,
+     "width": 19.4,
+     "fill": 0.62,
+     "parts": 3,
+     "area": 734
+    },
+    "tint": 0,
+    "footprint": 223.29436209718642
+   },
+   "look": "nizky"
+  },
+  {
+   "town": "wien",
+   "point": [
+    16.374847638289015,
+    48.208317775621914
+   ],
+   "info": {
+    "levels": 3,
+    "height": 17,
+    "point": [
+     16.374847638289015,
+     48.208317775621914
+    ],
+    "km": 99,
+    "block": {
+     "length": 90.1,
+     "width": 30.7,
+     "fill": 0.71,
+     "parts": 6,
+     "area": 1964
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 191.54283876473903
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "wien",
+   "point": [
+    16.374003504006108,
+    48.199550076409786
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     16.374003504006108,
+     48.199550076409786
+    ],
+    "km": 99,
+    "block": {
+     "length": 119.9,
+     "width": 96,
+     "fill": 0.53,
+     "parts": 10,
+     "area": 6105
+    },
+    "tint": 0,
+    "footprint": 409.8178805467023
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "wien",
+   "point": [
+    16.364996941324573,
+    48.16116849734624
+   ],
+   "info": {
+    "levels": 8,
+    "point": [
+     16.364996941324573,
+     48.16116849734624
+    ],
+    "km": 99,
+    "block": {
+     "length": 88,
+     "width": 23.2,
+     "fill": 0.66,
+     "parts": 4,
+     "area": 1335
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 328.8292735944942
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "wien",
+   "point": [
+    16.365490358131687,
+    48.20840465114465
+   ],
+   "info": {
+    "levels": 8,
+    "height": 30,
+    "point": [
+     16.365490358131687,
+     48.20840465114465
+    ],
+    "km": 99,
+    "block": {
+     "length": 250.1,
+     "width": 140.7,
+     "fill": 0.55,
+     "parts": 9,
+     "area": 19398
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 654.6159666543599
+   },
+   "look": "povalecny"
+  },
+  {
+   "town": "linz",
+   "point": [
+    14.28397143147231,
+    48.31776688291535
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     14.28397143147231,
+     48.31776688291535
+    ],
+    "km": 99,
+    "block": {
+     "length": 62.8,
+     "width": 27.7,
+     "fill": 0.65,
+     "parts": 2,
+     "area": 1121
+    },
+    "tint": 0,
+    "type": "office",
+    "roofShape": "flat",
+    "footprint": 503.00419653057503
+   },
+   "look": "kancelar"
+  },
+  {
+   "town": "wien",
+   "point": [
+    16.37976884773003,
+    48.2011851944074
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     16.37976884773003,
+     48.2011851944074
+    ],
+    "km": 99,
+    "block": {
+     "length": 82.4,
+     "width": 34.1,
+     "fill": 0.92,
+     "parts": 4,
+     "area": 2584
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 404.04687107370364
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "wien",
+   "point": [
+    16.37724995584366,
+    48.21962649246117
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     16.37724995584366,
+     48.21962649246117
+    ],
+    "km": 99,
+    "block": {
+     "length": 70.8,
+     "width": 46.9,
+     "fill": 0.48,
+     "parts": 6,
+     "area": 1603
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 362.9141707246313
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "salzburg",
+   "point": [
+    13.061437243608525,
+    47.799454737568205
+   ],
+   "info": {
+    "levels": 2,
+    "point": [
+     13.061437243608525,
+     47.799454737568205
+    ],
+    "km": 99,
+    "block": {
+     "length": 60.1,
+     "width": 27.1,
+     "fill": 0.4,
+     "parts": 5,
+     "area": 645
+    },
+    "tint": 0,
+    "type": "house",
+    "roofShape": "flat",
+    "footprint": 136.4280243905717
+   },
+   "look": "nizky"
+  },
+  {
+   "town": "salzburg",
+   "point": [
+    13.049772386510138,
+    47.79878327143118
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     13.049772386510138,
+     47.79878327143118
+    ],
+    "km": 99,
+    "block": {
+     "length": 92.5,
+     "width": 68.5,
+     "fill": 0.51,
+     "parts": 10,
+     "area": 3216
+    },
+    "tint": 0,
+    "type": "public",
+    "roofShape": "gabled",
+    "footprint": 313.7876638094093
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "wien",
+   "point": [
+    16.320423791486476,
+    48.18385314992656
+   ],
+   "info": {
+    "levels": 3,
+    "point": [
+     16.320423791486476,
+     48.18385314992656
+    ],
+    "km": 99,
+    "block": {
+     "length": 123.1,
+     "width": 114.4,
+     "fill": 0.34,
+     "parts": 11,
+     "area": 4784
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 270.8370492886952
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "graz",
+   "point": [
+    15.427207923862554,
+    47.0662968738104
+   ],
+   "info": {
+    "levels": 11,
+    "point": [
+     15.427207923862554,
+     47.0662968738104
+    ],
+    "km": 99,
+    "block": {
+     "length": 197.5,
+     "width": 111,
+     "fill": 0.25,
+     "parts": 17,
+     "area": 5373
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 455.2615387448777
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "linz",
+   "point": [
+    14.284119627610037,
+    48.30980122502228
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     14.284119627610037,
+     48.30980122502228
+    ],
+    "km": 99,
+    "block": {
+     "length": 119.4,
+     "width": 41.7,
+     "fill": 0.63,
+     "parts": 1,
+     "area": 3124
+    },
+    "tint": 0,
+    "type": "commercial",
+    "roofShape": "flat",
+    "material": "glass",
+    "footprint": 3123.776906272199
+   },
+   "look": "kancelar"
+  },
+  {
+   "town": "innsbruck",
+   "point": [
+    11.392323732409709,
+    47.271616849404694
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     11.392323732409709,
+     47.271616849404694
+    ],
+    "km": 99,
+    "block": {
+     "length": 60.3,
+     "width": 25.5,
+     "fill": 0.72,
+     "parts": 6,
+     "area": 1102
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 111.50065287499501
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "linz",
+   "point": [
+    14.276598965453129,
+    48.307401052591246
+   ],
+   "info": {
+    "levels": 3,
+    "point": [
+     14.276598965453129,
+     48.307401052591246
+    ],
+    "km": 99,
+    "block": {
+     "length": 24.8,
+     "width": 18.8,
+     "fill": 0.54,
+     "parts": 3,
+     "area": 251
+    },
+    "tint": 0,
+    "type": "house",
+    "roofShape": "gabled",
+    "footprint": 74.09409202949612
+   },
+   "look": "nizky"
+  },
+  {
+   "town": "linz",
+   "point": [
+    14.299386290373569,
+    48.31397727217431
+   ],
+   "info": {
+    "levels": 3,
+    "point": [
+     14.299386290373569,
+     48.31397727217431
+    ],
+    "km": 99,
+    "block": {
+     "length": 111.5,
+     "width": 49.1,
+     "fill": 0.73,
+     "parts": 1,
+     "area": 3977
+    },
+    "tint": 0,
+    "type": "office",
+    "roofShape": "flat",
+    "material": "glass",
+    "footprint": 3470.5061945502193
+   },
+   "look": "kancelar"
+  },
+  {
+   "town": "klagenfurt",
+   "point": [
+    14.298401280044576,
+    46.62534162711097
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     14.298401280044576,
+     46.62534162711097
+    ],
+    "km": 99,
+    "block": {
+     "length": 89.2,
+     "width": 24.2,
+     "fill": 0.84,
+     "parts": 1,
+     "area": 1821
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "flat",
+    "footprint": 1820.8640025018
+   },
+   "look": "funkce"
+  },
+  {
+   "town": "wien",
+   "point": [
+    16.355136881976044,
+    48.20733394226031
+   ],
+   "info": {
+    "levels": 3,
+    "height": 22,
+    "point": [
+     16.355136881976044,
+     48.20733394226031
+    ],
+    "km": 99,
+    "block": {
+     "length": 240.2,
+     "width": 248.5,
+     "fill": 0.3,
+     "parts": 29,
+     "area": 18132
+    },
+    "tint": 0,
+    "roofShape": "hipped",
+    "footprint": 2687.0259920334784
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "wien",
+   "point": [
+    16.363895720637295,
+    48.219184208539765
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     16.363895720637295,
+     48.219184208539765
+    ],
+    "km": 99,
+    "block": {
+     "length": 184.2,
+     "width": 101.4,
+     "fill": 0.6,
+     "parts": 10,
+     "area": 11246
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 1434.000192156844
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "klagenfurt",
+   "point": [
+    14.297241702425875,
+    46.618343789987826
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     14.297241702425875,
+     46.618343789987826
+    ],
+    "km": 99,
+    "block": {
+     "length": 38.3,
+     "width": 11.5,
+     "fill": 0.79,
+     "parts": 1,
+     "area": 350
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "hipped",
+    "footprint": 350.01017051791496
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "wien",
+   "point": [
+    16.267669721508412,
+    48.19375048720151
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     16.267669721508412,
+     48.19375048720151
+    ],
+    "km": 99,
+    "block": {
+     "length": 61.8,
+     "width": 25.8,
+     "fill": 0.52,
+     "parts": 1,
+     "area": 823
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 823.4076493371589
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "wien",
+   "point": [
+    16.311966952168078,
+    48.19545906363657
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     16.311966952168078,
+     48.19545906363657
+    ],
+    "km": 99,
+    "block": {
+     "length": 94.8,
+     "width": 96,
+     "fill": 0.53,
+     "parts": 13,
+     "area": 4818
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 539.9122441548661
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "graz",
+   "point": [
+    15.435894687958148,
+    47.07112123675176
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     15.435894687958148,
+     47.07112123675176
+    ],
+    "km": 99,
+    "block": {
+     "length": 189.5,
+     "width": 152,
+     "fill": 0.54,
+     "parts": 15,
+     "area": 15596
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "gabled",
+    "start": 1845,
+    "footprint": 483.74718428519736
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "linz",
+   "point": [
+    14.299774846907416,
+    48.31432385928335
+   ],
+   "info": {
+    "levels": 3,
+    "point": [
+     14.299774846907416,
+     48.31432385928335
+    ],
+    "km": 99,
+    "block": {
+     "length": 111.5,
+     "width": 49.1,
+     "fill": 0.73,
+     "parts": 1,
+     "area": 3977
+    },
+    "tint": 0,
+    "type": "office",
+    "roofShape": "flat",
+    "material": "glass",
+    "footprint": 3470.5479104332817
+   },
+   "look": "kancelar"
+  },
+  {
+   "town": "innsbruck",
+   "point": [
+    11.397723673759371,
+    47.260051164413724
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     11.397723673759371,
+     47.260051164413724
+    ],
+    "km": 99,
+    "block": {
+     "length": 153,
+     "width": 124.6,
+     "fill": 0.31,
+     "parts": 19,
+     "area": 5979
+    },
+    "tint": 0,
+    "type": "house",
+    "footprint": 841.2171523386921
+   },
+   "look": "nizky"
+  },
+  {
+   "town": "wien",
+   "point": [
+    16.3902972486386,
+    48.20520933945379
+   ],
+   "info": {
+    "levels": 6,
+    "point": [
+     16.3902972486386,
+     48.20520933945379
+    ],
+    "km": 99,
+    "block": {
+     "length": 73.1,
+     "width": 80.1,
+     "fill": 0.44,
+     "parts": 5,
+     "area": 2555
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 743.2309411577266
+   },
+   "look": "povalecny"
+  },
+  {
+   "town": "graz",
+   "point": [
+    15.42623003465104,
+    47.07034072001204
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     15.42623003465104,
+     47.07034072001204
+    ],
+    "km": 99,
+    "block": {
+     "length": 172.7,
+     "width": 174.4,
+     "fill": 0.37,
+     "parts": 9,
+     "area": 11179
+    },
+    "tint": 0,
+    "type": "hospital",
+    "roofShape": "flat",
+    "start": 2025,
+    "footprint": 2417.4748644733645
+   },
+   "look": "kancelar"
+  },
+  {
+   "town": "graz",
+   "point": [
+    15.431910549091132,
+    47.08772095309893
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     15.431910549091132,
+     47.08772095309893
+    ],
+    "km": 99,
+    "block": {
+     "length": 22.7,
+     "width": 13.7,
+     "fill": 0.84,
+     "parts": 1,
+     "area": 262
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "gabled",
+    "footprint": 261.9123827185575
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "wien",
+   "point": [
+    16.36853432605978,
+    48.208261800137564
+   ],
+   "info": {
+    "height": 30,
+    "point": [
+     16.36853432605978,
+     48.208261800137564
+    ],
+    "km": 99,
+    "block": {
+     "length": 176,
+     "width": 48.7,
+     "fill": 0.8,
+     "parts": 9,
+     "area": 6880
+    },
+    "tint": 0,
+    "footprint": 1176.3579036727829
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "innsbruck",
+   "point": [
+    11.392961785459725,
+    47.27510114806658
+   ],
+   "info": {
+    "levels": 5,
+    "point": [
+     11.392961785459725,
+     47.27510114806658
+    ],
+    "km": 99,
+    "block": {
+     "length": 53.6,
+     "width": 49.8,
+     "fill": 0.49,
+     "parts": 4,
+     "area": 1300
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 558.7019041405156
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "linz",
+   "point": [
+    14.29206857619131,
+    48.297266661575144
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     14.29206857619131,
+     48.297266661575144
+    ],
+    "km": 99,
+    "block": {
+     "length": 160.9,
+     "width": 116.6,
+     "fill": 0.41,
+     "parts": 28,
+     "area": 7725
+    },
+    "tint": 0,
+    "type": "apartments",
+    "roofShape": "gabled",
+    "footprint": 347.20591009027964
+   },
+   "look": "sikma"
+  },
+  {
+   "town": "salzburg",
+   "point": [
+    13.05188494095454,
+    47.791380147937595
+   ],
+   "info": {
+    "levels": 4,
+    "point": [
+     13.05188494095454,
+     47.791380147937595
+    ],
+    "km": 99,
+    "block": {
+     "length": 17.6,
+     "width": 13.1,
+     "fill": 0.85,
+     "parts": 1,
+     "area": 196
+    },
+    "tint": 0,
+    "type": "detached",
+    "footprint": 196.40878674500664
+   },
+   "look": "nizky"
+  },
+  {
+   "town": "linz",
+   "point": [
+    14.28863913028361,
+    48.307763385314324
+   ],
+   "info": {
+    "levels": 3,
+    "point": [
+     14.28863913028361,
+     48.307763385314324
+    ],
+    "km": 99,
+    "block": {
+     "length": 100.6,
+     "width": 24.4,
+     "fill": 0.72,
+     "parts": 6,
+     "area": 1758
+    },
+    "tint": 0,
+    "type": "apartments",
+    "footprint": 361.0438876635528
+   },
+   "look": "sikma"
+  }
+ ]
+}
