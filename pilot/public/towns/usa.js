@@ -168,7 +168,7 @@ export function carveParking(runs, block, tags = {}, wayAlong = true, { bySide =
     const ib = Number(a.TOTALTRAVELLANESINBOUND) || 0, ob = Number(a.TOTALTRAVELLANESOUTBOUND) || 0, fewer = bySide && ib && ob && ib !== ob ? (ib < ob ? left : right) : null;
     sides = [osmAt || fewer || right];
   }
-  const fit = fixOn("ddotfit") && sides.length >= 2, saved = fit && runs.map((r) => ({ ...r }));
+  const fit = !off("ddotfit") && sides.length >= 2, saved = fit && runs.map((r) => ({ ...r }));
   const out = [];
   for (const s of sides) { const x = kerbStrip(s === "lo" ? runs[lo] : runs[hi], s, w, 704); if (x) out.push(x); }
   if (fit && out.length < sides.length) { runs.splice(0, runs.length, ...saved); return null; }
