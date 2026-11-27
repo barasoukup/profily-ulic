@@ -4,7 +4,7 @@ import { bedOrtho } from "./ortho.js";
 import { laneImage, applyLanes, SK_ORTHO, AT_ORTHO, CH_ORTHO, NL_ORTHO, BE_ORTHO, LU_ORTHO, PL_ORTHO, FR_ORTHO, ES_ORTHO, PT_ORTHO, PT_MAINLAND, ES_NOT_PNOA, CY_ORTHO, MT_ORTHO, IT_ORTHO, EE_ORTHO, SI_ORTHO, FI_ORTHO, US_ORTHO, CA_ORTHO, DK_ORTHO, DE_ORTHO, deWmsUrl, landsAt, landAt, orthoHereAt } from "./lanes-ortho.js";
 import { dkToken } from "./keys.js";
 import { boxed as boxedPlace, within as withinPlace } from "./places.js";
-import { orthoOsmPolys, besidePassport, trimToEnds, estimateNote, outerGapsByImage, P as ORTHO_P } from "./ortho-osm.js";
+import { orthoOsmPolys, besidePassport, trimToEnds, estimateNote, outerGapsByImage, deckSpans, bridgeRailings, P as ORTHO_P } from "./ortho-osm.js";
 import { LOOKS as HOUSE_LOOKS } from "./house-looks.js";
 // The gabled house looks with the gable's outline (house-looks.js; Bára to approve it, 23. 11. 2026): ?stit=1.
 if (new URLSearchParams(location.search).get("stit") === "1") HOUSE_LOOKS.gables = true;
@@ -682,6 +682,9 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wa
     // read on the orthophoto near where OSM expects it, sidewalks to the OSM buildings (ortho-osm.js; Bára 15. 11.
     // 2026: better than OSM alone), all an estimate. The map's own surfaces, where there are any, stay behind it.
     let orthoOsm = null, aiPark = null, lastPolys = polys, lastEnds = null;
+    // The deck of the bridge the street is on, where OSM maps it (ortho-osm.js deckSpans): the estimate ends at its
+    // edge, a railing is drawn there (bridgeRailings below).
+    const decks = deckSpans(osm.elements, frame, dir, near.way);
     // The model's reading of the orthophoto across the cut (ai-kerbs.js aiCut). The first time the library and the model
     // come (about 7 MB), with their progress; past AI_WAIT the cut is drawn without it and the download goes on for the
     // next cut (Bára 19. 11. 2026).
@@ -711,7 +714,7 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wa
       // the composition right in all four (Prague +13 and +12 m, Brno +2 and +18 m), the sidewalk metre by metre −1 pp
       // (sidewalks drawn up to the found house over green, a parking lane or a wrong kerb: the estimate's, not RÚIAN's).
       const houses = country.estimateBuildings === "ruian" && !ORTHO_P.off?.has("ruiandomy") ? await ruianOutlines(bbox).catch((err) => { console.warn("RÚIAN", err.message); return []; }) : [];
-      const fb = orthoOsmPolys({ ai, aiSurf, osm: withBuildings(osm, houses, "first"), frame, dir, way: near.way, st: laneImg?.st, mapRuns: result.runs || [], edges: k.status === "fulfilled" ? k.value?.edges || [] : [], widths: k.status === "fulfilled" ? k.value?.widths || [] : [], areas: k.status === "fulfilled" ? k.value?.areas || [] : [], symbols: k.status === "fulfilled" ? k.value?.symbols || [] : [] });
+      const fb = orthoOsmPolys({ ai, aiSurf, decks, osm: withBuildings(osm, houses, "first"), frame, dir, way: near.way, st: laneImg?.st, mapRuns: result.runs || [], edges: k.status === "fulfilled" ? k.value?.edges || [] : [], widths: k.status === "fulfilled" ? k.value?.widths || [] : [], areas: k.status === "fulfilled" ? k.value?.areas || [] : [], symbols: k.status === "fulfilled" ? k.value?.symbols || [] : [] });
       if (fb) {
         // A field or a forest of the map (100, 200) where the estimate finds houses and sidewalks is a map not yet
         // redrawn (a new estate: Devětsilová in Prague, MTVU's farmland): it goes behind the estimate (?off=staramapa).
@@ -820,6 +823,9 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wa
       }
     }
     // The signs of the state (null: the Czech ones, countries/default.js).
+    // A railing at the bridge's edge (Bára 26. 11. 2026), in the Stav and so in the Návrh made from it (removable there
+    // as any item); ?off=zabradli: none.
+    bridgeRailings(result, near.way, decks, lastEnds);
     deriveSigns(result, signTags, { inZps, alongWay, country: country.code });
     keepDrawable(result, country.code);
     const name = near.way.tags.name || near.way.tags.ref || "";

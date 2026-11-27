@@ -944,7 +944,10 @@ Připojená po srovnání s celostátní DTM ČÚZK nad ortofotem (`evaluation/<
     - **domy:** budovy OSM (čtené i ±1 a ±2 m podél ulice; dům jen vedle řezu se dokreslí přes řez). Mají přednost
       před zelenými plochami OSM (trávník, park, les), ty před chodníky; voda, zahrádky a hřbitovy profil ukončí.
       Ulice na mostě (`bridge` a úroveň nad zemí) leží nad vodou a zelení OSM: ty se pod ní neberou a ulice končí
-      za krajním chodníkem jako u map povrchů (`evaluation/bridge-water/`, `?off=mostvoda` jako dřív).
+      za krajním chodníkem jako u map povrchů (`evaluation/bridge-water/`, `?off=mostvoda` jako dřív). Kde OSM
+      nakreslí mostovku (`man_made=bridge`, v dlaždicích od 27. 11. 2026), končí ulice na její hraně (aspoň 1 m za
+      obrubou) a voda mezi dvěma mostovkami zůstane (`evaluation/bridge-water/edge/`, `?off=mostdeska`). Na okraji
+      ulice na mostě se kreslí zábradlí (`?off=zabradli`).
       **Chodník** vede od obruby k domu, nejvýš 6 m. Zbytek, a s `sidewalk=no` celý prostor, je zeleň, kde je
       ortofoto převážně zelené (podíl ≥ 0,1), jinak plocha do 12 m, jinak tam profil končí. Bez domu je chodník jen
       podle OSM (`sidewalk*`, šířka `sidewalk:width` nebo 2,5 m) a za ním profil končí;

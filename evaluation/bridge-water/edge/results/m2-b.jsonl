@@ -1,0 +1,12 @@
+{"n": 1, "A": 3.2, "B": 2.3, "jistota": "stredni", "why": "pásy při okrajích nadjezdu za čarou"}
+{"n": 2, "A": 5.0, "B": 5.0, "jistota": "nizka", "why": "široké chodníky u domů, ortofoto nejasné"}
+{"n": 3, "A": 0.5, "B": 1.2, "jistota": "nizka", "why": "dva mosty, úzké okraje se zábradlím"}
+{"n": 4, "A": 0.8, "B": 2.0, "jistota": "nizka", "why": "vpravo pás ~2 m, vlevo jen úzký okraj"}
+{"n": 5, "A": 1.2, "B": 1.2, "jistota": "nizka", "why": "úzké okraje nadjezdu s zábradlím"}
+{"n": 6, "A": 0, "B": 1.2, "jistota": "nizka", "why": "ortofoto prázdné; z fotky u tunelu vpravo úzký chodník"}
+{"n": 7, "A": 1.2, "B": 1.5, "jistota": "nizka", "why": "úzké pásy při okrajích mostu"}
+{"n": 8, "A": 2.5, "B": 1.8, "jistota": "stredni", "why": "chodníky na mostě přes vodu, vpravo vedle stání"}
+{"n": 9, "A": 1.0, "B": 1.8, "jistota": "nizka", "why": "úzký okraj vlevo, vpravo širší pás"}
+{"n": 10, "A": 1.5, "B": 1.2, "jistota": "nizka", "why": "ortofoto prázdné; odhad z fotky, chodníky se zábradlím"}
+{"n": 11, "A": 2.0, "B": 2.3, "jistota": "stredni", "why": "chodníky na obou okrajích mostu"}
+{"n": 12, "A": 2.3, "B": 2.4, "jistota": "stredni", "why": "chodníky na obou okrajích mostu, fotka potvrzuje"}

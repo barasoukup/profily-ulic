@@ -1,0 +1,12 @@
+{"n": 1, "A": 2.2, "B": 2.3, "jistota": "stredni", "why": "chodniky po obou stranách mostu, zábradlí, na B vedle stínu jiného mostu"}
+{"n": 2, "A": 0, "B": null, "jistota": "nizka", "why": "vlevo jen obruby a svodidla; vpravo úzký samostatný pás (rampa/lávka?), nejasné"}
+{"n": 3, "A": 1.8, "B": 2.0, "jistota": "stredni", "why": "světlé pásy vedle vozovky po obou stranách mostu"}
+{"n": 4, "A": 0, "B": null, "jistota": "nizka", "why": "rampa a okružní křižovatka, chodník nerozeznatelný, vlevo zeď a svodidla"}
+{"n": 5, "A": 2.3, "B": 7.0, "jistota": "nizka", "why": "vlevo úzký světlý pás (možná krajnice), vpravo široká samostatná lávka za zábradlím"}
+{"n": 6, "A": 1.8, "B": 3.2, "jistota": "stredni", "why": "chodníky po obou stranách, vpravo širší s dlažbou"}
+{"n": 7, "A": 1.2, "B": 1.2, "jistota": "nizka", "why": "úzké pásy za obrubou, na fotce spíš svodidla, chodník sporný"}
+{"n": 8, "A": null, "B": null, "jistota": "nizka", "why": "ortofoto prázdné (bílé)"}
+{"n": 9, "A": 2.7, "B": 2.8, "jistota": "stredni", "why": "chodníky po obou stranách mostu přes vodu, zábradlí"}
+{"n": 10, "A": 0, "B": 0, "jistota": "nizka", "why": "vozovka pod mostem, po stranách zeleň a ostrůvky, bez chodníku"}
+{"n": 11, "A": 1.8, "B": 1.6, "jistota": "stredni", "why": "chodníky na mostě se zábradlím a lampami"}
+{"n": 12, "A": 0, "B": null, "jistota": "nizka", "why": "vlevo šrafy a zeď, vpravo stín a ostrůvek, nejasné"}

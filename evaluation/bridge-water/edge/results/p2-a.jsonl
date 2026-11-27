@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "Y", "jistota": "stredni", "why": "Mostovka ~11 m s úzkými chodníky ~2 m; X má vpravo chodník 6 m, který zasahuje do domů mimo most."}
+{"n": 2, "verdict": "X", "jistota": "nizka", "why": "Vlevo od pruhů je ještě lem/obruba ~2 m, kterou má jen X; zbytek stejný."}
+{"n": 3, "verdict": "Y", "jistota": "nizka", "why": "Vlevo je nepojížděný okraj mostu ~2,7 m, který má jen Y."}
+{"n": 4, "verdict": "stejne", "jistota": "nizka", "why": "Stejné složení, šířky stezek se liší o 0,25 m, nerozhodnutelné."}
+{"n": 5, "verdict": "stejne", "jistota": "nizka", "why": "Stejné složení a pruhy; rozdíly jen v šířce krajních stezek 0,3-0,5 m."}
+{"n": 6, "verdict": "stejne", "jistota": "stredni", "why": "Uvnitř okraje mostu jsou shodné; Y jen přidává zeleň za okrajem mostu, která se nehodnotí."}
+{"n": 7, "verdict": "X", "jistota": "stredni", "why": "Mostovka ~10,3 m, pravý lem asi 1,3 m; X (9,96, chodník 1,38) sedí lépe než Y (11,1)."}
+{"n": 8, "verdict": "Y", "jistota": "nizka", "why": "Vpravo je zřetelný široký chodník (~2 m) jako u Y; X tam má jen 0,85 m."}
+{"n": 9, "verdict": "X", "jistota": "nizka", "why": "Levý lem vychází kolem 2 m, X (2,05) blíž než Y (2,5); zbytek shodný."}
+{"n": 10, "verdict": "Y", "jistota": "nizka", "why": "Ulice (vozovka se 3 pruhy) končí vlevo u opěry podjezdu; X přidává 12 m plochy a chodník pod mostem, které k profilu ulice nepatří."}

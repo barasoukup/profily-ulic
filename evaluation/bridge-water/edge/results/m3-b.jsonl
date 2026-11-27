@@ -1,0 +1,12 @@
+{"n": 1, "A": 2.4, "B": 2.5, "jistota": "stredni", "why": "světlé pruhy po stranách vozovky mostu, B částečně ve stínu"}
+{"n": 2, "A": 0, "B": 0, "jistota": "nizka", "why": "rampa a nájezd, jen úzká římsa/zábradlí, chodník nevidět"}
+{"n": 3, "A": 1.9, "B": 2.0, "jistota": "vysoka", "why": "jasné chodníky za svodidly po obou stranách mostu"}
+{"n": 4, "A": null, "B": null, "jistota": "nizka", "why": "křižovatka, ortofoto nezřetelné, nejasné hranice chodníků"}
+{"n": 5, "A": 2.4, "B": 7.5, "jistota": "nizka", "why": "A pruh vlevo od vozovky; B široká samostatná paluba za zábradlím (pěší/cyklo)"}
+{"n": 6, "A": 2.3, "B": 3.0, "jistota": "stredni", "why": "pruhy mezi okrajovou čárou a okrajem mostu"}
+{"n": 7, "A": 1.7, "B": 1.4, "jistota": "stredni", "why": "úzké římsy po stranách mostu; lávka vpravo je mimo řez"}
+{"n": 8, "A": null, "B": null, "jistota": "nizka", "why": "ortofoto prázdné (bílý obrázek)"}
+{"n": 9, "A": 3.0, "B": 3.0, "jistota": "stredni", "why": "světlé chodníky po obou stranách mostu přes vodu"}
+{"n": 10, "A": 0, "B": 0, "jistota": "nizka", "why": "řez vede zelení a vozovkou bez chodníku"}
+{"n": 11, "A": 1.7, "B": 1.2, "jistota": "nizka", "why": "úzké chodníky se sloupy osvětlení na mostě"}
+{"n": 12, "A": 2.0, "B": 1.5, "jistota": "nizka", "why": "složitá křižovatka, odhad podle světlých pruhů"}

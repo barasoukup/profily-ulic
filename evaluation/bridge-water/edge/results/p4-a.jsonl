@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "Y", "jistota": "nizka", "why": "mostovka asi 18,5 m, Y (18,4 m) je blíž než X (18,9 m); složení stejné"}
+{"n": 2, "verdict": "Y", "jistota": "nizka", "why": "mostovka asi 11 m, vlevo je okraj kolem 1,5 m, který Y má a X ne"}
+{"n": 3, "verdict": "Y", "jistota": "stredni", "why": "dvě čtyřpruhové mostovky, okraje asi 2 m; Y je blíž než X"}
+{"n": 4, "verdict": "Y", "jistota": "vysoka", "why": "mostovka asi 10 m se dvěma pruhy a úzkými okraji; X má chodník 6 m, který tam není"}
+{"n": 5, "verdict": "stejne", "jistota": "nizka", "why": "skutečně dvě mostovky po dvou pruzích s tramvají uprostřed (asi 19 m); oba profily to neobsahují"}
+{"n": 6, "verdict": "stejne", "jistota": "nizka", "why": "třípruhové mostovky se středním pásem; liší se jen o 0,25 m na B"}
+{"n": 7, "verdict": "Y", "jistota": "nizka", "why": "levý okraj mostu asi 1,2 m, Y 1,65 m, X 0,45 m; celá mostovka asi 8,7 m"}
+{"n": 8, "verdict": "X", "jistota": "nizka", "why": "levý chodník asi 3 m, X 2,2 m je blíž než Y 1,77 m; oba mají málo pruhů pravé vozovky"}
+{"n": 9, "verdict": "Y", "jistota": "nizka", "why": "vpravo chodník asi 7 m až k fasádě, Y má 9 m, X jen 2,9 m"}
+{"n": 10, "verdict": "stejne", "jistota": "nizka", "why": "složitá křižovatka s šrafami, oba profily stejné až na poslední díl, který nesedí ani u jednoho"}

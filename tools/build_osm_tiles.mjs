@@ -9,6 +9,7 @@ import fs from "node:fs";
 import path from "node:path";
 import readline from "node:readline";
 import { TILE } from "../pilot/public/osmtile.js";
+import { clipRing, ringArea, enc, tilePieces, BRIDGE_AREA, bridgeTags } from "./osm_areas.mjs";
 
 export { TILE };
 const [outDir, ...sources] = process.argv.slice(2);
@@ -48,35 +49,8 @@ const hasLevels = (t) => t["building:levels"] !== undefined || t.height !== unde
 const WATER = (t) => t.natural === "water" || t.water !== undefined || ["reservoir", "basin", "allotments", "cemetery"].includes(t.landuse) || t.waterway === "riverbank";
 const GREEN = (t) => ["grass", "meadow", "village_green", "flowerbed", "forest", "orchard", "recreation_ground"].includes(t.landuse) || ["park", "garden"].includes(t.leisure) || ["grass", "grassland", "scrub", "wood", "heath"].includes(t.natural);
 const roadTiles = new Set();
-const ringArea = (r) => { let a = 0; for (let i = 0; i + 1 < r.length; i++) a += r[i][0] * r[i + 1][1] - r[i + 1][0] * r[i][1]; return a / 2; };
-// A ring cut to a box (Sutherland–Hodgman): the box's edges close it where it leaves; null when nothing is left.
-function clipRing(ring, [x0, y0, x1, y1]) {
-  let pts = ring.slice(0, -1);
-  const edges = [[(p) => p[0] >= x0, (a, b) => [x0, a[1] + ((x0 - a[0]) * (b[1] - a[1])) / (b[0] - a[0])]], [(p) => p[0] <= x1, (a, b) => [x1, a[1] + ((x1 - a[0]) * (b[1] - a[1])) / (b[0] - a[0])]],
-    [(p) => p[1] >= y0, (a, b) => [a[0] + ((y0 - a[1]) * (b[0] - a[0])) / (b[1] - a[1]), y0]], [(p) => p[1] <= y1, (a, b) => [a[0] + ((y1 - a[1]) * (b[0] - a[0])) / (b[1] - a[1]), y1]]];
-  for (const [inside, cut] of edges) {
-    const out = [];
-    for (let i = 0; i < pts.length; i++) {
-      const a = pts[(i + pts.length - 1) % pts.length], b = pts[i];
-      if (inside(b)) { if (!inside(a)) out.push(cut(a, b)); out.push(b); } else if (inside(a)) out.push(cut(a, b));
-    }
-    pts = out;
-    if (pts.length < 3) return null;
-  }
-  return [...pts, pts[0]];
-}
 const dropWay = (t, coords) => DROP_HW.has(t.highway) || (PATHS.has(t.highway) && !(t.highway === "cycleway") && !nearRoad(coords));
 
-const enc = (pts, q) => {
-  const g = [];
-  let px = 0, py = 0;
-  for (const [lon, lat] of pts) {
-    const x = Math.round(lon * q), y = Math.round(lat * q);
-    g.push(x - px, y - py);
-    px = x; py = y;
-  }
-  return g;
-};
 const tileOf = (x, y) => [Math.floor(x / TILE), Math.floor(y / TILE)];
 // Tiles touched by a segment's bounding box.
 function segTiles(a, b, keys) {
@@ -131,7 +105,7 @@ for (const src of sources) {
     const f = JSON.parse(line);
     const p = f.properties;
     const all = parseOtherTags(p.other_tags);
-    for (const k of ["name", "highway", "railway", "amenity", "barrier", "leisure", "building", "landuse", "natural"]) if (p[k]) all[k] = p[k];
+    for (const k of ["name", "highway", "railway", "amenity", "barrier", "leisure", "building", "landuse", "natural", "man_made"]) if (p[k]) all[k] = p[k];
     const g = f.geometry;
     const line_ = g.type === "LineString" || g.type === "MultiLineString";
     if (line_ && all.highway && dropWay(all, g.type === "LineString" ? g.coordinates : g.coordinates.flat())) continue;
@@ -140,6 +114,13 @@ for (const src of sources) {
     // Buildings under the ground (a garage under a yard: layer < 0, location=underground) are no facades.
     if (building && (Number(all.layer) < 0 || Number(all.level) < 0 || ["underground", "underwater"].includes(all.location) || all.building === "underground")) continue;
     const green = !building && (g.type === "Polygon" || g.type === "MultiPolygon") && (GREEN(all) || WATER(all));
+    // The deck of a bridge (Bára 26. 11. 2026: a street on a bridge ends at its edge): cut by the road tiles like green.
+    if (!building && !green && (g.type === "Polygon" || g.type === "MultiPolygon") && BRIDGE_AREA(all)) {
+      const id = Number(p.osm_way_id || p.osm_id);
+      for (const poly of g.type === "Polygon" ? [g.coordinates] : g.coordinates) for (const [key, el] of tilePieces(poly, id, bridgeTags(all), (k) => roadTiles.has(k))) put(key, JSON.stringify(el));
+      n++;
+      continue;
+    }
     const tags = Object.fromEntries(Object.entries(all).filter(([k]) => (building ? BUILDING_KEYS.has(k) : KEEP.test(k))));
     if (g.type === "Point") {
       const key = tileOf(...g.coordinates).join("_");

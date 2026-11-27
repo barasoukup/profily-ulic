@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "X", "jistota": "nizka", "why": "mostovka asi 9,5 m, X (10,6 m) je blíž než Y (11,6 m); složení stejné"}
+{"n": 2, "verdict": "X", "jistota": "nizka", "why": "pod B je voda, zeleň u Y nesedí; dva pruhy shodně"}
+{"n": 3, "verdict": "nejde", "jistota": "vysoka", "why": "ortofoto je prázdné, fotka je odjinud"}
+{"n": 4, "verdict": "X", "jistota": "vysoka", "why": "dvě oddělené mostovky se dvěma pruhy a vodou mezi nimi; Y má dělicí pás a chodníky, které tam nejsou"}
+{"n": 5, "verdict": "stejne", "jistota": "nizka", "why": "skutečně dvě mostovky po dvou pruzích se středním pásem (asi 19 m); oba profily mají jen dva pruhy"}
+{"n": 6, "verdict": "X", "jistota": "nizka", "why": "mostovka asi 9 m se dvěma pruhy; X je o málo užší a blíž"}
+{"n": 7, "verdict": "nejde", "jistota": "vysoka", "why": "ortofoto prázdné, fotka je tunel odjinud"}
+{"n": 8, "verdict": "Y", "jistota": "nizka", "why": "mostovka asi 27 m včetně pravého chodníku, Y má navíc 4,1 m na B; oba mají méně pruhů než skutečnost"}
+{"n": 9, "verdict": "X", "jistota": "stredni", "why": "mostovka přes vodu asi 16,8 m, X 16,9 m, Y 15,5 m"}
+{"n": 10, "verdict": "Y", "jistota": "nizka", "why": "levý chodník na mostě asi 1,9 m, Y 1,94 m, X 1,51 m; zbytek stejný"}
