@@ -9,7 +9,7 @@ import { PLATES, signFile, plateFile, signLabel, signDir, SPEED_TEMPLATES } from
 import { t as tr, num } from "./i18n.js";
 import { LOOKS, houseHash } from "./house-looks.js";
 import { AMERICA, AMERICA_PALETTES } from "./houses-america-spec.js";
-import { floorsFromHeight, floorsHOff } from "./floors.js";
+import { floorsFromHeight, floorsOsmOn } from "./floors.js";
 
 const NS = "http://www.w3.org/2000/svg";
 const GROUND = 760; // roadway surface
@@ -698,9 +698,9 @@ function sprite(g, name, cx, bottom, flip = false, anchor = null) {
   if (flip) img.setAttribute("transform", `translate(${2 * cx} 0) scale(-1 1)`);
 }
 
-// Floors of a building known only by its height (OSM height without building:levels): floors.js, the one rule for every
-// height (roof, a hall gets none); ?off=floorsh: the old height / FLOOR.
-const heightFloors = (info, h) => (!h ? null : floorsHOff() ? Math.round(h / FLOOR) : floorsFromHeight(h, { type: info?.type, roofShape: info?.roofShape }) ?? null);
+// Floors of a building known only by its height (OSM height without building:levels): floors.js (?floorsosm=1), else the
+// old height / FLOOR.
+const heightFloors = (info, h) => (!h ? null : floorsOsmOn() ? floorsFromHeight(h, { type: info?.type, roofShape: info?.roofShape }) ?? null : Math.round(h / FLOOR));
 
 // Building height in metres: tagged in OSM, else from floors (FLOOR per floor).
 export function buildingHeight(info) {
