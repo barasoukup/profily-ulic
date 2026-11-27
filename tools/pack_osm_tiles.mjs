@@ -10,6 +10,7 @@ import zlib from "node:zlib";
 import crypto from "node:crypto";
 import { TILE } from "../pilot/public/osmtile.js";
 import { MAGIC, VERSION, encodeElement } from "../pilot/public/osmpack.js";
+import { slimmer, RULES } from "./osm_slim.mjs";
 
 export const BLOCK = 32; // tiles a side of a block: 0,16° (about 11 × 18 km), a leaf of 4 kB before gzip
 // A pair key=value goes to the dictionary when it is in at least MIN_PAIR elements, a key when in MIN_KEY.
@@ -32,8 +33,12 @@ export function tilesBox(names) {
   return box;
 }
 
-export function packTiles(names, text, { source = "", minPair = MIN_PAIR, minKey = MIN_KEY } = {}) {
-  const lines = (n) => text(n).split("\n").filter(Boolean).map((l) => JSON.parse(l));
+// slim: rules of tools/osm_slim.mjs (none by default: the tiles whole; the command below takes them all): what the app
+// never reads goes, the rest stays.
+export function packTiles(names, text, { source = "", minPair = MIN_PAIR, minKey = MIN_KEY, slim = [], stats = {} } = {}) {
+  const parsed = (n) => text(n).split("\n").filter(Boolean).map((l) => JSON.parse(l));
+  const slimOf = slim.length ? slimmer(names, text, { rules: slim, stats }) : null;
+  const lines = slimOf ? (n) => slimOf(n, parsed(n)) : parsed;
   // 1. How often each key and pair is.
   const pairN = new Map(), keyN = new Map();
   for (const f of names) {
@@ -53,7 +58,8 @@ export function packTiles(names, text, { source = "", minPair = MIN_PAIR, minKey
   const pairs = pairsStr.map((p) => { const [k, v] = p.split("\u0000"); return [keyIx.get(k), v]; });
   const dict = { pair: (k, v) => pairIx.get(`${k}\u0000${v}`), key: (k) => keyIx.get(k) };
 
-  // 2. Blocks: the leaf and the tiles of each, in order.
+  // 2. Blocks: the leaf and the tiles of each, in order (the slimming counted again, on this pass only).
+  if (slimOf) Object.assign(stats, { ids: 0, tags: 0 });
   const byBlock = new Map();
   const extent = { ix: [Infinity, -Infinity], iy: [Infinity, -Infinity] };
   for (const f of names) {
@@ -96,7 +102,7 @@ export function packTiles(names, text, { source = "", minPair = MIN_PAIR, minKey
   pre.write(MAGIC, 0, "ascii");
   pre.writeUInt32LE(VERSION, 4);
   pre.writeUInt32LE(head.length, 8);
-  return { file: Buffer.concat([pre, head, ...chunks]), tiles: names.length, blocks: blocks.length, keys: keys.length, pairs: pairs.length, raw, json, head: head.length };
+  return { file: Buffer.concat([pre, head, ...chunks]), stats, tiles: names.length, blocks: blocks.length, keys: keys.length, pairs: pairs.length, raw, json, head: head.length };
 }
 
 if (process.argv[1] && import.meta.url.endsWith(path.basename(process.argv[1]))) {
@@ -106,7 +112,9 @@ if (process.argv[1] && import.meta.url.endsWith(path.basename(process.argv[1])))
     process.exit(1);
   }
   const names = fs.readdirSync(dir).filter((f) => /^-?\d+_-?\d+\.json$/.test(f)).map((f) => f.slice(0, -5));
-  const r = packTiles(names, (n) => fs.readFileSync(path.join(dir, `${n}.json`), "utf8"), { source: path.basename(dir) });
+  // SLIM=none packs the tiles whole (as before 26. 11. 2026), SLIM=ids a rule of tools/osm_slim.mjs only.
+  const slim = process.env.SLIM === "none" ? [] : process.env.SLIM ? process.env.SLIM.split(",") : RULES;
+  const r = packTiles(names, (n) => fs.readFileSync(path.join(dir, `${n}.json`), "utf8"), { source: path.basename(dir), slim });
   // "{hash}" in the name becomes the start of the file's SHA-256: a rebuilt file never takes the name of another.
   const out = outArg.replace("{hash}", crypto.createHash("sha256").update(r.file).digest("hex").slice(0, 10));
   fs.mkdirSync(path.dirname(out), { recursive: true });
@@ -123,6 +131,6 @@ if (process.argv[1] && import.meta.url.endsWith(path.basename(process.argv[1])))
   index.attribution = "© OpenStreetMap contributors, ODbL 1.0";
   fs.writeFileSync(indexFile, JSON.stringify(index, null, 1) + "\n");
   const mb = (n) => (n / 1e6).toFixed(1) + " MB";
-  console.log(`${r.tiles} dlaždic, ${r.blocks} bloků, slovník ${r.keys} klíčů a ${r.pairs} dvojic`);
+  console.log(`${r.tiles} dlaždic, ${r.blocks} bloků, slovník ${r.keys} klíčů a ${r.pairs} dvojic; zmenšení ${slim.join(",") || "žádné"} ${JSON.stringify(r.stats)}`);
   console.log(`dnes ${mb(r.raw)} → krátký zápis ${mb(r.json)} → ${out} ${mb(r.file.length)} (hlava ${(r.head / 1e3).toFixed(0)} kB)`);
 }

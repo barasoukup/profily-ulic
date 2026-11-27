@@ -13,7 +13,10 @@ const native = window.fetch.bind(window);
 const H = (globalThis.PROFILY_REPLAY = { progress: "start" });
 try { localStorage.clear(); sessionStorage.clear(); } catch {}
 
-const isData = (u) => u.origin !== location.origin || u.pathname.startsWith("/api/") || u.pathname.startsWith("/data/");
+// &osmlive=1: the packed OSM tiles (data/osm-pack/) always from the local server, neither recorded nor replayed: the
+// same recording played over other packs (the slim ones, evaluation/osm-r2/ZPRAVA-ZMENSENI.md).
+const OSM_LIVE = P.get("osmlive") === "1";
+const isData = (u) => (u.origin !== location.origin || u.pathname.startsWith("/api/") || u.pathname.startsWith("/data/")) && !(OSM_LIVE && u.origin === location.origin && u.pathname.startsWith("/data/osm-pack/"));
 const headerOf = (init, name) => {
   const h = init?.headers;
   if (!h) return null;

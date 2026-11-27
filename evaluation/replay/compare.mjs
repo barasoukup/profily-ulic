@@ -23,7 +23,7 @@ const drop = (o) => {
 };
 // The clip paths of the drawing are numbered by a counter of the page (profile.js): renumbered by first use, so that
 // a drawing made after another number of drawings compares equal.
-const renum = (s) => { const m = new Map(); return s.replace(/\b(pc|pole)\d+\b/g, (x, p) => (m.has(x) || m.set(x, `${p}${m.size}`), m.get(x))); };
+const renum = (s) => { const m = new Map(); return s.replace(/\b(pc|pole|cut)\d+\b/g, (x, p) => (m.has(x) || m.set(x, `${p}${m.size}`), m.get(x))); };
 const text = (v) => (v === undefined ? undefined : renum(typeof v === "string" ? v : JSON.stringify(v)));
 const where = (a, b) => {
   let i = 0;

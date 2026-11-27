@@ -1,0 +1,62 @@
+# The index of the OSM tiles on R2 (Bára 26. 11. 2026): index.json from what the bucket holds (tools/osm_index.mjs: the
+# newest file of each state; a much smaller new file is not taken and nothing of its state is deleted), then every older
+# file deleted at once, so that R2 holds the whole set and only the new files still waiting for this run (tools/osm_peak.mjs).
+# Each pack's job of osm-tiles.yml asks for a run as soon as its file is uploaded, and once more at the end. One run at a
+# time (the concurrency group): a run lists, writes and deletes before the next lists, so no index is ever written from an
+# older listing after a file it names was deleted. A request waiting while another run works replaces any request that
+# waited before it (GitHub keeps one pending run of a group), which loses nothing: every run does all there is.
+# The page reads index.json without a cache (osmpack.js PackSet, cf-cache-status DYNAMIC); a page opened before the switch
+# still names the old file, gets 404 and reads the index again. When the Czech or Slovak file changes, the site's deploy
+# (pages.yml) copies them onto Pages as the fallback.
+name: OSM index
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: osm-index
+  cancel-in-progress: false
+
+env:
+  AWS_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+  AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+  AWS_DEFAULT_REGION: auto
+  AWS_REQUEST_CHECKSUM_CALCULATION: when_required
+  AWS_RESPONSE_CHECKSUM_VALIDATION: when_required
+  R2: s3://profily-ulic-osm/osm
+  ENDPOINT: https://${{ vars.R2_ACCOUNT_ID }}.r2.cloudflarestorage.com
+
+jobs:
+  index:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+      actions: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Write the index, delete the older files
+        run: |
+          if [ -z "$AWS_ACCESS_KEY_ID" ] || [ -z "${{ vars.R2_ACCOUNT_ID }}" ]; then echo "::error::no R2 keys (secrets R2_ACCESS_KEY_ID, R2_SECRET_ACCESS_KEY, variable R2_ACCOUNT_ID)"; exit 1; fi
+          aws s3 cp --endpoint-url "$ENDPOINT" "$R2/index.json" old-index.json || echo '{"files":{}}' > old-index.json
+          aws s3api list-objects-v2 --endpoint-url "$ENDPOINT" --bucket profily-ulic-osm --prefix osm/ --output json > list.json
+          mkdir -p meta && aws s3 cp --endpoint-url "$ENDPOINT" "$R2/meta/" meta/ --recursive || true
+          node tools/osm_index.mjs list.json index.json delete.txt meta
+          cat index.json
+          aws s3 cp --endpoint-url "$ENDPOINT" index.json "$R2/index.json" --content-type application/json --cache-control "public, max-age=300"
+          while read -r old; do [ -n "$old" ] && aws s3 rm --endpoint-url "$ENDPOINT" "s3://profily-ulic-osm/$old"; done < delete.txt
+          # The files of the states also on Pages (tools/countries.mjs pages): changed ones renew the fallback there.
+          changed=$(node -e 'const fs = require("fs"); const a = JSON.parse(fs.readFileSync("old-index.json", "utf8")).files || {}, b = JSON.parse(fs.readFileSync("index.json", "utf8")).files; console.log(process.argv.slice(1).filter((c) => a[c] !== b[c]).join(" "))' $(node tools/countries.mjs --list pages))
+          echo "changed on Pages: ${changed:-none}"
+          echo "pages=$([ -n "$changed" ] && echo true || echo false)" >> "$GITHUB_ENV"
+      - name: Renew the fallback on Pages
+        if: env.pages == 'true'
+        run: gh workflow run pages.yml --repo "${{ github.repository }}" --ref main
+        env:
+          GH_TOKEN: ${{ github.token }}
