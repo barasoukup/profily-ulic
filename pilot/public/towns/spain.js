@@ -146,7 +146,8 @@ export function catastroBuilding(buildingGml, partsGml, lat, lon) {
   const living = use === "living";
   const office = use === "office" ? true : undefined;
   const type = use === "industrial" ? "industrial" : living ? (dwellings > 1 ? "apartments" : dwellings === 1 ? "house" : undefined) : office ? "office" : undefined;
-  return { built, office, house: (living && dwellings === 1) || undefined, type, ...(floors && { cornice: floors, total: floors, roof: 0 }) };
+  // catastro: the credit only for a cut with a house of the Catastro (credits.js esCatastro; Bára 27. 11. 2026).
+  return { built, office, house: (living && dwellings === 1) || undefined, type, ...(floors && { cornice: floors, total: floors, roof: 0 }), catastro: true };
 }
 // The Basque Country and Navarre (regions-es.json, tools/build_regions_es.mjs: the provinces ar, gi, bi and nc; Bára
 // 23. 11. 2026): their own foral cadastres, the Catastro answers nothing there. foralAt: the province of a point that

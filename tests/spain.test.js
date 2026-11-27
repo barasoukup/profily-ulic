@@ -29,7 +29,7 @@ test("Španělsko: budovy z katastru (podlaží části u fasády, rok, užití)
   const sq = (x) => [[x, 0], [x + 1, 0], [x + 1, 1], [x, 1], [x, 0]];
   const building = `<gml:featureMember><bu-ext2d:Building><bu-core2d:beginning>1966-01-01T00:00:00</bu-core2d:beginning><bu-ext2d:currentUse>1_residential</bu-ext2d:currentUse><bu-ext2d:numberOfDwellings>12</bu-ext2d:numberOfDwellings></bu-ext2d:Building></gml:featureMember>`;
   const parts = part(8, sq(0)) + part(2, sq(2));
-  assert.deepEqual(E.catastroBuilding(building, parts, 0.5, 0.5), { built: 1966, office: undefined, house: undefined, type: "apartments", cornice: 8, total: 8, roof: 0 });
+  assert.deepEqual(E.catastroBuilding(building, parts, 0.5, 0.5), { built: 1966, office: undefined, house: undefined, type: "apartments", cornice: 8, total: 8, roof: 0, catastro: true });
   assert.equal(E.catastroBuilding(building, parts, 0.5, 2.5).total, 2, "dvorní část nižší");
   assert.equal(E.catastroBuilding(building, parts, 0.5, 9).total, 8, "bod mimo části: nejvyšší");
   assert.deepEqual(E.catastroBuilding("", "", 0, 0), {});

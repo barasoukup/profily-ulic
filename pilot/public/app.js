@@ -902,6 +902,8 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wa
         ruianFacts(info, p);
         // The foral cadastre of a Spanish province that told of the house (towns/spain-foral.js), for the credits.
         if (p.foral) state.cut.sources.esForal = p.foral;
+        // The national Catastro that told of the house (towns/spain.js), for the credits of the exports too.
+        if (p.catastro) state.cut.sources.esCatastro = true;
         // The cadastre of Slovenia that told of the house (towns/slovenia.js).
         if (p.gurs) state.cut.sources.siGurs = true;
         // The buildings of Helsinki or of Ryhti (towns/finland.js).

@@ -105,6 +105,8 @@ export const SOURCE_CREDITS = {
     bi: () => t("budovy {who}", { who: "© Bizkaiko Foru Aldundia – Diputación Foral de Bizkaia" }),
     ar: () => t("budovy {who}", { who: "© Diputación Foral de Álava – Arabako Foru Aldundia" }),
   },
+  // The buildings of the national Catastro (towns/spain.js), where it told of a house (Bára 27. 11. 2026: in the exports too).
+  esCatastro: { true: () => t("budovy {who}", { who: "© Dirección General del Catastro" }) },
   // Bologna's road areas (towns/italy.js).
   // The buildings of Slovenia's cadastre (towns/slovenia.js), where they told of a house.
   siGurs: { true: () => t("budovy © Geodetska uprava RS (kataster stavb, stav 11/2026, CC BY 4.0)") },
