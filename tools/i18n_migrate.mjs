@@ -1,4 +1,4 @@
-// One-off conversion of the translations (Bára 27. 11. 2026, variant A of docs/i18n-plan.md): the Czech sentence as the
+// One-off conversion of the translations (Bára 27. 11. 2026, variant A of docs/i18n-plan.md on the branch i18n-plan): the Czech sentence as the
 // key → named keys and one standard JSON file per language (app/public/locales/<lang>.json, flat: "area.name": "text"),
 // Czech a language like the others (cs.json). Run once on the code before the conversion (it reads the old
 // app/public/<lang>.js tables and rewrites the code); kept for the record of how the keys came about.

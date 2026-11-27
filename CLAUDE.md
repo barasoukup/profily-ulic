@@ -737,7 +737,7 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
 - Anglicky se aplikace jmenuje **Street Profile**, slovensky **Profily ulíc**, německy **Straßenprofil**. Čeština, slovenčina,
   angličtina a němčina: `app/public/i18n.js`, od 17. 11. 2026 přepínač v menu Soubor (jazyky jménem, bez vlajek), `?lang=sk`. Jazyk podle
   prohlížeče (první z jeho jazyků, který aplikace umí; všichni ostatní angličtina), ne podle místa řezu (Bára). Popis v `app/README.md`.
-- **Pojmenované klíče** (Bára 27. 11. 2026, varianta A `docs/i18n-plan.md`): `t("common.sidewalk")`, klíč anglicky
+- **Pojmenované klíče** (Bára 27. 11. 2026, varianta A návrhu `docs/i18n-plan.md` ve větvi i18n-plan): `t("common.sidewalk")`, klíč anglicky
   `oblast.jméno` (oblast podle místa: `app`, `types`, `country.at`, `common`, `note`, `page`…), jeden plochý JSON na jazyk
   `app/public/locales/<jazyk>.json` (formát pro Weblate/Crowdin), čeština je `cs.json` (zdroj textů), texty měst
   `city.<id>.<pole>`, patička `html.footer`; `index.html` má `data-t="klíč"` a `data-t-<atribut>`. **Nový text:**
