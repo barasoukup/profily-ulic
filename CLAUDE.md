@@ -649,6 +649,28 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
   nových tepen 18 : 16, **vypnuto**, `?outergaps=1`. Jen domy a parkoviště z OSM bez ortofota (`?outerosm=1`,
   `evaluation/usa/boston/outer-osm`): A/B 102 nových tepen 24 : 22, **vypnuto**.
 
+## Severní Amerika: rozhodnutí 26.–27. 11. 2026 (Bára)
+- USA a Kanada kvůli prestiži, ne kvůli rozsahu: jen území, které kryjí dobré a dostupné zdroje. Washington jen District
+  of Columbia, Toronto jen město; New York (5 obvodů), San Francisco a Boston s metrem (MassGIS ortofoto 15 cm zdarma)
+  zůstávají. Okolní okresy a obce jsou zavřené s hláškou (`tools/build_staty.mjs` METROS, GTA; hranice nafouknuté o 60 m,
+  `grow`, aby ulice po hranici nebyla napůl zavřená); okolí DC jen při ověřené licenci Maryland Six Inch.
+- Stání v NYC, Bostonu a SF je jen „odhad“, ne „podle zákona“. Pět pravidel (DDOT, mapgaps, roadtracks, kerbbays,
+  torontohouse) zůstává; opravy z rozboru proher jen obecné: mezery mezi vozovkami a stezka přes osu (`?off=gapsortho`,
+  `gapswide`, `trackaxis`; A/B 54 : 13, `evaluation/canada/losses/FIXES.md`). Opravy jen pro jedno město (DDOT 2–5,
+  podlaží Toronta) zahozené, schované ve větvi `dropped-city-fixes`; přepočet výšky na podlaží jako sdílená funkce
+  (větev floors-height). Inventář DDOT věří jen tam, kde se vejde do změřené šířky (`?off=ddotfit`, větev ddot-fit).
+- Značky NYC DOT (`?nycsigns=1`) vypnuté a bez dalších úprav (Bára 27. 11. 2026: „nevymýšlet výjimky, nechat NY jak je“).
+- `?otherstreet` vypnuté, upozornění na řez křižovatkou zůstává; takové řezy se nepočítají do měření
+  (`evaluation/universal/junction.mjs`). Oprava osy (Lippard Avenue) zapnutá všude, `?axisroad=0` (3 566 řezů ve
+  24 státech beze změny). Chodník SF zůstává 10 ft.
+- Mosty (všechny státy, 27. 11. 2026): odhad končí na hraně mostovky (`?off=mostdeska`), zábradlí (`?off=zabradli`);
+  šířka krajního chodníku průkazně lépe (`evaluation/bridge-water/edge/ZPRAVA.md`).
+- Balíky OSM pod 10 GB (27. 11. 2026): zmenšené při balení (`tools/osm_slim.mjs`), každý den sedmina států
+  (`tools/countries.mjs` DAYS, `osm-index.yml`); push na main balíky nepřestavuje, změna skriptů dojde denními dávkami do
+  týdne. Severoamerické balíky po nasazení spustit ručně (`states: us,ca`).
+- Kraków jen s `?krakow=1`; pasporty Chotěboře, Šlapanic a Kuřimi vyřazené i z kreditů (zbývá Rožnov). ČÚZK jen nad
+  Českem. Autorka v češtině a slovenštině „Bára Soukupová“, jinde „Bara Soukup“.
+
 ## Společné pro státy (Bára 23. 11. 2026)
 - Sever Kypru a Itálie mimo otevřená ortofota (i se San Marinem a Vatikánem) profil nedostanou, aplikace to řekne
   (`city.js closedAt`, `staty.json` `closed_*`).
