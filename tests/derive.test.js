@@ -60,7 +60,7 @@ test("jízda vlevo (Kypr, Malta): směry podle pravidel otočené, data na svém
   } finally { country.leftHand = was; }
 });
 
-test("osa ulice ve stání u obruby: s ?axisroad=1 je vozovka vedle, kterou přechází jen chodník, její (Lippard Avenue)", async () => {
+test("osa ulice ve stání u obruby: výchozí (?axisroad=0 vypne) je vozovka vedle, kterou přechází jen chodník, její (Lippard Avenue)", async () => {
   const { P } = await import("../pilot/public/ortho-osm.js");
   const frame = localFrame(37.73, -122.43);
   const rect = (x0, x1, code) => ({ attributes: { CTVUK_KOD: code }, geometry: { rings: [[[x0, -60], [x1, -60], [x1, 60], [x0, 60], [x0, -60]].map(([x, y]) => frame.toLonLat(x, y))] } });
@@ -69,10 +69,12 @@ test("osa ulice ve stání u obruby: s ?axisroad=1 je vozovka vedle, kterou pře
   const line = (x, tags, id) => ({ type: "way", id, tags, geometry: [frame.toLonLat(x, -100), frame.toLonLat(x, 100)].map(([lon, lat]) => ({ lat, lon })) });
   const els = [line(-0.4, { highway: "residential", oneway: "yes" }, 1), line(3, { highway: "footway" }, 2)];
   const types = () => deriveProfile({ center: [0, 0], dir: [0, 1], half: 40, polys, osm: { elements: els }, frame, way: els[0], noParkGuess: true }).segments.map((s) => s.type);
-  assert.ok(!types().includes("pruh"));
-  P.axisroad = true;
-  assert.ok(types().includes("pruh"), types().join());
-  delete P.axisroad;
+  try {
+    P.axisroad = false;
+    assert.ok(!types().includes("pruh"));
+    P.axisroad = true;
+    assert.ok(types().includes("pruh"), types().join());
+  } finally { P.axisroad = true; }
 });
 
 // Bára 26. 11. 2026: a dragged cut could not leave its OSM way (Kraków, Kościuszki onto the bridge, a way of its own).

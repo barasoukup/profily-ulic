@@ -472,8 +472,9 @@ mezera do 2 m k domu patří domu). Stání po stranách z digitální obruby SF
 z výšky obrysu (`?sfhouse=0`). `?sf=0` vypne vše. Bez ortofota (otevřené pro SF není, NAIP je 0,6–1 m). Chodníky varují
 podle SFMTA Sidewalk Widths, jinak jen NACTO (`evaluation/usa/sf/NORMY.md`). Ilustrace Muni (`sanfrancisco/`: autobus,
 trolejbus, LRV4, označník). Měření `evaluation/usa/sf/ZPRAVA.md`. Vypnuté zkoušky (`evaluation/usa/sf/fixes/ZPRAVA.md`):
-`?sfosmpark=1` orientace stání z OSM, kde obruba dá podélné; `?axisroad=1` vozovka, na kterou oprava osy přesunula osu, je
-ulice, i když ji přechází jen chodník (Lippard Avenue).
+`?sfosmpark=1` orientace stání z OSM, kde obruba dá podélné. Zapnuté všude (Bára 27. 11. 2026 po kontrole 3 566 řezů ve
+24 státech beze změny, `evaluation/axisroad-check/ZPRAVA.md`): vozovka, na kterou oprava osy přesunula osu, je ulice,
+i když ji přechází jen chodník (Lippard Avenue); `?axisroad=0` vypne.
 
 ### USA: Boston (Bára 26. 11. 2026)
 

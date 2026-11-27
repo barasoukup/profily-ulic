@@ -630,7 +630,7 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
   trolejbus, LRV4, označník); PCC a Path of Gold nezapojené.
 - Opravy 26. 11. (`evaluation/usa/sf/fixes/ZPRAVA.md`): orientace stání z OSM, kde obruba dá podélné (A/B 30 nových řezů 12 : 11,
   vypnuto, `?sfosmpark=1`); osa ve vykrojeném stání a vozovka, kterou přechází jen chodník (Lippard Avenue, `derive.js ownRoad`,
-  1 z 290 řezů, vypnuto, `?axisroad=1`; Bára rozhodne, zda zapnout bez měření).
+  1 z 290 řezů, dalších 3 566 ve 24 státech beze změny: zapnuto, Bára 27. 11. 2026, `?axisroad=0` vypne).
 
 ## Boston (větev na-boston, 26. 11. 2026, nenasazené)
 - Další metro státu `usa`: okresy Suffolk, Middlesex, Norfolk (`tools/build_staty.mjs METROS`, další metro = řádek), OSM balík

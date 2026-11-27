@@ -13,7 +13,7 @@ import { aiCut, aiKerbs, aiSurface, aiParking, parkFromAi, parkSkip, lawKerbs, l
 { const off = new URLSearchParams(location.search).get("off"); if (off) ORTHO_P.off = new Set(off.split(",")); }
 // Tree pits as sidewalk (derive.js treePitsAsSidewalk): off, ?treepits=1 turns them on.
 if (new URLSearchParams(location.search).get("treepits") === "1") ORTHO_P.treepits = true;
-if (new URLSearchParams(location.search).get("axisroad") === "1") ORTHO_P.axisroad = true;
+if (new URLSearchParams(location.search).get("axisroad") === "0") ORTHO_P.axisroad = false;
 // ?auta=1: parked cars told by their colours on the orthophoto (ortho-osm.js carsColoured; a trial, off by default).
 if (new URLSearchParams(location.search).get("auta") === "1") ORTHO_P.carsColour = true;
 // The model also decides sidewalk, green and other between the kerb and the house (on since 19. 11. 2026, Bára;

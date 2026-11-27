@@ -2231,7 +2231,7 @@ export function deriveProfile({ center, dir, half, polys, osm, frame, way, track
       // carriageway is not a sidewalk), as one lane both ways unless lanes are tagged.
       const transit = inside.length > 0 || minor.some((c) => c.way.tags.highway === "pedestrian" ||
         ["yes", "designated"].includes(c.way.tags.bus) || ["yes", "designated"].includes(c.way.tags.psv));
-      // (The street's own: its axis crosses it, or, with ?axisroad=1 (ORTHO_P.axisroad), the axis fix above moved the axis
+      // (The street's own: its axis crosses it, or, by default (ORTHO_P.axisroad; ?axisroad=0 turns it off), the axis fix above moved the axis
       // onto it: Lippard Avenue in San Francisco, the axis in the parking lane the curb carved, the rest a footway's. Off:
       // 1 of 290 cuts of five cities changes, too few to measure; evaluation/usa/sf/fixes/ZPRAVA.md.)
       const ownRoad = cross.some((c) => c.way.id === way.id && inRun(c.t)) || (!!ORTHO_P.axisroad && inRun(axisT));

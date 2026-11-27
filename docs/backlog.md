@@ -181,8 +181,8 @@ Co rozhodne Bára, je označeno **(Bára)**.
   nepozná vždy (Indiana Street dostala podélné 2,45 m, OSM říká šikmé), zkusit brát orientaci z OSM `parking:*:orientation`~~
   (26. 11. 2026, `evaluation/usa/sf/fixes`: A/B 30 nových řezů 12 : 11, **vypnuto, `?sfosmpark=1`**; značky OSM často neplatí
   pro místo řezu); ~~úzká vozovka, ve které po vykrojení stání nezůstane pruh (Lippard Avenue)~~ (osa ve vykrojeném stání,
-  vozovku přechází jen chodník: `derive.js ownRoad`, `?axisroad=1`; mění 1 z 290 řezů pěti měst, nejde změřit, **vypnuto
-  (Bára: zapnout bez měření?)**); tepny jen 8 : 4 (Fell Street, O'Shaughnessy
+  vozovku přechází jen chodník: `derive.js ownRoad`, mění 1 z 290 řezů pěti měst, dalších 3 566 řezů ve 24 státech beze změny;
+  **zapnuto** (Bára 27. 11. 2026), `?axisroad=0` vypne); tepny jen 8 : 4 (Fell Street, O'Shaughnessy
   Boulevard, Geary Boulevard); mapa chybí, kde uliční prostor nemá přes řez dvě obruby (3rd Street s tramvají uprostřed,
   Great Highway, obslužné cesty); data uličního prostoru 2014 a obrysů budov 2010 (posun asi 1,4 m na východ, řešeno
   pravidlem); podlaží z výšek obrysů neměřená; okolní okresy (San Mateo, Marin, Alameda) bez mapy povrchů zůstávají zavřené

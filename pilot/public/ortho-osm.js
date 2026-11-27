@@ -347,7 +347,7 @@ export function columns(st) {
 // Half the width of a tram bed beyond its outer track axis (a 3.3 m track, as derive.js carveTramTracks).
 const TRACK_HALF = 1.75;
 // The roadway at the axis (±1.5 m, not green): its brightness and saturation; does column i look like it?
-export const P = { tolL: 0.2, tolS: 18, greenMax: 0.3, minEdge: 1.6, alpha: 1.5, beta: 0.5, gamma: 0.8, sigmaMin: 1.0, sigmaRel: 0.3, lineOff: 0.4, mapBonus: 0.8, cars: false };
+export const P = { tolL: 0.2, tolS: 18, greenMax: 0.3, minEdge: 1.6, alpha: 1.5, beta: 0.5, gamma: 0.8, sigmaMin: 1.0, sigmaRel: 0.3, lineOff: 0.4, mapBonus: 0.8, cars: false, axisroad: true };
 export function roadRef(cols, axis) {
   const i0 = cols.ti(axis - 1.5), i1 = cols.ti(axis + 1.5), L = [], S = [];
   for (let i = Math.max(0, i0); i <= Math.min(cols.nt - 1, i1); i++) if (cols.green[i] < 0.3) { L.push(cols.medL[i]); S.push(cols.sat[i]); }
