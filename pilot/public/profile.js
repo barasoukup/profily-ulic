@@ -1829,11 +1829,14 @@ function drawPrahaBuilding(g, x, side, surface, info, chosen) {
       const doorFrame = kind === "novyrd" ? "#3c3f43" : FRAME;
       box(dd ? 0 : 10, 120 + dd, z0, z0 + 14, tint(plinth?.[1] || STONE, 1.15)); // doorstep (the landing)
       if (z0 && !stoep) {
-        const steps = 6, rise = z0 / steps, tread = 28;
-        for (let i = 0; i < steps; i++) box(120, 120 + (steps - i) * tread, i * rise, (i + 1) * rise, tint(plinth[1], 1.12), outline);
-        box(122, 124, z0 + 14, z0 + 104, "#4d4f52"); // the rail: posts and a handrail along the flight
-        box(120 + steps * tread - 2, 120 + steps * tread, 0, 100, "#4d4f52");
-        poly([[122, z0 + 100], [120 + steps * tread, 96], [120 + steps * tread, 104], [122, z0 + 108]], "#4d4f52");
+        // The flight runs out towards the street from the door (not back along the wall, where its rail cut the ground-floor
+        // window and its foot led into the cellar window; Bára 27. 11. 2026), with a rail on the street side.
+        const steps = 6, rise = z0 / steps, tread = 26;
+        for (let i = 0; i < steps - 1; i++) box(-(steps - 1 - i) * tread, 10, i * rise, (i + 1) * rise, tint(plinth[1], 1.12), outline);
+        const foot = -(steps - 1) * tread;
+        box(foot - 2, foot + 2, 0, 100, "#4d4f52"); // the rail: a post at the foot, a handrail up to the door, a post there
+        poly([[foot, 96], [-2, z0 + 96], [-2, z0 + 102], [foot, 102]], "#4d4f52");
+        box(-4, 0, z0, z0 + 100, "#4d4f52");
       }
       if (stoep) { // five steps out into the street with an iron rail
         for (let i = 0; i < 5; i++) box(-(5 - i) * 22, 10, i * 15, (i + 1) * 15, "#6a6e71", outline);
