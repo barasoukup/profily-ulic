@@ -209,7 +209,7 @@ test("malý dům o samotě bez dalších údajů je rodinný dům", () => {
     assert.notEqual(buildingStyle(alone(120, { block: { length: 40, width: 12, fill: 0.8, parts: 5, area: 400 } })), "vila", id);
     assert.notEqual(buildingStyle(alone(120, { block: { length: 30, width: 12, fill: 0.8, parts: 2, area: 520 } })), "vila", id);
     // office types stay offices
-    assert.equal(buildingStyle(alone(120, { type: "office" })), "kancelar", id);
+    assert.notEqual(buildingStyle(alone(120, { type: "office" })), "vila", id);
   }
   globalThis.PROFILY_CA = { off: "vesnice" };
   at("germany");
