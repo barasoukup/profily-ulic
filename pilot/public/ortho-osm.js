@@ -135,11 +135,14 @@ export const offDecks = (a, b, decks) => {
 // roadway and the end of the profile (the deck's edge or open space), is the bridge's sidewalk (Bára 27. 11. 2026:
 // Augustusbrücke in Dresden, two metres of "Ostatní" at both edges, in fact sidewalks). Only the estimate's own strip
 // (source "odhad", so still marked as an estimate), only beside a roadway part, up to BRIDGE_WALK_MAX m wide. Returns the
-// number of strips changed. ?off=mostchodnik: none.
+// number of strips changed (not on a motorway, motorroad or a way tagged without a sidewalk). ?off=mostchodnik: none.
 const BRIDGE_WALK_MAX = 4.5, BRIDGE_WALK_FROM = new Set(["nezname", "plocha"]);
 const BRIDGE_ROADWAY = new Set(["pruh", "pruh_piktokoridor", "bus", "bus_cyklo", "tramvaj_v_pruhu", "tramvaj_pruh", "tramvaj", "krajnice", "parkovani", "cyklopruh", "ochranny_pruh", "obsluzna"]);
 export function bridgeWalks(result, way) {
-  if (P.off?.has("mostchodnik") || !onBridge(way?.tags) || !result?.segments?.length) return 0;
+  const t = way?.tags;
+  if (P.off?.has("mostchodnik") || !onBridge(t) || !result?.segments?.length) return 0;
+  // Not on a motorway or a motorroad, nor where OSM says there is no sidewalk: the strip is a verge there.
+  if (/^motorway/.test(t.highway) || t.motorroad === "yes" || ["no", "none"].includes(t.sidewalk) || (["no", "none"].includes(t["sidewalk:left"]) && ["no", "none"].includes(t["sidewalk:right"]))) return 0;
   const segs = result.segments;
   let n = 0;
   for (const [i, inner] of [[0, 1], [segs.length - 1, segs.length - 2]]) {
