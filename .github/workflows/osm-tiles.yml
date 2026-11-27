@@ -9,7 +9,8 @@
 # whole set and the few new files waiting for the index (evaluation/osm-r2/ZPRAVA-ZMENSENI.md, tools/osm_peak.mjs).
 # The Czech and Slovak files are copied onto Pages as a fallback by the site's deploy (pages.yml), which osm-index.yml
 # starts when they change. A new state: its line in tools/countries.mjs (and its MB in tools/osm-sizes.json).
-# Runs daily (that day's packs), by hand (the packs named, a day, or all) and when the tile scripts change on main (all).
+# Runs daily (that day's packs) and by hand (the packs named, a day, or all); not on a push: a change of the tile scripts
+# reaches every pack within a week of daily runs (Bára 27. 11. 2026: "počkala bych si týden na průběžnou obnovu").
 name: OSM tiles
 
 on:
@@ -25,16 +26,6 @@ on:
         default: ""
   schedule:
     - cron: "0 3 * * *"
-  push:
-    branches: [main]
-    paths:
-      - tools/build_osm_tiles.mjs
-      - tools/build_osm_data.sh
-      - tools/pack_osm_tiles.mjs
-      - tools/osm_slim.mjs
-      - pilot/public/osmtile.js
-      - pilot/public/osmpack.js
-      - .github/workflows/osm-tiles.yml
 
 permissions:
   contents: read
