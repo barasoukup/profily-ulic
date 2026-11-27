@@ -8,18 +8,18 @@ export const TOWN_ART = {
   "bike-rack-perpendicular-left": "bike-rack", "bollard": "bollard",
   "transit-shelter-01-left": "transit-shelter-left", "transit-shelter-01-right": "transit-shelter-right",
   // Overhead-line poles and stop posts (copies of Prague's, Brno its own).
-  "tram-pole-left": "sloup-trakce-left", "tram-pole-right": "sloup-trakce-right",
-  "tram-pole-lamp-left": "sloup-trakce-lampa-left", "tram-pole-lamp-right": "sloup-trakce-lampa-right",
-  "stop-post-left": "oznacnik-left", "stop-post-right": "oznacnik-right",
-  "stop-post-tram-left": "oznacnik-tram-left", "stop-post-tram-right": "oznacnik-tram-right",
+  "tram-pole-left": "tram-pole-left", "tram-pole-right": "tram-pole-right",
+  "tram-pole-lamp-left": "tram-pole-lamp-left", "tram-pole-lamp-right": "tram-pole-lamp-right",
+  "stop-post-left": "stop-post-left", "stop-post-right": "stop-post-right",
+  "stop-post-tram-left": "stop-post-tram-left", "stop-post-tram-right": "stop-post-tram-right",
   // Rainwater management (Bára 12. 11. 2026): a shelter with a green roof, the planting of a swale, reeds of a pond.
   "transit-shelter-green-left": "transit-shelter-green-left", "transit-shelter-green-right": "transit-shelter-green-right",
-  "swale-plants": "pruleh-rostliny", "reeds-left": "rakos-left", "reeds-right": "rakos-right",
+  "swale-plants": "swale-plants", "reeds-left": "reeds-left", "reeds-right": "reeds-right",
 };
 
-// A town's own vehicles (app/public/<art>/tram-*, trolejbus-*) in place of Streetmix's.
+// A town's own vehicles (app/public/<art>/tram-*, trolleybus-*) in place of Streetmix's.
 export const TRAM = { "streetcar-inbound": "tram-inbound", "streetcar-outbound": "tram-outbound" };
-export const TROLLEY = { "trolleybus-inbound": "trolejbus-inbound", "trolleybus-outbound": "trolejbus-outbound" };
+export const TROLLEY = { "trolleybus-inbound": "trolleybus-inbound", "trolleybus-outbound": "trolleybus-outbound" };
 
 // Prague's furniture as the Czech set has it (the files of cesko/, "../cesko/…" from another folder): the furniture of
 // a state without its own.

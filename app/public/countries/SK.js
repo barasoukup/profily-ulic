@@ -133,7 +133,7 @@ const skArt = (tram, trolley, bus = true) => ({ ...czechFurniture, ...skPosts, .
 // slovensko: the rest of Slovakia (the neutral vehicles of generic/, the Czech furniture, the Slovak stop posts).
 // Bratislava and Košice have their own stop posts (drawn after photos of their stops, 16. 11. 2026); the rest of
 // Slovakia a generic Slovak city bus (slovensko/bus-*), Nitra, Trnava, Trenčín, Martin and Poprad their own.
-const ownPosts = { "stop-post-left": "oznacnik-left", "stop-post-right": "oznacnik-right", "stop-post-tram-left": "oznacnik-tram-left", "stop-post-tram-right": "oznacnik-tram-right" };
+const ownPosts = { "stop-post-left": "stop-post-left", "stop-post-right": "stop-post-right", "stop-post-tram-left": "stop-post-tram-left", "stop-post-tram-right": "stop-post-tram-right" };
 const SK_ART = { slovensko: { ...skArt(false, false, false), "bus-inbound": "bus-inbound", "bus-outbound": "bus-outbound" },
   bratislava: { ...skArt(true, true), ...ownPosts }, kosice: { ...skArt(true, false), ...ownPosts }, zilina: skArt(false, true), bystrica: skArt(false, true), presov: skArt(false, true),
   nitra: skArt(false, false), trnava: skArt(false, false), trencin: skArt(false, false), martin: skArt(false, false), poprad: skArt(false, false) };

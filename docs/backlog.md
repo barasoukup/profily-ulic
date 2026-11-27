@@ -355,7 +355,7 @@ Co rozhodne Bára, je označeno **(Bára)**.
   `Intl.ListFormat` a názvy míst), sloučit téměř shodné texty, tabulka pro lidi generovaná ze souborů (a opravy z ní zpět).
   Záchranná síť: přehrávka `evaluation/replay` ve 4 jazycích stejná před a po.
 - Přejmenovat na logické anglické názvy: `pilot` → `app`, české názvy složek a souborů (`znacky/`, `evaluation/<česky>/`,
-  `ZPRAVA.md`, `navrhy-ilustraci`, `towns/slovakia.js`, id `cesko`/`slovensko`…); odkazy ve workflow, nástrojích, testech
+  `ZPRAVA.md`, `unused-illustrations`, `towns/slovakia.js`, id `cesko`/`slovensko`…); odkazy ve workflow, nástrojích, testech
   a dokumentaci; uložené řezy a odkazy se staršími id musí dál fungovat.
 - Úklid `.claude/worktrees/` (47 kopií, 25 GB): data, na která se odkazuje (nahrávky, balíky, cache měření), přesunout do
   git-ignorovaného `data/` hlavního repa, ověřit necommitnuté změny a sloučení větví (street-history a hungary zůstávají

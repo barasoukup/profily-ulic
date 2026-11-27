@@ -123,7 +123,7 @@ const pole = (lamp) => [
   R(335.5, 350, 25, 18, GALV[0], 2), R(351, 350, 9.5, 18, GALV[1], 2), R(337, 294, 22, 12, GALV[0], 2), R(351, 294, 8, 12, GALV[1], 2), R(246, 352, 10, 14, GALV[1], 1), R(337, 207, 22, 12, GALV[0], 2), R(351, 207, 8, 12, GALV[1], 2), lamp ? [R(338, 136, 21, 16, "#9da4a7", 2), R(351, 136, 8, 16, "#7c8386", 2)] : "",
   // the collar over the anchor base, the hand hole, the number plate
   P("M333 946 H363 L369 978 H327 Z", GALV[0]), P("M353 946 H363 L369 978 H355 Z", GALV[1]), R(326, 978, 44, 32, GALV[0]), R(355, 978, 15, 32, GALV[1]), R(324, 975, 46, 5, GALV[1], 1), R(324, 975, 30, 1.6, GALV[2]), R(340, 880, 9, 24, GALV[1], 2), R(341, 881, 7, 22, GALV[0], 2), R(339, 720, 12, 22, "#e9c53a", 1), R(341.5, 724, 7, 2.4, "#2f3234"), R(341.5, 729, 7, 2.4, "#2f3234"), R(341.5, 734, 7, 2.4, "#2f3234")];
-for (const lamp of [false, true]) pair(`northamerica/sloup-trakce${lamp ? "-lampa" : ""}`, 370, 1010, `North American streetcar overhead pole${lamp ? " with a cobra-head lamp" : ""}: one tapered galvanised steel tube 9.5 m, a pipe bracket held by a tie and a knee, dark insulators, the contact wire at 5.9 m, 2.86 m from the pole (as the other sets' poles). Foot at x = 348.`, pole(lamp));
+for (const lamp of [false, true]) pair(`northamerica/tram-pole${lamp ? "-lamp" : ""}`, 370, 1010, `North American streetcar overhead pole${lamp ? " with a cobra-head lamp" : ""}: one tapered galvanised steel tube 9.5 m, a pipe bracket held by a tie and a knee, dark insulators, the contact wire at 5.9 m, 2.86 m from the pole (as the other sets' poles). Foot at x = 348.`, pole(lamp));
 
 /* ---------- small pieces ---------- */
 const bike = fs.readFileSync(new URL("praha/bike-rack.svg", PUB), "utf8").match(/<!-- kola:[\s\S]*?(?=\s*<!-- stojan:)/)[0].replace(/<!--[\s\S]*?-->/g, "");
@@ -154,7 +154,7 @@ const usSign = (x, pict) => [R(x - 16, 25, 32, 47, "#6f7679", 3.6), R(x - 15.2, 
 const usPost = (x, pict, y1) => [perf(x, 20, y1), usSign(x, pict), caseBox(x, 150)];
 const NOTE = "shade on the right (left half of the street); the bottom edge = the sidewalk, the middle = the post's axis.";
 pair("northamerica/oznacnik", 50, 340, `North American bus stop: a 12 x 18 in (30 x 46 cm) sign with a plain bus pictogram and a plate of routes, a schedule case, on a perforated square steel post (2.5 in), 3.2 m; the sign's bottom edge at 2.45 m (at least 7 ft). No agency's mark. ${NOTE}`, usPost(25, bus(25, 43, 17, WHITE, "#1d5fa8")));
-pair("northamerica/oznacnik-tram", 50, 340, `North American streetcar stop: as the bus stop, with a streetcar pictogram. ${NOTE}`, usPost(25, tram(25, 42.4, 17, WHITE, "#1d5fa8")));
+pair("northamerica/stop-post-tram", 50, 340, `North American streetcar stop: as the bus stop, with a streetcar pictogram. ${NOTE}`, usPost(25, tram(25, 42.4, 17, WHITE, "#1d5fa8")));
 // Washington: the flag of Metrobus stops, plain: 36 x 18 in on a U-channel post; the board towards the sidewalk.
 const WRED = "#c8102e";
 const dcPost = [R(82.2, 44, 5.6, 296, "#c3c8ca"), R(86, 44, 1.8, 296, "#8f9699"), R(82.2, 44, 1.2, 296, "#dfe2e3"), Array.from({ length: 25 }, (_, i) => C(84.8, 100 + i * 9, 1, "#4b5154")),
@@ -173,7 +173,7 @@ const ttc = (x, y1, pict) => [tube(x, 100, 6.5, GALV, y1), R(x - 12, 14, 24, 100
   P(`M${x - 11.4} 46 V16.6 Q${x - 11.4} 14.6 ${x - 9} 14.6 H${x + 9} Q${x + 11.4} 14.6 ${x + 11.4} 16.6 V46 Z`, "#b5303a"), P(`M${x + 4.6} 14.6 H${x + 9} Q${x + 11.4} 14.6 ${x + 11.4} 16.6 V46 H${x + 4.6} Z`, "#93252e"), pict,
   [53, 69].map((y) => [R(x - 8, y, 16, 11, "#6f7679", 1.5), R(x - 5, y + 3.6, 10, 3.6, WHITE, 0.8)]), R(x - 8, 90, 16, 2, "#9a9b9c"), R(x - 8, 96, 12, 2, "#9a9b9c"), R(x - 9, y1 - 6, 18, 6, GALV[1])];
 pair("toronto/oznacnik", 50, 340, `Toronto stop pole: a plain white sleeve (1.0 m high, 24 cm) with one red head, a generic pictogram and grey route boxes, simplified from the real one, on a steel pole 13 cm; 3.3 m. No operator's mark. ${NOTE}`, ttc(25, 340, bus(25, 30, 17, WHITE, "#b5303a")));
-pair("toronto/oznacnik-tram", 50, 340, `Toronto streetcar stop pole: as the bus stop's, with a streetcar pictogram. ${NOTE}`, ttc(25, 340, tram(25, 29, 16, WHITE, "#b5303a")));
+pair("toronto/stop-post-tram", 50, 340, `Toronto streetcar stop pole: as the bus stop's, with a streetcar pictogram. ${NOTE}`, ttc(25, 340, tram(25, 29, 16, WHITE, "#b5303a")));
 // Boston: a plain yellow panel.
 const YEL = "#f0a222";
 pair("boston/oznacnik", 50, 340, `Boston bus stop: a plain yellow panel 32 x 94 cm (estimated from photos) with a generic bus pictogram, without the real sign's round top, cap and mark, on a steel post; its bottom edge at 2.3 m. No agency's mark. ${NOTE}`,

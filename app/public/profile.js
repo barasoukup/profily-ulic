@@ -39,13 +39,13 @@ const PRAHA = {
   "bike-rack-perpendicular-left": "bike-rack", "bollard": "bollard",
   "transit-shelter-01-left": "transit-shelter-left", "transit-shelter-01-right": "transit-shelter-right",
   "transit-shelter-tram-left": "transit-shelter-tram-left", "transit-shelter-tram-right": "transit-shelter-tram-right",
-  "tram-pole-left": "sloup-trakce-left", "tram-pole-right": "sloup-trakce-right",
-  "tram-pole-lamp-left": "sloup-trakce-lampa-left", "tram-pole-lamp-right": "sloup-trakce-lampa-right",
-  "stop-post-left": "oznacnik-left", "stop-post-right": "oznacnik-right",
-  "stop-post-tram-left": "oznacnik-tram-left", "stop-post-tram-right": "oznacnik-tram-right",
+  "tram-pole-left": "tram-pole-left", "tram-pole-right": "tram-pole-right",
+  "tram-pole-lamp-left": "tram-pole-lamp-left", "tram-pole-lamp-right": "tram-pole-lamp-right",
+  "stop-post-left": "stop-post-left", "stop-post-right": "stop-post-right",
+  "stop-post-tram-left": "stop-post-tram-left", "stop-post-tram-right": "stop-post-tram-right",
   // Rainwater management (Bára 12. 11. 2026): a shelter with a green roof, the planting of a swale, reeds of a pond.
   "transit-shelter-green-left": "transit-shelter-green-left", "transit-shelter-green-right": "transit-shelter-green-right",
-  "swale-plants": "pruleh-rostliny", "reeds-left": "rakos-left", "reeds-right": "rakos-right",
+  "swale-plants": "swale-plants", "reeds-left": "reeds-left", "reeds-right": "reeds-right",
 };
 // Brno illustrations (brno/): the tram Tatra T3 in DPMB colours (Bára: the nicest; 45T and 13T drawn too) and bus, and furniture after the
 // rules of Brno's city architect (KAM, Principy tvorby veřejných prostranství, kap. 9): anthracite steel,
@@ -56,13 +56,13 @@ const BRNO = {
   "bike-rack-perpendicular-left": "bike-rack", "bollard": "bollard",
   "transit-shelter-01-left": "transit-shelter-left", "transit-shelter-01-right": "transit-shelter-right",
   "transit-shelter-tram-left": "transit-shelter-tram-left", "transit-shelter-tram-right": "transit-shelter-tram-right",
-  "tram-pole-left": "sloup-trakce-left", "tram-pole-right": "sloup-trakce-right",
-  "tram-pole-lamp-left": "sloup-trakce-lampa-left", "tram-pole-lamp-right": "sloup-trakce-lampa-right",
-  "stop-post-left": "oznacnik-left", "stop-post-right": "oznacnik-right",
-  "stop-post-tram-left": "oznacnik-tram-left", "stop-post-tram-right": "oznacnik-tram-right",
+  "tram-pole-left": "tram-pole-left", "tram-pole-right": "tram-pole-right",
+  "tram-pole-lamp-left": "tram-pole-lamp-left", "tram-pole-lamp-right": "tram-pole-lamp-right",
+  "stop-post-left": "stop-post-left", "stop-post-right": "stop-post-right",
+  "stop-post-tram-left": "stop-post-tram-left", "stop-post-tram-right": "stop-post-tram-right",
   // Rainwater management (Bára 12. 11. 2026): a shelter with a green roof, the planting of a swale, reeds of a pond.
   "transit-shelter-green-left": "transit-shelter-green-left", "transit-shelter-green-right": "transit-shelter-green-right",
-  "swale-plants": "pruleh-rostliny", "reeds-left": "rakos-left", "reeds-right": "rakos-right",
+  "swale-plants": "swale-plants", "reeds-left": "reeds-left", "reeds-right": "reeds-right",
 };
 // Every other city brings its own map of illustrations (city.js artMap, files in app/public/<art>/).
 const CITY_ART = { praha: PRAHA, brno: BRNO };
@@ -565,7 +565,7 @@ function drawItem(g, it, x, top, right) {
     // Tram overhead-line pole (technical map): a 9 m steel pole with its bracket over the tracks; a street
     // lamp mounted on it (OSM) is drawn with it.
     case "sloup_trakce": {
-      // The city's own pole (praha/sloup-trakce-*): its bracket over the tracks, on the right half pointing left;
+      // The city's own pole (praha/tram-pole-*): its bracket over the tracks, on the right half pointing left;
       // a pole between the tracks (it.center) carries brackets over both (Bára's photo, Prague).
       const lamp = it.lamp ? "-lamp" : "";
       if (ownSprite(`tram-pole${lamp}-left`)) {

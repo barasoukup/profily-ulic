@@ -78,7 +78,7 @@ v [evaluation/ZPRAVA.md](evaluation/ZPRAVA.md) (další města v `evaluation/<m�
 - `app/public/towns/` – zdroje dat jednotlivých měst a zbytku Česka
 - `app/server.mjs` – lokální server s cache dotazů na IPR
 - `app/public/queries.js` – co se ptá IPR (vrstvy, pole), společné pro server i web
-- `app/navrhy-ilustraci/` – nepoužívané varianty pražských ilustrací (nenasazují se)
+- `app/unused-illustrations/` – nepoužívané varianty pražských ilustrací (nenasazují se)
 - `tests/` – testy pravidel, převodu do Streetmixu, dotazů, zdrojů měst a odhadu profilu z OSM
 - `tools/` – výroba dlaždic OSM, statických dat a pomocné skripty
 - `evaluation/` – vyhodnocení řezů nad ortofotem a A/B testy zdrojů

@@ -16,12 +16,12 @@ test("USA kreslí severoamerický mobiliář, Washington svůj označník, spole
   const art = (id) => P.artSet(C.cityById(id).art);
   assert.equal(C.countryOfCity("washington").code, "US");
   assert.equal(art("usa")["lamp-modern-left"], "../northamerica/lamp-left");
-  assert.equal(art("usa")["reeds-left"], "../cesko/rakos-left");
+  assert.equal(art("usa")["reeds-left"], "../cesko/reeds-left");
   // The shared cobra head is Washington's lamp too (Bára 25. 11. 2026); its globe is the lamp up to 5 m.
   assert.equal(art("washington")["lamp-modern-left"], "../northamerica/lamp-left");
   assert.equal(art("washington")["lamp-post-top"], "lamp-globe-left");
   assert.equal(art("usa")["lamp-post-top"], undefined);
-  assert.equal(art("washington")["stop-post-left"], "oznacnik-left");
+  assert.equal(art("washington")["stop-post-left"], "stop-post-left");
   assert.equal(art("washington")["bench-center"], "../northamerica/bench-center");
   for (const id of ["usa", "washington"]) for (const f of Object.values(art(id))) {
     assert.ok(fs.existsSync(new URL(`../app/public/${id}/${f}.svg`.replace(`${id}/../`, ""), import.meta.url)), `${id} ${f}`);

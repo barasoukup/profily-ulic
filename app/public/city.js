@@ -119,7 +119,7 @@ const CITIES = {
     art: "jihlava",
     artLabel: "Jihlavské ilustrace",
     artTitle: "Kreslit jihlavskými ilustracemi (vypnuto: ilustrace Streetmixu)",
-    emptyImg: "jihlava/trolejbus-inbound.svg",
+    emptyImg: "jihlava/trolleybus-inbound.svg",
     credit: "data © Statutární město Jihlava (pasport komunikací, parkování CC BY-SA, mobiliář), RÚIAN a katastr © ČÚZK, 2026 (CC BY 4.0, upraveno)",
     // Old inner town (pitched-roof tenements) within innerKm of the centre, estates from estateKm (profile.js).
     innerKm: 0.7, estateKm: 1.6,
@@ -127,7 +127,7 @@ const CITIES = {
     // Jihlava illustrations (jihlava/): the trolleybus and bus of DPmJ in its cream and red (Bára's photos), the
     // trolleybus with its poles in bus lanes under trolley wires; the furniture as in Prague for now.
     artMap: {
-      "trolleybus-inbound": "trolejbus-inbound", "trolleybus-outbound": "trolejbus-outbound",
+      "trolleybus-inbound": "trolleybus-inbound", "trolleybus-outbound": "trolleybus-outbound",
       ...TOWN_ART,
     },
   },
@@ -172,12 +172,12 @@ const CITIES = {
     art: "opava",
     artLabel: "Opavské ilustrace",
     artTitle: "Kreslit opavskými ilustracemi (vypnuto: ilustrace Streetmixu)",
-    emptyImg: "opava/trolejbus-inbound.svg",
+    emptyImg: "opava/trolleybus-inbound.svg",
     credit: "data © Statutární město Opava (účelová mapa, parkování, stromy, lavičky, zastávky), RÚIAN © ČÚZK, 2026 (CC BY 4.0, upraveno)",
     // Old inner town (pitched-roof tenements) within innerKm of the centre, estates from estateKm (profile.js).
     innerKm: 0.7, estateKm: 1.6,
     example: "49.938700, 17.902600",
-    artMap: { "trolleybus-inbound": "trolejbus-inbound", "trolleybus-outbound": "trolejbus-outbound", ...TOWN_ART },
+    artMap: { "trolleybus-inbound": "trolleybus-inbound", "trolleybus-outbound": "trolleybus-outbound", ...TOWN_ART },
   },
   pardubice: {
     id: "pardubice",
@@ -196,13 +196,13 @@ const CITIES = {
     art: "pardubice",
     artLabel: "Pardubické ilustrace",
     artTitle: "Kreslit pardubickými ilustracemi (vypnuto: ilustrace Streetmixu)",
-    emptyImg: "pardubice/trolejbus-inbound.svg",
+    emptyImg: "pardubice/trolleybus-inbound.svg",
     credit: "technická mapa © Pardubický kraj, IS DMVS ČÚZK, RÚIAN © ČÚZK, 2026 (CC BY 4.0, upraveno)",
     // Old inner town (pitched-roof tenements) within innerKm of the centre, estates from estateKm (profile.js).
     innerKm: 0.9, estateKm: 2,
     example: "50.038300, 15.779100",
     // No town GIS of its own: the surfaces come from the national DTM of ČÚZK (towns/dmvs.js), any town could.
-    artMap: { "trolleybus-inbound": "trolejbus-inbound", "trolleybus-outbound": "trolejbus-outbound", ...TOWN_ART },
+    artMap: { "trolleybus-inbound": "trolleybus-inbound", "trolleybus-outbound": "trolleybus-outbound", ...TOWN_ART },
   },
   plzen: {
     id: "plzen",
@@ -232,7 +232,7 @@ const CITIES = {
     // bus SOR NS 12; the furniture as in Prague for now.
     artMap: {
       "streetcar-inbound": "tram-inbound", "streetcar-outbound": "tram-outbound",
-      "trolleybus-inbound": "trolejbus-inbound", "trolleybus-outbound": "trolejbus-outbound", ...TOWN_ART,
+      "trolleybus-inbound": "trolleybus-inbound", "trolleybus-outbound": "trolleybus-outbound", ...TOWN_ART,
     },
   },
   usti: {

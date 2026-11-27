@@ -98,9 +98,9 @@ test("Boston: pravidla šířek z Boston Complete Streets Guidelines jen v metru
   for (const set of [US.art.boston, US.art.bostonmetro]) {
     assert.equal(set["bus-inbound"], "bus-inbound");
     assert.equal(set["streetcar-inbound"], "tram-inbound");
-    assert.equal(set["stop-post-left"], "oznacnik-left");
+    assert.equal(set["stop-post-left"], "stop-post-left");
   }
-  for (const f of ["bus-inbound", "tram-inbound", "lamp-acorn-left", "oznacnik-left"]) assert.ok(fs.existsSync(new URL(`../app/public/boston/${f}.svg`, import.meta.url)), f);
+  for (const f of ["bus-inbound", "tram-inbound", "lamp-acorn-left", "stop-post-left"]) assert.ok(fs.existsSync(new URL(`../app/public/boston/${f}.svg`, import.meta.url)), f);
   // Washington keeps Metrobus and its globe.
   assert.equal(US.art.washington["bus-inbound"], "../washington/bus-inbound");
   assert.equal(US.art.washington["lamp-post-top"], "lamp-globe-left");
