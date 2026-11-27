@@ -263,11 +263,7 @@ Co rozhodne Bára, je označeno **(Bára)**.
 ~~- Domy: chata nebo jiná stavba bez počtu podlaží v RÚIAN dostane výchozí 2 NP (hlášení u silnice 506338718
   v Královéhradeckém kraji: 1 NP a podkroví). Výchozí hodnota pro rekreační stavby (RÚIAN 8)? **(Bára)**~~
   (27. 11. 2026: chata bez počtu podlaží = 1 NP a podkroví (Bára), `gis.js`, `?off=chata`)
-- Podkroví z RÚIAN (23. 11.): rodinný dům a chata se 2+ podlažími mají poslední podlaží ve střeše (silnice 230). Ověřeno
-  na víc domech (27. 11. 2026, beze změny pravidla proti IPR, pravidlo zůstává, viz `evaluation/small-fixes/podkrovi.mjs`: u rodinného domu s 2 NP má IPR podkroví jen v 37 %, se 3 NP v 70 %; pravidlo vůči IPR sedí u 3 NP, u 2 NP spíš ne; rozhodnout, zda 2 NP kreslit bez podkroví **(Bára)**)
-
-## Hledání
-
+- ~~Podkroví z RÚIAN~~ Bára 27. 11. 2026: rodinný dům a chata se 2+ NP dál s posledním podlažím ve střeše (měření Prahy: 2 NP 37 %, 3 NP 70 %; `evaluation/small-fixes/podkrovi.mjs`).
 - Belgie a Lucembursko jen přes Photon; národní služby (Flandry geolocation, geoportail.lu) nezapojené.
 - Francie: Géoplateforme hledá i bez města; přednost blízko středu mapy je slabá (lat/lon jen naznačí).
 - ~~Photon nabízí i místa v Nizozemsku, Belgii, Lucembursku, Polsku, Francii a Španělsku, kde zatím nejsou dlaždice OSM~~
