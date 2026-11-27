@@ -99,8 +99,8 @@ Co rozhodne Bára, je označeno **(Bára)**.
 - Portugalsko: chybí stání (16×, často kolmé) a chodník (13×) v měření; stání EMEL Lisabon (12 tisíc úseků s orientací,
   CC BY-SA) a buspruhy Porta (CC0) jen jako statické soubory při nasazení; ortofoto Madeiry (IRIG, licence neuvedená) a
   Azor (bez CORS, jen podklad mapy); ~~Monako~~ (23. 11. přidáno), Andorra bez ortofota odložit.
-- Španělsko **(Bára)**: vrstva PNOA v mapě ukazuje i Melillu (snímek Airbus, licence nevyjasněná; pruhy se tam už nečtou):
-  Melillu z vrstvy vyjmout (`ES_NOT_PNOA`), nebo uvést Airbus?
+- ~~Španělsko **(Bára)**: vrstva PNOA v mapě ukazuje i Melillu (snímek Airbus, licence nevyjasněná)~~ Bára 27. 11. 2026:
+  vyjmout; už platí (`app.js` vynechá prstenec Melilly z vrstvy, `ES_NOT_PNOA`).
 - ~~Španělsko: Catastro se ptá i v Baskicku a Navaře (recenze, nález 5)~~ (Bára 23. 11. 2026: vynecháno podle hranic NUTS 2
   GISCO, `regions-es.json`, enkláva Treviño zůstává Burgosu)
 - Španělsko: foralní katastr Álavy má proti OSM soustavně o 2 podlaží víc (`evaluation/spain/foral-ab/ZPRAVA.md`):
