@@ -1530,9 +1530,36 @@ export function buildingAt(osm, frame, p) {
       roofShape: el.tags["roof:shape"], start: year > 1000 ? year : undefined, material: el.tags["building:material"],
       // OSM says panels (building:prefabricated=yes, building:material=concrete_panel…): the panel house's own evidence.
       panel: el.tags["building:prefabricated"] === "yes" || /panel|prefab/i.test(el.tags["building:material"] || "") ? true : undefined,
+      own: ownShape(b), around: aroundOf(b, all, osm.elements, frame),
       footprint: ringArea(b.ring) - (b.rings.slice(1).reduce((a, r) => a + ringArea(r), 0)) };
   }
   return null;
+}
+// The house's own outline: how much of its smallest rectangle it fills (a slab: close to 1) and the rectangle's sides (m).
+function ownShape(b) {
+  const a = mainAxis(b.ring), area = ringArea(b.ring);
+  return { rect: +(area / (a.length * a.width || 1)).toFixed(2), length: +a.length.toFixed(1), width: +a.width.toFixed(1) };
+}
+// What lies round the house within AROUND_R m (house-looks.js panelScore): the share built over by other buildings and the
+// share of green (OSM grass, wood, park, garden…), by a grid of points. An estate of slabs stands free in green, a town
+// street's house between others. Only what the OSM elements loaded hold (whole tiles of about 550 × 350 m round the cut).
+const AROUND_R = 80, AROUND_STEP = 10, GREEN_TAGS = (t) => /^(grass|forest|meadow|village_green|recreation_ground|orchard)$/.test(t.landuse || "")
+  || /^(park|garden|pitch|playground)$/.test(t.leisure || "") || /^(wood|scrub|grassland)$/.test(t.natural || "");
+function aroundOf(self, all, elements, frame) {
+  const c = [self.ring.reduce((a, q) => a + q[0], 0) / self.ring.length, self.ring.reduce((a, q) => a + q[1], 0) / self.ring.length];
+  const near = (r) => r.some((q) => Math.hypot(q[0] - c[0], q[1] - c[1]) < AROUND_R + 60);
+  const others = all.filter((b) => b !== self && b.bbox[2] > c[0] - AROUND_R && b.bbox[0] < c[0] + AROUND_R && b.bbox[3] > c[1] - AROUND_R && b.bbox[1] < c[1] + AROUND_R);
+  const greens = (elements || []).filter((el) => el.type === "area" && el.geometry?.length > 2 && !el.tags?.building && GREEN_TAGS(el.tags || {}))
+    .map((el) => ({ rings: [el.geometry, ...(el.holes || [])].map((r) => r.map((g) => frame.toXY(g.lon, g.lat))) })).filter((g) => near(g.rings[0]));
+  let n = 0, built = 0, green = 0;
+  for (let x = -AROUND_R; x <= AROUND_R; x += AROUND_STEP) for (let y = -AROUND_R; y <= AROUND_R; y += AROUND_STEP) {
+    if (Math.hypot(x, y) > AROUND_R) continue;
+    const p = [c[0] + x, c[1] + y];
+    n++;
+    if (others.some((b) => p[0] >= b.bbox[0] && p[0] <= b.bbox[2] && p[1] >= b.bbox[1] && p[1] <= b.bbox[3] && inside(b.rings, p[0], p[1]))) built++;
+    else if (greens.some((g) => inside(g.rings, p[0], p[1]))) green++;
+  }
+  return { built: +(built / n).toFixed(2), green: +(green / n).toFixed(2) };
 }
 const ringArea = (r) => Math.abs(r.reduce((a, [x, y], i) => { const [x2, y2] = r[(i + 1) % r.length]; return a + x * y2 - x2 * y; }, 0)) / 2;
 
@@ -2449,6 +2476,8 @@ export function deriveProfile({ center, dir, half, polys, osm, frame, way, track
     // The footprint (m²): a small house alone is a family house when nothing else is known (house-looks.js smallHouse).
     if (b?.footprint) edges[`${side}Info`].footprint = Math.round(b.footprint);
     if (b?.panel) edges[`${side}Info`].panel = 1;
+    if (b?.own) edges[`${side}Info`].own = b.own;
+    if (b?.around) edges[`${side}Info`].around = b.around;
     // The walls' material (OSM building:material): a wooden house in Estonia and the north, Malta's limestone
     // (house-looks.js); no Czech look reads it.
     if (b?.material) edges[`${side}Info`].material = b.material;

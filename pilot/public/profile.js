@@ -7,7 +7,7 @@ import { GENERIC_VEHICLES } from "./art.js";
 import { PLATES, signFile, plateFile, signLabel, signDir, SPEED_TEMPLATES } from "./signs.js";
 // tr: t is a part's type here.
 import { t as tr, num } from "./i18n.js";
-import { LOOKS, houseHash, smallHouse, strictSlab, panelOn } from "./house-looks.js";
+import { LOOKS, houseHash, smallHouse, strictSlab, panelOn, panelScore, PANEL_SCORE } from "./house-looks.js";
 import { AMERICA, AMERICA_PALETTES } from "./houses-america-spec.js";
 import { floorsFromHeight, floorsOsmOn } from "./floors.js";
 
@@ -851,12 +851,16 @@ const PANEL_WIDTH = 16, PANEL_FILL = 0.65, PANEL_PART = 30, PANEL_FLOORS = 8, es
 const OLD_SETBACK_KM = 4.5, PANEL_FROM = 1955, MODERN_FROM = 1995;
 const isSlab = (b) => !!b && ((b.fill >= PANEL_FILL && b.width <= PANEL_WIDTH) || (b.parts >= 2 && (b.length + b.width) / b.parts >= PANEL_PART));
 // Abroad, where panel houses were built (socialistLooks), the shape alone makes a panel house only as a long compact slab (house-looks.js strictSlab); Czechia keeps isSlab.
-const slabOf = (b) => (city.abroad && socialistLooks() && panelOn() ? strictSlab(b) : isSlab(b));
+const slabOf = (b, info) => {
+  if (!(city.abroad && socialistLooks() && panelOn())) return isSlab(b);
+  const sc = panelScore(info);
+  return sc === null ? strictSlab(b) : sc >= PANEL_SCORE;
+};
 function flatKind(info, n) {
   if (OFFICE_TYPES.has(info?.type) || (info?.office && !FLAT_RESIDENTIAL.has(info?.type))) return "kancelar";
   if (info?.newBuild) return "moderni"; // IPR "nová budova"
   const b = info?.block;
-  const slab = slabOf(b);
+  const slab = slabOf(b, info);
   const setback = !slab && n < PANEL_FLOORS && info?.roof >= 1;
   // The year of the house (RÚIAN) before the age of the area; it is exact, so modern from 1996.
   const p = info?.built ?? info?.period;
@@ -890,7 +894,7 @@ function abroadStyle(info, n) {
   if (rs && rs !== "flat") return "sikma";
   if (OFFICE_TYPES.has(info?.type)) return "plocha";
   // Where panel houses were built, the shape of a block alone (no floors, no kind) tells none (evaluation/all-buildings).
-  if ((slabOf(info?.block) && (n || info?.type || !socialistLooks())) || (n >= PANEL_FLOORS && !info?.block)) return "plocha";
+  if ((slabOf(info?.block, info) && (n || info?.type || !socialistLooks())) || (n >= PANEL_FLOORS && !info?.block)) return "plocha";
   return rs === "flat" ? "funkce" : "sikma";
 }
 

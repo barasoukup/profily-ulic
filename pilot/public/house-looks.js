@@ -30,6 +30,20 @@ export const smallHouse = (info) => !villageOff() && info?.footprint > 0 && info
 // NOT the default: the blind A/B on photographs (EE, LT, PL, 36 houses, two judges) came 11 : 12 and 14 : 10
 // (evaluation/village-houses/ZPRAVA.md). ?panel2=1 turns it on (globalThis.PROFILY_CA.panel2 in scripts).
 export const panelOn = () => (typeof location === "undefined" ? globalThis.PROFILY_CA?.panel2 : new URLSearchParams(location.search).get("panel2")) === "1";
+// Where the house's own outline and surroundings are known (derive.js own, around), the panel house needs a clear agreement of
+// several signs (Bára 27. 11. 2026: "better no panel house than a false one"): an exact rectangle, a big building, free
+// space round it (little built over within 80 m; green adds), the estate of slabs rather than the town's street. Score:
+// rectangle (own outline fills its smallest rectangle; under 0.7 no panel house at all) 0.7 → 1, 0.8 → 1.5; built share round 0.2 → 1, 0.12 → 1.5;
+// size (footprint 500 m² or 8+ floors) 1; green 20 % of the ground round +0.5. At least PANEL_SCORE. Without them (a saved
+// cut) the old shape rule (profile.js isSlab).
+export const PANEL_SCORE = 3;
+export function panelScore(info) {
+  const o = info?.own, a = info?.around;
+  if (!o || !a) return null;
+  if (o.rect < 0.7) return 0; // not an exact rectangle: no panel house, whatever else
+  return (o.rect >= 0.8 ? 1.5 : o.rect >= 0.7 ? 1 : 0) + (a.built <= 0.12 ? 1.5 : a.built <= 0.2 ? 1 : 0)
+    + (info.footprint >= 500 || info.levels >= 8 ? 1 : 0) + (a.green >= 0.2 ? 0.5 : 0);
+}
 export const strictSlab = (b) => !!b && ((b.fill >= 0.8 && b.width <= 16 && b.length >= 25) || (b.parts >= 2 && b.fill >= 0.5 && b.width <= 20 && (b.length + b.width) / b.parts >= 30));
 
 const OLD = new Set(["sikma", "mestan", "nizky"]);

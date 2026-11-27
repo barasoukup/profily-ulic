@@ -31,7 +31,9 @@ export function infoOf(els, frame, p, point, off = []) {
   if (b?.start) info.start = b.start;
   if (b?.material) info.material = b.material;
   if (b?.footprint) info.footprint = b.footprint;
-  if (b?.dense !== undefined) info.dense = b.dense;
+  if (b?.own) info.own = b.own;
+  if (b?.around) info.around = b.around;
+  if (b?.panel) info.panel = 1;
   return { found: !!b, info };
 }
 export async function setPlace(lat, lon) {
