@@ -329,10 +329,12 @@ export function drawAmerican(kind, { g, el, X, surface, EDGE, f, seed, wall, det
     // panels in two or three colours, shallow bays, narrow metal balconies, a thin projecting roof edge.
     const A = wall, B = ["#a5573c", "#4d5a63", "#c79a4a", "#6f7a5e"][seed % 4], W2 = "#dcd9d0", FR = "#54595e", BR = "#7d5647";
     wallBase(W2);
-    box(0, EDGE, G, top, A);
-    box(215, EDGE, G, top, B);
-    for (let z = G + S / 2; z < top; z += S / 2) box(0, EDGE, z - 1, z + 1, "#00000022");
-    for (const d of [72, 143, 215, 300]) box(d - 1, d + 1, G, top, "#00000022");
+    if (n > 1) { // the panels above the shops (a one-storey one has only its roof edge)
+      box(0, EDGE, G, top, A);
+      box(215, EDGE, G, top, B);
+      for (let z = G + S / 2; z < top; z += S / 2) box(0, EDGE, z - 1, z + 1, "#00000022");
+      for (const d of [72, 143, 215, 300]) box(d - 1, d + 1, G, top, "#00000022");
+    }
     box(0, EDGE, 0, G - 16, BR); bricks(0, EDGE, 0, G - 16, BR);
     for (let d = 24; d < EDGE; d += 190) { const h = G - 110; box(d, d + 160, 0, h + 8, FR); box(d + 8, d + 152, 24, h - 64, GLASS); poly([[d + 90, h - 64], [d + 152, h - 64], [d + 152, h * 0.4]], GLINT); box(d + 8, d + 152, h - 54, h, GLASS); box(d + 78, d + 82, 24, h, FR); }
     box(0, EDGE, G - 16, G + 6, FR); box(32, 102, 0, G - 174, "#3f4246"); box(40, 94, 12, G - 182, "#45547c"); box(86, 89, 90, 150, WHITE); // the shop's door
@@ -394,7 +396,7 @@ export function drawAmerican(kind, { g, el, X, surface, EDGE, f, seed, wall, det
     cornice(top, 78, 48, CN, { panel: true });
     box(0, EDGE, top, top + 26, tint(wall, 0.9), thin(wall)); box(150, 340, top + 26, top + 62, tint(wall, 0.9), thin(wall)); box(168, 322, top + 14, top + 48, LIME, thin(LIME)); // the name block
     box(-150, 0, zs - 82, zs - 78, IRON); awning(zs + 8, 165, 74, ["#a8433a", "#3f6f5a", "#3c5f8f", "#c79a4a"][(seed >> 1) % 4]);
-    box(-66, 0, G + 70, G + 75, IRON); poly([[0, G + 100], [0, G + 94], [-56, G + 72], [-62, G + 72]], IRON); box(-58, -14, G + 6, G + 70, tint(SC, 1.15), thin(SC)); box(-48, -24, G + 30, G + 46, LETTERS[0]); // the blade sign
+    if (n > 1) { box(-66, 0, G + 70, G + 75, IRON); poly([[0, G + 100], [0, G + 94], [-56, G + 72], [-62, G + 72]], IRON); box(-58, -14, G + 6, G + 70, tint(SC, 1.15), thin(SC)); box(-48, -24, G + 30, G + 46, LETTERS[0]); } // the blade sign hangs over the upper floors only
   } else if (kind === "stripmall") {
     // The one-storey commercial box: strip mall, taxpayer block: shops behind a covered walk, a sign band, a flat roof.
     const SC = ["#b5483c", "#2f6f8f", "#3f7a4a", "#c98a2f"][seed % 4], zs = Math.min(270, top * 0.55), zb = Math.min(top - 60, zs + 130);
@@ -404,6 +406,7 @@ export function drawAmerican(kind, { g, el, X, surface, EDGE, f, seed, wall, det
     for (let d = 16; d < EDGE; d += 128) { box(d - 6, d + 112, 0, zs + 6, METAL); box(d, d + 106, d < 40 ? 8 : 44, zs - 44, GLASS); poly([[d + 60, zs - 44], [d + 106, zs - 44], [d + 106, zs * 0.5]], GLINT); box(d, d + 106, zs - 38, zs, GLASS); }
     box(18, 22, 100, 150, METAL);
     sign(zs + 22, zb - zs - 30, SC);
+    for (let k = 1; k < n; k++) each(100, (i, d) => { const z0 = Math.max(floorZ(k) + 0.2 * S, zb + 36); sash(d, z0, 100, Math.min(0.5 * S, top - z0 - 60), k * 3 + i, { sill: LIME }); }); // the upper floor: a band of windows
     front();
     // the covered walk: its roof, the sign fascia at its edge, the post
     box(-180, 0, zs + 8, zs + 30, tint(wall, 0.92), thin(wall));
@@ -461,8 +464,10 @@ export function drawAmerican(kind, { g, el, X, surface, EDGE, f, seed, wall, det
         for (let q = z + 24; q < z + S - 8; q += 20) box(-D + 30, -D + 70, q, q + 4, "#565c5f");
       }
     }
-    box(-D + 2, -D + 6, G - 150, floorZ(1) + 8, FE); // the drop ladder at the platform's edge
-    for (let z = G - 144; z < floorZ(1); z += 26) box(-D - 3, -D + 11, z, z + 3, FE);
+    if (n > 1) { // the drop ladder hangs only from a platform (a one-storey house has none)
+      box(-D + 2, -D + 6, G - 150, floorZ(1) + 8, FE);
+      for (let z = G - 144; z < floorZ(1); z += 26) box(-D - 3, -D + 11, z, z + 3, FE);
+    }
     box(0, EDGE, top, top + 24, tint(wall, 0.9), thin(wall));
   } else if (kind === "tripledecker") {
     // Boston's triple-decker, 1880–1930: three floors of wood, the porches stacked one over another on the street front,
@@ -495,7 +500,7 @@ export function drawAmerican(kind, { g, el, X, surface, EDGE, f, seed, wall, det
     // Toronto's bay-and-gable, 1875–1900: red brick with buff bands, a two-storey bay under a steep gable with carved
     // bargeboards; its roof runs back from the street.
     // The gable is turned towards us, as the North Sea's (Bára 23. 11. 2026), over the bay's half of the house.
-    const R = SHINGLE[2], rise = 290, zr = top + 190, BUFF = "#d8c08a", D = 85, hb = n, gc = 182, gw = 152, BB = "#f0e6d0";
+    const R = SHINGLE[2], rise = 205, zr = top + rise - 12, BUFF = "#d8c08a", D = 85, hb = n, gc = 182, gw = 152, BB = "#f0e6d0";
     chimney(EDGE - 60, zr - 60, zr + 70);
     poly([[20, top], [60, zr], [EDGE, zr], [EDGE, top]], R[0]);
     for (let z = top + 22; z < zr - 8; z += 30) box(70, EDGE, z, z + 3, R[1], { "fill-opacity": 0.6 });
@@ -519,13 +524,13 @@ export function drawAmerican(kind, { g, el, X, surface, EDGE, f, seed, wall, det
     each(82, (i, d) => { if (i) sash(d, base + 0.24 * S, 82, 0.56 * S, i, { arch: true, lintel: BUFF, sill: BUFF }); });
     for (let k = 1; k < n; k++) each(82, (i, d) => sash(d, floorZ(k) + 0.22 * S, 82, 0.54 * S, k * 3 + i, { arch: true, lintel: BUFF, sill: BUFF }));
     front();
+    stoop(D + 70, base, { open: true, c: IRON }); // the landing and steps before the door: drawn first, the bay hides what lies behind its front
     const zb = top - 30, bw = tint(wall, 1.05); // the bay's top
     box(-D, 0, 0, zb, bw, outline); bricks(-D + 2, -2, 0, zb, bw);
     for (let k = 0; k < hb; k++) { sash(-D + 22, floorZ(k) + 0.24 * S, 42, 0.54 * S, k + 50, { lintel: BUFF, sill: BUFF }); box(-D - 4, 0, floorZ(k) - 14, floorZ(k), BUFF); }
     box(-D - 8, 0, zb - 10, zb + 4, WHITE, thin(WHITE));
     poly([[-D - 12, zb + 4], [0, zb + 4], [0, zb + 60]], R[0], thin(R[0]));
     gableSide();
-    stoop(D + 8, base, { open: true, c: IRON });
   } else if (kind === "victorian") {
     // San Francisco's wooden row house, 1870–1910: over a garage, an angled bay through the upper floors with its panels
     // and paired windows, painted trim, a bracketed cornice on a false front; plain (det.plain): the stucco house of the
@@ -537,12 +542,13 @@ export function drawAmerican(kind, { g, el, X, surface, EDGE, f, seed, wall, det
     box(150, 350, 0, 216, TR, thin(TR)); box(160, 340, 0, 206, GD); // the garage door
     for (let i = 1; i < 4; i++) box(160, 340, i * 51, i * 51 + 3, tint(GD, 0.8));
     for (let d = 172; d < 330; d += 42) box(d, d + 30, 160, 194, GLASS);
-    if (det.plain) { // the tunnel entrance: an arch, the stairs inside it
-      arch0(71, 196, 57, tint(wall, 1.08)); box(14, 128, 0, 196, tint(wall, 1.08));
-      arch0(71, 194, 49, "#7d7060"); box(22, 120, 0, 194, "#7d7060");
-      box(46, 108, 72, 222, AC); box(56, 98, 130, 208, GLASS);
-      for (let i = 0; i < 4; i++) box(22 + i * 5, 120, i * 18, (i + 1) * 18, "#b5ab98", thin("#b5ab98"));
-    } else door(120, { h: 190, c: AC, surround: TR });
+    if (det.plain) { // the tunnel entrance: an arch, the stairs inside it, the door 2.1 m over the top step
+      const ST = 54, zA = ST + 212, OP = tint(wall, 1.08);
+      arch0(71, zA, 57, OP); box(14, 128, 0, zA, OP);
+      arch0(71, zA - 2, 49, "#7d7060"); box(22, 120, 0, zA - 2, "#7d7060");
+      box(42, 100, ST, zA - 2, AC); arch0(71, zA - 2, 29, AC); box(52, 90, ST + 90, zA - 24, GLASS); arch0(71, zA - 24, 19, GLASS);
+      for (let i = 0; i < 3; i++) box(22 + i * 5, 120, i * 18, (i + 1) * 18, "#b5ab98", thin("#b5ab98"));
+    } else door(84, { h: 210, c: AC, surround: TR });
     box(0, EDGE, G - 16, G, TR, thin(TR));
     for (let k = 1; k < n; k++) {
       each(88, (i, d) => sash(d, floorZ(k) + 0.22 * S, 88, 0.54 * S, k * 3 + i, det.plain ? { trim: TR } : { trim: TR, hood: TR, ped: k === 1 }));
@@ -569,7 +575,7 @@ export function drawAmerican(kind, { g, el, X, surface, EDGE, f, seed, wall, det
       else bayCornice(D, z1, 72, TR);
     }
     if (!det.plain) { // the wooden stairs to the door, its little portico post
-      stoop(80, 120, { c: "#b5a68a", rail: TR === "#f6f0e2" ? "#cfc7b5" : TR });
+      stoop(80, 84, { c: "#b5a68a", rail: TR === "#f6f0e2" ? "#cfc7b5" : TR });
     }
   }
 }
