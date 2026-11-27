@@ -463,6 +463,13 @@ test("OSM parking=lane bez orientace je podélné stání, ne šikmé podle hlou
   assert.equal(orient({ orientation: "diagonal" }), "sikme");
 });
 
+test("podélné stání z OSM (parking=lane) je nejvýš 2,5 m široké, zbytek hrubého polygonu je vozovka (Klánovická, 27. 11. 2026)", () => {
+  const area = { type: "area", id: 9, tags: { amenity: "parking", parking: "lane" }, geometry: [ll(-4.4, -10), ll(-0.5, -10), ll(-0.5, 10), ll(-4.4, 10), ll(-4.4, -10)] };
+  const width = () => road(6.5, { lanes: "2" }, { axis: 2, extra: [area] }).segments.filter((s) => s.type === "parkovani").map((s) => s.width);
+  const w = width();
+  assert.ok(w.length && w.every((x) => x <= 2.55), w);
+});
+
 test("pojmenovaná služební cesta přes pole je ulice, kterou mapa povrchů nemá: odhad z OSM (Devětsilová, 23. 11. 2026)", () => {
   const cut = (tags) => {
     const way = { type: "way", id: 1, tags: { highway: "service", ...tags }, geometry: line(0) };

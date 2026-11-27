@@ -709,6 +709,30 @@ function mergeTiny(runs) {
   return runs;
 }
 
+// A parallel bay of OSM (parking=lane) is drawn roughly: its area may be 3.9 m deep over a lane (Klánovická) and would
+// make a stall wider than a car. The bay keeps PARALLEL_BAY_MAX at its outer edge (the side away from the street's axis);
+// the rest, towards the axis, goes to the roadway beside it, or is one of its own (a guess). ?off=stanisirka.
+const PARALLEL_BAY_MAX = 2.5; // m (a car 1.8 m with room for doors: 2.0 to 2.5)
+function capParallelBay(runs, axisT) {
+  if (ORTHO_P.off?.has("stanisirka")) return runs;
+  const out = [];
+  for (let i = 0; i < runs.length; i++) {
+    const r = runs[i];
+    if (r.code !== OSM_PARKING || r.orient !== "podelne" || r.e - r.s <= PARALLEL_BAY_MAX + 0.3) { out.push(r); continue; }
+    const inner = axisT < r.s ? "s" : axisT > r.e ? "e" : null;
+    if (!inner) { out.push(r); continue; }
+    const cut = inner === "s" ? r.e - PARALLEL_BAY_MAX : r.s + PARALLEL_BAY_MAX;
+    const rest = inner === "s" ? { code: 701, guess: true, s: r.s, e: cut } : { code: 701, guess: true, s: cut, e: r.e };
+    const bay = { ...r, ...(inner === "s" ? { s: cut } : { e: cut }) };
+    const near = inner === "s" ? out[out.length - 1] : runs[i + 1];
+    const road = (x) => x && (x.code === 700 || x.code === 701);
+    if (road(near)) { if (inner === "s") near.e = cut; else near.s = cut; out.push(bay); }
+    else if (inner === "s") out.push(rest, bay); else out.push(bay, rest);
+  }
+  // (a roadway run of the next iteration was widened in place: its own turn comes later with its new start)
+  return out;
+}
+
 // OSM parking areas and MTVU curbs rarely line up exactly; narrow roadway or sidewalk
 // strips left next to a parking bay belong to the bay.
 function absorbParkingSlivers(runs) {
@@ -2110,6 +2134,7 @@ export function deriveProfile({ center, dir, half, polys, osm, frame, way, track
   // An OSM street-parking area under the street axis covers the carriageway itself (drawn
   // over the whole street): the bays cannot be told apart, so the technical map alone decides.
   if (runs[axisRun(runs)]?.code === OSM_PARKING) runs = classifyAll(false);
+  runs = capParallelBay(runs, axisT);
   // roadOnPath (Prague, Bára 15. 11. 2026): a "sidewalk or park path" (702) at least ROAD_ON_PATH_MIN wide that an
   // OSM road crosses is its roadway, as an estimate, where the technical map has no roadway along the whole cut
   // (Poncarova: MTVU codes a two-lane road 702). OSM's sidewalks play no part. 142 cuts of Prague's samples
