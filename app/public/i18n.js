@@ -54,25 +54,13 @@ const load = (l) => readJson(Object.hasOwn(LANGS, l) ? l : "cs");
 // What saved cuts and the browser kept in Czech before the keys (27. 11. 2026): the note after the street's name
 // (cut.note in a saved file, a link #rez=, the browser's storage) and the name of the base map; the Czech sentence →
 // its key. Frozen: a new text never goes here.
-let LEGACY = {}, DICT = {}, CITY_TEXTS = {};
-const use = (texts) => {
-  DICT = texts;
-  CITY_TEXTS = {};
-  for (const [k, v] of Object.entries(texts)) {
-    const m = /^city\.([^.]+)\.(\w+)$/.exec(k);
-    if (m) (CITY_TEXTS[m[1]] ??= {})[m[2]] = v;
-  }
-};
+let LEGACY = {}, DICT = {};
+const use = (texts) => { DICT = texts; };
 {
   const [texts, legacy] = await Promise.all([load(lang).catch(() => ((lang = "cs"), load("cs"))).catch(() => ({})), readJson("legacy-cs-keys").catch(() => ({}))]);
   use(texts);
   LEGACY = legacy;
 }
-// The city's texts (city.js) in the language: its server, data and credits as sentences take them. A town without
-// texts of its own takes its state's (like); one whose texts are another town's (Boston's metro, Boston's; city.js
-// STATE_TOWNS).
-const TEXT_ALIAS = { bostonmetro: "boston" };
-export const cityTexts = (id, like) => CITY_TEXTS[id] || CITY_TEXTS[TEXT_ALIAS[id]] || CITY_TEXTS[like];
 // How the language writes numbers: a decimal comma everywhere but in English, Irish and Maltese (3,50 / 3.50); per cent
 // with a space ("44 %": Czech, Slovak, German DIN 5008, French, Spanish, Croatian, Slovenian, the Nordic and Baltic
 // languages but Latvian) or without ("44%": English, Irish, Maltese, Dutch, Polish, Italian, Portuguese, Romanian,

@@ -14,6 +14,7 @@ import { isLate } from "./late.js";
 export { loadSkTowns, inSkTown };
 import { t } from "./i18n.js";
 import { cityTexts, CLOSED_TEXT } from "./data.js";
+import { dmvsCredit, ruianCredit } from "./credit-text.js";
 
 // Labels of the MTVU codes, for Brno's surfaces (Prague's MTVU sends its own).
 export const MTVU_LABELS = {
@@ -419,8 +420,8 @@ export function creditLines(c, src = {}, art = false) {
   const word = t("cities.data", { data: "" }).replace(/[\s:]+$/, "").toLowerCase();
   const own = (s) => (s.split(" ")[0].toLowerCase() === word || /^data$/i.test(s.split(" ")[0]) ? s.slice(s.indexOf(" ") + 1) : s);
   const data = c.credit ? [t("cities.data", { data: own(c.credit).replace("{kraj}", kraj) })] : [];
-  if (src.dmvs && !c.credit.includes("IS DMVS")) data.push(t("cities.technicalMapKrajDmvs", { kraj }));
-  if (src.dmvs && !c.credit.includes("RÚIAN")) data.push(t("cities.ruianCuzk2026Cc"));
+  if (src.dmvs && !c.credit.includes("IS DMVS")) data.push(dmvsCredit(kraj));
+  if (src.dmvs && !c.credit.includes("RÚIAN")) data.push(ruianCredit());
   // The sources that gave data to the cut, by their keys (credits.js).
   data.push(...sourceCredits(src));
   data.push(data.length ? t("cities.openstreetmapContributorsOdbl") : t("cities.data", { data: t("cities.openstreetmapContributorsOdbl") }));

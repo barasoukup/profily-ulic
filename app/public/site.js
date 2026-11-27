@@ -8,6 +8,7 @@
 // indicative), marked as such.
 import { query } from "./gis.js";
 import { t } from "./i18n.js";
+import { networks, W } from "./credit-text.js";
 
 const IPR = "https://gs-pub.praha.eu/arcgis/rest/services/dtmp/dtmp/MapServer";
 const LAYERS = [7, 3]; // průběh linií TMIS (neautorizované), TMIS ADS (autorizované)
@@ -23,41 +24,41 @@ const AGO = (org, n) => `https://services-eu1.arcgis.com/${org}/arcgis/rest/serv
 const num = (v) => { const x = parseFloat(String(v ?? "").replace(",", ".")); return Number.isFinite(x) ? x : null; };
 const L = (url, kind, popis = () => "", dn = () => null) => ({ url, kind, popis, dn });
 const NETS = [
-  { id: "olomouc", box: [17.15, 49.53, 17.35, 49.66], credit: () => t("site.networksCityOlomoucRegion"), layers: ((b) => [
+  { id: "olomouc", box: [17.15, 49.53, 17.35, 49.66], credit: () => networks("Statutární město Olomouc, Olomoucký kraj", "ÚAP"), layers: ((b) => [
     L(`${b}/532`, "vodovod", (a) => a.KATEGORIE), L(`${b}/502`, "kanalizace", (a) => a.KATEGORIE), L(`${b}/537`, "plynovod", (a) => a.KATEGORIE), L(`${b}/490`, "silnoproud", (a) => a.KATEGORIE),
   ])("https://gisint.kr-olomoucky.cz/int/rest/services/portal_UP/UAP_DI_TI_konzervace_31122025/MapServer") },
-  { id: "karvina", box: [18.45, 49.8, 18.62, 49.9], credit: () => t("site.networksCityKarvinaUap"), layers: ((b) => [
+  { id: "karvina", box: [18.45, 49.8, 18.62, 49.9], credit: () => networks("Statutární město Karviná", "ÚAP"), layers: ((b) => [
     L(`${b}/302`, "vodovod", (a) => a.nazev_jevu, (a) => num(a.dn)), L(`${b}/309`, "kanalizace", (a) => a.nazev_jevu, (a) => num(a.dn)), L(`${b}/338`, "plynovod", (a) => a.nazev_jevu, (a) => num(a.dn)),
     L(`${b}/326`, "silnoproud", (a) => a.nazev_jevu), L(`${b}/728`, "silnoproud", (a) => a.nazev_jevu),
   ])("https://gis.karvina.cz/arcgis/rest/services/cz_mm_karvina/uap_technicka_infrastruktura/MapServer") },
-  { id: "ostrava", box: [18.1, 49.72, 18.38, 49.9], credit: () => t("site.networksCityOstravaUap"), layers: ((o) => [
+  { id: "ostrava", box: [18.1, 49.72, 18.38, 49.9], credit: () => networks("Statutární město Ostrava", "ÚAP"), layers: ((o) => [
     L(`${o}/Ostrava_vodni_ZPV_vod_rad_L/FeatureServer/1`, "vodovod", (a) => a.NAZEV, (a) => num(a.DN)), L(`${o}/Ostrava_vodni_OCOV_stoka_L/FeatureServer/1`, "kanalizace", (a) => a.NAZEV_JEVU),
     L(`${o}/Ostrava_energetika_PLN_plynovod/FeatureServer/1`, "plynovod", (a) => a.NAZEV_JEVU), L(`${o}/Ostrava_energetika_ZT_teplo/FeatureServer/1`, "teplovod", (a) => a.NAZEV_JEVU),
     L(`${o}/Ostrava_energetika_ZEE_el_vedeni/FeatureServer/1`, "silnoproud"), L(`${o}/Ostrava_energetika_ZEE_vo_vedeni/FeatureServer/1`, "silnoproud", (a) => a.NAZEV_JEVU),
   ])("https://services5.arcgis.com/YElTIrF9aD2PDrLy/arcgis/rest/services") },
-  { id: "breclav", box: [16.83, 48.72, 16.95, 48.8], credit: () => t("site.networksTownBreclav"), layers: ((o) => [
+  { id: "breclav", box: [16.83, 48.72, 16.95, 48.8], credit: () => networks("Město Břeclav"), layers: ((o) => [
     L(`${o}/vodovod/FeatureServer/0`, "vodovod", (a) => a.PopisObjektu), L(`${o}/kanalizace/FeatureServer/0`, "kanalizace", (a) => a.PopisObjektu),
     L(`${o}/${encodeURI("trasa_plynovodní_sítě")}/FeatureServer/0`, "plynovod", (a) => a.PopisObjektu), L(`${o}/${encodeURI("elektrická_síť")}/FeatureServer/0`, "silnoproud", (a) => a.PopisObjektu),
     L(`${o}/Teplovod/FeatureServer/0`, "teplovod", (a) => a.DRUH_TEPLO),
   ])("https://services8.arcgis.com/IyOEkZNvMiU8JI5H/arcgis/rest/services") },
-  { id: "presov", sk: true, box: [21.15, 48.94, 21.33, 49.06], credit: () => t("site.networksCityPresovDigital"), layers: ((g) => [
+  { id: "presov", sk: true, box: [21.15, 48.94, 21.33, 49.06], credit: () => networks("mesto Prešov", W("digitalTechnicalMap"), "CC BY 4.0"), layers: ((g) => [
     L(`${g("03_ELE_NN_polyline")}/96`, "silnoproud", (a) => a.obsah_hladiny), L(`${g("04_ELE_VN_polyline")}/6`, "silnoproud", (a) => a.obsah_hladiny),
     L(`${g("06_VEROSV_polyline")}/5`, "silnoproud", (a) => a.obsah_hladiny), L(`${g("07_OZNAM_polyline")}/14`, "slaboproud", (a) => a.obsah_hladiny),
     L(`${g("08_KANAL_polyline")}/4`, "kanalizace", (a) => a.obsah_hladiny), L(`${g("09_PLYN_polyline")}/4`, "plynovod", (a) => a.obsah_hladiny),
     L(`${g("10_VODA_polyline")}/4`, "vodovod", (a) => a.obsah_hladiny), L(`${g("11_TEPLO_polyline")}/4`, "teplovod", (a) => a.obsah_hladiny),
   ])((n) => AGO("coW662rcZatH0tHA", n)) },
-  { id: "nitra", sk: true, box: [18.0, 48.26, 18.17, 48.37], credit: () => t("site.networksCityNitra"), layers: ((g) => [
+  { id: "nitra", sk: true, box: [18.0, 48.26, 18.17, 48.37], credit: () => networks("mesto Nitra"), layers: ((g) => [
     L(`${g("Vodovod_kopia")}/0`, "vodovod", (a) => a.popis), L(`${g("Kanalizácia_kópia")}/0`, "kanalizace"), L(`${g("Dažďová_kanalizácia_kópia")}/0`, "kanalizace", (a) => a.popis),
     L(`${g("Plyn_zdrojové_dáta_zobrazenie")}/0`, "plynovod"), L(`${g("Teplovod_kópia")}/0`, "teplovod"), L(`${g("Elektrika_kópia")}/0`, "silnoproud", (a) => a.LvlDesc),
     L(`${g("Telecom_kópia")}/0`, "slaboproud"), L(`${g("Rozvody_VO_kópia")}/0`, "silnoproud", (a) => a.TYP_VEDENI),
   ])((n) => AGO("3EnLFR2iBNxznmDC", n)) },
-  { id: "piestany", sk: true, box: [17.78, 48.55, 17.88, 48.64], credit: () => t("site.networksTownPiestanyBuilt"), layers: ((g) => [
+  { id: "piestany", sk: true, box: [17.78, 48.55, 17.88, 48.64], credit: () => networks("mesto Piešťany", W("asBuiltSurvey")), layers: ((g) => [
     ...[2, 3, 4, 5].map((i) => L(`${g("Vodovod__porealizačné_zamerania_")}/${i}`, "vodovod", (a) => a.Pole1 || a.Pole)),
     ...[2, 3, 4, 5, 6].map((i) => L(`${g("Kanalizácia__porealizačné_zamerania_")}/${i}`, "kanalizace", (a) => a.Pole1 || a.Pole)),
     ...[2, 3, 4, 5].map((i) => L(`${g("Plynovod__porealizačné_zamerania_")}/${i}`, "plynovod", (a) => a.Pole1 || a.Pole)),
     L(`${g("teplovody")}/0`, "teplovod", (a) => a.Popis),
   ])((n) => AGO("DTiFWvcjh8cdrOZ5", n)) },
-  { id: "kosice", sk: true, box: [21.15, 48.64, 21.36, 48.79], credit: () => t("site.networksCityKosiceLand"), layers: ((g) => [
+  { id: "kosice", sk: true, box: [21.15, 48.64, 21.36, 48.79], credit: () => networks("mesto Košice", W("landUsePlan")), layers: ((g) => [
     L(`${g("VODOVOD___POTRUBIE")}/1331`, "vodovod", (a) => a.popis || a.Layer), L(`${g("KANALIZÁCIA___POTRUBIE")}/1330`, "kanalizace", (a) => a.Popis || a.Layer),
     L(`${g("ZÁSOBOVANIE_PLYNOM_línia_25_4")}/14`, "plynovod", (a) => a.popis), L(`${g("TRASY_HORÚCOVODOV")}/1325`, "teplovod", (a) => a.popis),
     L(`${g("ZÁSOBOVANIE_ELEKTRICKOU_ENERGIOU_VEDENIE")}/1329`, "silnoproud", (a) => a.Popis || a.Layer),
@@ -67,7 +68,7 @@ const NETS = [
   // street lighting (with their depth in cm), WFS of the city's data service (api.data.amsterdam.nl, CORS, "Creative
   // Commons, Naamsvermelding" in its catalogue). Its own loader: no ČÚZK ground model is asked. The box takes in
   // Amstelveen and Diemen too, whose networks the city does not have (no lines there).
-  { id: "amsterdam", box: [4.72, 52.27, 5.08, 52.43], credit: () => t("site.networksGemeenteAmsterdamWaternet"), load: amsterdamNets },
+  { id: "amsterdam", box: [4.72, 52.27, 5.08, 52.43], credit: () => networks("Gemeente Amsterdam, Waternet", "Creative Commons Naamsvermelding", W("versionNotStated")), load: amsterdamNets },
 ];
 // Amsterdam's WFS (GeoJSON in WGS 84, lon, lat and for sewers the height): the lines as underground() takes them.
 const AMS_WFS = "https://api.data.amsterdam.nl/v1/wfs/leidingeninfrastructuur/v1";

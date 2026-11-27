@@ -5,7 +5,8 @@
 // The kinds are the keys data.<kind>; a list of them is told by Intl.ListFormat ("A, B and C").
 // Used by: the footer's and the Stav's line of data (app.js cutData), the city's texts (city.js: its data, server,
 // layer name, parking source, the head of the widths), the notes and the outages (sources.js).
-import { t, ref, text, place, list, ucfirst, countryName, cityTexts as stored } from "./i18n.js";
+import { t, ref, text, place, list, ucfirst, countryName } from "./i18n.js";
+import { CITY_CREDIT } from "./credit-text.js";
 import { PASSPORT_NAMES, GREEN_PASSPORTS } from "./towns/passport-names.js";
 
 // The name a kind's template takes: the place the data are of, or the holder (a source's name).
@@ -138,7 +139,7 @@ const OWN = (id, like) => (id in SHORT || id in HEAD ? id : like);
 const ALIAS = { bostonmetro: "boston" };
 export function cityTexts(id, like) {
   const key = ALIAS[id] ?? OWN(id, like);
-  const credit = stored(key)?.credit;
+  const credit = CITY_CREDIT[key]?.();
   const out = { ...(credit !== undefined && { credit }), server: SERVER[key] ? (typeof SERVER[key] === "string" ? SERVER[key] : text(SERVER[key])) : "OpenStreetMap" };
   if (SHORT[key]) out.dataShort = dataText(SHORT[key]);
   if (MAP[key]) { out.dataName = heading(MAP[key]); out.techMap = text(MAP[key]); }

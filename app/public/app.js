@@ -56,6 +56,7 @@ import { log, logOn, sendReport, shortProfile } from "./log.js";
 import { setupAbout } from "./about.js";
 import { createDataLayers, PLOCHY_PANE } from "./maplayers.js";
 import { cutDataParts, dataText } from "./data.js";
+import { creditText, W, lead } from "./credit-text.js";
 import { mountSearch } from "./search.js";
 // tr: t is a common name of a text or a type here.
 import { t as tr, mark, num, pct, numField, readNum, lang, LANGS, setLang, translatePage, attribution } from "./i18n.js";
@@ -161,7 +162,6 @@ async function useCity(lat, lon) {
   if (country.atPlace) Object.assign(city, await country.atPlace(lon, lat));
   if (changed) await loadSprites();
 }
-
 const state = {
   mode: "stav",
   stav: null,
@@ -305,7 +305,7 @@ if (STATES?.switzerland) {
     },
   });
   kinds.ortho.push(new ChOrtho(`${CH_ORTHO}/{z}/{x}/{y}.jpeg`, {
-    maxZoom: 21, maxNativeZoom: 20, attribution: tr("common.orthophotoSwissimageSwisstopo"),
+    maxZoom: 21, maxNativeZoom: 20, attribution: creditText("common.orthophotoSwissimageSwisstopo"),
     bounds: L.latLngBounds([Math.min(...ys), Math.min(...xs)], [Math.max(...ys), Math.max(...xs)]),
   }));
 }
@@ -325,7 +325,7 @@ if (STATES?.netherlands) {
     },
   });
   kinds.ortho.push(new NlOrtho(`${NL_ORTHO}/{z}/{x}/{y}.jpeg`, {
-    maxZoom: 21, maxNativeZoom: 21, attribution: tr("common.orthophotoBeeldmateriaalNlPdok"),
+    maxZoom: 21, maxNativeZoom: 21, attribution: creditText("common.orthophotoBeeldmateriaalNlPdok"),
     bounds: L.latLngBounds([Math.min(...ys), Math.min(...xs)], [Math.max(...ys), Math.max(...xs)]),
   }));
 }
@@ -358,46 +358,46 @@ const retryOnce = (layer, ms = 2500) => layer.on("tileerror", ({ tile }) => {
 // (regions-be.json, loaded once).
 if (STATES?.luxembourg) {
   const Lu = insideOnly([boxedPlace("LU", STATES.luxembourg)]);
-  kinds.ortho.push(new Lu(`${LU_ORTHO}/{z}/{x}/{y}.jpeg`, { maxZoom: 21, maxNativeZoom: 21, attribution: tr("common.orthophotoActLuxembourgGeoportail"), bounds: boundsOf(STATES.luxembourg) }));
+  kinds.ortho.push(new Lu(`${LU_ORTHO}/{z}/{x}/{y}.jpeg`, { maxZoom: 21, maxNativeZoom: 21, attribution: creditText("common.orthophotoActLuxembourgGeoportail"), bounds: boundsOf(STATES.luxembourg) }));
 }
 if (STATES?.belgium) {
   const reg = await fetch(new URL("./regions-be.json", import.meta.url)).then((r) => r.json()).catch(() => null);
   const add = (codes, url, credit) => {
     const places = reg ? codes.map((c) => boxedPlace(`BE-${c}`, reg[c])) : [boxedPlace("BE", STATES.belgium)];
     const R = insideOnly(places);
-    kinds.ortho.push(new R("", { bboxUrl: url, maxZoom: 21, attribution: tr(credit), bounds: boundsOf(reg ? codes.flatMap((c) => reg[c]) : STATES.belgium) }));
+    kinds.ortho.push(new R("", { bboxUrl: url, maxZoom: 21, attribution: creditText(credit), bounds: boundsOf(reg ? codes.flatMap((c) => reg[c]) : STATES.belgium) }));
   };
-  add(["wal"], (b, w, h) => BE_ORTHO.wal.url(b, w, h, "image/png"), mark("credits.orthophotoSpwServicePublic"));
-  add(["vl", "bru"], (b, w, h) => BE_ORTHO.vl.url(b, w, h, "image/png"), mark("credits.orthophotoBronLuchtopnamenDigitaal"));
+  add(["wal"], (b, w, h) => BE_ORTHO.wal.url(b, w, h, "image/png"), "credits.orthophotoSpwServicePublic");
+  add(["vl", "bru"], (b, w, h) => BE_ORTHO.vl.url(b, w, h, "image/png"), "credits.orthophotoBronLuchtopnamenDigitaal");
 }
 // Poland: GUGiK's orthophoto (WMS in Web Mercator), only for tiles over Poland, transparent where it has no photo (it has
 // some up to about 1 km beyond the border, so at the border its tiles cover the Czech ones there: the hostile review).
 if (STATES?.poland) {
   const Pl = insideOnly([boxedPlace("PL", STATES.poland)]);
-  kinds.ortho.push(new Pl("", { bboxUrl: (b, w, h) => `${PL_ORTHO(b, w, h, "image/png")}&TRANSPARENT=TRUE`, maxZoom: 21, attribution: tr("common.orthophotoGugikGeoportalGov"), bounds: boundsOf(STATES.poland) }));
+  kinds.ortho.push(new Pl("", { bboxUrl: (b, w, h) => `${PL_ORTHO(b, w, h, "image/png")}&TRANSPARENT=TRUE`, maxZoom: 21, attribution: creditText("common.orthophotoGugikGeoportalGov"), bounds: boundsOf(STATES.poland) }));
 }
 // France: IGN's orthophoto (WMS in Web Mercator), only inside France (the service is white beyond it).
 if (STATES?.france) {
   const Fr = insideOnly([boxedPlace("FR", STATES.france)]);
-  kinds.ortho.push(new Fr("", { bboxUrl: (b, w, h) => `${FR_ORTHO(b, w, h, "image/png")}&TRANSPARENT=TRUE`, maxZoom: 21, attribution: tr("common.orthophotoIgnGeoplateforme"), bounds: boundsOf(STATES.france) }));
+  kinds.ortho.push(new Fr("", { bboxUrl: (b, w, h) => `${FR_ORTHO(b, w, h, "image/png")}&TRANSPARENT=TRUE`, maxZoom: 21, attribution: creditText("common.orthophotoIgnGeoplateforme"), bounds: boundsOf(STATES.france) }));
 }
 // Cyprus: the DLS orthophoto of 2019 (tiles), only over the area of the Republic and the British bases.
 if (STATES?.cyprus) {
   const Cy = insideOnly([boxedPlace("CY", STATES.cyprus)]);
-  kinds.ortho.push(new Cy(`${CY_ORTHO}/{z}/{y}/{x}`, { maxZoom: 21, maxNativeZoom: 21, attribution: tr("common.orthophotoDlsCyprus"), bounds: boundsOf(STATES.cyprus) }));
+  kinds.ortho.push(new Cy(`${CY_ORTHO}/{z}/{y}/{x}`, { maxZoom: 21, maxNativeZoom: 21, attribution: creditText("common.orthophotoDlsCyprus"), bounds: boundsOf(STATES.cyprus) }));
 }
 // Italy: the open orthophotos, each only over its own box and inside Italy's covered area.
 if (STATES?.italy) {
   const It = insideOnly([boxedPlace("IT", STATES.italy)]);
   for (const o of Object.values(IT_ORTHO)) {
     const [x0, y0, x1, y1] = o.box;
-    kinds.ortho.push(new It("", { bboxUrl: (b, w, h) => `${o.url(b, w, h, "image/png")}&TRANSPARENT=TRUE`, maxZoom: 21, attribution: o.who ? tr("common.orthophotoWho", { who: o.who }) : tr(o.credit), bounds: L.latLngBounds([y0, x0], [y1, x1]) }));
+    kinds.ortho.push(new It("", { bboxUrl: (b, w, h) => `${o.url(b, w, h, "image/png")}&TRANSPARENT=TRUE`, maxZoom: 21, attribution: o.who ? lead(W("orthophoto"), o.who) : creditText(o.credit), bounds: L.latLngBounds([y0, x0], [y1, x1]) }));
   }
 }
 // Estonia: the Board's orthophoto tiles (TMS: the y axis flipped), only over Estonia (dark beyond).
 if (STATES?.estonia) {
   const Ee = insideOnly([boxedPlace("EE", STATES.estonia)]);
-  kinds.ortho.push(new Ee(`${EE_ORTHO}/{z}/{x}/{y}.jpg`, { tms: true, maxZoom: 21, maxNativeZoom: 18, attribution: tr("common.orthophotoMaaJaRuumiamet"), bounds: boundsOf(STATES.estonia) }));
+  kinds.ortho.push(new Ee(`${EE_ORTHO}/{z}/{x}/{y}.jpg`, { tms: true, maxZoom: 21, maxNativeZoom: 18, attribution: creditText("common.orthophotoMaaJaRuumiamet"), bounds: boundsOf(STATES.estonia) }));
 }
 // Slovenia: GURS's orthophoto DOF025 (WMS in Web Mercator), only over Slovenia (beyond it the server hangs and gives 504).
 if (STATES?.slovenia) {
@@ -405,7 +405,7 @@ if (STATES?.slovenia) {
   // The review of 24. 11. 2026 (RECENZE-SI 3): a tile of z9 over the whole state and some of z18 were 504 after 30 s, so the
   // layer starts at z14 (below it the other basemaps), a tile wholly inside Slovenia is a JPEG (PNG takes GURS twice as
   // long; transparent only at the border) and a failed tile is asked once more.
-  kinds.ortho.push(retryOnce(new Si("", { bboxUrl: (b, w, h, inside) => inside ? SI_ORTHO(b, w, h) : `${SI_ORTHO(b, w, h, "image/png")}&TRANSPARENT=TRUE`, minZoom: 14, maxZoom: 21, attribution: tr("app.orthophotoDof025GeodetskaUprava"), bounds: boundsOf(STATES.slovenia) })));
+  kinds.ortho.push(retryOnce(new Si("", { bboxUrl: (b, w, h, inside) => inside ? SI_ORTHO(b, w, h) : `${SI_ORTHO(b, w, h, "image/png")}&TRANSPARENT=TRUE`, minZoom: 14, maxZoom: 21, attribution: creditText("app.orthophotoDof025GeodetskaUprava"), bounds: boundsOf(STATES.slovenia) })));
 }
 // Finland: the towns' own orthophotos (lanes-ortho.js FI_ORTHO: Helsinki, Espoo, Turku), each only over its town's box
 // and inside Finland (none elsewhere: the national one needs a personal key).
@@ -413,39 +413,39 @@ if (STATES?.finland) {
   const Fi = insideOnly([boxedPlace("FI", STATES.finland)]);
   for (const o of Object.values(FI_ORTHO).reverse()) {
     const [x0, y0, x1, y1] = o.box;
-    kinds.ortho.push(new Fi("", { bboxUrl: (b, w, h) => o.url(b, w, h, "image/png"), maxZoom: 21, attribution: tr(o.credit), bounds: L.latLngBounds([y0, x0], [y1, x1]) }));
+    kinds.ortho.push(new Fi("", { bboxUrl: (b, w, h) => o.url(b, w, h, "image/png"), maxZoom: 21, attribution: creditText(o.credit), bounds: L.latLngBounds([y0, x0], [y1, x1]) }));
   }
 }
 // Denmark: GeoDanmark's spring orthophoto through Dataforsyningen (WMTS, lanes-ortho.js DK_ORTHO), only over Denmark and
 // only with the app's token (keys.js; without it no layer, the map keeps the others).
 if (STATES?.denmark && dkToken()) {
   const Dk = insideOnly([boxedPlace("DK", STATES.denmark)]);
-  kinds.ortho.push(new Dk(DK_ORTHO("{z}", "{x}", "{y}"), { maxZoom: 21, maxNativeZoom: 20, attribution: tr("common.orthophotoIndeholderDataFra"), bounds: boundsOf(STATES.denmark) }));
+  kinds.ortho.push(new Dk(DK_ORTHO("{z}", "{x}", "{y}"), { maxZoom: 21, maxNativeZoom: 20, attribution: creditText("common.orthophotoIndeholderDataFra"), bounds: boundsOf(STATES.denmark) }));
 }
 // Malta: the Planning Authority's orthophoto of 2018 (in degrees: lanes-ortho.js MT_ORTHO), only over Malta; a JPEG
 // inside the islands, a transparent PNG only on a tile across the coast (as Slovenia; the review of Malta).
 if (STATES?.malta) {
   const Mt = insideOnly([boxedPlace("MT", STATES.malta)]);
-  kinds.ortho.push(new Mt("", { bboxUrl: (b, w, h, inside) => (inside ? MT_ORTHO(b, w, h) : `${MT_ORTHO(b, w, h, "image/png")}&TRANSPARENT=TRUE`), maxZoom: 21, attribution: tr("app.orthophotoPlanningAuthorityMalta"), bounds: boundsOf(STATES.malta) }));
+  kinds.ortho.push(new Mt("", { bboxUrl: (b, w, h, inside) => (inside ? MT_ORTHO(b, w, h) : `${MT_ORTHO(b, w, h, "image/png")}&TRANSPARENT=TRUE`), maxZoom: 21, attribution: creditText("app.orthophotoPlanningAuthorityMalta"), bounds: boundsOf(STATES.malta) }));
 }
 // Monaco: IGN's orthophoto covers it too.
 if (STATES?.monaco) {
   const Mc = insideOnly([boxedPlace("MC", STATES.monaco)]);
-  kinds.ortho.push(new Mc("", { bboxUrl: (b, w, h) => `${FR_ORTHO(b, w, h, "image/png")}&TRANSPARENT=TRUE`, maxZoom: 21, attribution: tr("common.orthophotoIgnGeoplateforme"), bounds: boundsOf(STATES.monaco) }));
+  kinds.ortho.push(new Mc("", { bboxUrl: (b, w, h) => `${FR_ORTHO(b, w, h, "image/png")}&TRANSPARENT=TRUE`, maxZoom: 21, attribution: creditText("common.orthophotoIgnGeoplateforme"), bounds: boundsOf(STATES.monaco) }));
 }
 if (STATES?.spain) {
   // Not over Melilla (PNOA's image there is Airbus's under a licence not cleared; Bára 23. 11. 2026, lanes-ortho.js
   // ES_NOT_PNOA): its ring left out of the area drawn.
   const notPnoa = (r) => ES_NOT_PNOA.some(([x0, y0, x1, y1]) => r.every(([x, y]) => x >= x0 && x <= x1 && y >= y0 && y <= y1));
   const Es = insideOnly([boxedPlace("ES", STATES.spain.filter((r) => !notPnoa(r)))]);
-  kinds.ortho.push(new Es("", { bboxUrl: (b, w, h) => `${ES_ORTHO(b, w, h, "image/png")}&TRANSPARENT=TRUE`, maxZoom: 21, attribution: tr("common.pnoaOrthophotoIgnCc"), bounds: boundsOf(STATES.spain) }));
+  kinds.ortho.push(new Es("", { bboxUrl: (b, w, h) => `${ES_ORTHO(b, w, h, "image/png")}&TRANSPARENT=TRUE`, maxZoom: 21, attribution: creditText("common.pnoaOrthophotoIgnCc"), bounds: boundsOf(STATES.spain) }));
 }
 // Portugal: DGT's flight of 2025 (the whole mainland; the review of 23. 11. 2026: three stacked layers tripled the
 // requests), only over the mainland (Madeira and the Azores have no DGT photo).
 if (STATES?.portugal) {
   const Pt = insideOnly([boxedPlace("PT", STATES.portugal)]);
   const [x0, y0, x1, y1] = PT_MAINLAND;
-  kinds.ortho.push(new Pt("", { bboxUrl: (b, w, h) => `${PT_ORTHO["pt-25"](b, w, h, "image/png")}&TRANSPARENT=TRUE`, maxZoom: 21, attribution: tr("common.orthophotoDgt"), bounds: [[y0, x0], [y1, x1]] }));
+  kinds.ortho.push(new Pt("", { bboxUrl: (b, w, h) => `${PT_ORTHO["pt-25"](b, w, h, "image/png")}&TRANSPARENT=TRUE`, maxZoom: 21, attribution: creditText("common.orthophotoDgt"), bounds: [[y0, x0], [y1, x1]] }));
 }
 // Germany: the orthophoto of each Land (lanes-ortho.js DE_ORTHO), a tile from the WMS of the Land its centre lies in
 // (laender.json, loaded when the first tile in Germany is drawn).
@@ -480,7 +480,7 @@ if (STATES?.germany) {
       return tile;
     },
   });
-  kinds.ortho.push(new DeOrtho({ maxZoom: 21, minZoom: 12, attribution: tr("app.orthophotoGermanLanderGeobasis"),
+  kinds.ortho.push(new DeOrtho({ maxZoom: 21, minZoom: 12, attribution: creditText("app.orthophotoGermanLanderGeobasis"),
     bounds: Object.assign(L.latLngBounds([Math.min(...ys), Math.min(...xs)], [Math.max(...ys), Math.max(...xs)]), { rings: STATES.germany }) }));
 }
 // The towns (towns/<id>.js maps): their orthophoto, technical map and lines, each kept to the town.
@@ -521,8 +521,8 @@ onAmerica((towns) => {
     const Own = insideOnly([boxedPlace(o.town, towns[o.town])]);
     const [x0, y0, x1, y1] = o.box;
     // (A tile cache of its own as tiles {z}/{y}/{x}: MassGIS's.)
-    const layer = o.tiles ? new Own(`${o.tiles}/{z}/{y}/{x}`, { maxZoom: 21, maxNativeZoom: o.z, cityAttribution: tr(o.credit), bounds: L.latLngBounds([y0, x0], [y1, x1]) })
-      : new Own("", { bboxUrl: (b, w, h) => o.url(b, w, h, "image/png"), maxZoom: 21, cityAttribution: tr(o.credit), bounds: L.latLngBounds([y0, x0], [y1, x1]) });
+    const layer = o.tiles ? new Own(`${o.tiles}/{z}/{y}/{x}`, { maxZoom: 21, maxNativeZoom: o.z, cityAttribution: creditText(o.credit), bounds: L.latLngBounds([y0, x0], [y1, x1]) })
+      : new Own("", { bboxUrl: (b, w, h) => o.url(b, w, h, "image/png"), maxZoom: 21, cityAttribution: creditText(o.credit), bounds: L.latLngBounds([y0, x0], [y1, x1]) });
     cityCredited.push(layer);
     baseMaps[tr("app.orthophoto")].addLayer(layer);
   }

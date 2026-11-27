@@ -13,6 +13,7 @@ const FILES = [...fs.readdirSync(DIR).filter((f) => f.endsWith(".js")), ...["tow
 const src = (f) => fs.readFileSync(new URL(f, DIR), "utf8");
 const L = Object.fromEntries(Object.keys(LANGS).map((l) => [l, JSON.parse(fs.readFileSync(new URL(`locales/${l}.json`, DIR), "utf8"))]));
 const CS = L.cs, EN = L.en;
+const CITY_CREDIT_CS = { cesko: "IS DMVS RÚIAN", brno: "", plzen: "RÚIAN" };
 const LEGACY = JSON.parse(fs.readFileSync(new URL("locales/legacy-cs-keys.json", DIR), "utf8"));
 const names = (s) => [...s.matchAll(/\{(\w+)\}/g)].map((m) => m[1]).sort();
 const KEY = /^[a-z][A-Za-z0-9]*(?:\.[A-Za-z0-9-]+)+$/;
@@ -30,12 +31,12 @@ export function codeKeys() {
 // A t() of a variable only where the text is known to flow so (a credit, a note of the cut, a base map's name, the
 // state's text): anything else would escape this test.
 const VARIABLE = {
-  "app.js": ["tr(credit)", "tr(o.credit)", "tr(k)", 'tr(localStorage.getItem(BASE_KEY) || "")', 'tr(state.cut?.note || "")'],
+  "app.js": ["tr(k)", 'tr(localStorage.getItem(BASE_KEY) || "")', 'tr(state.cut?.note || "")'],
   "sources.js": ["t(country.linesMissing)", 't(orthophoto ? "sources.estimateOrthoOsm" : "sources.estimateOsm")',
     'mark(orthophoto ? "note.mapDownOrthoOsm" : "note.mapDownOsm", { name: what })'],
 };
 // The prefixes of keys the code builds from a name (data.js, credits.js, norms): ref("data." + kind), place(id).
-const COMPOSED = ["place.", "data.", "rules.head.", "parking.source."];
+const COMPOSED = ["place.", "data.", "rules.head.", "parking.source.", "credits.what."];
 // The page's keys: data-t, data-t-<attribute>, data-t-html.
 const PAGE = src("index.html");
 const pageKeys = () => [...PAGE.matchAll(/\sdata-t(?:-[\w-]+)?="([^"]+)"/g)].map((m) => m[1]);
@@ -116,24 +117,25 @@ test("anglické texty jsou anglicky", () => {
   assert.deepEqual(czech, []);
 });
 
-test("každé město má texty ve všech jazycích", async () => {
+test("každé město má své texty: jména, zdroje a kredit složené ze slov jazyka", async () => {
   const { CITY_IDS, cityById } = await import("../app/public/city.js");
-  const FIELDS = ["server", "dataName", "dataShort", "techMap", "parkingSource", "rulesHead", "credit"];
-  // The ids with texts of their own are cities; the others take their state's (like) or another town's (i18n.js TEXT_ALIAS).
-  for (const k of Object.keys(CS).filter((k) => k.startsWith("city."))) {
-    const [, id, field] = k.split(".");
-    assert.ok(CITY_IDS.includes(id), k);
-    assert.ok(FIELDS.includes(field), k);
-  }
   // In Czech (the city as setCity makes it): every field a text, abroad no map to name (null), the credit maybe "".
   for (const id of CITY_IDS) {
     const c = cityById(id);
     const none = c.abroad ? ["dataName", "techMap"] : [];
-    for (const k of FIELDS) assert.ok(none.includes(k) ? c[k] === null : typeof c[k] === "string" && (c[k] || k === "credit"), `${id}.${k}`);
+    for (const k of ["server", "dataName", "dataShort", "techMap", "parkingSource", "rulesHead", "credit"]) {
+      assert.ok(none.includes(k) ? c[k] === null : typeof c[k] === "string" && (c[k] || k === "credit"), `${id}.${k}`);
+      assert.doesNotMatch(String(c[k]).replace("{kraj}", ""), /\b(credits\.|place\.|rules\.head|parking\.source|data\.(surfaceMap|orthophoto|townMap|technicalMap|roadInventory))|\{\w+\}/, `${id}.${k}: ${c[k]}`);
+    }
   }
   // The credit names the same sources in every language (the export adds the DMVS and RÚIAN when they are missing).
-  for (const [l, tab] of Object.entries(L)) for (const k of Object.keys(CS).filter((k) => /^city\.[^.]+\.credit$/.test(k)))
-    for (const s of ["IS DMVS", "RÚIAN"]) assert.equal(tab[k].includes(s), CS[k].includes(s), `${l}: ${k}: ${s}`);
+  for (const l of Object.keys(L)) for (const id of ["cesko", "brno", "plzen"]) {
+    globalThis.PROFILY_LANG = l;
+    const { cityById: byId } = await import(`../app/public/city.js?credit-${l}`);
+    const c = byId(id);
+    for (const s of ["IS DMVS", "RÚIAN"]) assert.equal(c.credit.includes(s), CITY_CREDIT_CS[id].includes(s), `${l}: ${id}: ${s}`);
+    delete globalThis.PROFILY_LANG;
+  }
 });
 
 test("kredity mapy: česká slova v i18n.js jsou ta z cs.json, každý jazyk má svá", () => {
