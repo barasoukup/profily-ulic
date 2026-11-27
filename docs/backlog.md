@@ -108,8 +108,7 @@ Co rozhodne Bára, je označeno **(Bára)**.
   chybí v lokálním výřezu i v balíku R2): zopakovat srovnání s OSM, až bude balík Navarry.
 - ~~Španělsko: rok z katastru dává v `buildingStyle` české vzhledy „sorela“ a „typový dům“~~ (vyřešeno 23. 11. 2026 v 130f161:
   socialistické vzhledy jen v CZ, SK, PL, EE a bývalé NDR, jinde poválečný dům; hlídá `tests/house-looks.test.js`).
-- Španělsko **(Bára)**: Catastro („Dirección General del Catastro“) je jen v patičce, ne v kreditu exportu: přidat klíč
-  zdroje (když `podlaznost` vrátí dům z katastru)?
+- ~~Španělsko **(Bára)**: Catastro je jen v patičce, ne v kreditu exportu~~ Bára 27. 11. 2026: přidat; hotovo (`esCatastro`).
 - Portugalsko **(Bára)**: krátký popis dat „ortofota DGT a OSM“ neplatí na Madeiře a Azorech (jen OSM): nechat, nebo
   „ortofota DGT (jen pevnina) a OSM“?
 - Kypr **(Bára)**: kredit ortofota v exportu bez roku („ortofoto © DLS Kypr“): doplnit „, 2019“ jako v patičce?
