@@ -735,9 +735,17 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
 
 ## Jazyky (Bára 12. 11. 2026, slovenčina 15. 11. 2026, němčina 16. 11. 2026)
 - Anglicky se aplikace jmenuje **Street Profile**, slovensky **Profily ulíc**, německy **Straßenprofil**. Čeština, slovenčina,
-  angličtina a němčina: `app/public/i18n.js` (`t("český text")`), překlady v `app/public/en.js`, `sk.js` a `de.js`, od 17. 11. 2026 přepínač v menu Soubor (jazyky jménem, bez vlajek), `?lang=sk`. Jazyk podle
-  prohlížeče (první z jeho jazyků, který aplikace umí; všichni ostatní angličtina), ne podle místa řezu (Bára). Nový text vždy přes `t()` a s překladem (hlídá `tests/i18n.test.js`). Popis v `app/README.md`.
-- Všech 24 úředních jazyků EU (větev `eu-languages`, Bára 17. 11. 2026, nenasazené): soubor `<jazyk>.js` na jazyk, načítá
+  angličtina a němčina: `app/public/i18n.js`, od 17. 11. 2026 přepínač v menu Soubor (jazyky jménem, bez vlajek), `?lang=sk`. Jazyk podle
+  prohlížeče (první z jeho jazyků, který aplikace umí; všichni ostatní angličtina), ne podle místa řezu (Bára). Popis v `app/README.md`.
+- **Pojmenované klíče** (Bára 27. 11. 2026, varianta A `docs/i18n-plan.md`): `t("common.sidewalk")`, klíč anglicky
+  `oblast.jméno` (oblast podle místa: `app`, `types`, `country.at`, `common`, `note`, `page`…), jeden plochý JSON na jazyk
+  `app/public/locales/<jazyk>.json` (formát pro Weblate/Crowdin), čeština je `cs.json` (zdroj textů), texty měst
+  `city.<id>.<pole>`, patička `html.footer`; `index.html` má `data-t="klíč"` a `data-t-<atribut>`. **Nový text:**
+  `node tools/i18n_add.mjs <klíč> "<česky>" "<anglicky>"` (ostatní jazyky dočasně anglicky, seznam `locales/_todo.json`),
+  v kódu `t("<klíč>")`; změna textu s `--change`. Pro rodilé mluvčí `tools/i18n_export.mjs <jazyk>` (CSV klíč | cs | en |
+  jazyk) a `i18n_import.mjs <jazyk> <soubor>`. Hlídá `tests/i18n.test.js` (klíč v kódu ve všech jazycích, žádný navíc,
+  stejné `{jména}`). Staré uložené řezy s českou poznámkou a česky zapamatovaná podkladová mapa: `locales/legacy-cs-keys.json`.
+- Všech 24 úředních jazyků EU (větev `eu-languages`, Bára 17. 11. 2026, nenasazené): soubor na jazyk, načítá
   se jen jazyk stránky. **Překlady jsou strojové (agent na jazyk), měl by je projít rodilý mluvčí.** Kritik Fable (jako rodilý
   mluvčí) prošel všech 20 nových jazyků, hodnocení 3,5–4,5 z 5 (maltština nejhůř). Bára 17. 11. 2026: česká jména měst
   se v překladech nesklánějí (polsky „miasta Plzeň“, ne Pilzna); obecně se zdroj ploch jmenuje „mapa povrchů“

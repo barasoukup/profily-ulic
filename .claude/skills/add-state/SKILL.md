@@ -23,7 +23,7 @@ Zprávy jsou v `evaluation/slovakia/` a `evaluation/austria/` (REPORT, NORMS, SO
 - **Názvy v kódu a souborech anglicky** (Bára 16. 11. 2026): `towns/austria.js`, id státu `austria`, `signs-AT/`,
   `evaluation/austria/`. Stávající české názvy dat (`cesko`, `slovensko`) zůstávají.
 - **Jazyk a stát nemíchat:**
-  - Jazyk rozhraní: ISO 639-1 malými písmeny (24 jazyků EU: cs, sk, en, de, fr…), týká se jen textů (`i18n.js`, `<jazyk>.js`).
+  - Jazyk rozhraní: ISO 639-1 malými písmeny (24 jazyků EU: cs, sk, en, de, fr…), týká se jen textů (`i18n.js`, `locales/<jazyk>.json`).
   - Stát řezu: ISO 3166-1 velkými (CZ, SK, AT). Řídí `city.country`, data, normy, zákony, značky a ilustrace.
   - `signs.js` nesmí číst jazyk (hlídá `tests/i18n.test.js`). Úřední názvy značek státu se proto řeší klíčem podle
     významu značky státu (`SK_TITLE`) a překladem do jazyka (ve slovenštině úřední název).
@@ -43,8 +43,10 @@ Zprávy jsou v `evaluation/slovakia/` a `evaluation/austria/` (REPORT, NORMS, SO
   - Overpass ne, Nominatim na našeptávání ne;
   - nikdy e-mail ani jméno uživatele v dotazech;
   - co OSM už má (např. stromy Vídně), se znovu neptat.
-- **Texty:** klíčem `t()` je vždy čeština, překlad do všech 23 souborů jazyků (`en.js`, `sk.js`, `de.js`, `fr.js`…; hlídá `tests/i18n.test.js`).
-  Slovenské hodnoty nesmí mít česká slova: při hromadné náhradě v `sk.js` měnit jen hodnoty, ne klíče.
+- **Texty:** `t("oblast.jméno")` s klíčem anglicky (`country.at.cycleLane`, `city.wien.credit`), text ve všech 24 souborech
+  `app/public/locales/<jazyk>.json` (čeština v `cs.json`); nový text `node tools/i18n_add.mjs <klíč> "<česky>" "<anglicky>"`
+  (ostatní jazyky dočasně anglicky, `locales/_todo.json`), hlídá `tests/i18n.test.js`. Texty města nebo státu
+  (server, data, kredit, hlavička norem) jsou `city.<id>.<pole>`. Slovenské hodnoty nesmí mít česká slova.
 - **Testy nesmí volat síť.** Parametry modulu státu v Node přes `globalThis.PROFILY_SK = {…}` a `globalThis.PROFILY_AT = {…}`.
   Funkce, které by se ptaly služby (např. `locateAt`), testovat se vstupem, který dotaz nevyvolá. `npm test` před každým commitem.
 - **Kontroly:** po dokončení státu pustit nepřátelského recenzenta na celou větev (co je špatně, co chybí, co rozbije
@@ -370,8 +372,8 @@ ověřit, že odhad státu opravdu čte ortofoto (`sources.orthoCity`) a že nec
   - Vrstva „rezidentského parkování“ (Bratislava) byla jen 71 pilotních úseků, ne hranice zón: ověřit pokrytí dřív, než
     se zóny použijí.
 - **Texty, CSP a nasazení:**
-  - Texty v cizím jazyce jako klíče `t()` neprojdou testem.
-  - Hromadná náhrada textu změnila i hodnoty v `sk.js` na české slovo („v Rakousku“).
+  - Klíč `t()`, který v `locales/cs.json` není, neprojde testem.
+  - Hromadná náhrada textu změnila i hodnoty slovenštiny na české slovo („v Rakousku“).
   - Chybějící host v CSP se projeví až v prohlížeči.
   - Týdenní cache nasazení bez nového státu.
 - **Švýcarsko (17. 11. 2026):**

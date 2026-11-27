@@ -61,7 +61,7 @@ Struktura je všude stejná: stát → město → zdroje (`docs/architecture-cou
   (`creditLines` i `validate.js` podle něj).
 
 **Nový stát:** modul `countries/<ISO>.js` (a řádek v `countries/index.js`), složka značek, řádek v `tools/countries.mjs`
-(OSM, Geofabrik, Pages), zbytek státu jako město v `city.js` (`abroad`) a texty v `en.js`, `sk.js`, `de.js`, zdroje
+(OSM, Geofabrik, Pages), zbytek státu jako město v `city.js` (`abroad`) a texty `city.<id>.*` v `locales/<jazyk>.json`, zdroje
 v `towns/<stát>.js`, hranice v `states.json`, hostitelé v CSP (hlídá `tests/csp.test.js`). Podrobně skill
 `.claude/skills/add-state`. **Nové město nebo zdroj:** viz Města jako moduly níže.
 
@@ -1175,28 +1175,46 @@ Jazyk není stát (kódy ISO: jazyk `de`, stát `DE`): značky, normy, zdroje da
 (`city.country`, CZ/SK/AT/DE), jazyk mění jen slova. Německé rozhraní na řezu v Praze ukazuje české značky s českými
 čísly a česká pravidla, na řezu v Bratislavě slovenská, v Berlíně německé (StVO).
 
-- `i18n.js`: `t("český text", { jméno })` vrátí text jazyka stránky, nebo český, když překlad chybí. Jazyků je 24
-  (všechny úřední jazyky EU, `LANGS`, každý pojmenovaný sám sebou); načte se jen `<jazyk>.js` jazyka stránky (top-level
-  await v `i18n.js`). Český text je klíč, `{jméno}` se doplní. `num()` píše desetinnou čárku, tečku jen anglicky, irsky
-  a maltsky; `pct()` „44 %“ s mezerou, bez mezery („44%“) en, ga, mt, nl, pl, it, pt, ro, el, bg, hu, lv.
-  `translatePage()` přeloží texty `index.html`; patička se nahrazuje celá (`data-i18n="footer"`, `EN_HTML`, `FR_HTML`…).
+- `i18n.js`: `t("klíč", { jméno })` vrátí text jazyka stránky (`{jméno}` se doplní); klíč, který jazyk nezná (text
+  z dat, jméno), vrátí, jak je. Jazyků je 24 (všechny úřední jazyky EU, `LANGS`, každý pojmenovaný sám sebou); načte
+  se jen `locales/<jazyk>.json` jazyka stránky (fetch v top-level await, v Node ze souboru), čeština když se nenačte.
+  `num()` píše desetinnou čárku, tečku jen anglicky, irsky a maltsky; `pct()` „44 %“ s mezerou, bez mezery („44%“)
+  en, ga, mt, nl, pl, it, pt, ro, el, bg, hu, lv. `translatePage()` přeloží `index.html` podle klíčů: `data-t="klíč"`
+  (text prvku), `data-t-title`, `data-t-aria-label`, `data-t-placeholder`, `data-t-alt`, `data-t-content`,
+  `data-t-data-label` (atributy), `data-t-html="html.footer"` (patička s odkazy). `index.html` má dál češtinu (bez
+  JavaScriptu a pro náhledy odkazů), test hlídá, že je stejná jako v `cs.json`.
   `errors.js` (běží před moduly) má svých pár hlášek ve všech jazycích (tabulka `TEXTS`).
 - Přepínač je poslední položka menu Soubor („Jazyk“, Bára 17. 11. 2026): seznam jazyků jejich vlastními jmény, bez
   vlajek (jazyk není stát). Jazyk se jinak řídí prohlížečem (první z `navigator.languages`, který aplikace umí, jinak
   angličtina); ruční volba se pamatuje v localStorage, `?lang=fr` platí dál.
-- `<jazyk>.js` (`en.js`, `sk.js`, `de.js`, `fr.js`…; exporty `FR`, `FR_HTML`, `FR_CITY`, `FR_ATTRIBUTION`): texty
-  jazyka, texty měst (server, data, kredity) a slova v kreditech mapových vrstev. Texty měst jsou ve tvarech, jak je
-  věty potřebují (v `de.js` server a data v genitivu: „Der Server der Stadt Brno…“, „nach den Daten der Stadt Brno und
-  von OSM“; jazyky se skloňováním mají v `own()` pomocné tvary). Německé názvosloví: Bestand / Planung / Vergleich,
-  Gehweg, Fahrstreifen, Radfahrstreifen, Schutzstreifen, Parkstreifen, Fahrbahn, Bordstein, Querschnitt; vyká
-  („Sie“); český kraj je „Region“, okres „Bezirk“.
+- `locales/<jazyk>.json` (Bára 27. 11. 2026, dřív `<jazyk>.js` s českou větou jako klíčem): plochý JSON `"klíč": "text"`,
+  formát, který čtou nástroje překladatelů (Weblate, Crowdin); čeština je jazyk jako ostatní (`cs.json`, zdroj textů).
+  Klíč je anglicky `oblast.jméno`: oblast podle místa (`app`, `profile`, `types`, `signs`, `rules`, `sources`, `credits`,
+  `layers`, `search`, `about`, `country.<iso>`, `town.<město>`, `page` pro `index.html`, `common` pro text více souborů,
+  `note` pro poznámku za názvem ulice), jméno podle obsahu (`note.mapDown`, `common.sidewalk`). Dále `city.<id>.<pole>`
+  (texty měst a států: `server`, `dataName`, `dataShort`, `techMap`, `parkingSource`, `rulesHead`, `credit`; město bez
+  vlastních bere státu, `like`), `html.footer`, `attribution.*` (slova kreditů mapových vrstev, které jsou v kódu česky;
+  česká slova a pořadí v `i18n.js` `ATTRIBUTION`). Texty měst jsou ve tvarech, jak je věty potřebují (německy server
+  a data v genitivu: „Der Server der Stadt Brno…“). Německé názvosloví: Bestand / Planung / Vergleich, Gehweg,
+  Fahrstreifen, Radfahrstreifen, Schutzstreifen, Parkstreifen, Fahrbahn, Bordstein, Querschnitt; vyká („Sie“); český
+  kraj je „Region“, okres „Bezirk“.
+- Uložené řezy a prohlížeč si před 27. 11. 2026 pamatovaly české věty: poznámku za názvem ulice (`cut.note` v souboru,
+  odkazu `#rez=`, localStorage) a jméno podkladové mapy. `locales/legacy-cs-keys.json` (zmrazené, nic nového) je
+  převede na klíč, `t()` se tam podívá, když klíč nezná. Nové řezy ukládají klíč.
 - Kromě češtiny, slovenštiny, angličtiny a němčiny jsou překlady strojové (17. 11. 2026, agent na jazyk z češtiny,
   pak kritik Fable jako rodilý mluvčí); měl by je projít rodilý mluvčí. Nejisté bývá: ochranný cyklopruh (většina
   zemí ho nemá), sdílená zóna, hospodaření s vodou.
-- Nový text v kódu: obalit `t("…")` (v `app.js`, `profile.js` a `maplayers.js` se funkce jmenuje `tr`) a doplnit
-  do všech 23 souborů jazyků. `tests/i18n.test.js` hlídá, že každý text má překlad se stejnými `{jmény}`, že
-  překlady nemají nic navíc, že každé město má texty a že žádný modul kromě `i18n.js` nerozhoduje podle jazyka;
-  `tests/i18n-en.test.js` a `tests/i18n-de.test.js` pouštějí moduly anglicky a německy.
+- Nový text v kódu: `t("oblast.jméno")` (v `app.js`, `profile.js` a `maplayers.js` se funkce jmenuje `tr`) a
+  `node tools/i18n_add.mjs oblast.jméno "česky" "anglicky" [--de "německy"]`: přidá klíč do všech 24 souborů, ostatní
+  jazyky dostanou zatím angličtinu a klíč jde na seznam k překladu `locales/_todo.json`. Změna textu: totéž s
+  `--change`. Text, který teče proměnnou (kredit, poznámka řezu), se označí `mark("klíč")`; `t(proměnná)` je povolené jen
+  na vyjmenovaných místech (`tests/i18n.test.js` `VARIABLE`).
+- Pro rodilého mluvčího: `node tools/i18n_export.mjs pl [pl.csv] [--todo]` napíše tabulku klíč | cs | en | pl | todo (CSV
+  pro Numbers, Excel, LibreOffice), opravenou vrátí `node tools/i18n_import.mjs pl pl.csv` (kontroluje klíče a `{jména}`).
+- `tests/i18n.test.js` hlídá, že každý klíč z kódu a stránky je ve všech 24 jazycích, žádný klíč není navíc, `{jména}`
+  jsou ve všech jazycích stejná, soubory jsou platný plochý JSON, čeština `index.html` je ta z `cs.json`, překlady nemají
+  češtinu a že žádný modul kromě `i18n.js` nerozhoduje podle jazyka; `tests/i18n-en.test.js` a `tests/i18n-de.test.js`
+  pouštějí moduly anglicky a německy.
 - Česky zůstávají vlastní jména (ČÚZK, RÚIAN, IPR, úřady měst, kraje), čísla značek a text na dodatkové tabulce E 13
   (je to česká značka), hodnoty v záznamu řezů a hlášení chyb.
 

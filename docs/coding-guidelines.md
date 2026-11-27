@@ -37,7 +37,7 @@ vnitřní podobu kódu.
 | Pravidlo | Hlídá |
 |---|---|
 | Názvy v kódu a souborech anglicky (nové identifikátory, id, soubory, složky: `austria`, `signs-AT`); stávající česká id v uložených řezech a logu se nepřejmenovávají. | recenzent |
-| Text pro uživatele vždy přes `t("…")` a s překladem do všech 24 jazyků. | `tests/i18n.test.js` |
+| Text pro uživatele vždy přes `t("oblast.jméno")` s klíčem anglicky a textem ve všech 24 `app/public/locales/<jazyk>.json` (čeština v `cs.json`); nový text `node tools/i18n_add.mjs <klíč> "<cs>" "<en>"`. | `tests/i18n.test.js` |
 | Jazyk ≠ stát: jazyky malými (cs, sk, en), státy velkými ISO (CZ, SK, AT). Podmínka na stát jen v `app/public/countries/<ISO>.js`, jinde ne. | test (podmínky na stát, dnešní výjimky jen méně) |
 | Sdílený kód bez výjimek pro jedno město nebo stát: oprava je obecná. Výjimka jen s měřením, že obecná oprava škodí; jinak se výjimka odstraní. | recenzent |
 | Každá změna odhadu (ortofoto, OSM, odvození profilu) má vypínač `?off=…` a slepé A/B na malém vzorku dotčených řezů (najít bez prohlížeče, asi 20–40) plus kontrolní sadě (30–50), která se nesmí změnit. | recenzent |

@@ -273,6 +273,11 @@ Co rozhodne Bára, je označeno **(Bára)**.
 
 ## Překlady
 
+- Množná čísla (Bára 27. 11. 2026: až po převodu na klíče, samostatný krok, změní výstup): „{n} míst“, „{n} podlaží“
+  (anglicky „1 floors“; němčina a polština to obchází „Geschosse: {n}“). Tvary podle `Intl.PluralRules` jazyka,
+  v JSON jako `klíč#one`, `klíč#few`, `klíč#other` nebo vnořený objekt (podle toho, co umí Weblate), test na tvary.
+- Nástroj pro překladatele (Weblate nebo Crowdin, Bára 27. 11. 2026: později): soubory `locales/<jazyk>.json` jsou
+  v jeho formátu (plochý JSON, čeština zdroj); do té doby `tools/i18n_export.mjs` / `i18n_import.mjs` (CSV).
 - Všechny jazyky kromě češtiny strojově: projít rodilým mluvčím, nejdřív irština, maltština, lotyština (tvary měst,
   Krakov, Valonsko, Flandry).
 

@@ -47,6 +47,11 @@ odpovědi se berou, jen chybějící se zeptají živě a zapíšou s příznake
 Takhle se 27. 11. 2026 doplnilo 283 ze 369 řezů `sample` (praha, brno, SK, AT: změněná okna ortofota a RÚIAN) asi 2 000 odpověďmi
 a 2 z 56 řezů `sample-cz` (Kuřim, JMK); `sample-states` a `ax-*` odpovědi měly všechny.
 
+Od převodu textů na klíče (27. 11. 2026) si řez pamatuje poznámku jako klíč (`note.mapDown`, dřív česká věta) a město
+skládá své texty z `locales/<jazyk>.json` až za ostatní pole: `compare.mjs` i `tables.mjs` porovnávají poznámku přes její
+češtinu (`locales/cs.json`) a město s poli v jednom pořadí; `compare.mjs` nečte klíče stránky (`data-t`). Co návštěvník
+vidí, se porovnává jako dřív.
+
 ## Determinismus (27. 11. 2026)
 
 Dvě přehrání téhož kódu nad stejnou nahrávkou mají **0 rozdílů** v `compare.mjs` na všech třech vzorcích (248 + 369 + 56 řezů,
