@@ -6,9 +6,9 @@
 //   SRC=cuzk12 …   the 12.5 cm image of ČÚZK instead of the city's finest
 import fs from "node:fs/promises";
 import path from "node:path";
-import { decodePng } from "../../pilot/public/dmvs.js";
+import { decodePng } from "../../app/public/dmvs.js";
 import { ALL, strip } from "../ortofoto/run.mjs";
-import { centreLine, CENTRE, brightMap } from "../../pilot/public/lanes-ortho.js";
+import { centreLine, CENTRE, brightMap } from "../../app/public/lanes-ortho.js";
 
 const DATA = process.env.DATA || "/Users/barasoukupova/streetdesign/evaluation";
 const FINEST = { praha: "ipr10", brno: "brno25", plzen: "plzen10" };

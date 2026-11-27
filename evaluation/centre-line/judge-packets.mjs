@@ -6,7 +6,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { execFileSync } from "node:child_process";
-import { decodePng } from "../../pilot/public/dmvs.js";
+import { decodePng } from "../../app/public/dmvs.js";
 import { encodePng } from "../ortofoto/run.mjs";
 
 const [OFF, ON, SAMPLE] = process.argv.slice(2);

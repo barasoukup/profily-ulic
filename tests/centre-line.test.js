@@ -1,9 +1,9 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { centreLine } from "../pilot/public/lanes-ortho.js";
-import SI from "../pilot/public/countries/SI.js";
-import base from "../pilot/public/countries/default.js";
-import CZ from "../pilot/public/countries/CZ.js";
+import { centreLine } from "../app/public/lanes-ortho.js";
+import SI from "../app/public/countries/SI.js";
+import base from "../app/public/countries/default.js";
+import CZ from "../app/public/countries/CZ.js";
 
 // A synthetic photo of a roadway from t = -4 to 4 m (asphalt of brightness 100), 10 cm pixels, 40 m along the street, a
 // line of paint at t = at, 15 cm wide, painted where on(u in m) is true.
@@ -42,8 +42,8 @@ test("zákon o stání: středovou čáru vyžaduje jen Slovinsko", () => {
 
 // The law's estimate of parking in a state that asks for a centre line (derive.js splitRoadway): a measured roadway of
 // 11 m, the orthophoto with a line at t = 2 (solid, dashed) or none.
-import { localFrame, deriveProfile, mtvuPolygons } from "../pilot/public/derive.js";
-import { country } from "../pilot/public/city.js";
+import { localFrame, deriveProfile, mtvuPolygons } from "../app/public/derive.js";
+import { country } from "../app/public/city.js";
 function cutWith(img, tags, road = 11) {
   const frame = localFrame(46.05, 14.5);
   const rect = (x0, x1, code) => ({ attributes: { CTVUK_KOD: code }, geometry: { rings: [[[x0, -60], [x1, -60], [x1, 60], [x0, 60], [x0, -60]].map(([x, y]) => frame.toLonLat(x, y))] } });

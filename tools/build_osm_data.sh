@@ -15,7 +15,7 @@ set -euo pipefail
 cd "$(dirname "$0")/.."
 
 PBF=${1:-data/osm/Prag.osm.pbf}
-OUT=${2:-pilot/data/osm-tiles}
+OUT=${2:-app/data/osm-tiles}
 OGR=${OGR:-ogr2ogr}
 DIR=${DIR:-data/osm} # where the GeoJSONSeq exports go
 NAME=${NAME:-praha} # prefix of the exports; the BBBike extract of that city when PBF is missing
