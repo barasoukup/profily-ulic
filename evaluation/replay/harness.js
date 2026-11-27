@@ -25,7 +25,11 @@ const headerOf = (init, name) => {
   return k ? h[k] : null;
 };
 // A time in the request (the Dutch BGT's datetime=now) would never match the recording: the key without it.
-const stamp = (k) => k.replace(/([?&]datetime=)[^&\s]*/g, "$1NOW");
+// The site's data folders renamed on 27. 11. 2026 (data/vyvoj → built-up-age, brno/parkovani → parking, plzen/zony.json →
+// zones.json): recordings and requests under the new names, so old recordings and old code still meet.
+const stamp = (k) => k.replace(/([?&]datetime=)[^&\s]*/g, "$1NOW")
+  .replace(/^(\w+ SELF\/data\/)(?:vyvoj\/)/, "$1built-up-age/").replace(/^(\w+ SELF\/data\/brno\/)parkovani\//, "$1parking/")
+  .replace(/^(\w+ SELF\/data\/plzen\/)zony\.json/, "$1zones.json");
 const keyOf = (u, init) => {
   const range = headerOf(init, "range"), b = init?.body;
   // The app's own server by its path only (the recording and a replay may be served on other ports).
