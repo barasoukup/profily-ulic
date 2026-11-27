@@ -50,6 +50,21 @@ Co rozhodne Bára, je označeno **(Bára)**.
   beze změny, Worker i starší stránka desetinu berou).
 - Vzhled domu ze všech budov OSM v Rakousku: druhý čerstvý vzorek 13 : 9, všechna kola 19 : 18, nerozhodně (`evaluation/all-buildings/ZPRAVA.md`); Bára 25. 11. 2026: zůstává společné pravidlo, bez výjimky. ~~Zúžit poválečný dům z tvaru bloku kolem dvora~~ (25. 11. 2026: celkem 47 : 50, AT 17 : 10, CH 9 : 14, FI 1 : 7; není v aplikaci, `yard-rule.patch`).
 
+- Přeučit model aut a stání z ortofota se šrafami jako vlastní třídou (Bára 27. 11. 2026): model bere úzké šrafy u obruby
+  za auta (Ostrava, Výškovická: stání 2,4 m na šrafách). Veto rozpoznávačem šraf auta neodliší (větev `hatch-park`:
+  přísné nic nezmění, volné `?srafyvolne=1` smaže i skutečná auta v Hradci). Postup: doznačit 100–150 výřezů (Ostrava,
+  Hradec, Praha, Brno; masky šraf a stání, agent + Bářina kontrola vzorku), douučit parkovací větev (`park_branch.py`,
+  `export_park.py` ve větvi `ai-segmentation`, `street.onnx` 5,5 MB beze změny velikosti), A/B a regrese. Odhad 3–5 h.
+  Zpráva `evaluation/ortofoto/ZPRAVA.md`, oddíl „Šrafy a auta z modelu“.
+- Zeď nebo plot za ulicí: profil v Lipsku končil 1,3 m před zdí (opraveno `?off=murkonec`); pravidlo „nový řez až
+  ke zdi do 40 m“ (`?nastenu=1`) na 70 řezech nic nezměnilo, vypnuto.
+- Bulváry se zelení uprostřed: německé mapy povrchů (`towns/germany.js` STREET) mohou řez vystředěný v zeleném pásu
+  odmítnout, protože pod středem není vozovka (neověřeno, nález 27. 11. 2026).
+- Paneláky v zahraničí (`?panel2=1`, skóre tvaru, velikosti a okolí): Bára 27. 11. 2026 – raději panelák vynechat než
+  ho dát, kde není.
+- Kresby domů: statek má okno ve střeše jako tmavý čtvereček bez rámu; cihlový a štítový dům v 1 NP tmavou střechu
+  bez okapu; druhá půlka severoamerických vzhledů neprošla kontrolou (27. 11. 2026).
+
 ## Mapy povrchů a data měst
 
 - ~~Prešov: vrstvy `vw_dp_*` za tokenem~~ (Bára 25. 11. 2026: pasport vyřazený, zůstaly stromy a čáry mapy; kdyby se vrstvy vrátily, kód je v historii).
