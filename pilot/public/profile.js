@@ -9,6 +9,7 @@ import { PLATES, signFile, plateFile, signLabel, signDir, SPEED_TEMPLATES } from
 import { t as tr, num } from "./i18n.js";
 import { LOOKS, houseHash } from "./house-looks.js";
 import { AMERICA, AMERICA_PALETTES } from "./houses-america-spec.js";
+import { floorsFromHeight, floorsHOff } from "./floors.js";
 
 const NS = "http://www.w3.org/2000/svg";
 const GROUND = 760; // roadway surface
@@ -697,6 +698,10 @@ function sprite(g, name, cx, bottom, flip = false, anchor = null) {
   if (flip) img.setAttribute("transform", `translate(${2 * cx} 0) scale(-1 1)`);
 }
 
+// Floors of a building known only by its height (OSM height without building:levels): floors.js, the one rule for every
+// height (roof, a hall gets none); ?off=floorsh: the old height / FLOOR.
+const heightFloors = (info, h) => (!h ? null : floorsHOff() ? Math.round(h / FLOOR) : floorsFromHeight(h, { type: info?.type, roofShape: info?.roofShape }) ?? null);
+
 // Building height in metres: tagged in OSM, else from floors (FLOOR per floor).
 export function buildingHeight(info) {
   if (!info) return null;
@@ -727,7 +732,7 @@ export function buildingStyle(info, chosen) {
   // replaces only the old looks its rule names; Czechia has none (Czech output unchanged).
   if (!country.houseLook) return look;
   const h = buildingHeight(info);
-  const regional = country.houseLook(look, info, info?.levels || (h ? Math.round(h / FLOOR) : null), city);
+  const regional = country.houseLook(look, info, info?.levels || heightFloors(info, h), city);
   return BUILDING_STYLES[regional] ? regional : look;
 }
 // What the state changes in drawing a look (countries/<ISO>.js houseDetails): a terrace or a tile roof, Spain's roller
@@ -750,7 +755,7 @@ export function westernLook(style, info, office) {
 }
 function derivedStyle(info) {
   const h = buildingHeight(info);
-  const n = info?.levels || (h ? Math.round(h / FLOOR) : null);
+  const n = info?.levels || heightFloors(info, h);
   const roof = IPR_ROOF[info?.roofType];
   const cornice = info?.cornice || info?.levels; // a height alone says nothing about floors in a hall
   // Halls: an OSM shop or works building, or a big low footprint, unless IPR says pitched roof on 3+ floors.
@@ -948,7 +953,7 @@ function buildingForm(info, kind) {
   const style = BASE_STYLE[kind] || kind;
   const lv = buildingLevels(info);
   const h = buildingHeight(info);
-  const n = style === "hala" || kind === "kostel" || kind === "garaz" ? 1 : Math.max(1, lv?.n || (h ? Math.round(h / FLOOR) : DEFAULT_FLOORS[kind]));
+  const n = style === "hala" || kind === "kostel" || kind === "garaz" ? 1 : Math.max(1, lv?.n || heightFloors(info, h) || DEFAULT_FLOORS[kind]);
   let roofRows = style !== "hala" && kind !== "kostel" && kind !== "garaz" && lv?.roof && lv.cornice ? Math.min(lv.roof, n - 1) : 0;
   // A Haussmann house always has its zinc mansard: one floor of its seven, two from seven floors.
   if (kind === "haussmann" && !roofRows && n >= 3) roofRows = n >= 7 ? 2 : 1;

@@ -54,7 +54,7 @@ test("San Francisco: vozovka mezi obrubami v uličním prostoru, chodníky k jeh
 
 test("San Francisco: domy podle výšky obrysu, vlastní normy chodníku", async () => {
   const { sfHouse } = await import("../pilot/public/towns/sanfrancisco.js");
-  assert.deepEqual(sfHouse({ hgt_median_m: "12.1" }), { cornice: 3, roof: 0, total: 3, fromHeight: true, sfHouse: true });
+  assert.deepEqual(sfHouse({ hgt_median_m: "12.1" }), { cornice: 3, roof: 0, total: 3, fromHeight: true, hm: 12.1, sfHouse: true });
   assert.deepEqual(sfHouse({}), {});
   const C = await import("../pilot/public/city.js");
   const US = (await import("../pilot/public/countries/US.js")).default;

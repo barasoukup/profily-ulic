@@ -18,13 +18,13 @@
 //   zones (noParkGuess). ?sfcurb=0 leaves it out. Zones that do not answer (or cut off by the limit): the map without them,
 //   said so (sfCurbFailed, app.js).
 // - the houses (podlaznost): the median height of the footprint under the facade (hgt_median_m, no request of its own) as
-//   floors by Toronto's rule (towns/canada.js floorsOf), which OSM's building:levels overrules. ?sfhouse=0 leaves it out.
+//   floors by the shared rule (floors.js), which OSM's building:levels overrules. ?sfhouse=0 leaves it out.
 // ?sf=0 leaves the map out (the estimate from OSM). A map that does not answer: the estimate, said so (mapFailed "sf").
 // Requests: four a cut (memo by the box). No orthophoto: none of San Francisco's is open (NAIP of USGS is 0.6–1 m).
 import { getJSON, envelope } from "../gis.js";
 import { inArea } from "../places.js";
 import { planimetricMap, runsAlong, memory, carriageway, kerbStrip } from "./planimetrics.js";
-import { floorsOf } from "./canada.js";
+import { heightHouse } from "../floors.js";
 import { parkingOrient } from "../ortho-osm.js";
 
 const param = (k) => (typeof location === "undefined" ? globalThis.PROFILY_US?.[k] ?? null : new URLSearchParams(location.search).get(k));
@@ -169,8 +169,7 @@ export const sfSurfaces = map.surfaces;
 
 // A house by the median height of its footprint (2010; Toronto's rule of floors).
 export function sfHouse(a) {
-  const n = floorsOf(Number(a?.hgt_median_m));
-  return n ? { cornice: n, roof: 0, total: n, fromHeight: true, sfHouse: true } : {};
+  return heightHouse(Number(a?.hgt_median_m), { sfHouse: true });
 }
 export async function sfPodlaznost(lat, lon) {
   if (param("sfhouse") === "0" || !sfOn() || !inArea(AREAS.sf, lon, lat)) return {};

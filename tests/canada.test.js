@@ -60,7 +60,7 @@ test("Toronto: plochy podél řezu, mezera mezi vozovkami je dělicí pás nebo 
 
 test("Toronto: domy podle výšky obrysu", async () => {
   const { torontoHouse, floorsOf } = await import("../pilot/public/towns/canada.js");
-  assert.deepEqual([5, 6.5, 8, 11, 40].map(floorsOf), [1, 1, 2, 3, 12]);
+  assert.deepEqual([5, 6.5, 8, 11, 40].map((h) => floorsOf(h)), [1, 2, 2, 3, 12]);
   assert.deepEqual(torontoHouse({ SUBTYPE_DESC: "Garage", DERIVED_HEIGHT: 3 }), { type: "garage", garage: true, caHouse: true });
   assert.equal(torontoHouse({ SUBTYPE_DESC: "Building Outline", DERIVED_HEIGHT: 8 }).fromHeight, true);
   assert.deepEqual(torontoHouse(null), {});

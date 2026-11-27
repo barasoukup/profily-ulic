@@ -32,3 +32,15 @@ export function floorsFromHeight(h, o = {}) {
   if (h < LOW_MAX) return h >= TWO_FROM ? 2 : 1;
   return Math.max(1, Math.round((h - 2.2) / storey));
 }
+
+// A town's answer for a house (podlaznost) from a height: the floors by the plain rule, the height kept (hm) for refloor.
+export function heightHouse(h, extra = {}) {
+  const n = floorsFromHeight(h);
+  return n ? { cornice: n, roof: 0, total: n, fromHeight: true, hm: h, ...extra } : {};
+}
+// The same answer once the building is known (OSM kind and roof shape of the info app.js holds): the floors again, none of a hall.
+export function refloor(p, info) {
+  if (!p?.fromHeight || !(p.hm > 0) || floorsHOff()) return p;
+  const n = floorsFromHeight(p.hm, { type: info?.type, roofShape: info?.roofShape });
+  return n ? { ...p, cornice: n, total: n } : { ...p, cornice: undefined, total: undefined, fromHeight: false };
+}
