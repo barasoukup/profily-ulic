@@ -1821,23 +1821,12 @@ function drawPrahaBuilding(g, x, side, surface, info, chosen) {
           for (let d = i % 2 ? 40 : 0; d < EDGE; d += 80) if (d) box(d - 2, d + 2, z, Math.min(z + 40, f.ground - 22), tint(STONE, 0.85));
         }
       }
-      // A cube family house has its door up a flight of steps (a raised ground floor over the garage), with a rail.
       // A canal house of the North Sea has its door up its stoep from the street (every other house).
       const stoep = stoepZ(kind, info) > 0;
-      const z0 = kind === "kostka" ? plinth[0] : stoepZ(kind, info);
+      const z0 = stoepZ(kind, info); // the door at the level of the street (no flight of steps; Bára 27. 11. 2026: not even the cube house)
       const doorH = Math.min(240, f.ground * 0.72);
       const doorFrame = kind === "novyrd" ? "#3c3f43" : FRAME;
       box(dd ? 0 : 10, 120 + dd, z0, z0 + 14, tint(plinth?.[1] || STONE, 1.15)); // doorstep (the landing)
-      if (z0 && !stoep) {
-        // The flight runs out towards the street from the door (not back along the wall, where its rail cut the ground-floor
-        // window and its foot led into the cellar window; Bára 27. 11. 2026), with a rail on the street side.
-        const steps = 6, rise = z0 / steps, tread = 26;
-        for (let i = 0; i < steps - 1; i++) box(-(steps - 1 - i) * tread, 10, i * rise, (i + 1) * rise, tint(plinth[1], 1.12), outline);
-        const foot = -(steps - 1) * tread;
-        box(foot - 2, foot + 2, 0, 100, "#4d4f52"); // the rail: a post at the foot, a handrail up to the door, a post there
-        poly([[foot, 96], [-2, z0 + 96], [-2, z0 + 102], [foot, 102]], "#4d4f52");
-        box(-4, 0, z0, z0 + 100, "#4d4f52");
-      }
       if (stoep) { // five steps out into the street with an iron rail
         for (let i = 0; i < 5; i++) box(-(5 - i) * 22, 10, i * 15, (i + 1) * 15, "#6a6e71", outline);
         box(-112, -108, 0, 100, "#2b2d2f");
