@@ -1426,7 +1426,7 @@ function drawPrahaBuilding(g, x, side, surface, info, chosen) {
       for (let zr = top + 40; zr < z(EDGE) - 30; zr += 34) box((zr - top - 12) / P + 8, EDGE, zr, zr + 4, tile[1], { "fill-opacity": 0.35 });
       // in the back column of the floors below (its window as wide as theirs), sitting on the slope
       const ww = WINDOWS.dansky.w, dd0 = (125 + EDGE - 30 - ww) / 2, dc = dd0 + ww / 2, hw = ww / 2 + 36;
-      const zf = top + (dc - hw + 12) * P - 14, hf = Math.min(120, zf - top - 14), zb = zf - hf; // centred, a true gable of the roof's pitch under its ridge
+      const zf = top + (dc - hw) * P - 36, hf = Math.min(120, zf - top - 14), zb = zf - hf; // centred, a true gable of the roof's pitch under its ridge
       box(dc - hw + 12, dc + hw - 12, zb, zf, "#f4f2ec", outline);
       poly([[dc - hw, zf - 4], [dc, zf - 4 + hw * P], [dc + hw, zf - 4]], tile[1], outline);
       window(dd0, zb + 16, ww, hf - 32, 4);
@@ -1454,7 +1454,8 @@ function drawPrahaBuilding(g, x, side, surface, info, chosen) {
       // A dormer in the slope, centred on the back column of the floors below (as wide as theirs). Its little gable has the
       // main roof's pitch (P) and its eaves run parallel to the roof's edge, so it sits true on the slope (Bára 27. 11. 2026).
       const ww = WINDOWS[kind].w, d0 = (125 + EDGE - 30 - ww) / 2, dc = d0 + ww / 2, hw = ww / 2 + 36; // half the face's width + 12 of eaves
-      const zf = top + (dc - hw + 12) * P - 14; // the face's top: its street-side foot of the gable stays under the roof's edge
+      const zf0 = top + (dc - hw) * P - 36; // the face's top: its street-side foot of the gable 0.4 m under the roof's edge
+      const zf = Math.min(zf0, z(dc) - 33 - hw * P); // and its apex 0.3 m under the ridge's underside
       const hf = Math.min(104, zf - top - 14), zb = zf - hf;
       box(dc - hw + 12, dc + hw - 12, zb, zf, wall, outline);
       poly([[dc - hw, zf - 4], [dc, zf - 4 + hw * P], [dc + hw, zf - 4]], tile[0], outline); // the gable, pitch as the main roof
@@ -1929,7 +1930,6 @@ function drawPrahaBuilding(g, x, side, surface, info, chosen) {
       win2(groundAt, f.ground * win.sill + (style === "sikma" ? 40 : 0) + (stoepZ(kind, info)), win.w, win.h * f.storey, 0);
       if (!info?.arcade) for (const c of (gAxes || colAxes(win.w)).slice(2)) win2(c - win.w / 2, f.ground * win.sill + (style === "sikma" ? 40 : 0) + stoepZ(kind, info), win.w, win.h * f.storey, 1);
     }
-    const gallarija = kind === "malta" ? new Set(full >= 4 ? [1, 2] : full >= 2 ? [1] : []) : null;
     for (let k = 1; k < full; k++) {
       if (kind === "galeria") { // the glazed gallery over the whole wall, joining the one over the street
         const z = floorZ(k), h = f.storey;
@@ -1943,19 +1943,6 @@ function drawPrahaBuilding(g, x, side, surface, info, chosen) {
         continue;
       }
       for (const [i, c] of (gAxes || colAxes(win.w)).entries()) {
-        if (i === 0 && gallarija?.has(k)) { // the gallarija turns the corner: its front over the front column
-          const col = pal("maltaAccent"), z = floorZ(k) + 20, h = f.storey * 0.8, d1 = c + win.w / 2 + 14;
-          box(0, d1, z - 10, z, tint(wall, 0.95), outline);
-          box(0, d1, z, z + h, col, { stroke: tint(col, 0.65), "stroke-width": 1.5, "vector-effect": "non-scaling-stroke" });
-          box(4, d1 - 4, z + h * 0.3 - 3, z + h * 0.3 + 3, tint(col, 1.3));
-          for (let a = 8; a + 30 <= d1 - 6; a += 36) {
-            box(a, a + 30, z + h * 0.38, z + h - 14, tint(col, 0.75));
-            for (let zz = z + h * 0.38 + 8; zz < z + h - 16; zz += 9) box(a + 2, a + 28, zz - 1.5, zz + 1.5, tint(col, 1.25));
-          }
-          poly([[0, z + h], [d1 + 6, z + h], [d1 + 6, z + h + 8], [0, z + h + 26]], tint(col, 0.8), outline);
-          for (const d of [20, d1 - 20]) poly([[d - 9, z - 10], [d + 9, z - 10], [d + 4, z - 50], [d - 2, z - 50]], tint(wall, 0.92), outline);
-          continue;
-        }
         win2(c - win.w / 2, floorZ(k) + win.sill * f.storey, win.w, win.h * f.storey, k * 3 + i);
       }
     }
