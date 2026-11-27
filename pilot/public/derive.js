@@ -1382,6 +1382,15 @@ function insertTrees(segs, trees, parked = [], unknownWalk = false) {
 const WALK = new Set(["chodnik", "chodnik_kola", "stezka_sdilena", "plocha"]);
 const BIKE_OK = new Set(["yes", "permissive", "designated"]);
 
+// The direction cyclists ride a path one way only: oneway:bicycle, else oneway (-1 against the way); null for both ways.
+// d: the way's direction at the cut, dir: the profile's (as cycleTrack).
+function bikeDir(t, d, dir) {
+  const o = t["oneway:bicycle"] ?? t.oneway;
+  if (!["yes", "1", "true", "-1"].includes(o)) return null;
+  const along = d[0] * dir[0] + d[1] * dir[1] >= 0;
+  return along !== (o === "-1") ? "forward" : "backward";
+}
+
 // What cyclists may do on a sidewalk (MTVU 702), from the OSM way running along it:
 // segregated=yes → foot and cycle path side by side (C10: sidewalk + cycle track, split in half),
 // bicycle=designated → shared foot and cycle path (C9), bicycle=yes → sidewalk open to cyclists.
@@ -1411,7 +1420,9 @@ function sidewalkUse(r, cross, way, axisT, dir) {
   }
   // segregated=no is used only on paths shared by both, even when foot is not tagged designated.
   const shared = bikes === "designated" && (t.highway !== "cycleway" || t.foot === "designated" || t.segregated === "no");
-  return [{ type: shared ? "stezka_sdilena" : "chodnik_kola", s: r.s, e: r.e, source: "dtm" }];
+  // Cyclists one way only (oneway:bicycle, else oneway): the part has that direction (the walkers keep both).
+  const bd = shared && c ? bikeDir(t, c.d, dir) : null;
+  return [{ type: shared ? "stezka_sdilena" : "chodnik_kola", s: r.s, e: r.e, ...(bd && { dir: bd }), source: "dtm" }];
 }
 
 // A cycle track (MTVU 703) takes its direction from the OSM cycleway running in it: one-way
@@ -1421,10 +1432,9 @@ function cycleTrack(r, cross, dir) {
     (x.way.tags?.highway === "cycleway" || x.way.tags?.bicycle === "designated"));
   if (!c) return [{ type: "cyklostezka", s: r.s, e: r.e, source: "dtm" }];
   const t = c.way.tags;
-  const along = c.d[0] * dir[0] + c.d[1] * dir[1] >= 0;
-  if (["yes", "1", "true", "-1"].includes(t.oneway)) {
-    const fwd = along !== (t.oneway === "-1");
-    return [{ type: "cyklostezka", s: r.s, e: r.e, dir: fwd ? "forward" : "backward", source: "dtm" }];
+  const bd = bikeDir(t, c.d, dir);
+  if (bd) {
+    return [{ type: "cyklostezka", s: r.s, e: r.e, dir: bd, source: "dtm" }];
   }
   // TP 179 kap. 4.9: a two-way cycle path is at least 2.5 m wide (one-way min. 2.0 m).
   if (r.e - r.s < 2.5) return [{ type: "cyklostezka", s: r.s, e: r.e, source: "dtm" }];
