@@ -42,6 +42,8 @@ for (const id of a) {
   // Porovnat as the page shows it: its drawings are laid out by measuring the labels in the window (not repeatable), so
   // only its titles and list of changes count; the drawings are those of the export (svg, svgNavrh).
   for (const o of [x, y]) if (typeof o.compare === "string") o.compare = o.compare.replace(/<svg[\s\S]*?<\/svg>/g, "<svg/>");
+  // A failure's stack names ports and lines of the harness: its message (first line) is what counts.
+  for (const o of [x, y]) if (typeof o.failed === "string") o.failed = o.failed.split("\n")[0];
   const bad = keys.filter((k) => text(x[k]) !== text(y[k]));
   if (!bad.length) { same++; continue; }
   diff++;
