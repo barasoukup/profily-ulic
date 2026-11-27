@@ -1089,6 +1089,35 @@ export function orthoOsmPolys({ osm, frame, dir, way, st, mapRuns = [], edges = 
   return polys;
 }
 
+// The default reach of a new cut goes on to the first building, wall or fence (Bára 27. 11. 2026, Berliner Straße in Leipzig:
+// "na první klik by se mi líbilo, kdyby A bylo až na té zdi"). For each side of the cut that has none of them within its
+// reach (from: { A, B }, m from the axis) and has one between there and MAX_EDGE: the distance of the first from the axis
+// (+ a margin), unless another street's roadway lies between (the profile does not cross it). null where the side stays.
+// ?nastenu=1 only (P.edgeOn). osm: OSM elements; frame, dir, way: as orthoOsmPolys.
+const WALLS = new Set(["wall", "fence", "retaining_wall", "city_wall"]), MAX_EDGE = 40, EDGE_MARGIN = 0.4;
+export function edgeBeyond({ osm, frame, dir, way, from }) {
+  const none = { A: null, B: null };
+  if (!P.edgeOn || !way) return none;
+  const normal = [-dir[1], dir[0]];
+  const tu = (lon, lat) => { const [x, y] = frame.toXY(lon, lat); return [x * normal[0] + y * normal[1], x * dir[0] + y * dir[1]]; };
+  const o = osmAlong(osm?.elements, tu, way.id);
+  if (!o.own) return none;
+  const out = { A: null, B: null };
+  for (const [side, sg] of [["A", -1], ["B", 1]]) {
+    const d = (t) => sg * (t - o.own.t);
+    const stops = [...o.ways.filter((w) => WALLS.has(w.tags.barrier) && sameLevel(w, o)).map((w) => d(w.t)), ...(o.facade[side] !== null ? [d(o.facade[side])] : [])].filter((x) => x > 0.3);
+    if (!stops.length || stops.some((x) => x <= from[side] + 0.3)) continue;
+    const first = Math.min(...stops);
+    if (first > MAX_EDGE) continue;
+    // Another street between the reach and the wall (not a service way, not the street itself).
+    const own = way.tags || {};
+    const blocked = o.ways.some((w) => STREET.test(w.tags.highway || "") && w.tags.highway !== "service" && sameLevel(w, o) && d(w.t) > from[side] && d(w.t) < first
+      && !((own.name && w.tags.name === own.name) || (own.ref && w.tags.ref === own.ref)));
+    if (!blocked) out[side] = +(first + EDGE_MARGIN).toFixed(1);
+  }
+  return out;
+}
+
 // The sources of the estimate's houses (osmAlong): of the facades that end the sides, else of every house the cut
 // crosses; an element's "from" (gis.js ruianOutlines RÚIAN, towns/lithuania.js GRPK), else OSM. The state's own
 // register first, OSM last.

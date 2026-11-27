@@ -55,3 +55,15 @@ za stezkou“; vhodné měřit znovu na nich.
 ## Soubory
 `scan.mjs`, `choose.mjs`, `select.mjs`, `build.sh`, `pack.mjs`, `regr-tiles.mjs` (data), `collect.js` (běh v aplikaci), `score.mjs`,
 `score-stretch.mjs`, `POKYN.md`, `judge/map.json`, `vysledky/` (posuzovatelé, `ab-detail.json`), `linz-rudolfstrasse.png`.
+
+## Doplněk: plot a zábradlí u map povrchů, dosah k zdi (27. 11. 2026)
+- Palackého třída a Jahnova v Pardubicích (technická mapa ČÚZK): konec profilu dělal plot z mapy (`derive.js`, `fenceL/fenceR`), a to i
+  na straně, kterou uživatel natáhl na vlastní dosah (jen dosah nad 22,5 m plot obešel). Oprava: (a) strana s ručně nastaveným dosahem
+  (různým od 22 m) plotem nekončí (`?off=rucniplot`); (b) zábradlí do 1 m od vozovky s chodníkem nebo zpevněnou plochou za ním
+  v mapě není hrana ulice (`?off=zabradli`). Palackého: strana A jde chodníkem 4,25 m a zelení k domu (11,3 m od osy); Jahnova při
+  dosahu 14,9 / 21,9 m dojde k domům na obou stranách, ve výchozím dosahu 22 m k domu na jedné.
+- Kontrola: 28 výchozích řezů CZ (vzorek replay, technická mapa, ČÚZK) beze změny, změnily se jen tyto dva. `npm test` 553 / 553,
+  regrese Prahy a Brna beze změny proti předchozímu běhu.
+- Leipzig, Berliner Straße: zeď (OSM `barrier=wall`) je 14,2 m od osy, tedy v dosahu 22 m; profil na té straně končí 1,3 m před ní
+  (konec u poslední věci ulice), nejde o dosah. Pravidlo „výchozí dosah až ke zdi do 40 m“ je napsané (`edgeBeyond` v `ortho-osm.js`,
+  `?nastenu=1`), ale na 70 řezech vzorku se nezměnil ani jeden, takže přínos nelze doložit a **výchozí stav je vypnuto**.

@@ -5,7 +5,7 @@ import { bedOrtho } from "./ortho.js";
 import { laneImage, applyLanes, SK_ORTHO, AT_ORTHO, CH_ORTHO, NL_ORTHO, BE_ORTHO, LU_ORTHO, PL_ORTHO, FR_ORTHO, ES_ORTHO, PT_ORTHO, PT_MAINLAND, ES_NOT_PNOA, CY_ORTHO, MT_ORTHO, IT_ORTHO, EE_ORTHO, SI_ORTHO, FI_ORTHO, US_ORTHO, CA_ORTHO, DK_ORTHO, DE_ORTHO, deWmsUrl, landsAt, landAt, orthoHereAt } from "./lanes-ortho.js";
 import { dkToken } from "./keys.js";
 import { boxed as boxedPlace, within as withinPlace } from "./places.js";
-import { orthoOsmPolys, besidePassport, trimToEnds, estimateNote, outerGapsByImage, medianGapsByImage, deckSpans, bridgeRailings, P as ORTHO_P } from "./ortho-osm.js";
+import { orthoOsmPolys, edgeBeyond, besidePassport, trimToEnds, estimateNote, outerGapsByImage, medianGapsByImage, deckSpans, bridgeRailings, P as ORTHO_P } from "./ortho-osm.js";
 import { LOOKS as HOUSE_LOOKS } from "./house-looks.js";
 // The gabled house looks with the gable's outline (house-looks.js; Bára to approve it, 23. 11. 2026): ?stit=1.
 if (new URLSearchParams(location.search).get("stit") === "1") HOUSE_LOOKS.gables = true;
@@ -696,6 +696,12 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wa
         const longer = widerSides(result, reach, near.way, osm, frame, dir, polys);
         if (longer) { reach = { ...reach, ...longer }; args.reach = reach; result = deriveProfile(args); }
       }
+    }
+    // A new cut goes on to the first building, wall or fence beyond its reach (up to 40 m, not across another street):
+    // ortho-osm.js edgeBeyond (Bára 27. 11. 2026). ?off=nastenu: the usual reach.
+    if (freshReach && ORTHO_P.edgeOn) {
+      const e = edgeBeyond({ osm, frame, dir, way: near.way, from: { A: reach.right, B: reach.left } });
+      if (e.A || e.B) { reach = { left: e.B ?? reach.left, right: e.A ?? reach.right }; args.reach = reach; result = deriveProfile(args); }
     }
     // No surface of the street from the technical map (no answer, nothing here, nothing at the axis): the carriageway
     // read on the orthophoto near where OSM expects it, sidewalks to the OSM buildings (ortho-osm.js; Bára 15. 11.
