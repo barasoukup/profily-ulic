@@ -236,3 +236,16 @@ test("značky státu DE: soubory v signs-DE/ i s tabulkami, jednosměrka jen Z 2
   assert.match(signLabel({ k: "b1", plate: "obsluha" }, "DE"), /^Z 250 \+ 1020-30 /);
   assert.ok(has("274"), "šablona rychlosti");
 });
+
+test("jednosměrka ne tam, kde je ulice rozdělená na dvě jednosměrné vozovky opačných směrů (Výškovická v Ostravě)", () => {
+  const a = { highway: "tertiary", name: "Výškovická", oneway: "yes" }, b = { highway: "tertiary", name: "Výškovická", oneway: "yes" };
+  // The other roadway has no lane in the profile (a shoulder), its traffic runs the other way along the cut.
+  const twin = deriveSigns({ segments: [{ type: "pruh", dir: "backward" }, { type: "tramvaj" }, { type: "krajnice" }], extent: [0, 10],
+    roads: [{ s: 0, e: 4, tags: b, fwd: false }, { s: 6, e: 10, tags: a, fwd: true }] }, a);
+  assert.deepEqual(twin.segments.map((s) => keys(s.signs)), [[], [], []]);
+  // A one-way street alone, or two roadways of the same direction, keeps its sign.
+  const alone = deriveSigns({ segments: [{ type: "pruh", dir: "forward" }], extent: [0, 4], roads: [{ s: 0, e: 4, tags: a, fwd: true }] }, a);
+  assert.deepEqual(keys(alone.segments[0].signs), ["oneway"]);
+  const same = deriveSigns({ segments: [{ type: "pruh", dir: "forward" }, { type: "krajnice" }], extent: [0, 10], roads: [{ s: 6, e: 10, tags: a, fwd: true }, { s: 0, e: 4, tags: b, fwd: true }] }, a);
+  assert.deepEqual(keys(same.segments[0].signs), ["oneway"]);
+});

@@ -2464,7 +2464,8 @@ export function deriveProfile({ center, dir, half, polys, osm, frame, way, track
       const guessPark = noParkGuess || (cls && (cls.road || cls.motorway || cls.mk === 1 || cls.mk === 2)) ? false : undefined;
       // A state without street classes of its own here (Austria): the OSM highway gives the group (countries/AT.js).
       const roadClass = classGroup(cls) ?? (country.roadClassFromOsm ? osmGroup(tags.highway) : null);
-      roads.push({ s: r.s, e: r.e, tags });
+      // fwd: the roadway's traffic runs along the cut's direction (undefined: not known); signs.js, a one-way roadway of a divided street.
+      roads.push({ s: r.s, e: r.e, tags, fwd: ownAxis ? ownAxis.along !== (tags.oneway === "-1") : undefined });
       const noCars = carsBanned(tags), toBus = noCars && transitAllowed(tags);
       segs.push(...splitRoadway(r, { guessPark, osmParkGive, tags, trams: inside, dirAt, lanesTotal, along: ownAxis ? (ownAxis.along !== (tags.oneway === "-1")) : true, single: new Set(axes.map((a) => a.id)).size === 1, parked, sides: sideTagsLR, kerbOpen, kerbBare, inZps, axesOneway: axes.every((a) => a.oneway), axes, axisInside: here.length > 0, divided, roadClass }).map((x) => ({ ...x, mtvu: r.code, ...(noCars && x.type === "pruh" && (toBus ? { type: "bus" } : { noCar: true })),
         // Bus lanes carry trolleybuses; so does the lane of a zone closed to cars but open to public transport
