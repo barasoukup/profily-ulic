@@ -50,7 +50,8 @@ výsledek ve zprávě commitu. Povinné jádro: 1–8, 9 a 11–13a; ostatní po
    „před nasazením“) do jednoho oddílu a ten nechat celý; přesouvat jen popis stavu (státy do `docs/countries/<ISO>.md`,
    rozhodnutí do `docs/decisions.md`, README podle témat do `docs/`). Cíl asi 200 řádků; každý řádek původního souboru
    dohledatelný v novém umístění.
-6. **Smazat prohrané pokusy** (S–M): 13 mrtvých `P.*` (`walkYellow`, `walkEdge`, `split6`, `splitMin`, `walkMode`,
+6. **Smazat prohrané pokusy** (S–M; Bára 27. 11. 2026: smazat všechny vypnuté pokusy kromě map povrchů `?krakow`,
+   `?bologna`, `?vilnius`, které zůstanou vypnuté pro další pokus): 13 mrtvých `P.*` (`walkYellow`, `walkEdge`, `split6`, `splitMin`, `walkMode`,
    `walkSat`, `walkDiff`, `walkLight`, `walkShadow`, `aiSnap`, `aiSnapMin`, `aiWalkMax`, `expScale`; ne
    `panoramaFromPosition`, to je metoda API Mapy.com); před smazáním grep jména v celém repu. Ostatní vypnuté pokusy podle
    Báry (`P.cars`, `?auta`, `P.areaGreen`, `?treepits`, `?otherstreet`, `?chodnik`, `?vypln`, `?tm`, `?outergaps`,
