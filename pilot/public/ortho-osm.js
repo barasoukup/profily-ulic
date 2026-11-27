@@ -767,7 +767,7 @@ export function orthoOsmPolys({ osm, frame, dir, way, st, mapRuns = [], edges = 
   // Where a side without a house ends (Bára 17. 11. 2026, Smetanovo nábřeží: the profile ran on over the ground below
   // the street on both sides): at the first steps (a change of level), fence or wall OSM maps across the cut beyond the
   // kerb, or the fenced edge of a park; null: as before (?off=konec).
-  const ends = { A: null, B: null }, chain = { A: [], B: [] }, reached = { A: null, B: null };
+  const ends = { A: null, B: null }, hard = { A: null, B: null }, chain = { A: [], B: [] }, reached = { A: null, B: null };
   const FILL_OFF = !!P.off?.has("vyplnkonec");
   if (!P.off?.has("konec")) for (const [side, sg] of [["A", -1], ["B", 1]]) {
     if (o.facade[side] !== null) continue;
@@ -782,7 +782,7 @@ export function orthoOsmPolys({ osm, frame, dir, way, st, mapRuns = [], edges = 
         return out;
       }),
     ].filter((t) => sg * (t - kerbT) > 0.5 && Math.abs(t - o.own.t) < 40);
-    if (cand.length) { ends[side] = cand.reduce((a, b) => (sg * (b - a) < 0 ? b : a)); continue; }
+    if (cand.length) { ends[side] = hard[side] = cand.reduce((a, b) => (sg * (b - a) < 0 ? b : a)); continue; }
     // No such end: the side ends just beyond the last thing of the street OSM maps there (a sidewalk or path, a cycle
     // track, tram tracks, another carriageway), each LAST_WALK within the one before; nothing there: LAST_NONE past the
     // kerb (Bára 17. 11. 2026, Generála Šišky: "když nic pak není, tak se řez vezme jen po poslední zajímavý prvek").
@@ -993,6 +993,18 @@ export function orthoOsmPolys({ osm, frame, dir, way, st, mapRuns = [], edges = 
     const fA = o.facade.A ?? -Infinity, fB = o.facade.B ?? Infinity;
     for (const r of runs) {
       const a = Math.max(fA, c.tOf(r.i0) - c.res / 2), b = Math.min(fB, c.tOf(r.i1) + c.res / 2);
+      // Paving beyond REST_MAX is no lot of the street, but up to a wall, a fence or steps the street's side ends at (Bára
+      // 27. 11. 2026, Leipzig, Berliner Straße: the profile stopped 1.3 m before the wall): from the kerb to that end.
+      // ?off=murkonec: as before.
+      if (!r.g && b - a > REST_MAX && !P.off?.has("murkonec")) {
+        for (const [side, sg] of [["A", -1], ["B", 1]]) {
+          const e = hard[side];
+          if (e === null) continue;
+          const kt = (k2 && side === pSide ? k2 : k)[side], [x, y] = sg < 0 ? [Math.max(a, e), Math.min(b, kt)] : [Math.max(a, kt), Math.min(b, e)];
+          if (y - x >= BACK_MIN) polys.push(rect(1003, "zpevněná plocha (odhad)", x, y));
+        }
+        continue;
+      }
       if (b - a < BACK_MIN || (!r.g && b - a > REST_MAX)) continue;
       polys.push(r.g ? rect(401, "zeleň (ortofoto)", a, b) : rect(1003, "zpevněná plocha (odhad)", a, b));
     }
