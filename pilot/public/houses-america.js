@@ -461,8 +461,10 @@ export function drawAmerican(kind, { g, el, X, surface, EDGE, f, seed, wall, det
         for (let q = z + 24; q < z + S - 8; q += 20) box(-D + 30, -D + 70, q, q + 4, "#565c5f");
       }
     }
-    box(-D + 2, -D + 6, G - 150, floorZ(1) + 8, FE); // the drop ladder at the platform's edge
-    for (let z = G - 144; z < floorZ(1); z += 26) box(-D - 3, -D + 11, z, z + 3, FE);
+    if (n > 1) { // the drop ladder hangs only from a platform (a one-storey house has none)
+      box(-D + 2, -D + 6, G - 150, floorZ(1) + 8, FE);
+      for (let z = G - 144; z < floorZ(1); z += 26) box(-D - 3, -D + 11, z, z + 3, FE);
+    }
     box(0, EDGE, top, top + 24, tint(wall, 0.9), thin(wall));
   } else if (kind === "tripledecker") {
     // Boston's triple-decker, 1880–1930: three floors of wood, the porches stacked one over another on the street front,
@@ -537,12 +539,13 @@ export function drawAmerican(kind, { g, el, X, surface, EDGE, f, seed, wall, det
     box(150, 350, 0, 216, TR, thin(TR)); box(160, 340, 0, 206, GD); // the garage door
     for (let i = 1; i < 4; i++) box(160, 340, i * 51, i * 51 + 3, tint(GD, 0.8));
     for (let d = 172; d < 330; d += 42) box(d, d + 30, 160, 194, GLASS);
-    if (det.plain) { // the tunnel entrance: an arch, the stairs inside it
-      arch0(71, 196, 57, tint(wall, 1.08)); box(14, 128, 0, 196, tint(wall, 1.08));
-      arch0(71, 194, 49, "#7d7060"); box(22, 120, 0, 194, "#7d7060");
-      box(46, 108, 72, 222, AC); box(56, 98, 130, 208, GLASS);
-      for (let i = 0; i < 4; i++) box(22 + i * 5, 120, i * 18, (i + 1) * 18, "#b5ab98", thin("#b5ab98"));
-    } else door(120, { h: 190, c: AC, surround: TR });
+    if (det.plain) { // the tunnel entrance: an arch, the stairs inside it, the door 2.1 m over the top step
+      const ST = 54, zA = ST + 212, OP = tint(wall, 1.08);
+      arch0(71, zA, 57, OP); box(14, 128, 0, zA, OP);
+      arch0(71, zA - 2, 49, "#7d7060"); box(22, 120, 0, zA - 2, "#7d7060");
+      box(42, 100, ST, zA - 2, AC); arch0(71, zA - 2, 29, AC); box(52, 90, ST + 90, zA - 24, GLASS); arch0(71, zA - 24, 19, GLASS);
+      for (let i = 0; i < 3; i++) box(22 + i * 5, 120, i * 18, (i + 1) * 18, "#b5ab98", thin("#b5ab98"));
+    } else door(84, { h: 210, c: AC, surround: TR });
     box(0, EDGE, G - 16, G, TR, thin(TR));
     for (let k = 1; k < n; k++) {
       each(88, (i, d) => sash(d, floorZ(k) + 0.22 * S, 88, 0.54 * S, k * 3 + i, det.plain ? { trim: TR } : { trim: TR, hood: TR, ped: k === 1 }));
@@ -569,7 +572,7 @@ export function drawAmerican(kind, { g, el, X, surface, EDGE, f, seed, wall, det
       else bayCornice(D, z1, 72, TR);
     }
     if (!det.plain) { // the wooden stairs to the door, its little portico post
-      stoop(80, 120, { c: "#b5a68a", rail: TR === "#f6f0e2" ? "#cfc7b5" : TR });
+      stoop(80, 84, { c: "#b5a68a", rail: TR === "#f6f0e2" ? "#cfc7b5" : TR });
     }
   }
 }
