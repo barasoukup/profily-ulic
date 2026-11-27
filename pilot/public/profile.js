@@ -850,8 +850,8 @@ const PANEL_WIDTH = 16, PANEL_FILL = 0.65, PANEL_PART = 30, PANEL_FLOORS = 8, es
 // Such a flat-roofed block of flats is drawn as the plain flat-roofed tenement.
 const OLD_SETBACK_KM = 4.5, PANEL_FROM = 1955, MODERN_FROM = 1995;
 const isSlab = (b) => !!b && ((b.fill >= PANEL_FILL && b.width <= PANEL_WIDTH) || (b.parts >= 2 && (b.length + b.width) / b.parts >= PANEL_PART));
-// Abroad the shape alone makes a panel house only as a long compact slab (house-looks.js strictSlab); Czechia keeps isSlab.
-const slabOf = (b) => (city.abroad && !panelOff() ? strictSlab(b) : isSlab(b));
+// Abroad, where panel houses were built (socialistLooks), the shape alone makes a panel house only as a long compact slab (house-looks.js strictSlab); Czechia keeps isSlab.
+const slabOf = (b) => (city.abroad && socialistLooks() && !panelOff() ? strictSlab(b) : isSlab(b));
 function flatKind(info, n) {
   if (OFFICE_TYPES.has(info?.type) || (info?.office && !FLAT_RESIDENTIAL.has(info?.type))) return "kancelar";
   if (info?.newBuild) return "moderni"; // IPR "nová budova"

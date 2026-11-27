@@ -14,7 +14,9 @@ const TOWNS = new Function(`return ${src.slice(src.indexOf("{", src.indexOf("exp
 const token = fs.readFileSync(process.env.TOKEN, "utf8").trim().replace(/^.*=/, "").replace(/["']/g, "");
 const mly = async (q) => { for (let i = 0; i < 3; i++) { try { const r = await fetch(`https://graph.mapillary.com/${q}`, { headers: { Authorization: `OAuth ${token}` } }); if (r.ok) return await r.json(); } catch {} await new Promise((s) => setTimeout(s, 1500)); } return { data: [] }; };
 const ROADS = /^(residential|tertiary|secondary|primary|unclassified|living_street)$/;
-const look = (info, off) => { globalThis.PROFILY_CA.off = off ? "vesnice" : ""; return P.buildingStyle(info); };
+// MODE=panel: the panel rule (?off=panel2) instead of the small-house one (the small-house rule stays on in both).
+const FLAG = process.env.MODE === "panel" ? "panel2" : "vesnice";
+const look = (info, off) => { globalThis.PROFILY_CA.off = off ? FLAG : ""; return P.buildingStyle(info); };
 for (const iso of isos.split(",")) {
   let seed = [...iso].reduce((a, c) => a * 131 + c.charCodeAt(0), Number(process.env.SEED || 20261127)) >>> 0;
   const rnd = () => { seed = (seed + 0x6d2b79f5) >>> 0; let t = Math.imul(seed ^ (seed >>> 15), 1 | seed); t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t; return ((t ^ (t >>> 14)) >>> 0) / 2 ** 32; };
@@ -45,7 +47,7 @@ for (const iso of isos.split(",")) {
     const o = infoOf(els, frame, p, point);
     if (!o.found) continue;
     const l0 = look(o.info, true), l1 = look(o.info, false);
-    if (o.info.levels || o.info.height) {
+    if (FLAG === "vesnice" && (o.info.levels || o.info.height)) {
       // A control: floors known, the rule must not touch it.
       if (controls.length < 400) controls.push({ town, point, info: o.info, look: l0 });
       if (l0 !== l1) stat.dataChanged++;
