@@ -144,7 +144,7 @@ export function cityTexts(id, like) {
   if (SHORT[key]) out.dataShort = dataText(SHORT[key]);
   if (MAP[key]) { out.dataName = heading(MAP[key]); out.techMap = text(MAP[key]); }
   const [pk, who, docs] = HEAD[key] || [];
-  if (pk) out.rulesHead = text(ref(`rules.head.${pk}`, { where: named(who) ?? "", documents: docs }));
+  if (pk) out.rulesHead = text(ref(`rules.head.${pk}`, { where: named(who) ?? "", documents: docs })).replace(/\.\.$/, "."); // a document ending with a full stop ("Z. z.")
   const [pkind, owner] = PARKING[key] || ["estimate"];
   out.parkingSource = text(ref(`parking.source.${pkind}`, owner ? { who: owner } : undefined));
   return out;
