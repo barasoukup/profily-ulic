@@ -659,8 +659,8 @@ function americanCoast(lat, lon, dist) {
 // Where the app makes no profile (tools/build_staty.mjs closed_*; Bára 23. 11. 2026): the message to show, or null.
 const CLOSED = {
   closed_cy: () => t("Sever Kypru zatím nemáme: profily děláme jen na území, které spravuje Kyperská republika."),
-  closed_us: () => t("V USA zatím děláme profily jen ve Washingtonu a okolí (District of Columbia a sousední okresy Marylandu a Virginie), v New Yorku, v San Franciscu a v Bostonu a okolí (okresy Suffolk, Middlesex a Norfolk)."),
-  closed_ca: () => t("V Kanadě zatím děláme profily jen v Torontu a okolí."),
+  closed_us: () => t("V USA zatím děláme profily jen ve Washingtonu (District of Columbia), v New Yorku, v San Franciscu a v Bostonu a okolí (okresy Suffolk, Middlesex a Norfolk)."),
+  closed_ca: () => t("V Kanadě zatím děláme profily jen v Torontu."),
   closed_it: () => t("V Itálii děláme profily jen tam, kde má otevřenou licenci ortofoto nebo mapa povrchů: v Jižním Tyrolsku, Lombardii, Turíně, Bologni a Modeně."),
 };
 export function closedAt(lat, lon) {
