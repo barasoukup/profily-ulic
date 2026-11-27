@@ -34,7 +34,7 @@ async function getJSON(url) {
 async function vyvoj(lat, lon) {
   const k = `${Math.floor(lon / 0.01)}_${Math.floor(lat / 0.01)}`;
   let polys;
-  try { polys = JSON.parse(await fs.readFile(path.join(ROOT, "..", "app", "data", "vyvoj", `${k}.json`), "utf8")); } catch { return undefined; }
+  try { polys = JSON.parse(await fs.readFile(path.join(ROOT, "..", "app", "data", "built-up-age", `${k}.json`), "utf8")); } catch { return undefined; }
   const inside = (rings, x, y) => { let c = false; for (const r of rings) for (let i = 0, j = r.length - 1; i < r.length; j = i++) { const [xi, yi] = r[i], [xj, yj] = r[j]; if (yi > y !== yj > y && x < ((xj - xi) * (y - yi)) / (yj - yi) + xi) c = !c; } return c; };
   let year = 2020;
   for (const [rok, rings] of polys) if (rok < year && inside(rings, lon, lat)) year = rok;

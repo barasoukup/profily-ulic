@@ -29,7 +29,8 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
 - Názvy (Bára 27. 11. 2026): aplikace je ve složce `app/` (dřív `pilot/`), složky a soubory aplikace a nástrojů
   anglicky (`signs-CZ/`, `towns.json`, `states.json`, `towns/czechia.js`, `stop-post-*.svg`…). Česky zůstávají id
   v datech řezů, odkazech a logu (`cesko`, `chodnik`, `oznacnik`, `#rez=`, klíče značek), id měst a složky ilustrací
-  podle nich (`praha/`, `cesko/`), složky dat webu (`data/vyvoj`, `parkovani`, `zony.json`) a `evaluation/`.
+  podle nich (`praha/`, `cesko/`). Složky dat webu anglicky: `data/built-up-age`, `data/brno/parking`,
+  `data/plzen/zones.json` (dřív `vyvoj`, `parkovani`, `zony.json`; `zps.json` zůstává).
 - Popis pravidel: `app/README.md`, vyhodnocení 100 řezů: `evaluation/ZPRAVA.md`,
   licence: `LICENCE-A-ZDROJE.md`.
 

@@ -2,7 +2,7 @@
 // The truth is RÚIAN's "druh svislé nosné konstrukce" (wall panels 4, 41, 43 = panel; bricks, stone,
 // monolith… = not). Buildings are sampled from the OSM tiles around the centres of a few cities and
 // given the data the app gives them after a click: the OSM building and its block, the city's floors
-// (IPR in Prague, RÚIAN elsewhere) and in Prague the age of the area (app/data/vyvoj).
+// (IPR in Prague, RÚIAN elsewhere) and in Prague the age of the area (app/data/built-up-age).
 // Answers are cached in evaluation/budovy-panel/cache.json; requests go through polite.mjs.
 // Usage: node evaluation/budovy-panel/run.mjs [--per 60] > evaluation/budovy-panel/vysledek.tsv
 import fs from "node:fs";
@@ -67,7 +67,7 @@ const VY = 0.01, vyTiles = new Map();
 const insideRing = (ring, x, y) => { let c = false; for (let i = 0, j = ring.length - 1; i < ring.length; j = i++) { const [xi, yi] = ring[i], [xj, yj] = ring[j]; if (yi > y !== yj > y && x < ((xj - xi) * (y - yi)) / (yj - yi) + xi) c = !c; } return c; };
 function vyvoj(lat, lon) {
   const k = `${Math.floor(lon / VY)}_${Math.floor(lat / VY)}`;
-  if (!vyTiles.has(k)) { try { vyTiles.set(k, JSON.parse(fs.readFileSync(`app/data/vyvoj/${k}.json`, "utf8"))); } catch { vyTiles.set(k, null); } }
+  if (!vyTiles.has(k)) { try { vyTiles.set(k, JSON.parse(fs.readFileSync(`app/data/built-up-age/${k}.json`, "utf8"))); } catch { vyTiles.set(k, null); } }
   const polys = vyTiles.get(k); if (!polys) return undefined;
   let year = 2020;
   for (const [rok, rings] of polys) if (rok < year && rings.some((r) => insideRing(r, lon, lat))) year = rok;

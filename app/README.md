@@ -21,9 +21,9 @@ Statická data, která web dostane při nasazení, si lokálně vyrobíte takto 
 | dlaždice OSM celé ČR | `NAME=cz tools/build_osm_data.sh data/osm/cz.osm.pbf app/data/osm-tiles` | `app/data/osm-tiles` |
 | hranice zón placeného stání v Praze | `node tools/build_zps.mjs` | `app/data/zps.json` |
 | otevřená data Prahy (stromy, zákaz stání, třídy ulic) | `node tools/build_praha_opendata.mjs` | `app/data/praha/opendata` |
-| vývoj zástavby Prahy | `node tools/build_built_up_age.mjs` | `app/data/vyvoj` |
-| placené stání v Brně | `node tools/build_parking_brno.mjs app/data/brno` | `app/data/brno/parkovani` |
-| zóny placeného stání v Plzni | `node tools/build_zones_plzen.mjs` | `app/data/plzen/zony.json` |
+| vývoj zástavby Prahy | `node tools/build_built_up_age.mjs` | `app/data/built-up-age` |
+| placené stání v Brně | `node tools/build_parking_brno.mjs app/data/brno` | `app/data/brno/parking` |
+| zóny placeného stání v Plzni | `node tools/build_zones_plzen.mjs` | `app/data/plzen/zones.json` |
 
 Server je vydává pod `data/…`, stejně jako web.
 
@@ -654,7 +654,7 @@ stáním u vozovky a s počtem pruhů z OSM ≥ 2 se dělí na dva pruhy už od 
   mapy UMPS (`PUBLIC/opendata_umps`, jeden dotaz `identify`). Kódy linií mají stejnou soustavu jako IPR
   s předponou (`brnoLineCode`: 1255010 → 55010);
 - parkování: aktuální úseky placeného stání z mapy parkovanivbrne.cz, stažené při nasazení do dlaždic
-  (`tools/build_parking_brno.mjs`, `data/brno/parkovani/`); export na data.brno.cz je starší. Oblasti
+  (`tools/build_parking_brno.mjs`, `data/brno/parking/`); export na data.brno.cz je starší. Oblasti
   rezidentního parkování se nepoužívají (ohraničují celé čtvrti, i ulice bez placeného stání): kde u řezu
   úsek není, profil stání odhadne;
 - cyklopruhy, piktokoridory a protisměr: Cykloopatření – zrealizovaná (data.brno.cz), jen kde OSM nic neříká;

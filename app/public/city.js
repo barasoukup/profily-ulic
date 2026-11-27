@@ -71,7 +71,7 @@ const CITIES = {
     // What only Prague's data have. roadOnPath: a paved path of the map under a street's axis is its roadway
     // (derive.js); slowServer: IPR's server is often overloaded (no timeout, the outage says so); paidZoneFile: the
     // boxes of the paid zones (data/zps.json, sources.js zps, maplayers.js); builtAgeTiles: IPR's "Vývoj zástavby"
-    // (data/vyvoj, sources.js vyvoj); iprHouseKind: IPR's kind of building 6 is a family house (profile.js);
+    // (data/built-up-age, sources.js vyvoj); iprHouseKind: IPR's kind of building 6 is a family house (profile.js);
     // ruianYear: the year, walls and use of a house from RÚIAN (app.js), as IPR gives none.
     roadOnPath: true, slowServer: true, paidZoneFile: true, builtAgeTiles: true, iprHouseKind: true, ruianYear: true,
     // Its own orthophoto for the lanes (lanes-ortho.js), in place of the state's.

@@ -85,7 +85,7 @@ jobs:
       - name: Built-up area by period
         continue-on-error: true
         timeout-minutes: 10
-        run: node tools/build_built_up_age.mjs site-vyvoj
+        run: node tools/build_built_up_age.mjs site-built-up-age
       # Prague's open data (Geoportál Praha, CC BY 4.0): trees and tree rows, TSK's no-parking sections and
       # street classes, downloaded once per deploy from opendata.geoportalpraha.cz into small tiles
       # (data/praha/opendata, about 6 MB), never on a click. When the download fails, the tiles of the last
@@ -115,9 +115,9 @@ jobs:
       - id: brno-parking-cache
         uses: actions/cache@v4
         with:
-          path: data/parkovani-brno-last
-          key: brno-parking-${{ github.run_id }}
-          restore-keys: brno-parking-
+          path: data/brno-parking-last
+          key: brno-parking-v2-${{ github.run_id }}
+          restore-keys: brno-parking-v2-
       - name: Brno parking
         continue-on-error: true
         timeout-minutes: 20
@@ -126,10 +126,10 @@ jobs:
           # Paid parking from the parkovanivbrne.cz map (current, unlike the 2/2024 export on data.brno.cz);
           # when the map does not answer, the files of the last good deploy.
           if node tools/build_parking_brno.mjs site-brno/data; then
-            mkdir -p data/parkovani-brno-last && cp -R site-brno/data/parkovani data/parkovani-brno-last/
-          elif [ -d data/parkovani-brno-last/parkovani ]; then
+            mkdir -p data/brno-parking-last && cp -R site-brno/data/parking data/brno-parking-last/
+          elif [ -d data/brno-parking-last/parking ]; then
             echo "::warning::parkovanivbrne.cz did not answer, using the parking of an earlier deploy"
-            cp -R data/parkovani-brno-last/. site-brno/data/
+            cp -R data/brno-parking-last/. site-brno/data/
           else
             echo "::warning::no Brno parking data, profiles estimate the parking"
           fi
@@ -140,19 +140,19 @@ jobs:
       - id: plzen-zones-cache
         uses: actions/cache@v4
         with:
-          path: data/zony-plzen-last
-          key: plzen-zones-${{ github.run_id }}
-          restore-keys: plzen-zones-
+          path: data/plzen-zones-last
+          key: plzen-zones-v2-${{ github.run_id }}
+          restore-keys: plzen-zones-v2-
       - name: Plzeň parking zones
         continue-on-error: true
         timeout-minutes: 5
         run: |
           mkdir -p site-plzen/data
           if node tools/build_zones_plzen.mjs site-plzen/data; then
-            mkdir -p data/zony-plzen-last && cp site-plzen/data/zony.json data/zony-plzen-last/
-          elif [ -f data/zony-plzen-last/zony.json ]; then
+            mkdir -p data/plzen-zones-last && cp site-plzen/data/zones.json data/plzen-zones-last/
+          elif [ -f data/plzen-zones-last/zones.json ]; then
             echo "::warning::opendata.plzen.eu did not answer, using the zones of an earlier deploy"
-            cp data/zony-plzen-last/zony.json site-plzen/data/
+            cp data/plzen-zones-last/zones.json site-plzen/data/
           else
             echo "::warning::no Plzeň parking zones"
           fi
@@ -230,7 +230,7 @@ jobs:
           # Austria's file only on R2 (Bára 16. 11. 2026): with it the site would pass Pages' 1 GB.
           if [ -f site-osm/index.json ] && ls site-osm/*.posm > /dev/null 2>&1; then mkdir -p _site/data/osm-pack && cp site-osm/*.posm site-osm/index.json _site/data/osm-pack/; fi
           mv site-zps.json _site/data/zps.json
-          [ -d site-vyvoj ] && mv site-vyvoj _site/data/vyvoj || echo "::warning::no built-up area tiles, flat roofs judged by the house alone"
+          [ -d site-built-up-age ] && mv site-built-up-age _site/data/built-up-age || echo "::warning::no built-up area tiles, flat roofs judged by the house alone"
           [ -d site-us-plan ] && mv site-us-plan _site/data/us-plan || true
           cp LICENCE-A-ZDROJE.md _site/data/LICENCE-A-ZDROJE.md
           # One page for the whole Czech Republic: the cities' own data under data/<city>/ (Brno's parking,

@@ -4,7 +4,7 @@
 // within about 1 m of the OSM axes), so the file is fetched once per deploy and cut down here (Bára).
 // towns/plzen.js turns the lines into parking strips along the curbs of the roadway.
 //   node tools/build_zones_plzen.mjs [out dir]   (default app/data/plzen)
-//   → zony.json  {"date": "2026-10-06", "lines": [[name, [[lon, lat], …]], …]}
+//   → zones.json  {"date": "2026-10-06", "lines": [[name, [[lon, lat], …]], …]}
 import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
@@ -44,5 +44,5 @@ for (const f of geo.features || []) {
 }
 if (lines.length < 100) throw new Error(`zóny: málo dat (${lines.length} linií)`);
 fs.mkdirSync(outDir, { recursive: true });
-fs.writeFileSync(path.join(outDir, "zony.json"), JSON.stringify({ date, lines }));
-console.log(`zóny Plzeň: ${lines.length} linií z ${date} → ${path.join(outDir, "zony.json")}`);
+fs.writeFileSync(path.join(outDir, "zones.json"), JSON.stringify({ date, lines }));
+console.log(`zóny Plzeň: ${lines.length} linií z ${date} → ${path.join(outDir, "zones.json")}`);

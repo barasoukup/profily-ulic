@@ -357,7 +357,8 @@ Co rozhodne Bára, je označeno **(Bára)**.
 - ~~Přejmenovat na logické anglické názvy: `pilot` → `app`, české názvy složek a souborů aplikace a nástrojů~~ (větev
   `english-names`, 27. 11. 2026: `znacky/` → `signs-CZ/`, `towns.json`, `states.json`, `towns/slovakia.js`, ilustrace, testy).
   Zbývá: `evaluation/<česky>/` a `ZPRAVA.md` (spolu s archivací), id `cesko`/`slovensko`… v datech řezů (uložené řezy
-  a odkazy se staršími id musí dál fungovat), složky dat webu `data/vyvoj`, `parkovani`, `zony.json`.
+  a odkazy se staršími id musí dál fungovat); ~~složky dat webu `data/vyvoj`, `parkovani`, `zony.json`~~ (27. 11. 2026: `data/built-up-age`,
+  `data/brno/parking`, `data/plzen/zones.json`, nové klíče mezipaměti Actions `brno-parking-v2`, `plzen-zones-v2`).
 - Úklid `.claude/worktrees/` (47 kopií, 25 GB): data, na která se odkazuje (nahrávky, balíky, cache měření), přesunout do
   git-ignorovaného `data/` hlavního repa, ověřit necommitnuté změny a sloučení větví (street-history a hungary zůstávají
   stranou), pak smazat.

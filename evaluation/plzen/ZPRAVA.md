@@ -38,7 +38,7 @@ bez počtu a druhu stání. Profil proto bere stání z parkovišť technické m
 značky `parking:left/right/both` jen na 1 % ulic) a mimo ně z odhadu.
 
 Zóny placeného stání (připojeno 9. 11. 2026): `tools/build_zones_plzen.mjs` stáhne zip zón (při nasazení) do
-`data/zony.json`; linie leží na ose ulice (medián 1 m od OSM, datum v pořádku). Podél obrubníků vozovky technické mapy,
+`data/zones.json`; linie leží na ose ulice (medián 1 m od OSM, datum v pořádku). Podél obrubníků vozovky technické mapy,
 ve které linie leží, vznikne pás podélného stání 2,0 m: u obou obrubníků, když zbude 3,0 m (jednosměrka) nebo 5,0 m
 (obousměrka, 2 × 2,5 m) pro provoz, u jednoho (vpravo ve směru jízdy), když se vejde jen jeden pás, jinak žádný.
 Kde už je parkoviště technické mapy nebo OSM, nebo OSM říká `parking:*=no`, pás nevznikne; „Vyhrazené stání“ jde

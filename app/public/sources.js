@@ -394,7 +394,7 @@ async function brnoParkovani(bbox) {
   for (let ix = Math.floor(x0 / TILE); ix <= Math.floor(x1 / TILE); ix++) for (let iy = Math.floor(y0 / TILE); iy <= Math.floor(y1 / TILE); iy++) names.push(`${ix}_${iy}`);
   const seen = new Set(), features = [];
   for (const n of names) {
-    if (!parkTiles.has(n)) staticTile(parkTiles, n, `data/brno/parkovani/${n}.json`, { features: [] });
+    if (!parkTiles.has(n)) staticTile(parkTiles, n, `data/brno/parking/${n}.json`, { features: [] });
     for (const f of (await parkTiles.get(n)).features) {
       const key = JSON.stringify(f.geometry.rings[0][0]);
       if (seen.has(key)) continue;
@@ -487,7 +487,7 @@ const vyvojTiles = new Map();
 export async function vyvoj(lat, lon) {
   if (!city.builtAgeTiles) return undefined; // Brno and the towns have no such layer: the look comes from the house alone
   const k = `${Math.floor(lon / VYVOJ_TILE)}_${Math.floor(lat / VYVOJ_TILE)}`;
-  if (!vyvojTiles.has(k)) vyvojTiles.set(k, fetch(`data/vyvoj/${k}.json`).then((r) => (r.ok ? r.json() : null), () => null));
+  if (!vyvojTiles.has(k)) vyvojTiles.set(k, fetch(`data/built-up-age/${k}.json`).then((r) => (r.ok ? r.json() : null), () => null));
   const polys = await vyvojTiles.get(k);
   if (!polys) return undefined;
   let year = AFTER_2010;

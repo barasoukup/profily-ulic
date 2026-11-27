@@ -3,7 +3,7 @@
 // brought in since (e.g. 8-02 Spodní, 9-01 Dunajská). The map loads one data file (mapdata.o.js) that
 // does not allow other pages to read it, so it is fetched once per deploy and cut down here (Bára).
 //   node tools/build_parking_brno.mjs <out dir>
-//   → parkovani/<ix>_<iy>.json  sections and special stalls as ArcGIS JSON polygons with KIND (useky,
+//   → parking/<ix>_<iy>.json  sections and special stalls as ArcGIS JSON polygons with KIND (useky,
 //                    zasobovani, specialni), in 0.005° tiles like the OSM tiles
 import fs from "node:fs";
 import path from "node:path";
@@ -51,7 +51,7 @@ for (const f of features) {
     }
   }
 }
-const tileDir = path.join(outDir, "parkovani");
+const tileDir = path.join(outDir, "parking");
 fs.rmSync(tileDir, { recursive: true, force: true });
 fs.mkdirSync(tileDir, { recursive: true });
 for (const [k, fs_] of tiles) fs.writeFileSync(path.join(tileDir, `${k}.json`), JSON.stringify({ features: fs_ }));

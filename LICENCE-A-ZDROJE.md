@@ -204,7 +204,7 @@ licence neuvedena; čteno při kliknutí, nešíří se.** Nejsou to otevřená 
 **Zveřejňuje se na GitHub Pages** (připraví se při nasazení, v repozitáři nejsou):
 - `data/osm-tiles`: dlaždice OSM celé ČR, odvozená databáze pod **ODbL 1.0** (© přispěvatelé OpenStreetMap),
 - `data/praha/opendata`: dlaždice otevřených dat Geoportálu Praha (CC BY 4.0, upraveno),
-- `data/zps.json` (TSK, CC BY 4.0), `data/vyvoj` (IPR, CC BY 4.0), `data/brno` (parkovanivbrne.cz), `data/plzen` (CC0),
+- `data/zps.json` (TSK, CC BY 4.0), `data/built-up-age` (IPR, CC BY 4.0), `data/brno` (parkovanivbrne.cz), `data/plzen` (CC0),
 - tento soubor jako `data/LICENCE-A-ZDROJE.md`.
 
 **Nepublikovat** (zachyceno v `.gitignore`):
