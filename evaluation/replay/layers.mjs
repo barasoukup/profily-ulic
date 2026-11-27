@@ -22,7 +22,14 @@ if (process.argv[2] === "points") {
   process.exit(0);
 }
 
-const run = JSON.parse(fs.readFileSync(`${OUT}/layers/1.json`, "utf8"));
+// The runs of the folder, the later (by name, "1" first) replacing the rows of the same points.
+const parts = fs.readdirSync(`${OUT}/layers`).filter((f) => f.endsWith(".json")).sort((a, b) => (a === "1.json" ? -1 : b === "1.json" ? 1 : a.localeCompare(b)));
+const run = { rows: [] };
+for (const f of parts) {
+  const part = JSON.parse(fs.readFileSync(`${OUT}/layers/${f}`, "utf8"));
+  run.lang ||= part.lang;
+  for (const r of part.rows) { const i = run.rows.findIndex((x) => x.id === r.id); if (i < 0) run.rows.push(r); else run.rows[i] = r; }
+}
 const cell = (m) => {
   if (!m) return "–";
   const bad = m.err + (m.empty || 0);
@@ -40,6 +47,8 @@ for (const r of run.rows) {
   const o = Object.values(r.layers)[1], m = Object.values(r.layers)[0];
   L.push(`| ${r.id} (${r.town}) | ${names.map((n) => cell(r.layers[n])).join(" | ")} | ${o?.credit || "–"} | ${m?.credit || "–"} | ${r.violations.length ? "**" + r.violations.join(", ") + "**" : "ok"} |`);
 }
+const flagged = run.rows.flatMap((r) => Object.entries(r.layers).filter(([, m]) => m.err || m.empty || m.n === 0).map(([n, m]) => `- ${r.id} (${r.town}), ${n}: ${m.n === 0 ? "žádné dlaždice (vrstva pro tenhle stát není, nebo chybí klíč)" : `${m.err} chyb z ${m.n}${m.empty ? `, ${m.empty} prázdných` : ""} (${Object.keys(m.hosts).join(", ")})`}`));
+if (flagged.length) L.push("", "Nálezy (chyba nebo prázdná dlaždice; „žádné dlaždice“ u Linií mimo ČR je správně, vrstva je jen v Česku):", ...flagged.filter((x) => !/Linie/.test(x) || /chyb z/.test(x)));
 L.push("", "Prázdná dlaždice = celá jednobarevná (bílá nebo průhledná); `null` v měření (cizí původ bez CORS) se nepočítá.");
 fs.writeFileSync(new URL("layers.md", HERE), L.join("\n") + "\n");
 console.log(`layers.md: ${run.rows.length} bodů, ${names.length} vrstev`);

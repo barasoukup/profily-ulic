@@ -71,3 +71,8 @@ opakovatelně, v aplikaci to tedy je (profil bez dílů), do přestavby se to ne
 `layers.md` (`node evaluation/replay/layers.mjs`, běh `layers.js`): pro bod každého státu se otevře každá podkladová vrstva z menu mapy
 a spočítají se dlaždice (načteno, chyba, prázdné), kredit a porušení CSP. Živě, s pauzami (asi 4 dlaždice na vrstvu a stát,
 jednou); `http://localhost:5190/?layers=1&lang=cs` (okno prohlížeče musí být vidět, jinak se časovače zpomalí), potom `node evaluation/replay/layers.mjs`.
+
+Běh 27. 11. 2026 (26 bodů, každá vrstva jednou; `layers.md`): kredity odpovídají státu a CSP nic neblokuje. Nálezy: Polsko, ortofoto: GUGiK vrátilo
+4 chyby ze 4 (v prvním běhu 4 z 4; službu zkusit znovu), Dánsko bez ortofota lokálně (vrstva je jen s klíčem `dkToken`, ne chyba),
+Litva nemá podkladové ortofoto (ortofoto jen pro pruhy), Praha, linie mapy povrchů: 4 chyby z 8 (IPR/ČÚZK, často 503), u Cách se kredit ortofota
+ukazuje i s Nizozemskem (kredit jde podle obdélníku státu). Nástroj měří jeden bod na stát, takže je to vzorek, ne záruka.

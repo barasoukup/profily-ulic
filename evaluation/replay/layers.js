@@ -4,6 +4,7 @@
 // load its tiles and writes down how many came, how many failed, how many were blank, and the credit the map shows.
 // One map of 300 px, a pause between layers and between points: a few tiles of each server, once.
 //   http://localhost:5190/?layers=1&lang=cs   (replay/server.mjs; the points: layers-points.json)
+//   &only=DE,CA takes some points, &part=<name> keeps the run apart (layers.mjs lets it replace the rows of the same points)
 const P = new URLSearchParams(location.search);
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 const H = (globalThis.PROFILY_REPLAY = { progress: "start" });
@@ -14,10 +15,11 @@ L.Map.prototype.initialize = function (...a) { globalThis.__map = this; return i
 const violations = [];
 document.addEventListener("securitypolicyviolation", (e) => violations.push(e.blockedURI));
 const PAUSE = Number(P.get("pause") || 1500), ZOOM = Number(P.get("zoom") || 18);
-const tiles = () => [...document.querySelectorAll("#map .leaflet-tile-pane img.leaflet-tile")];
+// (a tile is an img, or a div with the images of its parts: the German Länder; those count by their images)
+const tiles = () => [...document.querySelectorAll("#map .leaflet-tile-pane .leaflet-tile")].flatMap((t) => (t.tagName === "IMG" ? [t] : [...t.querySelectorAll("img")]));
 // The host of a tile, the key of a token left out.
 const hostOf = (src) => { try { return new URL(src).host; } catch { return src.slice(0, 12); } };
-async function settle(limit = 12000) {
+async function settle(limit = 8000) {
   const t0 = Date.now();
   let quiet = 0, last = -1;
   while (Date.now() - t0 < limit) {
@@ -25,7 +27,7 @@ async function settle(limit = 12000) {
     const all = tiles(), open = all.filter((i) => !i.complete).length;
     quiet = !open && all.length === last ? quiet + 1 : 0;
     last = all.length;
-    if (quiet >= 4) break;
+    if (quiet >= 3) break;
   }
 }
 const credit = () => [...document.querySelectorAll("#map .leaflet-control-attribution")].map((e) => e.textContent.replace(/\s+/g, " ").replace(/^.*?Leaflet\s*[|·]?\s*/i, "").trim()).join(" ");
@@ -85,12 +87,17 @@ async function main() {
       row.layers[name] = m;
       await sleep(PAUSE);
     }
+    // (the overlay is drawn over the last base map: its own tiles are what the count rises by)
+    const baseM = Object.values(row.layers).at(-1);
     const over = [...document.querySelectorAll(".leaflet-control-layers-overlays label")].find((l) => /Linie|Lines|Čiary|Linien/.test(l.textContent));
     if (over) {
       const input = over.querySelector("input");
       if (!input.checked) input.click();
       await settle();
-      row.layers[`+${over.textContent.trim()}`] = measure();
+      const m = measure();
+      for (const k of ["n", "ok", "blank", "err"]) m[k] -= baseM[k];
+      m.empty = null;
+      row.layers[`+${over.textContent.trim()}`] = m;
       input.click();
       await sleep(PAUSE);
     }
@@ -98,7 +105,7 @@ async function main() {
     rows.push(row);
     await sleep(PAUSE * 2);
   }
-  await fetch(`/__replay/out?run=layers&id=1`, { method: "POST", body: JSON.stringify({ lang: P.get("lang"), rows }) });
+  await fetch(`/__replay/out?run=layers&id=${P.get("part") || "1"}`, { method: "POST", body: JSON.stringify({ lang: P.get("lang"), rows }) });
   H.progress = `done ${rows.length}`;
 }
 main().catch((e) => { H.progress = `failed: ${e?.stack || e}`; });
