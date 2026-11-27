@@ -17,6 +17,7 @@ const VARIANTS = {
   nh0: { q: "nychouse=0", off: [] }, // New York: the houses without the city's footprints
   sf0: { q: "sf=0", off: [] }, // San Francisco (evaluation/usa/sf): without its map (and its curb and houses)
   curb0: { q: "sfcurb=0", off: [] }, // San Francisco: the map without the digital curb
+  dfit0: { q: "off=ddotfit", off: [] }, // Washington: DDOT's strips even where they do not fit the carriageway (evaluation/usa/ddot-fit)
   ddot0: { q: "ddot=0", off: [] }, // Washington: the map without DDOT's inventory
   gaps0: { q: "off=mapgaps", off: [] }, // Toronto's rules one by one
   bays0: { q: "off=kerbbays", off: [] },
