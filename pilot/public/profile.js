@@ -1438,10 +1438,11 @@ function drawPrahaBuilding(g, x, side, surface, info, chosen) {
     } else if (kind === "dansky") { // a white dormer (kvist) in the slope, rows of tiles or slates
       for (let zr = top + 40; zr < z(EDGE) - 30; zr += 34) box((zr - top - 12) / P + 8, EDGE, zr, zr + 4, tile[1], { "fill-opacity": 0.35 });
       // in the back column of the floors below (its window as wide as theirs), sitting on the slope
-      const ww = WINDOWS.dansky.w, db = (125 + EDGE - 30 - ww) / 2 - 12.5, zb = top + (db - 20) * P;
-      box(db, db + 120, zb, zb + 130, "#f4f2ec", outline);
-      poly([[db - 12, zb + 126], [db + 132, zb + 126], [db + 132, zb + 146], [db - 12, zb + 140]], tile[1]);
-      window(db + 12.5, zb + 20, ww, 85, 4);
+      const ww = WINDOWS.dansky.w, dd0 = (125 + EDGE - 30 - ww) / 2, dc = dd0 + ww / 2, hw = ww / 2 + 36;
+      const zf = top + (dc - hw + 12) * P - 14, hf = Math.min(120, zf - top - 14), zb = zf - hf; // centred, a true gable of the roof's pitch under its ridge
+      box(dc - hw + 12, dc + hw - 12, zb, zf, "#f4f2ec", outline);
+      poly([[dc - hw, zf - 4], [dc, zf - 4 + hw * P], [dc + hw, zf - 4]], tile[1], outline);
+      window(dd0, zb + 16, ww, hf - 32, 4);
     } else if (med && !small) { // rows of Roman tiles (coppi, teja árabe), the eaves' double row
       for (let zr = top + 40; zr < z(EDGE) - 26; zr += 26) box((zr - top - 12) / P + 8, EDGE, zr, zr + 5, tile[1], { "fill-opacity": 0.4 });
       for (let d = -eave + 6; d < -2; d += 14) dot(d, z(d) + 4, 6, tint(tile[0], 0.85));
@@ -1463,11 +1464,15 @@ function drawPrahaBuilding(g, x, side, surface, info, chosen) {
         const d0 = (zr - top - 12) / P, d1 = Math.min(EDGE, ridge + (z(ridge) - zr) / P);
         if (d1 > d0 + 20) box(d0 + 8, d1 - 8, zr, zr + 4, tile[1], { "fill-opacity": 0.35 });
       }
-      // its window in the back column of the floors below, as wide as theirs
-      const ww = WINDOWS[kind].w, d0 = (125 + EDGE - 30 - ww) / 2, zb = top + 70, dw = d0 - 25, dd = ww + 50;
-      box(dw, dw + dd, zb, zb + 110, wall, outline);
-      poly([[dw - 14, zb + 106], [dw + dd / 2, zb + 160], [dw + dd + 14, zb + 106]], tile[0], outline);
-      window(d0, zb + 18, ww, 72, 2);
+      // A dormer in the slope, centred on the back column of the floors below (as wide as theirs). Its little gable has the
+      // main roof's pitch (P) and its eaves run parallel to the roof's edge, so it sits true on the slope (Bára 27. 11. 2026).
+      const ww = WINDOWS[kind].w, d0 = (125 + EDGE - 30 - ww) / 2, dc = d0 + ww / 2, hw = ww / 2 + 36; // half the face's width + 12 of eaves
+      const zf = top + (dc - hw + 12) * P - 14; // the face's top: its street-side foot of the gable stays under the roof's edge
+      const hf = Math.min(104, zf - top - 14), zb = zf - hf;
+      box(dc - hw + 12, dc + hw - 12, zb, zf, wall, outline);
+      poly([[dc - hw, zf - 4], [dc, zf - 4 + hw * P], [dc + hw, zf - 4]], tile[0], outline); // the gable, pitch as the main roof
+      box(dc - hw, dc + hw, zf - 10, zf - 4, tile[1]); // its eaves board
+      window(d0, zb + 14, ww, hf - 28, 2);
     }
     else if (kind === "novyrd") { // a new house: a larch-clad gable with a square window
       for (let d = 30; d < Math.min(ridge, EDGE) * 2 - 30 && d < EDGE; d += 16) {
