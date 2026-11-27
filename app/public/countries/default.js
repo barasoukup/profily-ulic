@@ -60,7 +60,7 @@ function limits(s, segs, i) {
 }
 
 
-// The sign files of vyhláška 294/2015 Sb. (znacky/) and the plates under them.
+// The sign files of vyhláška 294/2015 Sb. (signs-CZ/) and the plates under them.
 const SPEEDS = [5, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130];
 function signFile(s, seg) {
   const dir = s.dir ?? seg?.dir;
@@ -68,13 +68,13 @@ function signFile(s, seg) {
   if (s.k === "oneway") return dir === "backward" ? "B2" : s.plate === "protismer" ? "IP4c" : "IP4b";
   // Oblique stalls have the sign of perpendicular ones (IP 11b, Bára).
   if (s.k === "ip11a") return s.plate === "podelne" ? "IP11c" : s.plate ? "IP11b" : "IP11a";
-  if (s.k === "ip27a" && s.plate === "kola") return "IZ6a-kola";
+  if (s.k === "ip27a" && s.plate === "kola") return "IZ6a-bikes";
   // C 10a: the design has the pedestrians on the right; the side of the path (walk) when the data know it.
-  if (s.k === "c10a") return s.walk === "left" ? "C10a" : "C10a-chodci-vpravo";
+  if (s.k === "c10a") return s.walk === "left" ? "C10a" : "C10a-walk-right";
   if (s.k === "b20a") return SPEEDS.includes(s.v) ? `B20a-${s.v}` : "B20a";
   return { b1: "B1", b2: "B2", b8: "B8", b11: "B11", b28: "B28", b29: "B29", b30: "B30", c8a: "C8a", c9a: "C9a", c10a: "C10a",
     ip11d: "IP11d", ip11e: "IP11e", ip11f: "IP11f", ip11g: "IP11g",
-    ip12: "IP12", ztp: "IP12-ztp", ip14a: "IZ1a", ip15a: "IZ2a", ip20a: "IP20a-symbol", zona30: "IZ8a-30",
+    ip12: "IP12", ztp: "IP12-disabled", ip14a: "IZ1a", ip15a: "IZ2a", ip20a: "IP20a-symbol", zona30: "IZ8a-30",
     ip26a: "IZ5a", ip27a: "IZ6a", cyklozona: "IZ9a", sdilena: "IZ10a", c7a: "C7a" }[s.k] || s.k;
 }
 function plateFile(s, seg) {
@@ -85,7 +85,7 @@ function plateFile(s, seg) {
 }
 
 // The Czech signs (Czechia: CZ.js).
-export const CZ_SIGNS = { dir: "znacky", file: signFile, plate: plateFile, label: null, drawable: null };
+export const CZ_SIGNS = { dir: "signs-CZ", file: signFile, plate: plateFile, label: null, drawable: null };
 
 // The sentence about parking half on the sidewalk under a law of 3 m for each direction (Czechia, Slovakia).
 export const lawNote = (law) => (free, need) => t("Stání napůl na chodníku z OSM: ve vozovce zůstává {free}, {law} žádá {need} (3 m pro každý směr).", { free, need, law });
@@ -129,7 +129,7 @@ export default {
   // Traffic signs (signs.js): the folder, the file of a sign and of its plate, the label (null: the Czech one), whether
   // a sign can be drawn (null: all). A place in no state the app knows: none (as the USA and Canada), the label without
   // the Czech number; Czechia's are CZ_SIGNS (CZ.js; Bára 26. 11. 2026: nothing Czech beyond Czechia).
-  signs: { dir: "znacky", file: () => null, plate: () => null, label: (x, own, label) => label.replace(CZ_CODE, ""), drawable: () => false },
+  signs: { dir: "signs-CZ", file: () => null, plate: () => null, label: (x, own, label) => label.replace(CZ_CODE, ""), drawable: () => false },
   // The orthophotos: of a tram bed (ortho.js; null: none) and of the lanes (lanes-ortho.js; a city may have its own;
   // "none": none). ČÚZK's only in Czechia (CZ.js).
   bedOrtho: null,

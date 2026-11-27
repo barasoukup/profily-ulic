@@ -80,7 +80,7 @@ test("každá značka s tabulkou z dat jde v Návrhu vybrat jako vlastní polož
     assert.ok(SIGNS[c.k] && PLATES[c.plate], key);
     assert.equal(signLabel(c), c.label);
     for (const dir of ["forward", "backward"]) {
-      for (const f of [signFile(c, { dir }), plateFile(c, { dir })].filter(Boolean)) assert.ok(existsSync(`app/public/znacky/${f}.svg`), `${key}: ${f}.svg`);
+      for (const f of [signFile(c, { dir }), plateFile(c, { dir })].filter(Boolean)) assert.ok(existsSync(`app/public/signs-CZ/${f}.svg`), `${key}: ${f}.svg`);
     }
   }
   // Labelled as drawn: the manner of parking is IP 11b or IP 11c, not "IP 11a".
@@ -125,13 +125,13 @@ test("ulice ze dvou vozovek: padesátka se kreslí, když druhá vozovka má jin
   assert.deepEqual(speeds(both50), [undefined, undefined, undefined]);
 });
 
-// The state SK (city.country): its own numbers and files (app/public/znacky-SK/), the names stay.
+// The state SK (city.country): its own numbers and files (app/public/signs-SK/), the names stay.
 test("značky státu SK: každá značka a tabulka má soubor, popisek se slovenským číslem", async () => {
   const { SIGN_CHOICES, signLabel, SIGNS } = await import("../app/public/signs.js");
   const { existsSync } = await import("node:fs");
   const all = [...Object.keys(SIGNS).map((k) => ({ k, ...(k === "b20a" ? { v: 50 } : {}) })), ...Object.values(SIGN_CHOICES)];
   for (const x of all) for (const dir of ["forward", "backward"])
-    for (const f of [signFile(x, { dir }, "SK"), plateFile(x, { dir }, "SK")].filter(Boolean)) assert.ok(existsSync(`app/public/znacky-SK/${f}.svg`), `${x.k}: ${f}.svg`);
+    for (const f of [signFile(x, { dir }, "SK"), plateFile(x, { dir }, "SK")].filter(Boolean)) assert.ok(existsSync(`app/public/signs-SK/${f}.svg`), `${x.k}: ${f}.svg`);
   assert.equal(signLabel({ k: "b1" }, "SK"), "231 Zákaz vjezdu pro všechna vozidla");
   // The Slovak sign's own meaning (323 Bicyklová cesta, not the Czech cycling zone), in Slovak its official name.
   assert.equal(signLabel({ k: "cyklozona" }, "SK"), "323 Cyklistická ulice");
@@ -142,7 +142,7 @@ test("značky státu SK: každá značka a tabulka má soubor, popisek se sloven
   assert.equal(signLabel({ k: "oneway", plate: "protismer" }, "SK"), "321 + 514 / 230 + 507 Jednosměrný provoz, cyklisté v protisměru");
   assert.equal(signLabel({ k: "ztp" }, "SK"), "272 Parkoviště pro ZTP");
   assert.equal(signFile({ k: "oneway" }, { dir: "backward" }, "SK"), "230");
-  assert.equal(plateFile({ k: "oneway", plate: "protismer" }, { dir: "backward" }, "SK"), "507-bicykle");
+  assert.equal(plateFile({ k: "oneway", plate: "protismer" }, { dir: "backward" }, "SK"), "507-bicycle");
   assert.equal(signFile({ k: "b20a", v: 25 }, {}, "SK"), "253");
   assert.equal(signLabel({ k: "b1" }), "B 1 Zákaz vjezdu všech vozidel", "CZ beze změny");
 });
@@ -154,8 +154,8 @@ test("C 10a ukazuje chodce na jejich straně (dál od vozovky), IZ 10a podle zna
   const c10 = p.segments[1].signs.find((x) => x.k === "c10a");
   assert.equal(c10.walk, "left", "vozovka vpravo: chodci vlevo");
   assert.equal(signFile(c10, p.segments[1]), "C10a");
-  assert.equal(signFile({ ...c10, walk: "right" }, p.segments[1]), "C10a-chodci-vpravo");
-  assert.equal(signFile({ k: "c10a" }, {}), "C10a-chodci-vpravo", "bez dat jako vzor vyhlášky");
+  assert.equal(signFile({ ...c10, walk: "right" }, p.segments[1]), "C10a-walk-right");
+  assert.equal(signFile({ k: "c10a" }, {}), "C10a-walk-right", "bez dat jako vzor vyhlášky");
   assert.equal(signFile(c10, p.segments[1], "SK"), "223-51");
   assert.equal(signFile({ ...c10, walk: "right" }, p.segments[1], "SK"), "223-50");
   assert.deepEqual(streetSigns({ highway: "residential", traffic_sign: "CZ:IZ10a" }), [{ k: "sdilena" }]);

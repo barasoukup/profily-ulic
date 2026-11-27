@@ -2385,7 +2385,7 @@ function drawEdge(svg, x, kind, side, surface, info, style) {
 }
 
 // Build an SVG element. opts: {editable, selected, view: [x0, width], onSelect(i), selectedEdge, onEdge(side)}
-// Traffic-sign icons of the state of the cut (znacky/ for CZ, znacky-SK/ for SK; city.country, ISO 3166-1), loaded
+// Traffic-sign icons of the state of the cut (signs-CZ/ for CZ, signs-SK/ for SK; city.country, ISO 3166-1), loaded
 // on first use: file → { uri, w, h }. A template (B 20a or 253 with another speed, E 13 with a text) gets its text
 // filled in before it becomes a data URI.
 const signArt = new Map();
@@ -2412,7 +2412,7 @@ async function loadSignFile(a) {
 // their size goes by their shape (the review of Germany, 17. 11. 2026: Z 274 drawn six times too big, Austria's 10a-30
 // ten times bigger than its 10a-50): as tall as a basic sign, a wide one (an arrow, a plate) 1.5 wide.
 export function signUnits(dir, w, h) {
-  if (dir === "znacky" || dir === "znacky-SK") return w / 100;
+  if (dir === "signs-CZ" || dir === "signs-SK") return w / 100;
   return w / h > 1.6 ? 1.5 : w / h;
 }
 // The file (and filled-in text) of a sign and of its plate.

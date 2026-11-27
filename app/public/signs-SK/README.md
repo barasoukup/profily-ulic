@@ -5,7 +5,7 @@ Sada patří **státu Slovensko (SK)**, ne jazyku: je to ikonografie dopravních
 „Regulačné značky“ (2xx), „Informačné značky“ (3xx), „Dodatkové tabuľky“ (5xx) a „Symboly“. Značky se vybírají
 podle státu místa řezu (SK), texty a názvy v aplikaci podle jazyka (cs, sk, en); tyto dvě věci se nemíchají.
 
-Konvence jako u české sady `../znacky/`: ikony zjednodušené pro velikost asi 40 px, každá značka jeden SVG soubor do
+Konvence jako u české sady `../signs-CZ/`: ikony zjednodušené pro velikost asi 40 px, každá značka jeden SVG soubor do
 4 kB (4096 bajtů) bez metadat. Kulaté značky `viewBox 0 0 100 100`, čtvercové značky také 100 × 100, parkovací značka
 273 má 100 × 150 (poměr 2 : 3 jako vzor), obytná zóna 150 × 100, dodatkové tabulky 150 × 110, 150 × 85 a 150 × 75
 podle vzoru. Soubor se jmenuje podle slovenského čísla značky (`253-50.svg`); číslo za pomlčkou je varianta
@@ -45,11 +45,11 @@ Vzor: vyhláška 30/2020 Z. z., přílohy; https://www.slov-lex.sk/ezbierky/prav
 
 ## Šablony (pro kód)
 
-- `253.svg`: šablona, číslo v `<text id="v">` (jako `../znacky/B20a.svg`; kód aplikace ve `profile.js`,
+- `253.svg`: šablona, číslo v `<text id="v">` (jako `../signs-CZ/B20a.svg`; kód aplikace ve `profile.js`,
   `loadSignFile`, přepíše obsah prvku `<text id="v">`, ten zůstal). Číslice je jediný text, který není křivkami,
   protože se dosazuje za běhu; písmo `DIN 1451 Mittelschrift`, náhradou `Avenir Next Condensed`, `Arial Narrow`.
   `253-10` … `253-130` mají číslice jako křivky (obrysy písma Avenir Next Condensed Medium, vodorovně stažené u tří číslic).
-- `obsluha.svg`: text v `<text id="t">` (výchozí „dopravnej obsluhy“, zůstává textem, protože se mění), nad ním
+- `except-access.svg`: text v `<text id="t">` (výchozí „dopravnej obsluhy“, zůstává textem, protože se mění), nad ním
   „okrem“ jako křivky. Pro jiný text výjimky (např. „zásobovanie“, „vozidiel stavby“) se přepíše jen `t`.
 - Všechny ostatní nápisy (ZÓNA, pešia zóna, bicyklová cesta, voľno, okrem, vyhradené parkovanie) a číslice jsou
   obrysy písmen (`<path>`), nezávisí na písmech uživatele. Zdroj obrysů: Avenir Next Condensed Medium (macOS),
@@ -90,11 +90,11 @@ Sloupec „naše značka“ je klíč české podoby v aplikaci (typ značky pod
 | iz8a-zakaz-stani zóna zákazu stání | 275 Zóna zákazu státia | `275.svg` |
 | iz8a-placene-stani / zóna stání (nejbližší) | 277 Parkovacia zóna | `277.svg` |
 | e12a jízda cyklistů v protisměru (pod ip4) | 514 Obojsmerná jazda cyklistov (pod 321) | `514.svg` |
-| e12b vjezd cyklistů v protisměru povolen (pod b2) | 507 Neplatí pre: bicykle (pod 230) | `507-bicykle.svg` |
-| e12 jízdní kola povolena (pod iz6a a ip20a) | 515 Voľno: bicykle (pod 317 a pod 224) | `515-bicykle.svg` |
+| e12b vjezd cyklistů v protisměru povolen (pod b2) | 507 Neplatí pre: bicykle (pod 230) | `507-bicycle.svg` |
+| e12 jízdní kola povolena (pod iz6a a ip20a) | 515 Voľno: bicykle (pod 317 a pod 224) | `515-bicycle.svg` |
 | ip12 vyhrazené parkoviště (text) | 531 Vyhradené parkovanie (pod 270) | `531.svg` |
-| ip12-ztp / o1 osoba na vozíku | symbol 27 (osoby so zdravotným postihnutím) na tabulce pod 272 | `ztp.svg` |
-| výjimka „dopravní obsluha“ (iz6a text) | 507 Neplatí pre + nápis „okrem dopravnej obsluhy“ | `obsluha.svg` |
+| ip12-ztp / o1 osoba na vozíku | symbol 27 (osoby so zdravotným postihnutím) na tabulce pod 272 | `disabled.svg` |
+| výjimka „dopravní obsluha“ (iz6a text) | 507 Neplatí pre + nápis „okrem dopravnej obsluhy“ | `except-access.svg` |
 
 ## Poznámky
 
@@ -104,7 +104,7 @@ Sloupec „naše značka“ je klíč české podoby v aplikaci (typ značky pod
 - **Stání na chodníku**: v příloze (bod 48) je 273 „Parkovanie na chodníku“; číslo za pomlčkou určuje, zda auto stojí
   částečně (-5x) či úplně (-6x) na chodníku a zda podélně (auto zezadu, -55, -65) či příčně (auto z boku, -75, -85).
   Kreslí se varianty bez šipek začátku a konce platnosti; auto stojí s podkladem a obrubou přesně podle symbolů v příloze (zrcadlově pro stání vlevo).
-  Pod 272 a 273 patří dodatková tabulka se symbolem osoby se zdravotním postižením (`ztp.svg`), kterou se z místa dělá
+  Pod 272 a 273 patří dodatková tabulka se symbolem osoby se zdravotním postižením (`disabled.svg`), kterou se z místa dělá
   vyhrazené parkování pro držitele parkovacího preukazu (příloha, bod 47).
 - **Dodatkové tabuľky**: 514 patří výslovně pod 321 (Jednosmerná cesta), 515 „Voľno“ pod značku označující
   speciální cestičku nebo pruh (221 až 224) a pod 317 Pešia zóna (příloha, bod 6 tabulek). Tabulka 507 „Neplatí pre“
@@ -112,7 +112,7 @@ Sloupec „naše značka“ je klíč české podoby v aplikaci (typ značky pod
 - **Dopravní obsluha**: příloha výslovně říká (společně k dodatkovým tabuľkám, bod 2 a 4), že účastníci provozu se na
   tabulce vyznačují symbolem, vhodným nápisem („okrem vozidiel stavby“ …) nebo jejich kombinací a že „dopravná obsluha“
   je definovaný pojem (zásobování, vozidla s parkovacím preukazem, autobusy s dětmi, vozidla s bydlištěm/sídlem/garáží
-  za značkou, servis). Vyobrazení 507 je „okrem“ nad symbolem, proto `obsluha.svg` používá stejnou stavbu „okrem“ +
+  za značkou, servis). Vyobrazení 507 je „okrem“ nad symbolem, proto `except-access.svg` používá stejnou stavbu „okrem“ +
   nápis. 509 Spresňujúce informácie se používá pro podrobnější charakteristiku a pro text v jiném než státním jazyce,
   ne pro výjimku z platnosti.
 - **531 Vyhradené parkovanie** příloha řadí k Zákazu zastavenia (270): umožňuje stát jen na vyhrazeném místě.

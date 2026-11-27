@@ -1,5 +1,5 @@
 // The row of traffic signs under the profile (Bára 10. 11. 2026): what the street's OSM tags and the profile's
-// parts say about the traffic regime, as signs of vyhláška 294/2015 Sb. (files in znacky/).
+// parts say about the traffic regime, as signs of vyhláška 294/2015 Sb. (files in signs-CZ/).
 // A sign is { k, v?, plate? }: k is the key of a sign, or of a regime whose sign depends on the direction of
 // view (oneway: IP 4b when the traffic goes away from the viewer, B 2 when it comes towards them), so that
 // "Otočit" needs no change of the data. Every sign stands under the part it belongs to (seg.signs), at most

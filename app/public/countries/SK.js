@@ -60,7 +60,7 @@ function limitsSK(s, segs, i) {
 }
 
 
-// The signs of the state SK (app/public/znacky-SK/, README there): the number for the label, the file of the sign
+// The signs of the state SK (app/public/signs-SK/, README there): the number for the label, the file of the sign
 // and of its plate. SK has no plates for the manner of parking (272 alone), no one-way sign with contraflow
 // cyclists (321 + plate 514, seen from the exit 230 + plate 507 with a bicycle), and puts a reserved parking
 // space under Zákaz zastavenia (270 + plate 531).
@@ -109,10 +109,10 @@ function signFile(s, seg) {
   return SK_FILE[s.k] || null; // a sign SK has not (the shared zone): none
 }
 function plateFile(s, seg) {
-  if (s.plate === "protismer") return (s.dir ?? seg?.dir) === "backward" ? "507-bicykle" : "514";
-  if (s.plate === "obsluha") return "obsluha";
-  if (s.plate === "kolo" || s.plate === "kola") return "515-bicykle";
-  return { ip12: "531", ztp: "ztp" }[s.k] || null;
+  if (s.plate === "protismer") return (s.dir ?? seg?.dir) === "backward" ? "507-bicycle" : "514";
+  if (s.plate === "obsluha") return "except-access";
+  if (s.plate === "kolo" || s.plate === "kola") return "515-bicycle";
+  return { ip12: "531", ztp: "disabled" }[s.k] || null;
 }
 // The label keeps the sign's name in the language of the page and takes the Slovak number; own: the sign as a
 // choice with its plate (signs.js SIGN_CHOICES), label: the Czech label, plates: the plates' names.
@@ -155,7 +155,7 @@ export default {
   // No public Slovak width of a tram belt: no warning.
   tramBelt: () => [],
   // A sign SK has not is not drawn (Fable: no shared zone).
-  signs: { dir: "znacky-SK", file: signFile, plate: plateFile, label: signLabel, drawable: (x, seg) => !!signFile(x, seg) },
+  signs: { dir: "signs-SK", file: signFile, plate: plateFile, label: signLabel, drawable: (x, seg) => !!signFile(x, seg) },
   // The ZBGIS orthophoto of ÚGKK SR (lanes-ortho.js "sk") for the tram bed and the lanes.
   bedOrtho: "sk",
   laneOrtho: "sk",

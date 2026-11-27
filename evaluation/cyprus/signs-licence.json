@@ -67,7 +67,7 @@
   "desc": "Route for segregated use by pedal cycles and pedestrians only.",
   "date": "2011-11-13"
  },
- "c10a-chodci-vlevo": {
+ "c10a-walk-left": {
   "derived_from": [
    "File:UK traffic sign 957.svg"
   ],

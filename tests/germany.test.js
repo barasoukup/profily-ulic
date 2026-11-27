@@ -50,7 +50,7 @@ test("Německo: CSP stránky pustí ortofota všech zemí (connect-src pro odhad
 
 test("velikost značek ze sad Commons (AT, DE) podle tvaru, ne podle čísel ve viewBoxu", async () => {
   const { signUnits } = await import("../app/public/profile.js");
-  assert.equal(signUnits("znacky", 132, 100), 1.32, "české zůstávají");
+  assert.equal(signUnits("signs-CZ", 132, 100), 1.32, "české zůstávají");
   assert.equal(signUnits("signs-DE", 600.995, 600.995), 1);
   assert.equal(signUnits("signs-AT", 960, 960), signUnits("signs-AT", 100, 100), "10a-30 a 10a-50 stejně velké");
   assert.equal(signUnits("signs-DE", 727, 269), 1.5, "široká šipka Z 220");

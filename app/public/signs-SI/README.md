@@ -14,7 +14,7 @@ soubor je jen přejmenovaný na číslo značky. Úprava tedy žádná není; kd
 (podmínka licence CC BY-SA 4.0), a výsledek pod stejnou licencí.
 
 Rychlost 2232 Omejitev hitrosti: Commons má slovinskou kresbu jen s číslem 40 (`2232-40.svg`, II-30 (40)); ostatní čísla
-jsou kresby české B 20a ze `znacky/` (stejný vzor podle Vídeňské úmluvy, červený kruh, černé číslo).
+jsou kresby české B 20a ze `signs-CZ/` (stejný vzor podle Vídeňské úmluvy, červený kruh, černé číslo).
 
 | Klíč | Značka | Soubor (předloha na Commons) |
 |---|---|---|

@@ -15,7 +15,7 @@ v `evaluation/cyprus/NORMY.md` (C1), autoři a licence v `evaluation/cyprus/sign
 Souborům bez `viewBox` jsem ho doplnil podle `width` a `height`. Odvozené soubory:
 - `speed-10.svg` … `speed-100.svg`: z „Cyprus road sign maximum speed.svg“ (50) odstraněny číslice, nové číslo je
   `<text>` (Arial tučně, roztažené na šířku původních číslic). Písmo není úřední.
-- `c10a-chodci-vlevo.svg`: `c10a.svg` (UK 957) zrcadlově, chodci vlevo; Kodex ukazuje obě podoby (NORMY.md C2). Kreslí
+- `c10a-walk-left.svg`: `c10a.svg` (UK 957) zrcadlově, chodci vlevo; Kodex ukazuje obě podoby (NORMY.md C2). Kreslí
   se podle strany, na které chodci jdou (dál od vozovky), bez dat chodci vpravo jako jinde.
 
 Odchylka od Kodexu: u `c9a.svg` (UK 956) je kolo nahoře a chodci dole, Kodex (str. 137) kreslí chodce nahoře a kolo
@@ -40,7 +40,7 @@ dole. Význam je stejný, soubor jsem neupravoval.
 | ip27a, c7a | Υποχρεωτικός πεζόδρομος (plošnou pěší zónu Kypr nemá) | ped.svg (Cyprus road sign mandatory pedestrian way) |
 | c8a | Υποχρεωτικός Ποδηλατόδρομος | c8a.svg (UK traffic sign 955) |
 | c9a | Υποχρεωτικός πεζόδρομος/πεζοδρόμιο με ποδηλατόδρομο (společný) | c9a.svg (UK traffic sign 956) |
-| c10a | Υποχρεωτικός ποδηλατόδρομος διαχωρισμένος από πεζοδρόμιο (dělený) | c10a.svg (UK traffic sign 957), chodci vlevo c10a-chodci-vlevo.svg |
+| c10a | Υποχρεωτικός ποδηλατόδρομος διαχωρισμένος από πεζοδρόμιο (dělený) | c10a.svg (UK traffic sign 957), chodci vlevo c10a-walk-left.svg |
 
 Bez kresby: zóna 30 (Kodex 2012 ji nemá, v roce 2025 jen ohlášená), sdílená zóna a cyklistická zóna (Kypr nemá),
 vyhrazené stání a stání pro osoby s postižením (Kodex má jen informační značku vozíčkáře), placené stání, způsob stání

@@ -97,7 +97,7 @@ názvem (nadpis je jen ulice).
   Slovensko, dotaz má slovenská písmena (ä ô ľ ĺ ŕ) nebo RÚIAN nic nenašel (`search-sk.js`). „Hlavná 12 Košice“
   najde adresu, „Hlavná Košice“ ulici v Košicích.
 - Ilustrace vozidel podle města řezu (Bratislava, Košice, Žilina, Banská Bystrica, Prešov; jinde neutrální tramvaj a autobus z `generic/`),
-  slovenské označníky zastávek (značka 331), mobiliář pražský (Bratislava ho převzala), značky slovenské (`znacky-SK/`).
+  slovenské označníky zastávek (značka 331), mobiliář pražský (Bratislava ho převzala), značky slovenské (`signs-SK/`).
 - **Za pasportem města** (Bára 16. 11. 2026, Poštová, 17. novembra): pasport končí, kde končí plochy, o které se město
   stará. Od osy ven k nejbližšímu domu (z pasportu nebo OSM), plotu či zdi z OSM nebo k vnější hraně samostatně
   zakresleného chodníku OSM se nepokryté kusy doplní (`ortho-osm.js` `besidePassport`), jen když ten konec leží do 15 m
@@ -1115,8 +1115,8 @@ parkoviště, plot, volný prostor), u budovy zvlášť vzhled domu (nebo odhad)
 
 ## Dopravní značky
 
-Pod popisky částí je řádek dopravních značek podle vyhl. 294/2015 Sb. (`public/signs.js`, obrázky v `public/znacky/`,
-licence v `znacky/README.md`), na obrazovce i v exportu, všechny v jednom měřítku jako na ulici. Značky vycházejí
+Pod popisky částí je řádek dopravních značek podle vyhl. 294/2015 Sb. (`public/signs.js`, obrázky v `public/signs-CZ/`,
+licence v `signs-CZ/README.md`), na obrazovce i v exportu, všechny v jednom měřítku jako na ulici. Značky vycházejí
 z tagů OSM a z částí profilu: nejvyšší rychlost (i po pruzích), jednosměrka IP 4b / B 2 podle směru pohledu (i
 s cyklisty v protisměru; po „Otočit“ se vymění), zóny (zóna 30, obytná, pěší, cyklistická), zákaz vjezdu B 1 a B 11
 s dodatkovou tabulkou výjimky, B 8, B 30, dálnice a silnice pro motorová vozidla, stezky C 8a, C 9a, C 10a, parkoviště

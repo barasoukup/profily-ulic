@@ -49,7 +49,7 @@ test("kredity exportu", () => {
 test("značky: německý popis, česká čísla a české značky v Česku", () => {
   setCity("praha");
   assert.equal(city.country, "CZ");
-  assert.equal(signDir(city.country), "znacky");
+  assert.equal(signDir(city.country), "signs-CZ");
   assert.equal(signLabel({ k: "b20a", v: 30 }, city.country), "B 20a Zulässige Höchstgeschwindigkeit 30 km/h");
   assert.equal(signLabel({ k: "b1", plate: "obsluha" }, city.country), "B 1 + E 13 Verbot für Fahrzeuge aller Art, Anlieger frei");
 });

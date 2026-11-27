@@ -51,9 +51,9 @@ přečíslování: https://cs.wikipedia.org/wiki/Seznam_dopravn%C3%ADch_zna%C4%8
   `lengthAdjust="spacingAndGlyphs"` drží každé číslo na šířce kreslené dvojmístné značky, takže i trojmístné
   číslo se vejde do bílého pole (zúží se). Jednomístné by se roztáhlo, proto je 5 nakreslená. Kód nahradí obsah
   před převodem na data URI, např. `text.replace(/(<text id="v"[^>]*>)[^<]*/, "$1" + kmh)`.
-- `IP12.svg`, `IP12-ztp.svg`: nápis RÉSERVÉ je převedený na křivky (už to není šablona; kód text nikdy nenahrazoval).
+- `IP12.svg`, `IP12-disabled.svg`: nápis RÉSERVÉ je převedený na křivky (už to není šablona; kód text nikdy nenahrazoval).
 - `IZ6a.svg`: text výjimky (např. „ZÁSOBOVÁNÍ 6–10 h“) v `<text id="t">`, výchozí prázdný.
-- `IZ6a-kola.svg`: v dodatkové části symbol jízdního kola (vjezd cyklistů povolen), pod ním malý `<text id="t">`
+- `IZ6a-bikes.svg`: v dodatkové části symbol jízdního kola (vjezd cyklistů povolen), pod ním malý `<text id="t">`
   (výchozí prázdný, např. „POVOLEN“ nebo doba).
 - `IZ8a.svg`: prázdná skupina `<g id="z">`, do které se vloží obsah libovolné kulaté značky (souřadnice 100 × 100).
 - `E13.svg`: pevná tabulka „MIMO DOPRAVNÍ / OBSLUHY“ (150 × 100, text převedený na křivky z písma DIN Alternate Bold, velká písmena na dva řádky podle vzoru E 13). Kód ji bere jen pro `plate: obsluha`; jeho `text.replace` na `<text id="t">` už nic nenajde, což nevadí. Jiný text by chtěl novou tabulku (nebo šablonu zpět).
@@ -75,33 +75,33 @@ přečíslování: https://cs.wikipedia.org/wiki/Seznam_dopravn%C3%ADch_zna%C4%8
 | `C8a.svg` | C 8a | Stezka pro cyklisty | vzor vyhlášky, kolo z B 8 | úřední dílo / PD |
 | `C9a.svg` | C 9a | Stezka pro chodce a cyklisty společná (dospělý s dítětem nahoře, kolo dole, bez čáry; vzor 2025) | vzor vyhlášky, dvojice z C09a (CC0), kolo z B 8 | úřední dílo / CC0 / PD |
 | `C10a.svg` | C 10a | Stezka pro chodce a cyklisty dělená (chodci vlevo, kolo vpravo: strany vyměněné, dvojice i kolo nezrcadlené, dítě vlevo a dospělý vpravo jako ve vzoru) | jako C 9a | úřední dílo / CC0 / PD |
-| `C10a-chodci-vpravo.svg` | C 10a | Stezka pro chodce a cyklisty dělená (kolo vlevo, chodci vpravo, jako ve vzoru 2025) | jako C 9a | úřední dílo / CC0 / PD |
+| `C10a-walk-right.svg` | C 10a | Stezka pro chodce a cyklisty dělená (kolo vlevo, chodci vpravo, jako ve vzoru 2025) | jako C 9a | úřední dílo / CC0 / PD |
 | `IP4b.svg` | IP 4b | Jednosměrný provoz | vzor vyhlášky | úřední dílo / MIT |
 | `IP4c.svg` | IP 4c | Jednosměrný provoz s povoleným provozem cyklistů v protisměru (od 1. 7. 2025) | vzor vyhlášky 205/2025 Sb., kolo z B 8 | úřední dílo / PD |
 | `IP11a.svg` | IP 11a | Parkoviště | vzor vyhlášky | úřední dílo / MIT |
 | `IP11b.svg` | IP 11b | Parkoviště (kolmé nebo šikmé stání), auto z boku vodorovně = kolmé stání | vzor vyhlášky | úřední dílo / MIT |
-| `IP11b-sikme.svg` | IP 11b | Parkoviště, šikmé stání: auto z boku natočené o 30° | vzor vyhlášky, poloha symbolu podle textu přílohy | úřední dílo / MIT |
+| `IP11b-angled.svg` | IP 11b | Parkoviště, šikmé stání: auto z boku natočené o 30° | vzor vyhlášky, poloha symbolu podle textu přílohy | úřední dílo / MIT |
 | `IP11c.svg` | IP 11c | Parkoviště (podélné stání), auto zepředu | vzor vyhlášky, auto z B 11 | úřední dílo / PD |
 | `IP11d.svg` | IP 11d | Parkoviště (stání na chodníku kolmé nebo šikmé): auto z boku na zvýšeném chodníku, obruba vlevo | vzor vyhlášky, auto z IP 11b | úřední dílo / MIT |
 | `IP11e.svg` | IP 11e | Parkoviště (stání na chodníku podélné): auto zepředu na zvýšeném chodníku | vzor vyhlášky, auto z IP 11c | úřední dílo / PD |
 | `IP11f.svg` | IP 11f | Parkoviště (částečné stání na chodníku kolmé nebo šikmé): auto z boku nakloněné, přední kola na chodníku | vzor vyhlášky, auto z IP 11b | úřední dílo / MIT |
 | `IP11g.svg` | IP 11g | Parkoviště (částečné stání na chodníku podélné): auto zepředu nakloněné, pravá kola na chodníku | vzor vyhlášky, auto z IP 11c | úřední dílo / PD |
 | `IP12.svg` | IP 12 | Vyhrazené parkoviště (RÉSERVÉ) | vzor vyhlášky | úřední dílo / MIT |
-| `IP12-ztp.svg` | IP 12 | Vyhrazené parkoviště se symbolem vozíku (ZTP; značka „O 1“ v současné vyhlášce není) | vzor vyhlášky | úřední dílo / MIT |
+| `IP12-disabled.svg` | IP 12 | Vyhrazené parkoviště se symbolem vozíku (ZTP; značka „O 1“ v současné vyhlášce není) | vzor vyhlášky | úřední dílo / MIT |
 | `IP13c.svg` | IP 13c | Parkoviště s parkovacím automatem (automat podle vzoru 2025) | vzor vyhlášky 205/2025 Sb. | úřední dílo / MIT |
 | `IP20a.svg` | IP 20a | Vyhrazený jízdní pruh (BUS vlevo, jako ve vzoru, na výšku 2 : 3) | vzor vyhlášky | úřední dílo / MIT |
-| `IP20a-vpravo.svg` | IP 20a | Vyhrazený jízdní pruh (BUS vpravo, na výšku 2 : 3) | vzor vyhlášky | úřední dílo / MIT |
+| `IP20a-right.svg` | IP 20a | Vyhrazený jízdní pruh (BUS vpravo, na výšku 2 : 3) | vzor vyhlášky | úřední dílo / MIT |
 | `IP20a-symbol.svg` | IP 20a | Jen kruhový symbol (modré pole s autobusem čelem vlevo, 5 oken) pro kreslení pod pruh | vzor vyhlášky 205/2025 Sb. | úřední dílo / MIT |
 | `IZ1a.svg` | IZ 1a (dříve IP 14a) | Dálnice | vzor vyhlášky | úřední dílo / MIT |
 | `IZ2a.svg` | IZ 2a (dříve IP 15a) | Silnice pro motorová vozidla | vzor vyhlášky, auto z B 11 | úřední dílo / PD |
 | `IZ5a.svg` | IZ 5a (dříve IP 26a) | Obytná zóna (poměr stran 132 × 100 jako ve vzoru) | vzor vyhlášky, auto z B 11, postavy a domek vlastní kresba | úřední dílo / PD / MIT |
 | `IZ6a.svg` | IZ 6a (dříve IP 27a) | Pěší zóna (šablona textu výjimky) | vzor vyhlášky, dvojice z C09a | úřední dílo / CC0 |
-| `IZ6a-kola.svg` | IZ 6a | Pěší zóna, v dodatkové části jízdní kolo | vzor vyhlášky, dvojice z C09a, kolo z B 8 | úřední dílo / CC0 / PD |
+| `IZ6a-bikes.svg` | IZ 6a | Pěší zóna, v dodatkové části jízdní kolo | vzor vyhlášky, dvojice z C09a, kolo z B 8 | úřední dílo / CC0 / PD |
 | `IZ8a.svg` | IZ 8a (dříve IP 25a) | Zóna s dopravním omezením (šablona) | vzor vyhlášky (čtvercová varianta) | úřední dílo / MIT |
 | `IZ8a-30.svg` | IZ 8a | Zóna s dopravním omezením, B 20a 30 („zóna 30“) | vzor vyhlášky | úřední dílo / MIT |
-| `IZ8a-zakaz-stani.svg` | IZ 8a | Zóna s dopravním omezením, B 29 (zóna zákazu stání) | vzor vyhlášky | úřední dílo / MIT |
-| `IZ8a-zakaz-zastaveni.svg` | IZ 8a | Zóna s dopravním omezením, B 28 | vzor vyhlášky | úřední dílo / MIT |
-| `IZ8a-placene-stani.svg` | IZ 8a | Zóna s dopravním omezením se symbolem IP 13c (placené stání) | vzor vyhlášky | úřední dílo / MIT |
+| `IZ8a-no-parking.svg` | IZ 8a | Zóna s dopravním omezením, B 29 (zóna zákazu stání) | vzor vyhlášky | úřední dílo / MIT |
+| `IZ8a-no-stopping.svg` | IZ 8a | Zóna s dopravním omezením, B 28 | vzor vyhlášky | úřední dílo / MIT |
+| `IZ8a-paid-parking.svg` | IZ 8a | Zóna s dopravním omezením se symbolem IP 13c (placené stání) | vzor vyhlášky | úřední dílo / MIT |
 | `IZ10a.svg` | IZ 10a | Sdílená zóna (nápis ZÓNA, auto, cyklista, chodec, B 20a 20; vzor 386/2023 Sb., poměr 100 × 131, asi 5,8 kB s nápisem na křivkách) | vzor vyhlášky, auto z IZ 5a, chodec z B 30 (hlava překreslená), kolo z B 8, rámy a cyklista vlastní kresba | úřední dílo / PD / MIT |
 | `IZ9a.svg` | IZ 9a | Zóna pro cyklisty (nápis „CYKLISTICKÁ ZÓNA“ na dva řádky, od vyhlášky 84/2016 Sb.) | vzor vyhlášky, kolo z B 8 | úřední dílo / PD |
 | `O1.svg` | O 1 | Symbol osoby na vozíku (označení vozidla ZTP, symbol z IP 12 a V 10f) | vlastní kresba mezinárodního symbolu | MIT |
@@ -109,15 +109,15 @@ přečíslování: https://cs.wikipedia.org/wiki/Seznam_dopravn%C3%ADch_zna%C4%8
 | `E12b.svg` | E 12b | Vjezd cyklistů v protisměru povolen (pod B 2) | vzor vyhlášky | úřední dílo / PD |
 | `E12c.svg` | E 12c | Povolený směr jízdy cyklistů (příklad rovně a vpravo) | vzor vyhlášky | úřední dílo / PD |
 | `E13.svg` | E 13 | Text nebo symbol (tabulka „Mimo dopravní obsluhy“) | vzor vyhlášky | úřední dílo / MIT |
-| `V9a-rovne.svg`, `V9a-vlevo.svg`, `V9a-vpravo.svg`, `V9a-rovne-vlevo.svg`, `V9a-rovne-vpravo.svg`, `V9a-vlevo-vpravo.svg` | V 9a | Směrové šipky | vzor vyhlášky | úřední dílo / MIT |
+| `V9a-straight.svg`, `V9a-left.svg`, `V9a-right.svg`, `V9a-straight-left.svg`, `V9a-straight-right.svg`, `V9a-left-right.svg` | V 9a | Směrové šipky | vzor vyhlášky | úřední dílo / MIT |
 | `V10a.svg` | V 10a | Stání podélné | vzor vyhlášky | úřední dílo / MIT |
 | `V10b.svg` | V 10b | Stání kolmé | vzor vyhlášky | úřední dílo / MIT |
 | `V10c.svg` | V 10c | Stání šikmé | vzor vyhlášky | úřední dílo / MIT |
 | `V11a.svg` | V 11a | Zastávka autobusu nebo trolejbusu (klikatá čára s BUS) | vzor vyhlášky | úřední dílo / MIT |
 | `V13.svg` | V 13 | Šikmé rovnoběžné čáry (šrafy) | vzor vyhlášky | úřední dílo / MIT |
 | `V14.svg` | V 14 | Jízdní pruh pro cyklisty (symbol kola se šipkou) | vzor vyhlášky, kolo z B 8 | úřední dílo / PD |
-| `V14-souvisla.svg` | V 14 + V 1a | Vyhrazený jízdní pruh pro cyklisty se souvislou čarou, červený povrch | vzor vyhlášky, kolo z B 8 | úřední dílo / PD |
-| `V14-prerusovana.svg` | V 14 + V 2b | Jízdní pruh pro cyklisty s přerušovanou čarou (ochranný pruh), šedý asfalt | vzor vyhlášky, kolo z B 8 | úřední dílo / PD |
+| `V14-solid.svg` | V 14 + V 1a | Vyhrazený jízdní pruh pro cyklisty se souvislou čarou, červený povrch | vzor vyhlášky, kolo z B 8 | úřední dílo / PD |
+| `V14-dashed.svg` | V 14 + V 2b | Jízdní pruh pro cyklisty s přerušovanou čarou (ochranný pruh), šedý asfalt | vzor vyhlášky, kolo z B 8 | úřední dílo / PD |
 | `V15-bus.svg` | V 15 | Nápis na vozovce „BUS“ (vyhrazený pruh) | vzor vyhlášky | úřední dílo / MIT |
 | `V15-tram.svg` | V 15 | Nápis na vozovce „TRAM“ | vzor vyhlášky | úřední dílo / MIT |
 | `V20.svg` | V 20 | Piktogramový koridor pro cyklisty | vzor vyhlášky, kolo z B 8 | úřední dílo / PD |
@@ -131,7 +131,7 @@ přečíslování: https://cs.wikipedia.org/wiki/Seznam_dopravn%C3%ADch_zna%C4%8
 - **Šikmé stání na IP 11**: vlastní značka není. Platí IP 11b „Parkoviště – kolmé nebo šikmé stání“ (na chodníku
   IP 11d); příloha říká, že „poloha vozidla při kolmém nebo šikmém stání musí odpovídat poloze vyjádřené
   symbolem“. Vzor ukazuje auto z boku vodorovně (kolmé stání), pro šikmé se symbol auta natočí do směru stání
-  (`IP11b-sikme.svg`, 30°). Podélné stání je IP 11c (auto zepředu), na vozovce V 10a/b/c. IP 12 a IP 13c se
+  (`IP11b-angled.svg`, 30°). Podélné stání je IP 11c (auto zepředu), na vozovce V 10a/b/c. IP 12 a IP 13c se
   podle novely 205/2025 Sb. značí „obdobně jako na značkách Parkoviště“.
 - Vyhláška 205/2025 Sb. změnila mimo jiné vyobrazení C 7a až C 10a (dospělý s dítětem; na C 9a bez dělicí čáry,
   chodci nahoře, kolo dole), IP 12, IP 13c (nový parkovací automat) a IP 20a. Podle nich jsou tu překreslené C 9a, C 10a, IP 13c a dvojice
@@ -153,7 +153,7 @@ přečíslování: https://cs.wikipedia.org/wiki/Seznam_dopravn%C3%ADch_zna%C4%8
   V 15 („TRAM“), zastávka tramvaje je V 11b. Vyhrazený pruh BUS je V 1a/V 2b s nápisem V 15 „BUS“.
 - O 1 není v příloze vyhlášky 294/2015 Sb. jako samostatná značka; soubor je symbol osoby na vozíku, jak se užívá
   na IP 12 a V 10f a na parkovacím průkazu ZTP.
-- Zóna placeného stání nemá vlastní značku. `IZ8a-placene-stani.svg` je IZ 8a se symbolem IP 13c; pražské zóny
+- Zóna placeného stání nemá vlastní značku. `IZ8a-paid-parking.svg` je IZ 8a se symbolem IP 13c; pražské zóny
   mají ve spodní části ještě text o oprávnění (vyhrazeno pro rezidenty apod.).
 
 ## Změny po porovnání s vyhláškou (listopad 2026)
@@ -162,14 +162,14 @@ Odborné porovnání s přílohami vyhlášky 294/2015 Sb. (znění po 205/2025 
 
 - **Písmo na křivkách**: E 13, IZ 9a, IZ 6a, IZ 8a (všechny varianty), IP 12 a BUS na V 11a jsou převedené na křivky
   (fontTools, DIN Alternate Bold, souřadnice na 0,1), takže nezávisí na písmech uživatele. Soubory jsou kvůli tomu
-  větší než 4 kB: `E13.svg` asi 4,8 kB, `IZ9a.svg` 4,6 kB, `IZ6a-kola.svg` 5,9 kB (ostatní asi 4,2 kB a méně).
+  větší než 4 kB: `E13.svg` asi 4,8 kB, `IZ9a.svg` 4,6 kB, `IZ6a-bikes.svg` 5,9 kB (ostatní asi 4,2 kB a méně).
   Pouze `<text id="t">` výjimky na IZ 6a a IZ 6a-kola zůstává šablonou (výchozí prázdný).
 - **Rámy IZ**: černý rám 4 % šířky (dříve 2,6 %) s kulatějšími rohy; „ZÓNA“ na IZ 8a široké 57 %, „PĚŠÍ ZÓNA“ asi 80 %
   vnitřní šířky (vzor se rámu dotýká, tady zbývá malá mezera kvůli čárkám), IZ 9a na dva řádky, výška 108 (poměr
   ≈ 1 : 1,08).
 - **IZ 9a** už není „CYKLOZÓNA“, ale „CYKLISTICKÁ“ / „ZÓNA“. **C 10a** (chodci vlevo): dvojice je shodná s C 9a a
   C 10a-chodci-vpravo (dítě vlevo, dospělý vpravo, oba jdou doleva); jen se vyměnily strany. **IP 20a**: autobus čelem vlevo,
-  zaoblená střecha, 5 oken, kola s nábojem; IP20a.svg a IP20a-vpravo.svg jsou na výšku 100 × 150.
+  zaoblená střecha, 5 oken, kola s nábojem; IP20a.svg a IP20a-right.svg jsou na výšku 100 × 150.
 - **P**: kmen 11,85 (dříve 15), oblouk stejně tenký; IP 11b až 11g, IP 12, IP 12-ztp a IP 13c štíhlejší, IP 11a má
   stejné P ve stejné poloze jako IP 11b (nahoře, dolní třetina prázdná). IP 12: „RÉSERVÉ“ na 85 % šířky pole;
   IP 12-ztp: vozík 40 % šířky.

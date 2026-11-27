@@ -59,7 +59,7 @@ const CY_SPEEDS = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
 function signFile(s, seg) {
   const dir = s.dir ?? seg?.dir;
   if (s.k === "oneway") return s.plate === "protismer" ? null : dir === "backward" ? "noentry" : "oneway";
-  if (s.k === "c10a") return s.walk === "left" ? "c10a-chodci-vlevo" : "c10a";
+  if (s.k === "c10a") return s.walk === "left" ? "c10a-walk-left" : "c10a";
   if (s.k === "b20a") return CY_SPEEDS.includes(s.v) ? `speed-${s.v}` : null;
   if (s.plate && !["podelne", "kolme", "sikme", "protismer"].includes(s.plate)) return null;
   return CY_FILE[s.k] || null;
@@ -89,7 +89,7 @@ export default {
   // ogl: the files drawn after British signs under the Open Government Licence v1.0, whose credit a cut showing one needs
   // ("Contains public sector information licensed under the Open Government Licence v1.0"; for the export, app.js).
   signs: { dir: "signs-CY", file: signFile, plate: () => null, label: signLabel, drawable: (x, seg) => !!signFile(x, seg),
-    ogl: new Set(["b1", "b8", "b28", "b29", "bus", "noentry", "c8a", "c9a", "c10a", "c10a-chodci-vlevo"]) },
+    ogl: new Set(["b1", "b8", "b28", "b29", "bus", "noentry", "c8a", "c9a", "c10a", "c10a-walk-left"]) },
   bedOrtho: null,
   laneOrtho: "cy",
   orthoEstimate: true,

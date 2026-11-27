@@ -21,13 +21,13 @@ lokálních commitech na větvi `worktree-agent-a091f4afa5c63a0f1`, nic není pu
 ### 1. Značky s dodatkovou tabulkou z dat nešly v Návrhu vybrat a IP 11 se popisovala jinak, než se kreslí — opraveno
 - `app/public/signs.js:43` (`SIGN_CHOICES`), `app/public/app.js:1222` (nabídka „+ přidat značku“), `app/public/validate.js:79`.
 - Stejný případ jako IP 4c. `deriveSigns` a `streetSigns` tvoří `b1`+`obsluha` (B 1 + E 13 „Mimo dopravní obsluhy“),
-  `b11`+`obsluha`, `ip27a`+`kola` (pěší zóna s cyklisty, soubor IZ6a-kola), `ip11a`+`podelne|kolme|sikme`
+  `b11`+`obsluha`, `ip27a`+`kola` (pěší zóna s cyklisty, soubor IZ6a-bikes), `ip11a`+`podelne|kolme|sikme`
   (kreslí se IP 11c, resp. IP 11b) a `ip20a`+`kolo` (symbol kola pod BUS). Nabídka měla jen klíče bez tabulek, takže
   tyto značky šly jen smazat, ne přidat. Popisek `ip11a` zněl „IP 11a–c Parkoviště (kolmé)“, kreslila se IP 11b.
 - Oprava: všechny dvojice v `SIGN_CHOICES` s popiskem podle toho, co se kreslí („IP 11b Parkoviště (kolmé stání)“,
   „B 1 + E 13 …“); `ip11a` samotná je „IP 11a Parkoviště“. `validate.js` nechá tabulku jen u známé dvojice (dřív u
   kterékoli značky, např. `b1`+`kolme`). Test: každá tabulková značka, kterou data vyrobí, je v nabídce a její SVG
-  v `znacky/` existují pro oba směry pohledu.
+  v `signs-CZ/` existují pro oba směry pohledu.
 
 ### 2. Změna typu části v Návrhu nechávala nastavení starého typu a kresba se jimi dál řídila — opraveno
 - `app/public/validate.js:66` (`retype`), `app/public/app.js:1073`; kresba `app/public/profile.js:1223`

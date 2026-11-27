@@ -295,7 +295,7 @@ v `cutAt` zastínil pozdější `const name` a rozbil každý řez.
 
 ## 7. Dopravní značky
 
-- **Sada podle předpisů státu:** `app/public/znacky-SK/` nebo `signs-AT/`, z přílohy vyhlášky nebo z Wikimedia Commons
+- **Sada podle předpisů státu:** `app/public/signs-SK/` nebo `signs-AT/`, z přílohy vyhlášky nebo z Wikimedia Commons
   (úřední díla: ověřit, že nejsou chráněná; AT § 7 UrhG).
   - Všem SVG doplnit `viewBox` s mezerami: bez něj nebo s čárkami se kreslí s rozměry NaN.
   - Rychlosti: šablona se vkládaným číslem (`SPEED_TEMPLATES`).
