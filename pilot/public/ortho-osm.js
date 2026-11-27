@@ -158,6 +158,9 @@ const sameLevel = (w, o) => levelOf(w.tags) === levelOf(o.own.tags);
 const RAIL_ALONG = 0.7; // |across| / |along| of the track's direction at the cut
 export const heavyRail = (w, o) => !!RAIL_KINDS[w.tags.railway] && sameLevel(w, o) && !P.off?.has("railway") && (!w.d || Math.abs(w.d[0]) <= RAIL_ALONG * Math.abs(w.d[1]));
 // Half the width of a track's bed (types.js RAIL_KINDS) and the most tracks one side takes (a station's yard is no street).
+// A track farther than RAIL_GAP from the last thing of the street (its kerb or sidewalk) is no part of it (the first blind A/B,
+// 27. 11. 2026: a track 16 m off behind trees drew a bed and moved the estimate's parking).
+const RAIL_GAP = 10;
 const railHalf = (w) => RAIL_KINDS[w.tags.railway][0] / 2, MAX_RAILS = 4;
 // One track mapped twice (two ways on the same line, or a curve crossing the cut twice) counts once.
 const railTracks = (ws) => ws.filter((w) => !ws.some((v) => v !== w && v.tags.railway === w.tags.railway && Math.abs(v.t - w.t) < 1.5 && (Math.abs(v.t - w.t) > 1e-9 ? v.t < w.t : v.id < w.id)));
@@ -563,7 +566,7 @@ function canopyMask(st, osm, tu) {
 
 // ai: the kerbs a trained model read (ai-kerbs.js; ?ai=1, Bára 18. 11. 2026), a function of the axis (t of the
 // clicked way) giving { A, B } or null: they replace the carriageway's kerbs found here, within OSM's limits.
-export function orthoOsmPolys({ osm, frame, dir, way, st, mapRuns = [], edges = [], widths = [], areas = [], symbols = [], ai = null, aiSurf = null, decks = null }) {
+export function orthoOsmPolys({ osm, frame, dir, way, st, mapRuns = [], edges = [], widths = [], areas = [], symbols = [], ai = null, aiSurf = null, decks = null, stretch = null }) {
   if (!way || !STREET.test(way.tags?.highway || "")) return null;
   const normal = [-dir[1], dir[0]];
   const tu = (lon, lat) => { const [x, y] = frame.toXY(lon, lat); return [x * normal[0] + y * normal[1], x * dir[0] + y * dir[1]]; };
@@ -811,13 +814,18 @@ export function orthoOsmPolys({ osm, frame, dir, way, st, mapRuns = [], edges = 
     let last = kerbT, lastW = null;
     let nRail = 0;
     for (const w of things) {
-      if (sg * (w.t - last) > LAST_WALK) break;
+      if (sg * (w.t - last) > (heavyRail(w, o) ? RAIL_GAP : LAST_WALK)) break;
       if (heavyRail(w, o) && ++nRail > MAX_RAILS) break;
       if (sg * (w.t - last) > 0) last = w.t;
       lastW = w; chain[side].push(w);
     }
     const halfOf = (w) => (w?.tags.railway === "tram" ? TRACK_HALF : w && heavyRail(w, o) ? railHalf(w) : w?.tags.highway === "cycleway" ? 1.3 : STREET.test(w?.tags.highway || "") ? 3 : SIDEWALK / 2);
     // Nothing mapped there: a soft end, moved out past the estimate's own last sidewalk, parking or tree row (trimToEnds).
+    // The side the user stretched beyond the usual reach (Bára 27. 11. 2026, Tikkurilantie in Vantaa and Via Leopardi in Merano:
+    // the profile stopped at the cycle track or sidewalk with a lawn and a wood beyond it): no end at the last thing; the
+    // lawn, other areas and things go on to the reach, or to a house, a fence or a wall (above). stretch: { A: true, B: false }
+    // from app.js (a reach beyond MAX_REACH that the user set). ?dosah=1 only (off by default: evaluation/railway/ZPRAVA.md).
+    if (stretch?.[side] && P.stretchOn) { ends[side] = null; continue; }
     ends[side] = lastW ? (sg > 0 ? Math.max : Math.min)(last + sg * halfOf(lastW), ...chain[side].map((w) => w.t + sg * halfOf(w))) : kerbT + sg * LAST_NONE;
     if (!lastW) (ends.soft ??= {})[side] = true;
     if (FILL_OFF && lastW && ["footway", "path"].includes(lastW.tags.highway) && sg * (lastW.t - kerbT) > SIDEWALK / 2) {
@@ -1059,8 +1067,9 @@ export function orthoOsmPolys({ osm, frame, dir, way, st, mapRuns = [], edges = 
     const beds = [];
     let last = kerb;
     for (const w of tracks) {
-      if (sg * (w.t - last) > LAST_WALK || beds.length >= MAX_RAILS) break;
-      const h = railHalf(w), a = w.t - sg * h, b = f !== null && sg * (w.t + sg * h - f) > 0 ? f : w.t + sg * h;
+      if (sg * (w.t - last) > RAIL_GAP || beds.length >= MAX_RAILS) break;
+      // The bed starts at the image's kerb where the track's axis lies beyond it (it must not bite into the roadway).
+      const h = railHalf(w), a0 = w.t - sg * h, a = sg * (w.t - kerb) > 0 && sg * (a0 - kerb) < 0 ? kerb : a0, b = f !== null && sg * (w.t + sg * h - f) > 0 ? f : w.t + sg * h;
       if (f !== null && sg * (f - w.t) < 0.5) break;
       beds.push(rect(RAILWAY_CODE, "železnice (OSM)", ...(sg < 0 ? [b, a] : [a, b])));
       if (sg * (w.t - last) > 0) last = w.t;

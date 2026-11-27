@@ -8,8 +8,9 @@ export const CLASS = {
   parkovani: "stani", pruh: "pruh", pruh_piktokoridor: "pruh", obsluzna: "pruh", bus: "bus", bus_cyklo: "bus",
   tramvaj: "tramvaj", tramvaj_pruh: "tramvaj", tramvaj_v_pruhu: "tramvaj",
   zelen: "zelen", stromorad: "stromy", delici: "delici", krajnice: "krajnice",
+  railway: "zeleznice", // a railway beside the street (27. 11. 2026; the judge's code in evaluation/railway/POKYN.md)
 };
-const KNOWN = new Set(["chodnik", "stani", "pruh", "bus", "cyklopruh", "cyklostezka", "tramvaj", "zelen", "stromy", "delici", "nastupiste", "krajnice", "jine"]);
+const KNOWN = new Set(["chodnik", "stani", "pruh", "bus", "cyklopruh", "cyklostezka", "tramvaj", "zelen", "stromy", "delici", "nastupiste", "krajnice", "zeleznice", "jine"]);
 // Parts as [class, width]: an app profile ([type, width] or {type, width}) or the judge's ([code, width, …], "?" dropped).
 export function asClasses(parts, judge = false) {
   return parts.map((p) => {
@@ -21,7 +22,7 @@ export function asClasses(parts, judge = false) {
 // The street space: from the first to the last part of the street itself (sidewalk, parking, a lane, cycle, tram, a
 // platform); green, trees and land beyond its sidewalks are not counted (the reference and the judge end it
 // differently: a verge, a front garden, the window of the cut). Green or trees between two lanes is a median.
-const CORE = new Set(["chodnik", "stani", "pruh", "bus", "cyklopruh", "cyklostezka", "tramvaj", "nastupiste", "delici"]);
+const CORE = new Set(["chodnik", "stani", "pruh", "bus", "cyklopruh", "cyklostezka", "tramvaj", "nastupiste", "delici", "zeleznice"]);
 const ROADWAY = new Set(["pruh", "bus", "tramvaj"]);
 export function core(cls) {
   const out = cls.map(([c, w], i) => {
@@ -60,7 +61,7 @@ export function diff(a, b) {
 // green (Bára 24. 11. 2026: ending at the kerb there is right for the user, so the measurement must not count it as
 // missing green).
 const VERGE_MAX = 3;
-const ROAD_EDGE = new Set(["pruh", "bus", "tramvaj", "stani", "cyklopruh", "krajnice"]), WALK = new Set(["chodnik", "cyklostezka", "nastupiste"]), VERGE = new Set(["zelen", "krajnice"]);
+const ROAD_EDGE = new Set(["pruh", "bus", "tramvaj", "stani", "cyklopruh", "krajnice"]), WALK = new Set(["chodnik", "cyklostezka", "nastupiste", "zeleznice"]), VERGE = new Set(["zelen", "krajnice"]);
 // open: { A, B } true where the side has no facade. Returns the street's parts.
 export function scope(cls, open = {}) {
   const out = cls.map(([c, w], i) => {
