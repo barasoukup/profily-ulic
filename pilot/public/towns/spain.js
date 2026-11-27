@@ -25,7 +25,6 @@ export const AREAS = { zaragoza: { box: [-1.02, 41.58, -0.78, 41.73] } };
 // green strip.
 export const ZARAGOZA_LAYERS = { "idezar_base:Aceras_PavimentoTF_2017": 702, "idezar_base:Medianas_PavimentoTF_201702": 1003, "idezar_base:PBandVerde_PavimentoTF_20170": 401 };
 
-const ringsOf = (g) => (g?.type === "Polygon" ? g.coordinates : g?.type === "MultiPolygon" ? g.coordinates.flat() : null);
 // A MultiPolygon is split into its polygons (one feature each: the rings of one polygon are its outline and holes).
 export function zaragozaFeatures(layers) {
   const out = [];

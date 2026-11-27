@@ -40,8 +40,8 @@ const AI_WAIT = 12000; // ms: the longest the first estimated cut waits for the 
 // ?mapa=0: the estimate from the orthophoto and OSM even where a technical map answers (its surfaces, lines, tracks and
 // parking sections left out), to compare the two (evaluation/ortofoto-osm/chyby.mjs, Bára 18. 11. 2026).
 const NO_MAP = new URLSearchParams(location.search).get("mapa") === "0";
-import { deriveSigns, SIGNS, SIGN_CHOICES, signLabel, signFits, signFile, keepDrawable, drawable, MAX_PER_PART } from "./signs.js";
-import { loadSprites, loadSigns, layoutSigns, buildSvg, setSignsShown, getSignsShown, isHole, exportCredits, mountEditor, svgString, twoLines, totalWidth, buildingStyle, artEvents, edgeInfo, underDepth, ROADWAY, nearestRoadway, BUILDING_STYLES, GABLE_LOOKS, OFFICE_TYPES as OFFICE_LIKE, turnLabel } from "./profile.js";
+import { deriveSigns, SIGNS, SIGN_CHOICES, signLabel, signFits, keepDrawable, drawable, MAX_PER_PART } from "./signs.js";
+import { loadSprites, loadSigns, layoutSigns, buildSvg, setSignsShown, getSignsShown, isHole, exportCredits, mountEditor, svgString, twoLines, totalWidth, buildingStyle, artEvents, edgeInfo, underDepth, ROADWAY, nearestRoadway, BUILDING_STYLES, GABLE_LOOKS, OFFICE_TYPES as turnLabel } from "./profile.js";
 import * as sources from "./sources.js";
 import { ruianBuilding, ruianOutlines, withBuildings, insideRings } from "./gis.js";
 import { MAPY_KEY } from "./config.js";

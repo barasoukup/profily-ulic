@@ -24,7 +24,7 @@ export const PASSPORT_HOSTS = ["https://mapy.roznov.cz"];
 const none = () => ({ features: [] });
 // The kinds of each passport → MTVU codes (701 roadway, 702 sidewalk or park path, 703 cycle path, 704 parking,
 // 1003 other paved); null: left to the DTM (stairs, a petrol station).
-const ROAD = 701, WALK = 702, BIKE = 703, PARK = 704, OTHER = 1003;
+const ROAD = 701, WALK = 702, BIKE = 703, OTHER = 1003;
 const T_MAPY = {
   roznov: { base: "https://mapy.roznov.cz/services/mapserver/common/pakom",
     code: (a) => ({ chodník: WALK, cyklostezka: BIKE, komunikace: ROAD, ostatní: OTHER })[a.typ] ?? null },

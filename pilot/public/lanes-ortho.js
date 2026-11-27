@@ -688,11 +688,10 @@ function surfaceBand(st, s, e, side) {
   if (!(coreIqr < 20)) return 0; // shade or cars over the middle: no smooth roadway to compare with
   const odd = (c) => Math.abs(c.med - coreMed) >= 0.08 * coreMed && c.iqr >= 3 * coreIqr + 8;
   const seq = side === "s" ? cols : [...cols].reverse(), from = (c) => Math.abs(c.t - (side === "s" ? s : e));
-  let end = 0, miss = 0, hits = 0, n = 0;
+  let end = 0, miss = 0, hits = 0;
   for (const c of seq) {
     if (from(c) < 0.2) continue; // the kerb itself
     if (from(c) > BAND_MAX + 0.5) break;
-    n++;
     if (odd(c)) { hits++; miss = 0; end = from(c) + res / 2; } else if (++miss >= Math.round(0.3 / res)) break;
   }
   return end >= BAND_MIN && end <= BAND_MAX && hits >= 0.8 * (end - 0.2) / res && (e - s) - end >= LANE_LEFT ? end : 0;
@@ -1127,7 +1126,7 @@ function stripeRhythm(st, a, b, sphi) {
 }
 // The hatched bands in the roadway [s, e] (t across): [{ s, e, share }].
 export function hatchBands(st, s, e, H = null) {
-  const { nt, nu, res, t0 } = st, { cells, cw, ch } = hatchCells(st);
+  const { res, t0 } = st, { cells, cw, ch } = hatchCells(st);
   // Per cell column: the share of oblique cells in the middle rows (the cut: u within ±centre) and along the strip.
   const byI = new Map();
   for (const c of cells) { if (!byI.has(c.i)) byI.set(c.i, []); byI.get(c.i).push(c); }

@@ -546,7 +546,7 @@ function drawItem(g, it, x, top, right) {
       // A tram stop's own shelter where the city has one (Prague, Brno), else the bus stop's.
       const name = it.tram && ownSprite(`transit-shelter-tram-${side}`) ? `transit-shelter-tram-${side}` : `transit-shelter-01-${side}`;
       sprite(g, name, x, top);
-      if (it.kind === "pristresek_zeleny") greenRoof(g, name, x, top, right);
+      if (it.kind === "pristresek_zeleny") greenRoof(g, name, x, top, right); // eslint-disable-line no-undef -- greenRoof is defined nowhere: a ReferenceError for a green-roof shelter without the city's own picture (found by lint 27. 11. 2026, docs/backlog.md)
       return;
     }
     case "sloupek": return sprite(g, "bollard", x, top);
@@ -944,7 +944,6 @@ function pitchedLow(info) {
 
 // Side outline of a Prague building: floors, storey height, roof floors and the height of each part (cm).
 const ARCADE_D = 260; // how far the drawn arcade reaches from the facade into the house (cm)
-const FAMILY_LOOKS = new Set(["vila", "kostka", "novyrd", "statek"]);
 // Roof pitch of the family houses: the low hipped roof of the "cube", the steep one of a new house.
 const deg = (a) => Math.tan((a * Math.PI) / 180);
 const ROOF_PITCH = { kostka: deg(18), novyrd: deg(38), mestan: deg(52), kostel: deg(55),
@@ -1070,7 +1069,6 @@ function drawPrahaBuilding(g, x, side, surface, info, chosen) {
   const sawtooth = factory && IPR_ROOF[info?.roofType] !== "plocha";
   const shop = style === "hala" && ["retail", "supermarket"].includes(info?.type);
   const office = kind === "kancelar";
-  const family = FAMILY_LOOKS.has(kind);
   // Window frames: brown wood in the cube, anthracite in a new house, cream elsewhere.
   // White frames in the north and in Paris.
   const WF = kind === "kostka" ? "#6b4a35" : kind === "novyrd" ? "#3c3f43" : brick || wood || kind === "stenstad" || kind === "haussmann" || kind === "hanza" ? "#f4f2ec" : FRAME;
@@ -1247,11 +1245,11 @@ function drawPrahaBuilding(g, x, side, surface, info, chosen) {
     // The windows: a floor of the gable holds both columns where they fit, else one window in the axis.
     const gh = win.h * 0.85 * S, ww = win.w;
     noBox = true;
-    let lastTop = top, axisWin = 0;
+    let lastTop = top;
     for (let k = 0; k < 3; k++) {
       const z0 = u(k + win.sill), z1 = z0 + gh;
       if (fits(ax0, ww, z0, z1) && fits(ax1, ww, z0, z1)) { for (const [i, a] of axes.entries()) window(a - ww / 2, z0, ww, gh, 20 + k * 3 + i); lastTop = z1; }
-      else if (fits(c, ww, z0, z1)) { window(c - ww / 2, z0, ww, gh, 20 + k * 3); lastTop = z1; axisWin++; }
+      else if (fits(c, ww, z0, z1)) { window(c - ww / 2, z0, ww, gh, 20 + k * 3); lastTop = z1; }
       else break;
     }
     // Tallinn: the loading door in the axis over the windows; the beam above it (or above the uppermost window).

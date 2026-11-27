@@ -92,7 +92,7 @@ test("státy podle index.json; když R2 selže, čte se tentýž balík odjinud 
 });
 
 test("jen balíky, jejichž obdélník drží dlaždice řezu; chyba jednoho balíku nechá ostatní odpovědět (recenze Německa)", async () => {
-  const cz = packTiles(["2884_10016"], text).file, de = packTiles(["2885_10016"], text).file;
+  const cz = packTiles(["2884_10016"], text).file;
   const index = { files: { cz: "cz-1.posm", de_by: "de_by-1.posm", at: "at-1.posm" }, bbox: { cz: [2884, 10016, 2884, 10016], de_by: [2885, 10016, 2885, 10016], at: [1, 1, 2, 2] } };
   const asked = [];
   const f = async (url, opts) => {

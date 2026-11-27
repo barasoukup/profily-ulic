@@ -48,3 +48,5 @@ evaluation/italy/lombardia/data/
 # Images over orthophotos licensed for viewing only (Vilnius's own orthophoto, Esri), wherever an A/B keeps them
 evaluation/**/esri/
 evaluation/*/ab/data/
+
+node_modules/
