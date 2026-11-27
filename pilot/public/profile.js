@@ -1418,7 +1418,7 @@ function drawPrahaBuilding(g, x, side, surface, info, chosen) {
     if (ridge < EDGE) slab(ridge, EDGE);
     box(0, EDGE, top - 26, top, shade); // shadow under the eaves
     if (style === "sikma" && kind !== "typovy" && kind !== "stenstad") for (const d of [-eave + 10, -eave / 2 + 2]) box(d - 5, d + 5, top - 16, z(d) - 12, ROOF.tileDark); // brackets
-    else if (wood) box(-eave, -eave + 8, z(-eave) - 40, z(-eave) + 4, "#f6f4ee"); // the white fascia board
+    else if (wood && kind !== "tallinnamaja") box(-eave, -eave + 8, z(-eave) - 40, z(-eave) + 4, "#f6f4ee"); // the white fascia board
     else dot(-eave + 2, z(-eave) - 16, 10, tint(tile[1], 0.9)); // gutter
     if (tenementGable(kind, f.roofRows, f.flat)) dot(-eave + 2, z(-eave) - 16, 10, tint(tile[1], 0.9)); // and a tenement's gutter at its eaves
     if (kind === "stenstad") {
@@ -1900,11 +1900,13 @@ function drawPrahaBuilding(g, x, side, surface, info, chosen) {
       else if (brick) { box(16 + dd, 114 + dd, z0 + doorH + 10, z0 + doorH + 50, WF); box(24 + dd, 106 + dd, z0 + doorH + 14, z0 + doorH + 46, GLASS); } // a top light
       else if (kind === "drevak") {
         // The little porch (farstukvist): two posts and a gabled roof over the door, seen from the front.
-        box(4, 12, 0, doorH + 30, "#f6f4ee", outline);
-        box(118, 126, 0, doorH + 30, "#f6f4ee", outline);
-        poly([[-10, doorH + 30], [65, doorH + 90], [140, doorH + 30]], tile[0], outline);
-        poly([[10, doorH + 36], [65, doorH + 78], [120, doorH + 36]], wall);
-        box(-10, 140, doorH + 24, doorH + 32, "#f6f4ee");
+        // (between the corner board and the wall's top: clear of both, under the eaves)
+        const zp = Math.min(doorH + 30, top - 66);
+        box(26, 34, 0, zp, "#f6f4ee", outline);
+        box(110, 118, 0, zp, "#f6f4ee", outline);
+        poly([[22, zp], [72, zp + 42], [122, zp]], tile[0], outline);
+        poly([[36, zp + 4], [72, zp + 32], [108, zp + 4]], wall);
+        box(22, 122, zp - 6, zp + 2, "#f6f4ee");
       }
       else if (kind === "sorela") { // a stone surround and a top light
         box(4, 126, 0, doorH + 70, tint(plinth[1], 1.1), outline);
