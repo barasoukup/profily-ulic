@@ -39,7 +39,7 @@ export const EN = {
   "Stav": "Existing",
   "Návrh": "Proposal",
   "Opravujete data stavu: táhněte úchyty nebo klikněte na část. Opravené části se označí jako upravené ručně.":
-    "You are correcting the existing data: drag the handles or click a part. Corrected parts are marked as edited by hand.",
+    "You are correcting the existing data: drag the handles or click a part. Corrected parts are marked as edited manually.",
   "Hotovo": "Done",
   "Opravit data": "Correct data",
   "Příčný profil ulice": "Street cross-section",
@@ -237,7 +237,7 @@ export const EN = {
   "otevřená data města": "the city's open data",
   "odhad": "estimate",
   "podle čar na ortofotu": "from road markings on the orthophoto",
-  "upraveno ručně": "edited by hand",
+  "upraveno ručně": "edited manually",
   "Sítě pod zemí": "Underground networks",
   "Přiblížit profil": "Zoom in on the profile",
   "Na nový díl tu není místo: uvolněte ho zúžením nebo smazáním jiného dílu.": "There is no room for a new part: make some by narrowing or deleting another part.",
