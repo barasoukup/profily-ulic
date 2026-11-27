@@ -198,7 +198,7 @@ const BOXED = { fi: fiOrthoAt, us: usOrthoAt, ca: caOrthoAt };
 // orthophotos cover only some towns (Italy, Finland) by their boxes; the others everywhere (a blank photo is found out
 // when it comes). The question is the place's, not the state's (the review of 24. 11. 2026: in Lombardy the kerb model
 // was loaded and the note said "orthophoto" where there is none).
-export const orthoHereAt = (source, lon, lat) => !!source && source !== "none" && (SOURCES[source] || ["de", "be", "pt", "es", "it", ...Object.keys(BOXED)].includes(source)) && (source === "it" ? itOrthoAt(lon, lat).length > 0 : BOXED[source] ? BOXED[source](lon, lat).length > 0 : true);
+export const orthoHereAt = (source, lon, lat) => !!source && source !== "none" && (SOURCES[source] || ["de", "be", "pt", "es", "it", ...Object.keys(BOXED)].includes(source)) && (source === "it" ? itOrthoAt(lon, lat).length > 0 : source === "pt" ? ptKeys(lon, lat).length > 0 : source === "es" ? esKeys(lon, lat).length > 0 : BOXED[source] ? BOXED[source](lon, lat).length > 0 : true);
 // Denmark (Bára 23. 11. 2026): the spring orthophoto of GeoDanmark (Klimadatastyrelsen, "Ortofoto forår", 10–12.5 cm, a
 // new national mosaic each spring) as WMTS tiles in Web Mercator to level 20 (DFD_GoogleMapsCompatible, about 8 cm a pixel
 // in Copenhagen), CORS for the origin asking, free data with credit (evaluation/denmark/ZDROJE.md 1). Only with the app's
