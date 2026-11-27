@@ -218,3 +218,21 @@ test("errors.js zná všechny jazyky", async () => {
   const list = /var LANGS = "([^"]+)"/.exec(errors)[1].split(" ").sort();
   assert.deepEqual(list, Object.keys(LANGS).sort());
 });
+
+// The list of texts still in English (tools/i18n_add.mjs writes it, i18n_import.mjs empties it): keys there are, in
+// languages there are, each text there still the English one.
+test("seznam nepřeložených textů (locales/_todo.json) sedí", () => {
+  let todo = {};
+  try { todo = JSON.parse(fs.readFileSync(new URL("locales/_todo.json", DIR), "utf8")); } catch (e) { if (e.code !== "ENOENT") throw e; }
+  for (const [l, keys] of Object.entries(todo)) {
+    assert.ok(l in L && !["cs", "en"].includes(l), l);
+    for (const k of keys) assert.equal(L[l][k], EN[k], `${l}: ${k}`);
+  }
+});
+
+test("tabulka pro rodilé mluvčí: CSV tam a zpět", async () => {
+  const { toCsv, fromCsv } = await import("../tools/i18n_lib.mjs");
+  const rows = [["key", "cs", "pl"], ["a.b", 'Ahoj, "světe"\nřádek', "Cześć"], ["c.d", "", "x;y"]];
+  assert.deepEqual(fromCsv(toCsv(rows)), rows.map((r) => r.map((v) => v)));
+  assert.deepEqual(fromCsv('key;pl\r\na.b;"x;""y"""\r\n'), [["key", "pl"], ["a.b", 'x;"y"']]);
+});
