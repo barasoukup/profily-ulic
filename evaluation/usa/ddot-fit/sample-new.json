@@ -4,17 +4,17 @@
   "country": "US",
   "town": "washington",
   "kind": "residential",
-  "name": "4th Street Northwest",
+  "name": "14th Place Northeast",
   "highway": "residential",
-  "wayId": 357223743,
-  "lat": 38.9128478,
-  "lon": -77.0161707,
-  "bearing": 0.3,
+  "wayId": 6062709,
+  "lat": 38.8936632,
+  "lon": -76.9845733,
+  "bearing": -0.3,
   "inv": {
-   "oid": 11458322,
+   "oid": 11471072,
    "park": 2,
-   "lanes": 2,
-   "w": 32
+   "lanes": 1,
+   "width": 7.3
   }
  },
  {
@@ -22,35 +22,35 @@
   "country": "US",
   "town": "washington",
   "kind": "residential",
-  "name": "7th Street Northwest",
+  "name": "Holbrook Terrace Northeast",
   "highway": "residential",
-  "wayId": 6055604,
-  "lat": 38.9535804,
-  "lon": -77.0221786,
-  "bearing": -1.7,
+  "wayId": 553575448,
+  "lat": 38.9082246,
+  "lon": -76.9881858,
+  "bearing": 121.5,
   "inv": {
-   "oid": 11460033,
+   "oid": 11473986,
    "park": 2,
    "lanes": 2,
-   "w": 32
+   "width": 6
   }
  },
  {
   "id": "df-3",
   "country": "US",
   "town": "washington",
-  "kind": "residential",
-  "name": "8th Street Northwest",
-  "highway": "residential",
-  "wayId": 1354309304,
-  "lat": 38.9490516,
-  "lon": -77.023691,
-  "bearing": -1.7,
+  "kind": "secondary",
+  "name": "Cleveland Avenue Northwest",
+  "highway": "secondary",
+  "wayId": 203671710,
+  "lat": 38.925801,
+  "lon": -77.0610354,
+  "bearing": 134.6,
   "inv": {
-   "oid": 11460206,
+   "oid": 11463407,
    "park": 2,
    "lanes": 2,
-   "w": 32
+   "width": 6.8
   }
  },
  {
@@ -58,17 +58,17 @@
   "country": "US",
   "town": "washington",
   "kind": "tertiary",
-  "name": "12th Street Northwest",
+  "name": "Maryland Avenue Northeast",
   "highway": "tertiary",
-  "wayId": 397317311,
-  "lat": 38.890982,
-  "lon": -77.028191,
-  "bearing": 179.9,
+  "wayId": 271115526,
+  "lat": 38.8914795,
+  "lon": -77.0047501,
+  "bearing": 59.8,
   "inv": {
-   "oid": 11460480,
+   "oid": 11474602,
    "park": 2,
    "lanes": 1,
-   "w": 24
+   "width": 6.7
   }
  },
  {
@@ -76,35 +76,35 @@
   "country": "US",
   "town": "washington",
   "kind": "residential",
-  "name": "12th Street Northwest",
+  "name": "Riggs Place Northwest",
   "highway": "residential",
-  "wayId": 6061442,
-  "lat": 38.9852305,
-  "lon": -77.0285285,
-  "bearing": 20.3,
+  "wayId": 353283887,
+  "lat": 38.9133723,
+  "lon": -77.0425381,
+  "bearing": 90.2,
   "inv": {
-   "oid": 11460518,
+   "oid": 11468325,
    "park": 2,
-   "lanes": 2,
-   "w": 34
+   "lanes": 1,
+   "width": 7.3
   }
  },
  {
   "id": "df-6",
   "country": "US",
   "town": "washington",
-  "kind": "tertiary",
-  "name": "14th Street Northwest",
-  "highway": "tertiary",
-  "wayId": 71449615,
-  "lat": 38.9808546,
-  "lon": -77.0334145,
-  "bearing": -0.2,
+  "kind": "residential",
+  "name": "49th Place Northeast",
+  "highway": "residential",
+  "wayId": 52050890,
+  "lat": 38.8958888,
+  "lon": -76.9320846,
+  "bearing": 167.6,
   "inv": {
-   "oid": 11460817,
+   "oid": 11471809,
    "park": 2,
-   "lanes": 2,
-   "w": 36
+   "lanes": 1,
+   "width": 6.9
   }
  },
  {
@@ -112,17 +112,17 @@
   "country": "US",
   "town": "washington",
   "kind": "residential",
-  "name": "37th Street Northwest",
+  "name": "Orleans Place Northeast",
   "highway": "residential",
-  "wayId": 6062143,
-  "lat": 38.9371022,
-  "lon": -77.0724099,
-  "bearing": -0.1,
+  "wayId": 6063401,
+  "lat": 38.9049759,
+  "lon": -76.9964397,
+  "bearing": -90,
   "inv": {
-   "oid": 11461978,
+   "oid": 11475136,
    "park": 2,
-   "lanes": 2,
-   "w": 32
+   "lanes": 1,
+   "width": 7.2
   }
  },
  {
@@ -130,17 +130,17 @@
   "country": "US",
   "town": "washington",
   "kind": "residential",
-  "name": "Benton Street Northwest",
+  "name": "Taussig Place Northeast",
   "highway": "residential",
-  "wayId": 6056993,
-  "lat": 38.9210734,
-  "lon": -77.0808028,
-  "bearing": -3.9,
+  "wayId": 6061463,
+  "lat": 38.9412682,
+  "lon": -76.990444,
+  "bearing": 89.8,
   "inv": {
-   "oid": 11462166,
+   "oid": 11475770,
    "park": 2,
-   "lanes": 2,
-   "w": 32
+   "lanes": 1,
+   "width": 7.2
   }
  },
  {
@@ -148,17 +148,17 @@
   "country": "US",
   "town": "washington",
   "kind": "residential",
-  "name": "52nd Street Northwest",
+  "name": "McLean Place Northeast",
   "highway": "residential",
-  "wayId": 6058397,
-  "lat": 38.9440654,
-  "lon": -77.1029786,
-  "bearing": 0.2,
+  "wayId": 321002335,
+  "lat": 38.9633454,
+  "lon": -77.0058881,
+  "bearing": -0.6,
   "inv": {
-   "oid": 11462486,
+   "oid": 11474629,
    "park": 2,
    "lanes": 2,
-   "w": 32
+   "width": 5.8
   }
  },
  {
@@ -166,35 +166,35 @@
   "country": "US",
   "town": "washington",
   "kind": "residential",
-  "name": "52nd Street Northwest",
+  "name": "Oakview Terrace Northeast",
   "highway": "residential",
-  "wayId": 1365428487,
-  "lat": 38.9402151,
-  "lon": -77.1024563,
-  "bearing": -12.4,
+  "wayId": 6053549,
+  "lat": 38.9359397,
+  "lon": -76.9899155,
+  "bearing": 7.1,
   "inv": {
-   "oid": 11462489,
+   "oid": 11475066,
    "park": 2,
-   "lanes": 2,
-   "w": 36
+   "lanes": 1,
+   "width": 7.2
   }
  },
  {
   "id": "df-11",
   "country": "US",
   "town": "washington",
-  "kind": "residential",
-  "name": "Butterworth Place Northwest",
-  "highway": "residential",
-  "wayId": 117131130,
-  "lat": 38.9488082,
-  "lon": -77.0941816,
-  "bearing": -89.8,
+  "kind": "tertiary",
+  "name": "Kansas Avenue Northwest",
+  "highway": "tertiary",
+  "wayId": 1365012385,
+  "lat": 38.959691,
+  "lon": -77.0127133,
+  "bearing": 31.4,
   "inv": {
-   "oid": 11463105,
+   "oid": 11465608,
    "park": 2,
    "lanes": 2,
-   "w": 32
+   "width": 6.9
   }
  },
  {
@@ -202,17 +202,17 @@
   "country": "US",
   "town": "washington",
   "kind": "residential",
-  "name": "Chesapeake Street Northwest",
+  "name": "Rosedale Street Northeast",
   "highway": "residential",
-  "wayId": 1160245538,
-  "lat": 38.9510383,
-  "lon": -77.0810632,
-  "bearing": -90,
+  "wayId": 1504769229,
+  "lat": 38.896194,
+  "lon": -76.9750949,
+  "bearing": 12.7,
   "inv": {
-   "oid": 11463303,
+   "oid": 11475511,
    "park": 2,
-   "lanes": 2,
-   "w": 32
+   "lanes": 1,
+   "width": 4.2
   }
  },
  {
@@ -220,17 +220,17 @@
   "country": "US",
   "town": "washington",
   "kind": "residential",
-  "name": "Davenport Street Northwest",
+  "name": "Corcoran Street Northwest",
   "highway": "residential",
-  "wayId": 6060558,
-  "lat": 38.9521163,
-  "lon": -77.0889047,
-  "bearing": -90,
+  "wayId": 6058518,
+  "lat": 38.9118768,
+  "lon": -77.0374257,
+  "bearing": 89.7,
   "inv": {
-   "oid": 11463754,
+   "oid": 11463624,
    "park": 2,
-   "lanes": 2,
-   "w": 32
+   "lanes": 1,
+   "width": 7.3
   }
  },
  {
@@ -238,35 +238,35 @@
   "country": "US",
   "town": "washington",
   "kind": "residential",
-  "name": "Fordham Road Northwest",
+  "name": "Crittenden Street Northeast",
   "highway": "residential",
-  "wayId": 918535993,
-  "lat": 38.9369685,
-  "lon": -77.1007263,
-  "bearing": 11.1,
+  "wayId": 6053624,
+  "lat": 38.9472976,
+  "lon": -76.9950751,
+  "bearing": 89.7,
   "inv": {
-   "oid": 11464381,
+   "oid": 11472825,
    "park": 2,
    "lanes": 2,
-   "w": 32
+   "width": 6.9
   }
  },
  {
   "id": "df-15",
   "country": "US",
   "town": "washington",
-  "kind": "residential",
-  "name": "Fulton Street Northwest",
-  "highway": "residential",
-  "wayId": 506705171,
-  "lat": 38.9261927,
-  "lon": -77.0738704,
-  "bearing": -90,
+  "kind": "unclassified",
+  "name": "",
+  "highway": "unclassified",
+  "wayId": 6051761,
+  "lat": 38.8659642,
+  "lon": -76.9906007,
+  "bearing": -53.7,
   "inv": {
-   "oid": 11464486,
+   "oid": 11480222,
    "park": 2,
    "lanes": 2,
-   "w": 32
+   "width": 7.3
   }
  },
  {
@@ -274,17 +274,17 @@
   "country": "US",
   "town": "washington",
   "kind": "residential",
-  "name": "Hemlock Street Northwest",
+  "name": "Quebec Place Northwest",
   "highway": "residential",
-  "wayId": 1504595244,
-  "lat": 38.98159,
-  "lon": -77.0234961,
-  "bearing": -154.2,
+  "wayId": 6055421,
+  "lat": 38.9368774,
+  "lon": -77.0294419,
+  "bearing": 85.6,
   "inv": {
-   "oid": 11465024,
+   "oid": 11467999,
    "park": 2,
-   "lanes": 2,
-   "w": 34
+   "lanes": 1,
+   "width": 7.3
   }
  },
  {
@@ -292,17 +292,17 @@
   "country": "US",
   "town": "washington",
   "kind": "residential",
-  "name": "Macomb Street Northwest",
+  "name": "Baldwin Crescent Northeast",
   "highway": "residential",
-  "wayId": 6062640,
-  "lat": 38.9335354,
-  "lon": -77.1042224,
-  "bearing": -117.6,
+  "wayId": 357529714,
+  "lat": 38.9234817,
+  "lon": -76.9566379,
+  "bearing": -146.3,
   "inv": {
-   "oid": 11466231,
+   "oid": 11472288,
    "park": 2,
    "lanes": 2,
-   "w": 32
+   "width": 7
   }
  },
  {
@@ -310,17 +310,17 @@
   "country": "US",
   "town": "washington",
   "kind": "residential",
-  "name": "Meridian Place Northwest",
+  "name": "Tewkesbury Place Northwest",
   "highway": "residential",
-  "wayId": 6061240,
-  "lat": 38.9331761,
-  "lon": -77.0314047,
-  "bearing": -89.9,
+  "wayId": 6054318,
+  "lat": 38.9679414,
+  "lon": -77.023346,
+  "bearing": 89.9,
   "inv": {
-   "oid": 11466526,
+   "oid": 11468925,
    "park": 2,
-   "lanes": 2,
-   "w": 32
+   "lanes": 1,
+   "width": 7.2
   }
  },
  {
@@ -328,17 +328,17 @@
   "country": "US",
   "town": "washington",
   "kind": "residential",
-  "name": "Rittenhouse Street Northwest",
+  "name": "Gales Street Northeast",
   "highway": "residential",
-  "wayId": 1340792732,
-  "lat": 38.9649596,
-  "lon": -77.0179371,
-  "bearing": -90,
+  "wayId": 6062336,
+  "lat": 38.898771,
+  "lon": -76.9834009,
+  "bearing": 102.9,
   "inv": {
-   "oid": 11468253,
+   "oid": 11473657,
    "park": 2,
-   "lanes": 2,
-   "w": 32
+   "lanes": 1,
+   "width": 7.3
   }
  },
  {
@@ -346,17 +346,17 @@
   "country": "US",
   "town": "washington",
   "kind": "residential",
-  "name": "Upton Street Northwest",
+  "name": "Camden Street Southeast",
   "highway": "residential",
-  "wayId": 1329125928,
-  "lat": 38.94206,
-  "lon": -77.0616219,
-  "bearing": -90,
+  "wayId": 345713230,
+  "lat": 38.8594272,
+  "lon": -76.959039,
+  "bearing": 90,
   "inv": {
-   "oid": 11469303,
+   "oid": 11478001,
    "park": 2,
    "lanes": 2,
-   "w": 32
+   "width": 5.3
   }
  },
  {
@@ -364,35 +364,35 @@
   "country": "US",
   "town": "washington",
   "kind": "residential",
-  "name": "7th Street Northeast",
+  "name": "Gresham Place Northwest",
   "highway": "residential",
-  "wayId": 1257795577,
-  "lat": 38.9493726,
-  "lon": -76.9970295,
-  "bearing": 24.7,
+  "wayId": 6054390,
+  "lat": 38.9268746,
+  "lon": -77.0217734,
+  "bearing": -96.8,
   "inv": {
-   "oid": 11470516,
+   "oid": 11464847,
    "park": 2,
-   "lanes": 2,
-   "w": 32
+   "lanes": 1,
+   "width": 7.1
   }
  },
  {
   "id": "df-22",
   "country": "US",
   "town": "washington",
-  "kind": "secondary",
-  "name": "17th Street Northeast",
-  "highway": "secondary",
-  "wayId": 589905491,
-  "lat": 38.8951571,
-  "lon": -76.9807658,
-  "bearing": -177.5,
+  "kind": "residential",
+  "name": "Blair Road Northeast",
+  "highway": "residential",
+  "wayId": 961639954,
+  "lat": 38.9567502,
+  "lon": -77.0077298,
+  "bearing": -20.5,
   "inv": {
-   "oid": 11471195,
+   "oid": 11472470,
    "park": 2,
-   "lanes": 2,
-   "w": 36
+   "lanes": 1,
+   "width": 7.2
   }
  },
  {
@@ -400,17 +400,17 @@
   "country": "US",
   "town": "washington",
   "kind": "residential",
-  "name": "Channing Street Northeast",
+  "name": "Quincy Street Northeast",
   "highway": "residential",
-  "wayId": 6057333,
-  "lat": 38.9223803,
-  "lon": -77.0088632,
-  "bearing": -90,
+  "wayId": 6058855,
+  "lat": 38.9372422,
+  "lon": -76.9740819,
+  "bearing": 90,
   "inv": {
-   "oid": 11472704,
+   "oid": 11475325,
    "park": 2,
    "lanes": 2,
-   "w": 32
+   "width": 4.5
   }
  },
  {
@@ -418,17 +418,17 @@
   "country": "US",
   "town": "washington",
   "kind": "residential",
-  "name": "Chillum Place Northeast",
+  "name": "Quackenbos Street Northeast",
   "highway": "residential",
-  "wayId": 6061777,
-  "lat": 38.9574588,
-  "lon": -76.9992453,
-  "bearing": 138.9,
+  "wayId": 376242126,
+  "lat": 38.9637765,
+  "lon": -77.0026485,
+  "bearing": 90,
   "inv": {
-   "oid": 11472737,
+   "oid": 11475265,
    "park": 2,
    "lanes": 2,
-   "w": 34
+   "width": 7.4
   }
  },
  {
@@ -436,17 +436,17 @@
   "country": "US",
   "town": "washington",
   "kind": "residential",
-  "name": "G Street Northeast",
+  "name": "Otis Place Northwest",
   "highway": "residential",
-  "wayId": 708853143,
-  "lat": 38.898917,
-  "lon": -76.9885669,
-  "bearing": -90.2,
+  "wayId": 6060812,
+  "lat": 38.9341435,
+  "lon": -77.0244361,
+  "bearing": -96.7,
   "inv": {
-   "oid": 11473534,
+   "oid": 11467444,
    "park": 2,
    "lanes": 1,
-   "w": 25
+   "width": 7.1
   }
  },
  {
@@ -454,17 +454,17 @@
   "country": "US",
   "town": "washington",
   "kind": "residential",
-  "name": "Jackson Street Northeast",
+  "name": "9th Street Northeast",
   "highway": "residential",
-  "wayId": 6061148,
-  "lat": 38.929873,
-  "lon": -76.9850399,
-  "bearing": 86.3,
+  "wayId": 6057905,
+  "lat": 38.9293698,
+  "lon": -76.9937435,
+  "bearing": -1.9,
   "inv": {
-   "oid": 11474112,
+   "oid": 11470700,
    "park": 2,
-   "lanes": 2,
-   "w": 32
+   "lanes": 3,
+   "width": 6
   }
  },
  {
@@ -472,17 +472,17 @@
   "country": "US",
   "town": "washington",
   "kind": "residential",
-  "name": "Kearny Street Northeast",
+  "name": "Clark Place Northwest",
   "highway": "residential",
-  "wayId": 6058457,
-  "lat": 38.9309274,
-  "lon": -76.9837909,
-  "bearing": 86.3,
+  "wayId": 6061044,
+  "lat": 38.9075214,
+  "lon": -77.0866344,
+  "bearing": 147.4,
   "inv": {
-   "oid": 11474250,
+   "oid": 11463401,
    "park": 2,
    "lanes": 2,
-   "w": 32
+   "width": 5.7
   }
  },
  {
@@ -490,35 +490,35 @@
   "country": "US",
   "town": "washington",
   "kind": "residential",
-  "name": "Kennedy Street Northeast",
+  "name": "Perry Place Northwest",
   "highway": "residential",
-  "wayId": 6062103,
-  "lat": 38.9570999,
-  "lon": -76.9980223,
-  "bearing": 65.5,
+  "wayId": 6055989,
+  "lat": 38.9358848,
+  "lon": -77.0312765,
+  "bearing": 108.8,
   "inv": {
-   "oid": 11474342,
+   "oid": 11467710,
    "park": 2,
-   "lanes": 2,
-   "w": 34
+   "lanes": 1,
+   "width": 7.2
   }
  },
  {
   "id": "df-29",
   "country": "US",
   "town": "washington",
-  "kind": "residential",
-  "name": "Shepherd Street Northeast",
-  "highway": "residential",
-  "wayId": 798374908,
-  "lat": 38.9396573,
-  "lon": -76.9782226,
-  "bearing": 90,
+  "kind": "secondary",
+  "name": "Sherman Avenue Northwest",
+  "highway": "secondary",
+  "wayId": 130788180,
+  "lat": 38.922092,
+  "lon": -77.0253285,
+  "bearing": -3.5,
   "inv": {
-   "oid": 11475570,
-   "park": 2,
+   "oid": 11468736,
+   "park": 3,
    "lanes": 2,
-   "w": 32
+   "width": 6.7
   }
  },
  {
@@ -526,17 +526,17 @@
   "country": "US",
   "town": "washington",
   "kind": "residential",
-  "name": "Staples Street Northeast",
+  "name": "Hemlock Street Northwest",
   "highway": "residential",
-  "wayId": 6057174,
-  "lat": 38.9020341,
-  "lon": -76.9851665,
-  "bearing": 28.7,
+  "wayId": 6061497,
+  "lat": 38.9811863,
+  "lon": -77.0294842,
+  "bearing": 123.7,
   "inv": {
-   "oid": 11475711,
+   "oid": 11465023,
    "park": 2,
    "lanes": 2,
-   "w": 32
+   "width": 6.3
   }
  },
  {
@@ -544,35 +544,35 @@
   "country": "US",
   "town": "washington",
   "kind": "residential",
-  "name": "32nd Street Southeast",
+  "name": "Jocelyn Street Northwest",
   "highway": "residential",
-  "wayId": 6054247,
-  "lat": 38.8623018,
-  "lon": -76.9614908,
-  "bearing": -179.7,
+  "wayId": 507036327,
+  "lat": 38.9596942,
+  "lon": -77.0707119,
+  "bearing": 90.1,
   "inv": {
-   "oid": 11477129,
+   "oid": 11465451,
    "park": 2,
-   "lanes": 2,
-   "w": 32
+   "lanes": 1,
+   "width": 7.2
   }
  },
  {
   "id": "df-32",
   "country": "US",
   "town": "washington",
-  "kind": "residential",
-  "name": "34th Street Southeast",
-  "highway": "residential",
-  "wayId": 875145486,
-  "lat": 38.8845024,
-  "lon": -76.9575196,
-  "bearing": -0.1,
+  "kind": "tertiary",
+  "name": "Massachusetts Avenue Southeast",
+  "highway": "tertiary",
+  "wayId": 237755404,
+  "lat": 38.8872492,
+  "lon": -76.9839232,
+  "bearing": 117.6,
   "inv": {
-   "oid": 11477194,
-   "park": 2,
+   "oid": 11479108,
+   "park": 3,
    "lanes": 2,
-   "w": 34
+   "width": 7.1
   }
  },
  {
@@ -580,17 +580,17 @@
   "country": "US",
   "town": "washington",
   "kind": "residential",
-  "name": "A Street Southeast",
+  "name": "2nd Place Northwest",
   "highway": "residential",
-  "wayId": 6061633,
-  "lat": 38.888476,
-  "lon": -76.9199782,
-  "bearing": 79.1,
+  "wayId": 6055309,
+  "lat": 38.9582281,
+  "lon": -77.0151869,
+  "bearing": -0.4,
   "inv": {
-   "oid": 11477439,
+   "oid": 11458213,
    "park": 2,
-   "lanes": 2,
-   "w": 32
+   "lanes": 1,
+   "width": 7.2
   }
  },
  {
@@ -598,17 +598,17 @@
   "country": "US",
   "town": "washington",
   "kind": "residential",
-  "name": "A Street Southeast",
+  "name": "4th Street Northwest",
   "highway": "residential",
-  "wayId": 6061634,
-  "lat": 38.8886781,
-  "lon": -76.9773718,
-  "bearing": 90,
+  "wayId": 6054057,
+  "lat": 38.9384223,
+  "lon": -77.0169385,
+  "bearing": -1.2,
   "inv": {
-   "oid": 11477445,
-   "park": 2,
-   "lanes": 2,
-   "w": 32
+   "oid": 11458372,
+   "park": 4,
+   "lanes": 1,
+   "width": 6.4
   }
  },
  {
@@ -616,17 +616,17 @@
   "country": "US",
   "town": "washington",
   "kind": "residential",
-  "name": "Adrian Street Southeast",
+  "name": "Livingston Street Northwest",
   "highway": "residential",
-  "wayId": 6054687,
-  "lat": 38.8784298,
-  "lon": -76.9432404,
-  "bearing": 146.9,
+  "wayId": 6058927,
+  "lat": 38.9631,
+  "lon": -77.074333,
+  "bearing": -89.8,
   "inv": {
-   "oid": 11477460,
+   "oid": 11465968,
    "park": 2,
    "lanes": 2,
-   "w": 34
+   "width": 4.5
   }
  },
  {
@@ -634,17 +634,17 @@
   "country": "US",
   "town": "washington",
   "kind": "residential",
-  "name": "Cedar Street Southeast",
+  "name": "Isherwood Street Northeast",
   "highway": "residential",
-  "wayId": 6061898,
-  "lat": 38.8616501,
-  "lon": -76.9856428,
-  "bearing": -32.4,
+  "wayId": 6055239,
+  "lat": 38.8954708,
+  "lon": -76.9835362,
+  "bearing": 90,
   "inv": {
-   "oid": 11478038,
+   "oid": 11474091,
    "park": 2,
-   "lanes": 2,
-   "w": 32
+   "lanes": 1,
+   "width": 7.3
   }
  },
  {
@@ -652,17 +652,17 @@
   "country": "US",
   "town": "washington",
   "kind": "residential",
-  "name": "Pomeroy Road Southeast",
+  "name": "Ritchie Place Northeast",
   "highway": "residential",
-  "wayId": 590598880,
-  "lat": 38.8603144,
-  "lon": -76.9836677,
-  "bearing": 179.2,
+  "wayId": 6056976,
+  "lat": 38.9389869,
+  "lon": -76.9860594,
+  "bearing": 90.3,
   "inv": {
-   "oid": 11479509,
+   "oid": 11475483,
    "park": 2,
-   "lanes": 2,
-   "w": 36
+   "lanes": 1,
+   "width": 7.1
   }
  },
  {
@@ -670,17 +670,17 @@
   "country": "US",
   "town": "washington",
   "kind": "residential",
-  "name": "Shippen Lane Southeast",
+  "name": "Observatory Place Northwest",
   "highway": "residential",
-  "wayId": 6057609,
-  "lat": 38.8492112,
-  "lon": -76.9817562,
-  "bearing": 94.9,
+  "wayId": 6058621,
+  "lat": 38.9216551,
+  "lon": -77.0751783,
+  "bearing": -24.6,
   "inv": {
-   "oid": 11479756,
+   "oid": 11467303,
    "park": 2,
    "lanes": 1,
-   "w": 24
+   "width": 3.6
   }
  },
  {
@@ -688,35 +688,35 @@
   "country": "US",
   "town": "washington",
   "kind": "residential",
-  "name": "Young Street Southeast",
+  "name": "9th Street Northeast",
   "highway": "residential",
-  "wayId": 1528489021,
-  "lat": 38.8732256,
-  "lon": -76.9763411,
-  "bearing": 179.4,
+  "wayId": 6057905,
+  "lat": 38.9282129,
+  "lon": -76.9937308,
+  "bearing": -3.7,
   "inv": {
-   "oid": 11480386,
+   "oid": 11470713,
    "park": 2,
-   "lanes": 2,
-   "w": 32
+   "lanes": 3,
+   "width": 6.4
   }
  },
  {
   "id": "df-40",
   "country": "US",
   "town": "washington",
-  "kind": "residential",
-  "name": "Yuma Street Southeast",
-  "highway": "residential",
-  "wayId": 6054712,
-  "lat": 38.8319963,
-  "lon": -76.9943193,
-  "bearing": 90.2,
+  "kind": "tertiary",
+  "name": "3rd Street Northwest",
+  "highway": "tertiary",
+  "wayId": 712373882,
+  "lat": 38.9009041,
+  "lon": -77.0151767,
+  "bearing": 0.7,
   "inv": {
-   "oid": 11480391,
+   "oid": 11458275,
    "park": 2,
    "lanes": 2,
-   "w": 34
+   "width": 7
   }
  },
  {
@@ -724,2105 +724,35 @@
   "country": "US",
   "town": "washington",
   "kind": "residential",
-  "name": "9th Street Northwest",
+  "name": "Holmead Place Northwest",
   "highway": "residential",
-  "wayId": 87150526,
-  "lat": 38.9513047,
-  "lon": -77.0255214,
-  "bearing": -1.7,
+  "wayId": 484895399,
+  "lat": 38.9320762,
+  "lon": -77.0308715,
+  "bearing": 0,
   "inv": {
-   "oid": 11460223,
+   "oid": 11465118,
    "park": 2,
    "lanes": 2,
-   "w": 32
+   "width": 5.3
   }
  },
  {
   "id": "df-42",
   "country": "US",
   "town": "washington",
-  "kind": "secondary",
-  "name": "17th Street Northwest",
-  "highway": "secondary",
-  "wayId": 1111546584,
-  "lat": 38.9128188,
-  "lon": -77.0384858,
-  "bearing": -179.3,
-  "inv": {
-   "oid": 11461153,
-   "park": 2,
-   "lanes": 1,
-   "w": 26
-  }
- },
- {
-  "id": "df-43",
-  "country": "US",
-  "town": "washington",
-  "kind": "secondary",
-  "name": "17th Street Northwest",
-  "highway": "secondary",
-  "wayId": 130444170,
-  "lat": 38.910905,
-  "lon": -77.03849,
-  "bearing": 180,
-  "inv": {
-   "oid": 11461158,
-   "park": 2,
-   "lanes": 1,
-   "w": 26
-  }
- },
- {
-  "id": "df-44",
-  "country": "US",
-  "town": "washington",
-  "kind": "residential",
-  "name": "19th Street Northwest",
-  "highway": "residential",
-  "wayId": 6058087,
-  "lat": 38.9301424,
-  "lon": -77.0430203,
-  "bearing": -34.8,
-  "inv": {
-   "oid": 11461281,
-   "park": 2,
-   "lanes": 2,
-   "w": 32
-  }
- },
- {
-  "id": "df-45",
-  "country": "US",
-  "town": "washington",
-  "kind": "secondary",
-  "name": "19th Street Northwest",
-  "highway": "secondary",
-  "wayId": 130889759,
-  "lat": 38.9063812,
-  "lon": -77.0434507,
-  "bearing": 179.6,
-  "inv": {
-   "oid": 11461294,
-   "park": 2,
-   "lanes": 1,
-   "w": 30
-  }
- },
- {
-  "id": "df-46",
-  "country": "US",
-  "town": "washington",
-  "kind": "residential",
-  "name": "Biltmore Street Northwest",
-  "highway": "residential",
-  "wayId": 130927004,
-  "lat": 38.9223367,
-  "lon": -77.0445724,
-  "bearing": 90.1,
-  "inv": {
-   "oid": 11462877,
-   "park": 2,
-   "lanes": 2,
-   "w": 32
-  }
- },
- {
-  "id": "df-47",
-  "country": "US",
-  "town": "washington",
-  "kind": "residential",
-  "name": "Brandywine Street Northwest",
-  "highway": "residential",
-  "wayId": 276679655,
-  "lat": 38.949697,
-  "lon": -77.0821451,
-  "bearing": -90,
-  "inv": {
-   "oid": 11462962,
-   "park": 2,
-   "lanes": 2,
-   "w": 32
-  }
- },
- {
-  "id": "df-48",
-  "country": "US",
-  "town": "washington",
-  "kind": "tertiary",
-  "name": "Brandywine Street Northwest",
-  "highway": "tertiary",
-  "wayId": 6063258,
-  "lat": 38.9504799,
-  "lon": -77.0537392,
-  "bearing": -93.1,
-  "inv": {
-   "oid": 11462977,
-   "park": 2,
-   "lanes": 2,
-   "w": 32
-  }
- },
- {
-  "id": "df-49",
-  "country": "US",
-  "town": "washington",
-  "kind": "residential",
-  "name": "Harrison Street Northwest",
-  "highway": "residential",
-  "wayId": 6055573,
-  "lat": 38.9570313,
-  "lon": -77.0792871,
-  "bearing": -89.9,
-  "inv": {
-   "oid": 11464956,
-   "park": 2,
-   "lanes": 2,
-   "w": 32
-  }
- },
- {
-  "id": "df-50",
-  "country": "US",
-  "town": "washington",
-  "kind": "tertiary",
-  "name": "Kalmia Road Northwest",
-  "highway": "tertiary",
-  "wayId": 105742485,
-  "lat": 38.9858847,
-  "lon": -77.0397848,
-  "bearing": -119,
-  "inv": {
-   "oid": 11465550,
-   "park": 2,
-   "lanes": 2,
-   "w": 32
-  }
- },
- {
-  "id": "df-51",
-  "country": "US",
-  "town": "washington",
-  "kind": "residential",
-  "name": "Murdock Mill Road Northwest",
-  "highway": "residential",
-  "wayId": 6058884,
-  "lat": 38.9485905,
-  "lon": -77.0861203,
-  "bearing": 101,
-  "inv": {
-   "oid": 11466741,
-   "park": 2,
-   "lanes": 1,
-   "w": 24
-  }
- },
- {
-  "id": "df-52",
-  "country": "US",
-  "town": "washington",
-  "kind": "residential",
-  "name": "Oglethorpe Street Northwest",
-  "highway": "residential",
-  "wayId": 6063464,
-  "lat": 38.9615309,
-  "lon": -77.0356347,
-  "bearing": -90.7,
-  "inv": {
-   "oid": 11467324,
-   "park": 2,
-   "lanes": 2,
-   "w": 32
-  }
- },
- {
-  "id": "df-53",
-  "country": "US",
-  "town": "washington",
-  "kind": "residential",
-  "name": "Riggs Place Northwest",
-  "highway": "residential",
-  "wayId": 6057566,
-  "lat": 38.9133595,
-  "lon": -77.0368389,
-  "bearing": -90,
-  "inv": {
-   "oid": 11468323,
-   "park": 2,
-   "lanes": 2,
-   "w": 32
-  }
- },
- {
-  "id": "df-54",
-  "country": "US",
-  "town": "washington",
-  "kind": "residential",
-  "name": "Underwood Street Northwest",
-  "highway": "residential",
-  "wayId": 553575479,
-  "lat": 38.9686414,
-  "lon": -77.0243322,
-  "bearing": -90,
-  "inv": {
-   "oid": 11469209,
-   "park": 2,
-   "lanes": 1,
-   "w": 30
-  }
- },
- {
-  "id": "df-55",
-  "country": "US",
-  "town": "washington",
-  "kind": "residential",
-  "name": "Veazey Street Northwest",
-  "highway": "residential",
-  "wayId": 1457534881,
-  "lat": 38.94398,
-  "lon": -77.073765,
-  "bearing": -89.9,
-  "inv": {
-   "oid": 11469514,
-   "park": 2,
-   "lanes": 2,
-   "w": 32
-  }
- },
- {
-  "id": "df-56",
-  "country": "US",
-  "town": "washington",
-  "kind": "residential",
-  "name": "21st Street Northeast",
-  "highway": "residential",
-  "wayId": 124129569,
-  "lat": 38.9032068,
-  "lon": -76.9741739,
-  "bearing": 180,
-  "inv": {
-   "oid": 11471467,
-   "park": 2,
-   "lanes": 1,
-   "w": 32
-  }
- },
- {
-  "id": "df-57",
-  "country": "US",
-  "town": "washington",
-  "kind": "residential",
-  "name": "Albert Irvin Cassell Place Northeast",
-  "highway": "residential",
-  "wayId": 601402994,
-  "lat": 38.9010391,
-  "lon": -76.9490943,
-  "bearing": 134.8,
-  "inv": {
-   "oid": 11472156,
-   "park": 2,
-   "lanes": 2,
-   "w": 32
-  }
- },
- {
-  "id": "df-58",
-  "country": "US",
-  "town": "washington",
-  "kind": "residential",
-  "name": "Albert Irvin Cassell Place Northeast",
-  "highway": "residential",
-  "wayId": 601402994,
-  "lat": 38.9019925,
-  "lon": -76.9503238,
-  "bearing": 134.8,
-  "inv": {
-   "oid": 11472158,
-   "park": 2,
-   "lanes": 2,
-   "w": 32
-  }
- },
- {
-  "id": "df-59",
-  "country": "US",
-  "town": "washington",
-  "kind": "residential",
-  "name": "Douglas Street Northeast",
-  "highway": "residential",
-  "wayId": 6061036,
-  "lat": 38.9228602,
-  "lon": -76.9828712,
-  "bearing": 41.4,
-  "inv": {
-   "oid": 11473104,
-   "park": 2,
-   "lanes": 2,
-   "w": 32
-  }
- },
- {
-  "id": "df-60",
-  "country": "US",
-  "town": "washington",
-  "kind": "residential",
-  "name": "E Street Northeast",
-  "highway": "residential",
-  "wayId": 553595588,
-  "lat": 38.8961219,
-  "lon": -76.9798407,
-  "bearing": 90.3,
-  "inv": {
-   "oid": 11473160,
-   "park": 3,
-   "lanes": 1,
-   "w": 32
-  }
- },
- {
-  "id": "df-61",
-  "country": "US",
-  "town": "washington",
-  "kind": "residential",
-  "name": "Edgewood Street Northeast",
-  "highway": "residential",
-  "wayId": 6053823,
-  "lat": 38.9250509,
-  "lon": -76.9962648,
-  "bearing": 35.8,
-  "inv": {
-   "oid": 11473228,
-   "park": 2,
-   "lanes": 2,
-   "w": 36
-  }
- },
- {
-  "id": "df-62",
-  "country": "US",
-  "town": "washington",
-  "kind": "residential",
-  "name": "Faraday Place Northeast",
-  "highway": "residential",
-  "wayId": 6057651,
-  "lat": 38.9510511,
-  "lon": -76.9950767,
-  "bearing": 44.7,
-  "inv": {
-   "oid": 11473337,
-   "park": 2,
-   "lanes": 2,
-   "w": 34
-  }
- },
- {
-  "id": "df-63",
-  "country": "US",
-  "town": "washington",
-  "kind": "residential",
-  "name": "Kearny Street Northeast",
-  "highway": "residential",
-  "wayId": 683953541,
-  "lat": 38.9311203,
-  "lon": -76.9722719,
-  "bearing": -84.8,
-  "inv": {
-   "oid": 11474133,
-   "park": 2,
-   "lanes": 2,
-   "w": 32
-  }
- },
- {
-  "id": "df-64",
-  "country": "US",
-  "town": "washington",
-  "kind": "residential",
-  "name": "Morse Street Northeast",
-  "highway": "residential",
-  "wayId": 6058507,
-  "lat": 38.9036806,
-  "lon": -76.9896429,
-  "bearing": 118.3,
-  "inv": {
-   "oid": 11474853,
-   "park": 2,
-   "lanes": 2,
-   "w": 32
-  }
- },
- {
-  "id": "df-65",
-  "country": "US",
-  "town": "washington",
-  "kind": "residential",
-  "name": "Summit Place Northeast",
-  "highway": "residential",
-  "wayId": 6056666,
-  "lat": 38.9156933,
-  "lon": -77.0050921,
-  "bearing": 0,
-  "inv": {
-   "oid": 11475720,
-   "park": 2,
-   "lanes": 1,
-   "w": 25
-  }
- },
- {
-  "id": "df-66",
-  "country": "US",
-  "town": "washington",
-  "kind": "residential",
-  "name": "3rd Street Southeast",
-  "highway": "residential",
-  "wayId": 6054474,
-  "lat": 38.8272806,
-  "lon": -77.0024228,
-  "bearing": 176.5,
-  "inv": {
-   "oid": 11476182,
-   "park": 2,
-   "lanes": 2,
-   "w": 34
-  }
- },
- {
-  "id": "df-67",
-  "country": "US",
-  "town": "washington",
-  "kind": "residential",
-  "name": "10th Street Southeast",
-  "highway": "residential",
-  "wayId": 6062590,
-  "lat": 38.88301,
-  "lon": -76.9926456,
-  "bearing": 179.8,
-  "inv": {
-   "oid": 11476469,
-   "park": 2,
-   "lanes": 2,
-   "w": 32
-  }
- },
- {
-  "id": "df-68",
-  "country": "US",
-  "town": "washington",
-  "kind": "residential",
-  "name": "33rd Place Southeast",
-  "highway": "residential",
-  "wayId": 6060462,
-  "lat": 38.869004,
-  "lon": -76.9574768,
-  "bearing": 141.9,
-  "inv": {
-   "oid": 11477077,
-   "park": 2,
-   "lanes": 2,
-   "w": 32
-  }
- },
- {
-  "id": "df-69",
-  "country": "US",
-  "town": "washington",
-  "kind": "residential",
-  "name": "52nd Street Southeast",
-  "highway": "residential",
-  "wayId": 6061028,
-  "lat": 38.8894804,
-  "lon": -76.9270968,
-  "bearing": 168.9,
-  "inv": {
-   "oid": 11477351,
-   "park": 2,
-   "lanes": 1,
-   "w": 30
-  }
- },
- {
-  "id": "df-70",
-  "country": "US",
-  "town": "washington",
-  "kind": "residential",
-  "name": "Adrian Street Southeast",
-  "highway": "residential",
-  "wayId": 6054687,
-  "lat": 38.8790667,
-  "lon": -76.943769,
-  "bearing": 147.3,
-  "inv": {
-   "oid": 11477458,
-   "park": 2,
-   "lanes": 2,
-   "w": 34
-  }
- },
- {
-  "id": "df-71",
-  "country": "US",
-  "town": "washington",
-  "kind": "residential",
-  "name": "Bangor Street Southeast",
-  "highway": "residential",
-  "wayId": 132776195,
-  "lat": 38.8616661,
-  "lon": -76.953607,
-  "bearing": 6.9,
-  "inv": {
-   "oid": 11477676,
-   "park": 2,
-   "lanes": 2,
-   "w": 32
-  }
- },
- {
-  "id": "df-72",
-  "country": "US",
-  "town": "washington",
-  "kind": "residential",
-  "name": "Bangor Street Southeast",
-  "highway": "residential",
-  "wayId": 808006203,
-  "lat": 38.8605289,
-  "lon": -76.9875922,
-  "bearing": 89,
-  "inv": {
-   "oid": 11477678,
-   "park": 2,
-   "lanes": 2,
-   "w": 32
-  }
- },
- {
-  "id": "df-73",
-  "country": "US",
-  "town": "washington",
-  "kind": "residential",
-  "name": "Eaton Road Southeast",
-  "highway": "residential",
-  "wayId": 6055847,
-  "lat": 38.8583343,
-  "lon": -76.9963548,
-  "bearing": 130.7,
-  "inv": {
-   "oid": 11478211,
-   "park": 2,
-   "lanes": 1,
-   "w": 24
-  }
- },
- {
-  "id": "df-74",
-  "country": "US",
-  "town": "washington",
-  "kind": "residential",
-  "name": "Fairlawn Avenue Southeast",
-  "highway": "residential",
-  "wayId": 6055415,
-  "lat": 38.8734279,
-  "lon": -76.9780097,
-  "bearing": 58.6,
-  "inv": {
-   "oid": 11478301,
-   "park": 2,
-   "lanes": 1,
-   "w": 29
-  }
- },
- {
-  "id": "df-75",
-  "country": "US",
-  "town": "washington",
-  "kind": "residential",
-  "name": "Fort Dupont Terrace Southeast",
-  "highway": "residential",
-  "wayId": 6062686,
-  "lat": 38.8690571,
-  "lon": -76.9411644,
-  "bearing": -133.7,
-  "inv": {
-   "oid": 11478392,
-   "park": 2,
-   "lanes": 2,
-   "w": 34
-  }
- },
- {
-  "id": "df-76",
-  "country": "US",
-  "town": "washington",
-  "kind": "residential",
-  "name": "H Street Southeast",
-  "highway": "residential",
-  "wayId": 203010876,
-  "lat": 38.8786617,
-  "lon": -76.9317509,
-  "bearing": 90,
-  "inv": {
-   "oid": 11478491,
-   "park": 2,
-   "lanes": 2,
-   "w": 34
-  }
- },
- {
-  "id": "df-77",
-  "country": "US",
-  "town": "washington",
-  "kind": "secondary",
-  "name": "East Capitol Street",
-  "highway": "secondary",
-  "wayId": 1041714183,
-  "lat": 38.8898161,
-  "lon": -77.0017885,
-  "bearing": -89.8,
-  "inv": {
-   "oid": 11481584,
-   "park": 2,
-   "lanes": 2,
-   "w": 36
-  }
- },
- {
-  "id": "df-78",
-  "country": "US",
-  "town": "washington",
-  "kind": "residential",
-  "name": "North Capitol Street",
-  "highway": "residential",
-  "wayId": 367198560,
-  "lat": 38.9698958,
-  "lon": -77.0090453,
-  "bearing": 3.6,
-  "inv": {
-   "oid": 11481765,
-   "park": 2,
-   "lanes": 2,
-   "w": 36
-  }
- },
- {
-  "id": "df-79",
-  "country": "US",
-  "town": "washington",
-  "kind": "residential",
-  "name": "9th Street Northwest",
-  "highway": "residential",
-  "wayId": 1469638411,
-  "lat": 38.9766911,
-  "lon": -77.0256083,
-  "bearing": -0.2,
-  "inv": {
-   "oid": 11460307,
-   "park": 2,
-   "lanes": 2,
-   "w": 32
-  }
- },
- {
-  "id": "df-80",
-  "country": "US",
-  "town": "washington",
-  "kind": "residential",
-  "name": "12th Place Northwest",
-  "highway": "residential",
-  "wayId": 197098397,
-  "lat": 38.9201274,
-  "lon": -77.028831,
-  "bearing": 0.2,
-  "inv": {
-   "oid": 11460436,
-   "park": 2,
-   "lanes": 1,
-   "w": 24
-  }
- },
- {
-  "id": "df-81",
-  "country": "US",
-  "town": "washington",
-  "kind": "residential",
-  "name": "36th Street Northwest",
-  "highway": "residential",
-  "wayId": 6056534,
-  "lat": 38.9062471,
-  "lon": -77.0702819,
-  "bearing": 178.8,
-  "inv": {
-   "oid": 11461807,
-   "park": 2,
-   "lanes": 1,
-   "w": 32
-  }
- },
- {
-  "id": "df-82",
-  "country": "US",
-  "town": "washington",
-  "kind": "residential",
-  "name": "39th Street Northwest",
-  "highway": "residential",
-  "wayId": 6058256,
-  "lat": 38.9288956,
-  "lon": -77.0770511,
-  "bearing": -0.2,
-  "inv": {
-   "oid": 11462081,
-   "park": 2,
-   "lanes": 2,
-   "w": 32
-  }
- },
- {
-  "id": "df-83",
-  "country": "US",
-  "town": "washington",
-  "kind": "residential",
-  "name": "Bates Street Northwest",
-  "highway": "residential",
-  "wayId": 6053519,
-  "lat": 38.910389,
-  "lon": -77.0110355,
-  "bearing": -90.1,
-  "inv": {
-   "oid": 11462786,
-   "park": 2,
-   "lanes": 1,
-   "w": 30
-  }
- },
- {
-  "id": "df-84",
-  "country": "US",
-  "town": "washington",
-  "kind": "residential",
-  "name": "Bellevue Terrace Northwest",
-  "highway": "residential",
-  "wayId": 6060649,
-  "lat": 38.9289129,
-  "lon": -77.075844,
-  "bearing": -0.4,
-  "inv": {
-   "oid": 11462823,
-   "park": 2,
-   "lanes": 2,
-   "w": 32
-  }
- },
- {
-  "id": "df-85",
-  "country": "US",
-  "town": "washington",
-  "kind": "residential",
-  "name": "Belmont Road Northwest",
-  "highway": "residential",
-  "wayId": 392346654,
-  "lat": 38.9205514,
-  "lon": -77.0467294,
-  "bearing": -96.2,
-  "inv": {
-   "oid": 11462830,
-   "park": 2,
-   "lanes": 2,
-   "w": 32
-  }
- },
- {
-  "id": "df-86",
-  "country": "US",
-  "town": "washington",
-  "kind": "residential",
-  "name": "Cathedral Avenue Northwest",
-  "highway": "residential",
-  "wayId": 130907997,
-  "lat": 38.9290195,
-  "lon": -77.0615307,
-  "bearing": -90,
-  "inv": {
-   "oid": 11463248,
-   "park": 2,
-   "lanes": 1,
-   "w": 27
-  }
- },
- {
-  "id": "df-87",
-  "country": "US",
-  "town": "washington",
-  "kind": "residential",
-  "name": "Emerson Street Northwest",
-  "highway": "residential",
-  "wayId": 86982254,
-  "lat": 38.9497892,
-  "lon": -77.0252683,
-  "bearing": -92,
-  "inv": {
-   "oid": 11464104,
-   "park": 2,
-   "lanes": 2,
-   "w": 32
-  }
- },
- {
-  "id": "df-88",
-  "country": "US",
-  "town": "washington",
-  "kind": "tertiary",
-  "name": "Euclid Street Northwest",
-  "highway": "tertiary",
-  "wayId": 6055498,
-  "lat": 38.9240876,
-  "lon": -77.023631,
-  "bearing": 83.5,
-  "inv": {
-   "oid": 11464127,
-   "park": 2,
-   "lanes": 1,
-   "w": 29
-  }
- },
- {
-  "id": "df-89",
-  "country": "US",
-  "town": "washington",
-  "kind": "primary",
-  "name": "Foxhall Road Northwest",
-  "highway": "primary",
-  "wayId": 637495442,
-  "lat": 38.9303998,
-  "lon": -77.0910669,
-  "bearing": -0.2,
-  "inv": {
-   "oid": 11464443,
-   "park": 2,
-   "lanes": 2,
-   "w": 36
-  }
- },
- {
-  "id": "df-90",
-  "country": "US",
-  "town": "washington",
-  "kind": "residential",
-  "name": "Hamilton Street Northwest",
-  "highway": "residential",
-  "wayId": 302630836,
-  "lat": 38.9532403,
-  "lon": -77.0165786,
-  "bearing": -91.9,
-  "inv": {
-   "oid": 11464925,
-   "park": 2,
-   "lanes": 2,
-   "w": 32
-  }
- },
- {
-  "id": "df-91",
-  "country": "US",
-  "town": "washington",
-  "kind": "residential",
-  "name": "Milmarson Place Northwest",
-  "highway": "residential",
-  "wayId": 6057022,
-  "lat": 38.9594534,
-  "lon": -77.0092128,
-  "bearing": 89.8,
-  "inv": {
-   "oid": 11466595,
-   "park": 2,
-   "lanes": 1,
-   "w": 24
-  }
- },
- {
-  "id": "df-92",
-  "country": "US",
-  "town": "washington",
-  "kind": "residential",
-  "name": "Ridge Street Northwest",
-  "highway": "residential",
-  "wayId": 6057096,
-  "lat": 38.9064501,
-  "lon": -77.0162926,
-  "bearing": -88.9,
-  "inv": {
-   "oid": 11468313,
-   "park": 2,
-   "lanes": 2,
-   "w": 32
-  }
- },
- {
-  "id": "df-93",
-  "country": "US",
-  "town": "washington",
-  "kind": "residential",
-  "name": "Rittenhouse Street Northwest",
-  "highway": "residential",
-  "wayId": 1340792732,
-  "lat": 38.9649587,
-  "lon": -77.0195121,
-  "bearing": -90,
-  "inv": {
-   "oid": 11468333,
-   "park": 2,
-   "lanes": 2,
-   "w": 32
-  }
- },
- {
-  "id": "df-94",
-  "country": "US",
-  "town": "washington",
-  "kind": "residential",
-  "name": "T Street Northwest",
-  "highway": "residential",
-  "wayId": 6057055,
-  "lat": 38.9159569,
-  "lon": -77.0169111,
-  "bearing": -93.5,
-  "inv": {
-   "oid": 11468909,
-   "park": 2,
-   "lanes": 2,
-   "w": 32
-  }
- },
- {
-  "id": "df-95",
-  "country": "US",
-  "town": "washington",
-  "kind": "residential",
-  "name": "Tamarack Street Northwest",
-  "highway": "residential",
-  "wayId": 6060001,
-  "lat": 38.9929406,
-  "lon": -77.0395405,
-  "bearing": -54,
-  "inv": {
-   "oid": 11468957,
-   "park": 2,
-   "lanes": 2,
-   "w": 34
-  }
- },
- {
-  "id": "df-96",
-  "country": "US",
-  "town": "washington",
-  "kind": "residential",
-  "name": "U Street Northwest",
-  "highway": "residential",
-  "wayId": 6052183,
-  "lat": 38.9169932,
-  "lon": -77.073205,
-  "bearing": 90.2,
-  "inv": {
-   "oid": 11469159,
-   "park": 2,
-   "lanes": 2,
-   "w": 32
-  }
- },
- {
-  "id": "df-97",
-  "country": "US",
-  "town": "washington",
-  "kind": "residential",
-  "name": "5th Street Northeast",
-  "highway": "residential",
-  "wayId": 352698511,
-  "lat": 38.9196247,
-  "lon": -76.9995218,
-  "bearing": -0.5,
-  "inv": {
-   "oid": 11470480,
-   "park": 2,
-   "lanes": 2,
-   "w": 32
-  }
- },
- {
-  "id": "df-98",
-  "country": "US",
-  "town": "washington",
-  "kind": "residential",
-  "name": "6th Place Northeast",
-  "highway": "residential",
-  "wayId": 6053440,
-  "lat": 38.9476684,
-  "lon": -76.9983044,
-  "bearing": 88.8,
-  "inv": {
-   "oid": 11470562,
-   "park": 2,
-   "lanes": 2,
-   "w": 34
-  }
- },
- {
-  "id": "df-99",
-  "country": "US",
-  "town": "washington",
   "kind": "residential",
   "name": "7th Street Northeast",
   "highway": "residential",
-  "wayId": 1257795577,
-  "lat": 38.9483081,
-  "lon": -76.9970479,
-  "bearing": 0,
+  "wayId": 6055404,
+  "lat": 38.9531655,
+  "lon": -76.9945298,
+  "bearing": -43.2,
   "inv": {
-   "oid": 11470589,
+   "oid": 11470590,
    "park": 2,
    "lanes": 2,
-   "w": 32
-  }
- },
- {
-  "id": "df-100",
-  "country": "US",
-  "town": "washington",
-  "kind": "residential",
-  "name": "17th Street Northeast",
-  "highway": "residential",
-  "wayId": 1502225038,
-  "lat": 38.9269154,
-  "lon": -76.9807364,
-  "bearing": 4.7,
-  "inv": {
-   "oid": 11471219,
-   "park": 2,
-   "lanes": 2,
-   "w": 32
-  }
- },
- {
-  "id": "df-101",
-  "country": "US",
-  "town": "washington",
-  "kind": "residential",
-  "name": "20th Street Northeast",
-  "highway": "residential",
-  "wayId": 132601724,
-  "lat": 38.9336277,
-  "lon": -76.976224,
-  "bearing": 0.2,
-  "inv": {
-   "oid": 11471446,
-   "park": 2,
-   "lanes": 2,
-   "w": 32
-  }
- },
- {
-  "id": "df-102",
-  "country": "US",
-  "town": "washington",
-  "kind": "residential",
-  "name": "Elliott Street Northeast",
-  "highway": "residential",
-  "wayId": 6055521,
-  "lat": 38.8977047,
-  "lon": -76.9865108,
-  "bearing": 179.6,
-  "inv": {
-   "oid": 11473343,
-   "park": 2,
-   "lanes": 1,
-   "w": 24
-  }
- },
- {
-  "id": "df-103",
-  "country": "US",
-  "town": "washington",
-  "kind": "residential",
-  "name": "Hunt Place Northeast",
-  "highway": "residential",
-  "wayId": 6058054,
-  "lat": 38.9006706,
-  "lon": -76.9385036,
-  "bearing": 100.5,
-  "inv": {
-   "oid": 11474005,
-   "park": 2,
-   "lanes": 1,
-   "w": 26
-  }
- },
- {
-  "id": "df-104",
-  "country": "US",
-  "town": "washington",
-  "kind": "residential",
-  "name": "Lyman Place Northeast",
-  "highway": "residential",
-  "wayId": 6057811,
-  "lat": 38.9049796,
-  "lon": -76.9792006,
-  "bearing": -90,
-  "inv": {
-   "oid": 11474525,
-   "park": 2,
-   "lanes": 1,
-   "w": 27
-  }
- },
- {
-  "id": "df-105",
-  "country": "US",
-  "town": "washington",
-  "kind": "residential",
-  "name": "V Street Northeast",
-  "highway": "residential",
-  "wayId": 274573721,
-  "lat": 38.9181121,
-  "lon": -77.0037903,
-  "bearing": 90,
-  "inv": {
-   "oid": 11475836,
-   "park": 2,
-   "lanes": 2,
-   "w": 34
-  }
- },
- {
-  "id": "df-106",
-  "country": "US",
-  "town": "washington",
-  "kind": "residential",
-  "name": "Trinidad Avenue Northeast",
-  "highway": "residential",
-  "wayId": 6054388,
-  "lat": 38.9032198,
-  "lon": -76.9862487,
-  "bearing": 26.3,
-  "inv": {
-   "oid": 11475862,
-   "park": 2,
-   "lanes": 1,
-   "w": 30
-  }
- },
- {
-  "id": "df-107",
-  "country": "US",
-  "town": "washington",
-  "kind": "residential",
-  "name": "2nd Street Southeast",
-  "highway": "residential",
-  "wayId": 131052494,
-  "lat": 38.8825516,
-  "lon": -77.0035198,
-  "bearing": 0,
-  "inv": {
-   "oid": 11476159,
-   "park": 2,
-   "lanes": 1,
-   "w": 30
-  }
- },
- {
-  "id": "df-108",
-  "country": "US",
-  "town": "washington",
-  "kind": "residential",
-  "name": "17th Street Southeast",
-  "highway": "residential",
-  "wayId": 6057339,
-  "lat": 38.856787,
-  "lon": -76.9807917,
-  "bearing": 179.7,
-  "inv": {
-   "oid": 11476800,
-   "park": 2,
-   "lanes": 2,
-   "w": 32
-  }
- },
- {
-  "id": "df-109",
-  "country": "US",
-  "town": "washington",
-  "kind": "residential",
-  "name": "18th Street Southeast",
-  "highway": "residential",
-  "wayId": 589551011,
-  "lat": 38.8842104,
-  "lon": -76.9789991,
-  "bearing": 180,
-  "inv": {
-   "oid": 11476841,
-   "park": 2,
-   "lanes": 2,
-   "w": 32
-  }
- },
- {
-  "id": "df-110",
-  "country": "US",
-  "town": "washington",
-  "kind": "residential",
-  "name": "18th Street Southeast",
-  "highway": "residential",
-  "wayId": 6054956,
-  "lat": 38.8865834,
-  "lon": -76.9789997,
-  "bearing": 180,
-  "inv": {
-   "oid": 11476859,
-   "park": 2,
-   "lanes": 2,
-   "w": 32
-  }
- },
- {
-  "id": "df-111",
-  "country": "US",
-  "town": "washington",
-  "kind": "residential",
-  "name": "46th Street Southeast",
-  "highway": "residential",
-  "wayId": 683245769,
-  "lat": 38.8747615,
-  "lon": -76.9338401,
-  "bearing": 2.5,
-  "inv": {
-   "oid": 11477298,
-   "park": 2,
-   "lanes": 2,
-   "w": 32
-  }
- },
- {
-  "id": "df-112",
-  "country": "US",
-  "town": "washington",
-  "kind": "residential",
-  "name": "51st Street Southeast",
-  "highway": "residential",
-  "wayId": 320991919,
-  "lat": 38.8851023,
-  "lon": -76.9283859,
-  "bearing": -170.1,
-  "inv": {
-   "oid": 11477349,
-   "park": 2,
-   "lanes": 2,
-   "w": 32
-  }
- },
- {
-  "id": "df-113",
-  "country": "US",
-  "town": "washington",
-  "kind": "residential",
-  "name": "Chicago Street Southeast",
-  "highway": "residential",
-  "wayId": 6057443,
-  "lat": 38.8635504,
-  "lon": -76.99111,
-  "bearing": 148,
-  "inv": {
-   "oid": 11478089,
-   "park": 2,
-   "lanes": 2,
-   "w": 32
-  }
- },
- {
-  "id": "df-114",
-  "country": "US",
-  "town": "washington",
-  "kind": "residential",
-  "name": "Denver Street Southeast",
-  "highway": "residential",
-  "wayId": 6061162,
-  "lat": 38.8583623,
-  "lon": -76.9615895,
-  "bearing": 89.8,
-  "inv": {
-   "oid": 11478107,
-   "park": 2,
-   "lanes": 2,
-   "w": 32
-  }
- },
- {
-  "id": "df-115",
-  "country": "US",
-  "town": "washington",
-  "kind": "residential",
-  "name": "Langston Place Southeast",
-  "highway": "residential",
-  "wayId": 6061116,
-  "lat": 38.8564791,
-  "lon": -76.972223,
-  "bearing": -139.7,
-  "inv": {
-   "oid": 11478925,
-   "park": 2,
-   "lanes": 2,
-   "w": 32
-  }
- },
- {
-  "id": "df-116",
-  "country": "US",
-  "town": "washington",
-  "kind": "residential",
-  "name": "R Street Southeast",
-  "highway": "residential",
-  "wayId": 6061199,
-  "lat": 38.8694796,
-  "lon": -76.9648742,
-  "bearing": 90.1,
-  "inv": {
-   "oid": 11479634,
-   "park": 2,
-   "lanes": 2,
-   "w": 34
-  }
- },
- {
-  "id": "df-117",
-  "country": "US",
-  "town": "washington",
-  "kind": "residential",
-  "name": "Galveston Street Southwest",
-  "highway": "residential",
-  "wayId": 6057176,
-  "lat": 38.8236077,
-  "lon": -77.0085671,
-  "bearing": -90,
-  "inv": {
-   "oid": 11480939,
-   "park": 2,
-   "lanes": 1,
-   "w": 28
-  }
- },
- {
-  "id": "df-118",
-  "country": "US",
-  "town": "washington",
-  "kind": "secondary",
-  "name": "East Capitol Street",
-  "highway": "secondary",
-  "wayId": 1041714183,
-  "lat": 38.8898156,
-  "lon": -77.0008068,
-  "bearing": -90.2,
-  "inv": {
-   "oid": 11481630,
-   "park": 2,
-   "lanes": 2,
-   "w": 36
-  }
- },
- {
-  "id": "df-119",
-  "country": "US",
-  "town": "washington",
-  "kind": "secondary",
-  "name": "11th Street Northwest",
-  "highway": "secondary",
-  "wayId": 1561466921,
-  "lat": 38.9157522,
-  "lon": -77.0270395,
-  "bearing": 179.7,
-  "inv": {
-   "oid": 11460457,
-   "park": 2,
-   "lanes": 2,
-   "w": 32
-  }
- },
- {
-  "id": "df-120",
-  "country": "US",
-  "town": "washington",
-  "kind": "tertiary",
-  "name": "17th Street Northwest",
-  "highway": "tertiary",
-  "wayId": 6055550,
-  "lat": 38.9180416,
-  "lon": -77.0384717,
-  "bearing": -179.3,
-  "inv": {
-   "oid": 11461058,
-   "park": 2,
-   "lanes": 1,
-   "w": 23
-  }
- },
- {
-  "id": "df-121",
-  "country": "US",
-  "town": "washington",
-  "kind": "residential",
-  "name": "31st Place Northwest",
-  "highway": "residential",
-  "wayId": 1497212886,
-  "lat": 38.9766025,
-  "lon": -77.05666,
-  "bearing": 44.7,
-  "inv": {
-   "oid": 11461698,
-   "park": 2,
-   "lanes": 1,
-   "w": 31
-  }
- },
- {
-  "id": "df-122",
-  "country": "US",
-  "town": "washington",
-  "kind": "residential",
-  "name": "32nd Street Northwest",
-  "highway": "residential",
-  "wayId": 402264581,
-  "lat": 38.9137841,
-  "lon": -77.0642732,
-  "bearing": 2.9,
-  "inv": {
-   "oid": 11461722,
-   "park": 2,
-   "lanes": 2,
-   "w": 32
-  }
- },
- {
-  "id": "df-123",
-  "country": "US",
-  "town": "washington",
-  "kind": "residential",
-  "name": "32nd Street Northwest",
-  "highway": "residential",
-  "wayId": 6062417,
-  "lat": 38.9486279,
-  "lon": -77.0644324,
-  "bearing": 9.5,
-  "inv": {
-   "oid": 11461732,
-   "park": 2,
-   "lanes": 2,
-   "w": 36
-  }
- },
- {
-  "id": "df-124",
-  "country": "US",
-  "town": "washington",
-  "kind": "residential",
-  "name": "33rd Street Northwest",
-  "highway": "residential",
-  "wayId": 131520244,
-  "lat": 38.9111218,
-  "lon": -77.0661175,
-  "bearing": -0.4,
-  "inv": {
-   "oid": 11461798,
-   "park": 2,
-   "lanes": 1,
-   "w": 26
-  }
- },
- {
-  "id": "df-125",
-  "country": "US",
-  "town": "washington",
-  "kind": "residential",
-  "name": "35th Place Northwest",
-  "highway": "residential",
-  "wayId": 6054436,
-  "lat": 38.9247893,
-  "lon": -77.0698683,
-  "bearing": -0.3,
-  "inv": {
-   "oid": 11461905,
-   "park": 2,
-   "lanes": 1,
-   "w": 26
-  }
- },
- {
-  "id": "df-126",
-  "country": "US",
-  "town": "washington",
-  "kind": "residential",
-  "name": "Farragut Street Northwest",
-  "highway": "residential",
-  "wayId": 87150518,
-  "lat": 38.9508093,
-  "lon": -77.0315023,
-  "bearing": -90,
-  "inv": {
-   "oid": 11464201,
-   "park": 2,
-   "lanes": 2,
-   "w": 32
-  }
- },
- {
-  "id": "df-127",
-  "country": "US",
-  "town": "washington",
-  "kind": "residential",
-  "name": "Floral Street Northwest",
-  "highway": "residential",
-  "wayId": 1504534393,
-  "lat": 38.978698,
-  "lon": -77.0354291,
-  "bearing": -90,
-  "inv": {
-   "oid": 11464299,
-   "park": 2,
-   "lanes": 2,
-   "w": 32
-  }
- },
- {
-  "id": "df-128",
-  "country": "US",
-  "town": "washington",
-  "kind": "residential",
-  "name": "Juniper Street Northwest",
-  "highway": "residential",
-  "wayId": 6057826,
-  "lat": 38.9832224,
-  "lon": -77.0365997,
-  "bearing": 90.3,
-  "inv": {
-   "oid": 11465487,
-   "park": 2,
-   "lanes": 1,
-   "w": 26
-  }
- },
- {
-  "id": "df-129",
-  "country": "US",
-  "town": "washington",
-  "kind": "residential",
-  "name": "Monroe Street Northwest",
-  "highway": "residential",
-  "wayId": 589539514,
-  "lat": 38.932033,
-  "lon": -77.0307249,
-  "bearing": 66.5,
-  "inv": {
-   "oid": 11466647,
-   "park": 2,
-   "lanes": 2,
-   "w": 32
-  }
- },
- {
-  "id": "df-130",
-  "country": "US",
-  "town": "washington",
-  "kind": "tertiary",
-  "name": "Porter Street Northwest",
-  "highway": "tertiary",
-  "wayId": 683425954,
-  "lat": 38.93734,
-  "lon": -77.0688463,
-  "bearing": -90,
-  "inv": {
-   "oid": 11467823,
-   "park": 2,
-   "lanes": 2,
-   "w": 32
-  }
- },
- {
-  "id": "df-131",
-  "country": "US",
-  "town": "washington",
-  "kind": "residential",
-  "name": "S Street Northwest",
-  "highway": "residential",
-  "wayId": 1351544745,
-  "lat": 38.914097,
-  "lon": -77.043376,
-  "bearing": -90,
-  "inv": {
-   "oid": 11468565,
-   "park": 2,
-   "lanes": 2,
-   "w": 32
-  }
- },
- {
-  "id": "df-132",
-  "country": "US",
-  "town": "washington",
-  "kind": "residential",
-  "name": "Webster Street Northwest",
-  "highway": "residential",
-  "wayId": 131520203,
-  "lat": 38.9441871,
-  "lon": -77.0197146,
-  "bearing": -91.9,
-  "inv": {
-   "oid": 11469783,
-   "park": 2,
-   "lanes": 2,
-   "w": 32
-  }
- },
- {
-  "id": "df-133",
-  "country": "US",
-  "town": "washington",
-  "kind": "residential",
-  "name": "Webster Street Northwest",
-  "highway": "residential",
-  "wayId": 131520203,
-  "lat": 38.9440145,
-  "lon": -77.0255788,
-  "bearing": -91.7,
-  "inv": {
-   "oid": 11469784,
-   "park": 2,
-   "lanes": 2,
-   "w": 32
-  }
- },
- {
-  "id": "df-134",
-  "country": "US",
-  "town": "washington",
-  "kind": "tertiary",
-  "name": "3rd Street Northeast",
-  "highway": "tertiary",
-  "wayId": 1506384335,
-  "lat": 38.9626112,
-  "lon": -77.0027667,
-  "bearing": 0.3,
-  "inv": {
-   "oid": 11470336,
-   "park": 2,
-   "lanes": 2,
-   "w": 32
-  }
- },
- {
-  "id": "df-135",
-  "country": "US",
-  "town": "washington",
-  "kind": "residential",
-  "name": "9th Street Northeast",
-  "highway": "residential",
-  "wayId": 850296631,
-  "lat": 38.9041491,
-  "lon": -76.9937597,
-  "bearing": 0.8,
-  "inv": {
-   "oid": 11470691,
-   "park": 2,
-   "lanes": 2,
-   "w": 32
-  }
- },
- {
-  "id": "df-136",
-  "country": "US",
-  "town": "washington",
-  "kind": "residential",
-  "name": "9th Street Northeast",
-  "highway": "residential",
-  "wayId": 130927106,
-  "lat": 38.9026216,
-  "lon": -76.9937554,
-  "bearing": -0.1,
-  "inv": {
-   "oid": 11470698,
-   "park": 2,
-   "lanes": 2,
-   "w": 32
-  }
- },
- {
-  "id": "df-137",
-  "country": "US",
-  "town": "washington",
-  "kind": "residential",
-  "name": "24th Street Northeast",
-  "highway": "residential",
-  "wayId": 402287297,
-  "lat": 38.9283339,
-  "lon": -76.97216,
-  "bearing": 0.1,
-  "inv": {
-   "oid": 11471541,
-   "park": 2,
-   "lanes": 2,
-   "w": 32
-  }
- },
- {
-  "id": "df-138",
-  "country": "US",
-  "town": "washington",
-  "kind": "residential",
-  "name": "42nd Street Northeast",
-  "highway": "residential",
-  "wayId": 6061553,
-  "lat": 38.8916254,
-  "lon": -76.9426096,
-  "bearing": -0.5,
-  "inv": {
-   "oid": 11471718,
-   "park": 2,
-   "lanes": 2,
-   "w": 34
-  }
- },
- {
-  "id": "df-139",
-  "country": "US",
-  "town": "washington",
-  "kind": "residential",
-  "name": "47th Place Northeast",
-  "highway": "residential",
-  "wayId": 6060457,
-  "lat": 38.904414,
-  "lon": -76.9346049,
-  "bearing": -0.2,
-  "inv": {
-   "oid": 11471831,
-   "park": 2,
-   "lanes": 1,
-   "w": 24
-  }
- },
- {
-  "id": "df-140",
-  "country": "US",
-  "town": "washington",
-  "kind": "residential",
-  "name": "Bryant Street Northeast",
-  "highway": "residential",
-  "wayId": 77449643,
-  "lat": 38.9216156,
-  "lon": -76.9904983,
-  "bearing": -71.1,
-  "inv": {
-   "oid": 11472533,
-   "park": 2,
-   "lanes": 1,
-   "w": 29
-  }
- },
- {
-  "id": "df-141",
-  "country": "US",
-  "town": "washington",
-  "kind": "residential",
-  "name": "Burns Street Northeast",
-  "highway": "residential",
-  "wayId": 6061106,
-  "lat": 38.8905282,
-  "lon": -76.9503486,
-  "bearing": -0.8,
-  "inv": {
-   "oid": 11472594,
-   "park": 2,
-   "lanes": 2,
-   "w": 32
-  }
- },
- {
-  "id": "df-142",
-  "country": "US",
-  "town": "washington",
-  "kind": "residential",
-  "name": "Fitch Place Northeast",
-  "highway": "residential",
-  "wayId": 6054751,
-  "lat": 38.8966178,
-  "lon": -76.9269804,
-  "bearing": 90,
-  "inv": {
-   "oid": 11473468,
-   "park": 2,
-   "lanes": 2,
-   "w": 34
-  }
- },
- {
-  "id": "df-143",
-  "country": "US",
-  "town": "washington",
-  "kind": "residential",
-  "name": "G Street Northeast",
-  "highway": "residential",
-  "wayId": 641693265,
-  "lat": 38.8989228,
-  "lon": -77.0022699,
-  "bearing": -90.1,
-  "inv": {
-   "oid": 11473637,
-   "park": 2,
-   "lanes": 1,
-   "w": 25
-  }
- },
- {
-  "id": "df-144",
-  "country": "US",
-  "town": "washington",
-  "kind": "residential",
-  "name": "Monroe Street Northeast",
-  "highway": "residential",
-  "wayId": 130927044,
-  "lat": 38.9331174,
-  "lon": -76.9703115,
-  "bearing": 90,
-  "inv": {
-   "oid": 11474781,
-   "park": 2,
-   "lanes": 2,
-   "w": 32
-  }
- },
- {
-  "id": "df-145",
-  "country": "US",
-  "town": "washington",
-  "kind": "residential",
-  "name": "Orleans Place Northeast",
-  "highway": "residential",
-  "wayId": 6063401,
-  "lat": 38.9049756,
-  "lon": -76.9981616,
-  "bearing": -88.5,
-  "inv": {
-   "oid": 11475038,
-   "park": 2,
-   "lanes": 1,
-   "w": 24
-  }
- },
- {
-  "id": "df-146",
-  "country": "US",
-  "town": "washington",
-  "kind": "residential",
-  "name": "V Street Northeast",
-  "highway": "residential",
-  "wayId": 274573721,
-  "lat": 38.9181134,
-  "lon": -77.0018273,
-  "bearing": 89.8,
-  "inv": {
-   "oid": 11475844,
-   "park": 2,
-   "lanes": 2,
-   "w": 36
-  }
- },
- {
-  "id": "df-147",
-  "country": "US",
-  "town": "washington",
-  "kind": "tertiary",
-  "name": "4th Street Southeast",
-  "highway": "tertiary",
-  "wayId": 696198852,
-  "lat": 38.8859353,
-  "lon": -77.0005813,
-  "bearing": 180,
-  "inv": {
-   "oid": 11476219,
-   "park": 2,
-   "lanes": 1,
-   "w": 29
-  }
- },
- {
-  "id": "df-148",
-  "country": "US",
-  "town": "washington",
-  "kind": "residential",
-  "name": "14th Place Southeast",
-  "highway": "residential",
-  "wayId": 6054616,
-  "lat": 38.8442169,
-  "lon": -76.9846193,
-  "bearing": 160.3,
-  "inv": {
-   "oid": 11476563,
-   "park": 2,
-   "lanes": 2,
-   "w": 34
-  }
- },
- {
-  "id": "df-149",
-  "country": "US",
-  "town": "washington",
-  "kind": "tertiary",
-  "name": "27th Street Southeast",
-  "highway": "tertiary",
-  "wayId": 131463034,
-  "lat": 38.8700535,
-  "lon": -76.9689706,
-  "bearing": 180,
-  "inv": {
-   "oid": 11476999,
-   "park": 2,
-   "lanes": 2,
-   "w": 34
-  }
- },
- {
-  "id": "df-150",
-  "country": "US",
-  "town": "washington",
-  "kind": "residential",
-  "name": "Butler Street Southeast",
-  "highway": "residential",
-  "wayId": 6063339,
-  "lat": 38.8612426,
-  "lon": -76.9840575,
-  "bearing": 128.7,
-  "inv": {
-   "oid": 11477925,
-   "park": 2,
-   "lanes": 2,
-   "w": 32
-  }
- },
- {
-  "id": "df-151",
-  "country": "US",
-  "town": "washington",
-  "kind": "residential",
-  "name": "F Street Southeast",
-  "highway": "residential",
-  "wayId": 6059944,
-  "lat": 38.8820023,
-  "lon": -76.9428229,
-  "bearing": 129.9,
-  "inv": {
-   "oid": 11478358,
-   "park": 2,
-   "lanes": 2,
-   "w": 34
-  }
- },
- {
-  "id": "df-152",
-  "country": "US",
-  "town": "washington",
-  "kind": "residential",
-  "name": "Hunter Place Southeast",
-  "highway": "residential",
-  "wayId": 6061543,
-  "lat": 38.8586229,
-  "lon": -76.9854223,
-  "bearing": -136.3,
-  "inv": {
-   "oid": 11478708,
-   "park": 2,
-   "lanes": 2,
-   "w": 32
-  }
- },
- {
-  "id": "df-153",
-  "country": "US",
-  "town": "washington",
-  "kind": "residential",
-  "name": "M Street Southeast",
-  "highway": "residential",
-  "wayId": 1526276035,
-  "lat": 38.8756831,
-  "lon": -76.9581404,
-  "bearing": 90,
-  "inv": {
-   "oid": 11478880,
-   "park": 2,
-   "lanes": 2,
-   "w": 32
-  }
- },
- {
-  "id": "df-154",
-  "country": "US",
-  "town": "washington",
-  "kind": "residential",
-  "name": "M Place Southeast",
-  "highway": "residential",
-  "wayId": 6055446,
-  "lat": 38.8774038,
-  "lon": -76.9641573,
-  "bearing": 112.4,
-  "inv": {
-   "oid": 11478953,
-   "park": 2,
-   "lanes": 2,
-   "w": 32
-  }
- },
- {
-  "id": "df-155",
-  "country": "US",
-  "town": "washington",
-  "kind": "residential",
-  "name": "O Street Southeast",
-  "highway": "residential",
-  "wayId": 6054672,
-  "lat": 38.8732617,
-  "lon": -76.9499699,
-  "bearing": 80.9,
-  "inv": {
-   "oid": 11479267,
-   "park": 2,
-   "lanes": 2,
-   "w": 32
-  }
- },
- {
-  "id": "df-156",
-  "country": "US",
-  "town": "washington",
-  "kind": "residential",
-  "name": "O Street Southeast",
-  "highway": "residential",
-  "wayId": 6054668,
-  "lat": 38.8729432,
-  "lon": -76.9683145,
-  "bearing": 90,
-  "inv": {
-   "oid": 11479373,
-   "park": 2,
-   "lanes": 2,
-   "w": 32
-  }
- },
- {
-  "id": "df-157",
-  "country": "US",
-  "town": "washington",
-  "kind": "residential",
-  "name": "Howison Place Southwest",
-  "highway": "residential",
-  "wayId": 6060776,
-  "lat": 38.8762991,
-  "lon": -77.0113999,
-  "bearing": -179.8,
-  "inv": {
-   "oid": 11480976,
-   "park": 2,
-   "lanes": 1,
-   "w": 24
+   "width": 5.3
   }
  }
 ]
