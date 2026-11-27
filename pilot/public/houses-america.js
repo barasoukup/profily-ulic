@@ -329,10 +329,12 @@ export function drawAmerican(kind, { g, el, X, surface, EDGE, f, seed, wall, det
     // panels in two or three colours, shallow bays, narrow metal balconies, a thin projecting roof edge.
     const A = wall, B = ["#a5573c", "#4d5a63", "#c79a4a", "#6f7a5e"][seed % 4], W2 = "#dcd9d0", FR = "#54595e", BR = "#7d5647";
     wallBase(W2);
-    box(0, EDGE, G, top, A);
-    box(215, EDGE, G, top, B);
-    for (let z = G + S / 2; z < top; z += S / 2) box(0, EDGE, z - 1, z + 1, "#00000022");
-    for (const d of [72, 143, 215, 300]) box(d - 1, d + 1, G, top, "#00000022");
+    if (n > 1) { // the panels above the shops (a one-storey one has only its roof edge)
+      box(0, EDGE, G, top, A);
+      box(215, EDGE, G, top, B);
+      for (let z = G + S / 2; z < top; z += S / 2) box(0, EDGE, z - 1, z + 1, "#00000022");
+      for (const d of [72, 143, 215, 300]) box(d - 1, d + 1, G, top, "#00000022");
+    }
     box(0, EDGE, 0, G - 16, BR); bricks(0, EDGE, 0, G - 16, BR);
     for (let d = 24; d < EDGE; d += 190) { const h = G - 110; box(d, d + 160, 0, h + 8, FR); box(d + 8, d + 152, 24, h - 64, GLASS); poly([[d + 90, h - 64], [d + 152, h - 64], [d + 152, h * 0.4]], GLINT); box(d + 8, d + 152, h - 54, h, GLASS); box(d + 78, d + 82, 24, h, FR); }
     box(0, EDGE, G - 16, G + 6, FR); box(32, 102, 0, G - 174, "#3f4246"); box(40, 94, 12, G - 182, "#45547c"); box(86, 89, 90, 150, WHITE); // the shop's door
@@ -394,7 +396,7 @@ export function drawAmerican(kind, { g, el, X, surface, EDGE, f, seed, wall, det
     cornice(top, 78, 48, CN, { panel: true });
     box(0, EDGE, top, top + 26, tint(wall, 0.9), thin(wall)); box(150, 340, top + 26, top + 62, tint(wall, 0.9), thin(wall)); box(168, 322, top + 14, top + 48, LIME, thin(LIME)); // the name block
     box(-150, 0, zs - 82, zs - 78, IRON); awning(zs + 8, 165, 74, ["#a8433a", "#3f6f5a", "#3c5f8f", "#c79a4a"][(seed >> 1) % 4]);
-    box(-66, 0, G + 70, G + 75, IRON); poly([[0, G + 100], [0, G + 94], [-56, G + 72], [-62, G + 72]], IRON); box(-58, -14, G + 6, G + 70, tint(SC, 1.15), thin(SC)); box(-48, -24, G + 30, G + 46, LETTERS[0]); // the blade sign
+    if (n > 1) { box(-66, 0, G + 70, G + 75, IRON); poly([[0, G + 100], [0, G + 94], [-56, G + 72], [-62, G + 72]], IRON); box(-58, -14, G + 6, G + 70, tint(SC, 1.15), thin(SC)); box(-48, -24, G + 30, G + 46, LETTERS[0]); } // the blade sign hangs over the upper floors only
   } else if (kind === "stripmall") {
     // The one-storey commercial box: strip mall, taxpayer block: shops behind a covered walk, a sign band, a flat roof.
     const SC = ["#b5483c", "#2f6f8f", "#3f7a4a", "#c98a2f"][seed % 4], zs = Math.min(270, top * 0.55), zb = Math.min(top - 60, zs + 130);
