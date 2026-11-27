@@ -30,6 +30,12 @@ const where = (a, b) => {
   while (i < a.length && a[i] === b[i]) i++;
   return `@${i}: «${a.slice(Math.max(0, i - 60), i + 80)}» ≠ «${b.slice(Math.max(0, i - 60), i + 80)}»`;
 };
+// Since the keys of the texts (27. 11. 2026): a cut keeps its note as a key, not its Czech ("note.mapDown"), and the
+// city's texts come last in the composed city (from locales/<lang>.json): the note is compared as its Czech
+// (locales/cs.json), the city with its fields in one order. What a visitor sees is the same.
+const CS = (() => { try { return JSON.parse(fs.readFileSync(new URL("../../app/public/locales/cs.json", import.meta.url), "utf8")); } catch { return {}; } })();
+const sorted = (v) => (Array.isArray(v) ? v.map(sorted) : v && typeof v === "object" ? Object.fromEntries(Object.keys(v).sort().map((k) => [k, sorted(v[k])])) : v);
+const csNote = (c) => { if (c && typeof c.note === "string" && CS[c.note] !== undefined) c.note = CS[c.note]; };
 const a = ids(A), bs = new Set(ids(B)), count = {};
 let same = 0, diff = 0, shown = 0;
 const missing = a.filter((id) => !bs.has(id));
@@ -44,6 +50,7 @@ for (const id of a) {
   for (const o of [x, y]) if (typeof o.compare === "string") o.compare = o.compare.replace(/<svg[\s\S]*?<\/svg>/g, "<svg/>");
   // A failure's stack names ports and lines of the harness: its message (first line) is what counts.
   for (const o of [x, y]) if (typeof o.failed === "string") o.failed = o.failed.split("\n")[0];
+  for (const o of [x, y]) { csNote(o.cut); csNote(o.restored?.cut); if (o.city) o.city = sorted(o.city); }
   const bad = keys.filter((k) => text(x[k]) !== text(y[k]));
   if (!bad.length) { same++; continue; }
   diff++;

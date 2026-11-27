@@ -17,11 +17,16 @@ const [A, B] = process.argv.slice(2);
 if (!process.env.PROFILY_LANG) {
   if (B) {
     let bad = 0;
+    // Since the keys of the texts (27. 11. 2026): an outage's note is a key, compared as its Czech (locales/cs.json);
+    // the composed city's fields in one order (its texts come last since then). What a visitor sees is the same.
+    const CS = JSON.parse(fs.readFileSync(path.join(HERE, "..", "..", "app", "public", "locales", "cs.json"), "utf8"));
+    const sorted = (v) => (Array.isArray(v) ? v.map(sorted) : v && typeof v === "object" ? Object.fromEntries(Object.keys(v).sort().map((q) => [q, sorted(v[q])])) : v);
+    const same = (k, v) => (k === "city" ? sorted(v) : k === "outage" && v && CS[v.note] !== undefined ? { ...v, note: CS[v.note] } : v);
     for (const l of LANGS) {
       const x = JSON.parse(fs.readFileSync(path.join(DIR, `${A}.${l}.json`), "utf8")), y = JSON.parse(fs.readFileSync(path.join(DIR, `${B}.${l}.json`), "utf8"));
       for (const k of new Set([...Object.keys(x), ...Object.keys(y)])) {
         const a = x[k] ?? {}, b = y[k] ?? {};
-        const keys = [...new Set([...Object.keys(a), ...Object.keys(b)])].filter((q) => JSON.stringify(a[q]) !== JSON.stringify(b[q]));
+        const keys = [...new Set([...Object.keys(a), ...Object.keys(b)])].filter((q) => JSON.stringify(same(k, a[q])) !== JSON.stringify(same(k, b[q])));
         if (!keys.length) continue;
         bad += keys.length;
         console.log(`${l} ${k}: ${keys.length} jinak, např. ${keys.slice(0, 3).map((q) => `${q}: ${JSON.stringify(a[q])?.slice(0, 160)} → ${JSON.stringify(b[q])?.slice(0, 160)}`).join(" | ")}`);
