@@ -1131,7 +1131,8 @@ centerMarker.on("drag", () => {
     // Snap to the street as the drop will, so the preview matches the result.
     const near = dragAlong(osmCache.osm, f, osmCache.way, [0, 0]);
     [lon, lat] = f.toLonLat(...near.point);
-    dir = near.dir;
+    // The way's direction may run against the cut's: keep the cut's, or A and B swap sides while dragging (Bára 27. 11. 2026).
+    dir = near.dir[0] * dir[0] + near.dir[1] * dir[1] < 0 ? [-near.dir[0], -near.dir[1]] : near.dir;
   }
   previewCut(lat, lon, [-dir[1], dir[0]], centerMarker);
 });
