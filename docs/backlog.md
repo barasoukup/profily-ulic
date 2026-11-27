@@ -222,7 +222,7 @@ Co rozhodne Bára, je označeno **(Bára)**.
   Roosevelt Avenue) mapa ulici pod středem řezu nenajde; inventář jízdních pruhů jako DDOT New York otevřeně nemá (DOT má
   „Street Design“ jen jako příručku); domy PLUTO (druh budovy) nezapojené, stačily obrysy budov s výškou a rokem.
 
-- **USA (Boston, 26. 11. 2026, `evaluation/usa/boston`):** **(Bára)** mapa Bostonu a Cambridge celkově neprůkazná (27 : 21),
+- **USA (Boston, 26. 11. 2026, `evaluation/usa/boston`):** ~~**(Bára)**~~ Bára 27. 11. 2026: mapu nechat zapnutou všude (bez výjimky pro tepny). Mapa Bostonu a Cambridge celkově neprůkazná (27 : 21),
   na tepnách prohrává 8 : 15: mezera mezi polygony za chodníkem je zeleň i tam, kde je parkoviště, náměstí nebo dům (Street Edges
   nemá parkoviště, budovy podkladové mapy nejsou úplné), široká mezera mezi vozovkami je dělicí pás (b-14, 21 m). ~~Zkusit: mezeru
   uvnitř řezu za vnějším chodníkem posoudit ortofotem jako odhad~~ (26. 11. 2026, `evaluation/usa/boston/outer`: domy a parkoviště
