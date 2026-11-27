@@ -16,8 +16,8 @@ const mly = async (q) => { for (let i = 0; i < 3; i++) { try { const r = await f
 const ROADS = /^(residential|tertiary|secondary|primary|unclassified|living_street)$/;
 // MODE=panel: the panel rule (?off=panel2) instead of the small-house one (the small-house rule stays on in both).
 const FLAG = process.env.MODE === "panel" ? "panel2" : "vesnice";
-// (the panel rule is opt-in now: "off" = the old look, PROFILY_CA.panel2 = "1" the new one)
-const look = (info, off) => { if (FLAG === "panel2") { globalThis.PROFILY_CA.panel2 = off ? "" : "1"; return P.buildingStyle(info); } globalThis.PROFILY_CA.off = off ? FLAG : ""; return P.buildingStyle(info); };
+// (the panel rule is the default since 27. 11.; ?off=panel2 the old look)
+const look = (info, off) => { if (FLAG === "panel2") { globalThis.PROFILY_CA.off = off ? "panel2" : ""; return P.buildingStyle(info); } globalThis.PROFILY_CA.off = off ? FLAG : ""; return P.buildingStyle(info); };
 for (const iso of isos.split(",")) {
   let seed = [...iso].reduce((a, c) => a * 131 + c.charCodeAt(0), Number(process.env.SEED || 20261127)) >>> 0;
   const rnd = () => { seed = (seed + 0x6d2b79f5) >>> 0; let t = Math.imul(seed ^ (seed >>> 15), 1 | seed); t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t; return ((t ^ (t >>> 14)) >>> 0) / 2 ** 32; };

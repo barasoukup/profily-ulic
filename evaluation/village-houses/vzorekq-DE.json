@@ -1,0 +1,704 @@
+{
+ "stat": {
+  "houses": 920,
+  "noData": 877,
+  "changed": 20,
+  "regCut": 0,
+  "noPhoto": 11,
+  "dataChanged": 0,
+  "villages": 8,
+  "pairs": {
+   "plocha>funkce": 8,
+   "plocha>sikma": 8,
+   "funkce>plocha": 4
+  }
+ },
+ "rows": [
+  {
+   "id": "DEq01",
+   "town": "dresden",
+   "far": false,
+   "city": "germany",
+   "point": [
+    13.7233447,
+    51.053542
+   ],
+   "mapillary": "1466113534212202",
+   "pano": false,
+   "dist": 21.8,
+   "off": 23.9,
+   "panels": true,
+   "before": {
+    "look": "plocha",
+    "info": {
+     "levels": 3,
+     "point": [
+      13.723344716634331,
+      51.05354202919173
+     ],
+     "km": 99,
+     "block": {
+      "length": 93.7,
+      "width": 34,
+      "fill": 0.75,
+      "parts": 4,
+      "area": 2390
+     },
+     "tint": 0,
+     "type": "industrial",
+     "roofShape": "flat",
+     "footprint": 878.9822971604608,
+     "own": {
+      "rect": 0.96,
+      "length": 45.4,
+      "width": 20.2
+     },
+     "around": {
+      "built": 0.31,
+      "green": 0.1
+     }
+    }
+   },
+   "after": {
+    "look": "funkce",
+    "info": {
+     "levels": 3,
+     "point": [
+      13.723344716634331,
+      51.05354202919173
+     ],
+     "km": 99,
+     "block": {
+      "length": 93.7,
+      "width": 34,
+      "fill": 0.75,
+      "parts": 4,
+      "area": 2390
+     },
+     "tint": 0,
+     "type": "industrial",
+     "roofShape": "flat",
+     "footprint": 878.9822971604608,
+     "own": {
+      "rect": 0.96,
+      "length": 45.4,
+      "width": 20.2
+     },
+     "around": {
+      "built": 0.31,
+      "green": 0.1
+     }
+    }
+   }
+  },
+  {
+   "id": "DEq02",
+   "town": "berlin",
+   "far": false,
+   "city": "germany",
+   "point": [
+    13.3982255,
+    52.5163606
+   ],
+   "mapillary": "1003557595658403",
+   "pano": false,
+   "dist": 19,
+   "off": 19.4,
+   "panels": true,
+   "before": {
+    "look": "plocha",
+    "info": {
+     "levels": 5,
+     "point": [
+      13.398225499737993,
+      52.516360562389146
+     ],
+     "km": 99,
+     "block": {
+      "length": 75.3,
+      "width": 44.8,
+      "fill": 0.58,
+      "parts": 3,
+      "area": 1949
+     },
+     "tint": 0,
+     "type": "apartments",
+     "footprint": 855.7912975875734,
+     "own": {
+      "rect": 0.6,
+      "length": 68.8,
+      "width": 20.8
+     },
+     "around": {
+      "built": 0.22,
+      "green": 0.19
+     }
+    }
+   },
+   "after": {
+    "look": "sikma",
+    "info": {
+     "levels": 5,
+     "point": [
+      13.398225499737993,
+      52.516360562389146
+     ],
+     "km": 99,
+     "block": {
+      "length": 75.3,
+      "width": 44.8,
+      "fill": 0.58,
+      "parts": 3,
+      "area": 1949
+     },
+     "tint": 0,
+     "type": "apartments",
+     "footprint": 855.7912975875734,
+     "own": {
+      "rect": 0.6,
+      "length": 68.8,
+      "width": 20.8
+     },
+     "around": {
+      "built": 0.22,
+      "green": 0.19
+     }
+    }
+   }
+  },
+  {
+   "id": "DEq03",
+   "town": "dresden",
+   "far": false,
+   "city": "germany",
+   "point": [
+    13.7382468,
+    51.0541452
+   ],
+   "mapillary": "1186542639465762",
+   "pano": true,
+   "dist": 21.1,
+   "off": -108.9,
+   "panels": true,
+   "before": {
+    "look": "plocha",
+    "info": {
+     "levels": 3,
+     "point": [
+      13.738246832724762,
+      51.0541451772496
+     ],
+     "km": 99,
+     "block": {
+      "length": 23.7,
+      "width": 12.7,
+      "fill": 0.73,
+      "parts": 1,
+      "area": 219
+     },
+     "tint": 0,
+     "type": "retail",
+     "footprint": 219.36001677519744,
+     "own": {
+      "rect": 0.73,
+      "length": 23.7,
+      "width": 12.7
+     },
+     "around": {
+      "built": 0.08,
+      "green": 0
+     }
+    }
+   },
+   "after": {
+    "look": "sikma",
+    "info": {
+     "levels": 3,
+     "point": [
+      13.738246832724762,
+      51.0541451772496
+     ],
+     "km": 99,
+     "block": {
+      "length": 23.7,
+      "width": 12.7,
+      "fill": 0.73,
+      "parts": 1,
+      "area": 219
+     },
+     "tint": 0,
+     "type": "retail",
+     "footprint": 219.36001677519744,
+     "own": {
+      "rect": 0.73,
+      "length": 23.7,
+      "width": 12.7
+     },
+     "around": {
+      "built": 0.08,
+      "green": 0
+     }
+    }
+   }
+  },
+  {
+   "id": "DEq04",
+   "town": "berlin",
+   "far": true,
+   "city": "germany",
+   "point": [
+    13.4935814,
+    52.5669684
+   ],
+   "mapillary": "227708953074059",
+   "pano": true,
+   "dist": 21.8,
+   "off": -75,
+   "panels": true,
+   "before": {
+    "look": "plocha",
+    "info": {
+     "levels": 11,
+     "point": [
+      13.493581389143245,
+      52.566968443566225
+     ],
+     "km": 99,
+     "block": {
+      "length": 135.2,
+      "width": 88.8,
+      "fill": 0.19,
+      "parts": 2,
+      "area": 2331
+     },
+     "tint": 0,
+     "type": "apartments",
+     "roofShape": "flat",
+     "footprint": 1154.1223441101774,
+     "own": {
+      "rect": 0.48,
+      "length": 92.5,
+      "width": 25.9
+     },
+     "around": {
+      "built": 0.07,
+      "green": 0.01
+     }
+    }
+   },
+   "after": {
+    "look": "funkce",
+    "info": {
+     "levels": 11,
+     "point": [
+      13.493581389143245,
+      52.566968443566225
+     ],
+     "km": 99,
+     "block": {
+      "length": 135.2,
+      "width": 88.8,
+      "fill": 0.19,
+      "parts": 2,
+      "area": 2331
+     },
+     "tint": 0,
+     "type": "apartments",
+     "roofShape": "flat",
+     "footprint": 1154.1223441101774,
+     "own": {
+      "rect": 0.48,
+      "length": 92.5,
+      "width": 25.9
+     },
+     "around": {
+      "built": 0.07,
+      "green": 0.01
+     }
+    }
+   }
+  },
+  {
+   "id": "DEq05",
+   "town": "dresden",
+   "far": false,
+   "city": "germany",
+   "point": [
+    13.7335676,
+    51.0486601
+   ],
+   "mapillary": "304420192280958",
+   "pano": false,
+   "dist": 19.4,
+   "off": 5.2,
+   "panels": true,
+   "before": {
+    "look": "funkce",
+    "info": {
+     "levels": 7,
+     "point": [
+      13.73356761099516,
+      51.04866014937616
+     ],
+     "km": 99,
+     "block": {
+      "length": 87.8,
+      "width": 56.2,
+      "fill": 0.76,
+      "parts": 1,
+      "area": 3771
+     },
+     "tint": 0,
+     "type": "apartments",
+     "roofShape": "flat",
+     "footprint": 3771.2999719802337,
+     "own": {
+      "rect": 0.76,
+      "length": 87.8,
+      "width": 56.2
+     },
+     "around": {
+      "built": 0.16,
+      "green": 0.18
+     }
+    }
+   },
+   "after": {
+    "look": "plocha",
+    "info": {
+     "levels": 7,
+     "point": [
+      13.73356761099516,
+      51.04866014937616
+     ],
+     "km": 99,
+     "block": {
+      "length": 87.8,
+      "width": 56.2,
+      "fill": 0.76,
+      "parts": 1,
+      "area": 3771
+     },
+     "tint": 0,
+     "type": "apartments",
+     "roofShape": "flat",
+     "footprint": 3771.2999719802337,
+     "own": {
+      "rect": 0.76,
+      "length": 87.8,
+      "width": 56.2
+     },
+     "around": {
+      "built": 0.16,
+      "green": 0.18
+     }
+    }
+   }
+  },
+  {
+   "id": "DEq06",
+   "town": "berlin",
+   "far": true,
+   "city": "germany",
+   "point": [
+    13.4903319,
+    52.5423159
+   ],
+   "mapillary": "1199397113958166",
+   "pano": true,
+   "dist": 14.2,
+   "off": 121.8,
+   "panels": true,
+   "before": {
+    "look": "plocha",
+    "info": {
+     "levels": 5,
+     "point": [
+      13.490331872301962,
+      52.54231588156083
+     ],
+     "km": 99,
+     "block": {
+      "length": 122.6,
+      "width": 88.7,
+      "fill": 0.24,
+      "parts": 7,
+      "area": 2564
+     },
+     "tint": 0,
+     "type": "apartments",
+     "footprint": 476.8549752049523,
+     "own": {
+      "rect": 0.74,
+      "length": 47.9,
+      "width": 13.5
+     },
+     "around": {
+      "built": 0.23,
+      "green": 0.01
+     }
+    }
+   },
+   "after": {
+    "look": "sikma",
+    "info": {
+     "levels": 5,
+     "point": [
+      13.490331872301962,
+      52.54231588156083
+     ],
+     "km": 99,
+     "block": {
+      "length": 122.6,
+      "width": 88.7,
+      "fill": 0.24,
+      "parts": 7,
+      "area": 2564
+     },
+     "tint": 0,
+     "type": "apartments",
+     "footprint": 476.8549752049523,
+     "own": {
+      "rect": 0.74,
+      "length": 47.9,
+      "width": 13.5
+     },
+     "around": {
+      "built": 0.23,
+      "green": 0.01
+     }
+    }
+   }
+  },
+  {
+   "id": "DEq07",
+   "town": "berlin",
+   "far": false,
+   "city": "germany",
+   "point": [
+    13.4018152,
+    52.5287547
+   ],
+   "mapillary": "1001243888222597",
+   "pano": false,
+   "dist": 15.1,
+   "off": 16.2,
+   "panels": true,
+   "before": {
+    "look": "plocha",
+    "info": {
+     "levels": 6,
+     "point": [
+      13.40181524636301,
+      52.52875471498544
+     ],
+     "km": 99,
+     "block": {
+      "length": 106.1,
+      "width": 46.8,
+      "fill": 0.35,
+      "parts": 3,
+      "area": 1724
+     },
+     "tint": 0,
+     "type": "apartments",
+     "footprint": 525.310551863084,
+     "own": {
+      "rect": 0.51,
+      "length": 43.8,
+      "width": 23.6
+     },
+     "around": {
+      "built": 0.33,
+      "green": 0
+     }
+    }
+   },
+   "after": {
+    "look": "sikma",
+    "info": {
+     "levels": 6,
+     "point": [
+      13.40181524636301,
+      52.52875471498544
+     ],
+     "km": 99,
+     "block": {
+      "length": 106.1,
+      "width": 46.8,
+      "fill": 0.35,
+      "parts": 3,
+      "area": 1724
+     },
+     "tint": 0,
+     "type": "apartments",
+     "footprint": 525.310551863084,
+     "own": {
+      "rect": 0.51,
+      "length": 43.8,
+      "width": 23.6
+     },
+     "around": {
+      "built": 0.33,
+      "green": 0
+     }
+    }
+   }
+  },
+  {
+   "id": "DEq08",
+   "town": "berlin",
+   "far": true,
+   "city": "germany",
+   "point": [
+    13.4927797,
+    52.4999875
+   ],
+   "mapillary": "1090595974759524",
+   "pano": false,
+   "dist": 12.6,
+   "off": -25.2,
+   "panels": true,
+   "before": {
+    "look": "plocha",
+    "info": {
+     "levels": 3,
+     "point": [
+      13.49277968567981,
+      52.499987505447336
+     ],
+     "km": 99,
+     "block": {
+      "length": 18.5,
+      "width": 14.9,
+      "fill": 0.68,
+      "parts": 1,
+      "area": 188
+     },
+     "tint": 0,
+     "type": "apartments",
+     "roofShape": "flat",
+     "footprint": 188.4587878106912,
+     "own": {
+      "rect": 0.68,
+      "length": 18.5,
+      "width": 14.9
+     },
+     "around": {
+      "built": 0.25,
+      "green": 0
+     }
+    }
+   },
+   "after": {
+    "look": "funkce",
+    "info": {
+     "levels": 3,
+     "point": [
+      13.49277968567981,
+      52.499987505447336
+     ],
+     "km": 99,
+     "block": {
+      "length": 18.5,
+      "width": 14.9,
+      "fill": 0.68,
+      "parts": 1,
+      "area": 188
+     },
+     "tint": 0,
+     "type": "apartments",
+     "roofShape": "flat",
+     "footprint": 188.4587878106912,
+     "own": {
+      "rect": 0.68,
+      "length": 18.5,
+      "width": 14.9
+     },
+     "around": {
+      "built": 0.25,
+      "green": 0
+     }
+    }
+   }
+  },
+  {
+   "id": "DEq09",
+   "town": "dresden",
+   "far": false,
+   "city": "germany",
+   "point": [
+    13.7326403,
+    51.0507672
+   ],
+   "mapillary": "187666197111596",
+   "pano": true,
+   "dist": 14.5,
+   "off": 70.6,
+   "panels": true,
+   "before": {
+    "look": "funkce",
+    "info": {
+     "levels": 6,
+     "point": [
+      13.73264032945967,
+      51.05076722362649
+     ],
+     "km": 99,
+     "block": {
+      "length": 85.1,
+      "width": 61.2,
+      "fill": 0.8,
+      "parts": 1,
+      "area": 4178
+     },
+     "tint": 0,
+     "type": "apartments",
+     "roofShape": "flat",
+     "footprint": 4177.705943966667,
+     "own": {
+      "rect": 0.8,
+      "length": 85.1,
+      "width": 61.2
+     },
+     "around": {
+      "built": 0.08,
+      "green": 0
+     }
+    }
+   },
+   "after": {
+    "look": "plocha",
+    "info": {
+     "levels": 6,
+     "point": [
+      13.73264032945967,
+      51.05076722362649
+     ],
+     "km": 99,
+     "block": {
+      "length": 85.1,
+      "width": 61.2,
+      "fill": 0.8,
+      "parts": 1,
+      "area": 4178
+     },
+     "tint": 0,
+     "type": "apartments",
+     "roofShape": "flat",
+     "footprint": 4177.705943966667,
+     "own": {
+      "rect": 0.8,
+      "length": 85.1,
+      "width": 61.2
+     },
+     "around": {
+      "built": 0.08,
+      "green": 0
+     }
+    }
+   }
+  }
+ ],
+ "controls": []
+}

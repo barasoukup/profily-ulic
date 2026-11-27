@@ -17,13 +17,22 @@ funkce>vila 0 : 1 (jediná prohra). Kontroly: 615 domů s podlažími nebo výš
 `!n`); testy 554 v pořádku. Kolik domů se mění: AT 82 z 371, BE 47 z 442, DE 55 z 558, DK 79 z 649, LT 26 z 115 (vesnice zhruba polovina).
 Vzorky `vzoreka-*.json` (bez fotek), skripty `sample.mjs`, `sheets.mjs`, `score.mjs`.
 
-## 2. Panelák v zahraničí jen při silném doložení (nezapnuto, `?panel2=1`)
-Příčina Lipska: čtyři spojené městské domy v ohnuté řadě (bounding box 160 × 54 m, vyplnění 0,29) prošly druhou větví `isSlab`
-(`parts ≥ 2` a obvod na část ≥ 30 m). Pravidlo `strictSlab` (jen kde platí socialistické vzhledy a mimo Česko): deska z tvaru jen
-dlouhá kompaktní (vyplnění ≥ 0,8, šířka ≤ 16, délka ≥ 25) nebo řetěz (≥ 2 části, vyplnění ≥ 0,5, šířka ≤ 20); doložení rokem
-(`flatKind`) a OSM `building:prefabricated=yes` / materiál panel (`info.panel`) zůstává. Barvu střechy z ortofota jsem neřešil.
-Blind A/B (EE, LT, PL po 12, jen domy, kde se kresba změní: plocha > sikma/funkce): **11 : 12 a 14 : 10** pro nové : staré (LT 2 : 7 a 3 : 5 –
-sovětské bloky se ztratily, EE a PL spíš nové). Kontrola na ověřených vzorcích `all-buildings` (`controls-old.mjs`): skutečné paneláky
-SK10, SK12, LT08 zůstaly; ztratily se řadové/bloky se 3+ částmi (LTx01 sovětský blok, PL07). **Nevyhrálo, proto výchozí je staré
-chování**; Lipsko tedy zůstává panelákem, dokud se pravidlo nedoladí (např. jen DE: jednotlivá doložení rokem / „bytový blok
-v ulici" podle OSM `addr` + rovné čáry). DE vzorek nedoběhl (9 domů z 12 bez JSON), Slovensko nic.
+## 2. Panelák v zahraničí jen při shodě více znaků (zapnuto, `?off=panel2` vypne)
+Kde platí socialistické vzhledy a mimo Česko (Česko má RÚIAN) dělá desku skóre (`house-looks.js panelScore`, PANEL_SCORE 3), ne
+tvar bloku. Znaky z OSM (`derive.js ownShape`, `aroundOf`): přesný obdélník vlastního půdorysu (vyplnění nejmenšího obdélníku pod
+0,7 = nikdy panelák; 0,7 → 1 bod, 0,8 → 1,5), volný prostor (zastavěno jinými budovami do 80 m ≤ 0,2 → 1, ≤ 0,12 → 1,5), velikost
+(půdorys ≥ 500 m² nebo 8+ podlaží → 1), zeleň (≥ 20 % okolí z OSM trávy, lesa, parku, zahrady → 0,5). Poloha mimo centrum se
+nahrazuje zastavěností okolí (centra zahraničí aplikace nezná). Doložení rokem panelové éry a OSM `building:prefabricated` /
+materiál panel zůstává silnější. Uložený řez bez těchto polí čte staré pravidlo (`isSlab`).
+Lipsko (6 NP v centru, podle Bářina odkazu): oba domy teď „sikma" (rect 0,68 a 0,34, zastavěno 0,3).
+
+A/B naslepo (dva posuzovatelé Sonnet, domy s fotkou, kde se kresba mění), 2 kola, EE, LT, PL, DE: 1. kolo (jen nad starším
+tvrdším pravidlem, přepočteno na skóre, 33 domů) 10 : 11 a 13 : 8; **čerstvé 2. kolo (36 domů, jiné semínko, DE, EE, LT, PL po 9)
+16 : 16 a 15 : 13** pro nové : staré. Dohromady 54 : 48 (nevýznamné). Kresba panelu u změněných domů: dosavadní pravidlo kreslilo
+panelák 130× (hodnoceno), z toho 35× špatně a 27× správně; nové přidalo 14 paneláků, z nich 7× správně a 1× špatně. Tedy méně falešných
+než ztracených skutečných (35 odstraněných špatných : 27 odstraněných správných), bez zhoršení celku; podle Bářina pokynu „raději
+panelák nedat než ho dát, když tam není" **zapnuto**. V Německu (9 domů) vyšlo 3 : 5 a 2 : 5 pro staré, malý vzorek.
+Zbytek: skutečné paneláky vzorků `all-buildings` SK10, SK12, LTx01 mají skóre 1,5–2,5 a zmizí (SK12 a LTx01 těsně pod prahem; SK12 =
+čtvercový dům, panelák z druhé strany ulice), LT08 (3 NP, dům v zástavbě 0,46) a PL07 (obdélník 0,48) také. Falešné z neměnné
+geometrie zůstávají (kasárna PLp09, vysoká obdélníková kancelář LTx05). Slovensko vzorek nedoběhl.
+Skripty `features.mjs`, `score-panel.mjs`, `controls-old.mjs` (pozor: čte staré info bez `own` a `around`, tedy staré pravidlo).

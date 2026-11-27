@@ -1,0 +1,680 @@
+{
+ "stat": {
+  "houses": 205,
+  "noData": 193,
+  "changed": 11,
+  "regCut": 0,
+  "noPhoto": 2,
+  "dataChanged": 0,
+  "villages": 1,
+  "pairs": {
+   "plocha>sikma": 8,
+   "sikma>plocha": 3
+  }
+ },
+ "rows": [
+  {
+   "id": "LTq01",
+   "town": "zirmunai",
+   "far": false,
+   "city": "lithuania",
+   "point": [
+    25.3031044,
+    54.7106885
+   ],
+   "mapillary": "1100198625725505",
+   "pano": true,
+   "dist": 14,
+   "off": 52.9,
+   "before": {
+    "look": "plocha",
+    "info": {
+     "levels": 9,
+     "point": [
+      25.30310438629104,
+      54.71068849902901
+     ],
+     "km": 99,
+     "block": {
+      "length": 162.2,
+      "width": 40.3,
+      "fill": 0.41,
+      "parts": 4,
+      "area": 2649
+     },
+     "tint": 0,
+     "type": "apartments",
+     "footprint": 1260.098181981929,
+     "own": {
+      "rect": 0.44,
+      "length": 70.5,
+      "width": 41
+     },
+     "around": {
+      "built": 0.07,
+      "green": 0.15
+     }
+    }
+   },
+   "after": {
+    "look": "sikma",
+    "info": {
+     "levels": 9,
+     "point": [
+      25.30310438629104,
+      54.71068849902901
+     ],
+     "km": 99,
+     "block": {
+      "length": 162.2,
+      "width": 40.3,
+      "fill": 0.41,
+      "parts": 4,
+      "area": 2649
+     },
+     "tint": 0,
+     "type": "apartments",
+     "footprint": 1260.098181981929,
+     "own": {
+      "rect": 0.44,
+      "length": 70.5,
+      "width": 41
+     },
+     "around": {
+      "built": 0.07,
+      "green": 0.15
+     }
+    }
+   }
+  },
+  {
+   "id": "LTq02",
+   "town": "zirmunai",
+   "far": false,
+   "city": "lithuania",
+   "point": [
+    25.2903048,
+    54.7096961
+   ],
+   "mapillary": "1368639211742508",
+   "pano": true,
+   "dist": 25,
+   "off": -116,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "levels": 5,
+     "point": [
+      25.290304841674466,
+      54.70969609884851
+     ],
+     "km": 99,
+     "block": {
+      "length": 80.4,
+      "width": 20.8,
+      "fill": 0.84,
+      "parts": 1,
+      "area": 1401
+     },
+     "tint": 0,
+     "type": "apartments",
+     "footprint": 1400.563987122755,
+     "own": {
+      "rect": 0.84,
+      "length": 80.4,
+      "width": 20.8
+     },
+     "around": {
+      "built": 0.13,
+      "green": 0.16
+     }
+    }
+   },
+   "after": {
+    "look": "plocha",
+    "info": {
+     "levels": 5,
+     "point": [
+      25.290304841674466,
+      54.70969609884851
+     ],
+     "km": 99,
+     "block": {
+      "length": 80.4,
+      "width": 20.8,
+      "fill": 0.84,
+      "parts": 1,
+      "area": 1401
+     },
+     "tint": 0,
+     "type": "apartments",
+     "footprint": 1400.563987122755,
+     "own": {
+      "rect": 0.84,
+      "length": 80.4,
+      "width": 20.8
+     },
+     "around": {
+      "built": 0.13,
+      "green": 0.16
+     }
+    }
+   }
+  },
+  {
+   "id": "LTq03",
+   "town": "senamiestis",
+   "far": false,
+   "city": "lithuania",
+   "point": [
+    25.2796711,
+    54.6850687
+   ],
+   "mapillary": "1727611824965554",
+   "pano": true,
+   "dist": 14.1,
+   "off": 121.9,
+   "before": {
+    "look": "plocha",
+    "info": {
+     "point": [
+      25.279671087203266,
+      54.68506866307063
+     ],
+     "km": 99,
+     "block": {
+      "length": 211.4,
+      "width": 72.8,
+      "fill": 0.54,
+      "parts": 9,
+      "area": 8374
+     },
+     "tint": 0,
+     "type": "apartments",
+     "footprint": 1251.5786073625864,
+     "own": {
+      "rect": 0.78,
+      "length": 66.2,
+      "width": 24.3
+     },
+     "around": {
+      "built": 0.49,
+      "green": 0
+     }
+    }
+   },
+   "after": {
+    "look": "sikma",
+    "info": {
+     "point": [
+      25.279671087203266,
+      54.68506866307063
+     ],
+     "km": 99,
+     "block": {
+      "length": 211.4,
+      "width": 72.8,
+      "fill": 0.54,
+      "parts": 9,
+      "area": 8374
+     },
+     "tint": 0,
+     "type": "apartments",
+     "footprint": 1251.5786073625864,
+     "own": {
+      "rect": 0.78,
+      "length": 66.2,
+      "width": 24.3
+     },
+     "around": {
+      "built": 0.49,
+      "green": 0
+     }
+    }
+   }
+  },
+  {
+   "id": "LTq04",
+   "town": "naujamiestis",
+   "far": false,
+   "city": "lithuania",
+   "point": [
+    25.2652149,
+    54.6709189
+   ],
+   "mapillary": "1126322593167049",
+   "pano": true,
+   "dist": 11.5,
+   "off": 93.6,
+   "before": {
+    "look": "plocha",
+    "info": {
+     "levels": 5,
+     "point": [
+      25.265214946334083,
+      54.67091893661453
+     ],
+     "km": 99,
+     "block": {
+      "length": 77.2,
+      "width": 48.9,
+      "fill": 0.44,
+      "parts": 2,
+      "area": 1678
+     },
+     "tint": 0,
+     "type": "apartments",
+     "footprint": 822.488920031948,
+     "own": {
+      "rect": 0.5,
+      "length": 47.6,
+      "width": 34.4
+     },
+     "around": {
+      "built": 0.27,
+      "green": 0
+     }
+    }
+   },
+   "after": {
+    "look": "sikma",
+    "info": {
+     "levels": 5,
+     "point": [
+      25.265214946334083,
+      54.67091893661453
+     ],
+     "km": 99,
+     "block": {
+      "length": 77.2,
+      "width": 48.9,
+      "fill": 0.44,
+      "parts": 2,
+      "area": 1678
+     },
+     "tint": 0,
+     "type": "apartments",
+     "footprint": 822.488920031948,
+     "own": {
+      "rect": 0.5,
+      "length": 47.6,
+      "width": 34.4
+     },
+     "around": {
+      "built": 0.27,
+      "green": 0
+     }
+    }
+   }
+  },
+  {
+   "id": "LTq05",
+   "town": "senamiestis",
+   "far": false,
+   "city": "lithuania",
+   "point": [
+    25.2838381,
+    54.6775953
+   ],
+   "mapillary": "1105630295289409",
+   "pano": true,
+   "dist": 15.1,
+   "off": -17.1,
+   "before": {
+    "look": "plocha",
+    "info": {
+     "levels": 3,
+     "point": [
+      25.28383809583589,
+      54.67759529001895
+     ],
+     "km": 99,
+     "block": {
+      "length": 55.1,
+      "width": 53.6,
+      "fill": 0.51,
+      "parts": 2,
+      "area": 1514
+     },
+     "tint": 0,
+     "type": "apartments",
+     "footprint": 691.7806570076236,
+     "own": {
+      "rect": 0.67,
+      "length": 34.1,
+      "width": 34.3
+     },
+     "around": {
+      "built": 0.4,
+      "green": 0.04
+     }
+    }
+   },
+   "after": {
+    "look": "sikma",
+    "info": {
+     "levels": 3,
+     "point": [
+      25.28383809583589,
+      54.67759529001895
+     ],
+     "km": 99,
+     "block": {
+      "length": 55.1,
+      "width": 53.6,
+      "fill": 0.51,
+      "parts": 2,
+      "area": 1514
+     },
+     "tint": 0,
+     "type": "apartments",
+     "footprint": 691.7806570076236,
+     "own": {
+      "rect": 0.67,
+      "length": 34.1,
+      "width": 34.3
+     },
+     "around": {
+      "built": 0.4,
+      "green": 0.04
+     }
+    }
+   }
+  },
+  {
+   "id": "LTq06",
+   "town": "zirmunai",
+   "far": false,
+   "city": "lithuania",
+   "point": [
+    25.3184717,
+    54.7210314
+   ],
+   "mapillary": "1021140650287310",
+   "pano": true,
+   "dist": 17.8,
+   "off": 20.6,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "levels": 5,
+     "point": [
+      25.318471746505317,
+      54.72103137545276
+     ],
+     "km": 99,
+     "block": {
+      "length": 118.1,
+      "width": 16.8,
+      "fill": 0.75,
+      "parts": 1,
+      "area": 1479
+     },
+     "tint": 0,
+     "type": "apartments",
+     "footprint": 1479.13064161974,
+     "own": {
+      "rect": 0.75,
+      "length": 118.1,
+      "width": 16.8
+     },
+     "around": {
+      "built": 0.02,
+      "green": 0.1
+     }
+    }
+   },
+   "after": {
+    "look": "plocha",
+    "info": {
+     "levels": 5,
+     "point": [
+      25.318471746505317,
+      54.72103137545276
+     ],
+     "km": 99,
+     "block": {
+      "length": 118.1,
+      "width": 16.8,
+      "fill": 0.75,
+      "parts": 1,
+      "area": 1479
+     },
+     "tint": 0,
+     "type": "apartments",
+     "footprint": 1479.13064161974,
+     "own": {
+      "rect": 0.75,
+      "length": 118.1,
+      "width": 16.8
+     },
+     "around": {
+      "built": 0.02,
+      "green": 0.1
+     }
+    }
+   }
+  },
+  {
+   "id": "LTq07",
+   "town": "naujamiestis",
+   "far": false,
+   "city": "lithuania",
+   "point": [
+    25.2722468,
+    54.6867767
+   ],
+   "mapillary": "1555272936320612",
+   "pano": true,
+   "dist": 21,
+   "off": -38.2,
+   "before": {
+    "look": "plocha",
+    "info": {
+     "levels": 5,
+     "point": [
+      25.27224678255748,
+      54.686776724028434
+     ],
+     "km": 99,
+     "block": {
+      "length": 129.9,
+      "width": 57.7,
+      "fill": 0.34,
+      "parts": 4,
+      "area": 2556
+     },
+     "tint": 0,
+     "type": "apartments",
+     "footprint": 779.810375662415,
+     "own": {
+      "rect": 0.58,
+      "length": 44.1,
+      "width": 30.7
+     },
+     "around": {
+      "built": 0.26,
+      "green": 0
+     }
+    }
+   },
+   "after": {
+    "look": "sikma",
+    "info": {
+     "levels": 5,
+     "point": [
+      25.27224678255748,
+      54.686776724028434
+     ],
+     "km": 99,
+     "block": {
+      "length": 129.9,
+      "width": 57.7,
+      "fill": 0.34,
+      "parts": 4,
+      "area": 2556
+     },
+     "tint": 0,
+     "type": "apartments",
+     "footprint": 779.810375662415,
+     "own": {
+      "rect": 0.58,
+      "length": 44.1,
+      "width": 30.7
+     },
+     "around": {
+      "built": 0.26,
+      "green": 0
+     }
+    }
+   }
+  },
+  {
+   "id": "LTq08",
+   "town": "karoliniskes",
+   "far": true,
+   "city": "lithuania",
+   "point": [
+    25.2314582,
+    54.6176599
+   ],
+   "mapillary": "1403981521368295",
+   "pano": true,
+   "dist": 25.8,
+   "off": -93.4,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "point": [
+      25.231458167976715,
+      54.61765988269058
+     ],
+     "km": 99,
+     "block": {
+      "length": 57.3,
+      "width": 24.6,
+      "fill": 0.79,
+      "parts": 1,
+      "area": 1111
+     },
+     "tint": 0,
+     "type": "construction",
+     "footprint": 1110.8027723496225,
+     "own": {
+      "rect": 0.79,
+      "length": 57.3,
+      "width": 24.6
+     },
+     "around": {
+      "built": 0,
+      "green": 0.03
+     }
+    }
+   },
+   "after": {
+    "look": "plocha",
+    "info": {
+     "point": [
+      25.231458167976715,
+      54.61765988269058
+     ],
+     "km": 99,
+     "block": {
+      "length": 57.3,
+      "width": 24.6,
+      "fill": 0.79,
+      "parts": 1,
+      "area": 1111
+     },
+     "tint": 0,
+     "type": "construction",
+     "footprint": 1110.8027723496225,
+     "own": {
+      "rect": 0.79,
+      "length": 57.3,
+      "width": 24.6
+     },
+     "around": {
+      "built": 0,
+      "green": 0.03
+     }
+    }
+   }
+  },
+  {
+   "id": "LTq09",
+   "town": "senamiestis",
+   "far": false,
+   "city": "lithuania",
+   "point": [
+    25.2698962,
+    54.6797998
+   ],
+   "mapillary": "1060045383538828",
+   "pano": true,
+   "dist": 13.9,
+   "off": -122.7,
+   "before": {
+    "look": "plocha",
+    "info": {
+     "levels": 5,
+     "point": [
+      25.269896215585856,
+      54.6797997711772
+     ],
+     "km": 99,
+     "block": {
+      "length": 130.5,
+      "width": 70.6,
+      "fill": 0.32,
+      "parts": 6,
+      "area": 2935
+     },
+     "tint": 0,
+     "type": "apartments",
+     "footprint": 378.2458540028447,
+     "own": {
+      "rect": 0.72,
+      "length": 26.7,
+      "width": 19.6
+     },
+     "around": {
+      "built": 0.34,
+      "green": 0.03
+     }
+    }
+   },
+   "after": {
+    "look": "sikma",
+    "info": {
+     "levels": 5,
+     "point": [
+      25.269896215585856,
+      54.6797997711772
+     ],
+     "km": 99,
+     "block": {
+      "length": 130.5,
+      "width": 70.6,
+      "fill": 0.32,
+      "parts": 6,
+      "area": 2935
+     },
+     "tint": 0,
+     "type": "apartments",
+     "footprint": 378.2458540028447,
+     "own": {
+      "rect": 0.72,
+      "length": 26.7,
+      "width": 19.6
+     },
+     "around": {
+      "built": 0.34,
+      "green": 0.03
+     }
+    }
+   }
+  }
+ ],
+ "controls": []
+}
