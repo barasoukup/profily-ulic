@@ -609,7 +609,6 @@ export const BG = {
   "Profily ulic": "Уличен профил",
   "Příčný profil české ulice s tramvajemi, cyklopruhem, chodníky a domy, vedle název Profily ulic": "Напречен профил на чешка улица с трамваи, велолента, тротоари и сгради, до него името Profily ulic",
   "Porovnat": "Сравнение",
-  "Ilustrace": "Илюстрации",
   "Obrázek PNG": "Изображение PNG",
   "Vektor SVG": "Вектор SVG",
   "Soubor": "Файл",
@@ -677,7 +676,6 @@ export const BG = {
   "Ulice, jak je dnes (z mapy povrchů města nebo ČÚZK a OSM)": "Улицата такава, каквато е днес (от картата на настилките на града или на ČÚZK и OSM)",
   "Vaše úprava ulice": "Вашето преустройство на улицата",
   "Stav a návrh pod sebou se seznamem změn": "Съществуващо положение и проект един под друг, със списък на промените",
-  "Kreslit místní ilustrace: domy, tramvaje, trolejbusy, autobusy a mobiliář města (vypnuto: ilustrace Streetmixu)": "Рисуване на местни илюстрации: сгради, трамваи, тролейбуси, автобуси и градско обзавеждане (изключено: илюстрации на Streetmix)",
   "Zkopíruje odkaz, který otevře tuto ulici i s vaším návrhem": "Копира линк, който отваря тази улица заедно с вашия проект",
   "Mapa: kliknutím na ulici vznikne její příčný profil": "Карта: с клик върху улица се създава нейният напречен профил",
   "Pohled z ulice v místě řezu, ve směru profilu (Panorama Mapy.com)": "Изглед от улицата на мястото на разреза, в посоката на профила (Panorama Mapy.com)",
@@ -738,7 +736,6 @@ export const BG = {
   "Vozovka": "Пътно платно",
   "Sdílet": "Споделяне",
   "Kopírovat polohu řezu": "Копиране на местоположението на разреза",
-  "Místní ilustrace": "Местни илюстрации",
   "kontakt": "контакт",
   // Rainwater objects at their size, with the networks.
   "šířka": "ширина",

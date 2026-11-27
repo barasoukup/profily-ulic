@@ -612,7 +612,6 @@ export const HU = {
   "Profily ulic": "Utcaprofil",
   "Příčný profil české ulice s tramvajemi, cyklopruhem, chodníky a domy, vedle název Profily ulic": "Egy cseh utca keresztmetszete villamosokkal, kerékpársávval, járdákkal és házakkal, mellette a Profily ulic név",
   "Porovnat": "Összevetés",
-  "Ilustrace": "Illusztrációk",
   "Obrázek PNG": "PNG-kép",
   "Vektor SVG": "SVG (vektor)",
   "Soubor": "Fájl",
@@ -680,7 +679,6 @@ export const HU = {
   "Ulice, jak je dnes (z mapy povrchů města nebo ČÚZK a OSM)": "Az utca mai állapota (a város vagy a ČÚZK felületi térképéből és az OSM-ből)",
   "Vaše úprava ulice": "Az Ön utcaterve",
   "Stav a návrh pod sebou se seznamem změn": "A meglévő állapot és a terv egymás alatt, a változások listájával",
-  "Kreslit místní ilustrace: domy, tramvaje, trolejbusy, autobusy a mobiliář města (vypnuto: ilustrace Streetmixu)": "Helyi illusztrációk rajzolása: házak, villamosok, trolibuszok, buszok és a város utcabútorai (kikapcsolva: Streetmix-illusztrációk)",
   "Zkopíruje odkaz, který otevře tuto ulici i s vaším návrhem": "Olyan hivatkozást másol, amely ezt az utcát az Ön tervével együtt nyitja meg",
   "Mapa: kliknutím na ulici vznikne její příčný profil": "Térkép: egy utcára kattintva létrejön a keresztmetszete",
   "Pohled z ulice v místě řezu, ve směru profilu (Panorama Mapy.com)": "Utcakép a metszet helyén, a keresztmetszet irányába (Mapy.com panoráma)",
@@ -741,7 +739,6 @@ export const HU = {
   "Vozovka": "Úttest",
   "Sdílet": "Megosztás",
   "Kopírovat polohu řezu": "Metszet helyének másolása",
-  "Místní ilustrace": "Helyi illusztrációk",
   "kontakt": "kapcsolat",
   // Rainwater objects at their size, with the networks.
   "šířka": "szélesség",

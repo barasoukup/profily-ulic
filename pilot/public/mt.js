@@ -628,7 +628,6 @@ export const MT = {
   "Příčný profil české ulice s tramvajemi, cyklopruhem, chodníky a domy, vedle název Profily ulic":
     "Sezzjoni trasversali ta' triq Ċeka bit-trammijiet, korsija tar-roti, bankini u djar, u ħdejha l-isem Profily ulic",
   "Porovnat": "Qabbel",
-  "Ilustrace": "Illustrazzjonijiet",
   "Obrázek PNG": "Stampa PNG",
   "Vektor SVG": "SVG (vettur)",
   "Soubor": "Fajl",
@@ -699,8 +698,6 @@ export const MT = {
   "Ulice, jak je dnes (z mapy povrchů města nebo ČÚZK a OSM)": "It-triq kif inhi llum (mill-mappa tal-uċuħ tal-belt jew tal-ČÚZK u minn OSM)",
   "Vaše úprava ulice": "Il-bidla tiegħek fit-triq",
   "Stav a návrh pod sebou se seznamem změn": "L-istat eżistenti u l-proposta waħda taħt l-oħra, b'lista tal-bidliet",
-  "Kreslit místní ilustrace: domy, tramvaje, trolejbusy, autobusy a mobiliář města (vypnuto: ilustrace Streetmixu)":
-    "Uri illustrazzjonijiet lokali: djar, trammijiet, trolleybuses, karozzi tal-linja u l-għamara tat-triq tal-belt (mitfi: illustrazzjonijiet ta' Streetmix)",
   "Zkopíruje odkaz, který otevře tuto ulici i s vaším návrhem": "Jikkopja link li jiftaħ din it-triq flimkien mal-proposta tiegħek",
   "Mapa: kliknutím na ulici vznikne její příčný profil": "Mappa: ikklikkja fuq triq biex tinħoloq is-sezzjoni trasversali tagħha",
   "Pohled z ulice v místě řezu, ve směru profilu (Panorama Mapy.com)": "Veduta mit-triq fil-post tal-qatgħa, fid-direzzjoni tal-profil (Panorama ta' Mapy.com)",
@@ -762,7 +759,6 @@ export const MT = {
   "Vozovka": "Karreġġjata",
   "Sdílet": "Ixxerja",
   "Kopírovat polohu řezu": "Ikkopja l-pożizzjoni tal-qatgħa",
-  "Místní ilustrace": "Illustrazzjonijiet lokali",
   "kontakt": "kuntatt",
   // Rainwater objects at their size, with the networks.
   "šířka": "wisa'",

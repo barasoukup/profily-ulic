@@ -638,7 +638,6 @@ export const EN = {
   "Příčný profil české ulice s tramvajemi, cyklopruhem, chodníky a domy, vedle název Profily ulic":
     "A cross-section of a Czech street with trams, a cycle lane, pavements and buildings, beside it the name Profily ulic",
   "Porovnat": "Compare",
-  "Ilustrace": "Illustrations",
   "Obrázek PNG": "PNG image",
   "Vektor SVG": "SVG (vector)",
   "Soubor": "File",
@@ -711,8 +710,6 @@ export const EN = {
   "Ulice, jak je dnes (z mapy povrchů města nebo ČÚZK a OSM)": "The street as it is today (from the surface map of the city or of ČÚZK, and OSM)",
   "Vaše úprava ulice": "Your redesign of the street",
   "Stav a návrh pod sebou se seznamem změn": "Existing and proposal stacked, with a list of changes",
-  "Kreslit místní ilustrace: domy, tramvaje, trolejbusy, autobusy a mobiliář města (vypnuto: ilustrace Streetmixu)":
-    "Draw local illustrations: the city's buildings, trams, trolleybuses, buses and street furniture (off: Streetmix illustrations)",
   "Zkopíruje odkaz, který otevře tuto ulici i s vaším návrhem": "Copies a link that opens this street with your proposal",
   "Mapa: kliknutím na ulici vznikne její příčný profil": "Map: click a street to get its cross-section",
   "Pohled z ulice v místě řezu, ve směru profilu (Panorama Mapy.com)": "A street-level view at the cut, in the direction of the profile (Mapy.com Panorama)",
@@ -774,7 +771,6 @@ export const EN = {
   "Vozovka": "Carriageway",
   "Sdílet": "Share",
   "Kopírovat polohu řezu": "Copy the cut's position",
-  "Místní ilustrace": "Local illustrations",
   "Data © státní a městské mapové služby a OpenStreetMap": "Data © national and city map services and OpenStreetMap",
   "· ilustrace Streetmix (CC BY-SA 4.0) a © Bára Soukupová · zdroje, licence a soukromí ·": "· illustrations Streetmix (CC BY-SA 4.0) and © Bara Soukup · sources, licences and privacy ·",
   "Data {data}": "Data from {data}",

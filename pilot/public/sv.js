@@ -628,7 +628,6 @@ export const SV = {
   "Příčný profil české ulice s tramvajemi, cyklopruhem, chodníky a domy, vedle název Profily ulic":
     "Tvärsektion av en tjeckisk gata med spårvagnar, cykelfält, gångbanor och hus, bredvid namnet Profily ulic",
   "Porovnat": "Jämför",
-  "Ilustrace": "Illustrationer",
   "Obrázek PNG": "PNG-bild",
   "Vektor SVG": "SVG (vektor)",
   "Soubor": "Fil",
@@ -699,8 +698,6 @@ export const SV = {
   "Ulice, jak je dnes (z mapy povrchů města nebo ČÚZK a OSM)": "Gatan som den ser ut i dag (från stadens eller ČÚZK:s ytkarta och OSM)",
   "Vaše úprava ulice": "Din omgestaltning av gatan",
   "Stav a návrh pod sebou se seznamem změn": "Nuläge och förslag under varandra, med en lista över ändringarna",
-  "Kreslit místní ilustrace: domy, tramvaje, trolejbusy, autobusy a mobiliář města (vypnuto: ilustrace Streetmixu)":
-    "Rita lokala illustrationer: hus, spårvagnar, trådbussar, bussar och stadens gatumöbler (av: Streetmix-illustrationer)",
   "Zkopíruje odkaz, který otevře tuto ulici i s vaším návrhem": "Kopierar en länk som öppnar den här gatan med ditt förslag",
   "Mapa: kliknutím na ulici vznikne její příčný profil": "Karta: klicka på en gata för att skapa dess tvärsektion",
   "Pohled z ulice v místě řezu, ve směru profilu (Panorama Mapy.com)": "Vy från gatan vid snittet, i sektionens riktning (Panorama från Mapy.com)",
@@ -762,7 +759,6 @@ export const SV = {
   "Vozovka": "Körbana",
   "Sdílet": "Dela",
   "Kopírovat polohu řezu": "Kopiera snittets läge",
-  "Místní ilustrace": "Lokala illustrationer",
   "kontakt": "kontakt",
   // Rainwater objects at their size, with the networks.
   "šířka": "bredd",

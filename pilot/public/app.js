@@ -36,7 +36,7 @@ const AI_WAIT = 12000; // ms: the longest the first estimated cut waits for the 
 // parking sections left out), to compare the two (evaluation/ortofoto-osm/chyby.mjs, Bára 18. 11. 2026).
 const NO_MAP = new URLSearchParams(location.search).get("mapa") === "0";
 import { deriveSigns, SIGNS, SIGN_CHOICES, signLabel, signFits, signFile, keepDrawable, drawable, MAX_PER_PART } from "./signs.js";
-import { loadSprites, loadSigns, layoutSigns, buildSvg, isHole, exportCredits, mountEditor, svgString, twoLines, totalWidth, setArt, getArt, buildingStyle, artEvents, edgeInfo, underDepth, ROADWAY, nearestRoadway, BUILDING_STYLES, GABLE_LOOKS, OFFICE_TYPES as OFFICE_LIKE, turnLabel } from "./profile.js";
+import { loadSprites, loadSigns, layoutSigns, buildSvg, isHole, exportCredits, mountEditor, svgString, twoLines, totalWidth, buildingStyle, artEvents, edgeInfo, underDepth, ROADWAY, nearestRoadway, BUILDING_STYLES, GABLE_LOOKS, OFFICE_TYPES as OFFICE_LIKE, turnLabel } from "./profile.js";
 import * as sources from "./sources.js";
 import { ruianBuilding, ruianOutlines, withBuildings, insideRings } from "./gis.js";
 import { MAPY_KEY } from "./config.js";
@@ -2365,19 +2365,7 @@ document.querySelectorAll(".seg-toggle button").forEach((b) => b.addEventListene
   render();
 }));
 
-// Illustrations: each city's own (houses, vehicles, furniture) or Streetmix's, remembered per browser.
-const ART_KEY = "profily-ilustrace";
-function showArt() {
-  $("#btn-art").setAttribute("aria-checked", String(getArt()));
-}
-try { if (localStorage.getItem(ART_KEY) === "streetmix") setArt(false); } catch {}
-showArt();
-$("#btn-art").addEventListener("click", () => {
-  setArt(!getArt());
-  try { localStorage.setItem(ART_KEY, getArt() ? "mesto" : "streetmix"); } catch {}
-  showArt();
-  render();
-});
+// Illustrations: always each city's own (Bára 27. 11. 2026: the switch to Streetmix's is gone; profile.js setArt stays for the replay).
 
 $("#btn-fix").onclick = () => {
   state.fixing = !state.fixing;

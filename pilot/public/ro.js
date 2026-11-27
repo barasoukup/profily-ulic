@@ -628,7 +628,6 @@ export const RO = {
   "Příčný profil české ulice s tramvajemi, cyklopruhem, chodníky a domy, vedle název Profily ulic":
     "Profil transversal al unei străzi cehe cu tramvaie, bandă pentru biciclete, trotuare și clădiri, alături numele Profily ulic",
   "Porovnat": "Comparație",
-  "Ilustrace": "Ilustrații",
   "Obrázek PNG": "Imagine PNG",
   "Vektor SVG": "SVG (vector)",
   "Soubor": "Fișier",
@@ -699,8 +698,6 @@ export const RO = {
   "Ulice, jak je dnes (z mapy povrchů města nebo ČÚZK a OSM)": "Strada așa cum este astăzi (din harta suprafețelor orașului sau a ČÚZK și OSM)",
   "Vaše úprava ulice": "Propunerea dumneavoastră pentru stradă",
   "Stav a návrh pod sebou se seznamem změn": "Situația existentă și proiectul unul sub altul, cu lista modificărilor",
-  "Kreslit místní ilustrace: domy, tramvaje, trolejbusy, autobusy a mobiliář města (vypnuto: ilustrace Streetmixu)":
-    "Desenare ilustrații locale: clădiri, tramvaie, troleibuze, autobuze și mobilier urban (dezactivat: ilustrații Streetmix)",
   "Zkopíruje odkaz, který otevře tuto ulici i s vaším návrhem": "Copiază un link care deschide această stradă împreună cu proiectul dumneavoastră",
   "Mapa: kliknutím na ulici vznikne její příčný profil": "Hartă: un clic pe o stradă creează profilul ei transversal",
   "Pohled z ulice v místě řezu, ve směru profilu (Panorama Mapy.com)": "Vedere din stradă în locul secțiunii, în direcția profilului (Panorama Mapy.com)",
@@ -762,7 +759,6 @@ export const RO = {
   "Vozovka": "Carosabil",
   "Sdílet": "Partajare",
   "Kopírovat polohu řezu": "Copiere poziție secțiune",
-  "Místní ilustrace": "Ilustrații locale",
   "kontakt": "contact",
   // Rainwater objects at their size, with the networks.
   "šířka": "lățime",

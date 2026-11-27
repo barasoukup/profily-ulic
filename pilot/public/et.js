@@ -609,7 +609,6 @@ export const ET = {
   "Profily ulic": "Tänavaprofiil",
   "Příčný profil české ulice s tramvajemi, cyklopruhem, chodníky a domy, vedle název Profily ulic": "Tšehhi tänava ristprofiil trammide, jalgrattaraja, kõnniteede ja majadega, kõrval nimi Profily ulic",
   "Porovnat": "Võrdlus",
-  "Ilustrace": "Illustratsioonid",
   "Obrázek PNG": "PNG-pilt",
   "Vektor SVG": "SVG (vektor)",
   "Soubor": "Fail",
@@ -677,7 +676,6 @@ export const ET = {
   "Ulice, jak je dnes (z mapy povrchů města nebo ČÚZK a OSM)": "Tänav sellisena, nagu see on praegu (linna või ČÚZK-i pinnakatete kaardilt ja OSM-ist)",
   "Vaše úprava ulice": "Teie tänavakavand",
   "Stav a návrh pod sebou se seznamem změn": "Olemasolev olukord ja kavand üksteise all koos muudatuste loeteluga",
-  "Kreslit místní ilustrace: domy, tramvaje, trolejbusy, autobusy a mobiliář města (vypnuto: ilustrace Streetmixu)": "Kohalikud illustratsioonid: majad, trammid, trollibussid, bussid ja linnamööbel (väljas: Streetmixi illustratsioonid)",
   "Zkopíruje odkaz, který otevře tuto ulici i s vaším návrhem": "Kopeerib lingi, mis avab selle tänava koos teie kavandiga",
   "Mapa: kliknutím na ulici vznikne její příčný profil": "Kaart: tänaval klõpsates koostatakse selle ristprofiil",
   "Pohled z ulice v místě řezu, ve směru profilu (Panorama Mapy.com)": "Vaade tänavalt lõike kohas, profiili suunas (Mapy.com-i panoraam)",
@@ -738,7 +736,6 @@ export const ET = {
   "Vozovka": "Sõidutee",
   "Sdílet": "Jaga",
   "Kopírovat polohu řezu": "Kopeeri lõike asukoht",
-  "Místní ilustrace": "Kohalikud illustratsioonid",
   "kontakt": "kontakt",
   // Rainwater objects at their size, with the networks.
   "šířka": "laius",

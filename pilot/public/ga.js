@@ -629,7 +629,6 @@ export const GA = {
   "Příčný profil české ulice s tramvajemi, cyklopruhem, chodníky a domy, vedle název Profily ulic":
     "Trasghearradh de shráid Sheiceach le tramanna, lána rothar, cosáin agus tithe, agus an t-ainm Profily ulic in aice leis",
   "Porovnat": "Comparáid",
-  "Ilustrace": "Léaráidí",
   "Obrázek PNG": "Íomhá PNG",
   "Vektor SVG": "SVG (veicteoir)",
   "Soubor": "Comhad",
@@ -700,8 +699,6 @@ export const GA = {
   "Ulice, jak je dnes (z mapy povrchů města nebo ČÚZK a OSM)": "An tsráid mar atá sí inniu (as léarscáil dromchlaí na cathrach nó ČÚZK agus OSM)",
   "Vaše úprava ulice": "Do dhearadh féin don tsráid",
   "Stav a návrh pod sebou se seznamem změn": "An tsráid mar atá agus an dearadh ceann faoin gceann eile, le liosta athruithe",
-  "Kreslit místní ilustrace: domy, tramvaje, trolejbusy, autobusy a mobiliář města (vypnuto: ilustrace Streetmixu)":
-    "Tarraing léaráidí áitiúla: tithe, tramanna, tralaebhusanna, busanna agus troscán sráide na cathrach (múchta: léaráidí Streetmix)",
   "Zkopíruje odkaz, který otevře tuto ulici i s vaším návrhem": "Cóipeálann sé nasc a osclaíonn an tsráid seo le do dhearadh",
   "Mapa: kliknutím na ulici vznikne její příčný profil": "Léarscáil: cliceáil ar shráid chun a trasghearradh a chruthú",
   "Pohled z ulice v místě řezu, ve směru profilu (Panorama Mapy.com)": "Radharc ón tsráid ag an ngearradh, i dtreo na próifíle (Lánléargas Mapy.com)",
@@ -763,7 +760,6 @@ export const GA = {
   "Vozovka": "Carrbhealach",
   "Sdílet": "Comhroinn",
   "Kopírovat polohu řezu": "Cóipeáil suíomh an ghearrtha",
-  "Místní ilustrace": "Léaráidí áitiúla",
   "kontakt": "teagmháil",
   // Rainwater objects at their size, with the networks.
   "šířka": "leithead",

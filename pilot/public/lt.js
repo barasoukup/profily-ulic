@@ -609,7 +609,6 @@ export const LT = {
   "Profily ulic": "Gatvės profilis",
   "Příčný profil české ulice s tramvajemi, cyklopruhem, chodníky a domy, vedle název Profily ulic": "Čekijos gatvės skersinis profilis su tramvajais, dviračių juosta, šaligatviais ir namais, šalia pavadinimas Profily ulic",
   "Porovnat": "Palyginti",
-  "Ilustrace": "Iliustracijos",
   "Obrázek PNG": "PNG paveikslėlis",
   "Vektor SVG": "SVG (vektorinis)",
   "Soubor": "Failas",
@@ -677,7 +676,6 @@ export const LT = {
   "Ulice, jak je dnes (z mapy povrchů města nebo ČÚZK a OSM)": "Gatvė, kokia ji yra dabar (pagal miesto ar ČÚZK dangų žemėlapį ir OSM)",
   "Vaše úprava ulice": "Jūsų pakeista gatvė",
   "Stav a návrh pod sebou se seznamem změn": "Esama būklė ir projektas vienas virš kito su pakeitimų sąrašu",
-  "Kreslit místní ilustrace: domy, tramvaje, trolejbusy, autobusy a mobiliář města (vypnuto: ilustrace Streetmixu)": "Piešti vietines iliustracijas: miesto namus, tramvajus, troleibusus, autobusus ir mažąją architektūrą (išjungta: Streetmix iliustracijos)",
   "Zkopíruje odkaz, který otevře tuto ulici i s vaším návrhem": "Nukopijuoja nuorodą, kuri atidaro šią gatvę kartu su jūsų projektu",
   "Mapa: kliknutím na ulici vznikne její příčný profil": "Žemėlapis: spustelėjus gatvę sudaromas jos skersinis profilis",
   "Pohled z ulice v místě řezu, ve směru profilu (Panorama Mapy.com)": "Vaizdas iš gatvės pjūvio vietoje, profilio kryptimi (Mapy.com panorama)",
@@ -738,7 +736,6 @@ export const LT = {
   "Vozovka": "Važiuojamoji dalis",
   "Sdílet": "Bendrinti",
   "Kopírovat polohu řezu": "Kopijuoti pjūvio vietą",
-  "Místní ilustrace": "Vietinės iliustracijos",
   "kontakt": "kontaktai",
   // Rainwater objects at their size, with the networks.
   "šířka": "plotis",

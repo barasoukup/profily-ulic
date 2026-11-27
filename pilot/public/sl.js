@@ -628,7 +628,6 @@ export const SL = {
   "Příčný profil české ulice s tramvajemi, cyklopruhem, chodníky a domy, vedle název Profily ulic":
     "Prečni profil češke ulice s tramvaji, kolesarskim pasom, pločniki in hišami, ob njem ime Profily ulic",
   "Porovnat": "Primerjava",
-  "Ilustrace": "Ilustracije",
   "Obrázek PNG": "Slika PNG",
   "Vektor SVG": "Vektor SVG",
   "Soubor": "Datoteka",
@@ -699,8 +698,6 @@ export const SL = {
   "Ulice, jak je dnes (z mapy povrchů města nebo ČÚZK a OSM)": "Ulica, kakršna je danes (iz karte površin mesta ali ČÚZK in OSM)",
   "Vaše úprava ulice": "Vaša preureditev ulice",
   "Stav a návrh pod sebou se seznamem změn": "Stanje in predlog drug pod drugim s seznamom sprememb",
-  "Kreslit místní ilustrace: domy, tramvaje, trolejbusy, autobusy a mobiliář města (vypnuto: ilustrace Streetmixu)":
-    "Riši lokalne ilustracije: hiše, tramvaje, trolejbuse, avtobuse in mestno opremo (izklopljeno: ilustracije Streetmix)",
   "Zkopíruje odkaz, který otevře tuto ulici i s vaším návrhem": "Kopira povezavo, ki odpre to ulico skupaj z vašim predlogom",
   "Mapa: kliknutím na ulici vznikne její příčný profil": "Zemljevid: s klikom na ulico nastane njen prečni profil",
   "Pohled z ulice v místě řezu, ve směru profilu (Panorama Mapy.com)": "Pogled z ulice na mestu prereza, v smeri profila (Panorama Mapy.com)",
@@ -762,7 +759,6 @@ export const SL = {
   "Vozovka": "Vozišče",
   "Sdílet": "Deli",
   "Kopírovat polohu řezu": "Kopiraj lego prereza",
-  "Místní ilustrace": "Lokalne ilustracije",
   "kontakt": "kontakt",
   // Rainwater objects at their size, with the networks.
   "šířka": "širina",

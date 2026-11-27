@@ -629,7 +629,6 @@ export const FI = {
   "Příčný profil české ulice s tramvajemi, cyklopruhem, chodníky a domy, vedle název Profily ulic":
     "Tšekkiläisen kadun poikkileikkaus, jossa raitiovaunuja, pyöräkaista, jalkakäytävät ja taloja, vieressä nimi Profily ulic",
   "Porovnat": "Vertailu",
-  "Ilustrace": "Kuvitus",
   "Obrázek PNG": "PNG-kuva",
   "Vektor SVG": "SVG-vektorikuva",
   "Soubor": "Tiedosto",
@@ -700,8 +699,6 @@ export const FI = {
   "Ulice, jak je dnes (z mapy povrchů města nebo ČÚZK a OSM)": "Katu nykyisellään (kaupungin tai ČÚZK:n pintakartasta ja OSM:stä)",
   "Vaše úprava ulice": "Oma muutoksesi katuun",
   "Stav a návrh pod sebou se seznamem změn": "Nykytila ja suunnitelma allekkain ja luettelo muutoksista",
-  "Kreslit místní ilustrace: domy, tramvaje, trolejbusy, autobusy a mobiliář města (vypnuto: ilustrace Streetmixu)":
-    "Piirrä paikallinen kuvitus: talot, raitiovaunut, johdinautot, linja-autot ja kaupungin kalusteet (pois: Streetmixin kuvitus)",
   "Zkopíruje odkaz, který otevře tuto ulici i s vaším návrhem": "Kopioi linkin, joka avaa tämän kadun ja suunnitelmasi",
   "Mapa: kliknutím na ulici vznikne její příčný profil": "Kartta: napsauta katua, niin saat sen poikkileikkauksen",
   "Pohled z ulice v místě řezu, ve směru profilu (Panorama Mapy.com)": "Näkymä kadulta leikkauksen kohdalta poikkileikkauksen suuntaan (Mapy.comin panoraama)",
@@ -763,7 +760,6 @@ export const FI = {
   "Vozovka": "Ajorata",
   "Sdílet": "Jaa",
   "Kopírovat polohu řezu": "Kopioi leikkauksen sijainti",
-  "Místní ilustrace": "Paikallinen kuvitus",
   "kontakt": "yhteystiedot",
   // Rainwater objects at their size, with the networks.
   "šířka": "leveys",

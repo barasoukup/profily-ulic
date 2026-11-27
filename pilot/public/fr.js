@@ -630,7 +630,6 @@ export const FR = {
   "Příčný profil české ulice s tramvajemi, cyklopruhem, chodníky a domy, vedle název Profily ulic":
     "Profil en travers d'une rue tchèque avec tramways, bande cyclable, trottoirs et bâtiments, à côté le nom Profily ulic",
   "Porovnat": "Comparer",
-  "Ilustrace": "Illustrations",
   "Obrázek PNG": "Image PNG",
   "Vektor SVG": "SVG (vectoriel)",
   "Soubor": "Fichier",
@@ -701,8 +700,6 @@ export const FR = {
   "Ulice, jak je dnes (z mapy povrchů města nebo ČÚZK a OSM)": "La rue telle qu'elle est aujourd'hui (d'après le plan des surfaces de la ville ou du ČÚZK et OSM)",
   "Vaše úprava ulice": "Votre réaménagement de la rue",
   "Stav a návrh pod sebou se seznamem změn": "Existant et projet l'un sous l'autre, avec la liste des modifications",
-  "Kreslit místní ilustrace: domy, tramvaje, trolejbusy, autobusy a mobiliář města (vypnuto: ilustrace Streetmixu)":
-    "Dessiner les illustrations locales : bâtiments, tramways, trolleybus, bus et mobilier urbain de la ville (désactivé : illustrations de Streetmix)",
   "Zkopíruje odkaz, který otevře tuto ulici i s vaším návrhem": "Copie un lien qui ouvre cette rue avec votre projet",
   "Mapa: kliknutím na ulici vznikne její příčný profil": "Carte : un clic sur une rue crée son profil en travers",
   "Pohled z ulice v místě řezu, ve směru profilu (Panorama Mapy.com)": "Vue depuis la rue à l'emplacement de la coupe, dans la direction du profil (Panorama de Mapy.com)",
@@ -764,7 +761,6 @@ export const FR = {
   "Vozovka": "Chaussée",
   "Sdílet": "Partager",
   "Kopírovat polohu řezu": "Copier la position de la coupe",
-  "Místní ilustrace": "Illustrations locales",
   "kontakt": "contact",
   // Rainwater objects at their size, with the networks.
   "šířka": "largeur",

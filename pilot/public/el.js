@@ -628,7 +628,6 @@ export const EL = {
   "Příčný profil české ulice s tramvajemi, cyklopruhem, chodníky a domy, vedle název Profily ulic":
     "Διατομή τσεχικής οδού με τραμ, ποδηλατολωρίδα, πεζοδρόμια και κτίρια, δίπλα η ονομασία Profily ulic",
   "Porovnat": "Σύγκριση",
-  "Ilustrace": "Εικονογραφήσεις",
   "Obrázek PNG": "Εικόνα PNG",
   "Vektor SVG": "Διανυσματικό SVG",
   "Soubor": "Αρχείο",
@@ -699,8 +698,6 @@ export const EL = {
   "Ulice, jak je dnes (z mapy povrchů města nebo ČÚZK a OSM)": "Η οδός όπως είναι σήμερα (από τον χάρτη επιφανειών της πόλης ή του ČÚZK και το OSM)",
   "Vaše úprava ulice": "Η δική σας διαμόρφωση της οδού",
   "Stav a návrh pod sebou se seznamem změn": "Υφιστάμενη κατάσταση και πρόταση τη μία κάτω από την άλλη, με κατάλογο αλλαγών",
-  "Kreslit místní ilustrace: domy, tramvaje, trolejbusy, autobusy a mobiliář města (vypnuto: ilustrace Streetmixu)":
-    "Σχεδίαση με τοπικές εικονογραφήσεις: κτίρια, τραμ, τρόλεϊ, λεωφορεία και αστικός εξοπλισμός της πόλης (απενεργοποιημένο: εικονογραφήσεις Streetmix)",
   "Zkopíruje odkaz, který otevře tuto ulici i s vaším návrhem": "Αντιγράφει σύνδεσμο που ανοίγει αυτή την οδό μαζί με την πρότασή σας",
   "Mapa: kliknutím na ulici vznikne její příčný profil": "Χάρτης: με κλικ σε μια οδό δημιουργείται η διατομή της",
   "Pohled z ulice v místě řezu, ve směru profilu (Panorama Mapy.com)": "Άποψη από τον δρόμο στη θέση της τομής, στην κατεύθυνση της διατομής (Panorama Mapy.com)",
@@ -762,7 +759,6 @@ export const EL = {
   "Vozovka": "Οδόστρωμα",
   "Sdílet": "Κοινοποίηση",
   "Kopírovat polohu řezu": "Αντιγραφή θέσης τομής",
-  "Místní ilustrace": "Τοπικές εικονογραφήσεις",
   "kontakt": "επικοινωνία",
   // Rainwater objects at their size, with the networks.
   "šířka": "πλάτος",
