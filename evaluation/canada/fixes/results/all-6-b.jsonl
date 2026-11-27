@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "stejne", "jistota": "nizka", "why": "úzký ostrůvek se zelení a obrubou, delici i zelen obhajitelné"}
+{"n": 2, "verdict": "Y", "jistota": "stredni", "why": "široký střední pás je trávník, ne dělicí pás"}
+{"n": 3, "verdict": "X", "jistota": "vysoka", "why": "napravo je druhá vozovka za dělicím pásem, Y ji vynechává"}
+{"n": 4, "verdict": "Y", "jistota": "stredni", "why": "střední pás je travnatý"}
+{"n": 5, "verdict": "X", "jistota": "nizka", "why": "v křižovatce s přechodem není trávník, dělicí pás/ostrůvek vhodnější"}
+{"n": 6, "verdict": "Y", "jistota": "stredni", "why": "střední pás je osázený se stromy"}
+{"n": 7, "verdict": "stejne", "jistota": "nizka", "why": "ostrůvek mezi tramvají a vozovkou, zeleň či dělicí pás srovnatelné"}
+{"n": 8, "verdict": "Y", "jistota": "vysoka", "why": "vlevo je druhá vozovka a trávník, X je vynechává"}
+{"n": 9, "verdict": "Y", "jistota": "vysoka", "why": "čtyři jízdní pruhy, X má jen jeden pruh a široké krajnice"}
+{"n": 10, "verdict": "X", "jistota": "nizka", "why": "X pokrývá i pravou stranu s ostrůvkem a vozovkou, Y je zkrácený"}

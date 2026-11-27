@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "X", "jistota": "vysoka", "why": "vlevo je prázdná plocha mimo ulici, Y tam vymýšlí dva pruhy a 10 m dělicí pás"}
+{"n": 2, "verdict": "X", "jistota": "vysoka", "why": "střed je široký trávník, ne dělicí pás"}
+{"n": 3, "verdict": "Y", "jistota": "vysoka", "why": "střed je trávník, Y ho správně označuje zelení"}
+{"n": 4, "verdict": "X", "jistota": "nizka", "why": "vlevo je nárožní ostrůvek, X ho aspoň naznačuje; oba míjejí tramvajový střed"}
+{"n": 5, "verdict": "X", "jistota": "stredni", "why": "střední pás je travnatý se stromy, tedy zelen"}
+{"n": 6, "verdict": "X", "jistota": "vysoka", "why": "střed je zelený pás se stromy, ne dělicí pás"}
+{"n": 7, "verdict": "stejne", "jistota": "nizka", "why": "zvýšený středový ostrůvek se zelení, obě varianty obhajitelné"}
+{"n": 8, "verdict": "stejne", "jistota": "nizka", "why": "úzký obrubníkem ohraničený zelený ostrůvek, rozdíl jen v pojmenování"}
+{"n": 9, "verdict": "Y", "jistota": "stredni", "why": "Y zachycuje obslužnou komunikaci a ostrov vlevo, X začíná nesmyslnou krajnicí 6 m"}
+{"n": 10, "verdict": "X", "jistota": "stredni", "why": "X zahrnuje parkoviště a široký trávník vlevo, Y je ořezává"}

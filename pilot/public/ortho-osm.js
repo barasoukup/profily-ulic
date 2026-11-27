@@ -954,6 +954,30 @@ export function outerGapsByImage(polys, dir, st) {
   return n;
 }
 
+// A planimetric map's gaps between two roadways taken as medians (towns/planimetrics.js gapsBetweenRoads, Toronto), told on
+// the orthophoto: green as the estimate's rest (GREEN_AREA) is the grass strip it is (401), the rest stays the median. Not by
+// yellowness or saturation as outerGapsByImage: on Toronto's orthophoto the concrete islands are as yellow and saturated
+// as dry grass (the 26 judged medians of the second review: concrete green 0–0.01, grass 0.11–0.42, the dry one of Markham
+// Road 0). At least MEDIAN_SEEN m of it seen. Returns how many changed.
+const MEDIAN_SEEN = 0.8;
+export function medianGapsByImage(polys, dir, st) {
+  if (!usable(st) || !polys.some((p) => p.medianGap && p.code === 9950)) return 0;
+  const cols = columns(st), normal = [-dir[1], dir[0]];
+  let n = 0;
+  for (const p of polys) {
+    if (!p.medianGap || p.code !== 9950) continue;
+    const ts = p.rings[0].map(([x, y]) => x * normal[0] + y * normal[1]), a = Math.min(...ts), b = Math.max(...ts);
+    const g = [];
+    // (Not the edges: a kerb's shadow or a painted line.)
+    for (let i = cols.ti(a + 0.2); i < cols.ti(b - 0.2); i++) if (i >= 0 && i < cols.nt && Number.isFinite(cols.green[i])) g.push(cols.green[i]);
+    if (g.length * st.res < MEDIAN_SEEN) continue;
+    if (g.reduce((x, y) => x + y, 0) / g.length < GREEN_AREA) continue;
+    Object.assign(p, { code: 401, label: "zeleň (ortofoto)", guess: true });
+    n++;
+  }
+  return n;
+}
+
 export function houseSources(o) {
   const facades = ["A", "B"].map((side) => o.facadeFrom?.[side]).filter(Boolean);
   const all = facades.length ? facades : o.buildings.map((b) => b.from);

@@ -90,14 +90,15 @@ const roadCode = (t) => {
   if (/PAVED|UNPAVED|BRIDGE/.test(t)) return [701, 4];
   return null;
 };
-const prepare = (runs, { tags, tracks, cycleTracks, osmAreas }) => {
+// (The shared fixes of the lost pairs, evaluation/canada/fixes: ?off=gapsortho, gapswide, trackaxis.)
+const prepare = (runs, { tags, tracks, cycleTracks, osmAreas, streets }) => {
   islandsBeside(runs);
-  if (!off("mapgaps")) gapsBetweenRoads(runs, tracks());
+  if (!off("mapgaps")) gapsBetweenRoads(runs, tracks(), { byImage: !off("gapsortho"), streets: off("gapswide") ? null : streets });
   if (!off("kerbbays")) kerbBays(runs);
   // (Off, ?outergaps=1 on: the gaps beyond the outer sidewalk by OSM and the orthophoto, planimetrics.js outerGaps; the blind
   // A/B of 52 new arterials did not show it better, 18 : 16, evaluation/usa/boston/outer/ZPRAVA.md.)
   if (param("outergaps") === "1") outerGaps(runs, osmAreas());
-  if (!WALKED.has(tags?.highway) && !off("roadtracks")) osmTracks(runs, cycleTracks());
+  if (!WALKED.has(tags?.highway) && !off("roadtracks")) osmTracks(runs, cycleTracks(), 1.8, !off("trackaxis"));
 };
 export const BOSTON_MAP = {
   id: "boston", area: AREAS.boston, on: () => param("boston") !== "0", ask: planAsk("boston"),

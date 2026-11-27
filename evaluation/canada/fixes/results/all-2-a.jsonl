@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "Y", "jistota": "stredni", "why": "střed je travnatý pás (zelen), X navíc přidává nedoložený pruh a cyklopruh u parkoviště"}
+{"n": 2, "verdict": "Y", "jistota": "stredni", "why": "mezi vozovkami je travnatý pás, ne dělicí prvek"}
+{"n": 3, "verdict": "Y", "jistota": "nizka", "why": "střední ostrůvek je zelený s stromem, zelen sedí lépe"}
+{"n": 4, "verdict": "X", "jistota": "nizka", "why": "vlevo vidět tři pruhy, X má tři pruhy, ale střední pás chybí v obou"}
+{"n": 5, "verdict": "X", "jistota": "stredni", "why": "pět pruhů odpovídá počtu pruhů (2 + 3), Y má jen dva pruhy a široké krajnice; tramvajový pás chybí v obou"}
+{"n": 6, "verdict": "Y", "jistota": "stredni", "why": "úzký střední pás je tráva"}
+{"n": 7, "verdict": "X", "jistota": "stredni", "why": "střední pás se stromy a trávou je zelen, ne dělicí prvek"}
+{"n": 8, "verdict": "Y", "jistota": "nizka", "why": "čtyři pruhy sedí, X přidává travnatý pás označený jako delici a nejistý pruh"}
+{"n": 9, "verdict": "nejde", "jistota": "nizka", "why": "estakáda s rampou a mostem, podklady nestačí k určení osmi pruhů"}
+{"n": 10, "verdict": "Y", "jistota": "stredni", "why": "střední pás je trávník se stromy"}

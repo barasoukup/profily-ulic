@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "Y", "jistota": "stredni", "why": "střed je trávník, X přidává zbytečný pruh a cyklopruh u B na parkovišti"}
+{"n": 2, "verdict": "Y", "jistota": "vysoka", "why": "střední pás je tráva, ne dělicí pás"}
+{"n": 3, "verdict": "Y", "jistota": "vysoka", "why": "ostrůvek je travnatý se stromem"}
+{"n": 4, "verdict": "X", "jistota": "stredni", "why": "skutečně 3 pruhy na jedné vozovce; Y má jen 2"}
+{"n": 5, "verdict": "X", "jistota": "stredni", "why": "celkem 5 pruhů, Y jen 2"}
+{"n": 6, "verdict": "Y", "jistota": "vysoka", "why": "střední pás je tráva"}
+{"n": 7, "verdict": "X", "jistota": "vysoka", "why": "střed je travnatý pás se stromy"}
+{"n": 8, "verdict": "Y", "jistota": "nizka", "why": "X přidává zbytečný dělicí pás 23,8 m a pruh; obě mají chybný levý okraj"}
+{"n": 9, "verdict": "nejde", "jistota": "nizka", "why": "estakáda šikmo, žádný profil neodpovídá"}
+{"n": 10, "verdict": "Y", "jistota": "vysoka", "why": "střed je travnatý pás"}

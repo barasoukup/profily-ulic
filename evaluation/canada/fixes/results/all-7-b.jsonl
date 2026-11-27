@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "Y", "jistota": "vysoka", "why": "Střed je travnatý pás se sloupy a stromy, ne dělicí pás."}
+{"n": 2, "verdict": "X", "jistota": "vysoka", "why": "Střední pás je zelený trávník s kabely."}
+{"n": 3, "verdict": "X", "jistota": "vysoka", "why": "Široký zelený pás se stromy mezi vozovkami."}
+{"n": 4, "verdict": "Y", "jistota": "stredni", "why": "Mezi dálnicí vlevo a vozovkou vpravo je široký dělicí/šrafovaný prostor, X ho vynechává."}
+{"n": 5, "verdict": "X", "jistota": "vysoka", "why": "Střed je travnatý pás se stromky, ne dělicí pás."}
+{"n": 6, "verdict": "X", "jistota": "stredni", "why": "Jen dva pruhy na mostě, vpravo je svah s trávou bez dalšího pruhu."}
+{"n": 7, "verdict": "X", "jistota": "stredni", "why": "Střední pás je zelený s velkým stromem, odpovídá zelen+stromorad."}
+{"n": 8, "verdict": "Y", "jistota": "nizka", "why": "Vlevo od okraje ulice je jen les, X tam vkládá zbytečný dělicí pás."}
+{"n": 9, "verdict": "Y", "jistota": "stredni", "why": "Vlevo je skutečně obslužná komunikace s šipkami a pás, X ji vynechává."}
+{"n": 10, "verdict": "X", "jistota": "nizka", "why": "Vpravo je velká zpevněná plocha s pruhy křižovatky, Y tam nic nemá; cyklopruhy nejsou vidět u obou."}

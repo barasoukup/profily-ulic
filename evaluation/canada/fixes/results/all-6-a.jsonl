@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "Y", "jistota": "nizka", "why": "úzký obrubníkový ostrůvek se stromy a trávou, spíš zeleň než dělicí pás"}
+{"n": 2, "verdict": "Y", "jistota": "vysoka", "why": "široký střed je tráva, ne dělicí pás"}
+{"n": 3, "verdict": "X", "jistota": "vysoka", "why": "na ortofotu je vpravo druhá vozovka s dvěma pruhy, Y ji vynechává"}
+{"n": 4, "verdict": "Y", "jistota": "stredni", "why": "střed je travnatý pás, ne dělicí prvek"}
+{"n": 5, "verdict": "stejne", "jistota": "nizka", "why": "křižovatka, střed nejasný, rozdíl je jen v typu pásu"}
+{"n": 6, "verdict": "Y", "jistota": "nizka", "why": "střed vypadá jako pás zeleně se stromy"}
+{"n": 7, "verdict": "Y", "jistota": "nizka", "why": "ostrůvek mezi tramvají a pruhem je osázený"}
+{"n": 8, "verdict": "Y", "jistota": "vysoka", "why": "vlevo je druhá vozovka a pak travnatý svah, X ji vynechává"}
+{"n": 9, "verdict": "Y", "jistota": "vysoka", "why": "na ortofotu jsou čtyři pruhy se žlutou dvojitou čarou, X má jen jeden"}
+{"n": 10, "verdict": "X", "jistota": "nizka", "why": "X pokračuje za ostrůvek do dalšího pruhu, Y končí předčasně"}

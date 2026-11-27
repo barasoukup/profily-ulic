@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "X", "jistota": "stredni", "why": "Vlevo je otevrena plocha mimo ulici, Y tam pridava dva pruhy a delici pas navic."}
+{"n": 2, "verdict": "X", "jistota": "vysoka", "why": "Stredni pas v rezu je travnata zelen, ne delici pas."}
+{"n": 3, "verdict": "Y", "jistota": "vysoka", "why": "Stredni pas je travnata zelen, Y ho vede jako zelen."}
+{"n": 4, "verdict": "X", "jistota": "stredni", "why": "Na strane A je rohovy ostruvek (delici), ktery X zahrnuje a Y ne."}
+{"n": 5, "verdict": "X", "jistota": "vysoka", "why": "Stredni pas je travnaty s stromy, tedy zelen."}
+{"n": 6, "verdict": "X", "jistota": "stredni", "why": "Uzky stredni pas se stromy odpovida stromoradi, ne 7 m delicimu pasu."}
+{"n": 7, "verdict": "Y", "jistota": "nizka", "why": "Zvyseny stredni pas je osazeny zeleni a stromem."}
+{"n": 8, "verdict": "Y", "jistota": "stredni", "why": "Uzky stredni ostruvek je zelen se vzrostlou vegetaci."}
+{"n": 9, "verdict": "stejne", "jistota": "nizka", "why": "Oba chybne resi vlevo zpevnenou plochu a rampu, dalnice vpravo je stejna."}
+{"n": 10, "verdict": "Y", "jistota": "nizka", "why": "X pridava vlevo parkovaci pruh a travu jako delici, ulice zacina az vozovkou."}

@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "X", "jistota": "nizka", "why": "křižovatka s kolejemi, šest pruhů v X odpovídá šířce vozovky lépe než tři pruhy a široké krajnice v Y"}
+{"n": 2, "verdict": "Y", "jistota": "nizka", "why": "střed je úzký natřený/zvýšený ostrůvek, ne zeleň; delici sedí"}
+{"n": 3, "verdict": "Y", "jistota": "vysoka", "why": "střední pás je travnatý se sloupy, zelen"}
+{"n": 4, "verdict": "Y", "jistota": "vysoka", "why": "střední pás je široký travnatý, ne dělicí prvek"}
+{"n": 5, "verdict": "Y", "jistota": "stredni", "why": "střed je osázený pás keřů, zelen"}
+{"n": 6, "verdict": "X", "jistota": "nizka", "why": "most/dálnice, krajnice a dva pruhy 4 m věrohodnější než pět úzkých pruhů, podklady slabé"}
+{"n": 7, "verdict": "Y", "jistota": "nizka", "why": "vozovka má 2+2 pruhy (a koleje uprostřed), Y má čtyři pruhy, X jen dva"}
+{"n": 8, "verdict": "X", "jistota": "stredni", "why": "střední ostrůvek je osázený stromem, stromorad v X odpovídá"}
+{"n": 9, "verdict": "Y", "jistota": "vysoka", "why": "široký travnatý střed se stromy, zelen"}
+{"n": 10, "verdict": "Y", "jistota": "vysoka", "why": "střední pás se stromy a zelení, ne dělicí pás"}

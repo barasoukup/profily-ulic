@@ -30,7 +30,12 @@ export const TORONTO_MAP = {
   ],
   junction: { layer: 3, test: (a) => /intersection/i.test(a.SUBTYPE_DESC || "") },
   // ?off=mapgaps, kerbbays, roadtracks: without the rule (the A/B of 25. 11. 2026).
-  prepare: (runs, { tags, tracks, cycleTracks }) => { if (!off("mapgaps")) gapsBetweenRoads(runs, tracks()); if (!off("kerbbays")) kerbBays(runs); if (!WALKED.has(tags?.highway) && !off("roadtracks")) osmTracks(runs, cycleTracks()); },
+  // The shared fixes of the lost pairs (evaluation/canada/fixes, planimetrics.js): ?off=gapsortho, gapswide, trackaxis.
+  prepare: (runs, { tags, tracks, cycleTracks, streets }) => {
+    if (!off("mapgaps")) gapsBetweenRoads(runs, tracks(), { byImage: !off("gapsortho"), streets: off("gapswide") ? null : streets });
+    if (!off("kerbbays")) kerbBays(runs);
+    if (!WALKED.has(tags?.highway) && !off("roadtracks")) osmTracks(runs, cycleTracks(), 1.8, !off("trackaxis"));
+  },
 };
 const map = planimetricMap(TORONTO_MAP);
 
