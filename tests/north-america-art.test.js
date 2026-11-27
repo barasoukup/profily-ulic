@@ -10,9 +10,9 @@ test("USA kreslí severoamerický mobiliář, Washington svůj označník, spole
   const C = await import("../pilot/public/city.js");
   const P = await import("../pilot/public/profile.js");
   C.loadBounds(read("mesta.json")); C.loadStates(({ ...read("staty.json"), ...read("staty-america.json") })); C.loadTowns(read("mesta-us.json"));
-  // The White House and Southern Avenue are Washington, Silver Spring and Arlington the rest of the metro.
+  // The White House is Washington; Silver Spring and Arlington are the closed USA since 26. 11. 2026 (the District only).
   assert.equal(C.cityAt(38.8977, -77.0365), "washington");
-  for (const [lat, lon] of [[38.9907, -77.0261], [38.8816, -77.091]]) assert.equal(C.cityAt(lat, lon), "usa");
+  for (const [lat, lon] of [[38.9907, -77.0261], [38.8816, -77.091]]) assert.equal(C.cityAt(lat, lon), "cizina");
   const art = (id) => P.artSet(C.cityById(id).art);
   assert.equal(C.countryOfCity("washington").code, "US");
   assert.equal(art("usa")["lamp-modern-left"], "../northamerica/lamp-left");

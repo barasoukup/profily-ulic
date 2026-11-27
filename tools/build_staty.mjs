@@ -110,8 +110,8 @@ async function swiss(iso) {
 // domain), with their holes (Fairfax County's ring has Fairfax city as a hole: the rings of one entry count by parity, so
 // the city's own ring makes it inside again): each metro merged to one outline on its own (their rings do not touch), then
 // simplified to about 10 m; the state "usa" is all of them.
-//   dc: the District, Montgomery and Prince George's in Maryland; Arlington, Fairfax County, Fairfax city, Falls Church
-//       and Alexandria in Virginia (the pack us_dc).
+//   dc: the District of Columbia only (the pack us_dc; Bára 26. 11. 2026: only where good free sources cover it, the
+//       counties of Maryland and Virginia have no surface map, so they are the closed USA now).
 //   nyc: New York City, its five boroughs (Bronx, Kings, New York, Queens, Richmond; the pack us_nyc, 26. 11. 2026). The
 //       counties of New Jersey, Westchester and Nassau around it are left out: no surface map of theirs.
 //   sf: San Francisco, the City and County (06075; its legal boundary with the water of the bay and the ocean to 3 nautical
@@ -121,7 +121,7 @@ async function swiss(iso) {
 //       (Brookline, Quincy …) in Massachusetts (the pack us_bos, Bára 26. 11. 2026; tools/build_towns_us.mjs takes the
 //       metro's ring from staty-america.json as "bostonmetro").
 const METROS = {
-  dc: ["11001", "24031", "24033", "51013", "51059", "51600", "51610", "51510"],
+  dc: ["11001"],
   nyc: ["36005", "36047", "36061", "36081", "36085"],
   sf: ["06075"],
   boston: ["25025", "25017", "25021"],
@@ -132,7 +132,30 @@ async function metro(ids) {
   if ((json.features || []).length !== ids.length) throw new Error(`TIGERweb: ${json.features?.length} of ${ids.length} counties`);
   return outline(json.features.flatMap((f) => f.geometry.rings)).map((r) => simplify(r, 0.0001)).filter((r) => r.length >= 4);
 }
-const usMetros = async () => (await Promise.all(Object.values(METROS).map(metro))).flat();
+const usMetros = async () => (await Promise.all(Object.values(METROS).map(async (ids) => grow(await metro(ids), EDGE_M)))).flat();
+// A street along the boundary (Washington's Southern Avenue, Toronto's Steeles Avenue) belongs to the city whose map reads it
+// (towns/*.js AREAS near): each ring of the North American states grown by EDGE_M metres (a mitre offset in a local plane,
+// the mitre at most 3 × EDGE_M), so that its other half is not the closed USA or Canada (Bára 26. 11. 2026: the cities only).
+const EDGE_M = 60;
+export function grow(rings, m) {
+  return rings.map((r) => {
+    const lat0 = r.reduce((a, p) => a + p[1], 0) / r.length, kx = 111320 * Math.cos((lat0 * Math.PI) / 180), ky = 110574;
+    const q = r.slice(0, -1).map(([x, y]) => [x * kx, y * ky]), n = q.length;
+    let area = 0;
+    for (let i = 0; i < n; i++) { const [x0, y0] = q[i], [x1, y1] = q[(i + 1) % n]; area += x0 * y1 - x1 * y0; }
+    const out = area > 0 ? 1 : -1; // counter-clockwise: the outside is to the right
+    const norm = (a, b) => { const dx = b[0] - a[0], dy = b[1] - a[1], l = Math.hypot(dx, dy) || 1; return [(dy / l) * out, (-dx / l) * out]; };
+    const moved = q.map((p, i) => {
+      const n1 = norm(q[(i - 1 + n) % n], p), n2 = norm(p, q[(i + 1) % n]);
+      let bx = n1[0] + n2[0], by = n1[1] + n2[1];
+      const bl = Math.hypot(bx, by);
+      if (bl < 1e-9) { bx = n1[0]; by = n1[1]; } else { bx /= bl; by /= bl; }
+      const cos = bx * n1[0] + by * n1[1], d = Math.min(m / Math.max(cos, 1e-6), 3 * m);
+      return [+((p[0] + bx * d) / kx).toFixed(5), +((p[1] + by * d) / ky).toFixed(5)];
+    });
+    return [...moved, moved[0]];
+  });
+}
 // Areas with common boundaries (the same vertices on both sides) merged to their outline before it is simplified: the
 // edges two of them share cancel out, so nothing stays along the common lines (each county simplified alone left gaps
 // there: Southern Avenue, the DC line, fell into closed_us; unsimplified it was 863 kB for every visitor).
@@ -162,10 +185,10 @@ export function outline(list) {
   return out;
 }
 
-// Toronto and the municipalities around it whose OSM the pack ca_on_toronto holds (Bára 25. 11. 2026): Toronto, Mississauga,
-// Brampton, Vaughan, Richmond Hill, Markham and Pickering, Statistics Canada's census subdivisions of 2021 (the digital
-// boundary file, with the lake; Statistics Canada Open Licence), merged to one outline, then simplified to about 10 m.
-const GTA = ["3520005", "3521005", "3521010", "3519028", "3519036", "3519038", "3518001"];
+// Toronto, the city only (Bára 26. 11. 2026: only where good free sources cover it; the municipalities around it, which
+// have no surface map, are the closed Canada), Statistics Canada's census subdivision of 2021 (the digital boundary file,
+// with the lake; Statistics Canada Open Licence), simplified to about 10 m.
+const GTA = ["3520005"];
 async function statcan(ids) {
   const q = new URLSearchParams({ where: `CSDUID IN (${ids.map((i) => `'${i}'`).join(",")})`, outFields: "CSDUID", returnGeometry: "true", outSR: "4326", f: "json" });
   const json = await (await fetch(`https://geo.statcan.gc.ca/geo_wa/rest/services/2021/Digital_boundary_files/MapServer/9/query?${q}`, { headers: { "User-Agent": "profily-ulic" } })).json();
@@ -261,8 +284,8 @@ const BUILD = {
   // The USA (24. 11. 2026): the metros of METROS above (Washington DC, New York City, San Francisco, Boston); the rest of
   // the USA is closed_us below.
   usa: () => usMetros(),
-  // Canada (25. 11. 2026): Toronto and its surroundings (statcan above); the rest of Canada is closed_ca below.
-  canada: async () => (await statcan(GTA)).map((r) => simplify(r, 0.0001)).filter((r) => r.length >= 4),
+  // Canada (25. 11. 2026): Toronto, since 26. 11. 2026 the city only (statcan above); the rest of Canada is closed_ca below.
+  canada: async () => grow((await statcan(GTA)).map((r) => simplify(r, 0.0001)).filter((r) => r.length >= 4), EDGE_M),
   // Malta (23. 11. 2026): OSM's boundary with the territorial waters (one ring round the islands, no neighbour; GISCO's
   // coast cuts off quays; tools/malta-border.json, © OpenStreetMap contributors, ODbL).
   malta: () => JSON.parse(fs.readFileSync(new URL("./malta-border.json", import.meta.url), "utf8")).map((r) => simplify(r)),

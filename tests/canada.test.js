@@ -12,9 +12,10 @@ test("Kanada: Toronto a okolí, zbytek Kanady s hláškou, hranice s USA u Winds
   C.loadBounds(read("mesta.json")); C.loadStates(staty); C.loadTowns(read("mesta-us.json")); C.loadTowns(read("mesta-ca.json"));
   assert.ok(JSON.stringify(staty.canada).length < 10_000);
   assert.ok(JSON.stringify(staty.closed_ca).length < 150_000);
-  // Downtown, the islands; Mississauga, Markham, Pickering, north of Steeles Avenue.
+  // Downtown, the islands; Mississauga, Markham, Pickering, north of Steeles Avenue: since 26. 11. 2026 Toronto is the
+  // city only (Bára), the municipalities around it are the closed Canada.
   for (const p of [[43.6535, -79.3839], [43.623, -79.38]]) assert.equal(C.cityAt(...p), "toronto");
-  for (const p of [[43.589, -79.644], [43.8668, -79.2663], [43.84, -79.09], [43.7935, -79.45]]) assert.equal(C.cityAt(...p), "canada");
+  for (const p of [[43.589, -79.644], [43.8668, -79.2663], [43.84, -79.09], [43.83, -79.45]]) { assert.equal(C.cityAt(...p), "cizina", `${p}`); assert.match(C.closedAt(...p) || "", /Torontu/, `${p}`); }
   assert.equal(C.countryOfCity("toronto").code, "CA");
   // Windsor, Niagara-on-the-Lake's Queenston, Niagara Falls ON, Fort Erie, Sarnia, Hamilton, Montreal, Vancouver.
   for (const p of [[42.3185, -83.0395], [43.165, -79.053], [43.0896, -79.075], [42.905, -78.925], [42.975, -82.405], [43.2557, -79.8711], [45.5019, -73.5674], [49.2827, -123.1207]]) assert.match(C.closedAt(...p) || "", /Torontu/, `${p}`);

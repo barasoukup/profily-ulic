@@ -71,7 +71,8 @@ export const COUNTRIES = {
   // Lithuania (Bára 24. 11. 2026): Geofabrik's one extract (224 MB of PBF), only on R2.
   lt: { iso: "LT", geofabrik: "lithuania", pages: false },
   // The USA (Bára 24. 11. 2026, phase 2 of the North America pilot): only its metros, a pack each (the app reads all from
-  // index.json). us_dc: Geofabrik's District of Columbia with the parts of Maryland and Virginia in the metro's box
+  // index.json). us_dc: Geofabrik's District of Columbia with the parts of Maryland and Virginia in the District's box and about 1 km
+  // round it (Bára 26. 11. 2026: the District only)
   // (osm-tiles.yml: extracts joined by "+" are each cut to the box after "@" with osmium and merged; locally 86 MB).
   // us_nyc (26. 11. 2026): New York City, Geofabrik's New York (500 MB of PBF, in a folder of its own since Geofabrik moved
   // the states) cut to the box of the five boroughs (locally 44 MB). us_sf (26. 11. 2026): San Francisco, Geofabrik's
@@ -79,13 +80,13 @@ export const COUNTRIES = {
   // Boston, Geofabrik's Massachusetts (312 MB of PBF) cut to the box of the metro's three counties (tools/build_staty.mjs
   // METROS). Only on R2. A further metro is a further part.
   us: { iso: "US", geofabrik: "north-america/us/district-of-columbia", pages: false, parts: {
-    us_dc: "north-america/us/district-of-columbia+north-america/us/maryland+north-america/us/virginia@-77.56,38.52,-76.64,39.37",
+    us_dc: "north-america/us/district-of-columbia+north-america/us/maryland+north-america/us/virginia@-77.14,38.78,-76.90,39.01",
     us_nyc: "north-america/us/new-york/new-york@-74.30,40.45,-73.65,40.95",
     us_sf: "north-america/us/california/norcal@-122.54,37.68,-122.34,37.84",
     us_bos: "north-america/us/massachusetts@-71.92,41.97,-70.62,42.76" } },
-  // Canada (Bára 25. 11. 2026): only Toronto and the municipalities around it, one pack ca_on_toronto of Geofabrik's Ontario
-  // (1 GB of PBF) cut to their box (locally 46 MB), only on R2.
-  ca: { iso: "CA", geofabrik: "north-america/canada/ontario", pages: false, parts: { ca_on_toronto: "north-america/canada/ontario@-79.92,43.46,-78.98,44.03" } },
+  // Canada (Bára 25. 11. 2026): only Toronto (the city, Bára 26. 11. 2026), one pack ca_on_toronto of Geofabrik's
+  // Ontario (1 GB of PBF) cut to the city's box and about 1 km round it, only on R2.
+  ca: { iso: "CA", geofabrik: "north-america/canada/ontario", pages: false, parts: { ca_on_toronto: "north-america/canada/ontario@-79.66,43.57,-79.10,43.87" } },
 };
 // The packs to build (osm-tiles.yml): a state's own, or its parts.
 export const PACKS = Object.entries(COUNTRIES).flatMap(([k, c]) => (c.parts ? Object.entries(c.parts).map(([code, extract]) => ({ code, extract })) : [{ code: k, extract: c.geofabrik }]));

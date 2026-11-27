@@ -7,14 +7,12 @@ import fs from "node:fs";
 import "../pilot/public/america.js";
 const STATY = { ...JSON.parse(fs.readFileSync(new URL("../pilot/public/staty.json", import.meta.url), "utf8")), ...JSON.parse(fs.readFileSync(new URL("../pilot/public/staty-america.json", import.meta.url), "utf8")) };
 
-test("USA: metro Washingtonu je stát usa, zbytek USA zavřený", async () => {
+test("USA: District of Columbia je stát usa, zbytek USA zavřený (i okresy Marylandu a Virginie)", async () => {
   const C = await import("../pilot/public/city.js");
   C.loadBounds(JSON.parse(fs.readFileSync(new URL("../pilot/public/mesta.json", import.meta.url), "utf8")));
   C.loadStates(STATY);
-  // The White House, Silver Spring (Montgomery), Hyattsville (Prince George's), Arlington, Alexandria, Fairfax city, Tysons.
-  for (const [lat, lon] of [[38.8977, -77.0365], [38.9907, -77.0261], [38.9559, -76.9455], [38.8816, -77.091], [38.8048, -77.0469], [38.8462, -77.3064], [38.9187, -77.2311],
-    // On the DC line (Southern Avenue, dc-8-3): simplified county rings left a gap there.
-    [38.8436094, -76.9725878]]) {
+  // The White House; on the DC line (Southern Avenue, dc-8-3): simplified county rings left a gap there.
+  for (const [lat, lon] of [[38.8977, -77.0365], [38.8436094, -76.9725878]]) {
     assert.equal(C.cityAt(lat, lon), "usa", `${lat},${lon}`);
     assert.equal(C.closedAt(lat, lon), null);
   }
@@ -25,8 +23,11 @@ test("USA: metro Washingtonu je stát usa, zbytek USA zavřený", async () => {
     assert.equal(C.closedAt(lat, lon), null);
   }
   assert.equal(C.countryOfCity("newyork").code, "US");
-  // Baltimore, Richmond, Jersey City, Yonkers, Hempstead (Nassau): the USA beyond the metros, a message and no profile.
-  for (const [lat, lon] of [[39.2904, -76.6122], [37.5407, -77.436], [40.7178, -74.0431], [40.9312, -73.8988], [40.7062, -73.6187]]) {
+  // Baltimore, Richmond, Jersey City, Yonkers, Hempstead (Nassau): the USA beyond the metros, a message and no profile; since
+  // 26. 11. 2026 (Bára: the District only) also Silver Spring (Montgomery), Hyattsville (Prince George's), Arlington,
+  // Alexandria, Fairfax city, Tysons.
+  for (const [lat, lon] of [[39.2904, -76.6122], [37.5407, -77.436], [40.7178, -74.0431], [40.9312, -73.8988], [40.7062, -73.6187],
+    [38.9907, -77.0261], [38.9559, -76.9455], [38.8816, -77.091], [38.8048, -77.0469], [38.8462, -77.3064], [38.9187, -77.2311]]) {
     assert.equal(C.cityAt(lat, lon), "cizina", `${lat},${lon}`);
     assert.match(C.closedAt(lat, lon) || "", /Washingtonu/);
   }
@@ -41,7 +42,12 @@ test("USA: mezi okresy ani na hranici DC nejsou díry, staty.json nenese společ
   assert.ok(JSON.stringify(staty.usa).length < 75_000, `${JSON.stringify(staty.usa).length} B`);
   C.loadBounds(JSON.parse(fs.readFileSync(new URL("../pilot/public/mesta.json", import.meta.url), "utf8")));
   C.loadStates(staty);
-  for (const [lon, lat] of us.washington[0]) for (const [dx, dy] of [[0, 0], [2e-4, 0], [-2e-4, 0], [0, 2e-4], [0, -2e-4]]) assert.equal(C.closedAt(lat + dy, lon + dx), null, `${lat},${lon}`);
+  // Round each point of the District's ring, nothing of the District is closed (the state's ring is grown by 60 m,
+  // tools/build_staty.mjs grow: a street along the line).
+  C.loadTowns(us);
+  for (const [lon, lat] of us.washington[0]) for (const [dx, dy] of [[0, 0], [4e-4, 0], [-4e-4, 0], [0, 3e-4], [0, -3e-4]]) {
+    if (C.cityAt(lat + dy, lon + dx) === "washington") assert.equal(C.closedAt(lat + dy, lon + dx), null, `${lat + dy},${lon + dx}`);
+  }
   // The quays across the border have not the message of the USA (Windsor has Canada's, Nuevo Laredo none), Detroit and Laredo have.
   assert.match(C.closedAt(42.3190, -83.0390) || "", /Torontu/);
   assert.equal(C.closedAt(27.4950, -99.5069), null);
@@ -65,7 +71,7 @@ test("USA: DC je District, ne obdélník (ortofoto, mapa povrchů, město)", asy
   for (const [lat, lon] of [[38.8868, -77.0953], [38.9847, -77.0947], [38.9935, -77.0265], [38.8048, -77.0469], [38.8512, -77.0402], [38.8462, -77.3064]]) {
     assert.equal(orthoHereAt("us", lon, lat), false, `${lat},${lon}`);
     assert.equal(inArea(AREAS.dc, lon, lat), false, `${lat},${lon}`);
-    assert.equal(C.cityAt(lat, lon), "usa");
+    assert.equal(C.cityAt(lat, lon), "cizina");
   }
   // The streets along the line are read (Southern, Western and Eastern Avenue).
   for (const [lat, lon] of [[38.8436094, -76.9725878], [38.96689, -77.07792], [38.96509, -77.00168]]) assert.equal(inArea(AREAS.dc, lon, lat), true, `${lat},${lon}`);
