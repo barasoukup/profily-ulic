@@ -2,7 +2,7 @@
 // a 7 m carriageway (dark) between lighter sidewalks, OSM houses 8 m from the axis on both sides.
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { orthoOsmPolys, osmAlong, osmRoad, besidePassport, estimateNote, P } from "../pilot/public/ortho-osm.js";
+import { orthoOsmPolys, osmAlong, osmRoad, besidePassport, estimateNote, trimToEnds, P } from "../pilot/public/ortho-osm.js";
 import { withBuildings } from "../pilot/public/gis.js";
 import { localFrame, deriveProfile } from "../pilot/public/derive.js";
 
@@ -273,4 +273,18 @@ test("ortofoto a OSM: ulice na mostě přes vodu OSM: voda pod mostem profil neu
   P.off = new Set(["mostvoda"]);
   assert.ok(run().polys.some((q) => q.code === 501));
   P.off = new Set();
+});
+
+test("ortofoto a OSM: zeď za ulicí v dosahu ukončí profil, mezeru do ní vyplní plocha (Berliner Straße v Lipsku; ?off=murkonec dřív)", () => {
+  const els = { elements: [osm().elements[0], house(8, 16), { type: "way", id: 9, tags: { barrier: "wall" }, geometry: [ll(-17, -30), ll(-17, 30)] }] };
+  const run = () => {
+    const polys = orthoOsmPolys({ osm: els, frame, dir, way: els.elements[0], st: image() });
+    const p = deriveProfile({ center: [0, 0], dir, half: 40, polys, osm: els, frame, way: els.elements[0] });
+    return trimToEnds(p, polys.ends);
+  };
+  // The wall is 17 m from the axis (west is +t); the image is all paving, a run of 40 m, longer than REST_MAX.
+  assert.ok(Math.abs(run().extent[1] - 17) < 0.3, JSON.stringify(run().extent));
+  P.off = new Set(["murkonec"]);
+  assert.ok(run().extent[1] < 15.5, JSON.stringify(run().extent));
+  P.off = null;
 });
