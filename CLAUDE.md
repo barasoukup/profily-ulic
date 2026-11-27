@@ -658,7 +658,8 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
   torontohouse) zůstává; opravy z rozboru proher jen obecné: mezery mezi vozovkami a stezka přes osu (`?off=gapsortho`,
   `gapswide`, `trackaxis`; A/B 54 : 13, `evaluation/canada/losses/FIXES.md`). Opravy jen pro jedno město (DDOT 2–5,
   podlaží Toronta) zahozené, schované ve větvi `dropped-city-fixes`; přepočet výšky na podlaží jako sdílená funkce
-  (větev floors-height). Inventář DDOT věří jen tam, kde se vejde do změřené šířky (`?off=ddotfit`, větev ddot-fit).
+  (`floors.js`, `?off=floorsh`; Toronto 18 : 4, zapnuto i v SF a NYC bez vlastního měření, Bára 27. 11. 2026; OSM výška
+  v Evropě 11 : 8, vypnuto, `?floorsosm=1`; `evaluation/floors-height/ZPRAVA.md`). Inventář DDOT věří jen tam, kde se vejde do změřené šířky (`?off=ddotfit`, větev ddot-fit).
 - Značky NYC DOT (`?nycsigns=1`) vypnuté a bez dalších úprav (Bára 27. 11. 2026: „nevymýšlet výjimky, nechat NY jak je“).
 - `?otherstreet` vypnuté, upozornění na řez křižovatkou zůstává; takové řezy se nepočítají do měření
   (`evaluation/universal/junction.mjs`). Oprava osy (Lippard Avenue) zapnutá všude, `?axisroad=0` (3 566 řezů ve
