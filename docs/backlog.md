@@ -354,9 +354,10 @@ Co rozhodne Bára, je označeno **(Bára)**.
 - Přestavba překladů: klíče jako jména (ne české věty), věty skládané z kousků (výčty míst a kreditů přes
   `Intl.ListFormat` a názvy míst), sloučit téměř shodné texty, tabulka pro lidi generovaná ze souborů (a opravy z ní zpět).
   Záchranná síť: přehrávka `evaluation/replay` ve 4 jazycích stejná před a po.
-- Přejmenovat na logické anglické názvy: `pilot` → `app`, české názvy složek a souborů (`znacky/`, `evaluation/<česky>/`,
-  `ZPRAVA.md`, `unused-illustrations`, `towns/slovakia.js`, id `cesko`/`slovensko`…); odkazy ve workflow, nástrojích, testech
-  a dokumentaci; uložené řezy a odkazy se staršími id musí dál fungovat.
+- ~~Přejmenovat na logické anglické názvy: `pilot` → `app`, české názvy složek a souborů aplikace a nástrojů~~ (větev
+  `english-names`, 27. 11. 2026: `znacky/` → `signs-CZ/`, `towns.json`, `states.json`, `towns/slovakia.js`, ilustrace, testy).
+  Zbývá: `evaluation/<česky>/` a `ZPRAVA.md` (spolu s archivací), id `cesko`/`slovensko`… v datech řezů (uložené řezy
+  a odkazy se staršími id musí dál fungovat), složky dat webu `data/vyvoj`, `parkovani`, `zony.json`.
 - Úklid `.claude/worktrees/` (47 kopií, 25 GB): data, na která se odkazuje (nahrávky, balíky, cache měření), přesunout do
   git-ignorovaného `data/` hlavního repa, ověřit necommitnuté změny a sloučení větví (street-history a hungary zůstávají
   stranou), pak smazat.
