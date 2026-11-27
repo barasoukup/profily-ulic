@@ -115,10 +115,10 @@ function cleanSigns(list) {
 // [lon0, lat0, lon1, lat1]; Bára 16. 11. 2026: a cut in Košice or Graz was lost on reload).
 const inStates = (lat, lon) => [...Object.values(COUNTRIES).map((c) => c.bounds), ...Object.values(LATE_BOUNDS)].some(([x0, y0, x1, y1]) => num(lat, y0, y1) && num(lon, x0, x1));
 
-// Position of the cut: numbers in and around the states of the app, reach of each side 1–70 m; else no cut.
+// Position of the cut: numbers in and around the states of the app, reach of each side 1–100 m (dragging reaches 100 m, Bára 27. 11. 2026); else no cut.
 export function cleanCut(c) {
   if (!c || !num(c.lat, -90, 90) || !num(c.lon, -180, 180) || !inStates(c.lat, c.lon) || !num(c.bearing, -360, 360)) return null;
-  const reach = c.reach && num(c.reach.left, 1, 70) && num(c.reach.right, 1, 70) ? { left: c.reach.left, right: c.reach.right } : undefined;
+  const reach = c.reach && num(c.reach.left, 1, 100) && num(c.reach.right, 1, 100) ? { left: c.reach.left, right: c.reach.right } : undefined;
   const span = c.span && num(c.span.left, 0, 70) && num(c.span.right, 0, 70) ? { left: c.span.left, right: c.span.right } : undefined;
   // What the export credits (app.js, city.js creditLines): a region's name, the DMVS flag and the keys of the sources
   // that gave data (credits.js), nothing else.
