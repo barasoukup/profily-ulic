@@ -960,6 +960,7 @@ const gableAxes = (kind) => (LOOKS.gableCut ? GABLE_CUT_AXES : GABLE_AXES[kind])
 const gableForm = (kind, info) => (kind === "hanza" ? (houseHash(info) % 4 === 0 ? "trap" : "plain") : ["trap", "hals", "klok"][houseHash(info) % 3]);
 const GABLE_TOP = { trap: 2.3, hals: 2.38, klok: 2.4, plain: 2.0, htrap: 2.38 };
 const gableTop = (kind, info) => GABLE_TOP[kind === "hanza" && gableForm(kind, info) === "trap" ? "htrap" : gableForm(kind, info)];
+const GABLE_LOW = 0.72; // a one-storey house under a gable: the gable is lower, in proportion
 const gableOn = (kind) => !!GABLE_RISE[kind] && LOOKS.gables;
 const BARN_RISE = 380; // a village house: its roof rises this high (cm) from the eaves to the ridge (6–8 m deep house)
 // A tenement's side gable (Bára 23. 11. 2026: the round window belongs under the ridge, and the ridge must show): like the
@@ -995,7 +996,7 @@ function buildingForm(info, kind) {
   // The brick, wooden and Mediterranean houses draw their roof floors in the roof (dormers, a gable), not as a mansard.
   if (style === "cihla" || style === "drevo" || MED_LOOKS.has(kind)) roofRows = 0;
   // A gable turned towards us (?stit=1) holds the top floor: the floors below it are one fewer.
-  if (gableOn(kind) && n >= 2) roofRows = 1;
+  if (gableOn(kind) && n >= 3) roofRows = 1; // (a one- or two-storey house has its whole wall below the gable)
   const S = STOREY[kind];
   // A known height sets the storey (within reason); pitched roofs sit above it.
   const storey = h ? Math.min(S * 1.5, Math.max(S * 0.7, (h * 100) / n)) : S;
@@ -1013,7 +1014,7 @@ function buildingForm(info, kind) {
   const pitch = ROOF_PITCH[kind] || PITCH;
   const sawtooth = style === "hala" && ["industrial", "manufacture"].includes(info?.type) && IPR_ROOF[info?.roofType] !== "plocha";
   // A family house shows its ridge inside the 4 m strip; a tenement's ridge lies deeper, past the cut.
-  const pitched = kind === "statek" ? BARN_RISE + 40 : tenementGable(kind, roofRows, false) ? (TENEMENT_RIDGE + 5) * pitch + 45 : gableOn(kind) ? gableTop(kind, info) * storey + 90 : GABLE_RISE[kind] ? GABLE_RISE[kind] + 100 : kind === "cihlovy" ? 250
+  const pitched = kind === "statek" ? BARN_RISE + 40 : tenementGable(kind, roofRows, false) ? (TENEMENT_RIDGE + 5) * pitch + 45 : gableOn(kind) ? gableTop(kind, info) * storey * (n < 2 ? GABLE_LOW : 1) + 90 : GABLE_RISE[kind] ? GABLE_RISE[kind] + 100 : kind === "cihlovy" ? 250
     : style === "nizky" || SMALL_RIDGE.has(kind) ? (RIDGE + 55) * pitch + 45 : (EDGE + 35) * pitch + 45;
   const roofH = flat ? roofRows * storey + (sawtooth ? 430 : style === "hala" ? 110 : MED_LOOKS.has(kind) ? 230 : 50) : roofRows && kind !== "statek" && !gableOn(kind) ? roofRows * storey + 170 : pitched;
   return { n, roofRows: kind === "statek" ? 0 : roofRows, storey, ground, body, roofH, flat, pitch, chimney: flat ? 0 : 70 };
@@ -1166,7 +1167,7 @@ function drawPrahaBuilding(g, x, side, surface, info, chosen) {
   function drawGable() {
     const S = f.storey, c = gableC(), form = gableForm(kind, info), win = WINDOWS[kind], axes = gableAxes(kind), ax0 = axes[0], ax1 = axes.at(-1);
     const sc = c / GABLE_C; // the widths of the outline grow with a wider house (the variant)
-    const u = (k) => top + k * S;
+    const u = (k) => top + k * S * (f.n < 2 ? GABLE_LOW : 1);
     const STONE_W = "#efe9dc", SANDSTONE = "#e3d6b8", CAP = kind === "hanza" ? "#8f8a80" : STONE_W;
     // The left half of the outline as [half-width, height in storeys], from the wall's top up; mirrored for the right.
     let half, pedestal = null;
@@ -1193,7 +1194,7 @@ function drawPrahaBuilding(g, x, side, surface, info, chosen) {
     }
     // The gable itself over the whole wall, outlined along its edge only (no line, no step at its foot).
     poly(pts, wall);
-    el("path", { d: "M" + pts.map(([d, z]) => `${X(d)} ${surface - z}`).join(" L"), fill: "none", ...outline }, g);
+    el("path", { d: "M" + pts.map(([d, z]) => `${X(d)} ${surface - z}`).join(" L"), fill: "none", ...(kind === "hanza" ? { stroke: tint(wall, 0.5), "stroke-width": 2.2, "vector-effect": "non-scaling-stroke" } : outline) }, g);
     // How wide the gable is at height z (the run of the outline holding the axis).
     const hwAt = (z) => {
       let best = -Infinity;
@@ -1241,14 +1242,14 @@ function drawPrahaBuilding(g, x, side, surface, info, chosen) {
       else break;
     }
     // Tallinn: the loading door in the axis over the windows; the beam above it (or above the uppermost window).
-    let beamZ = lastTop + 34;
+    let beamZ = lastTop + 80; // the hook and its rope hang clear of the uppermost window
     if (kind === "hanza") {
       const dw = 50, z0 = lastTop + 0.15 * S, z1 = z0 + 0.3 * S;
       if (fits(c, dw - 14, z0, z1)) {
         box(c - dw / 2 - 5, c + dw / 2 + 5, z0 - 5, z1 + 5, "#bdb6a4");
         box(c - dw / 2, c + dw / 2, z0, z1, "#6b4a30");
         box(c - 1.5, c + 1.5, z0, z1, tint("#6b4a30", 0.7));
-        beamZ = z1 + 20;
+        beamZ = z1 + 66;
       }
     }
     noBox = false;
