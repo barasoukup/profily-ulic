@@ -562,7 +562,7 @@ export function drawAmerican(kind, { g, el, X, surface, EDGE, f, seed, wall, det
       poly([[110, top + 44], [300, top + 44], [205, top + 104]], TR, thin(TR)); poly([[140, top + 52], [270, top + 52], [205, top + 92]], AC);
     }
     if (n > 1) {
-      const D = 95, z0 = G - 6, z1 = top, BT = det.plain ? tint(wall, 0.9) : TR;
+      const D = 95, z0 = G - 6, z1 = top;
       poly([[0, z0 - 60], [-D, z0], [0, z0]], tint(wall, 0.8), thin(wall));
       box(-D, 0, z0, z1, det.plain ? tint(wall, 0.96) : wall, outline);
       if (!det.plain) boards(-D + 2, 0, z0, z1, wall);

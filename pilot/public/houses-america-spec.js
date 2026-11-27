@@ -18,7 +18,6 @@ export const AMERICA = {
   baygable: { storey: 310, floors: 2, base: 70, attic: 20, roof: 400 },
   victorian: { storey: 315, floors: 3, groundK: 1.25, base: 0, attic: 60, roof: 130 },
 };
-const BRICKS = ["#9c4a36", "#a9573f", "#8a4031", "#b0654a"];
 const SIDING = ["#f1efe8", "#d3d8d6", "#b9c6cc", "#c9cfb6", "#eadfbe", "#a9b4ae"];
 export const AMERICA_PALETTES = {
   bayrow: ["#9c4a36", "#8a4031", "#a9573f", "#b9b3a4", "#a04e3a"],

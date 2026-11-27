@@ -19,7 +19,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  # Syntax of every script and the unit tests (tests/): a failing check stops the deploy.
+  # Syntax and imports of every script, ESLint (errors only) and the unit tests (tests/): a failing check stops the deploy.
   test:
     runs-on: ubuntu-latest
     timeout-minutes: 5
@@ -28,6 +28,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
+      - run: npm ci
       - run: npm test
 
   build:

@@ -1,6 +1,7 @@
 // Loaded before everything else as a plain script, so it also works where the app's modules fail
 // (an old browser, a failed download): instead of a blank page the visitor gets a short message.
 (function () {
+  // eslint-disable-next-line no-unused-vars -- not used by the script: tests/i18n.test.js reads the list from the text
   var LANGS = "bg cs da de et el en es fr ga hr it lv lt hu mt nl pl pt ro sk sl fi sv";
   // The messages in every language of the app (i18n.js LANGS), Czech, Slovak, English and German as in the app, the others machine translations.
   var TEXTS = {

@@ -6,7 +6,7 @@ function reader(buf) {
   const varint = () => { let r = 0, s = 0, b; do { b = buf[pos++]; r += (b & 0x7f) * 2 ** s; s += 7; } while (b & 0x80); return r; };
   return {
     get pos() { return pos; }, set pos(p) { pos = p; }, varint,
-    fields(end, cb) { while (pos < end) { const tag = varint(), f = tag >> 3, w = tag & 7; const start = pos;
+    fields(end, cb) { while (pos < end) { const tag = varint(), f = tag >> 3, w = tag & 7;
       if (w === 0) cb(f, w, varint()); else if (w === 2) { const len = varint(); const s = pos; pos += len; cb(f, w, [s, s + len]); }
       else if (w === 5) { pos += 4; cb(f, w, null); } else if (w === 1) { pos += 8; cb(f, w, null); } else throw new Error("wire " + w); } },
   };

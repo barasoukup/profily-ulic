@@ -4,10 +4,18 @@
   "type": "module",
   "description": "Příčné profily pražských ulic (pilot/public je aplikace, pilot/server.mjs místní server)",
   "license": "MIT",
-  "engines": { "node": ">=22" },
+  "engines": {
+    "node": ">=22"
+  },
   "scripts": {
     "start": "node pilot/server.mjs",
-    "check": "for f in pilot/public/*.js pilot/public/towns/*.js pilot/public/countries/*.js pilot/server.mjs; do node --check \"$f\" || exit 1; done",
-    "test": "npm run check && node --test tests/*.test.js"
+    "check": "node tools/check_syntax.mjs && node tools/check_imports.mjs",
+    "lint": "eslint",
+    "test": "npm run check && npm run lint && node --test tests/*.test.js"
+  },
+  "devDependencies": {
+    "eslint": "^10.15.0",
+    "espree": "^11.2.0",
+    "globals": "^17.14.0"
   }
 }
