@@ -339,8 +339,8 @@ Co rozhodne Bára, je označeno **(Bára)**.
 - Úklid `.claude/worktrees/` (47 kopií, 25 GB): data, na která se odkazuje (nahrávky, balíky, cache měření), přesunout do
   git-ignorovaného `data/` hlavního repa, ověřit necommitnuté změny a sloučení větví (street-history a hungary zůstávají
   stranou), pak smazat.
-- Hláška „Tady jsem žádnou ulici nenašla…“ bez dlouhého výčtu míst (pokrytí ukazuje mapa v okně O aplikaci); udělat už
-  při slučování před nasazením, pokud to jde.
+- ~~Hláška „Tady jsem žádnou ulici nenašla…“ bez dlouhého výčtu míst (pokrytí ukazuje mapa v okně O aplikaci)~~ Hotovo
+  27. 11. 2026: jen první dvě věty ve 24 jazycích.
 
 ## Nápady (Bára zatím nevybrala)
 
