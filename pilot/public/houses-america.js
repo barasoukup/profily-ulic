@@ -404,6 +404,7 @@ export function drawAmerican(kind, { g, el, X, surface, EDGE, f, seed, wall, det
     for (let d = 16; d < EDGE; d += 128) { box(d - 6, d + 112, 0, zs + 6, METAL); box(d, d + 106, d < 40 ? 8 : 44, zs - 44, GLASS); poly([[d + 60, zs - 44], [d + 106, zs - 44], [d + 106, zs * 0.5]], GLINT); box(d, d + 106, zs - 38, zs, GLASS); }
     box(18, 22, 100, 150, METAL);
     sign(zs + 22, zb - zs - 30, SC);
+    for (let k = 1; k < n; k++) each(100, (i, d) => { const z0 = Math.max(floorZ(k) + 0.2 * S, zb + 36); sash(d, z0, 100, Math.min(0.5 * S, top - z0 - 60), k * 3 + i, { sill: LIME }); }); // the upper floor: a band of windows
     front();
     // the covered walk: its roof, the sign fascia at its edge, the post
     box(-180, 0, zs + 8, zs + 30, tint(wall, 0.92), thin(wall));
@@ -497,7 +498,7 @@ export function drawAmerican(kind, { g, el, X, surface, EDGE, f, seed, wall, det
     // Toronto's bay-and-gable, 1875–1900: red brick with buff bands, a two-storey bay under a steep gable with carved
     // bargeboards; its roof runs back from the street.
     // The gable is turned towards us, as the North Sea's (Bára 23. 11. 2026), over the bay's half of the house.
-    const R = SHINGLE[2], rise = 290, zr = top + 190, BUFF = "#d8c08a", D = 85, hb = n, gc = 182, gw = 152, BB = "#f0e6d0";
+    const R = SHINGLE[2], rise = 205, zr = top + rise - 12, BUFF = "#d8c08a", D = 85, hb = n, gc = 182, gw = 152, BB = "#f0e6d0";
     chimney(EDGE - 60, zr - 60, zr + 70);
     poly([[20, top], [60, zr], [EDGE, zr], [EDGE, top]], R[0]);
     for (let z = top + 22; z < zr - 8; z += 30) box(70, EDGE, z, z + 3, R[1], { "fill-opacity": 0.6 });
@@ -521,13 +522,13 @@ export function drawAmerican(kind, { g, el, X, surface, EDGE, f, seed, wall, det
     each(82, (i, d) => { if (i) sash(d, base + 0.24 * S, 82, 0.56 * S, i, { arch: true, lintel: BUFF, sill: BUFF }); });
     for (let k = 1; k < n; k++) each(82, (i, d) => sash(d, floorZ(k) + 0.22 * S, 82, 0.54 * S, k * 3 + i, { arch: true, lintel: BUFF, sill: BUFF }));
     front();
+    stoop(D + 70, base, { open: true, c: IRON }); // the landing and steps before the door: drawn first, the bay hides what lies behind its front
     const zb = top - 30, bw = tint(wall, 1.05); // the bay's top
     box(-D, 0, 0, zb, bw, outline); bricks(-D + 2, -2, 0, zb, bw);
     for (let k = 0; k < hb; k++) { sash(-D + 22, floorZ(k) + 0.24 * S, 42, 0.54 * S, k + 50, { lintel: BUFF, sill: BUFF }); box(-D - 4, 0, floorZ(k) - 14, floorZ(k), BUFF); }
     box(-D - 8, 0, zb - 10, zb + 4, WHITE, thin(WHITE));
     poly([[-D - 12, zb + 4], [0, zb + 4], [0, zb + 60]], R[0], thin(R[0]));
     gableSide();
-    stoop(D + 8, base, { open: true, c: IRON });
   } else if (kind === "victorian") {
     // San Francisco's wooden row house, 1870–1910: over a garage, an angled bay through the upper floors with its panels
     // and paired windows, painted trim, a bracketed cornice on a false front; plain (det.plain): the stucco house of the
