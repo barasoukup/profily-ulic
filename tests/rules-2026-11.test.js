@@ -2,7 +2,7 @@
 // tram, driving lanes by the class of the street (Prague's TSK).
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { localFrame, deriveProfile, techLines, classGroup } from "../app/public/derive.js";
+import { localFrame, techLines, classGroup } from "../app/public/derive.js";
 import { lawKerbs } from "../app/public/ai-kerbs.js";
 import { checkRules } from "../app/public/rules.js";
 import { signFits } from "../app/public/signs.js";
@@ -11,11 +11,12 @@ import { packProfile, unpackProfile } from "../app/public/share.js";
 import { toStreetmix } from "../app/public/streetmix.js";
 import { bedOrtho, bedPixels, classifyBed, sleeperRepeat, tramOffsets } from "../app/public/ortho.js";
 import { deflateSync } from "node:zlib";
+import { mtvuRect, deriveOn } from "./helpers/osm.js";
 
 // A street running north; the cut runs west–east through y = 0 (t = −x). Houses, sidewalks of 3 m, and
 // between them what `middle` lists as [code, width] from west to east.
 const frame = localFrame(50.08, 14.42);
-const rect = (code, x0, x1) => ({ code, label: "", rings: [[[x0, -60], [x1, -60], [x1, 60], [x0, 60]]], bbox: [x0, -60, x1, 60] });
+const rect = mtvuRect;
 const ll = (x, y) => { const [lon, lat] = frame.toLonLat(x, y); return { lon, lat }; };
 const line = (x) => [ll(x, -60), ll(x, 60)];
 function street(middle, tags, { extra = [], lines = [], axis = 0, ortho, walk = 3 } = {}) {
@@ -25,7 +26,7 @@ function street(middle, tags, { extra = [], lines = [], axis = 0, ortho, walk = 
   for (const [code, w] of middle) { polys.push(rect(code, x, x + w)); x += w; }
   polys.push(rect(702, x, x + walk), rect(601, x + walk, x + walk + 5));
   const way = { type: "way", id: 1, tags: { highway: "residential", ...tags }, geometry: line(axis) };
-  return deriveProfile({ center: [0, 0], dir: [0, 1], half: 40, polys, osm: { elements: [way, ...extra] }, frame, way, inZps: false, lines, ortho });
+  return deriveOn({ polys, elements: [way, ...extra], frame, way, inZps: false, lines, ortho });
 }
 const road = (w, tags, opts) => street([[701, w]], tags, opts);
 const guessed = (p) => p.segments.filter((s) => s.type === "parkovani" && s.source === "odhad").length;
@@ -68,7 +69,7 @@ test("odhad stání: mimo zástavbu jen u obruby s chodníkem, v obytné zóně 
     x = 5;
     for (const [code, w] of east) { polys.push(rect(code, x, x + w)); x += w; }
     const way = { type: "way", id: 1, tags: { highway: "residential", ...tags }, geometry: line(0) };
-    return deriveProfile({ center: [0, 0], dir: [0, 1], half: 40, polys, osm: { elements: [way, ...extra] }, frame, way, inZps: false });
+    return deriveOn({ polys, elements: [way, ...extra], frame, way, inZps: false });
   };
   const green = [[400, 30]];
   assert.equal(guessed(field(green, green)), 0, "silnice mezi poli");
@@ -309,7 +310,7 @@ test("stání na úzkém chodníku: auto užší, chodníku zůstane 0,5 m; na p
   // Sidewalks of 1.2 m between the houses and a roadway of 6 m: no car fits, none is drawn, the notice says so.
   const polys = [rect(601, -15, -4.2), rect(702, -4.2, -3), rect(701, -3, 3), rect(702, 3, 4.2), rect(601, 4.2, 15)];
   const way = { type: "way", id: 1, tags: { highway: "residential", "parking:both": "on_kerb" }, geometry: line(0) };
-  const tight = deriveProfile({ center: [0, 0], dir: [0, 1], half: 40, polys, osm: { elements: [way] }, frame, way, inZps: false });
+  const tight = deriveOn({ polys, elements: [way], frame, way, inZps: false });
   assert.equal(tight.segments.filter((s) => s.type === "parkovani").length, 0);
   assert.match(tight.notice, /chodník má jen 1,20 m, auta nejsou nakreslena/);
 });
@@ -411,7 +412,7 @@ test("nezpevněný povrch z OSM (mlat, štěrk, hlína) je zvlášť od propustn
 test("průchod nad ulicí (pás „ostatní stavby“ po celém řezu, ulice jím vede) není zeď: ulice se odhadne z OSM (Na Klaudiánce, 17. 11. 2026)", () => {
   const cut = (piece) => {
     const way = { type: "way", id: 1, tags: { highway: "residential", lanes: "2", sidewalk: "both" }, geometry: line(0) };
-    return deriveProfile({ center: [0, 0], dir: [0, 1], half: 40, polys: [piece], osm: { elements: [way] }, frame, way, inZps: false }).segments.map((s) => s.type);
+    return deriveOn({ polys: [piece], elements: [way], frame, way, inZps: false }).segments.map((s) => s.type);
   };
   const through = cut(rect(602, -25, 25));
   assert.ok(!through.includes("zed"), "žádná zeď");
@@ -434,7 +435,7 @@ test("osy kolejí blíž než 2,5 m jsou jedna kolej (výhybka v křižovatce), 
 test("chodník mezi dvěma vozovkami zůstane chodníkem, když se zákonné stání odloží", () => {
   const poly = [rect(601, -24, -19), rect(702, -19, -16), rect(701, -16, -8), rect(702, -8, -4), rect(701, -4, 4), rect(702, 4, 7), rect(601, 7, 12)];
   const ways = [1, 2].map((id) => ({ type: "way", id, tags: { highway: "residential", oneway: "yes", lanes: "1" }, geometry: line(id === 1 ? 0 : -12) }));
-  const derive = (extra) => deriveProfile({ center: [0, 0], dir: [0, 1], half: 40, polys: poly, osm: { elements: ways }, frame, way: ways[0], inZps: false, ...extra });
+  const derive = (extra) => deriveOn({ polys: poly, elements: ways, frame, way: ways[0], inZps: false, ...extra });
   const types = (p) => p.segments.map((s) => s.type).join(" ");
   const withLaw = derive({}), at = lawKerbs(withLaw);
   assert.ok(at.length >= 2 && !types(withLaw).includes("delici"), types(withLaw));
@@ -473,7 +474,7 @@ test("podélné stání z OSM (parking=lane) je nejvýš 2,5 m široké, zbytek 
 test("pojmenovaná služební cesta přes pole je ulice, kterou mapa povrchů nemá: odhad z OSM (Devětsilová, 23. 11. 2026)", () => {
   const cut = (tags) => {
     const way = { type: "way", id: 1, tags: { highway: "service", ...tags }, geometry: line(0) };
-    return deriveProfile({ center: [0, 0], dir: [0, 1], half: 40, polys: [rect(100, -40, 40)], osm: { elements: [way] }, frame, way, inZps: false });
+    return deriveOn({ polys: [rect(100, -40, 40)], elements: [way], frame, way, inZps: false });
   };
   assert.ok(cut({ name: "Devětsilová" }).estimate);
   assert.ok(!cut({}).estimate, "nepojmenovaná polní cesta zůstává, jak ji mapa má");

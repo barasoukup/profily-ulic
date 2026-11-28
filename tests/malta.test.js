@@ -3,6 +3,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
+import { esriRect, deriveOn } from "./helpers/osm.js";
 
 test("Malta: ortofoto 2018 ve stupních (služba nemá Web Mercator)", async () => {
   const L = await import("../app/public/lanes-ortho.js");
@@ -55,16 +56,16 @@ test("Malta: jízda vlevo, značky, normy, zákon o stání", async () => {
 // The whole profile with the state malta (review of 23. 11. 2026, finding 4): a measured roadway, the parking estimate.
 test("Malta: odhad stání podle zákona nechává pruhy aspoň 2,5 m a stání vlevo", async () => {
   const C = await import("../app/public/city.js");
-  const { localFrame, deriveProfile, mtvuPolygons } = await import("../app/public/derive.js");
+  const { localFrame, mtvuPolygons } = await import("../app/public/derive.js");
   const was = C.city.id;
   C.setCity("malta");
   const cut = (tags, road) => {
     const frame = localFrame(35.9, 14.5);
-    const rect = (x0, x1, code) => ({ attributes: { CTVUK_KOD: code }, geometry: { rings: [[[x0, -60], [x1, -60], [x1, 60], [x0, 60], [x0, -60]].map(([x, y]) => frame.toLonLat(x, y))] } });
+    const rect = esriRect(frame);
     const polys = mtvuPolygons({ features: [rect(-road / 2 - 3, -road / 2, 702), rect(-road / 2, road / 2, 701), rect(road / 2, road / 2 + 3, 702)] }, frame);
     const geometry = [frame.toLonLat(0, -100), frame.toLonLat(0, 100)].map(([lon, lat]) => ({ lat, lon }));
     const way = { type: "way", id: 1, tags, geometry };
-    return deriveProfile({ center: [0, 0], dir: [0, 1], half: 40, polys, osm: { elements: [way] }, frame, way }).segments;
+    return deriveOn({ polys, elements: [way], frame, way }).segments;
   };
   const kinds = (segs) => segs.map((x) => x.type + (x.dir ? (x.dir === "forward" ? "↑" : "↓") : "")).join(" | ");
   try {

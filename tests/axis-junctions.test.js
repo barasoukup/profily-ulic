@@ -3,8 +3,9 @@
 // roadways under a single axis stays the median, and the counted lanes (the USA pilot). No network.
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { localFrame, snapToWay, awayFromJunctions, deriveProfile, mtvuPolygons, splitTwoWayLane } from "../app/public/derive.js";
+import { localFrame, snapToWay, awayFromJunctions, mtvuPolygons, splitTwoWayLane } from "../app/public/derive.js";
 import { P } from "../app/public/ortho-osm.js";
+import { esriRect, deriveOn } from "./helpers/osm.js";
 
 const LAT = 50.08, LON = 14.42;
 const frame = localFrame(LAT, LON);
@@ -51,10 +52,10 @@ test("obslužná cesta neodsune řez na křižovatku protější vozovky (Poděb
 
 // A single OSM axis on a paved divider of 1.5 m between two roadways (Generála Šišky, Prague č. 42).
 function divided() {
-  const rect = (x0, x1, code) => ({ attributes: { CTVUK_KOD: code }, geometry: { rings: [[[x0, -60], [x1, -60], [x1, 60], [x0, 60], [x0, -60]].map(([x, y]) => frame.toLonLat(x, y))] } });
+  const rect = esriRect(frame);
   const polys = mtvuPolygons({ features: [rect(-11, -8, 702), rect(-8, -0.5, 701), rect(-0.5, 1, 1003), rect(1, 8.5, 701), rect(8.5, 11.5, 702)] }, frame);
   const way = line(1, { highway: "tertiary", name: "D", lanes: "4" }, [[0, -100], [0, 100]]);
-  return deriveProfile({ center: [0, 0], dir: [0, 1], half: 40, polys, osm: { elements: [way] }, frame, way, noParkGuess: true }).segments;
+  return deriveOn({ polys, elements: [way], frame, way, noParkGuess: true }).segments;
 }
 
 test("zpevněný dělicí pás mezi dvěma vozovkami pod osou zůstane pásem", () => {

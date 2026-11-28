@@ -3,6 +3,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
+import { mtvuRect, deriveOn } from "./helpers/osm.js";
 
 test("Švýcarsko: druhy úředního vyměřování na kódy MTVU, vypínač ?av=0", async () => {
   const S = await import("../app/public/towns/switzerland.js");
@@ -125,14 +126,14 @@ test("Švýcarsko: zákonný odhad stání nedá auta vedle cyklopruhu (VRV čl.
 
 test("Švýcarsko: obousměrka 10 m s cyklopruhy nemá odhadnuté stání (VRV čl. 19 odst. 2), bez cyklopruhů ano", async () => {
   const C = await import("../app/public/city.js");
-  const { deriveProfile, localFrame } = await import("../app/public/derive.js");
+  const { localFrame } = await import("../app/public/derive.js");
   const frame = localFrame(47.37, 8.54);
-  const rect = (code, x0, x1) => ({ code, label: "", rings: [[[x0, -60], [x1, -60], [x1, 60], [x0, 60]]], bbox: [x0, -60, x1, 60] });
+  const rect = mtvuRect;
   const ll = (x, y) => { const [lon, lat] = frame.toLonLat(x, y); return { lon, lat }; };
   const road = (w, tags) => {
     const polys = [rect(601, -w / 2 - 8, -w / 2 - 3), rect(702, -w / 2 - 3, -w / 2), rect(701, -w / 2, w / 2), rect(702, w / 2, w / 2 + 3), rect(601, w / 2 + 3, w / 2 + 8)];
     const way = { type: "way", id: 1, tags: { highway: "residential", ...tags }, geometry: [ll(0, -60), ll(0, 60)] };
-    return deriveProfile({ center: [0, 0], dir: [0, 1], half: 40, polys, osm: { elements: [way] }, frame, way, inZps: false });
+    return deriveOn({ polys, elements: [way], frame, way, inZps: false });
   };
   C.setCity("switzerland");
   try {

@@ -1,17 +1,18 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { localFrame, deriveProfile, techLines, REACH, reachOf } from "../app/public/derive.js";
+import { localFrame, techLines, REACH, reachOf } from "../app/public/derive.js";
 import { decodePrahaTile, PRAHA_TILE } from "../app/public/sources.js";
+import { mtvuRect, deriveOn } from "./helpers/osm.js";
 
 // A street running north: roadway 8 m (x −4…4), sidewalks 3 m, houses. The cut runs west–east through y = 0,
 // t = −x (normal [−1, 0]).
 const frame = localFrame(50.08, 14.42);
-const rect = (code, x0, x1) => ({ code, label: "", rings: [[[x0, -60], [x1, -60], [x1, 60], [x0, 60]]], bbox: [x0, -60, x1, 60] });
+const rect = mtvuRect;
 const polys = [rect(601, -12, -7), rect(702, -7, -4), rect(701, -4, 4), rect(702, 4, 7), rect(601, 7, 12)];
 const ll = (x, y) => { const [lon, lat] = frame.toLonLat(x, y); return { lon, lat }; };
 const way = { type: "way", id: 1, tags: { highway: "residential", lanes: "2" }, geometry: [ll(0, -60), ll(0, 60)] };
 const node = (id, x, y, tags) => ({ type: "node", id, tags, geometry: [ll(x, y)] });
-const profile = (extra = {}) => deriveProfile({ center: [0, 0], dir: [0, 1], half: 40, polys, osm: { elements: [way, ...(extra.nodes || [])] }, frame, way, inZps: true, ...extra });
+const profile = (extra = {}) => deriveOn({ polys, elements: [way, ...(extra.nodes || [])], frame, way, inZps: true, ...extra });
 const items = (p) => p.segments.flatMap((s) => (s.items || []).map((it) => it.kind));
 
 test("dosah bodů je nastavení podle druhu", () => {
@@ -66,7 +67,7 @@ test("stromy z otevřených dat a technické mapy dělají stromořadí s vlastn
 test("zatřídění TSK: v ulici MK II se stání neodhaduje, v MK III rozhoduje OSM", () => {
   const cls = (mk) => techLines({ features: [{ attributes: { CTMTP_KOD: "od_usek", MK: mk, SIL: 0, DALNICE: 0, TYP: 3 }, geometry: { paths: [[[ll(0.5, -50).lon, ll(0.5, -50).lat], [ll(0.5, 50).lon, ll(0.5, 50).lat]]] } }] }, frame);
   const local = { ...way, tags: { highway: "residential" } };
-  const guessed = (lines) => deriveProfile({ center: [0, 0], dir: [0, 1], half: 40, polys, osm: { elements: [local] }, frame, way: local, inZps: false, lines })
+  const guessed = (lines) => deriveOn({ polys, elements: [local], frame, way: local, inZps: false, lines })
     .segments.filter((s) => s.type === "parkovani" && s.source === "odhad").length;
   assert.ok(guessed([]) > 0, "residential bez zatřídění: odhad");
   assert.equal(guessed(cls(2)), 0);

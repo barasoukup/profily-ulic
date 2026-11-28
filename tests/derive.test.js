@@ -1,6 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { localFrame, deriveProfile, mtvuPolygons } from "../app/public/derive.js";
+import { localFrame, mtvuPolygons } from "../app/public/derive.js";
+import { esriRect, deriveOn } from "./helpers/osm.js";
 
 // A straight street running north through a synthetic frame; no technical map (polys = []),
 // so the profile is the estimate from OSM tags.
@@ -8,7 +9,7 @@ function street(tags) {
   const frame = localFrame(50.08, 14.42);
   const [lon, lat] = frame.toLonLat(0, 0);
   const way = { type: "way", id: 1, tags, geometry: [{ lat, lon }, { lat: lat + 0.001, lon }] };
-  return deriveProfile({ center: [0, 0], dir: [0, 1], half: 40, polys: [], osm: { elements: [way] }, frame, way });
+  return deriveOn({ polys: [], elements: [way], frame, way });
 }
 
 test("odhad z OSM: dva pruhy a chodníky po obou stranách", () => {
@@ -26,13 +27,13 @@ test("odhad z OSM: jednosměrka bez chodníků má jeden pruh", () => {
 // Keeping left (Cyprus, Malta; review of 23. 11. 2026): a synthetic street with a measured roadway, the whole profile.
 function measured(ways, road) {
   const frame = localFrame(35.17, 33.36);
-  const rect = (x0, x1, code) => ({ attributes: { CTVUK_KOD: code }, geometry: { rings: [[[x0, -60], [x1, -60], [x1, 60], [x0, 60], [x0, -60]].map(([x, y]) => frame.toLonLat(x, y))] } });
+  const rect = esriRect(frame);
   const polys = mtvuPolygons({ features: [rect(-road / 2 - 3, -road / 2, 702), rect(-road / 2, road / 2, 701), rect(road / 2, road / 2 + 3, 702)] }, frame);
   const els = ways.map(([x, tags, south], i) => {
     const g = [frame.toLonLat(x, -100), frame.toLonLat(x, 100)].map(([lon, lat]) => ({ lat, lon }));
     return { type: "way", id: i + 1, tags, geometry: south ? g.reverse() : g };
   });
-  const r = deriveProfile({ center: [0, 0], dir: [0, 1], half: 40, polys, osm: { elements: els }, frame, way: els[0], noParkGuess: true });
+  const r = deriveOn({ polys, elements: els, frame, way: els[0], noParkGuess: true });
   return r.segments.map((s) => s.type + (s.dir ? (s.dir === "forward" ? "↑" : "↓") : "") + (s.turn ? ":" + s.turn : "")).join(" | ");
 }
 
@@ -63,12 +64,12 @@ test("jízda vlevo (Kypr, Malta): směry podle pravidel otočené, data na svém
 test("osa ulice ve stání u obruby: výchozí (?axisroad=0 vypne) je vozovka vedle, kterou přechází jen chodník, její (Lippard Avenue)", async () => {
   const { P } = await import("../app/public/ortho-osm.js");
   const frame = localFrame(37.73, -122.43);
-  const rect = (x0, x1, code) => ({ attributes: { CTVUK_KOD: code }, geometry: { rings: [[[x0, -60], [x1, -60], [x1, 60], [x0, 60], [x0, -60]].map(([x, y]) => frame.toLonLat(x, y))] } });
+  const rect = esriRect(frame);
   // Sidewalk, a parking lane under the axis (x 0), the roadway beside it with a footway's crossing over it, sidewalk.
   const polys = mtvuPolygons({ features: [rect(-5, -2, 702), rect(-2, 0.5, 704), rect(0.5, 5.3, 701), rect(5.3, 8, 702)] }, frame);
   const line = (x, tags, id) => ({ type: "way", id, tags, geometry: [frame.toLonLat(x, -100), frame.toLonLat(x, 100)].map(([lon, lat]) => ({ lat, lon })) });
   const els = [line(-0.4, { highway: "residential", oneway: "yes" }, 1), line(3, { highway: "footway" }, 2)];
-  const types = () => deriveProfile({ center: [0, 0], dir: [0, 1], half: 40, polys, osm: { elements: els }, frame, way: els[0], noParkGuess: true }).segments.map((s) => s.type);
+  const types = () => deriveOn({ polys, elements: els, frame, way: els[0], noParkGuess: true }).segments.map((s) => s.type);
   try {
     P.axisroad = false;
     assert.ok(!types().includes("pruh"));

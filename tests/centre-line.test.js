@@ -42,15 +42,16 @@ test("zákon o stání: středovou čáru vyžaduje jen Slovinsko", () => {
 
 // The law's estimate of parking in a state that asks for a centre line (derive.js splitRoadway): a measured roadway of
 // 11 m, the orthophoto with a line at t = 2 (solid, dashed) or none.
-import { localFrame, deriveProfile, mtvuPolygons } from "../app/public/derive.js";
+import { localFrame, mtvuPolygons } from "../app/public/derive.js";
 import { country } from "../app/public/city.js";
+import { esriRect, deriveOn } from "./helpers/osm.js";
 function cutWith(img, tags, road = 11) {
   const frame = localFrame(46.05, 14.5);
-  const rect = (x0, x1, code) => ({ attributes: { CTVUK_KOD: code }, geometry: { rings: [[[x0, -60], [x1, -60], [x1, 60], [x0, 60], [x0, -60]].map(([x, y]) => frame.toLonLat(x, y))] } });
+  const rect = esriRect(frame);
   const polys = mtvuPolygons({ features: [rect(-road / 2 - 3, -road / 2, 702), rect(-road / 2, road / 2, 701), rect(road / 2, road / 2 + 3, 702)] }, frame);
   const g = [frame.toLonLat(0, -100), frame.toLonLat(0, 100)].map(([lon, lat]) => ({ lat, lon }));
   const way = { type: "way", id: 1, tags, geometry: g };
-  const r = deriveProfile({ center: [0, 0], dir: [0, 1], half: 40, polys, osm: { elements: [way] }, frame, way, lanesImage: img });
+  const r = deriveOn({ polys, elements: [way], frame, way, lanesImage: img });
   return r.segments.filter((s) => s.type === "parkovani").length;
 }
 test("zákon o stání se středovou čárou: plná čára měří 3 m k čáře, žádná čára stání vylučuje, bez snímku platí OSM", () => {

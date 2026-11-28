@@ -2,6 +2,7 @@
 // (lanes-ortho.js). No network: only the mappings and the boxes.
 import { test } from "node:test";
 import assert from "node:assert/strict";
+import { mtvuRect, deriveOn } from "./helpers/osm.js";
 
 test("Německo: plochy Berlína, Hamburku a Cách na kódy MTVU, město podle polohy, vypínače", async () => {
   const G = await import("../app/public/towns/germany.js");
@@ -59,14 +60,14 @@ test("velikost značek ze sad Commons (AT, DE) podle tvaru, ne podle čísel ve 
 
 test("Německo: stání podle zákona nenechá dva pruhy po 1,55 m (obousměrka 5,1 m bez stání, 7,1 m s jedním, 9,1 m se dvěma)", async () => {
   const C = await import("../app/public/city.js");
-  const { deriveProfile, localFrame } = await import("../app/public/derive.js");
+  const { localFrame } = await import("../app/public/derive.js");
   const frame = localFrame(52.5, 13.4);
-  const rect = (code, x0, x1) => ({ code, label: "", rings: [[[x0, -60], [x1, -60], [x1, 60], [x0, 60]]], bbox: [x0, -60, x1, 60] });
+  const rect = mtvuRect;
   const ll = (x, y) => { const [lon, lat] = frame.toLonLat(x, y); return { lon, lat }; };
   const road = (w) => {
     const polys = [rect(601, -w / 2 - 8, -w / 2 - 3), rect(702, -w / 2 - 3, -w / 2), rect(701, -w / 2, w / 2), rect(702, w / 2, w / 2 + 3), rect(601, w / 2 + 3, w / 2 + 8)];
     const way = { type: "way", id: 1, tags: { highway: "residential" }, geometry: [ll(0, -60), ll(0, 60)] };
-    return deriveProfile({ center: [0, 0], dir: [0, 1], half: 40, polys, osm: { elements: [way] }, frame, way, inZps: false });
+    return deriveOn({ polys, elements: [way], frame, way, inZps: false });
   };
   C.setCity("germany");
   try {
@@ -88,14 +89,14 @@ test("Německo: paneláky jen v zemích bývalé NDR (countries/DE.js atPlace po
 
 test("stání zakreslené v OSM se do o něco užší odhadnuté vozovky vejde v plné šířce, pruh ustoupí (Großer Brockhaus, recenze přenosu)", async () => {
   const C = await import("../app/public/city.js");
-  const { deriveProfile, localFrame } = await import("../app/public/derive.js");
+  const { localFrame } = await import("../app/public/derive.js");
   const frame = localFrame(51.34, 12.386);
-  const rect = (code, x0, x1, guess) => ({ code, label: "", guess, rings: [[[x0, -60], [x1, -60], [x1, 60], [x0, 60]]], bbox: [x0, -60, x1, 60] });
+  const rect = mtvuRect;
   const ll = (x, y) => { const [lon, lat] = frame.toLonLat(x, y); return { lon, lat }; };
   const road = (guess) => {
     const polys = [rect(601, -10, -5), rect(702, -5, -2.2, guess), rect(701, -2.2, 2.2, guess), rect(702, 2.2, 5, guess), rect(601, 5, 10)];
     const way = { type: "way", id: 1, tags: { highway: "residential", oneway: "yes", "parking:left": "street_side", "parking:left:orientation": "parallel", "parking:right": "no" }, geometry: [ll(0, -60), ll(0, 60)] };
-    return deriveProfile({ center: [0, 0], dir: [0, 1], half: 40, polys, osm: { elements: [way] }, frame, way, inZps: false });
+    return deriveOn({ polys, elements: [way], frame, way, inZps: false });
   };
   C.setCity("germany");
   try {
