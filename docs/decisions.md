@@ -56,7 +56,7 @@ Zapnuté opravy s vypínačem `?off=…`, které se tím jen zbavily vypínače,
 - `?sfosmpark=1` (San Francisco: orientace stání z OSM tam, kde obruba dá podélné): slepé A/B 30 nových řezů 12 : 11
   (`evaluation/usa/sf/fixes/REPORT.md`).
 - `?sirka=1` (Francie: šířka vozovky z BD TOPO `largeur_de_chaussee`, `bdtopoWidths`): celé metry, A/B se nikdy neudělalo,
-  proto vypnuto (`evaluation/france/`, CLAUDE.md, oddíl Francie).
+  proto vypnuto (`evaluation/france/`, docs/countries/FR.md).
 - `?ilots=1` (Paříž: soukromé bloky Plan de voirie jako konec veřejné cesty, `parisBlocks`): slepé A/B 13 změněných řezů
   ze 60 nových nebylo průkazné (5 : 2, pokud se oba posuzovatelé shodli; každý zvlášť 5 : 2 a 6 : 4); jeden dotaz navíc na
   řez (Bára 26. 11. 2026, `evaluation/france/facade/REPORT.md`).
@@ -81,7 +81,7 @@ Zapnuté opravy s vypínačem `?off=…`, které se tím jen zbavily vypínače,
 ## Vypínače `?off=…` zapnutých oprav, které se smazaly (Bára 27. 11. 2026)
 
 Oprava zůstala zapnutá, smazal se jen vypínač a větev „jako dřív“. Vypínače, které uvádí `CLAUDE.md` nebo
-`app/README.md` (`mapfill`, `lawlanes`, `parkshare`, `ulicky`, `otherstreet`, `mostdeska`, `zabradli`, `railway`, `osmwalk`,
+`docs/profile-derivation.md` (`mapfill`, `lawlanes`, `parkshare`, `ulicky`, `otherstreet`, `mostdeska`, `zabradli`, `railway`, `osmwalk`,
 `floorsh`…), zůstaly. A/B při zavedení je v komentářích commitů před smazáním (`git log -S'off=<klíč>'`) a ve zprávách
 `evaluation/` (často `evaluation/archive/unification/`, `evaluation/archive/railway/`).
 
@@ -109,3 +109,26 @@ Oprava zůstala zapnutá, smazal se jen vypínač a větev „jako dřív“. Vy
   `widereach` (delší dosah dálnic a hlavních ulic), `aipark` (stání podle aut modelu), `posunba` (posun pasportu Bratislavy).
 
 - Mezery ve stání TSK v Praze („Zákaz stání“, `opts.zakaz`, vypnuté od 11. 11. 2026): mezery pár metrů uvnitř souvislého stání (vjezdy, popelnice, stromy; 99 ze 101 na Vinohradech uvnitř úseku TSK, medián 5,6 m), pod rozlišením profilu. Smazáno (Bára 28. 11. 2026).
+
+## Obecná rozhodnutí o aplikaci (dříve CLAUDE.md)
+
+- Žádný typ „sdílený prostor“; obytné a sdílené zóny mají vozovku jako pruh. Pěší zóna je chodník (kreslí se s lidmi,
+  ne s auty; pruh jen tam, kde ho technická mapa opravdu má; Bára 17. 11. 2026, `derive.js` `pedestrianZone`, `?off=pesizona`).
+- Ulice ze dvou vozovek se řeže uprostřed (středový pás / tramvaj).
+- Ignorovat ulice pod mosty a podzemní cesty (metro, tunely se záporným `layer`/`level`).
+- Interní model smí obsahovat i to, co Streetmix neumí (rychlosti apod.); převod na typy
+  Streetmixu až při exportu.
+- UI: mapa + upravitelný profil, posuvný předěl (výchozí 50:50), krátké popisky, v hlavičce jen
+  název ulice, kurzor křížek. Výchozí podklad „Mapa IPR“ (rychlý rastr z ArcGIS Online).
+
+## Na příště a nápady (dříve CLAUDE.md)
+
+- Na příště (Bára 12. 11. 2026): výšky povrchu (výškové body technické mapy, DMR 5G) i pro samotný profil: kreslit ho
+  ve skutečné výšce (jedna strana ulice výš než druhá, vyvýšená cyklostezka nad vozovkou).
+- Na příště (Bára 12. 11. 2026): ortofoto má rozeznat vodorovné značení od nevyježděných světlých pásů uprostřed pruhů
+  (řez 324 v Hradci, ČÚZK 12,5 cm): geometrie (pás leží mezi stopami kol, světlá místa po půl pruhu) a vlastnosti
+  naučené z doznačených příkladů (kontrast, ostrost, šířka, vzor čárek, barva), ověřit křížově mezi městy.
+- Nápady, Bára zatím nevybrala: zóny (obytná/pěší/30) a rychlosti po pruzích z OSM, povrch,
+  názvy zastávek MHD, přechody.
+- Rešerše: podobné nástroje https://claude.ai/artifact/F2fMQV88XSJJQiHX2YxLb6 (3DStreet pro 3D),
+  rozšíření na celou ČR https://claude.ai/artifact/4U8qC5mKb5sTwLnvfYdeWn (proveditelné, začít Brnem).

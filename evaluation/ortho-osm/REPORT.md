@@ -193,7 +193,7 @@ příklady, kde to vyjde. Všechny řezy jsou v `data/<město>/img/` (git je ign
 
 ## V aplikaci (Bára 15. 11. 2026: „lepší než jen OSM, udělat jako záložní případ“)
 
-M2 je teď v aplikaci (`app/public/ortho-osm.js`, popis v `app/README.md` bod 11a). Spustí se tam, kde
+M2 je teď v aplikaci (`app/public/ortho-osm.js`, popis v `docs/profile-derivation.md` bod 11a). Spustí se tam, kde
 technická mapa nic nedá. Vyhodnocení (`run.mjs`, `tune.mjs`) bere obruby z téhož kódu; čísla se proti pokusu
 změnila nejvýš o 1 bod. Navíc oproti pokusu:
 - chodník nejvýš 6 m od obruby (90 % chodníků v MTVU je do 6 m; z úseků obruba–dům přes 6 m je u 34 ze 42

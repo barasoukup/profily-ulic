@@ -1,6 +1,6 @@
 # Otevřená data Prahy a body technické mapy (10. 11. 2026)
 
-Každý zdroj prošel testem A/B nad ortofotem (`evaluation/ab.mjs`, pravidlo z `app/README.md`): základ je
+Každý zdroj prošel testem A/B nad ortofotem (`evaluation/ab.mjs`, pravidlo z `docs/profile-derivation.md`): základ je
 `praha-zaklad` (Praha bez nových zdrojů), varianty jsou v `evaluation/variants/praha-*.mjs`. Na vzorku 100 řezů
 (`evaluation/data/samples.json`) se odpovědi IPR (MTVU, linie, parkování) braly z cache `app/cache`. Chybějící
 odpovědi pro 43 řezů a body vrstvy 9 pro všechny řezy doplnil `fill_cache.mjs` přes `polite.mjs` (285 dotazů,

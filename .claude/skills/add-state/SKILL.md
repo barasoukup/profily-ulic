@@ -341,8 +341,8 @@ ověřit, že odhad státu opravdu čte ortofoto (`sources.orthoCity`) a že nec
 
 ## 9. Dokumentace a předání
 
-- **CLAUDE.md:** oddíl státu (zdroje, co je zapnuté a vypnuté a proč, licence, rozhodnutí Báry).
-- **Dokumentace a licence:** `app/README.md`, `LICENSES-AND-SOURCES.md`, patičky ve všech jazycích.
+- **Dokumentace státu:** `docs/countries/<ISO>.md` (zdroje, co je zapnuté a vypnuté a proč, licence, rozhodnutí Báry; nahoře stav a rozhodnutí, dole popis) a jeden řádek ve „Kde co najdeš“ v `CLAUDE.md`; před nasazením přidat stát do seznamu OSM balíků v `docs/deployment.md`.
+- **Dokumentace a licence:** `docs/` (témata podle `app/README.md`), `LICENSES-AND-SOURCES.md`, patičky ve všech jazycích.
 - **Zprávy** v `evaluation/<state>/` a commit po každém kroku.
 - **Báře krátce:**
   - co je hotové a výsledky A/B;

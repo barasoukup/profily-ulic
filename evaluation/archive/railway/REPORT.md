@@ -8,7 +8,7 @@ a `light_rail`), takže nešlo jen o odhad. Po změně se v Linci místo „kraj
 ## Co se změnilo
 - Typ `railway` (`types.js`, `profile.js drawRailway`, 23 překladů štítku, graf povrchu „částečně propustný“, Streetmix jako štěrkový
   dělicí pás, `validate.js` pole `narrow`), paleta „Železnice“ v Návrhu, vypínač `?off=railway`.
-- Odhad (`ortho-osm.js`, `derive.js`): viz `app/README.md`, oddíl Železnice.
+- Odhad (`ortho-osm.js`, `derive.js`): viz `docs/rail.md`.
 - Dlaždice: nové koleje jen na povrchu a u silnice (`tools/build_osm_tiles.mjs dropRail`). V malém vzorku 60 měst (6 států) je to
   72 599 řádků v 5 663 dlaždicích, 2,6 MB zabalené; celostátní přírůstek se zjistí až přestavbou na R2.
 
