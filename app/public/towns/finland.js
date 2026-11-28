@@ -23,7 +23,7 @@ import { MTVU_LABELS } from "../city.js";
 import { inArea, inside } from "../places.js";
 import { osmAreas } from "./slovakia.js";
 import { HELSINKI_RINGS } from "./finland-helsinki.js";
-import { polygonsOf, cachedBy, boxKey } from "./shared.js";
+import { polygonsOf, cachedBy, boxKey, askJson } from "./shared.js";
 
 const flag = flagsOf("PROFILY_FI");
 export const HEL_WFS = "https://kartta.hel.fi/ws/geoserver/avoindata/wfs";
@@ -183,7 +183,7 @@ export function ryhtiPick(json, lat, lon, outline = null) {
   return best ? { ...ryhtiBuilding(best.f.properties), fiBuild: "ryhti" } : {};
 }
 const TIMEOUT = 6000;
-export const ask = (url) => fetch(url, { signal: AbortSignal.timeout(TIMEOUT) }).then((r) => { if (!r.ok) throw new Error(`${new URL(url).hostname} ${r.status}`); return r.json(); });
+export const ask = (url) => askJson(url, TIMEOUT);
 const box = (lat, lon, dLat, dLon) => `${(lat - dLat).toFixed(7)},${(lon - dLon).toFixed(7)},${(lat + dLat).toFixed(7)},${(lon + dLon).toFixed(7)},urn:ogc:def:crs:EPSG::4326`;
 export const hkiBuildingUrl = (lat, lon) => `${HEL_WFS}?${new URLSearchParams({ service: "WFS", version: "2.0.0", request: "GetFeature", typeNames: "avoindata:Rakennukset_alue_rekisteritiedot",
   outputFormat: "application/json", srsName: "EPSG:4326", count: "5", propertyName: "tila,i_kerrlkm,c_valmpvm,c_rakeaine,c_julkisivu,c_kayttark,geom", bbox: box(lat, lon, 0.00001, 0.00002) })}`;

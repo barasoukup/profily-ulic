@@ -2,6 +2,7 @@
 // by its box, a request with a time limit, the pages of an Opendatasoft table. One copy of each (code-health plan step 8,
 // 28. 11. 2026; before, about 30 modules had their own, differing here and there in a detail that is a parameter now).
 // The point in rings test is places.js inside.
+import { getJSON } from "../gis.js";
 
 // The polygons of a GeoJSON geometry, each an array of rings (the outer ring and its holes); none for any other kind.
 export const polygonsOf = (g) => (g?.type === "Polygon" ? [g.coordinates] : g?.type === "MultiPolygon" ? g.coordinates : []);
@@ -24,4 +25,24 @@ export function cachedBy(memo, key, make, { max = 30, evictFirst = false } = {})
     if (!evictFirst && memo.size > max) memo.delete(memo.keys().next().value);
   }
   return memo.get(key);
+}
+
+// One request with its own time limit and no retry (gis.js getJSON waits for its retries, up to 25 s a click, which a
+// small source does not deserve: the reviews of 23. and 24. 11. 2026). A refused answer is an Error "<label> <status>"
+// (the host when no label); the body is JSON or, askText, the text (the GML of the Spanish cadastres).
+const askBody = (url, ms, label, body) => fetch(url, { signal: AbortSignal.timeout(ms) })
+  .then((r) => { if (!r.ok) throw new Error(`${label ?? new URL(url).hostname} ${r.status}`); return body === "text" ? r.text() : r.json(); });
+export const askJson = (url, ms, label = null) => askBody(url, ms, label, "json");
+export const askText = (url, ms, label = null) => askBody(url, ms, label, "text");
+
+// The records of an Opendatasoft table (`<base>/records`), page after page of 100 while the pages are full, at most max
+// records (the map is off where a cut holds more). params in the order the URL has them, limit and offset after them.
+export async function opendataRecords(base, params, max = 500) {
+  const out = [];
+  for (let offset = 0; offset < max; offset += 100) {
+    const json = await getJSON(`${base}/records?${new URLSearchParams({ ...params, limit: "100", offset: String(offset) })}`);
+    out.push(...(json.results || []));
+    if ((json.results || []).length < 100) break;
+  }
+  return out;
 }

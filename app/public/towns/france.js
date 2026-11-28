@@ -15,7 +15,7 @@ import { osmTiles, getJSON, asMtvu, asPassport } from "../gis.js";
 import { MTVU_LABELS } from "../city.js";
 import { inArea, inside } from "../places.js";
 import { osmAreas } from "./slovakia.js";
-import { ringsOf, cachedBy, boxKey } from "./shared.js";
+import { ringsOf, cachedBy, boxKey, opendataRecords } from "./shared.js";
 
 const flag = flagsOf("PROFILY_FR");
 
@@ -32,14 +32,8 @@ export const parisCode = (p) => PARIS_KIND[p?.lib_classe] ?? null;
 
 async function parisLayer(name, bbox) {
   const [x0, y0, x1, y1] = bbox.split(",").map(Number);
-  const out = [];
   // At most 100 records a request; a cut's box has a few dozen of each layer (five pages at most).
-  for (let offset = 0; offset < 500; offset += 100) {
-    const json = await getJSON(`${PARIS_API}/${name}/records?${new URLSearchParams({ where: `in_bbox(geo_shape,${y0},${x0},${y1},${x1})`, select: "lib_classe,geo_shape", limit: "100", offset: String(offset) })}`);
-    out.push(...(json.results || []));
-    if ((json.results || []).length < 100) break;
-  }
-  return out;
+  return opendataRecords(`${PARIS_API}/${name}`, { where: `in_bbox(geo_shape,${y0},${x0},${y1},${x1})`, select: "lib_classe,geo_shape" });
 }
 export function parisFeatures(layers) {
   return { features: layers.flat().map((r) => ({ attributes: { code: parisCode(r) }, geometry: { rings: ringsOf(r.geo_shape?.geometry) } })).filter((f) => f.attributes.code && f.geometry.rings) };
@@ -144,12 +138,7 @@ async function parking(bbox) {
   const [x0, y0, x1, y1] = bbox.split(",").map(Number);
   const cx = (x0 + x1) / 2, cy = (y0 + y1) / 2;
   if (flag("parisstani") === "0" || flag("paris") === "0" || !inArea(AREAS.paris, cx, cy)) return { features: [] };
-  const out = [];
-  for (let offset = 0; offset < 500; offset += 100) {
-    const json = await getJSON(`${PARIS_API}/${PARIS_PARKING_SET}/records?${new URLSearchParams({ where: `in_bbox(geo_point_2d,${y0},${x0},${y1},${x1})`, select: "typsta,locsta,lon,lar,nomvoie,geo_point_2d", limit: "100", offset: String(offset) })}`);
-    out.push(...(json.results || []));
-    if ((json.results || []).length < 100) break;
-  }
+  const out = await opendataRecords(`${PARIS_API}/${PARIS_PARKING_SET}`, { where: `in_bbox(geo_point_2d,${y0},${x0},${y1},${x1})`, select: "typsta,locsta,lon,lar,nomvoie,geo_point_2d" });
   return { features: [], kerbParking: parisParking(out), parisParking: true };
 }
 

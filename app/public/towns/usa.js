@@ -55,6 +55,7 @@ import { planimetricMap, planimetricCut, memory, carriageway, kerbStrip, carveTr
 import { AREA as NYC_AREA, nycMap, nycPodlaznost } from "./newyork.js";
 // San Francisco (26. 11. 2026): its own surface map and houses (towns/sanfrancisco.js); the state's sources ask it where it has the place.
 import { AREAS as SF_AREAS, sfHere, sfSurfaces, sfPodlaznost } from "./sanfrancisco.js";
+import { askJson } from "./shared.js";
 
 const flag = flagsOf("PROFILY_US");
 export const dcOn = () => flag("dc") !== "0";
@@ -284,8 +285,8 @@ export function camaAt(points, lots, res, com) {
     return best ? camaHouse(...best) : {};
   });
 }
-const camaAsk = (layer, params) => fetch(`${DC_LAND}/${layer}/query?${new URLSearchParams({ f: "json", ...params })}`, { signal: AbortSignal.timeout(CAMA_MS) })
-  .then((r) => { if (!r.ok) throw new Error(`CAMA ${r.status}`); return r.json(); }).then((j) => { if (j.error) throw new Error(`CAMA ${j.error.message}`); return j; });
+const camaAsk = (layer, params) => askJson(`${DC_LAND}/${layer}/query?${new URLSearchParams({ f: "json", ...params })}`, CAMA_MS, "CAMA")
+  .then((j) => { if (j.error) throw new Error(`CAMA ${j.error.message}`); return j; });
 async function camaOf(points) {
   const deadline = new Promise((_, no) => setTimeout(() => no(new Error("CAMA timeout")), CAMA_MS));
   const work = (async () => {

@@ -16,7 +16,7 @@ import { MTVU_LABELS } from "../city.js";
 import { inArea, inside } from "../places.js";
 import { osmAreas } from "./slovakia.js";
 import { surfaces as lombardySurfaces, AREAS as LOMBARDY_AREAS } from "./lombardy.js";
-import { polygonsOf, cachedBy, boxKey } from "./shared.js";
+import { polygonsOf, cachedBy, boxKey, opendataRecords } from "./shared.js";
 
 const flag = flagsOf("PROFILY_IT");
 
@@ -29,13 +29,7 @@ const ROADWAY = new Set(["Tracciato principale in tronco", "Tronco di intersezio
 // turned on: say so, and split the fill by the kerb lines (ab/REPORT.md; the review of 23. 11. 2026, finding 18).
 async function records(dataset, bbox, select) {
   const [x0, y0, x1, y1] = bbox.split(",").map(Number);
-  const out = [];
-  for (let offset = 0; offset < 500; offset += 100) {
-    const json = await getJSON(`${BOLOGNA_API}/${dataset}/records?${new URLSearchParams({ where: `in_bbox(geo_shape,${y0},${x0},${y1},${x1})`, select, limit: "100", offset: String(offset) })}`);
-    out.push(...(json.results || []));
-    if ((json.results || []).length < 100) break;
-  }
-  return out;
+  return opendataRecords(`${BOLOGNA_API}/${dataset}`, { where: `in_bbox(geo_shape,${y0},${x0},${y1},${x1})`, select });
 }
 export function bolognaRoads(rows) {
   return { features: rows.filter((r) => ROADWAY.has(r.descrizion)).flatMap((r) => polygonsOf(r.geo_shape?.geometry).map((rings) => ({ attributes: { code: 701 }, geometry: { rings } }))) };

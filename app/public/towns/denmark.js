@@ -21,7 +21,7 @@
 import { flagsOf } from "../flags.js";
 import { osmTiles } from "../gis.js";
 import { inArea, inside } from "../places.js";
-import { polygonsOf, pathsOf, cachedBy } from "./shared.js";
+import { polygonsOf, pathsOf, cachedBy, askJson } from "./shared.js";
 
 // The switches (URL parameters; in Node globalThis.PROFILY_DK) and their defaults.
 const DEFAULTS = { kbhkant: "1", kbhpark: "1", kbhbyg: "1", aarbyg: "1" };
@@ -42,7 +42,6 @@ const wfsUrl = (base, typeNames, bbox, propertyName, count) => {
 // The city's WFS: one try, a short limit (the review of 24. 11. 2026: through gis.js getJSON a hanging server held every
 // Copenhagen cut up to 25 s and more with its retries): the buildings 6 s a facade, the kerb lines and parking areas 8 s.
 const TIMEOUT = 6000, LINES_TIMEOUT = 8000;
-const askCity = (url, ms) => fetch(url, { signal: AbortSignal.timeout(ms) }).then((r) => { if (!r.ok) throw new Error(`${new URL(url).hostname} ${r.status}`); return r.json(); });
 const centreOf = (bbox) => { const [x0, y0, x1, y1] = bbox.split(",").map(Number); return [(x0 + x1) / 2, (y0 + y1) / 2]; };
 
 // ---------- Copenhagen's kerb lines ----------
@@ -54,7 +53,7 @@ export const kantUrl = (bbox) => wfsUrl(KBH_WFS, "k101:vejkant", bbox, "vejtype,
 // and said nothing): the next cut asks again, and this one tells the visitor (dkFailed, app.js).
 const memo = new Map();
 function kanter(bbox) {
-  return cachedBy(memo, bbox, () => askCity(kantUrl(bbox), LINES_TIMEOUT).then(kantPaths), { evictFirst: true });
+  return cachedBy(memo, bbox, () => askJson(kantUrl(bbox), LINES_TIMEOUT).then(kantPaths), { evictFirst: true });
 }
 async function lines(bbox) {
   if (!bbox) return { features: [] };
@@ -91,7 +90,7 @@ export const parkingUrl = (bbox) => wfsUrl(KBH_WFS, "k101:parkering_areal", bbox
 // Not answering: no parking areas (the estimate as where the city has none), said so (dkFailed).
 async function parking(bbox) {
   if (!on("kbhpark") || !inArea(AREAS.kobenhavn, ...centreOf(bbox))) return { features: [] };
-  const json = await askCity(parkingUrl(bbox), LINES_TIMEOUT).catch((err) => { console.warn("Kodaň parkering", err.message); return null; });
+  const json = await askJson(parkingUrl(bbox), LINES_TIMEOUT).catch((err) => { console.warn("Kodaň parkering", err.message); return null; });
   if (!json) return { features: [], dkFailed: "park" };
   return { ...kbhParking(json), dkParking: true };
 }
@@ -157,7 +156,7 @@ export function pick(json, lat, lon, read, floors) {
   const f = (here.length ? here : fs).slice().sort((a, b) => (floors(b.properties) || 0) - (floors(a.properties) || 0))[0];
   return f ? read(f.properties) : {};
 }
-const ask = (url) => askCity(url, TIMEOUT);
+const ask = (url) => askJson(url, TIMEOUT);
 const box = (lat, lon) => { const d = 0.00001, e = 0.00002; return `${(lon - e).toFixed(7)},${(lat - d).toFixed(7)},${(lon + e).toFixed(7)},${(lat + d).toFixed(7)}`; };
 // Only the fields used (never the owner, the address or the cadastral number).
 export const kbhBuildingUrl = (lat, lon) => wfsUrl(KBH_WFS, "k101:bygning", box(lat, lon),

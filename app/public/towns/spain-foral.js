@@ -10,6 +10,7 @@
 // INSPIRE code in xlink:href, xlink:title (Bizkaia, with trailing spaces) or as text (Álava).
 
 import { inside } from "../places.js";
+import { askText } from "./shared.js";
 const URI4258 = "http://www.opengis.net/def/crs/EPSG/0/4258";
 // The province codes as in regions-es.json (tools/build_boundaries.mjs, NUTS 3).
 export const FORAL = {
@@ -112,6 +113,5 @@ export function foralBuilding(code, gml, lat, lon) {
 }
 
 const TIMEOUT = 25000; // as the Catastro's (towns/spain.js)
-export const foralFetch = (code, lat, lon, d) => fetch(foralUrl(code, lat, lon, d), { signal: AbortSignal.timeout(TIMEOUT) })
-  .then((r) => { if (!r.ok) throw new Error(`${code} ${r.status}`); return r.text(); })
+export const foralFetch = (code, lat, lon, d) => askText(foralUrl(code, lat, lon, d), TIMEOUT, code)
   .then((gml) => foralBuilding(code, gml, lat, lon));

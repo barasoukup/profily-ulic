@@ -10,7 +10,7 @@
 import { flagsOf, offOf } from "../flags.js";
 import { osmTiles } from "../gis.js";
 import { inside } from "../places.js";
-import { polygonsOf, cachedBy } from "./shared.js";
+import { polygonsOf, cachedBy, askJson } from "./shared.js";
 
 const flag = flagsOf("PROFILY_SI");
 
@@ -85,7 +85,7 @@ export function gursNearest(json, lat, lon, max = NEAR) {
   }
   return best ? { ...gursBuilding(best.f.properties), gurs: true } : {};
 }
-const ask = (lat, lon, d) => fetch(gursUrl(lat, lon, d), { signal: AbortSignal.timeout(TIMEOUT) }).then((r) => { if (!r.ok) throw new Error(`GURS ${r.status}`); return r.json(); });
+const ask = (lat, lon, d) => askJson(gursUrl(lat, lon, d), TIMEOUT, "GURS");
 
 const memo = new Map();
 async function podlaznost(lat, lon) {

@@ -17,7 +17,7 @@ import { MTVU_LABELS } from "../city.js";
 import { inArea, inside } from "../places.js";
 import { osmAreas } from "./slovakia.js";
 import { foralEnabled, foralFetch } from "./spain-foral.js";
-import { polygonsOf, cachedBy, boxKey } from "./shared.js";
+import { polygonsOf, cachedBy, boxKey, askText } from "./shared.js";
 
 const flag = flagsOf("PROFILY_ES");
 
@@ -106,8 +106,7 @@ export const CATASTRO_WFS = "https://ovc.catastro.meh.es/INSPIRE/wfsBU.aspx";
 const CATASTRO_TIMEOUT = 25000;
 export const catastroUrl = (type, lat, lon, d) => `${CATASTRO_WFS}?${new URLSearchParams({ service: "WFS", version: "2.0.0", request: "GetFeature", typenames: type, srsname: "EPSG::4326",
   bbox: `${lat - d},${lon - d},${lat + d},${lon + d}` })}`;
-const catastro = (type, lat, lon, d) => fetch(catastroUrl(type, lat, lon, d), { signal: AbortSignal.timeout(CATASTRO_TIMEOUT) })
-  .then((r) => { if (!r.ok) throw new Error(`Catastro ${r.status}`); return r.text(); });
+const catastro = (type, lat, lon, d) => askText(catastroUrl(type, lat, lon, d), CATASTRO_TIMEOUT, "Catastro");
 // The GML's members: their id, rings (posList lat lon) and the values the app uses.
 const members = (gml) => String(gml || "").split(/<gml:featureMember>/).slice(1);
 const value = (m, tag) => m.match(new RegExp(`<[^>]*:${tag}>([^<]*)<`))?.[1] ?? null;
