@@ -49,7 +49,7 @@ test("ortofoto: neznámý nebo žádný zdroj se ČÚZK neptá", async () => {
 });
 
 test("mapa: vrstvy českých, slovenských a rakouských služeb jen na svém území", () => {
-  const app = src("app.js");
+  const app = src("app/basemaps.js");
   // ČÚZK's orthophoto and the DMVS: a layer class kept to Czechia's rings, with Czechia's bounds (credit by the rings).
   assert.match(app, /const CzWms = CZ_RINGS\.length \? keptInside\(L\.TileLayer\.WMS, CZ_RINGS\)/);
   assert.match(app, /const cuzkOrtho = \(\) => new CzWms\("https:\/\/ags\.cuzk\.gov\.cz[^]*?\.\.\.czBounds\(\)/);
@@ -69,7 +69,7 @@ test("mapa: vrstvy českých, slovenských a rakouských služeb jen na svém ú
 });
 
 test("hledání: RÚIAN napřed jen v Česku, jinde až když nic nenašlo nic jiného", () => {
-  const s = src("search.js"), app = src("app.js");
+  const s = src("search.js"), app = src("app/cutcontrols.js");
   assert.match(s, /const \[cz, skNow\] = await Promise\.all\(\[czHere \? ruian\(\) : \[\]/);
   assert.match(s, /if \(!czHere && !found\.length\) found = rankResults\(await ruian\(\), text\)/);
   assert.match(app, /inCzechia: \(\) => \{ const c = map\.getCenter\(\); return countryOfCity\(cityAt\(c\.lat, c\.lng\)\)\.code === "CZ"; \}/);

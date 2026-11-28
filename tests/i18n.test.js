@@ -31,7 +31,8 @@ export function codeKeys() {
 // A t() of a variable only where the text is known to flow so (a credit, a note of the cut, a base map's name, the
 // state's text): anything else would escape this test.
 const VARIABLE = {
-  "app.js": ["tr(k)", 'tr(localStorage.getItem(BASE_KEY) || "")', 'tr(state.cut?.note || "")'],
+  "app/basemaps.js": ["tr(k)", 'tr(localStorage.getItem(BASE_KEY) || "")'],
+  "app/view.js": ['tr(state.cut?.note || "")'],
   "sources.js": ["t(country.linesMissing)", 't(orthophoto ? "sources.estimateOrthoOsm" : "sources.estimateOsm")',
     'mark(orthophoto ? "note.mapDownOrthoOsm" : "note.mapDownOsm", { name: what })'],
 };
@@ -65,7 +66,7 @@ test("t() s proměnnou jen na vyjmenovaných místech", () => {
   const found = {};
   for (const f of FILES.filter((f) => f !== "i18n.js")) {
     for (const m of src(f).matchAll(/(?<![\w.$])(?:t|tr|mark)\((?!\s*")([^()]*(?:\([^()]*\)[^()]*)*)\)/g)) {
-      // app.js: a mark() of its own (the hover of a part); t() in the comments
+      // app/: a mark() of its own (the hover of a part); t() in the comments
       if (/^(true|false|)$/.test(m[1].trim())) continue;
       if (!(found[f] ??= []).includes(m[0])) found[f].push(m[0]);
     }
@@ -75,7 +76,7 @@ test("t() s proměnnou jen na vyjmenovaných místech", () => {
 
 test("žádný klíč, který aplikace nepoužívá", () => {
   const used = new Set([...codeKeys().keys(), ...pageKeys()]);
-  // Keys in the code as plain strings (lanes-ortho.js credits, which app.js hands to t()).
+  // Keys in the code as plain strings (lanes-ortho.js credits, which app/ hands to t()).
   for (const f of FILES) for (const m of src(f).matchAll(/"([a-z][A-Za-z0-9]*(?:\.[A-Za-z0-9-]+)+)"/g)) if (m[1] in CS) used.add(m[1]);
   // The cities' texts (i18n.js cityTexts), the map credits' words (i18n.js attribution).
   for (const k of Object.keys(CS)) if (/^(city|attribution)\./.test(k)) used.add(k);
@@ -200,7 +201,7 @@ for (const l of Object.keys(LANGS).filter((l) => !["cs", "en", "sk", "de"].inclu
 
 test("jazyk není stát: německé rozhraní nemění značky ani pravidla řezu v Česku", async () => {
   // The signs and rules follow the cut's state; no module but i18n.js and the language menu reads the language.
-  for (const f of FILES.filter((f) => !["i18n.js", "app.js", "errors.js"].includes(f))) {
+  for (const f of FILES.filter((f) => !["i18n.js", "app/map.js", "app/language.js", "errors.js"].includes(f))) {
     assert.ok(!/\blang\b\s*[!=]==/.test(src(f)), `${f} rozhoduje podle jazyka`);
   }
 });

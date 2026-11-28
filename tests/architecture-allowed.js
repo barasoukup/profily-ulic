@@ -26,7 +26,6 @@ export const UNUSED_EXPORTS = [
 ];
 
 export const LONG_FILES = {
-  "app/public/app.js": 2767,
   "app/public/derive.js": 2995,
   "app/public/lanes-ortho.js": 1206,
   "app/public/ortho-osm.js": 1256,
@@ -35,9 +34,9 @@ export const LONG_FILES = {
 
 export const LONG_FUNCTIONS = {
   "app/public/ai-kerbs.js:parkFromAi": 121,
-  "app/public/app.js:cutAt": 418,
-  "app/public/app.js:fitLabels": 109,
-  "app/public/app.js:renderEditor": 250,
+  "app/public/app/cut.js:cutAt": 418,
+  "app/public/app/editor.js:renderEditor": 250,
+  "app/public/app/fit.js:fitLabels": 109,
   "app/public/derive.js:deriveProfile": 619,
   "app/public/derive.js:splitRoadway": 228,
   "app/public/dmvs.js:dtmAreas": 128,
