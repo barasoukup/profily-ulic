@@ -68,3 +68,12 @@ Zapnuté opravy s vypínačem `?off=…`, které se tím jen zbavily vypínače,
   neuvedena (`evaluation/netherlands/ab/PARKING.md`).
 - `?floorsosm=1` (výška z OSM bez `building:levels` přes `floors.js` místo výška / 3,5): slepé A/B na fotkách 11 : 8,
   p = 0,65, bez výhry (`evaluation/archive/floors-height/REPORT.md`). Výška z jiných zdrojů dál přes `floors.js`.
+
+### Odvození profilu (`derive.js`)
+
+- `?treepits=1` (`treePitsAsSidewalk`, `stripLook`): úzký zelený pás mezi chodníkem a obrubou, který na ortofotu vypadá
+  dlážděně (jamky stromů ve washingtonském chodníku), se připojí k chodníku. Slepé A/B 24. 11. 2026: Washington 2 : 2,
+  české kontroly 0 : 1, skutečný trávník u silnice se četl jako dlažba (`evaluation/usa/REPORT.md`).
+- `?otherstreet=1` (`OTHER_CUT`): profil končí u chodníku nebo zeleně před jinou ulicí, která řez kříží šikmo. Slepé A/B
+  25. 11. 2026 remíza: 13 : 10 z 31 změněných řezů, Evropa 9 : 10, Washington a Toronto 4 : 0 (`evaluation/canada/review/`).
+  Upozornění „řez vede křižovatkou“ zůstává, vypíná ho `?off=otherstreet`.

@@ -199,30 +199,6 @@ test("Spočítané pruhy: obousměrka se stáním se dělí od 4 m, bez počtu n
   assert.equal(c.filter((s) => s.type === "pruh").length, 1);
 });
 
-test("Jamky stromů v chodníku: dlážděný úzký pás u obruby patří chodníku", async () => {
-  const { treePitsAsSidewalk } = await import("../app/public/derive.js");
-  const P = (await import("../app/public/ortho-osm.js")).P;
-  const segs0 = [{ type: "chodnik", width: 2 }, { type: "zelen", width: 1 }, { type: "parkovani", width: 2.2 }, { type: "pruh", width: 4 }];
-  assert.equal(treePitsAsSidewalk(segs0, [-6.1, 3.1], { G: [1], Y: [1] }), 0, "vypnuté bez ?treepits=1");
-  P.treepits = true;
-  // An image of 0.1 m across t −10…10 m and 160 rows along, all of one look.
-  const st = (look) => {
-    const nt = 200, nu = 160, n = nt * nu, f = (v) => new Float32Array(n).fill(v);
-    return look === "paved" ? { t0: -10, nt, nu, res: 0.1, G: f(0), Y: f(5), D: f(0), L: f(150) } : { t0: -10, nt, nu, res: 0.1, G: f(20), Y: f(30), D: f(10), L: f(90) };
-  };
-  // Segments from the high t to the low: sidewalk 2, green 1, parking 2.2, lane 4, … (extent from −6.1).
-  const segs = () => [{ type: "chodnik", width: 2 }, { type: "zelen", width: 1, items: [{ kind: "strom", f: 0.5 }] }, { type: "parkovani", width: 2.2 }, { type: "pruh", width: 4 }];
-  const paved = segs();
-  assert.equal(treePitsAsSidewalk(paved, [-6.1, 3.1], st("paved")), 1);
-  assert.deepEqual(paved.map((s) => s.type), ["chodnik", "parkovani", "pruh"]);
-  assert.equal(paved[0].width, 3);
-  assert.equal(paved[0].items[0].kind, "strom");
-  const green = segs();
-  assert.equal(treePitsAsSidewalk(green, [-6.1, 3.1], st("green")), 0);
-  assert.equal(treePitsAsSidewalk(segs(), [-6.1, 3.1], null), 0);
-  P.treepits = false;
-});
-
 test("Tepny Washingtonu: svodidla, ostrůvky mimo vozovku, stání u méně pruhů, chráněná cyklostezka, pruhy směru", async () => {
   const u = await import("../app/public/towns/usa.js");
   const R = (...a) => a.map(([code, s, e]) => ({ code, s, e }));

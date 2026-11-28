@@ -9,7 +9,6 @@ const VARIANTS = {
   dc0: { q: "dc=0", off: [] },
   dcold: { q: "off=dcarterials", off: ["dcarterials"] }, // the arterials as before 25. 11. 2026 (towns/usa.js)
   ul: { q: "off=ulicky", off: ["ulicky"] },
-  ja: { q: "off=treepits", off: ["treepits"] },
   pp: { q: "off=pocetpruhu", off: ["pocetpruhu"] },
   // Without DC's map, the orthophoto and the model: the page itself loaded with ?dc=0&orto=0&ai=0 (read once at the load).
   map0: { q: "toronto=0", off: [] }, // Canada (evaluation/canada): without the map of Toronto

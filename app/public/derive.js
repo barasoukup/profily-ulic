@@ -269,8 +269,7 @@ const isAlleyArea = (el) => el.type === "area" && el.geometry?.length > 2 && (el
 const AXIS_SNAP = 4.5; // m: an OSM axis this close beside the roadway belongs to it (deriveProfile, the axis to the roadway)
 // Streets for the axis fixes: roads and residential streets, not tracks or bridleways (Brno test č. 99).
 const isRoadway = (c) => c === 700 || c === 701;
-const OTHER_CUT = typeof location !== "undefined" && new URLSearchParams(location.search).get("otherstreet") === "1";
-const OTHER_WALK = 1.5, OTHER_ANGLE = Math.cos((20 * Math.PI) / 180); // m of sidewalk or green before the other street; an axis turned more than 20° from the cut's street
+const OTHER_ANGLE = Math.cos((20 * Math.PI) / 180); // an axis turned more than 20° from the cut's street
 // A crossing c of the cut's line by another street for cars: named otherwise, turned away, not a link nor on another level.
 const levelTag = (t) => Number(t?.layer) || (inTunnel(t) ? -1 : t?.bridge && t.bridge !== "no" ? 1 : 0);
 const otherStreet = (c, way, dir, cross) => {
@@ -2274,9 +2273,8 @@ export function deriveProfile({ center, dir, half, polys, osm, frame, way, track
   let { lo, hi, right, left } = walk();
   // Another street inside the profile, at an angle (S Street SE and Minnesota Avenue meeting at 34°, H Street NW in the
   // fork with New York Avenue: the review of 25. 11. 2026): its roadway is not this street's: the cut runs
-  // through a junction, said so (?off=otherstreet: not). With ?otherstreet=1 the profile ends at the sidewalk or green before
-  // it, where there is one: off, the blind A/B of 25. 11. 2026 is a tie (13 : 10 of 31 changed cuts, Europe 9 : 10,
-  // Washington and Toronto 4 : 0; evaluation/canada/review).
+  // through a junction, said so (?off=otherstreet: not). Ending the profile at the sidewalk or green before it was a tie
+  // (docs/decisions.md) and was deleted.
   let forks = false;
   const foreign = ORTHO_P.off?.has("otherstreet") ? [] : cross.filter((c) => otherStreet(c, way, dir, cross));
   for (const step of foreign.length ? [1, -1] : []) {
@@ -2285,11 +2283,7 @@ export function deriveProfile({ center, dir, half, polys, osm, frame, way, track
     if (at0 < lo || at0 > hi) continue;
     if (at0 === i0) { forks = true; continue; }
     if (byHand[step > 0 ? "L" : "R"]) continue;
-    // Back from the foreign roadway to the sidewalk or green of at least OTHER_WALK before it, on the cut's own side.
-    let end = at0 - step, walked = 0;
-    while (end !== i0 && !carriage(runs[end].code) && runs[end].code !== OSM_PARKING) { if (runs[end].code === 702 || runs[end].code === 703 || isOpenLand(runs[end].code)) walked += runs[end].e - runs[end].s; end -= step; }
-    if (walked < OTHER_WALK || !OTHER_CUT) { forks = true; continue; }
-    if (step > 0) { hi = at0 - 1; left = "volno"; } else { lo = at0 + 1; right = "volno"; }
+    forks = true;
   }
   const handSet = (v) => typeof v === "number" && Math.abs(v - MAX_REACH) > 0.05;
   const pastL = !byHand.L && handSet(reach?.left) && left !== "budova" && reach.left > runs[hi].e - ref + 0.5;
@@ -2816,58 +2810,6 @@ export function widenNarrowTrams(segments) {
 // really draws there stays a lane (measured; Bára: "pokud je v datech fakt pruh, tak nakreslit, ale spíš se tomu
 // vyhýbat"): only the estimate's lanes go. Returns the parts changed (?off=pesizona).
 const ZONE_ROAD = new Set(["pruh", "pruh_piktokoridor", "krajnice", "obsluzna"]);
-// Tree pits in a sidewalk are the sidewalk (Bára 24. 11. 2026, the USA pilot: DC's maps leave the tree boxes of a brick
-// sidewalk out of the sidewalk, and the app drew them as a green strip, dc-2-4 0.9 m): a green part no wider than
-// TREE_PIT_MAX between a sidewalk and the roadway's kerb (a lane, parking, a cycle lane, a shoulder) whose orthophoto along
-// the street (±LOOK_ALONG m) looks paved (surfaceLook's test) joins the sidewalk, its trees with it. Not without a
-// photo, nor where it looks green or unclear. extent: deriveProfile's; st: lanes-ortho.js laneImage's st. Returns the
-// parts joined. Off by default (the blind A/B of 24. 11. 2026, evaluation/usa/REPORT.md: DC 2 : 2, Czech controls 0 : 1, a
-// real grass verge read as paving); ?treepits=1 turns it on (ortho-osm.js P.treepits).
-const TREE_PIT_MAX = 1.3;
-const PIT_KERB = new Set(["pruh", "pruh_piktokoridor", "bus", "bus_cyklo", "parkovani", "cyklopruh", "ochranny_pruh", "krajnice", "obsluzna"]);
-export function stripLook(st, lo, hi) {
-  if (!st?.G || !st.Y) return null;
-  lo += 0.25; hi -= 0.25;
-  if (!(hi - lo >= 0.3)) return null;
-  const half = st.nu / 2, rows = Math.round(LOOK_ALONG / st.res), m = { G: 0, Y: 0, D: 0, L: 0, LL: 0 };
-  let n = 0;
-  for (let i = Math.ceil((lo - st.t0) / st.res); i <= Math.floor((hi - st.t0) / st.res); i++) {
-    if (i < 0 || i >= st.nt) continue;
-    for (let j = Math.max(0, Math.floor(half - rows)); j < Math.min(st.nu, half + rows); j++) {
-      const k = j * st.nt + i;
-      if (Number.isNaN(st.G[k])) continue;
-      m.G += st.G[k]; m.Y += st.Y[k]; m.D += st.D[k]; m.L += st.L[k]; m.LL += st.L[k] * st.L[k]; n++;
-    }
-  }
-  if (!n) return null;
-  for (const c of "GYDL") m[c] /= n;
-  m.SD = Math.sqrt(Math.max(0, m.LL / n - m.L * m.L));
-  return looksGreen(m) ? "green" : looksPaved(m) ? "paved" : null;
-}
-export function treePitsAsSidewalk(segments, extent, st) {
-  if (!ORTHO_P.treepits || ORTHO_P.off?.has("treepits") || !st || !extent || !segments?.length) return 0;
-  let joined = 0;
-  for (let i = 0; i < segments.length; i++) {
-    const s = segments[i];
-    if (s.type !== "zelen" || !(s.width <= TREE_PIT_MAX)) continue;
-    const [a, b] = [segments[i - 1], segments[i + 1]];
-    const walk = a?.type === "chodnik" && PIT_KERB.has(b?.type) ? i - 1 : b?.type === "chodnik" && PIT_KERB.has(a?.type) ? i + 1 : -1;
-    if (walk < 0) continue;
-    // The part's stretch across the cut: the segments run from the cut's high t to its low t (applyLanes).
-    const lo = extent[0] + segments.slice(i + 1).reduce((x, y) => x + y.width, 0);
-    if (stripLook(st, lo, lo + s.width) !== "paved") continue;
-    const w = segments[walk], [first, second] = walk < i ? [w, s] : [s, w], total = first.width + second.width;
-    const items = [...(first.items || []).map((it) => ({ ...it, f: +((it.f ?? 0.5) * first.width / total).toFixed(3) })),
-      ...(second.items || []).map((it) => ({ ...it, f: +((first.width + (it.f ?? 0.5) * second.width) / total).toFixed(3) }))];
-    w.width = +total.toFixed(2);
-    if (items.length) w.items = items;
-    segments.splice(i, 1);
-    i = Math.max(-1, Math.min(i, walk) - 1);
-    joined++;
-  }
-  return joined;
-}
-
 export function pedestrianZone(segments, tags = {}, { measured = false } = {}) {
   if (tags.highway !== "pedestrian" || measured || ORTHO_P.off?.has("pesizona")) return 0;
   let n = 0;
