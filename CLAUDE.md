@@ -58,7 +58,7 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
 - **Nový text:** `node tools/i18n_add.mjs <klíč> "<česky>" "<anglicky>"` (ostatní jazyky dočasně anglicky, seznam `locales/_todo.json`), v kódu `t("<klíč>")`; změna textu s `--change`. Hlídá `tests/i18n.test.js` (klíč v kódu ve všech jazycích, žádný navíc, stejné `{jména}`).
 - Francouzštinu ani italštinu rozhraní nepřidávat bez Bářina souhlasu.
 - Bára 17. 11. 2026: česká jména měst se v překladech nesklánějí (polsky „miasta Plzeň“, ne Pilzna); obecně se zdroj ploch jmenuje „mapa povrchů“ (Bára 18. 11. 2026: univerzální název pro všechny státy; podkladová mapa, „Linie mapy povrchů“, legenda, hlášky, nápověda). „Technická mapa“ zůstává jen jako jméno konkrétního zdroje: kredity a licence, hlášky o konkrétní službě (ČÚZK, IPR, město) a texty měst; překládá se doslova (švédsky teknisk karta, ne primärkarta).
-- Překlady do jazyků EU: **Překlady jsou strojové (agent na jazyk), měl by je projít rodilý mluvčí.**
+- **Překlady jsou strojové (agent na jazyk), měl by je projít rodilý mluvčí.**
 
 ### Licence a autorství
 - Copyright kódu i pražských ilustrací: © Bára Soukupová (MIT).
@@ -67,7 +67,7 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
 
 ### Ilustrace
 - Neutrální moderní tramvaj a autobus (`app/public/generic/`, `art.js` GENERIC_VEHICLES; Bára 17. 11. 2026: „všude, kde nemáme specifickou“): v každé sadě, která nemá vlastní tramvaj nebo autobus, místo Streetmixu. Trolejbus a auta zůstávají ze Streetmixu.
-- Auta: Auta zůstávají ze Streetmixu (Bára rozhodla 8. 11. 2026).
+- Auta zůstávají ze Streetmixu (Bára rozhodla 8. 11. 2026).
 
 ## Normy a limity (schválené Bárou)
 - Kolmé stání ≥ 4,5 m (5,0 standard, ČSN 73 6056).
