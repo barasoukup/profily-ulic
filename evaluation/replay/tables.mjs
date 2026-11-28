@@ -90,7 +90,7 @@ out.place = place();
 const SOURCES = [{}, { region: "Kraj Vysočina" }, { dmvs: true }, { dmvs: true, region: "Pardubický kraj" }, { ortho: true },
   ...Object.keys(PASSPORT_NAMES).map((passport) => ({ passport, dmvs: true })),
   ...["ipr", "brno", "plzen", "sk", "at", "xx"].map((orthoCity) => ({ orthoCity })),
-  { skTm: true }, ...["bratislava", "presov", "zilina", "bystrica", "kosice", "zvolen", "xx"].map((skTown) => ({ skTown })),
+  { skTm: true }, ...["bratislava", "presov", "zilina", "bystrica", "kosice", "xx"].map((skTown) => ({ skTown })),
   ...["nitra", "piestany", "zvolen", "hlohovec", "presov", "bratislava-tm", "xx"].map((skEdges) => ({ skEdges })), { skEdges: "bratislava-tm", skTm: true },
   { atSigns: "salzburg" }, { atTown: "wien" }, { zbgis: true }, { atTown: "wien", atSigns: "salzburg", orthoCity: "at" },
   { skTown: "bratislava", skEdges: "bratislava-tm", zbgis: true, orthoCity: "sk" }, { ortho: true, dmvs: true, passport: Object.keys(PASSPORT_NAMES)[0], region: "Jihomoravský kraj" }];

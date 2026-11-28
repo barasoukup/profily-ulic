@@ -966,7 +966,7 @@ export function orthoOsmPolys({ osm, frame, dir, way, st, mapRuns = [], edges = 
 // register first, OSM last.
 // A planimetric map's gaps between two roadways taken as medians (towns/planimetrics.js gapsBetweenRoads, Toronto), told on
 // the orthophoto: green as the estimate's rest (GREEN_AREA) is the grass strip it is (401), the rest stays the median. Not by
-// yellowness or saturation as outerGapsByImage: on Toronto's orthophoto the concrete islands are as yellow and saturated
+// yellowness or saturation (the deleted outer gaps of Boston did): on Toronto's orthophoto the concrete islands are as yellow and saturated
 // as dry grass (the 26 judged medians of the second review: concrete green 0–0.01, grass 0.11–0.42, the dry one of Markham
 // Road 0). At least MEDIAN_SEEN m of it seen. Returns how many changed.
 const MEDIAN_SEEN = 0.8;
