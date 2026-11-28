@@ -89,7 +89,6 @@ const REACH_GROUP = { lampa: "lampa", lavicka: "lavicka", sloupek: "sloupek", kv
 export const reachOf = (kind, reach = REACH) => reach[REACH_GROUP[kind] || (kind === "strom" ? "strom" : "jine")] ?? REACH[REACH_GROUP[kind] || "jine"];
 const ROW_GAP = 1.5; // points of one kind this close across the street stand in one row: one is drawn (m)
 const STOP_GAP = { pristresek: 4, oznacnik: 4 }; // a stop's shelter or post: one within this across (m)
-const NO_PARKING_IN = 2.5, NO_PARKING_OUT = 0.5; // a no-parking section counts this far into the roadway from the kerb, and out of it (m)
 const SECTION_NEAR = 12; // the line of a TSK street section within this of the roadway's middle is its section (m)
 const SAME_POINT = 3; // a technical-map or open-data point this close to an OSM one of its kind is the same thing (m)
 const STOP_REACH = 40; // a shelter takes the tram/bus kind of the nearest stop node this close (m)
@@ -505,9 +504,6 @@ export function orientFromStalls(poly, dir) {
 const TSK_PARKING = 9705;
 const TSK_CODES = { useky: 9705, ztp: 9706, zasobovani: 9707, specialni: 9708 };
 const isTskParking = (c) => c >= 9705 && c <= 9708;
-// No-parking sections of TSK (Prague, "Zákaz stání"): parts of a parking section (the same ZPS_ID) where
-// no car may stand, e.g. in front of a driveway.
-const NO_PARKING = 9709;
 // Restaurant terraces (OSM leisure=outdoor_seating areas) take part of a sidewalk.
 const OSM_OUTDOOR = 9900;
 
@@ -662,16 +658,13 @@ function classify(center, normal, half, polys) {
   const runs = [];
   for (let t = -half; t <= half + 1e-9; t += STEP) {
     const x = center[0] + normal[0] * t, y = center[1] + normal[1] * t;
-    let code = null, orient, use, guess, carved, free = false, weak = null;
+    let code = null, orient, use, guess, carved, weak = null;
     for (const p of polys) {
       const [x0, y0, x1, y1] = p.bbox;
       if (x < x0 || x > x1 || y < y0 || y > y1) continue;
       // An OSM building the map lacks: it takes the place of what is open (paving, yard, green), not of a road, a
       // sidewalk, a tram bed or a stall (withOsmBuildings).
       if (p.osmBuilding) { if (!weak && inside(p.rings, x, y)) weak = p; continue; }
-      // A no-parking part of a TSK section (a driveway, a crossing): the section has no stall there.
-      if (p.code === NO_PARKING) { if (!free && inside(p.rings, x, y)) free = true; continue; }
-      if (free && (isTskParking(p.code) || p.code === OSM_PARKING)) continue;
       if (inside(p.rings, x, y)) { code = p.code; orient = p.orient; use = p.use; guess = p.guess; carved = p.carvedTrack; break; }
     }
     if (weak && (code === null || !(code >= 700 && code <= 705) && !(code >= 9700 && code < 9800))) { code = weak.code; orient = use = guess = carved = undefined; }
@@ -2056,19 +2049,7 @@ export function linePieces(polys, tags, center, normal, st = null, along = true)
 // app.js lawAt).
 export function deriveProfile({ center, dir, half, polys, osm, frame, way, tracks = [], parking = [], lines = [], reach, inZps: zoneKnown, itemReach, ortho, lanesImage, roadOnPath = false, noParkGuess = false, lawAt = [], kerbParking = null, osmParkGive = false }) {
   const reachItems = { ...REACH, ...itemReach };
-  // No-parking sections (Prague, TSK "Zákaz stání"): no surface of their own, they only keep a kerb free.
-  const noParking = parking.filter((p) => p.kind === "zakaz");
-  parking = parking.filter((p) => p.kind !== "zakaz");
   const at = (t) => [center[0] + normal[0] * t, center[1] + normal[1] * t];
-  // Does the cut cross a no-parking section at the kerb at offset `at` (k = 1: the roadway lies at larger t)?
-  const noParkingAt = (zs, kerb, k) => {
-    if (!zs.length) return false;
-    for (let d = -NO_PARKING_OUT; d <= NO_PARKING_IN + 1e-9; d += 0.25) {
-      const [x, y] = at(kerb + k * d);
-      if (zs.some((z) => x >= z.bbox[0] && x <= z.bbox[2] && y >= z.bbox[1] && y <= z.bbox[3] && inside(z.rings, x, y))) return true;
-    }
-    return false;
-  };
   // The street section of TSK whose line runs along the street nearest to the point at offset t (within
   // SECTION_NEAR): its class, or null.
   const streetClass = (ls, t) => {
@@ -2130,7 +2111,6 @@ export function deriveProfile({ center, dir, half, polys, osm, frame, way, track
 
   const classifyAll = (osmParking) => absorbParkingSlivers(mergeTiny(classify(center, normal, half, [
     ...osmPlatformPolygons(osm, frame),
-    ...noParking.map((p) => ({ ...p, code: NO_PARKING })),
     // Special stalls (ZTP, deliveries…) before the plain sections that contain them.
     ...parking.filter((p) => p.kind !== "useky").map((p) => ({ ...p, code: TSK_CODES[p.kind] || TSK_PARKING, use: p.kind })),
     ...parking.filter((p) => p.kind === "useky").map((p) => ({ ...p, code: TSK_PARKING, orient: p.orient || orientFromStalls(p, dir) })),
@@ -2467,10 +2447,6 @@ export function deriveProfile({ center, dir, half, polys, osm, frame, way, track
       const besideTrack = (x) => x?.code === 703 && !ORTHO_P.off?.has("kolodvakrat");
       for (const [side, x] of [["L", kept[kept.indexOf(r) + 1]], ["R", kept[kept.indexOf(r) - 1]]]) {
         if (besideTrack(x) && sideTagsLR[side].bike === "cyklopruh") sideTagsLR[side] = { ...sideTagsLR[side], bike: null };
-      }
-      // A no-parking section of TSK at the kerb (Prague): no parking there, whatever OSM says.
-      for (const [side, at, k] of [["L", r.e, -1], ["R", r.s, 1]]) {
-        if (noParkingAt(noParking, at, k)) sideTagsLR[side] = { ...sideTagsLR[side], parking: false, parkingNo: true, kerbPos: null, kerbDepth: 0 };
       }
       // A city's register of parking stretches (Paris, towns/france.js: points in the middle of the strip with its length,
       // depth and arrangement) decides each kerb: a stretch reaching the cut whose point lies at this kerb, inside the

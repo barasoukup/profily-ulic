@@ -29,7 +29,7 @@ export const UNUSED_EXPORTS = [
 
 export const LONG_FILES = {
   "app/public/app.js": 2768,
-  "app/public/derive.js": 3019,
+  "app/public/derive.js": 2995,
   "app/public/lanes-ortho.js": 1206,
   "app/public/ortho-osm.js": 1256,
   "app/public/profile.js": 3088
@@ -40,14 +40,14 @@ export const LONG_FUNCTIONS = {
   "app/public/app.js:cutAt": 418,
   "app/public/app.js:fitLabels": 109,
   "app/public/app.js:renderEditor": 250,
-  "app/public/derive.js:deriveProfile": 636,
+  "app/public/derive.js:deriveProfile": 619,
   "app/public/derive.js:splitRoadway": 228,
   "app/public/dmvs.js:dtmAreas": 128,
   "app/public/dmvs.js:fromLines": 107,
   "app/public/houses-america.js:drawAmerican": 566,
   "app/public/lanes-ortho.js:measured": 114,
-  "app/public/maplayers.js:createDataLayers": 204,
-  "app/public/maplayers.js:draw": 172,
+  "app/public/maplayers.js:createDataLayers": 199,
+  "app/public/maplayers.js:draw": 167,
   "app/public/ortho-osm.js:besidePassport": 168,
   "app/public/ortho-osm.js:orthoOsmPolys": 427,
   "app/public/profile.js:(anonymous)": 176,

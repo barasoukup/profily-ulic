@@ -63,15 +63,6 @@ test("stromy z otevřených dat a technické mapy dělají stromořadí s vlastn
   assert.equal(tree.source, "data");
 });
 
-test("zákaz stání vyjme kus úseku TSK: u obruby pak stání není", () => {
-  const sq = (x0, x1, y0, y1, kind) => ({ rings: [[[x0, y0], [x1, y0], [x1, y1], [x0, y1]]], bbox: [x0, y0, x1, y1], kind, count: 0 });
-  const section = sq(2, 4, -30, 30, "useky");
-  const withSection = profile({ parking: [section] });
-  assert.ok(withSection.segments.some((s) => s.type === "parkovani"));
-  const gap = profile({ parking: [section, sq(2, 4.3, -3, 3, "zakaz")] });
-  assert.ok(!gap.segments.some((s) => s.type === "parkovani"));
-});
-
 test("zatřídění TSK: v ulici MK II se stání neodhaduje, v MK III rozhoduje OSM", () => {
   const cls = (mk) => techLines({ features: [{ attributes: { CTMTP_KOD: "od_usek", MK: mk, SIL: 0, DALNICE: 0, TYP: 3 }, geometry: { paths: [[[ll(0.5, -50).lon, ll(0.5, -50).lat], [ll(0.5, 50).lon, ll(0.5, 50).lat]]] } }] }, frame);
   const local = { ...way, tags: { highway: "residential" } };

@@ -107,3 +107,5 @@ Oprava zůstala zapnutá, smazal se jen vypínač a větev „jako dřív“. Vy
   `vesnice` (malý dům o samotě je rodinný), `panel2` (zahraniční panelák jen podle tvaru; slepé A/B na fotkách 54 : 48,
   `evaluation/archive/village-houses/REPORT.md`), `firstclick` (jen první klik v oblasti se posouvá od křižovatek),
   `widereach` (delší dosah dálnic a hlavních ulic), `aipark` (stání podle aut modelu), `posunba` (posun pasportu Bratislavy).
+
+- Mezery ve stání TSK v Praze („Zákaz stání“, `opts.zakaz`, vypnuté od 11. 11. 2026): mezery pár metrů uvnitř souvislého stání (vjezdy, popelnice, stromy; 99 ze 101 na Vinohradech uvnitř úseku TSK, medián 5,6 m), pod rozlišením profilu. Smazáno (Bára 28. 11. 2026).

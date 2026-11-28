@@ -97,11 +97,6 @@ export function createDataLayers(map, control) {
     for (const p of parking) {
       if (!nearAny(p.rings[0])) continue;
       const rings = p.rings.map((r) => r.map(ll));
-      if (p.kind === "zakaz") {
-        tip(L.polygon(rings, shape({ ...P, color: "#c0392b", fillColor: "#e24b4a", fillOpacity: 0.22, dashArray: "3 3", weight: 1.5 })).addTo(groups.parking),
-          `<b>${tr("common.noParking")}</b><br>${esc(city.parkingSource)}`);
-        continue;
-      }
       const orient = p.kind === "useky" ? orientFromStalls(p, dir) : undefined;
       const what = [PARKING_KIND[p.kind] || tr("common.parkingLowercase"), orient && tr("layers.orientParkingInferredNumber", { orient: ORIENT_LABEL[orient] }), p.count > 1 && tr("layers.nSpaces", { n: p.count }), p.guess && tr("layers.positionEstimated")].filter(Boolean).join(" · ");
       tip(L.polygon(rings, shape({
