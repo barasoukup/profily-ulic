@@ -380,3 +380,9 @@ Co rozhodne Bára, je označeno **(Bára)**.
   Maryland 15 cm, Ontario 16 cm, licence neprověřené); Queen Street West má tři pruhy místo čtyř (koleje OSM asi metr vedle středu vozovky mapy);
   ulička v ohybu širší než 9 m bez mapy; inventář DDOT na tepnách nezlepší počet pruhů; kostely v Americe české; ukončení profilu před jinou ulicí (`?otherstreet=1`,
   13 : 10) v Evropě nejisté.
+
+## Sdílený prostor (Bára 28. 11. 2026)
+- Nový druh části „sdílený prostor“: jen kde je opravdu jednolitá plocha pro všechny (v jedné úrovni, bez obrub, bez
+  dělení na chodník a vozovku), ne v každé obytné nebo sdílené zóně. Kandidáti: OSM `living_street`/`shared_space`/
+  `highway=pedestrian` s provozem, mapa povrchů s jednou plochou od fasády k fasádě bez obruby, OSM bez `sidewalk`.
+  Vlastní kresba (dlažba, chodci, kola i auta), značka zóny, při exportu do Streetmixu pruh. A/B na malém vzorku.
