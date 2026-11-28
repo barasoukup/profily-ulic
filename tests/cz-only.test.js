@@ -69,8 +69,9 @@ test("mapa: vrstvy českých, slovenských a rakouských služeb jen na svém ú
 });
 
 test("hledání: RÚIAN napřed jen v Česku, jinde až když nic nenašlo nic jiného", () => {
-  const s = src("search.js"), app = src("app/cutcontrols.js");
-  assert.match(s, /const \[cz, skNow\] = await Promise\.all\(\[czHere \? ruian\(\) : \[\]/);
-  assert.match(s, /if \(!czHere && !found\.length\) found = rankResults\(await ruian\(\), text\)/);
+  // The behaviour itself is in search.test.js (the requests of 45 queries); this keeps the two conditions in RÚIAN's service.
+  const s = src("search/ruian.js"), app = src("app/cutcontrols.js");
+  assert.match(s, /looksLike: \(_query, ctx\) => ctx\.inCzechia,/);
+  assert.match(s, /lastResort: \{ order: 2, when: \(_query, ctx\) => !ctx\.inCzechia && !ctx\.foundAny\(\) \}/);
   assert.match(app, /inCzechia: \(\) => \{ const c = map\.getCenter\(\); return countryOfCity\(cityAt\(c\.lat, c\.lng\)\)\.code === "CZ"; \}/);
 });

@@ -2,7 +2,10 @@
 // (the street of the named town first, an address with the typed number first) and labelled.
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { norm, parseSuggestions, rankResults, formatLabel, score, nearestOnPaths, streetMiddle, suggestUrl, MAX_SHOWN } from "../app/public/search.js";
+import { norm } from "../app/public/search/text.js";
+import { rankResults, formatLabel, score, MAX_SHOWN } from "../app/public/search/rank.js";
+import { nearestOnPaths, streetMiddle } from "../app/public/search/geometry.js";
+import { parseSuggestions, suggestUrl } from "../app/public/search/ruian.js";
 
 const sug = (...rows) => ({ suggestions: rows.map(([text, magicKey, type]) => ({ text, magicKey, type, isCollection: false })) });
 
@@ -224,4 +227,29 @@ test("hledání: stejný dotaz podruhé z paměti, bez nového dotazu na službu
     }
     assert.equal(page.requests.length, 1);
   } finally { page.done(); }
+});
+
+// ---------- the registry itself ----------
+import { SERVICES } from "../app/public/search/registry.js";
+
+test("registr hledání: služby mají id, looksLike a find, id i merge jsou jedinečné", () => {
+  for (const s of SERVICES) {
+    assert.equal(typeof s.id, "string");
+    assert.equal(typeof s.looksLike, "function", s.id);
+    assert.equal(typeof s.find, "function", s.id);
+  }
+  assert.equal(new Set(SERVICES.map((s) => s.id)).size, SERVICES.length);
+  assert.equal(new Set(SERVICES.map((s) => s.merge)).size, SERVICES.length, "pořadí položek při shodě skóre je jednoznačné");
+  assert.equal(SERVICES.filter((s) => s.parallel).length, 1, "jen RÚIAN a ZBGIS se ptají naráz");
+});
+
+test("registr hledání: každé id v countries/<ISO>.js search je služba registru nebo Photon", async () => {
+  const known = new Set([...SERVICES.map((s) => s.id), "photon"]);
+  const dir = new URL("../app/public/countries/", import.meta.url);
+  for (const f of fs.readdirSync(dir).filter((x) => x.endsWith(".js"))) {
+    const mod = await import(new URL(f, dir));
+    for (const country of Object.values(mod).filter((v) => Array.isArray(v?.search))) {
+      for (const id of country.search) assert.ok(known.has(id) || id.startsWith("photon-"), `${f}: ${id}`);
+    }
+  }
 });

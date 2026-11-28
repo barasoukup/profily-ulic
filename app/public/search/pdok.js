@@ -1,6 +1,6 @@
 // Address search in the Netherlands (Bára 20. 11. 2026): PDOK's Locatieserver (api.pdok.nl, CORS *, the BAG's addresses
 // and the national register of public spaces, Public Domain Mark), one request a pause in typing (search.js debounces
-// and cancels). The items look like RÚIAN's (text, type Ulice / AdresniMisto / Obec) so search.js ranks them together;
+// and cancels). The items look like RÚIAN's (text, type Ulice / AdresniMisto / Obec) so rank.js ranks them together;
 // at carries the point and the street for the cut.
 export const LOCATIESERVER = "https://api.pdok.nl/bzk/locatieserver/search/v3_1/free";
 const MAX = 15;
@@ -28,3 +28,13 @@ export async function findNl(text, getJSON, signal) {
   if (q.length < 3) return [];
   return parseNl(await getJSON(`${LOCATIESERVER}?${new URLSearchParams({ q, rows: "20", fq: "type:(adres OR weg OR woonplaats)", fl: "weergavenaam,type,centroide_ll,straatnaam" })}`, signal));
 }
+
+// Where the map shows the Netherlands, or a Dutch-looking query that RÚIAN and ZBGIS did not answer. What it finds is not
+// asked of Photon again (the hostile review: a Dutch street in "…weg" went to both).
+export const pdokService = {
+  id: "pdok",
+  label: "PDOK",
+  merge: 12,
+  looksLike: (query, ctx) => ctx.listed("pdok") || (!ctx.found("ruian", "zbgis") && looksDutch(query)),
+  find: (query, ctx) => findNl(query.trim(), ctx.getJSON, ctx.signal),
+};

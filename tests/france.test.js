@@ -37,7 +37,7 @@ test("Francie: budovy BD TOPO", async () => {
 });
 
 test("Francie: hledání Géoplateforme", async () => {
-  const S = await import("../app/public/search-fr.js");
+  const S = await import("../app/public/search/geopf.js");
   const out = S.parseFr({ features: [{ geometry: { coordinates: [2.36, 48.856] }, properties: { label: "12 Rue de Rivoli 75004 Paris", type: "housenumber", street: "Rue de Rivoli" } },
     { geometry: { coordinates: [2.35, 48.85] }, properties: { label: "Paris", type: "municipality" } }] });
   assert.deepEqual(out, [{ text: "12 Rue de Rivoli 75004 Paris", type: "AdresniMisto", at: { lon: 2.36, lat: 48.856, street: "Rue de Rivoli" } }, { text: "Paris", type: "Obec", at: { lon: 2.35, lat: 48.85 } }]);

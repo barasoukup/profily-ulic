@@ -1,4 +1,4 @@
-// Poland (Bára 21. 11. 2026): Kraków's base map (towns/poland.js), GUGiK's address search (search-pl.js), the state by
+// Poland (Bára 21. 11. 2026): Kraków's base map (towns/poland.js), GUGiK's address search (search/uug.js), the state by
 // its border, the signs, norms and parking law. No network.
 import { test } from "node:test";
 import assert from "node:assert/strict";
@@ -20,7 +20,7 @@ test("Polsko: mapa povrchů Krakova (druhy MJO na kódy MTVU), ve výchozím sta
 });
 
 test("Polsko: hledání GUGiK UUG", async () => {
-  const S = await import("../app/public/search-pl.js");
+  const S = await import("../app/public/search/uug.js");
   const out = S.parsePl({ results: { 1: { city: "Kraków", street: "ulica Floriańska", number: "3", code: "31-019", x: "19.9394", y: "50.0622" } } });
   assert.deepEqual(out, [{ text: "Floriańska 3, 31-019 Kraków", type: "AdresniMisto", at: { lon: 19.9394, lat: 50.0622, street: "Floriańska" } }]);
   assert.ok(S.looksPolish("ul. Floriańska 3") && S.looksPolish("Łódź") && !S.looksPolish("Vinohradská 12"));

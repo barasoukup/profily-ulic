@@ -23,7 +23,7 @@ Stav nasazení: větev `austria`, 16. 11. 2026, nenasazené. Přehled všech st�
   rakouské kresby a značky s dodatkovou tabulkou se zahodí.
 - Nepřátelská recenze 16. 11. 2026 zapracovaná (cache nasazení podle států, skupiny silnic z OSM, StVO § 24, mapování
   FMZK, poctivé citace norem, licence).
-- Hledání: Vídeň z adresních bodů města (`search-at.js`), jinde v Rakousku Photon od komoot (`search-photon.js`; Bára
+- Hledání: Vídeň z adresních bodů města (`search/wien.js`), jinde v Rakousku Photon od komoot (`search/photon.js`; Bára
   16. 11. 2026: záloha, BEV jen s registrací a poplatky). Salcburk: zákaz zastavení a stání z katastru značek.
 - Žádný panelák v Rakousku (Bára 16. 11. 2026): deska z let 1946–90 je poválečný bytový dům (od 23. 11.), před 1946 funkcionalistický, po 1990 moderní, kanceláře kanceláře.
 - Chybí: vozidla a mobiliář měst (kreslí se), Kurzparkzonen (aplikace zóny nekreslí), sítě (otevřené nejsou).
@@ -41,9 +41,9 @@ basemap.at (`lanes-ortho.js` zdroj `at`, z20).
 - **Normy** `countries/AT.js` (`limits`): cyklo podle RVS 03.02.13 (citováno přes NÖ Leitfaden 2024), pruhy a ostatní podle
   Wiener Projektierungshandbuch; skupina silnice z OSM `highway` (`derive.js osmGroup`). Stání napůl na chodníku
   podle StVO § 24 odst. 3 (dva volné pruhy po asi 2,6 m). Rešerše `evaluation/austria/NORMS.md`.
-- **Hledání** ve Vídni z adresních bodů města (`search-at.js`, když mapa ukazuje Vídeň nebo dotaz obsahuje „Wien“);
+- **Hledání** ve Vídni z adresních bodů města (`search/wien.js`, když mapa ukazuje Vídeň nebo dotaz obsahuje „Wien“);
   adresa se řeže na své ulici (osa z grafu ulic města, ulice toho jména vyhrává v `nearestStreet`). Jinde v Rakousku
-  (a ve Vídni, kde adresní body nic nenajdou) Photon od komoot (`search-photon.js`, OSM, jen výsledky AT; veřejný server
+  (a ve Vídni, kde adresní body nic nenajdou) Photon od komoot (`search/photon.js`, OSM, jen výsledky AT; veřejný server
   pro rozumné použití, při větším provozu vlastní instance).
 - **Salcburk:** zákaz zastavení a stání z katastru značek města (do 25 m od řezu, na straně značky), `?salzburg=0`.
 - **Značky** `signs-AT/` (StVO § 52–53); jednosměrka se pod pruhem neznačí, značky bez rakouské kresby a s

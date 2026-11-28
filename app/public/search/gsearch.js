@@ -1,9 +1,10 @@
 // Address search in Denmark (Bára 23. 11. 2026): GSearch of Dataforsyningen (Klimadatastyrelsen, api.dataforsyningen.dk/rest/gsearch/v2.0,
 // CORS for the origin asking; only with the app's token, keys.js; evaluation/denmark/SOURCES.md 4): a query with a house
 // number asks the house numbers (husnummer), other text the named streets (navngivenvej); positions in WGS 84 (srid
-// 4326). Without the token, or when GSearch fails or finds nothing, Photon of komoot (search-photon.js "photon-dk"). One request a pause in typing (search.js
+// 4326). Without the token, or when GSearch fails or finds nothing, Photon of komoot (photon.js "photon-dk"). One request a pause in typing (search.js
 // debounces and cancels). DAWA, the old service, is gone (410).
-import { dkToken } from "./keys.js";
+import { dkToken } from "../keys.js";
+import { photonFallback } from "./photon.js";
 
 export const GSEARCH = "https://api.dataforsyningen.dk/rest/gsearch/v2.0";
 const MAX = 15;
@@ -51,7 +52,7 @@ export function parseDkTowns(json) {
   return out;
 }
 // Nearest the map's centre first (the review: of 13 streets named Rådhuspladsen Copenhagen's was the tenth, past the
-// eight shown); search.js ranks by the text and keeps this order among equals. near: [lat, lon] or nothing.
+// eight shown); rank.js ranks by the text and keeps this order among equals. near: [lat, lon] or nothing.
 export const byDistance = (items, near) => {
   if (!near) return items;
   const c = Math.cos((near[0] * Math.PI) / 180), d = (it) => ((it.at.lon - near[1]) * c) ** 2 + (it.at.lat - near[0]) ** 2;
@@ -67,3 +68,19 @@ export async function findDk(text, getJSON, signal, near) {
   ]);
   return byDistance([...towns, ...main], near);
 }
+
+// Where the map shows Denmark and the app has the token (without it findDk answers nothing and Photon of komoot asks).
+export const gsearchService = {
+  id: "gsearch",
+  label: "GSearch",
+  merge: 1,
+  looksLike: (_query, ctx) => ctx.listed("gsearch"),
+  find: (query, ctx) => findDk(query.trim(), ctx.getJSON, ctx.signal, ctx.near()),
+};
+// GSearch failed (a token turned away: 401) or found nothing: Photon of komoot in Denmark (the review of 24. 11. 2026).
+export const gsearchPhotonService = photonFallback({
+  id: "gsearch-photon",
+  merge: 2,
+  countries: ["DK"],
+  looksLike: (_query, ctx) => ctx.listed("photon-dk") && gsearchReady() && !ctx.found("gsearch") && !ctx.found("photon"),
+});

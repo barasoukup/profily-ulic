@@ -270,7 +270,7 @@ test("New York: náměstí a parkoviště jsou nepovinné vrstvy (výpadek jen t
 });
 
 test("Hledání Photon v USA: jeden dotaz s obdélníkem jednoho metra (jmenovaného, pod středem mapy, jinak nejbližšího)", async () => {
-  const { findPhoton, metroBox, METROS } = await import("../app/public/search-photon.js");
+  const { findPhoton, metroBox, METROS } = await import("../app/public/search/photon.js");
   const urls = [], getJSON = async (u) => { urls.push(new URL(u)); return { features: [] }; };
   const box = (u) => u.searchParams.get("bbox").split(",").map(Number);
   // The map in San Francisco: its box, not one from Washington to Boston.
@@ -288,13 +288,13 @@ test("Hledání Photon v USA: jeden dotaz s obdélníkem jednoho metra (jmenovan
   assert.equal(urls.length, 3);
   assert.deepEqual(metroBox("CA", [43.65, -79.38]), [-79.95, 43.45, -78.95, 44.05]);
   // The closed places of a box are dropped (New Jersey in New York's).
-  const { parsePhoton } = await import("../app/public/search-photon.js");
+  const { parsePhoton } = await import("../app/public/search/photon.js");
   const f = (lon, lat, name) => ({ geometry: { coordinates: [lon, lat] }, properties: { countrycode: "US", osm_key: "highway", name, city: "x" } });
   assert.deepEqual(parsePhoton({ features: [f(-74.07, 40.72, "Jersey Ave"), f(-73.99, 40.75, "W 34th St")] }, ["US"], (lat, lon) => lon < -74.03).map((x) => x.at.street), ["W 34th St"]);
 });
 
 test("Hledání Photon v USA: jméno ulice podle města (Washington Street, Boston Post Road) metro neurčuje", async () => {
-  const { metroBox, METROS } = await import("../app/public/search-photon.js");
+  const { metroBox, METROS } = await import("../app/public/search/photon.js");
   assert.deepEqual(metroBox("US", [42.35, -71.06], "Washington Street"), METROS.US.boston.box);
   assert.deepEqual(metroBox("US", [38.9, -77.03], "Washington Street, Boston"), METROS.US.boston.box);
   assert.deepEqual(metroBox("US", [40.85, -73.86], "Boston Post Road"), METROS.US.nyc.box);

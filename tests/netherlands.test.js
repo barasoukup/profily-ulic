@@ -1,5 +1,5 @@
 // The Netherlands (Bára 20. 11. 2026): the BGT surfaces, BAG and 3D BAG buildings (towns/netherlands.js), PDOK's
-// Locatieserver (search-nl.js), the state by its border, the RVV signs, norms and parking law. No network.
+// Locatieserver (search/pdok.js), the state by its border, the RVV signs, norms and parking law. No network.
 import { test } from "node:test";
 import assert from "node:assert/strict";
 
@@ -67,7 +67,7 @@ test("Nizozemsko: budova z BAG a 3D BAG", async () => {
 });
 
 test("Nizozemsko: hledání PDOK Locatieserver", async () => {
-  const S = await import("../app/public/search-nl.js");
+  const S = await import("../app/public/search/pdok.js");
   const out = S.parseNl({ response: { docs: [
     { type: "adres", weergavenaam: "Oudegracht 10, 3511AM Utrecht", centroide_ll: "POINT(5.1165 52.0960)", straatnaam: "Oudegracht" },
     { type: "weg", weergavenaam: "Keizersgracht, Amsterdam", centroide_ll: "POINT(4.88 52.37)", straatnaam: "Keizersgracht" },

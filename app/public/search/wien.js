@@ -2,13 +2,13 @@
 // needs a registration, Vienna's address points (ADRESSENOGD, data.wien.gv.at WFS, CORS, CC BY 4.0 "Stadt Wien –
 // data.wien.gv.at") answer the browser with a CQL filter on the street's name. A query with a house number gives that
 // address; without one, the streets whose name starts with the query (at the middle one of their addresses). Asked
-// where Vienna is likely (search.js), with the same debounce and cancelling as RÚIAN. The items look like RÚIAN's
-// (text, type Ulice / AdresniMisto) so search.js ranks them together; at carries the point.
-import { splitQuery } from "./search-sk.js";
-import { norm } from "./search.js";
-import { inArea, AT_AREAS } from "./places.js";
+// where Vienna is likely (wienService below), with the same debounce and cancelling as RÚIAN. The items look like RÚIAN's
+// (text, type Ulice / AdresniMisto) so rank.js ranks them together; at carries the point.
+import { norm, splitQuery } from "./text.js";
+import { nearestOnPaths } from "./geometry.js";
+import { inArea, AT_AREAS } from "../places.js";
 
-export const WIEN_WFS = "https://data.wien.gv.at/daten/geo";
+const WIEN_WFS = "https://data.wien.gv.at/daten/geo";
 const MAX = 20;
 const inWienBox = (lon, lat) => inArea(AT_AREAS.wien, lon, lat);
 
@@ -49,7 +49,7 @@ export function parseStreets(json) {
   });
 }
 
-export async function findAt(text, getJSON, signal) {
+async function findAt(text, getJSON, signal) {
   const { name, number } = viennaQuery(text);
   if (norm(name).length < 3) return [];
   const street = `NAME_STR ILIKE '${cql(name)}%'`;
@@ -59,7 +59,7 @@ export async function findAt(text, getJSON, signal) {
 
 // The axis of the street by the point (Vienna's street graph STRASSENGRAPHOGD, 200 m around): an address on a corner
 // is cut on its own street, not the side street nearer to it (Praterstraße 20).
-export async function locateAt(item, getJSON, signal) {
+async function locateAt(item, getJSON, signal) {
   const { lon, lat, street } = item.at, d = 200 / 111320, dLon = d / Math.cos((lat * Math.PI) / 180);
   if (!street || !inWienBox(lon, lat)) return { point: [lon, lat], paths: null };
   const json = await getJSON(`${WIEN_WFS}?${new URLSearchParams({
@@ -70,3 +70,22 @@ export async function locateAt(item, getJSON, signal) {
   const paths = (json?.features || []).flatMap((f) => f.geometry?.type === "LineString" ? [f.geometry.coordinates] : f.geometry?.type === "MultiLineString" ? f.geometry.coordinates : []);
   return { point: [lon, lat], paths: paths.length ? paths : null };
 }
+
+// The address point, or the middle address of the street, is the cut, put on the axis of the street where there is one.
+async function locate(item, { getJSON, signal }) {
+  const { point, paths } = await locateAt(item, getJSON, signal);
+  const cut = (paths && nearestOnPaths(paths, point)) || point;
+  return { lon: point[0], lat: point[1], cut: item.type === "Obec" ? null : { lon: cut[0], lat: cut[1] } };
+}
+
+// Where the map shows Vienna or the query names it. Every item with a point (`at`) is located here: Photon's, GSearch's
+// and the other services' too (the point, and the axis of the street when the point lies in Vienna).
+export const wienService = {
+  id: "wien",
+  label: "Vídeň",
+  merge: 13,
+  looksLike: (query, ctx) => ctx.inVienna || looksViennese(query),
+  find: (query, ctx) => findAt(query.trim(), ctx.getJSON, ctx.signal),
+  owns: (item) => !!item.at,
+  locate,
+};

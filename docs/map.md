@@ -12,7 +12,7 @@ sloupy…; v dosahu plné, mimo dosah prázdné), ploty, zdi a svahy, koleje, os
 Kreslí se jen to, co už kliknutí načetlo, nic se kvůli tomu znovu neptá. Vybraný podklad a vrstvy si prohlížeč
 pamatuje.
 
-**Hledání adres** (`public/search.js`): vyhledávací služba RÚIAN ČÚZK, návrhy od 3 znaků s prodlevou 300 ms; adresa
+**Hledání adres** (`public/search.js`, služby v `public/search/`, registr `search/registry.js`): vyhledávací služba RÚIAN ČÚZK, návrhy od 3 znaků s prodlevou 300 ms; adresa
 nebo ulice rovnou udělá řez na své ulici.
 
 Barevný proužek pod každou částí ukazuje původ: zelená = změřeno z technické mapy, hnědá = doplněno z OSM,

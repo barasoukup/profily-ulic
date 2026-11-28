@@ -1,6 +1,6 @@
 // Address search in France (Bára 22. 11. 2026): the Géoplateforme's geocoder of IGN (data.geopf.fr/geocodage, CORS *,
 // the national address base BAN, Licence Ouverte 2.0), one request a pause in typing (search.js debounces and cancels),
-// near the map's centre. The items look like RÚIAN's (text, type AdresniMisto / Ulice / Obec) so search.js ranks them
+// near the map's centre. The items look like RÚIAN's (text, type AdresniMisto / Ulice / Obec) so rank.js ranks them
 // together; at carries the point and the street for the cut.
 export const GEOCODER = "https://data.geopf.fr/geocodage/search";
 const MAX = 15;
@@ -24,3 +24,12 @@ export async function findFr(text, getJSON, signal, near) {
   if (q.length < 3) return [];
   return parseFr(await getJSON(`${GEOCODER}?${new URLSearchParams({ q, autocomplete: "1", limit: "15", index: "address", ...(near && { lat: String(near[0]), lon: String(near[1]) }) })}`, signal));
 }
+
+// Where the map shows France, or a French-looking query nothing else found.
+export const geopfService = {
+  id: "geopf",
+  label: "Géoplateforme",
+  merge: 9,
+  looksLike: (query, ctx) => ctx.listed("geopf") || (!ctx.found("ruian", "zbgis", "pdok", "uug", "photon") && looksFrench(query)),
+  find: (query, ctx) => findFr(query.trim(), ctx.getJSON, ctx.signal, ctx.near()),
+};

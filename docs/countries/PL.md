@@ -6,7 +6,7 @@ Stav nasazení: větev `poland`, 21. 11. 2026, nenasazené. Přehled všech stá
 
 ### Polsko (větev poland z belgium, Bára 21. 11. 2026, nenasazené)
 
-- Stát `poland` (PL): `countries/PL.js`, `towns/poland.js`, `search-pl.js`, `signs-PL/`, `evaluation/poland/`. Hranice z PRG
+- Stát `poland` (PL): `countries/PL.js`, `towns/poland.js`, `search/uug.js`, `signs-PL/`, `evaluation/poland/`. Hranice z PRG
   GUGiK (přesná, ve `states.json` před Rakouskem a Německem; GISCO dávalo Německu pás Zgorzelce a Słubic).
 - Ortofoto GUGiK (celostátní, WMS HighResolution), hledání GUGiK UUG (PRG, „město, ulice číslo“), mapa povrchů Krakova
   (MJO). BDOT10k zamčený (401), Varšava, Vratislav, Gdaňsk, Poznaň bez otevřených služeb.
@@ -21,7 +21,7 @@ Stav nasazení: větev `poland`, 21. 11. 2026, nenasazené. Přehled všech stá
 
 ### Polsko (Bára 21. 11. 2026)
 
-Stát `poland` (PL), `countries/PL.js`, `towns/poland.js`, `search-pl.js`; hranice GISCO (za Českem a Slovenskem). OSM po
+Stát `poland` (PL), `countries/PL.js`, `towns/poland.js`, `search/uug.js`; hranice GISCO (za Českem a Slovenskem). OSM po
 16 vojvodstvích (`pl_*`, jen R2). Ortofoto GUGiK (WMS HighResolution v Web Mercatoru, `lanes-ortho.js` zdroj `pl`).
 - **Mapa povrchů Krakova** (MJO: vozovky, náměstí, chodníky, cesty) tam, kde má u středu řezu vozovku; jen s `?krakow=1`
   (od 26. 11. 2026 vypnutá, chybí písemný souhlas správce MSIP).

@@ -84,7 +84,7 @@ test("Švýcarsko: normy podle kantonálních příruček, bez varování, kde z
 });
 
 test("Švýcarsko: Photon s místními názvy (Genève, ne Genf), jen CH a LI", async () => {
-  const { findPhoton } = await import("../app/public/search-photon.js");
+  const { findPhoton } = await import("../app/public/search/photon.js");
   let url = "";
   const getJSON = async (u) => { url = u; return { features: [
     { properties: { countrycode: "CH", osm_key: "highway", name: "Rue du Rhône", city: "Genève", postcode: "1204" }, geometry: { coordinates: [6.14, 46.2] } },

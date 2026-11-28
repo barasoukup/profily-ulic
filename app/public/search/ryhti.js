@@ -1,9 +1,11 @@
-// Address search in Finland (Bára 23. 11. 2026): Photon of komoot in Finnish and Swedish for free text (search-photon.js
+// Address search in Finland (Bára 23. 11. 2026): Photon of komoot in Finnish and Swedish for free text (photon.js
 // "photon-fi"), and for a query with a house number the national addresses of Ryhti (SYKE, OGC API Features
 // open_address, CORS *, CC BY 4.0; evaluation/finland/SOURCES.md 4): the Finnish or Swedish name of the street with the
 // number (a CQL filter on the fields, no full text), the town by its post office. One request a pause in typing (search.js
 // debounces and cancels), a second only when the first finds nothing.
-export const RYHTI_ADDRESS = "https://paikkatiedot.ymparisto.fi/geoserver/ryhti_building/ogc/features/v1/collections/open_address/items";
+import { photonFallback } from "./photon.js";
+
+export const RYHTI_ADDRESS ="https://paikkatiedot.ymparisto.fi/geoserver/ryhti_building/ogc/features/v1/collections/open_address/items";
 const MAX = 15;
 // A query that is likely Finnish or Finland-Swedish (asked where the map shows another state and nothing else was found).
 export const looksFinnish = (text) => /(katu|tie|kuja|polku|väylä|tori|puistikko|ranta|gatan|vägen|gränd)\b|\b(helsinki|helsingfors|espoo|esbo|tampere|tammerfors|vantaa|oulu|uleåborg|turku|åbo|jyväskylä|lahti|kuopio|pori|joensuu|lappeenranta|vaasa|rovaniemi|mariehamn|maarianhamina)\b/i.test(text);
@@ -56,3 +58,19 @@ export async function findFi(text, getJSON, signal) {
   const fast = parseFi(await getJSON(ryhtiAddressUrl(q), signal));
   return fast.length ? fast : parseFi(await getJSON(ryhtiAddressLikeUrl(q), signal));
 }
+
+// Where the map shows Finland, or a Finnish-looking query nothing else found; Photon of komoot in Finland goes with it
+// unless the state lists its own Photon.
+export const ryhtiService = {
+  id: "ryhti",
+  label: "Ryhti",
+  merge: 3,
+  looksLike: (query, ctx) => ctx.listed("ryhti") || (!ctx.found("ruian", "zbgis", "pdok", "uug", "photon", "geopf", "cartociudad", "inads", "gurs", "gurs-photon") && looksFinnish(query)),
+  find: (query, ctx) => findFi(query.trim(), ctx.getJSON, ctx.signal),
+};
+export const ryhtiPhotonService = photonFallback({
+  id: "ryhti-photon",
+  merge: 4,
+  countries: ["FI"],
+  looksLike: (_query, ctx) => ctx.asked("ryhti") && !ctx.listed("photon-fi"),
+});

@@ -123,7 +123,7 @@ test("Dánsko: budovy Kodaně a Aarhusu", async () => {
 
 test("Dánsko: hledání GSearch jen s tokenem", async () => {
   const K = await import("../app/public/keys.js");
-  const S = await import("../app/public/search-dk.js");
+  const S = await import("../app/public/search/gsearch.js");
   K.setDkToken("");
   assert.equal(S.gsearchReady(), false);
   assert.deepEqual(await S.findDk("Nørrebrogade 10", () => { throw new Error("no request"); }), []);

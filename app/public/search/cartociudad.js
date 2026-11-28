@@ -1,7 +1,7 @@
 // Address search in Spain (Bára 23. 11. 2026): CartoCiudad's geocoder of IGN/CNIG (www.cartociudad.es, CORS *, CC BY 4.0
 // scne.es), one request a pause in typing (search.js debounces and cancels). Its candidates of a portal carry the point;
 // a street, a town or a municipality comes with 0, 0 and its geometry only from find (asked for the first few). The
-// items look like RÚIAN's (text, type AdresniMisto / Ulice / Obec) so search.js ranks them together; at carries the
+// items look like RÚIAN's (text, type AdresniMisto / Ulice / Obec) so rank.js ranks them together; at carries the
 // point and the street for the cut. CartoCiudad writes Catalan, Galician and Basque names in their Castilian form.
 export const CARTOCIUDAD = "https://www.cartociudad.es/geocoder/api/geocoder";
 const MAX = 15, FIND = 3;
@@ -46,3 +46,12 @@ export async function findEs(text, getJSON, signal) {
   }));
   return items.filter((it) => it.at).map(({ find, ...it }) => it);
 }
+
+// Where the map shows Spain, or a Spanish-looking query nothing else found.
+export const cartociudadService = {
+  id: "cartociudad",
+  label: "CartoCiudad",
+  merge: 8,
+  looksLike: (query, ctx) => ctx.listed("cartociudad") || (!ctx.found("ruian", "zbgis", "pdok", "uug", "photon", "geopf") && looksSpanish(query)),
+  find: (query, ctx) => findEs(query.trim(), ctx.getJSON, ctx.signal),
+};

@@ -42,7 +42,7 @@ test("Estonsko: mapa povrchů Tallinnu jen s ulicí pod středem řezu", async (
 });
 
 test("Estonsko: hledání In-ADS nad nahranou odpovědí služby", async () => {
-  const S = await import("../app/public/search-ee.js");
+  const S = await import("../app/public/search/inads.js");
   const rec = JSON.parse(fs.readFileSync(new URL("fixtures/estonia-inads.json", import.meta.url), "utf8"));
   // Jen druhy, které služba přijímá (24. 11. 2026: LIIKLUSPIND, ASUSTUSYKSUS, OMAVALITSUS, ASUSTUS, ASULA → 400).
   const url = new URL(S.eeUrl("Narva mnt 10 Tallinn"));

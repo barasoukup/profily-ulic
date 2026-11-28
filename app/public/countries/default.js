@@ -163,7 +163,7 @@ export default {
   houseLook: null,
   // What the state changes in drawing a look (profile.js): (look, info, city) → { terrace, blinds, boards, palette }.
   houseDetails: null,
-  // The search services asked where the map shows the state (search.js), besides RÚIAN.
+  // The search services asked where the map shows the state (ids of services in search/registry.js), besides RÚIAN.
   search: [],
   // What the state decides by the place of the cut, set on the city (app.js): async (lon, lat) → { … }, or null.
   atPlace: null,

@@ -1,8 +1,10 @@
-// Address search in Slovenia (Bára 23. 11. 2026): Photon of komoot in the local language for free text (search-photon.js
+// Address search in Slovenia (Bára 23. 11. 2026): Photon of komoot in the local language for free text (photon.js
 // "photon-si"), and the house numbers of GURS's register (Kataster nepremičnin WFS, layer NASLOVI_HS, CORS *, CC BY 4.0)
 // for a query with a number: the street's beginning and the number, as RÚIAN's address points (a FES filter; the server
 // matches the beginning of the name, no full text). One request a pause in typing (search.js debounces and cancels).
-export const GURS_NASLOVI = "https://ipi.eprostor.gov.si/wfs-si-gurs-kn/wfs";
+import { photonFallback } from "./photon.js";
+
+export const GURS_NASLOVI ="https://ipi.eprostor.gov.si/wfs-si-gurs-kn/wfs";
 const MAX = 15;
 // A query that is likely Slovenian (asked where the map shows another state and nothing else was found): a Slovenian
 // town, or a street word with no letter Slovenian lacks ("ulica" is Slovak, Polish and Croatian too, "cesta" Czech,
@@ -44,3 +46,19 @@ export async function findSi(text, getJSON, signal) {
   const q = parseSiQuery(text);
   return q ? parseSi(await getJSON(gursAddressUrl(q), signal), q) : [];
 }
+
+// Where the map shows Slovenia, or a Slovenian-looking query nothing else found; Photon of komoot in Slovenia goes with it
+// unless the state lists its own Photon (then the main Photon asks it).
+export const gursService = {
+  id: "gurs",
+  label: "GURS",
+  merge: 5,
+  looksLike: (query, ctx) => ctx.listed("gurs") || (!ctx.found("ruian", "zbgis", "pdok", "uug", "photon", "geopf", "cartociudad", "inads") && looksSlovenian(query)),
+  find: (query, ctx) => findSi(query.trim(), ctx.getJSON, ctx.signal),
+};
+export const gursPhotonService = photonFallback({
+  id: "gurs-photon",
+  merge: 6,
+  countries: ["SI"],
+  looksLike: (_query, ctx) => ctx.asked("gurs") && !ctx.listed("photon-si"),
+});

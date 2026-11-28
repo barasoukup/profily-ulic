@@ -1,5 +1,5 @@
 // Spain (Bára 23. 11. 2026): Zaragoza's paving map, the Catastro's buildings (towns/spain.js), CartoCiudad's search
-// (search-es.js), the signs (countries/ES.js), the state by its border. No network.
+// (search/cartociudad.js), the signs (countries/ES.js), the state by its border. No network.
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
@@ -103,7 +103,7 @@ test("Španělsko: foralní katastry (Navarra, Gipuzkoa, Bizkaia, Álava): dotaz
 });
 
 test("Španělsko: hledání CartoCiudad (adresa s bodem, ulice bez bodu až přes find)", async () => {
-  const S = await import("../app/public/search-es.js");
+  const S = await import("../app/public/search/cartociudad.js");
   const got = S.parseEs([
     { type: "portal", address: "GRAN VIA", portalNumber: 11, muni: "Mula", lat: 38.04, lng: -1.49, id: "a" },
     { type: "callejero", address: "CALLE ALCALA, Madrid", lat: 0, lng: 0, id: "280790007456" },

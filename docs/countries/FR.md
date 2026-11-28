@@ -6,7 +6,7 @@ Stav nasazení: větev `france`, 22. 11. 2026, nenasazené. Přehled všech stá
 
 ### Francie (větev france z poland, Bára 22. 11. 2026, nenasazené)
 
-- Stát `france` (FR): `countries/FR.js`, `towns/france.js`, `search-fr.js`, `signs-FR/`, `evaluation/france/` (ZDROJE, NORMY,
+- Stát `france` (FR): `countries/FR.js`, `towns/france.js`, `search/geopf.js`, `signs-FR/`, `evaluation/france/` (ZDROJE, NORMY,
   ab/). Hranice GISCO (pevnina a Korsika). OSM po 22 regionech (`fr_*`, jen R2). viz seznam v `docs/deployment.md`
 - Ortofoto IGN (Géoplateforme, CORS *, mimo Francii bílé: v mapě jen nad Francií), budovy BD TOPO (`?bdtopo=0`),  hledání Géoplateforme (BAN).
 - Mapa povrchů Paříže (Plan de voirie, ODbL, `in_bbox` po 100 záznamech; třída „Piste“ jsou zálivy stání): A/B 40 řezů,
@@ -26,7 +26,7 @@ Stav nasazení: větev `france`, 22. 11. 2026, nenasazené. Přehled všech stá
 
 ### Francie (Bára 22. 11. 2026)
 
-Stát `france` (FR), `countries/FR.js`, `towns/france.js`, `search-fr.js`; hranice GISCO (pevninská Francie a Korsika, za
+Stát `france` (FR), `countries/FR.js`, `towns/france.js`, `search/geopf.js`; hranice GISCO (pevninská Francie a Korsika, za
 Německem, Švýcarskem, Belgií a Lucemburskem). OSM po 22 regionech Geofabriku (`fr_*`, jen R2). Ortofoto IGN (Géoplateforme
 WMS-Raster v Web Mercatoru, `lanes-ortho.js` zdroj `fr`; mimo Francii bílé, proto v mapě jen nad Francií).
 - **Mapa povrchů Paříže** (Plan de voirie, opendata.paris.fr: vozovky, chodníky, cyklostezky, buspruhy, zálivy stání

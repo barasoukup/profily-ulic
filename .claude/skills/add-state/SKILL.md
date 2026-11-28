@@ -13,8 +13,8 @@ na stát (`country === "SK"`, `city.country || "CZ"` …). Vzorový kód:
   `default.js` (česká pravidla pro místo mimo známé státy a výchozí hodnoty všech vlastností), `index.js` (seznam);
 - `app/public/towns/slovakia.js` (pasporty, čáry map, ZBGIS), `towns/austria.js` (mapa povrchů Vídně FMZK, značky
   Salcburku): zdroje se svým územím (`AREAS`, `places.js inArea`), `towns/index.js placeAt`;
-- `credits.js` (kredit každého zdroje pod klíčem), `ortho-osm.js`, `site.js` (NETS), `search-sk.js`, `search-at.js`,
-  `search-photon.js`.
+- `credits.js` (kredit každého zdroje pod klíčem), `ortho-osm.js`, `site.js` (NETS), `search/zbgis.js`, `search/wien.js`,
+  `search/photon.js`.
 
 Zprávy jsou v `evaluation/slovakia/` a `evaluation/austria/` (REPORT, NORMS, SOURCES, SIGNS, ab/).
 
@@ -127,12 +127,12 @@ Kresby jsou zdaleka nejdražší. Proto:
      za pasportem platí ve všech státech), `panorama`
      (Mapy.com), `linesMissing` (co chybí, když čáry neodpoví; `mark()`);
    - ilustrace: `art` (sady měst státu podle id města a sada zbytku státu), domy: `houseLook(style, info, office)`;
-   - `search`: služby hledání, které se ptají, když mapa ukazuje stát (`"zbgis"`, `"photon"`, nový přidat v `search.js`).
+   - `search`: služby hledání, které se ptají, když mapa ukazuje stát (`"zbgis"`, `"photon"`, nový přidat jako modul v `search/` a do `search/registry.js`).
    Co stát nepřepíše, zdědí z Česka (`default.js`): `tests/countries.test.js` proto chce, aby každý stát kromě CZ výslovně
    uvedl zákon o stání, ortofoto, panorama, značky, normy a `bounds` (`validate.js` je čte pro uložené řezy), a hlídá, že
    mimo `countries/` není podmínka na stát.
    Co dnes ještě není v modulu státu a nový stát ho musí doplnit zvlášť: podkladové ortofoto v mapě (`app/basemaps.js`, vrstvy
-   podle `bounds` státu), služby hledání (`search.js`: název služby v `search`, `looksSlovak`/`looksViennese`),
+   podle `bounds` státu), služby hledání (`search/`: modul `{ id, looksLike, find }`, jeho id v `search` státu, řádek v `search/registry.js`),
    katastr značek jako u Salcburku (`app/cut.js`), `city.abroad` (zbytek státu přes `abroad()`).
 3. **Zbytek státu jako město v `city.js`:** přes `abroad(id, ISO, …)` (`centre: null`, `estateKm`, `dataShort`, `credit`,
    `rulesHead`), texty ve všech souborech jazyků (tabulky CITY). Id zůstává pro uložené řezy a log.
@@ -193,9 +193,9 @@ Kresby jsou zdaleka nejdražší. Proto:
 - **Odhad bez technické mapy:** `ortho-osm.js` (obruby z ortofota a OSM). U státu ho ověřit na vzorku a obrázcích.
   Skupina silnice pro normy z OSM `highway` (`derive.js osmGroup`), když stát nemá vlastní třídy.
 - **Hledání:**
-  - Národní registr adres, je-li otevřený (`search-sk.js`). Jinak adresní body města (Vídeň `ADRESSENOGD`,
-    `search-at.js`).
-  - Jinak **Photon od komoot** jako záloha (`search-photon.js`: jen výsledky státu, veřejný server pro rozumné použití).
+  - Národní registr adres, je-li otevřený (`search/zbgis.js`). Jinak adresní body města (Vídeň `ADRESSENOGD`,
+    `search/wien.js`).
+  - Jinak **Photon od komoot** jako záloha (`search/photon.js`: jen výsledky státu, veřejný server pro rozumné použití).
   - BEV (Rakousko) chce registraci a poplatky, klíč by byl v prohlížeči vidět.
   - **Adresu řezat na její ulici:** osa ulice z grafu ulic města nebo jméno ulice předané do `nearestStreet` (adresa
     na rohu jinak padne na boční ulici).

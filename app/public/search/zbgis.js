@@ -2,12 +2,13 @@
 // the browser (CORS) with its find operation (its query answers 503): the streets of the Ministry of the Interior
 // (Ulice_MVSR, axes as lines), the municipalities (Uzemnospravne_clenenie, layer Obec) and the address points of the
 // Register of addresses (RA_Adresne_body). find matches a whole field (or a part of it) only, so "Hlavná Košice" is
-// asked as "Hlavná" and the town is told apart here. Asked only where Slovakia is likely (search.js), with the same
-// debounce and cancelling as RÚIAN. The items look like RÚIAN's (text "street, town", type Ulice/Obec/AdresniMisto)
-// so search.js ranks them together; sk carries what locate needs.
-import { norm } from "./search.js";
+// asked as "Hlavná" and the town is told apart here. Asked only where Slovakia is likely (zbgisService below). The
+// items look like RÚIAN's (text "street, town", type Ulice/Obec/AdresniMisto) so rank.js ranks them together; sk
+// carries what locate needs.
+import { norm, splitQuery } from "./text.js";
+import { nearestOnPaths, streetMiddle } from "./geometry.js";
 
-export const ZBGIS = "https://zbgis.skgeodesy.sk/zbgis/rest/services";
+const ZBGIS ="https://zbgis.skgeodesy.sk/zbgis/rest/services";
 const STREETS = `${ZBGIS}/Ulice_MVSR/MapServer`;
 const ADMIN = `${ZBGIS}/Uzemnospravne_clenenie/MapServer`;
 const ADDRESSES = `${ZBGIS}/RA_Adresne_body/MapServer`;
@@ -20,12 +21,6 @@ export const looksSlovak = (text) => /[äôľĺŕ]/i.test(text);
 const field = (a, ...names) => { for (const n of names) if (a?.[n] !== undefined && a[n] !== "Null") return String(a[n]).trim(); return ""; };
 const findUrl = (service, params) => `${service}/find?${new URLSearchParams({ contains: "true", returnGeometry: "false", f: "json", ...params })}`;
 
-// The query split: the street (or town) words, the house number, the remaining words (the town, maybe).
-export function splitQuery(text) {
-  const words = String(text || "").trim().split(/[\s,]+/).filter(Boolean);
-  const i = words.findIndex((w) => /^\d+[a-z]?(\/\d+[a-z]?)?$/i.test(w));
-  return i < 0 ? { name: words.join(" "), number: "", rest: [] } : { name: words.slice(0, i).join(" "), number: words[i].toLowerCase(), rest: words.slice(i + 1) };
-}
 // Does the town (a municipality, a city district "Košice-Staré Mesto") match the words given for it?
 export const townMatches = (town, words) => {
   const t = ` ${norm(town)} `;
@@ -73,7 +68,7 @@ export function parseAddresses(json, number, townWords = []) {
 }
 
 // The items for a query: streets (the whole query, else without its last words, which may be the town), towns,
-// and with a house number the address points. getJSON(url, signal) is search.js's.
+// and with a house number the address points. getJSON(url, signal) is http.js's.
 export async function findSk(text, getJSON, signal) {
   const { name, number, rest } = splitQuery(text);
   if (norm(name).length < 3) return [];
@@ -115,3 +110,26 @@ export async function locateSk(item, getJSON, signal) {
   const own = (found?.results || []).find((r) => field(r.attributes, "MUNI_CODE") === item.sk.townCode);
   return { point: [item.sk.lon, item.sk.lat], paths: own?.geometry?.paths || null };
 }
+
+// Where a chosen item goes: a street's middle, an address's nearest point on its street, a town's middle (no cut).
+async function locate(item, { getJSON, signal }) {
+  const { point, paths } = await locateSk(item, getJSON, signal);
+  const at = item.type === "Ulice" ? streetMiddle(paths) : point;
+  if (!at) throw new Error("bez polohy");
+  const cut = item.type === "Ulice" ? at : item.type === "AdresniMisto" ? (paths && nearestOnPaths(paths, point)) || point : null;
+  return { lon: at[0], lat: at[1], cut: cut && { lon: cut[0], lat: cut[1] } };
+}
+
+// Asked where the state lists it (the map shows Slovakia) or the query has Slovak letters, in the first step with RÚIAN;
+// else last, when nothing else found anything (Bára 15. 11. 2026: RÚIAN knows Czechia only).
+export const zbgisService = {
+  id: "zbgis",
+  label: "ZBGIS",
+  merge: 16,
+  parallel: true,
+  looksLike: (query, ctx) => ctx.listed("zbgis") || looksSlovak(query),
+  find: (query, ctx) => findSk(query.trim(), ctx.getJSON, ctx.signal),
+  lastResort: { order: 1, when: (_query, ctx) => !ctx.found("ruian", "pdok", "uug", "geopf", "cartociudad", "inads", "gurs", "gurs-photon", "ryhti", "ryhti-photon", "gsearch", "gsearch-photon") },
+  owns: (item) => !!item.sk,
+  locate,
+};

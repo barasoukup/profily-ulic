@@ -7,13 +7,13 @@ import { crossings, dualPartner } from "./crossings.js";
 const END_CLEARANCE = 12; // keep the cut this far from the ends of a way, away from junctions (m)
 
 // A street's name for comparing a searched one with OSM's: without accents, case, the kind of street and particles.
-// CartoCiudad (search-es.js) gives "PASEO GRACIA" where OSM has "Passeig de Gràcia" (the review of Spain).
+// CartoCiudad (search/cartociudad.js) gives "PASEO GRACIA" where OSM has "Passeig de Gràcia" (the review of Spain).
 const STREET_WORDS = /^(calle|carrer|rua|avenida|avinguda|avda|paseo|passeig|plaza|placa|praza|ronda|camino|cami|carretera|travesia|glorieta|de|del|la|las|los|el|els|les|d|da|do|dos|das)$/;
 const looseName = (n) => String(n || "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().split(/[^a-z0-9]+/).filter((w) => w && !STREET_WORDS.test(w)).join(" ");
 const sameStreet = (a, b, loose) => a === b || (!!loose && looseName(a) === loose);
 
 // Nearest street (highway way) to a point; minor ways only win when much closer.
-// name: the street the user searched for (an address on a corner, search-at.js): a way of that name within 30 m wins.
+// name: the street the user searched for (an address on a corner, search/wien.js): a way of that name within 30 m wins.
 export function nearestStreet(osm, frame, p, name = null) {
   let best = null;
   const loose = name && looseName(name);

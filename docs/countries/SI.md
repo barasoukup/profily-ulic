@@ -6,7 +6,7 @@ Stav nasazení: větev `estonia`, 23. 11. 2026, nenasazené. Přehled všech st�
 
 ### Slovinsko (větev estonia, Bára 23. 11. 2026, nenasazené)
 
-- `countries/SI.js`, `towns/slovenia.js`, `search-si.js` (Photon + čísla domů GURS), `signs-SI/`, `evaluation/slovenia/`
+- `countries/SI.js`, `towns/slovenia.js`, `search/gurs.js` (Photon + čísla domů GURS), `signs-SI/`, `evaluation/slovenia/`
   (ZDROJE, NORMY, ab/). Hranice GISCO, OSM balík `si` (jen R2; viz seznam v `docs/deployment.md`). Mapa povrchů
   není: odhad z OSM a ortofota GURS DOF025 25 cm (server občas 30 s visí a vrátí 504: až 3 pokusy po 4 s, celkem nejvýš
   12 s, snímky se pamatují; čtverec pro model obrub stejně do 9 s, po výpadku se minutu neptá, `SI_RETRY` v
@@ -29,7 +29,7 @@ a vrátí 504: první dotaz má polovinu času, po 300 ms jeden další; podklad
 (WFS `wfs-si-gurs-kn`, vrstva STAVBE, filtr FES na obrys `OBRIS_GEOM` v bodě, jinak nejbližší obrys do 6 m; podlaží nad
 zemí = `STEVILO_ETAZ` − `STEVILKA_PRITL_ETAZE` + 1, rok, výška H2 − H3 (střecha nad terénem u vchodu), nosná konstrukce, byty; katastr počítá obytné
 podkroví jako podlaží: dům o 2–4 podlažích nižší než 3 m × podlaží + 2 m má horní podlaží ve střeše; `?gurs=0`; A/B
-`evaluation/slovenia/ab/REPORT.md`). Hledání: Photon ve slovinštině a čísla domů GURS `NASLOVI_HS` (`search-si.js`).
+`evaluation/slovenia/ab/REPORT.md`). Hledání: Photon ve slovinštině a čísla domů GURS `NASLOVI_HS` (`search/gurs.js`).
 Normy: pravidla o cyklistických plochách a o projektování silnic (dál se používají, nové k ZCes-2 nevyšly), chodník bez
 varování (minimum nenalezeno), kolmé stání bez varování. Stání 3 m na směr, na obousměrce jen se středovou čárou (OSM
 `lanes` ≥ 2, ne `lane_markings=no`) a na jednosměrce s jedním pruhem (ZPrCP čl. 65, `parkOnRoadway`), na chodníku jen se

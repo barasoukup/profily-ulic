@@ -17,11 +17,6 @@ export const UNUSED_EXPORTS = [
   "app/public/queries.js:IPR",
   "app/public/queries.js:LINE_CODES",
   "app/public/queries.js:POINT_CODES",
-  "app/public/search-at.js:WIEN_WFS",
-  "app/public/search-sk.js:ZBGIS",
-  "app/public/search.js:KINDS",
-  "app/public/search.js:MIN_CHARS",
-  "app/public/search.js:RUIAN_SEARCH",
   "app/public/site.js:NET_CITIES"
 ];
 
@@ -43,7 +38,6 @@ export const LONG_FUNCTIONS = {
   "app/public/maplayers.js:draw": 167,
   "app/public/ortho-osm.js:besidePassport": 168,
   "app/public/ortho-osm.js:orthoOsmPolys": 427,
-  "app/public/search.js:mountSearch": 174,
   "app/public/signs.js:deriveSigns": 117,
   "app/public/towns/plzen.js:parking": 110
 };

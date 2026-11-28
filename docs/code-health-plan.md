@@ -17,7 +17,7 @@ kód větve `canada`. Kroky přijdou po nasazení, po přestavbě překladů a p
   `aiSnap`, `aiSnapMin`, `aiWalkMax`, `expScale`) – mrtvé větve (`panoramaFromPosition` je metoda API Mapy.com, ne pokus;
   oprava podle recenze Fable 27. 11. 2026).
 - Stát mimo `countries/`: `app.js` asi 260 řádků vrstev ortofota po státech, `lanes-ortho.js` větve podle zdroje,
-  `house-looks.js` 12× `iso ===`, `search.js` řetěz deseti hledačů, `sources.js isBrno()`.
+  `house-looks.js` 12× `iso ===`, `sources.js isBrno()`.
 - Duplicity: `towns/` `inRings` 18×, `param` 23×, `memo`/`cached` 12×, `ringsOf` 8×; `countries/` `signFile` 21×,
   `signLabel` 19×; `evaluation/` `sample.mjs` 50×, sběrače 17×, skóre 15×; `tools/` devět skriptů na hranice.
 - 124 z 928 exportů nepoužívá jiný soubor; v `tools/` nikdo neodkazuje na `build_towns_ca.mjs`, `jvf_to_gpkg.py`,
@@ -84,7 +84,7 @@ výsledek ve zprávě commitu. Povinné jádro: 1–8, 9 a 11–13a; ostatní po
     prohlížeč před a po bajt po bajtu stejně; návod `evaluation/replay/README.md` (Přehrávka v Node).
 14. **`ortho-osm.js`, `lanes-ortho.js`** (M): `P` na konstanty a vypínače, `orthoOsmPolys` na fáze.
 15. **Registr ortofot** (L): `ortho/<zdroj>.js` jednoho tvaru; `app.js` staví vrstvy smyčkou.
-16. **Registr hledání** (M): `{ id, looksLike, find }`, pořadí podle státu, bez cyklu modulů; nejdřív test dnešního chování.
+16. **Registr hledání** (M; hotovo 28. 11. 2026, větev `search-registry`: služby `app/public/search/<id>.js` tvaru `{ id, looksLike, find }`, pořadí dotazů v `search/registry.js`, běh v `search/run.js`, `search.js` jen pole a seznam bez podmínky na stát; cyklus `search-at > search-sk > search` zrušen (`norm`, `splitQuery` do `search/text.js`); test dnešního chování 45 dotazů v `tests/search.test.js` a `tests/fixtures/search-behaviour.json` prošel beze změny).
 17. **Vzhled domů podle státu do `countries/`** (S): hotovo 28. 11. 2026 (větev `house-looks-countries`, v `house-looks.js` žádná podmínka na stát, 40 000 domů starý/nový kód 0 rozdílů, `evaluation/archive/house-looks-countries/`).
 18. **Měření s malými vzorky** (S hned, knihovna s krokem 19; Bára 27. 11. 2026): `docs/measuring.md` – výběr dotčených
     řezů predikátem nad nahranými vstupy přehrávky (krok 1) nebo uloženými vstupy sběračů, slepé A/B jen na nich

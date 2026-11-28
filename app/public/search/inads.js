@@ -34,3 +34,12 @@ export async function findEe(text, getJSON, signal) {
   if (q.length < 3) return [];
   return parseEe(await getJSON(eeUrl(q), signal));
 }
+
+// Where the map shows Estonia, or an Estonian-looking query nothing else found.
+export const inadsService = {
+  id: "inads",
+  label: "In-ADS",
+  merge: 7,
+  looksLike: (query, ctx) => ctx.listed("inads") || (!ctx.found("ruian", "zbgis", "pdok", "uug", "photon", "geopf", "cartociudad") && looksEstonian(query)),
+  find: (query, ctx) => findEe(query.trim(), ctx.getJSON, ctx.signal),
+};

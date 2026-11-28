@@ -1,9 +1,9 @@
-// Address search in Vienna (app/public/search-at.js): the query without "Wien", addresses and streets of the
+// Address search in Vienna (app/public/search/wien.js): the query without "Wien", addresses and streets of the
 // address points, the cut at the point.
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { viennaQuery, parseAddresses, parseStreets, looksViennese } from "../app/public/search-at.js";
-import { locate } from "../app/public/search.js";
+import { viennaQuery, parseAddresses, parseStreets, looksViennese } from "../app/public/search/wien.js";
+import { locate } from "../app/public/search/locate.js";
 
 const pt = (name, str, onr, plz, x, y) => ({ type: "Feature", properties: { NAME: name, NAME_STR: str, ONR_VON: onr, PLZ: plz }, geometry: { type: "Point", coordinates: [x, y] } });
 
@@ -24,7 +24,7 @@ test("Vídeň: dotaz bez slova Wien a PSČ, adresy a ulice z adresních bodů, �
 });
 
 test("Photon v Rakousku: jen výsledky AT, adresa, ulice a obec, bez opakování", async () => {
-  const { parsePhoton } = await import("../app/public/search-photon.js");
+  const { parsePhoton } = await import("../app/public/search/photon.js");
   const f = (props, c = [15.44, 47.07]) => ({ properties: { countrycode: "AT", ...props }, geometry: { coordinates: c } });
   const out = parsePhoton({ features: [
     f({ street: "Herrengasse", housenumber: "16", postcode: "8010", city: "Graz" }),

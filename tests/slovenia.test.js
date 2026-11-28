@@ -114,7 +114,7 @@ test("Slovinsko: podkroví podle výšky katastru GURS", async () => {
 });
 
 test("Slovinsko: hledání adres GURS", async () => {
-  const S = await import("../app/public/search-si.js");
+  const S = await import("../app/public/search/gurs.js");
   assert.deepEqual(S.parseSiQuery("Trubarjeva cesta 5, Ljubljana"), { street: "Trubarjeva cesta", number: 5, extra: null, town: "Ljubljana" });
   assert.deepEqual(S.parseSiQuery("Glavni trg 14 Maribor"), { street: "Glavni trg", number: 14, extra: null, town: "Maribor" });
   assert.equal(S.parseSiQuery("Cesta 12a").extra, "A");

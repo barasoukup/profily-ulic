@@ -6,7 +6,7 @@ Stav nasazení: větev `estonia`, 23. 11. 2026, nenasazené. Přehled všech st�
 
 ### Finsko (větev estonia, Bára 23. 11. 2026, nenasazené)
 
-- `countries/FI.js`, `towns/finland.js`, `search-fi.js` (Photon + adresy Ryhti), `signs-FI/`, `evaluation/finland/`
+- `countries/FI.js`, `towns/finland.js`, `search/ryhti.js` (Photon + adresy Ryhti), `signs-FI/`, `evaluation/finland/`
   (ZDROJE, NORMY, ab/, buildings-ab/). Hranice GISCO s Alandami, pobřeží 400 m. OSM balík `fi` (jen R2, celé Finsko 366 MB;
   viz seznam v `docs/deployment.md`). Bez klíče MML (Bára): ortofoto jen Helsinek, Espoo a Turku (CC BY 4.0), jinde
   odhad jen z OSM. Mapa povrchů Helsinek YLRE (`?helsinki=0`; slepé A/B 31 ulic pro auta: lépe 16, hůř 9 (`evaluation/finland/ab2`), s doplněním
@@ -35,7 +35,7 @@ pod středem řezu (do 3 m) díl svého druhu, pod ulicí pro auta vozovku; `?he
 Budovy: v Helsinkách registr budov města (podlaží, rok, materiál, fasáda, užití; `?hkibuild=0`), jinde Ryhti SYKE (body
 uvnitř obrysu domu z OSM; `?ryhti=0`); dřevěný dům jde do severských vzhledů (`house-looks.js nordicLook("FI")`; A/B
 `evaluation/finland/buildings-ab/REPORT.md`). Hledání: Photon ve finštině/švédštině a adresy Ryhti `open_address`
-(`search-fi.js`). Normy jen doporučení (Väylä 18/2020, Helsinki „Katutilan mitoitus“ 2014): nic červeně, oranžově pod
+(`search/ryhti.js`). Normy jen doporučení (Väylä 18/2020, Helsinki „Katutilan mitoitus“ 2014): nic červeně, oranžově pod
 nejnižší doporučenou šířkou (`evaluation/finland/NORMS.md` E). Stání 3 m na směr, na chodníku zakázané. Značky
 `signs-FI/` (příloha 3 zákona 729/2018, Commons public domain; README tam). Bez paneláků, neutrální vozidla, český
 mobiliář, rakouské označníky.

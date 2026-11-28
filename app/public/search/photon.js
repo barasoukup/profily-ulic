@@ -1,8 +1,10 @@
-import { closedAt } from "./city.js";
+import { closedAt } from "../city.js";
+import { dkToken } from "../keys.js";
+import { looksViennese } from "./wien.js";
 // Address search in Austria outside Vienna's own data (Bára 16. 11. 2026), in Germany, Switzerland and Liechtenstein (17. 11. 2026): Photon of komoot (photon.komoot.io, built
 // on OpenStreetMap, CORS, fair use: search.js asks with its debounce and cancelling, at most one query a pause in
 // typing). Only the results of the asked states (countrycode AT, DE, CH, LI). The items look like RÚIAN's (text, type Ulice / AdresniMisto /
-// Obec) so search.js ranks them together; at carries the point and the street for the cut.
+// Obec) so rank.js ranks them together; at carries the point and the street for the cut.
 export const PHOTON = "https://photon.komoot.io/api/";
 const MAX = 15;
 // The states' boxes (the results are filtered by their country code as well).
@@ -72,4 +74,36 @@ export async function findPhoton(text, getJSON, signal, countries = ["AT"], near
   const q = String(text || "").trim();
   if (q.length < 3 || !countries.length) return [];
   return parsePhoton(await getJSON(`${PHOTON}?${new URLSearchParams({ q, limit: "20", lang: countries.every((c) => NATIVE.has(c)) ? "default" : "de", bbox: boxOf(countries, near, q).join(","), ...(near && { lat: near[0].toFixed(4), lon: near[1].toFixed(4) }) })}`, signal), countries, closed);
+}
+
+// ---------- the services ----------
+// The states whose Photon the state's own module lists ("photon-de" in countries/DE.js …), the first that fits wins. Denmark's
+// only without the token: with it GSearch asks first (gsearch.js) and Photon only after it.
+const LISTED = [
+  ["photon-de", ["DE"]], ["photon-ch", ["CH", "LI"]], ["photon-be", ["BE", "LU"]], ["photon-pt", ["PT"]], ["photon-mc", ["MC"]],
+  ["photon-cy", ["CY"]], ["photon-mt", ["MT"]], ["photon-it", ["IT"]], ["photon-si", ["SI"]], ["photon-fi", ["FI"]],
+  ["photon-dk", ["DK"], () => !dkToken()], ["photon-lt", ["LT"]], ["photon-us", ["US"]], ["photon-ca", ["CA"]],
+];
+// Which states the query asks about: those of the state the map shows; Austria (listed, or a query naming Vienna that
+// Vienna's own points did not answer); else a German-looking query nothing else found asks the German-speaking ones.
+function photonCountries(query, ctx) {
+  const listed = LISTED.find(([id, , when = () => true]) => ctx.listed(id) && when());
+  if (listed) return listed[1];
+  if (ctx.listed("photon") || (!ctx.found("wien") && looksViennese(query))) return ["AT"];
+  return !ctx.found("ruian", "zbgis") && looksGerman(query) ? ["DE", "AT", "CH", "LI"] : [];
+}
+const photonAt = (query, ctx, countries) => findPhoton(query, ctx.getJSON, ctx.signal, countries, ctx.near());
+
+// Near the map's centre. Not where PDOK found something, nor where Vienna's own address points gave an address.
+export const photonService = {
+  id: "photon",
+  label: "Photon",
+  merge: 14,
+  looksLike: (query, ctx) => photonCountries(query, ctx).length > 0 && !ctx.found("pdok") && !ctx.itemsOf("wien").some((it) => it.type === "AdresniMisto"),
+  find: (query, ctx) => photonAt(query, ctx, photonCountries(query, ctx)),
+};
+
+// Photon of komoot in one state, after another service of that state found nothing: failing, it fails quietly.
+export function photonFallback({ id, merge, countries, looksLike }) {
+  return { id, merge, looksLike, find: (query, ctx) => photonAt(query, ctx, countries), recover: () => [] };
 }

@@ -1,8 +1,10 @@
 // Address search in Poland (Bára 21. 11. 2026): GUGiK's UUG (services.gugik.gov.pl/uug, CORS *, the national register
 // of addresses PRG), one request a pause in typing (search.js debounces and cancels). It wants "town, street number";
-// a query without a town finds nothing. The items look like RÚIAN's (text, type AdresniMisto / Ulice) so search.js ranks
+// a query without a town finds nothing. The items look like RÚIAN's (text, type AdresniMisto / Ulice) so rank.js ranks
 // them together; at carries the point (srid 4326) and the street for the cut.
-export const UUG = "https://services.gugik.gov.pl/uug/";
+import { photonFallback } from "./photon.js";
+
+export const UUG ="https://services.gugik.gov.pl/uug/";
 const MAX = 15;
 // A query that is likely Polish (asked where the map shows another state and nothing else was found).
 export const looksPolish = (text) => /[ąćęłńśźż]|\bul\.|\bulica\b|\baleja\b|\bal\.|\b(warszawa|kraków|krakow|wrocław|wroclaw|gdańsk|gdansk|poznań|poznan|łódź|lodz|katowice|lublin|szczecin|bydgoszcz)\b/i.test(text);
@@ -42,3 +44,19 @@ export async function findPl(text, getJSON, signal) {
   }
   return [];
 }
+
+// Where the map shows Poland, or a Polish-looking query RÚIAN, ZBGIS and PDOK did not answer.
+export const uugService = {
+  id: "uug",
+  label: "UUG",
+  merge: 10,
+  looksLike: (query, ctx) => ctx.listed("uug") || (!ctx.found("ruian", "zbgis", "pdok") && looksPolish(query)),
+  find: (query, ctx) => findPl(query.trim(), ctx.getJSON, ctx.signal),
+};
+// Where UUG found nothing for a Polish query (no diacritics, an unusual order), Photon of komoot in Poland.
+export const uugPhotonService = photonFallback({
+  id: "uug-photon",
+  merge: 11,
+  countries: ["PL"],
+  looksLike: (query, ctx) => !ctx.found("uug") && (ctx.listed("uug") || looksPolish(query)) && !ctx.found("photon"),
+});

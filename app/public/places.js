@@ -44,6 +44,6 @@ function metresTo(rings, lon, lat) {
 // The first of named areas ({ id: area }) that has the point, or null.
 export const areaAt = (areas, lon, lat) => Object.entries(areas).find(([, a]) => inArea(a, lon, lat))?.[0] ?? null;
 // Austria's cities by their boxes (towns/austria.js: Vienna's map of surfaces, Salzburg's signs; countries/AT.js: the
-// towns' vehicles; search-at.js: Vienna's addresses).
+// towns' vehicles; search/wien.js: Vienna's addresses).
 export const AT_AREAS = { wien: { box: [16.18, 48.11, 16.58, 48.33] }, graz: { box: [15.35, 47.0, 15.53, 47.13] }, linz: { box: [14.2, 48.22, 14.4, 48.36] },
   salzburg: { box: [12.98, 47.75, 13.12, 47.86] }, innsbruck: { box: [11.3, 47.23, 11.47, 47.3] } };

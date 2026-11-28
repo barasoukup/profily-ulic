@@ -6,7 +6,7 @@ Stav nasazení: větev `netherlands`, 20. 11. 2026, nenasazené. Přehled všech
 
 ### Nizozemsko (větev netherlands, Bára 20. 11. 2026, nenasazené)
 
-- Stát `netherlands` (NL): `countries/NL.js`, `towns/netherlands.js`, `signs-NL/`, `search-nl.js`, `evaluation/netherlands/`
+- Stát `netherlands` (NL): `countries/NL.js`, `towns/netherlands.js`, `signs-NL/`, `search/pdok.js`, `evaluation/netherlands/`
   (ZDROJE, NORMY, ab/). Hranice GISCO za Německem. Bára: „stačí s univerzálními ilustracemi“ (neutrální vozidla, český
   mobiliář, rakouské označníky), bez paneláků.
 - Mapa povrchů BGT (PDOK, CC0) kde má u středu řezu vozovku, cyklostezku, stání nebo tramvajové těleso, samotný chodník
@@ -38,5 +38,5 @@ Ortofoto PDOK Luchtfoto `Actueel_orthoHR` (8 cm, WMTS z21 `{z}/{x}/{y}`, `lanes-
 - **Normy** `countries/NL.js` podle CROW přes příručky Amsterdamu a CROW-Fietsberaad (rešerše
   `evaluation/netherlands/NORMS.md`); stání podle praxe (RVV 1990 šířku neuvádí): 3,5 m na jednosměrce, 4,5 m vozovky
   obousměrně; nestojí se vedle cyklopruhu (RVV čl. 23).
-- **Hledání** PDOK Locatieserver (`search-nl.js`). **Značky** `signs-NL/` (RVV 1990, Commons, bez dodatkových tabulek).
+- **Hledání** PDOK Locatieserver (`search/pdok.js`). **Značky** `signs-NL/` (RVV 1990, Commons, bez dodatkových tabulek).
 - **Ilustrace** univerzální: neutrální vozidla, český mobiliář, rakouské označníky.

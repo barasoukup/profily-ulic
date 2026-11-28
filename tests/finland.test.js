@@ -115,7 +115,7 @@ test("Finsko: budovy Helsinek a Ryhti", async () => {
 });
 
 test("Finsko: hledání adres Ryhti", async () => {
-  const S = await import("../app/public/search-fi.js");
+  const S = await import("../app/public/search/ryhti.js");
   assert.deepEqual(S.parseFiQuery("Bulevardi 5, Helsinki"), { street: "Bulevardi", number: 5, extra: null, town: "Helsinki" });
   assert.deepEqual(S.parseFiQuery("Hämeenkatu 10 Tampere"), { street: "Hämeenkatu", number: 10, extra: null, town: "Tampere" });
   assert.equal(S.parseFiQuery("Mannerheimintie 12 b").extra, "b");

@@ -1,229 +1,61 @@
-// Address search on the map: the RÚIAN search service of ČÚZK ("Vyhledávací služba nad daty RÚIAN",
-// GeocodeSOE: suggest while typing, then the chosen place from the service's own layers). No key, CORS for any
-// origin, open data under CC BY 4.0. Considerate to ČÚZK: nothing under 3 characters, 300 ms debounce, a stale
-// request is cancelled, recent answers are kept in memory. Slovakia from ZBGIS of ÚGKK SR (search-sk.js), asked only
-// where it is likely: the map shows Slovakia, the query is Slovak, or RÚIAN found nothing.
-// The top half is pure (parsing, ranking, labels, geometry; tests/search.test.js), mountSearch() is the UI.
+// Address search on the map: a Leaflet control at the map's top left. The services that answer (RÚIAN of ČÚZK, ZBGIS, Photon,
+// each state's own…) are the registry search/registry.js, asked by search/run.js; this file is the field, the list and the
+// moving of the map. Considerate to the services: nothing under 3 characters, 300 ms debounce, a stale request is
+// cancelled, recent answers are kept in memory. Pure parts (labels, ranking, geometry) and the services: tests/search*.test.js.
 import { t } from "./i18n.js";
-import { findSk, locateSk, looksSlovak } from "./search-sk.js";
-import { findAt, locateAt, looksViennese } from "./search-at.js";
-import { findPhoton, looksGerman } from "./search-photon.js";
-import { findNl, looksDutch } from "./search-nl.js";
-import { findPl, looksPolish } from "./search-pl.js";
-import { findFr, looksFrench } from "./search-fr.js";
-import { findEs, looksSpanish } from "./search-es.js";
-import { findEe, looksEstonian } from "./search-ee.js";
-import { findSi, looksSlovenian } from "./search-si.js";
-import { findFi, looksFinnish } from "./search-fi.js";
-import { findDk, gsearchReady } from "./search-dk.js";
+import { norm } from "./search/text.js";
+import { formatLabel, rankResults } from "./search/rank.js";
+import { getJSON } from "./search/http.js";
+import { SERVICES } from "./search/registry.js";
+import { runSearch } from "./search/run.js";
+import { locate } from "./search/locate.js";
 
-export const RUIAN_SEARCH = "https://ags.cuzk.gov.cz/arcgis/rest/services/RUIAN/Vyhledavaci_sluzba_nad_daty_RUIAN/MapServer";
-const GEOCODE = `${RUIAN_SEARCH}/exts/GeocodeSOE`;
-export const MIN_CHARS = 3;
-export const MAX_SHOWN = 8;
-const ASK = 15; // more than shown: duplicates of a town (ORP, POU) are dropped and the rest re-ranked
+const MIN_CHARS = 3;
 const DEBOUNCE = 300;
-const TIMEOUT = 10000;
 
-// The service's layers, as the magicKey's prefix ("1_1199065" = layer 1, objectid 1199065).
-export const KINDS = {
-  AdresniMisto: { label: t("search.address"), zoom: 19, rank: 25 },
-  Ulice: { label: t("common.streetLowercase"), zoom: 19, rank: 30 },
-  Obec: { label: t("search.municipality"), zoom: 15, rank: 28 },
-  CastObce: { label: t("search.partMunicipality"), zoom: 16, rank: 20 },
-  MestskyObvodMestskaCastVeStatutarnimMesteAHlavnimMestePraze: { label: t("search.cityDistrict"), zoom: 15, rank: 18 },
-  SpravniObvodVHlavnimMestePraze: { label: t("search.administrativeDistrict"), zoom: 14, rank: 6 },
-  KatastralniUzemi: { label: t("search.cadastralArea"), zoom: 15, rank: 12 },
-  ZakladniSidelniJednotka: { label: t("search.basicSettlementUnit"), zoom: 17, rank: 8 },
-  ParcelaDefinicniBod: { label: t("search.parcel"), zoom: 19, rank: 5 },
-  Okres: { label: t("search.district"), zoom: 11, rank: 4 },
-  VyssiUzemneSamospravnyCelek: { label: t("search.region"), zoom: 9, rank: 3 },
-};
-// The same town again as the seat of an office: dropped.
-const DUPLICATES = new Set(["ObecSPoverenymObecnimUradem", "ObecSRozsirenouPusobnosti"]);
-// Statutory cities: a street of the same name elsewhere comes after theirs when the query names no town.
-const BIG = new Set(["praha", "brno", "ostrava", "plzen", "liberec", "olomouc", "ceske budejovice", "hradec kralove", "usti nad labem",
-  "pardubice", "zlin", "havirov", "kladno", "most", "opava", "frydek mistek", "karvina", "jihlava", "teplice", "decin", "chomutov",
-  "jablonec nad nisou", "mlada boleslav", "prostejov", "prerov", "trebic", "trinec", "tabor", "znojmo", "kromeriz", "karlovy vary"]);
-
-// Lower case, no diacritics, punctuation and hyphens as spaces.
-export const norm = (s) => String(s || "").normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase()
-  .replace(/[^a-z0-9/]+/g, " ").trim();
-
-export function parseSuggestions(json) {
-  const seen = new Set();
-  const out = [];
-  for (const s of json?.suggestions || []) {
-    const m = /^(\d+)_(\d+)$/.exec(s.magicKey || "");
-    if (!m || !s.text || DUPLICATES.has(s.type)) continue;
-    const id = `${s.type}|${s.text}`;
-    if (seen.has(id)) continue;
-    seen.add(id);
-    out.push({ text: s.text, key: s.magicKey, type: s.type, layer: +m[1], oid: +m[2] });
-  }
-  return out;
-}
-
-// "Mánesova 409/12, Vinohrady, 12000 Praha 2" → main "Mánesova 409/12", sub "Vinohrady, 12000 Praha 2";
-// "Manětín (Plzeň-sever)" → "Manětín", "Plzeň-sever".
-export function formatLabel(item) {
-  const kind = KINDS[item.type]?.label || t("search.place");
-  const p = /^(.*?) \(([^)]*)\)$/.exec(item.text);
-  if (p) return { main: p[1], sub: p[2], kind };
-  const i = item.text.indexOf(", ");
-  return i < 0 ? { main: item.text, sub: "", kind } : { main: item.text.slice(0, i), sub: item.text.slice(i + 2), kind };
-}
-
-// The name without house numbers and the town (the last part without the PSČ and the district's number).
-function parts(item) {
-  const { main, sub } = formatLabel(item);
-  const name = norm(main.replace(/\s+\d+[a-zA-Z]?(\/\d+[a-zA-Z]?)?$/, ""));
-  const numbers = (main.match(/\d+[a-zA-Z]?/g) || []).map((n) => n.toLowerCase());
-  const last = sub.split(", ").pop() || "";
-  const town = item.type === "Ulice" || item.type === "AdresniMisto" ? norm(last.replace(/^\d{5}\s*/, "").replace(/\s+\d+$/, "")) : "";
-  return { name, numbers, town };
-}
-
-export function score(item, query) {
-  const q = norm(query);
-  const words = q.split(" ");
-  const qNumbers = words.filter((w) => /^\d+[a-z]?$/.test(w) || /^\d+[a-z]?\/\d+[a-z]?$/.test(w)).flatMap((w) => w.split("/"));
-  const { name, numbers, town } = parts(item);
-  let s = KINDS[item.type]?.rank ?? 0;
-  if (name && (q === name || q.startsWith(name + " "))) s += 40; // the whole name typed
-  else if (name && name.startsWith(q)) s += 20; // still typing it
-  // Slovakia: the town of a street is a municipality or a city district ("Košice-Staré Mesto"); the words of the
-  // query beyond the street's name may name it.
-  const extra = words.filter((w) => w && !/^\d/.test(w) && !` ${name} `.includes(` ${w} `));
-  const townWords = ` ${town} `;
-  const townNamed = town && (` ${q} `.includes(` ${town} `) || (item.sk && extra.length > 0 && extra.every((w) => townWords.includes(` ${w} `))));
-  if (townNamed) s += 30;
-  else if (item.type === "Ulice" && BIG.has(town)) s += 10; // addresses stay after the streets of other towns
-  if (qNumbers.length) {
-    if (item.type === "AdresniMisto" && qNumbers.every((n) => numbers.includes(n))) s += 50;
-    else if (item.type === "Ulice") s -= 10; // a number asks for an address
-  }
-  return s;
-}
-
-// The best first (exact street plus town), the service's order otherwise; at most MAX_SHOWN.
-export function rankResults(items, query, max = MAX_SHOWN) {
-  return items.map((it, i) => ({ it, i, s: score(it, query) }))
-    .sort((a, b) => b.s - a.s || a.i - b.i).slice(0, max).map((e) => e.it);
-}
-
-// ---------- geometry (lon, lat; a local metric scale is enough for one street) ----------
-const k = (lat) => Math.cos((lat * Math.PI) / 180);
-function nearestOnSegment([ax, ay], [bx, by], [px, py], c) {
-  const dx = (bx - ax) * c, dy = by - ay;
-  const len2 = dx * dx + dy * dy;
-  const t = len2 ? Math.max(0, Math.min(1, ((px - ax) * c * dx + (py - ay) * dy) / len2)) : 0;
-  const x = ax + (bx - ax) * t, y = ay + (by - ay) * t;
-  return { point: [x, y], d2: ((x - px) * c) ** 2 + (y - py) ** 2 };
-}
-// The point of a polyline nearest to p.
-export function nearestOnPaths(paths, p) {
-  const c = k(p[1]);
-  let best = null;
-  for (const path of paths || []) {
-    if (path.length === 1) { const d2 = ((path[0][0] - p[0]) * c) ** 2 + (path[0][1] - p[1]) ** 2; if (!best || d2 < best.d2) best = { point: path[0], d2 }; }
-    for (let i = 0; i + 1 < path.length; i++) {
-      const r = nearestOnSegment(path[i], path[i + 1], p, c);
-      if (!best || r.d2 < best.d2) best = r;
-    }
-  }
-  return best?.point || null;
-}
-// The middle of a street: the length-weighted centre of its segments, put back on the street (a street of many
-// pieces, a curved one: the centre itself can lie off it).
-export function streetMiddle(paths) {
-  let sx = 0, sy = 0, sl = 0;
-  const lat0 = paths?.[0]?.[0]?.[1];
-  if (lat0 === undefined) return null;
-  const c = k(lat0);
-  for (const path of paths) for (let i = 0; i + 1 < path.length; i++) {
-    const [ax, ay] = path[i], [bx, by] = path[i + 1];
-    const l = Math.hypot((bx - ax) * c, by - ay);
-    sx += ((ax + bx) / 2) * l; sy += ((ay + by) / 2) * l; sl += l;
-  }
-  const centre = sl ? [sx / sl, sy / sl] : paths[0][0];
-  return nearestOnPaths(paths, centre);
-}
-
-// ---------- requests ----------
-const qs = (o) => new URLSearchParams({ ...o, f: "json" }).toString();
-async function getJSON(url, signal) {
-  const timeout = AbortSignal.timeout(TIMEOUT);
-  const r = await fetch(url, { signal: signal ? AbortSignal.any([signal, timeout]) : timeout });
-  if (!r.ok) throw new Error(`HTTP ${r.status}`);
-  const json = await r.json();
-  if (json?.error) throw new Error(`${json.error.code} ${json.error.message}`);
-  return json;
-}
-export const suggestUrl = (text) => `${GEOCODE}/suggest?${qs({ text, maxSuggestions: ASK })}`;
-const layerQuery = (layer, params) => `${RUIAN_SEARCH}/${layer}/query?${qs({ outSR: 4326, ...params })}`;
-const streetGeometry = (params) => layerQuery(4, { ...params, outFields: "kod", returnGeometry: true, maxAllowableOffset: 0.000005, geometryPrecision: 7 });
-
-// Where a chosen item goes: { lat, lon, zoom, cut } — cut is the point on the street to cut at (an address on
-// a street, a street), or null (a town, a district, an address without a street).
-export async function locate(item, signal) {
-  const zoom = KINDS[item.type]?.zoom || 16;
-  // Vienna (search-at.js): the address point, or the middle address of the street, is the cut.
-  if (item.at) {
-    const { point, paths } = await locateAt(item, getJSON, signal);
-    const cut = (paths && nearestOnPaths(paths, point)) || point;
-    return { lon: point[0], lat: point[1], zoom, cut: item.type === "Obec" ? null : { lon: cut[0], lat: cut[1] } };
-  }
-  if (item.sk) {
-    const { point, paths } = await locateSk(item, getJSON, signal);
-    // A street: its middle; an address: the point of its street nearest to it; a town: its middle, no cut.
-    const at = item.type === "Ulice" ? streetMiddle(paths) : point;
-    if (!at) throw new Error("bez polohy");
-    const cut = item.type === "Ulice" ? at : item.type === "AdresniMisto" ? (paths && nearestOnPaths(paths, point)) || point : null;
-    return { lon: at[0], lat: at[1], zoom, cut: cut && { lon: cut[0], lat: cut[1] } };
-  }
-  if (item.type === "AdresniMisto") {
-    const a = (await getJSON(layerQuery(1, { objectIds: item.oid, outFields: "ulice" }), signal)).features?.[0];
-    if (!a?.geometry) throw new Error("adresa bez polohy");
-    const p = [a.geometry.x, a.geometry.y];
-    let cut = null;
-    if (a.attributes?.ulice) {
-      const s = (await getJSON(streetGeometry({ where: `kod=${+a.attributes.ulice}` }), signal).catch(() => null))?.features?.[0];
-      cut = s?.geometry?.paths ? nearestOnPaths(s.geometry.paths, p) : null;
-    }
-    return { lon: p[0], lat: p[1], zoom, cut: cut && { lon: cut[0], lat: cut[1] } };
-  }
-  if (item.type === "Ulice") {
-    const s = (await getJSON(streetGeometry({ objectIds: item.oid }), signal)).features?.[0];
-    const m = streetMiddle(s?.geometry?.paths);
-    if (!m) throw new Error("ulice bez polohy");
-    return { lon: m[0], lat: m[1], zoom, cut: { lon: m[0], lat: m[1] } };
-  }
-  const json = await getJSON(`${GEOCODE}/findAddressCandidates?${qs({ SingleLine: item.text, magicKey: item.key, outSR: 4326, maxLocations: 1 })}`, signal);
-  const loc = json.candidates?.[0]?.location;
-  if (!loc) throw new Error("bez polohy");
-  return { lon: loc.x, lat: loc.y, zoom, cut: null };
-}
-
-// ---------- UI: a Leaflet control at the map's top left ----------
-// onPick({ item, lat, lon, cut }) after the map has moved; status(msg, kind) for a failure.
-// services(): the search services of the state the map shows (countries/<ISO>.js search): "zbgis" (Slovak places are
-// then asked of ZBGIS along with RÚIAN), "photon" (Photon of komoot, Austria), "photon-de" (Photon, Germany), "photon-ch" (Photon, Switzerland and Liechtenstein), "pdok" (PDOK's Locatieserver, the Netherlands), "photon-be" (Photon, Belgium and Luxembourg), "uug" (GUGiK's UUG, Poland), "geopf" (IGN's Géoplateforme geocoder, France), "cartociudad" (CartoCiudad of IGN/CNIG, Spain), "photon-pt" (Photon, Portugal), "photon-mc" (Photon, Monaco), "photon-cy" (Photon, Cyprus), "photon-mt" (Photon, Malta), "photon-it" (Photon, Italy), "inads" (In-ADS of the Estonian Land and Spatial Development Board), "photon-si" (Photon, Slovenia), "gurs" (the house numbers of GURS, Slovenia), "photon-fi" (Photon, Finland), "ryhti" (the addresses of Ryhti, Finland), "gsearch" (GSearch of Dataforsyningen, Denmark, with the token), "photon-dk" (Photon, Denmark, without the token), "photon-lt" (Photon, Lithuania), "photon-us" (Photon, the metro of Washington DC), "photon-ca" (Photon, the metro of Toronto).
-// inVienna(): does the map show Vienna.
-// inCzechia: does the map show Czechia (RÚIAN asked first; elsewhere only when nothing else found anything).
-export function mountSearch(map, { status, onPick, services = () => [], inVienna = () => false, inCzechia = () => true }) {
+// The field and the list of the options, above the zoom buttons.
+function createControl(map) {
   const L = globalThis.L;
   const el = L.DomUtil.create("div", "search leaflet-bar");
   el.innerHTML = `<input id="search-input" type="search" role="combobox" aria-autocomplete="list" aria-expanded="false"
     aria-controls="search-list" aria-label="${t("search.searchAddressStreetRuian")}" placeholder="${t("search.searchAddressStreet")}"
     autocomplete="off" spellcheck="false" enterkeyhint="search"><ul id="search-list" role="listbox" aria-label="${t("search.suggestions")}" hidden></ul>`;
-  const input = el.querySelector("input"), list = el.querySelector("ul");
   L.DomEvent.disableClickPropagation(el);
   L.DomEvent.disableScrollPropagation(el);
   const Ctl = L.Control.extend({ options: { position: "topleft" }, onAdd: () => el });
   new Ctl().addTo(map);
-  // Above the zoom buttons.
   el.parentNode.insertBefore(el, el.parentNode.firstChild);
+  return { input: el.querySelector("input"), list: el.querySelector("ul") };
+}
+
+// The options of the list (one a found item, or the note when there are none); a click picks one.
+function fillList(list, found, note, pick) {
+  list.replaceChildren();
+  found.forEach((it, i) => {
+    const { main, sub, kind } = formatLabel(it);
+    const li = document.createElement("li");
+    li.id = `search-opt-${i}`;
+    li.setAttribute("role", "option");
+    li.setAttribute("aria-selected", "false");
+    li.setAttribute("aria-label", [main, sub, kind].filter(Boolean).join(", "));
+    const b = document.createElement("span"); b.className = "search-main"; b.textContent = main;
+    const s = document.createElement("span"); s.className = "search-sub muted"; s.textContent = [sub, kind].filter(Boolean).join(" · ");
+    li.append(b, s);
+    li.addEventListener("mousedown", (e) => e.preventDefault()); // keep the focus in the field
+    li.addEventListener("click", () => pick(i));
+    list.append(li);
+  });
+  if (!found.length && note) {
+    const li = document.createElement("li"); li.className = "search-note muted"; li.textContent = note; list.append(li);
+  }
+}
+
+// onPick({ item, lat, lon, cut }) after the map has moved; status(msg, kind) for a failure.
+// services(): the ids of the search services of the state the map shows (countries/<ISO>.js search).
+// inVienna(): does the map show Vienna. inCzechia(): does the map show Czechia (RÚIAN asked first; elsewhere last).
+export function mountSearch(map, { status, onPick, services = () => [], inVienna = () => false, inCzechia = () => true }) {
+  const L = globalThis.L;
+  const { input, list } = createControl(map);
 
   const cache = new Map(); // normalized query → items, the 40 most recent
   let items = [], active = -1, timer = 0, ctrl = null, lastQuery = "", marker = null, markerTimer = 0;
@@ -237,24 +69,7 @@ export function mountSearch(map, { status, onPick, services = () => [], inVienna
   };
   const show = (found, note = "") => {
     items = found;
-    list.replaceChildren();
-    found.forEach((it, i) => {
-      const { main, sub, kind } = formatLabel(it);
-      const li = document.createElement("li");
-      li.id = `search-opt-${i}`;
-      li.setAttribute("role", "option");
-      li.setAttribute("aria-selected", "false");
-      li.setAttribute("aria-label", [main, sub, kind].filter(Boolean).join(", "));
-      const b = document.createElement("span"); b.className = "search-main"; b.textContent = main;
-      const s = document.createElement("span"); s.className = "search-sub muted"; s.textContent = [sub, kind].filter(Boolean).join(" · ");
-      li.append(b, s);
-      li.addEventListener("mousedown", (e) => e.preventDefault()); // keep the focus in the field
-      li.addEventListener("click", () => pick(i));
-      list.append(li);
-    });
-    if (!found.length && note) {
-      const li = document.createElement("li"); li.className = "search-note muted"; li.textContent = note; list.append(li);
-    }
+    fillList(list, found, note, pick);
     const open = found.length > 0 || !!note;
     list.hidden = !open;
     input.setAttribute("aria-expanded", String(found.length > 0));
@@ -268,58 +83,10 @@ export function mountSearch(map, { status, onPick, services = () => [], inVienna
     ctrl?.abort();
     const mine = (ctrl = new AbortController());
     try {
-      // RÚIAN, and ZBGIS where Slovakia is likely (with RÚIAN, or after it when it found nothing).
-      const sk = () => findSk(text.trim(), getJSON, mine.signal).catch((err) => { if (err.name === "AbortError") throw err; console.warn("hledání ZBGIS", err); return []; });
-      const both = services().includes("zbgis") || looksSlovak(text);
-      // RÚIAN first only where the map shows Czechia (Bára 26. 11. 2026: ČÚZK only for Czechia); elsewhere it is asked
-      // last, when the place's services found nothing (a Czech address typed in Paris), its failure no error.
-      const czHere = inCzechia();
-      const ruian = () => getJSON(suggestUrl(text.trim()), mine.signal).then(parseSuggestions, (err) => { if ((both || !czHere) && err.name !== "AbortError") return []; throw err; });
-      const [cz, skNow] = await Promise.all([czHere ? ruian() : [], both ? sk() : []]);
-      // Vienna's address points where the map shows Vienna or the query names it (search-at.js).
-      const at = inVienna() || looksViennese(text) ? await findAt(text.trim(), getJSON, mine.signal).catch((err) => { if (err.name === "AbortError") throw err; console.warn("hledání Vídeň", err); return []; }) : [];
-      // The Netherlands: PDOK's Locatieserver (search-nl.js) where the map shows it, or a Dutch-looking query RÚIAN did not
-      // find; what it finds is not asked of Photon nor ZBGIS again (the hostile review: a Dutch street in "…weg" went to both).
-      const nl = services().includes("pdok") || (cz.length === 0 && !skNow.length && looksDutch(text))
-        ? await findNl(text.trim(), getJSON, mine.signal).catch((err) => { if (err.name === "AbortError") throw err; console.warn("hledání PDOK", err); return []; }) : [];
-      // The rest of Austria (and Vienna where its own points found nothing), and Germany: Photon of komoot
-      // (search-photon.js), near the map's centre; elsewhere a German-looking query that RÚIAN did not find asks it of both.
-      const countries = services().includes("photon-de") ? ["DE"] : services().includes("photon-ch") ? ["CH", "LI"] : services().includes("photon-be") ? ["BE", "LU"] : services().includes("photon-pt") ? ["PT"] : services().includes("photon-mc") ? ["MC"] : services().includes("photon-cy") ? ["CY"] : services().includes("photon-mt") ? ["MT"] : services().includes("photon-it") ? ["IT"] : services().includes("photon-si") ? ["SI"] : services().includes("photon-fi") ? ["FI"] : services().includes("photon-dk") && !gsearchReady() ? ["DK"] : services().includes("photon-lt") ? ["LT"] : services().includes("photon-us") ? ["US"] : services().includes("photon-ca") ? ["CA"] : services().includes("photon") || at.length === 0 && looksViennese(text) ? ["AT"]
-        : cz.length === 0 && !skNow.length && looksGerman(text) ? ["DE", "AT", "CH", "LI"] : [];
-      const photon = countries.length && !nl.length && !at.some((x) => x.type === "AdresniMisto")
-        ? await findPhoton(text, getJSON, mine.signal, countries, [map.getCenter().lat, map.getCenter().lng]).catch((err) => { if (err.name === "AbortError") throw err; console.warn("hledání Photon", err); return []; }) : [];
-      // Poland: GUGiK's UUG (search-pl.js) where the map shows it, or a Polish-looking query RÚIAN did not find.
-      const pl = services().includes("uug") || (cz.length === 0 && !skNow.length && !nl.length && looksPolish(text))
-        ? await findPl(text.trim(), getJSON, mine.signal).catch((err) => { if (err.name === "AbortError") throw err; console.warn("hledání UUG", err); return []; }) : [];
-      // Where UUG found nothing for a Polish query (no diacritics, an unusual order), Photon of komoot in Poland.
-      const plPhoton = !pl.length && (services().includes("uug") || looksPolish(text)) && !photon.length
-        ? await findPhoton(text, getJSON, mine.signal, ["PL"], [map.getCenter().lat, map.getCenter().lng]).catch((err) => { if (err.name === "AbortError") throw err; return []; }) : [];
-      // France: IGN's geocoder (search-fr.js) where the map shows it, or a French-looking query nothing else found.
-      const fr = services().includes("geopf") || (cz.length === 0 && !skNow.length && !nl.length && !pl.length && !photon.length && looksFrench(text))
-        ? await findFr(text.trim(), getJSON, mine.signal, [map.getCenter().lat, map.getCenter().lng]).catch((err) => { if (err.name === "AbortError") throw err; console.warn("hledání Géoplateforme", err); return []; }) : [];
-      // Spain: CartoCiudad (search-es.js) where the map shows it, or a Spanish-looking query nothing else found.
-      const es = services().includes("cartociudad") || (cz.length === 0 && !skNow.length && !nl.length && !pl.length && !photon.length && !fr.length && looksSpanish(text))
-        ? await findEs(text.trim(), getJSON, mine.signal).catch((err) => { if (err.name === "AbortError") throw err; console.warn("hledání CartoCiudad", err); return []; }) : [];
-      // Estonia: In-ADS (search-ee.js) where the map shows it, or an Estonian-looking query nothing else found.
-      const ee = services().includes("inads") || (cz.length === 0 && !skNow.length && !nl.length && !pl.length && !photon.length && !fr.length && !es.length && looksEstonian(text))
-        ? await findEe(text.trim(), getJSON, mine.signal).catch((err) => { if (err.name === "AbortError") throw err; console.warn("hledání In-ADS", err); return []; }) : [];
-      // Slovenia: GURS's house numbers (search-si.js) for a query with a number where the map shows it, or a Slovenian-looking
-      // one nothing else found (Photon of komoot in Slovenia with it).
-      const siHere = services().includes("gurs") || (cz.length === 0 && !skNow.length && !nl.length && !pl.length && !photon.length && !fr.length && !es.length && !ee.length && looksSlovenian(text));
-      const si = siHere ? await findSi(text.trim(), getJSON, mine.signal).catch((err) => { if (err.name === "AbortError") throw err; console.warn("hledání GURS", err); return []; }) : [];
-      const siPhoton = siHere && !services().includes("photon-si") ? await findPhoton(text, getJSON, mine.signal, ["SI"], [map.getCenter().lat, map.getCenter().lng]).catch((err) => { if (err.name === "AbortError") throw err; return []; }) : [];
-      // Finland: Ryhti's addresses (search-fi.js) for a query with a number where the map shows it, or a Finnish-looking one
-      // nothing else found (Photon of komoot in Finland with it).
-      const fiHere = services().includes("ryhti") || (cz.length === 0 && !skNow.length && !nl.length && !pl.length && !photon.length && !fr.length && !es.length && !ee.length && !si.length && !siPhoton.length && looksFinnish(text));
-      const fi = fiHere ? await findFi(text.trim(), getJSON, mine.signal).catch((err) => { if (err.name === "AbortError") throw err; console.warn("hledání Ryhti", err); return []; }) : [];
-      const fiPhoton = fiHere && !services().includes("photon-fi") ? await findPhoton(text, getJSON, mine.signal, ["FI"], [map.getCenter().lat, map.getCenter().lng]).catch((err) => { if (err.name === "AbortError") throw err; return []; }) : [];
-      // Denmark: GSearch where the map shows it and the app has the token (search-dk.js; else Photon above).
-      const dk = services().includes("gsearch") ? await findDk(text.trim(), getJSON, mine.signal, [map.getCenter().lat, map.getCenter().lng]).catch((err) => { if (err.name === "AbortError") throw err; console.warn("hledání GSearch", err); return []; }) : [];
-      // GSearch failed (a token turned away: 401) or found nothing: Photon of komoot in Denmark (the review of 24. 11. 2026).
-      const dkPhoton = services().includes("photon-dk") && gsearchReady() && !dk.length && !photon.length
-        ? await findPhoton(text, getJSON, mine.signal, ["DK"], [map.getCenter().lat, map.getCenter().lng]).catch((err) => { if (err.name === "AbortError") throw err; return []; }) : [];
-      let found = rankResults([...dk, ...dkPhoton, ...fi, ...fiPhoton, ...si, ...siPhoton, ...ee, ...es, ...fr, ...pl, ...plPhoton, ...nl, ...at, ...photon, ...cz, ...(both || cz.length || nl.length || pl.length || fr.length || es.length || ee.length || si.length || siPhoton.length || fi.length || fiPhoton.length || dk.length || dkPhoton.length ? skNow : await sk())], text);
-      if (!czHere && !found.length) found = rankResults(await ruian(), text);
+      const listed = new Set(services());
+      const centre = () => [map.getCenter().lat, map.getCenter().lng];
+      const ctx = { getJSON, signal: mine.signal, near: centre, listed: (id) => listed.has(id), inVienna: inVienna(), inCzechia: inCzechia() };
+      const found = rankResults(await runSearch(SERVICES, text, ctx), text);
       cache.set(key, found);
       if (cache.size > 40) cache.delete(cache.keys().next().value);
       if (mine === ctrl && document.activeElement === input) show(found, t("search.nothingFound"));

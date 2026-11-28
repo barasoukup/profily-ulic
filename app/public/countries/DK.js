@@ -108,7 +108,7 @@ export default {
   art: { denmark: { ...czechFurniture, ...atPosts } },
   // The estates of the 1960s–70s (almene boliger) are not socialist panel houses (SOURCES.md 6).
   socialistLooks: false,
-  // GSearch of Dataforsyningen with the token (search-dk.js), Photon without it.
+  // GSearch of Dataforsyningen with the token (search/gsearch.js), Photon without it.
   search: ["gsearch", "photon-dk"],
   // The Nordic looks (house-looks.js): the Danish brick tenement (rendered: the stone town's), the painted wooden house
   // only on Bornholm.

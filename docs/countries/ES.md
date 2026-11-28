@@ -6,7 +6,7 @@ Stav nasazení: větev `spain`, 23. 11. 2026, nenasazené. Přehled všech stát
 
 ### Španělsko (větev spain z france, Bára 23. 11. 2026, nenasazené)
 
-- Stát `spain` (ES): `countries/ES.js`, `towns/spain.js`, `search-es.js`, `signs-ES/`, `evaluation/spain/` (ZDROJE, NORMY, ab/).
+- Stát `spain` (ES): `countries/ES.js`, `towns/spain.js`, `search/cartociudad.js`, `signs-ES/`, `evaluation/spain/` (ZDROJE, NORMY, ab/).
   Hranice GISCO s ostrovy, Ceutou, Melillou a Llívií. OSM po 17 společenstvích, Ceutě, Melille a Kanárských ostrovech
   (`es_*`, Kanáry pod `africa/`, jen R2). viz seznam v `docs/deployment.md`
 - Ortofoto IGN PNOA (25 cm, CORS *, CC BY 4.0; mimo Španělsko satelitní pozadí: v mapě jen nad Španělskem), budovy
@@ -30,7 +30,7 @@ Stav nasazení: větev `spain`, 23. 11. 2026, nenasazené. Přehled všech stát
 
 ### Španělsko (Bára 23. 11. 2026)
 
-Stát `spain` (ES), `countries/ES.js`, `towns/spain.js`, `search-es.js`; hranice GISCO s Baleárami, Kanárskými ostrovy,
+Stát `spain` (ES), `countries/ES.js`, `towns/spain.js`, `search/cartociudad.js`; hranice GISCO s Baleárami, Kanárskými ostrovy,
 Ceutou, Melillou a Llívií (prstenec uvnitř francouzské díry). OSM po 17 autonomních společenstvích, Ceutě, Melille
 a Kanárských ostrovech (`es_*`, Kanárské ostrovy u Geofabriku pod `africa/`, jen R2). Ortofoto IGN PNOA (WMS, 25 cm,
 `lanes-ortho.js` zdroj `es`; mimo Španělsko kreslí satelitní pozadí, proto v mapě jen nad Španělskem). V Melille se pruhy

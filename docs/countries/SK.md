@@ -12,7 +12,7 @@ Stav nasazení: větev `slovensko`, 15.–16. 11. 2026. Přehled všech států:
   z OSM a ortofota.
 - ZBGIS ÚGKK SR (CC BY 4.0, GKÚ Bratislava; `/query` vrací 503, funguje identify/find/export/dlaždice): ortofoto
   `Ortofoto_hres` (asi 10 cm, s vyvážením barev, jinak asfalt vypadá jako tráva), budovy (druh, výška), hledání
-  ulic, obcí a adres (`search-sk.js`). Vyhodnocení `evaluation/slovakia/REPORT.md` (ortofoto lépe 10, hůř 2, stejně 16
+  ulic, obcí a adres (`search/zbgis.js`). Vyhodnocení `evaluation/slovakia/REPORT.md` (ortofoto lépe 10, hůř 2, stejně 16
   z 39). Slovenská vozidla a označníky nakreslené a zapojené (16. 11.).
 - Značky státu SK (vyhl. 30/2020 Z. z.): `app/public/signs-SK/` (piktogramy podle přílohy „Symboly“, tabulka klíčů
   v README), řádek značek podle `city.country` (`signFile/plateFile/signLabel(…, country)`); název značky v jazyce
@@ -58,7 +58,7 @@ názvem (nadpis je jen ulice).
   a výška nad terénem; podlaží = výška / 3,3 m, ale `building:levels` z OSM má přednost. Rok stavby ani podlaží
   ZBGIS nemá.
 - **Hledání:** ZBGIS `find` (ulice MV SR s osou, obce, adresní body Registra adries), jen když mapa ukazuje
-  Slovensko, dotaz má slovenská písmena (ä ô ľ ĺ ŕ) nebo RÚIAN nic nenašel (`search-sk.js`). „Hlavná 12 Košice“
+  Slovensko, dotaz má slovenská písmena (ä ô ľ ĺ ŕ) nebo RÚIAN nic nenašel (`search/zbgis.js`). „Hlavná 12 Košice“
   najde adresu, „Hlavná Košice“ ulici v Košicích.
 - Ilustrace vozidel podle města řezu (Bratislava, Košice, Žilina, Banská Bystrica, Prešov; jinde neutrální tramvaj a autobus z `generic/`),
   slovenské označníky zastávek (značka 331), mobiliář pražský (Bratislava ho převzala), značky slovenské (`signs-SK/`).

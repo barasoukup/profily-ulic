@@ -6,7 +6,7 @@ Stav nasazení: větev `estonia`, 23. 11. 2026, nenasazené. Přehled všech st�
 
 ### Dánsko (větev estonia, Bára 23. 11. 2026, nenasazené)
 
-- `countries/DK.js`, `towns/denmark.js`, `search-dk.js` (GSearch s tokenem, jinak Photon), `keys.js`, `signs-DK/`,
+- `countries/DK.js`, `towns/denmark.js`, `search/gsearch.js` (GSearch s tokenem, jinak Photon), `keys.js`, `signs-DK/`,
   `evaluation/denmark/` (ZDROJE, NORMY, buildings-ab/). Hranice GISCO s Bornholmem (bez Faerských ostrovů a Grónska),
   pobřeží 400 m. OSM balík `dk` (jen R2; viz seznam v `docs/deployment.md`), lokálně Kodaň, Aarhus, Odense, Aalborg.
 -  Ortofoto jaro GeoDanmark (WMTS
@@ -34,7 +34,7 @@ z OSM a poznámka „Ortofoto tu není k dispozici…“; chyba serveru je výpa
 `wfs-kbhkort.kk.dk/k101`): okraje vozovek a cyklostezek GeoDanmark `vejkant` jako čáry pro obruby (`?kbhkant=0` vypne),
 parkovací plochy `parkering_areal` s úhlem stání (`?kbhpark=0`), budovy BBR (`?kbhbyg=0`; jen potřebná pole, nikdy
 vlastník); zapnuté od 24. 11. 2026 (Bára, licence vrstev neuvedená; A/B `evaluation/denmark/ab/REPORT.md`). Aarhus: budovy BBR (rok, užití, zdi, podlaží odhadem z ploch;
-CC BY 4.0, `?aarbyg=0`). Hledání GSearch (husnummer, navngivenvej; `search-dk.js`), bez tokenu Photon. Normy z vejregler
+CC BY 4.0, `?aarbyg=0`). Hledání GSearch (husnummer, navngivenvej; `search/gsearch.js`), bez tokenu Photon. Normy z vejregler
 (Tværprofiler i byer 2019, Anlæg for parkering 2023) jen oranžově, červeně obousměrná cyklostezka 2,5 m. Stání 3 m na
 směr, na chodníku v obci zakázané (§ 28). Značky `signs-DK/` (BEK 425/2023, Commons public domain; C 55 jako šablona
 aplikace). Bez paneláků, severské vzhledy domů (`nordicLook("DK")`), neutrální vozidla, český mobiliář, rakouské označníky.
