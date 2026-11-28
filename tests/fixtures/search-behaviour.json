@@ -1,0 +1,1005 @@
+{
+ "CZ: adresa v Praze, výběr adresy": {
+  "requests": [
+   "https://ags.cuzk.gov.cz/arcgis/rest/services/RUIAN/Vyhledavaci_sluzba_nad_daty_RUIAN/MapServer/exts/GeocodeSOE/suggest?text=M%C3%A1nesova+12+Praha&maxSuggestions=15&f=json"
+  ],
+  "items": [
+   [
+    "Mánesova 12",
+    "Vinohrady, 12000 Praha 2 · adresa"
+   ],
+   [
+    "Mánesova",
+    "Praha · ulice"
+   ],
+   [
+    "Mánesova",
+    "Kladno · ulice"
+   ],
+   [
+    "Praha",
+    "Praha · obec"
+   ]
+  ],
+  "note": null,
+  "warns": 0,
+  "pick": {
+   "requests": [
+    "https://ags.cuzk.gov.cz/arcgis/rest/services/RUIAN/Vyhledavaci_sluzba_nad_daty_RUIAN/MapServer/1/query?outSR=4326&objectIds=100&outFields=ulice&f=json",
+    "https://ags.cuzk.gov.cz/arcgis/rest/services/RUIAN/Vyhledavaci_sluzba_nad_daty_RUIAN/MapServer/4/query?outSR=4326&where=kod%3D123&outFields=kod&returnGeometry=true&maxAllowableOffset=0.000005&geometryPrecision=7&f=json"
+   ],
+   "view": [
+    [
+     50.0805,
+     14.431
+    ],
+    19
+   ],
+   "picked": {
+    "item": "Mánesova 12, Vinohrady, 12000 Praha 2",
+    "cut": [
+     14.43065,
+     50.08065
+    ]
+   },
+   "status": null
+  }
+ },
+ "CZ: ulice v Praze, výběr ulice": {
+  "requests": [
+   "https://ags.cuzk.gov.cz/arcgis/rest/services/RUIAN/Vyhledavaci_sluzba_nad_daty_RUIAN/MapServer/exts/GeocodeSOE/suggest?text=M%C3%A1nesova&maxSuggestions=15&f=json"
+  ],
+  "items": [
+   [
+    "Mánesova",
+    "Praha · ulice"
+   ],
+   [
+    "Mánesova",
+    "Kladno · ulice"
+   ],
+   [
+    "Mánesova 12",
+    "Vinohrady, 12000 Praha 2 · adresa"
+   ],
+   [
+    "Praha",
+    "Praha · obec"
+   ]
+  ],
+  "note": null,
+  "warns": 0,
+  "pick": {
+   "requests": [
+    "https://ags.cuzk.gov.cz/arcgis/rest/services/RUIAN/Vyhledavaci_sluzba_nad_daty_RUIAN/MapServer/4/query?outSR=4326&objectIds=36013&outFields=kod&returnGeometry=true&maxAllowableOffset=0.000005&geometryPrecision=7&f=json"
+   ],
+   "view": [
+    [
+     50.081,
+     14.431
+    ],
+    19
+   ],
+   "picked": {
+    "item": "Mánesova, Kladno",
+    "cut": [
+     14.431,
+     50.081
+    ]
+   },
+   "status": null
+  }
+ },
+ "CZ: obec, výběr bez řezu": {
+  "requests": [
+   "https://ags.cuzk.gov.cz/arcgis/rest/services/RUIAN/Vyhledavaci_sluzba_nad_daty_RUIAN/MapServer/exts/GeocodeSOE/suggest?text=Praha&maxSuggestions=15&f=json"
+  ],
+  "items": [
+   [
+    "Praha",
+    "Praha · obec"
+   ],
+   [
+    "Mánesova",
+    "Praha · ulice"
+   ],
+   [
+    "Mánesova 12",
+    "Vinohrady, 12000 Praha 2 · adresa"
+   ],
+   [
+    "Mánesova",
+    "Kladno · ulice"
+   ]
+  ],
+  "note": null,
+  "warns": 0,
+  "pick": {
+   "requests": [
+    "https://ags.cuzk.gov.cz/arcgis/rest/services/RUIAN/Vyhledavaci_sluzba_nad_daty_RUIAN/MapServer/exts/GeocodeSOE/findAddressCandidates?SingleLine=Praha+%28Praha%29&magicKey=12_5&outSR=4326&maxLocations=1&f=json"
+   ],
+   "view": [
+    [
+     50.09,
+     14.42
+    ],
+    15
+   ],
+   "picked": {
+    "item": "Praha (Praha)",
+    "cut": null
+   },
+   "status": null
+  }
+ },
+ "CZ: dotaz krátký, nic se neptá": {
+  "requests": [],
+  "items": [],
+  "note": null,
+  "warns": 0
+ },
+ "CZ: prázdný výsledek": {
+  "requests": [
+   "https://ags.cuzk.gov.cz/arcgis/rest/services/RUIAN/Vyhledavaci_sluzba_nad_daty_RUIAN/MapServer/exts/GeocodeSOE/suggest?text=xyzxyzxyz&maxSuggestions=15&f=json",
+   "https://zbgis.skgeodesy.sk/zbgis/rest/services/Uzemnospravne_clenenie/MapServer/find?contains=true&returnGeometry=false&f=json&searchText=xyzxyzxyz&layers=3&searchFields=NM4",
+   "https://zbgis.skgeodesy.sk/zbgis/rest/services/Ulice_MVSR/MapServer/find?contains=true&returnGeometry=false&f=json&searchText=xyzxyzxyz&layers=0&searchFields=STRT_NAME"
+  ],
+  "items": [],
+  "note": "Nic jsem nenašla.",
+  "warns": 0
+ },
+ "CZ: výpadek RÚIAN je chyba": {
+  "requests": [
+   "https://ags.cuzk.gov.cz/arcgis/rest/services/RUIAN/Vyhledavaci_sluzba_nad_daty_RUIAN/MapServer/exts/GeocodeSOE/suggest?text=M%C3%A1nesova&maxSuggestions=15&f=json"
+  ],
+  "items": [],
+  "note": "Vyhledávání ČÚZK teď neodpovídá.",
+  "warns": 1
+ },
+ "CZ: výběr selže, hlásí chybu": {
+  "requests": [
+   "https://ags.cuzk.gov.cz/arcgis/rest/services/RUIAN/Vyhledavaci_sluzba_nad_daty_RUIAN/MapServer/exts/GeocodeSOE/suggest?text=M%C3%A1nesova&maxSuggestions=15&f=json"
+  ],
+  "items": [
+   [
+    "Mánesova",
+    "Praha · ulice"
+   ],
+   [
+    "Mánesova",
+    "Kladno · ulice"
+   ],
+   [
+    "Mánesova 12",
+    "Vinohrady, 12000 Praha 2 · adresa"
+   ],
+   [
+    "Praha",
+    "Praha · obec"
+   ]
+  ],
+  "note": null,
+  "warns": 0,
+  "pick": {
+   "requests": [
+    "https://ags.cuzk.gov.cz/arcgis/rest/services/RUIAN/Vyhledavaci_sluzba_nad_daty_RUIAN/MapServer/4/query?outSR=4326&objectIds=36013&outFields=kod&returnGeometry=true&maxAllowableOffset=0.000005&geometryPrecision=7&f=json"
+   ],
+   "view": null,
+   "picked": null,
+   "status": [
+    "Místo se nepodařilo načíst z RÚIAN ČÚZK. Zkuste to znovu.",
+    "error"
+   ]
+  }
+ },
+ "CZ: slovenská písmena, RÚIAN a ZBGIS naráz": {
+  "requests": [
+   "https://ags.cuzk.gov.cz/arcgis/rest/services/RUIAN/Vyhledavaci_sluzba_nad_daty_RUIAN/MapServer/exts/GeocodeSOE/suggest?text=Hlavn%C3%A1+%C4%BDuboch%C5%88a&maxSuggestions=15&f=json",
+   "https://zbgis.skgeodesy.sk/zbgis/rest/services/Uzemnospravne_clenenie/MapServer/find?contains=true&returnGeometry=false&f=json&searchText=Hlavn%C3%A1+%C4%BDuboch%C5%88a&layers=3&searchFields=NM4",
+   "https://zbgis.skgeodesy.sk/zbgis/rest/services/Ulice_MVSR/MapServer/find?contains=true&returnGeometry=false&f=json&searchText=Hlavn%C3%A1+%C4%BDuboch%C5%88a&layers=0&searchFields=STRT_NAME"
+  ],
+  "items": [
+   [
+    "Hlavná",
+    "Ľubochňa · ulice"
+   ],
+   [
+    "Hlavní",
+    "Brno · ulice"
+   ]
+  ],
+  "note": null,
+  "warns": 0
+ },
+ "CZ: německy vypadající dotaz, který RÚIAN nenajde": {
+  "requests": [
+   "https://ags.cuzk.gov.cz/arcgis/rest/services/RUIAN/Vyhledavaci_sluzba_nad_daty_RUIAN/MapServer/exts/GeocodeSOE/suggest?text=Hauptstra%C3%9Fe+5+Berlin&maxSuggestions=15&f=json",
+   "https://photon.komoot.io/api/?q=Hauptstra%C3%9Fe+5+Berlin&limit=20&lang=de&bbox=5.86%2C45.81%2C17.16%2C55.06&lat=50.0800&lon=14.4300",
+   "https://zbgis.skgeodesy.sk/zbgis/rest/services/Ulice_MVSR/MapServer/find?contains=true&returnGeometry=false&f=json&searchText=Hauptstra%C3%9Fe&layers=0&searchFields=STRT_NAME",
+   "https://zbgis.skgeodesy.sk/zbgis/rest/services/RA_Adresne_body/MapServer/find?contains=false&returnGeometry=false&f=json&searchText=Hauptstra%C3%9Fe&layers=0&searchFields=STREETNAME"
+  ],
+  "items": [
+   [
+    "Unter den Linden",
+    "Berlin · ulice"
+   ],
+   [
+    "Unter den Linden 1",
+    "1 Berlin · adresa"
+   ],
+   [
+    "Unter den Linden",
+    "Wien · ulice"
+   ]
+  ],
+  "note": null,
+  "warns": 0
+ },
+ "CZ: dotaz s Wien, Vídeň a Photon": {
+  "requests": [
+   "https://ags.cuzk.gov.cz/arcgis/rest/services/RUIAN/Vyhledavaci_sluzba_nad_daty_RUIAN/MapServer/exts/GeocodeSOE/suggest?text=Praterstra%C3%9Fe+Wien&maxSuggestions=15&f=json",
+   "https://data.wien.gv.at/daten/geo?service=WFS&version=2.0.0&request=GetFeature&typeNames=ogdwien%3AADRESSENOGD&outputFormat=application%2Fjson&srsName=EPSG%3A4326&count=400&propertyName=NAME_STR%2CNAME%2CPLZ%2CONR_VON%2CSHAPE&CQL_FILTER=NAME_STR+ILIKE+%27Praterstra%C3%9Fe%25%27",
+   "https://photon.komoot.io/api/?q=Praterstra%C3%9Fe+Wien&limit=20&lang=de&bbox=5.86%2C45.81%2C17.16%2C55.06&lat=50.0800&lon=14.4300",
+   "https://zbgis.skgeodesy.sk/zbgis/rest/services/Uzemnospravne_clenenie/MapServer/find?contains=true&returnGeometry=false&f=json&searchText=Praterstra%C3%9Fe+Wien&layers=3&searchFields=NM4",
+   "https://zbgis.skgeodesy.sk/zbgis/rest/services/Ulice_MVSR/MapServer/find?contains=true&returnGeometry=false&f=json&searchText=Praterstra%C3%9Fe+Wien&layers=0&searchFields=STRT_NAME",
+   "https://zbgis.skgeodesy.sk/zbgis/rest/services/Ulice_MVSR/MapServer/find?contains=true&returnGeometry=false&f=json&searchText=Praterstra%C3%9Fe&layers=0&searchFields=STRT_NAME"
+  ],
+  "items": [
+   [
+    "Praterstraße",
+    "Wien · ulice"
+   ],
+   [
+    "Praterstraße",
+    "1020 Wien · ulice"
+   ]
+  ],
+  "note": null,
+  "warns": 0
+ },
+ "CZ: holandsky vypadající dotaz": {
+  "requests": [
+   "https://ags.cuzk.gov.cz/arcgis/rest/services/RUIAN/Vyhledavaci_sluzba_nad_daty_RUIAN/MapServer/exts/GeocodeSOE/suggest?text=Prinsengracht+263&maxSuggestions=15&f=json",
+   "https://api.pdok.nl/bzk/locatieserver/search/v3_1/free?q=Prinsengracht+263&rows=20&fq=type%3A%28adres+OR+weg+OR+woonplaats%29&fl=weergavenaam%2Ctype%2Ccentroide_ll%2Cstraatnaam"
+  ],
+  "items": [
+   [
+    "Prinsengracht 263",
+    "Amsterdam · adresa"
+   ]
+  ],
+  "note": null,
+  "warns": 0
+ },
+ "CZ: polský dotaz, UUG napoprvé prázdné, podruhé najde": {
+  "requests": [
+   "https://ags.cuzk.gov.cz/arcgis/rest/services/RUIAN/Vyhledavaci_sluzba_nad_daty_RUIAN/MapServer/exts/GeocodeSOE/suggest?text=Floria%C5%84ska+3%2C+Krak%C3%B3w&maxSuggestions=15&f=json",
+   "https://services.gugik.gov.pl/uug/?request=GetAddress&address=Floria%C5%84ska+3%2C+Krak%C3%B3w&srid=4326",
+   "https://services.gugik.gov.pl/uug/?request=GetAddress&address=Krak%C3%B3w%2C+Floria%C5%84ska+3&srid=4326"
+  ],
+  "items": [
+   [
+    "Floriańska 3",
+    "31-021 Kraków · adresa"
+   ]
+  ],
+  "note": null,
+  "warns": 0
+ },
+ "CZ: polský dotaz, UUG nic, Photon v Polsku": {
+  "requests": [
+   "https://ags.cuzk.gov.cz/arcgis/rest/services/RUIAN/Vyhledavaci_sluzba_nad_daty_RUIAN/MapServer/exts/GeocodeSOE/suggest?text=ulica+D%C5%82uga+5&maxSuggestions=15&f=json",
+   "https://services.gugik.gov.pl/uug/?request=GetAddress&address=ulica+D%C5%82uga+5&srid=4326",
+   "https://services.gugik.gov.pl/uug/?request=GetAddress&address=ulica%2C+D%C5%82uga+5&srid=4326",
+   "https://photon.komoot.io/api/?q=ulica+D%C5%82uga+5&limit=20&lang=default&bbox=14.1%2C49%2C24.2%2C54.9&lat=50.0800&lon=14.4300",
+   "https://zbgis.skgeodesy.sk/zbgis/rest/services/Ulice_MVSR/MapServer/find?contains=true&returnGeometry=false&f=json&searchText=ulica+D%C5%82uga&layers=0&searchFields=STRT_NAME",
+   "https://zbgis.skgeodesy.sk/zbgis/rest/services/Ulice_MVSR/MapServer/find?contains=true&returnGeometry=false&f=json&searchText=ulica&layers=0&searchFields=STRT_NAME",
+   "https://zbgis.skgeodesy.sk/zbgis/rest/services/RA_Adresne_body/MapServer/find?contains=false&returnGeometry=false&f=json&searchText=ulica+D%C5%82uga&layers=0&searchFields=STREETNAME"
+  ],
+  "items": [
+   [
+    "Długa",
+    "Kraków · ulice"
+   ]
+  ],
+  "note": null,
+  "warns": 0
+ },
+ "CZ: francouzský dotaz, nic jiného nenašlo": {
+  "requests": [
+   "https://ags.cuzk.gov.cz/arcgis/rest/services/RUIAN/Vyhledavaci_sluzba_nad_daty_RUIAN/MapServer/exts/GeocodeSOE/suggest?text=rue+de+Rivoli+Paris&maxSuggestions=15&f=json",
+   "https://data.geopf.fr/geocodage/search?q=rue+de+Rivoli+Paris&autocomplete=1&limit=15&index=address&lat=50.08&lon=14.43"
+  ],
+  "items": [
+   [
+    "Rue de Rivoli 75001 Paris",
+    "ulice"
+   ]
+  ],
+  "note": null,
+  "warns": 0
+ },
+ "CZ: španělský dotaz, CartoCiudad s find": {
+  "requests": [
+   "https://ags.cuzk.gov.cz/arcgis/rest/services/RUIAN/Vyhledavaci_sluzba_nad_daty_RUIAN/MapServer/exts/GeocodeSOE/suggest?text=calle+Mayor+Madrid&maxSuggestions=15&f=json",
+   "https://www.cartociudad.es/geocoder/api/geocoder/candidates?q=calle+Mayor+Madrid&limit=15",
+   "https://www.cartociudad.es/geocoder/api/geocoder/find?id=9&type=callejero"
+  ],
+  "items": [
+   [
+    "CALLE MAYOR",
+    "Madrid · ulice"
+   ],
+   [
+    "CALLE MAYOR 3",
+    "Madrid · adresa"
+   ]
+  ],
+  "note": null,
+  "warns": 0
+ },
+ "CZ: estonský dotaz": {
+  "requests": [
+   "https://ags.cuzk.gov.cz/arcgis/rest/services/RUIAN/Vyhledavaci_sluzba_nad_daty_RUIAN/MapServer/exts/GeocodeSOE/suggest?text=Narva+mnt+10+Tallinn&maxSuggestions=15&f=json",
+   "https://aks.geoportaal.ee/inaks/inaadress/gazetteer?address=Narva+mnt+10+Tallinn&results=15&features=EHITISHOONE%2CTANAV%2CEHAK"
+  ],
+  "items": [
+   [
+    "Narva mnt 10",
+    "Tallinn · adresa"
+   ]
+  ],
+  "note": null,
+  "warns": 0
+ },
+ "CZ: slovinský dotaz s číslem, GURS a Photon": {
+  "requests": [
+   "https://ags.cuzk.gov.cz/arcgis/rest/services/RUIAN/Vyhledavaci_sluzba_nad_daty_RUIAN/MapServer/exts/GeocodeSOE/suggest?text=Trubarjeva+cesta+5+Ljubljana&maxSuggestions=15&f=json",
+   "https://ipi.eprostor.gov.si/wfs-si-gurs-kn/wfs?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetFeature&TYPENAMES=SI.GURS.KN%3ANASLOVI_HS&outputFormat=application%2Fjson&srsName=EPSG%3A4326&count=15&PROPERTYNAME=ULICA_NAZIV%2CHS_STEVILKA%2CHS_DODATEK%2CNASELJE_NAZIV%2CGEOM&FILTER=%3Cfes%3AFilter+xmlns%3Afes%3D%22http%3A%2F%2Fwww.opengis.net%2Ffes%2F2.0%22%3E%3Cfes%3AAnd%3E%3Cfes%3APropertyIsLike+wildCard%3D%22*%22+singleChar%3D%22.%22+escapeChar%3D%22%21%22+matchCase%3D%22false%22%3E%3Cfes%3AValueReference%3EULICA_NAZIV%3C%2Ffes%3AValueReference%3E%3Cfes%3ALiteral%3ETrubarjeva+cesta*%3C%2Ffes%3ALiteral%3E%3C%2Ffes%3APropertyIsLike%3E%3Cfes%3APropertyIsEqualTo%3E%3Cfes%3AValueReference%3EHS_STEVILKA%3C%2Ffes%3AValueReference%3E%3Cfes%3ALiteral%3E5%3C%2Ffes%3ALiteral%3E%3C%2Ffes%3APropertyIsEqualTo%3E%3Cfes%3APropertyIsLike+wildCard%3D%22*%22+singleChar%3D%22.%22+escapeChar%3D%22%21%22+matchCase%3D%22false%22%3E%3Cfes%3AValueReference%3ENASELJE_NAZIV%3C%2Ffes%3AValueReference%3E%3Cfes%3ALiteral%3ELjubljana*%3C%2Ffes%3ALiteral%3E%3C%2Ffes%3APropertyIsLike%3E%3C%2Ffes%3AAnd%3E%3C%2Ffes%3AFilter%3E",
+   "https://photon.komoot.io/api/?q=Trubarjeva+cesta+5+Ljubljana&limit=20&lang=default&bbox=13.37%2C45.42%2C16.61%2C46.88&lat=50.0800&lon=14.4300"
+  ],
+  "items": [
+   [
+    "Trubarjeva cesta 5",
+    "Ljubljana · adresa"
+   ],
+   [
+    "Trubarjeva cesta",
+    "Ljubljana · ulice"
+   ]
+  ],
+  "note": null,
+  "warns": 0
+ },
+ "CZ: finský dotaz s číslem, Ryhti a Photon": {
+  "requests": [
+   "https://ags.cuzk.gov.cz/arcgis/rest/services/RUIAN/Vyhledavaci_sluzba_nad_daty_RUIAN/MapServer/exts/GeocodeSOE/suggest?text=Mannerheimintie+5+Helsinki&maxSuggestions=15&f=json",
+   "https://paikkatiedot.ymparisto.fi/geoserver/ryhti_building/ogc/features/v1/collections/open_address/items?f=json&filter-lang=cql-text&filter=%28address_name_fin+IN+%28%27Mannerheimintie%27%29+OR+address_name_swe+IN+%28%27Mannerheimintie%27%29%29+AND+number_part_of_address_number+%3D+5+AND+%28postal_office_fin+%3D+%27HELSINKI%27+OR+postal_office_swe+%3D+%27HELSINKI%27%29&limit=15",
+   "https://photon.komoot.io/api/?q=Mannerheimintie+5+Helsinki&limit=20&lang=default&bbox=19.08%2C59.45%2C31.59%2C70.1&lat=50.0800&lon=14.4300"
+  ],
+  "items": [
+   [
+    "Mannerheimintie 5",
+    "Helsinki · adresa"
+   ]
+  ],
+  "note": null,
+  "warns": 0
+ },
+ "CZ: nic nepřipomíná jinou zemi": {
+  "requests": [
+   "https://ags.cuzk.gov.cz/arcgis/rest/services/RUIAN/Vyhledavaci_sluzba_nad_daty_RUIAN/MapServer/exts/GeocodeSOE/suggest?text=qwertzuiop&maxSuggestions=15&f=json",
+   "https://zbgis.skgeodesy.sk/zbgis/rest/services/Uzemnospravne_clenenie/MapServer/find?contains=true&returnGeometry=false&f=json&searchText=qwertzuiop&layers=3&searchFields=NM4",
+   "https://zbgis.skgeodesy.sk/zbgis/rest/services/Ulice_MVSR/MapServer/find?contains=true&returnGeometry=false&f=json&searchText=qwertzuiop&layers=0&searchFields=STRT_NAME"
+  ],
+  "items": [],
+  "note": "Nic jsem nenašla.",
+  "warns": 0
+ },
+ "SK: ulice a město, výběr ulice": {
+  "requests": [
+   "https://zbgis.skgeodesy.sk/zbgis/rest/services/Uzemnospravne_clenenie/MapServer/find?contains=true&returnGeometry=false&f=json&searchText=Hlavn%C3%A1+Ko%C5%A1ice&layers=3&searchFields=NM4",
+   "https://zbgis.skgeodesy.sk/zbgis/rest/services/Ulice_MVSR/MapServer/find?contains=true&returnGeometry=false&f=json&searchText=Hlavn%C3%A1+Ko%C5%A1ice&layers=0&searchFields=STRT_NAME"
+  ],
+  "items": [
+   [
+    "Hlavná",
+    "Košice-Staré Mesto · ulice"
+   ],
+   [
+    "Hlavná",
+    "Gajary · ulice"
+   ]
+  ],
+  "note": null,
+  "warns": 0,
+  "pick": {
+   "requests": [
+    "https://zbgis.skgeodesy.sk/zbgis/rest/services/Ulice_MVSR/MapServer/find?contains=false&returnGeometry=true&f=json&searchText=2&layers=0&searchFields=STRT_ID&sr=4326&maxAllowableOffset=0.00001"
+   ],
+   "view": [
+    [
+     48.4005,
+     17.0005
+    ],
+    19
+   ],
+   "picked": {
+    "item": "Hlavná, Košice-Staré Mesto",
+    "cut": [
+     17.0005,
+     48.4005
+    ]
+   },
+   "status": null
+  }
+ },
+ "SK: adresa s číslem, výběr adresy": {
+  "requests": [
+   "https://zbgis.skgeodesy.sk/zbgis/rest/services/Ulice_MVSR/MapServer/find?contains=true&returnGeometry=false&f=json&searchText=Hlavn%C3%A1&layers=0&searchFields=STRT_NAME",
+   "https://zbgis.skgeodesy.sk/zbgis/rest/services/RA_Adresne_body/MapServer/find?contains=false&returnGeometry=false&f=json&searchText=Hlavn%C3%A1&layers=0&searchFields=STREETNAME"
+  ],
+  "items": [
+   [
+    "Hlavná 9/12",
+    "04001 Košice-Staré Mesto · adresa"
+   ],
+   [
+    "Hlavná",
+    "Košice-Staré Mesto · ulice"
+   ]
+  ],
+  "note": null,
+  "warns": 0,
+  "pick": {
+   "requests": [
+    "https://zbgis.skgeodesy.sk/zbgis/rest/services/Ulice_MVSR/MapServer/find?contains=false&returnGeometry=true&f=json&searchText=Hlavn%C3%A1&layers=0&searchFields=STRT_NAME&sr=4326&maxAllowableOffset=0.00001"
+   ],
+   "view": [
+    [
+     48.7188,
+     21.2586
+    ],
+    19
+   ],
+   "picked": {
+    "item": "Hlavná 9/12, 04001 Košice-Staré Mesto",
+    "cut": [
+     21.258,
+     48.7188
+    ]
+   },
+   "status": null
+  }
+ },
+ "SK: obec, výběr obce": {
+  "requests": [
+   "https://zbgis.skgeodesy.sk/zbgis/rest/services/Uzemnospravne_clenenie/MapServer/find?contains=true&returnGeometry=false&f=json&searchText=Trnava&layers=3&searchFields=NM4",
+   "https://zbgis.skgeodesy.sk/zbgis/rest/services/Ulice_MVSR/MapServer/find?contains=true&returnGeometry=false&f=json&searchText=Trnava&layers=0&searchFields=STRT_NAME"
+  ],
+  "items": [
+   [
+    "Trnava",
+    "Trnava · obec"
+   ]
+  ],
+  "note": null,
+  "warns": 0,
+  "pick": {
+   "requests": [
+    "https://zbgis.skgeodesy.sk/zbgis/rest/services/Uzemnospravne_clenenie/MapServer/find?contains=false&returnGeometry=true&f=json&searchText=506&layers=3&searchFields=IDN4&sr=4326&maxAllowableOffset=0.002"
+   ],
+   "view": [
+    [
+     48.35,
+     17.6
+    ],
+    15
+   ],
+   "picked": {
+    "item": "Trnava (Trnava)",
+    "cut": null
+   },
+   "status": null
+  }
+ },
+ "SK: nic nenajde, RÚIAN až nakonec": {
+  "requests": [
+   "https://zbgis.skgeodesy.sk/zbgis/rest/services/Uzemnospravne_clenenie/MapServer/find?contains=true&returnGeometry=false&f=json&searchText=xyzxyzxyz&layers=3&searchFields=NM4",
+   "https://zbgis.skgeodesy.sk/zbgis/rest/services/Ulice_MVSR/MapServer/find?contains=true&returnGeometry=false&f=json&searchText=xyzxyzxyz&layers=0&searchFields=STRT_NAME",
+   "https://ags.cuzk.gov.cz/arcgis/rest/services/RUIAN/Vyhledavaci_sluzba_nad_daty_RUIAN/MapServer/exts/GeocodeSOE/suggest?text=xyzxyzxyz&maxSuggestions=15&f=json"
+  ],
+  "items": [],
+  "note": "Nic jsem nenašla.",
+  "warns": 0
+ },
+ "SK: výpadek ZBGIS i RÚIAN, nic nenalezeno": {
+  "requests": [
+   "https://zbgis.skgeodesy.sk/zbgis/rest/services/Uzemnospravne_clenenie/MapServer/find?contains=true&returnGeometry=false&f=json&searchText=Hlavn%C3%A1&layers=3&searchFields=NM4",
+   "https://zbgis.skgeodesy.sk/zbgis/rest/services/Ulice_MVSR/MapServer/find?contains=true&returnGeometry=false&f=json&searchText=Hlavn%C3%A1&layers=0&searchFields=STRT_NAME",
+   "https://ags.cuzk.gov.cz/arcgis/rest/services/RUIAN/Vyhledavaci_sluzba_nad_daty_RUIAN/MapServer/exts/GeocodeSOE/suggest?text=Hlavn%C3%A1&maxSuggestions=15&f=json"
+  ],
+  "items": [],
+  "note": "Nic jsem nenašla.",
+  "warns": 1
+ },
+ "SK: český dotaz v Bratislavě, RÚIAN najde jen pozdě": {
+  "requests": [
+   "https://zbgis.skgeodesy.sk/zbgis/rest/services/Uzemnospravne_clenenie/MapServer/find?contains=true&returnGeometry=false&f=json&searchText=M%C3%A1nesova+Praha&layers=3&searchFields=NM4",
+   "https://zbgis.skgeodesy.sk/zbgis/rest/services/Ulice_MVSR/MapServer/find?contains=true&returnGeometry=false&f=json&searchText=M%C3%A1nesova+Praha&layers=0&searchFields=STRT_NAME",
+   "https://zbgis.skgeodesy.sk/zbgis/rest/services/Ulice_MVSR/MapServer/find?contains=true&returnGeometry=false&f=json&searchText=M%C3%A1nesova&layers=0&searchFields=STRT_NAME",
+   "https://ags.cuzk.gov.cz/arcgis/rest/services/RUIAN/Vyhledavaci_sluzba_nad_daty_RUIAN/MapServer/exts/GeocodeSOE/suggest?text=M%C3%A1nesova+Praha&maxSuggestions=15&f=json"
+  ],
+  "items": [
+   [
+    "Mánesova",
+    "Praha · ulice"
+   ],
+   [
+    "Mánesova 12",
+    "Vinohrady, 12000 Praha 2 · adresa"
+   ],
+   [
+    "Mánesova",
+    "Kladno · ulice"
+   ],
+   [
+    "Praha",
+    "Praha · obec"
+   ]
+  ],
+  "note": null,
+  "warns": 0
+ },
+ "AT: Vídeň, adresa s číslem, výběr": {
+  "requests": [
+   "https://data.wien.gv.at/daten/geo?service=WFS&version=2.0.0&request=GetFeature&typeNames=ogdwien%3AADRESSENOGD&outputFormat=application%2Fjson&srsName=EPSG%3A4326&count=10&propertyName=NAME_STR%2CNAME%2CPLZ%2CONR_VON%2CSHAPE&CQL_FILTER=NAME_STR+ILIKE+%27Neubaugasse%25%27+AND+NAME_ONR+ILIKE+%2712%25%27",
+   "https://zbgis.skgeodesy.sk/zbgis/rest/services/Ulice_MVSR/MapServer/find?contains=true&returnGeometry=false&f=json&searchText=Neubaugasse&layers=0&searchFields=STRT_NAME",
+   "https://zbgis.skgeodesy.sk/zbgis/rest/services/RA_Adresne_body/MapServer/find?contains=false&returnGeometry=false&f=json&searchText=Neubaugasse&layers=0&searchFields=STREETNAME"
+  ],
+  "items": [
+   [
+    "Neubaugasse 12-14",
+    "1070 Wien · adresa"
+   ]
+  ],
+  "note": null,
+  "warns": 0,
+  "pick": {
+   "requests": [
+    "https://data.wien.gv.at/daten/geo?service=WFS&version=2.0.0&request=GetFeature&typeNames=ogdwien%3ASTRASSENGRAPHOGD&outputFormat=application%2Fjson&srsName=EPSG%3A4326&count=200&propertyName=FEATURENAME%2CSHAPE&CQL_FILTER=FEATURENAME+%3D+%27Neubaugasse%27+AND+BBOX%28SHAPE%2C+16.34700456072129%2C+48.197503377650015%2C+16.352395439278705%2C+48.201096622349986%2C+%27EPSG%3A4326%27%29"
+   ],
+   "view": [
+    [
+     48.1993,
+     16.3497
+    ],
+    19
+   ],
+   "picked": {
+    "item": "Neubaugasse 12-14, 1070 Wien",
+    "cut": [
+     16.34975,
+     48.19923
+    ]
+   },
+   "status": null
+  }
+ },
+ "AT: Vídeň, ulice, k tomu Photon": {
+  "requests": [
+   "https://data.wien.gv.at/daten/geo?service=WFS&version=2.0.0&request=GetFeature&typeNames=ogdwien%3AADRESSENOGD&outputFormat=application%2Fjson&srsName=EPSG%3A4326&count=400&propertyName=NAME_STR%2CNAME%2CPLZ%2CONR_VON%2CSHAPE&CQL_FILTER=NAME_STR+ILIKE+%27Mariahilfer+Stra%C3%9Fe%25%27",
+   "https://photon.komoot.io/api/?q=Mariahilfer+Stra%C3%9Fe&limit=20&lang=de&bbox=9.53%2C46.37%2C17.16%2C49.02&lat=48.2000&lon=16.3700",
+   "https://zbgis.skgeodesy.sk/zbgis/rest/services/Uzemnospravne_clenenie/MapServer/find?contains=true&returnGeometry=false&f=json&searchText=Mariahilfer+Stra%C3%9Fe&layers=3&searchFields=NM4",
+   "https://zbgis.skgeodesy.sk/zbgis/rest/services/Ulice_MVSR/MapServer/find?contains=true&returnGeometry=false&f=json&searchText=Mariahilfer+Stra%C3%9Fe&layers=0&searchFields=STRT_NAME",
+   "https://zbgis.skgeodesy.sk/zbgis/rest/services/Ulice_MVSR/MapServer/find?contains=true&returnGeometry=false&f=json&searchText=Mariahilfer&layers=0&searchFields=STRT_NAME"
+  ],
+  "items": [
+   [
+    "Mariahilfer Straße",
+    "1060 Wien · ulice"
+   ],
+   [
+    "Mariahilfer Straße",
+    "Wien · ulice"
+   ]
+  ],
+  "note": null,
+  "warns": 0
+ },
+ "AT: Graz jen Photon": {
+  "requests": [
+   "https://photon.komoot.io/api/?q=Herrengasse&limit=20&lang=de&bbox=9.53%2C46.37%2C17.16%2C49.02&lat=47.0700&lon=15.4400",
+   "https://zbgis.skgeodesy.sk/zbgis/rest/services/Uzemnospravne_clenenie/MapServer/find?contains=true&returnGeometry=false&f=json&searchText=Herrengasse&layers=3&searchFields=NM4",
+   "https://zbgis.skgeodesy.sk/zbgis/rest/services/Ulice_MVSR/MapServer/find?contains=true&returnGeometry=false&f=json&searchText=Herrengasse&layers=0&searchFields=STRT_NAME"
+  ],
+  "items": [
+   [
+    "Herrengasse",
+    "Graz · ulice"
+   ],
+   [
+    "Graz",
+    "S · obec"
+   ]
+  ],
+  "note": null,
+  "warns": 0
+ },
+ "AT: výpadek Vídně, Photon zůstane": {
+  "requests": [
+   "https://data.wien.gv.at/daten/geo?service=WFS&version=2.0.0&request=GetFeature&typeNames=ogdwien%3AADRESSENOGD&outputFormat=application%2Fjson&srsName=EPSG%3A4326&count=400&propertyName=NAME_STR%2CNAME%2CPLZ%2CONR_VON%2CSHAPE&CQL_FILTER=NAME_STR+ILIKE+%27Neubaugasse%25%27",
+   "https://photon.komoot.io/api/?q=Neubaugasse&limit=20&lang=de&bbox=9.53%2C46.37%2C17.16%2C49.02&lat=48.2000&lon=16.3700",
+   "https://zbgis.skgeodesy.sk/zbgis/rest/services/Uzemnospravne_clenenie/MapServer/find?contains=true&returnGeometry=false&f=json&searchText=Neubaugasse&layers=3&searchFields=NM4",
+   "https://zbgis.skgeodesy.sk/zbgis/rest/services/Ulice_MVSR/MapServer/find?contains=true&returnGeometry=false&f=json&searchText=Neubaugasse&layers=0&searchFields=STRT_NAME"
+  ],
+  "items": [
+   [
+    "Neubaugasse",
+    "Wien · ulice"
+   ]
+  ],
+  "note": null,
+  "warns": 1
+ },
+ "DE: Berlín Photon u středu mapy, výběr": {
+  "requests": [
+   "https://photon.komoot.io/api/?q=Unter+den+Linden+1&limit=20&lang=de&bbox=5.86%2C47.27%2C15.04%2C55.06&lat=52.5200&lon=13.4000",
+   "https://zbgis.skgeodesy.sk/zbgis/rest/services/Ulice_MVSR/MapServer/find?contains=true&returnGeometry=false&f=json&searchText=Unter+den+Linden&layers=0&searchFields=STRT_NAME",
+   "https://zbgis.skgeodesy.sk/zbgis/rest/services/Ulice_MVSR/MapServer/find?contains=true&returnGeometry=false&f=json&searchText=Unter+den&layers=0&searchFields=STRT_NAME",
+   "https://zbgis.skgeodesy.sk/zbgis/rest/services/Ulice_MVSR/MapServer/find?contains=true&returnGeometry=false&f=json&searchText=Unter&layers=0&searchFields=STRT_NAME",
+   "https://zbgis.skgeodesy.sk/zbgis/rest/services/RA_Adresne_body/MapServer/find?contains=false&returnGeometry=false&f=json&searchText=Unter+den+Linden&layers=0&searchFields=STREETNAME"
+  ],
+  "items": [
+   [
+    "Unter den Linden 1",
+    "1 Berlin · adresa"
+   ],
+   [
+    "Unter den Linden",
+    "Berlin · ulice"
+   ]
+  ],
+  "note": null,
+  "warns": 0,
+  "pick": {
+   "requests": [],
+   "view": [
+    [
+     52.517,
+     13.39
+    ],
+    19
+   ],
+   "picked": {
+    "item": "Unter den Linden 1, 1 Berlin",
+    "cut": [
+     13.39,
+     52.517
+    ]
+   },
+   "status": null
+  }
+ },
+ "CH: Curych, Photon CH a LI": {
+  "requests": [
+   "https://photon.komoot.io/api/?q=Bahnhofstrasse+Z%C3%BCrich&limit=20&lang=default&bbox=5.95%2C45.81%2C10.5%2C47.81&lat=47.3700&lon=8.5400",
+   "https://zbgis.skgeodesy.sk/zbgis/rest/services/Uzemnospravne_clenenie/MapServer/find?contains=true&returnGeometry=false&f=json&searchText=Bahnhofstrasse+Z%C3%BCrich&layers=3&searchFields=NM4",
+   "https://zbgis.skgeodesy.sk/zbgis/rest/services/Ulice_MVSR/MapServer/find?contains=true&returnGeometry=false&f=json&searchText=Bahnhofstrasse+Z%C3%BCrich&layers=0&searchFields=STRT_NAME",
+   "https://zbgis.skgeodesy.sk/zbgis/rest/services/Ulice_MVSR/MapServer/find?contains=true&returnGeometry=false&f=json&searchText=Bahnhofstrasse&layers=0&searchFields=STRT_NAME"
+  ],
+  "items": [
+   [
+    "Bahnhofstrasse",
+    "Zürich · ulice"
+   ]
+  ],
+  "note": null,
+  "warns": 0
+ },
+ "BE: Brusel, Photon BE a LU": {
+  "requests": [
+   "https://photon.komoot.io/api/?q=Rue+Neuve&limit=20&lang=default&bbox=2.5%2C49.44%2C6.53%2C51.51&lat=50.8500&lon=4.3500",
+   "https://zbgis.skgeodesy.sk/zbgis/rest/services/Uzemnospravne_clenenie/MapServer/find?contains=true&returnGeometry=false&f=json&searchText=Rue+Neuve&layers=3&searchFields=NM4",
+   "https://zbgis.skgeodesy.sk/zbgis/rest/services/Ulice_MVSR/MapServer/find?contains=true&returnGeometry=false&f=json&searchText=Rue+Neuve&layers=0&searchFields=STRT_NAME",
+   "https://zbgis.skgeodesy.sk/zbgis/rest/services/Ulice_MVSR/MapServer/find?contains=true&returnGeometry=false&f=json&searchText=Rue&layers=0&searchFields=STRT_NAME"
+  ],
+  "items": [
+   [
+    "Rue Neuve",
+    "Bruxelles · ulice"
+   ]
+  ],
+  "note": null,
+  "warns": 0
+ },
+ "US: San Francisco, jeden dotaz s obdélníkem metra": {
+  "requests": [
+   "https://photon.komoot.io/api/?q=Market+Street+San+Francisco&limit=20&lang=default&bbox=-122.62%2C37.64%2C-122.28%2C37.93&lat=37.7700&lon=-122.4200",
+   "https://zbgis.skgeodesy.sk/zbgis/rest/services/Uzemnospravne_clenenie/MapServer/find?contains=true&returnGeometry=false&f=json&searchText=Market+Street+San+Francisco&layers=3&searchFields=NM4",
+   "https://zbgis.skgeodesy.sk/zbgis/rest/services/Ulice_MVSR/MapServer/find?contains=true&returnGeometry=false&f=json&searchText=Market+Street+San+Francisco&layers=0&searchFields=STRT_NAME",
+   "https://zbgis.skgeodesy.sk/zbgis/rest/services/Ulice_MVSR/MapServer/find?contains=true&returnGeometry=false&f=json&searchText=Market+Street+San&layers=0&searchFields=STRT_NAME",
+   "https://zbgis.skgeodesy.sk/zbgis/rest/services/Ulice_MVSR/MapServer/find?contains=true&returnGeometry=false&f=json&searchText=Market+Street&layers=0&searchFields=STRT_NAME"
+  ],
+  "items": [
+   [
+    "Market Street",
+    "San Francisco · ulice"
+   ]
+  ],
+  "note": null,
+  "warns": 0
+ },
+ "NL: PDOK, výběr adresy": {
+  "requests": [
+   "https://api.pdok.nl/bzk/locatieserver/search/v3_1/free?q=Prinsengracht+263&rows=20&fq=type%3A%28adres+OR+weg+OR+woonplaats%29&fl=weergavenaam%2Ctype%2Ccentroide_ll%2Cstraatnaam"
+  ],
+  "items": [
+   [
+    "Prinsengracht 263",
+    "Amsterdam · adresa"
+   ]
+  ],
+  "note": null,
+  "warns": 0,
+  "pick": {
+   "requests": [],
+   "view": [
+    [
+     52.375,
+     4.884
+    ],
+    19
+   ],
+   "picked": {
+    "item": "Prinsengracht 263, Amsterdam",
+    "cut": [
+     4.884,
+     52.375
+    ]
+   },
+   "status": null
+  }
+ },
+ "PL: UUG, třetí tvar dotazu, výběr": {
+  "requests": [
+   "https://services.gugik.gov.pl/uug/?request=GetAddress&address=Krak%C3%B3w+Floria%C5%84ska+3&srid=4326",
+   "https://services.gugik.gov.pl/uug/?request=GetAddress&address=Krak%C3%B3w%2C+Floria%C5%84ska+3&srid=4326"
+  ],
+  "items": [
+   [
+    "Floriańska 3",
+    "31-021 Kraków · adresa"
+   ]
+  ],
+  "note": null,
+  "warns": 0,
+  "pick": {
+   "requests": [],
+   "view": [
+    [
+     50.06,
+     19.94
+    ],
+    19
+   ],
+   "picked": {
+    "item": "Floriańska 3, 31-021 Kraków",
+    "cut": [
+     19.94,
+     50.06
+    ]
+   },
+   "status": null
+  }
+ },
+ "PL: UUG nic, Photon v Polsku": {
+  "requests": [
+   "https://services.gugik.gov.pl/uug/?request=GetAddress&address=Floria%C5%84ska&srid=4326",
+   "https://photon.komoot.io/api/?q=Floria%C5%84ska&limit=20&lang=default&bbox=14.1%2C49%2C24.2%2C54.9&lat=50.0600&lon=19.9400",
+   "https://zbgis.skgeodesy.sk/zbgis/rest/services/Uzemnospravne_clenenie/MapServer/find?contains=true&returnGeometry=false&f=json&searchText=Floria%C5%84ska&layers=3&searchFields=NM4",
+   "https://zbgis.skgeodesy.sk/zbgis/rest/services/Ulice_MVSR/MapServer/find?contains=true&returnGeometry=false&f=json&searchText=Floria%C5%84ska&layers=0&searchFields=STRT_NAME"
+  ],
+  "items": [
+   [
+    "Floriańska",
+    "Kraków · ulice"
+   ]
+  ],
+  "note": null,
+  "warns": 0
+ },
+ "FR: Géoplateforme u středu mapy": {
+  "requests": [
+   "https://data.geopf.fr/geocodage/search?q=rue+de+Rivoli&autocomplete=1&limit=15&index=address&lat=48.86&lon=2.35"
+  ],
+  "items": [
+   [
+    "1 Rue de Rivoli 75004 Paris",
+    "adresa"
+   ]
+  ],
+  "note": null,
+  "warns": 0,
+  "pick": {
+   "requests": [],
+   "view": [
+    [
+     48.855,
+     2.36
+    ],
+    19
+   ],
+   "picked": {
+    "item": "1 Rue de Rivoli 75004 Paris",
+    "cut": [
+     2.36,
+     48.855
+    ]
+   },
+   "status": null
+  }
+ },
+ "ES: CartoCiudad s find pro první": {
+  "requests": [
+   "https://www.cartociudad.es/geocoder/api/geocoder/candidates?q=Gran+Via&limit=15",
+   "https://www.cartociudad.es/geocoder/api/geocoder/find?id=5&type=callejero"
+  ],
+  "items": [
+   [
+    "CALLE GRAN VIA",
+    "Madrid · ulice"
+   ]
+  ],
+  "note": null,
+  "warns": 0
+ },
+ "EE: In-ADS": {
+  "requests": [
+   "https://aks.geoportaal.ee/inaks/inaadress/gazetteer?address=Narva+mnt+10&results=15&features=EHITISHOONE%2CTANAV%2CEHAK"
+  ],
+  "items": [
+   [
+    "Narva mnt 10",
+    "Tallinn · adresa"
+   ]
+  ],
+  "note": null,
+  "warns": 0
+ },
+ "SI: Photon SI a GURS s číslem": {
+  "requests": [
+   "https://photon.komoot.io/api/?q=Trubarjeva+cesta+5&limit=20&lang=default&bbox=13.37%2C45.42%2C16.61%2C46.88&lat=46.0500&lon=14.5000",
+   "https://ipi.eprostor.gov.si/wfs-si-gurs-kn/wfs?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetFeature&TYPENAMES=SI.GURS.KN%3ANASLOVI_HS&outputFormat=application%2Fjson&srsName=EPSG%3A4326&count=15&PROPERTYNAME=ULICA_NAZIV%2CHS_STEVILKA%2CHS_DODATEK%2CNASELJE_NAZIV%2CGEOM&FILTER=%3Cfes%3AFilter+xmlns%3Afes%3D%22http%3A%2F%2Fwww.opengis.net%2Ffes%2F2.0%22%3E%3Cfes%3AAnd%3E%3Cfes%3APropertyIsLike+wildCard%3D%22*%22+singleChar%3D%22.%22+escapeChar%3D%22%21%22+matchCase%3D%22false%22%3E%3Cfes%3AValueReference%3EULICA_NAZIV%3C%2Ffes%3AValueReference%3E%3Cfes%3ALiteral%3ETrubarjeva+cesta*%3C%2Ffes%3ALiteral%3E%3C%2Ffes%3APropertyIsLike%3E%3Cfes%3APropertyIsEqualTo%3E%3Cfes%3AValueReference%3EHS_STEVILKA%3C%2Ffes%3AValueReference%3E%3Cfes%3ALiteral%3E5%3C%2Ffes%3ALiteral%3E%3C%2Ffes%3APropertyIsEqualTo%3E%3C%2Ffes%3AAnd%3E%3C%2Ffes%3AFilter%3E"
+  ],
+  "items": [
+   [
+    "Trubarjeva cesta 5",
+    "Ljubljana · adresa"
+   ],
+   [
+    "Trubarjeva cesta",
+    "Ljubljana · ulice"
+   ]
+  ],
+  "note": null,
+  "warns": 0
+ },
+ "FI: Photon FI a Ryhti, první dotaz prázdný, druhý najde": {
+  "requests": [
+   "https://photon.komoot.io/api/?q=Bulevardi+5+Helsinki&limit=20&lang=default&bbox=19.08%2C59.45%2C31.59%2C70.1&lat=60.1700&lon=24.9400",
+   "https://paikkatiedot.ymparisto.fi/geoserver/ryhti_building/ogc/features/v1/collections/open_address/items?f=json&filter-lang=cql-text&filter=%28address_name_fin+IN+%28%27Bulevardi%27%29+OR+address_name_swe+IN+%28%27Bulevardi%27%29%29+AND+number_part_of_address_number+%3D+5+AND+%28postal_office_fin+%3D+%27HELSINKI%27+OR+postal_office_swe+%3D+%27HELSINKI%27%29&limit=15",
+   "https://paikkatiedot.ymparisto.fi/geoserver/ryhti_building/ogc/features/v1/collections/open_address/items?f=json&filter-lang=cql-text&filter=%28address_fin+ILIKE+%27Bulevardi+5%27+OR+address_swe+ILIKE+%27Bulevardi+5%27%29+AND+%28postal_office_fin+ILIKE+%27Helsinki%25%27+OR+postal_office_swe+ILIKE+%27Helsinki%25%27%29&limit=15"
+  ],
+  "items": [
+   [
+    "Bulevardi 5",
+    "Helsinki · adresa"
+   ]
+  ],
+  "note": null,
+  "warns": 0
+ },
+ "DK: GSearch s tokenem, adresa, Photon se neptá": {
+  "requests": [
+   "https://api.dataforsyningen.dk/rest/gsearch/v2.0/husnummer?q=N%C3%B8rrebrogade+10&limit=15&srid=4326&token=test-token"
+  ],
+  "items": [
+   [
+    "Nørrebrogade 10",
+    "2200 København N · adresa"
+   ]
+  ],
+  "note": null,
+  "warns": 0,
+  "pick": {
+   "requests": [],
+   "view": [
+    [
+     55.69,
+     12.55
+    ],
+    19
+   ],
+   "picked": {
+    "item": "Nørrebrogade 10, 2200 København N",
+    "cut": [
+     12.55,
+     55.69
+    ]
+   },
+   "status": null
+  }
+ },
+ "DK: GSearch s tokenem, ulice a obce": {
+  "requests": [
+   "https://api.dataforsyningen.dk/rest/gsearch/v2.0/navngivenvej?q=Odense&limit=15&srid=4326&token=test-token",
+   "https://api.dataforsyningen.dk/rest/gsearch/v2.0/stednavn?q=Odense&limit=10&srid=4326&token=test-token"
+  ],
+  "items": [
+   [
+    "Odensevej",
+    "Odense · ulice"
+   ],
+   [
+    "Odense",
+    "obec"
+   ]
+  ],
+  "note": null,
+  "warns": 0
+ },
+ "DK: token odmítnut (401), Photon DK": {
+  "requests": [
+   "https://api.dataforsyningen.dk/rest/gsearch/v2.0/navngivenvej?q=N%C3%B8rrebrogade&limit=15&srid=4326&token=test-token",
+   "https://api.dataforsyningen.dk/rest/gsearch/v2.0/stednavn?q=N%C3%B8rrebrogade&limit=10&srid=4326&token=test-token",
+   "https://photon.komoot.io/api/?q=N%C3%B8rrebrogade&limit=20&lang=default&bbox=8.07%2C54.55%2C15.2%2C57.76&lat=55.6800&lon=12.5700"
+  ],
+  "items": [
+   [
+    "Nørrebrogade",
+    "København · ulice"
+   ]
+  ],
+  "note": null,
+  "warns": 1
+ },
+ "DK: bez tokenu, jen Photon DK": {
+  "requests": [
+   "https://photon.komoot.io/api/?q=N%C3%B8rrebrogade&limit=20&lang=default&bbox=8.07%2C54.55%2C15.2%2C57.76&lat=55.6800&lon=12.5700",
+   "https://zbgis.skgeodesy.sk/zbgis/rest/services/Uzemnospravne_clenenie/MapServer/find?contains=true&returnGeometry=false&f=json&searchText=N%C3%B8rrebrogade&layers=3&searchFields=NM4",
+   "https://zbgis.skgeodesy.sk/zbgis/rest/services/Ulice_MVSR/MapServer/find?contains=true&returnGeometry=false&f=json&searchText=N%C3%B8rrebrogade&layers=0&searchFields=STRT_NAME"
+  ],
+  "items": [
+   [
+    "Nørrebrogade",
+    "København · ulice"
+   ]
+  ],
+  "note": null,
+  "warns": 0
+ },
+ "SK mapa: německý dotaz, Photon": {
+  "requests": [
+   "https://zbgis.skgeodesy.sk/zbgis/rest/services/Ulice_MVSR/MapServer/find?contains=true&returnGeometry=false&f=json&searchText=Hauptstra%C3%9Fe&layers=0&searchFields=STRT_NAME",
+   "https://zbgis.skgeodesy.sk/zbgis/rest/services/RA_Adresne_body/MapServer/find?contains=false&returnGeometry=false&f=json&searchText=Hauptstra%C3%9Fe&layers=0&searchFields=STREETNAME",
+   "https://photon.komoot.io/api/?q=Hauptstra%C3%9Fe+5&limit=20&lang=de&bbox=5.86%2C45.81%2C17.16%2C55.06&lat=48.1500&lon=17.1100"
+  ],
+  "items": [
+   [
+    "Unter den Linden 1",
+    "1 Berlin · adresa"
+   ],
+   [
+    "Unter den Linden",
+    "Berlin · ulice"
+   ],
+   [
+    "Unter den Linden",
+    "Wien · ulice"
+   ]
+  ],
+  "note": null,
+  "warns": 0
+ }
+}
