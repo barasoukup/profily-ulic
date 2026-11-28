@@ -5,11 +5,10 @@ import "../app/public/america.js"; // the states of North America (late.js)
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
-import { LANGS } from "../app/public/i18n.js";
+import { PUBLIC, moduleFiles } from "./helpers/files.js";
 
-const DIR = new URL("../app/public/", import.meta.url);
-const FILES = [...fs.readdirSync(DIR).filter((f) => f.endsWith(".js")), ...fs.readdirSync(new URL("towns/", DIR)).map((f) => `towns/${f}`)]
-  .filter((f) => f.endsWith(".js") && !Object.keys(LANGS).some((l) => f === `${l}.js`));
+const DIR = PUBLIC;
+const FILES = moduleFiles({ dirs: ["towns"], noLangs: true });
 
 test("mimo countries/ žádná podmínka na stát", () => {
   const bad = [];

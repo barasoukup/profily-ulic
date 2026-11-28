@@ -6,10 +6,10 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
 import { LANGS } from "../app/public/i18n.js";
+import { PUBLIC, moduleFiles } from "./helpers/files.js";
 
-const DIR = new URL("../app/public/", import.meta.url);
-const FILES = [...fs.readdirSync(DIR).filter((f) => f.endsWith(".js")), ...["towns", "countries"].flatMap((d) => fs.readdirSync(new URL(`${d}/`, DIR)).map((f) => `${d}/${f}`))]
-  .filter((f) => f.endsWith(".js"));
+const DIR = PUBLIC;
+const FILES = moduleFiles();
 const src = (f) => fs.readFileSync(new URL(f, DIR), "utf8");
 const L = Object.fromEntries(Object.keys(LANGS).map((l) => [l, JSON.parse(fs.readFileSync(new URL(`locales/${l}.json`, DIR), "utf8"))]));
 const CS = L.cs, EN = L.en;

@@ -5,12 +5,11 @@ import "../app/public/america.js"; // the states of North America (late.js)
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
-import { LANGS } from "../app/public/i18n.js";
+import { PUBLIC, moduleFiles } from "./helpers/files.js";
 
-const DIR = new URL("../app/public/", import.meta.url);
-const FILES = [...fs.readdirSync(DIR).filter((f) => f.endsWith(".js")), ...["towns", "countries"].flatMap((d) => fs.readdirSync(new URL(`${d}/`, DIR)).map((f) => `${d}/${f}`))]
-  // The languages' texts (en.js, fr.js…) only link to the sources, in the footer.
-  .filter((f) => f.endsWith(".js") && !Object.keys(LANGS).some((l) => f === `${l}.js`));
+const DIR = PUBLIC;
+// The languages' texts (en.js, fr.js…) only link to the sources, in the footer.
+const FILES = moduleFiles({ noLangs: true });
 // Map tiles and links (not fetched by the code).
 const NOT_FETCHED = new Set(["tile.openstreetmap.org", "www.openstreetmap.org", "tiles.arcgis.com", "mapy.com", "github.com"]);
 

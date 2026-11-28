@@ -5,21 +5,13 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
 import path from "node:path";
-import { fileURLToPath } from "node:url";
 import { FLAGS, flagsOf, offOf, flagPairs, addressWithout } from "../app/public/flags.js";
 import { switchesDoc, OUT } from "../tools/build_switches_doc.mjs";
+import { ROOT, PUB, walkScripts } from "./helpers/files.js";
+import { withLocation } from "./helpers/browser.js";
 
-const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const PUB = path.join(root, "app/public");
-const SKIP = new Set(["leaflet", "fonts", "node_modules", "ort", "data", "vendor"]);
-function walk(dir, out = []) {
-  for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
-    if (e.isDirectory()) { if (!SKIP.has(e.name) && !e.name.startsWith(".")) walk(path.join(dir, e.name), out); }
-    else if (/\.m?js$/.test(e.name)) out.push(path.join(dir, e.name));
-  }
-  return out;
-}
-const files = walk(PUB).filter((f) => !f.endsWith("/flags.js"));
+const root = ROOT;
+const files = walkScripts(PUB).filter((f) => !f.endsWith("/flags.js"));
 const text = new Map(files.map((f) => [f, fs.readFileSync(f, "utf8")]));
 const rel = (f) => path.relative(root, f);
 
@@ -73,10 +65,8 @@ test("vypínače: docs/switches.md je aktuální", () => {
   assert.ok(fs.readFileSync(OUT, "utf8") === switchesDoc(), "docs/switches.md je zastaralé: node tools/build_switches_doc.mjs");
 });
 
-test("vypínače: čtení z adresy a v Node z objektu modulu", () => {
-  const had = Object.getOwnPropertyDescriptor(globalThis, "location");
+test("vypínače: čtení z adresy a v Node z objektu modulu", () => withLocation(null, () => {
   try {
-    delete globalThis.location;
     globalThis.PROFILY_TEST = { wien: "0", off: "a,b" };
     assert.equal(flagsOf("PROFILY_TEST")("wien"), "0");
     assert.equal(flagsOf("PROFILY_TEST")("dc"), null);
@@ -91,6 +81,5 @@ test("vypínače: čtení z adresy a v Node z objektu modulu", () => {
     assert.equal(flagsOf(null)("wien"), null, "adresa se čte znovu, když se změní");
   } finally {
     delete globalThis.PROFILY_TEST;
-    if (had) Object.defineProperty(globalThis, "location", had); else delete globalThis.location;
   }
-});
+}));

@@ -5,22 +5,13 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
 import path from "node:path";
-import { fileURLToPath } from "node:url";
 import * as espree from "espree";
 import { STATE_CONDITIONS, UNUSED_EXPORTS, LONG_FILES, LONG_FUNCTIONS } from "./architecture-allowed.js";
+import { ROOT, PUB, walkScripts } from "./helpers/files.js";
 
-const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const PUB = path.join(root, "app/public");
 const MAX_FILE = 1000, MAX_FUNCTION = 100;
-const rel = (f) => path.relative(root, f);
-
-function walk(dir, out = [], skip = ["leaflet", "fonts", "node_modules", "ort", "data", ".git", ".wrangler"]) {
-  for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
-    if (e.isDirectory()) { if (!skip.includes(e.name) && !e.name.startsWith(".")) walk(path.join(dir, e.name), out, skip); }
-    else if (/\.m?js$/.test(e.name)) out.push(path.join(dir, e.name));
-  }
-  return out;
-}
+const rel = (f) => path.relative(ROOT, f);
+const walk = (dir, out = [], skip = ["leaflet", "fonts", "node_modules", "ort", "data", ".git", ".wrangler"]) => walkScripts(dir, skip, out);
 // The app's scripts. The translations (en.js, sk.js … two letters) are data, not code.
 const appFiles = walk(PUB).filter((f) => !/\/[a-z]{2}\.js$/.test(f) || f.includes("/countries/")).sort();
 const parse = (f) => espree.parse(fs.readFileSync(f, "utf8"), { ecmaVersion: "latest", sourceType: "module", loc: true });
@@ -68,7 +59,7 @@ test("a condition on a state only in countries/ (the exceptions only fewer)", ()
 // and the log Worker counts as an importer; a namespace (import * as, import(), export * from) uses all of a module.
 function usedAndExports() {
   const exports = new Map(), used = new Map(), all = new Map();
-  const consumers = [...appFiles, ...["app", "tools", "tests", "evaluation", "logging"].flatMap((d) => (fs.existsSync(path.join(root, d)) ? walk(path.join(root, d), [], ["node_modules", "data", "leaflet"]) : []))];
+  const consumers = [...appFiles, ...["app", "tools", "tests", "evaluation", "logging"].flatMap((d) => (fs.existsSync(path.join(ROOT, d)) ? walk(path.join(ROOT, d), [], ["node_modules", "data", "leaflet"]) : []))];
   const resolve = (from, spec) => {
     if (typeof spec !== "string" || !spec.startsWith(".")) return null;
     const p = path.resolve(path.dirname(from), spec);
