@@ -10,3 +10,5 @@
 export const PIECE_GREEN = 0.35;
 export const AI_RUN = 1.0;
 export const ALONG = 10, SIDEWALK = 2.5, SIDEWALK_MAX = 6, HOUSE = 5, GREEN_AREA = 0.1; // evaluation/ortho-osm/green.mjs: on ČÚZK 12.5 cm 67 % (Prague) and 82 % (Brno) of the metres right
+// What a piece of the estimate is called when a technical map's symbol (MTVU code) says what it is.
+export const SYMBOL_LABEL = { 401: "zeleň (technická mapa)", 702: "chodník (technická mapa)", 1003: "zpevněná plocha (technická mapa)", 603: "dvůr (technická mapa)", 704: "parkoviště (technická mapa)" };

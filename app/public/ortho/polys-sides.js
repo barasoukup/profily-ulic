@@ -3,14 +3,13 @@ import { P } from "./settings.js";
 import { greenValues, meanOf } from "./columns.js";
 import { TRACK_HALF, heavyRail, railHalf } from "./rail.js";
 import { OSM_SHARED, STREET } from "./road-tags.js";
-import { AI_RUN, GREEN_AREA, HOUSE, PIECE_GREEN, SIDEWALK, SIDEWALK_MAX } from "./measures.js";
+import { AI_RUN, GREEN_AREA, HOUSE, PIECE_GREEN, SIDEWALK, SIDEWALK_MAX, SYMBOL_LABEL } from "./measures.js";
 
 // The surfaces beside the street (parts of orthoOsmPolys, polys.js): what each side has from the kerb to the house, what the
 // map's symbols and the last things of the street add, and what lies behind everything else.
 const WALK_MIN = 1.0, WALK_WIN = 1.0; // the narrowest sidewalk the image may end (from the kerb) and the stretch of green that ends it (m)
 const BACK_MIN = 2; // m: the shortest run of green or paving the image may give behind everything else
 const REST_MAX = 12; // m: the paved area a stretch without a sidewalk may be
-const SYMBOL_LABEL = { 401: "zeleň (technická mapa)", 702: "chodník (technická mapa)", 1003: "zpevněná plocha (technická mapa)", 603: "dvůr (technická mapa)", 704: "parkoviště (technická mapa)" };
 
 // A stretch without a sidewalk (past SIDEWALK_MAX, or all of it where OSM says there is none): greenery where the image
 // is mostly green, a paved area up to REST_MAX m, else nothing (the profile ends: a yard, a field, a plot of its own).
