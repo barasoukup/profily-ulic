@@ -103,3 +103,11 @@ export function usable(st) {
   const mean = sum / seen, sd = Math.sqrt(Math.max(0, sq / seen - mean * mean));
   return sd >= 4 && mean > 5 && mean < 245;
 }
+
+// The green share of every column of the image that has one between a and b (m across the cut); none when there is no image.
+export function greenValues(cols, a, b) {
+  const g = [];
+  if (cols) for (let i = cols.ti(a); i < cols.ti(b); i++) if (i >= 0 && i < cols.nt && Number.isFinite(cols.green[i])) g.push(cols.green[i]);
+  return g;
+}
+export const meanOf = (g) => g.reduce((x, y) => x + y, 0) / g.length;

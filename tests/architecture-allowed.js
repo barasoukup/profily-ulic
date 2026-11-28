@@ -39,7 +39,6 @@ export const LONG_FUNCTIONS = {
   "app/public/maplayers.js:createDataLayers": 199,
   "app/public/maplayers.js:draw": 167,
   "app/public/ortho/beside.js:besidePassport": 168,
-  "app/public/ortho/polys.js:orthoOsmPolys": 427,
   "app/public/search.js:mountSearch": 174,
   "app/public/signs.js:deriveSigns": 117,
   "app/public/towns/plzen.js:parking": 110
