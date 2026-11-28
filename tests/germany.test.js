@@ -27,22 +27,22 @@ test("Německo: plochy Berlína, Hamburku a Cách na kódy MTVU, město podle po
 });
 
 test("Německo: ortofoto spolkové země podle polohy, u hranice i sousední", async () => {
-  const { landsAt, DE_ORTHO, deWmsUrl } = await import("../app/public/lanes-ortho.js");
+  const { landsAt, SOURCES, urlOf } = await import("../app/public/lanes-ortho.js");
   assert.deepEqual(await landsAt(11.5755, 48.1374), ["BY"]);
   assert.deepEqual(await landsAt(6.957, 50.94), ["NW"]);
   assert.equal((await landsAt(13.3777, 52.5163))[0], "BE");
   assert.deepEqual((await landsAt(9.98, 53.7)).slice(0, 2), ["SH", "HH"], "Norderstedt: Šlesvicko-Holštýnsko, pak Hamburk");
-  assert.equal(Object.keys(DE_ORTHO).length, 16);
-  assert.match(deWmsUrl(DE_ORTHO.HH, [0, 0, 1, 1], 10, 10), /time=2024/, "Hamburk výslovně 2024 (2022 je satelit pod uzavřenou licencí)");
+  assert.equal(Object.values(SOURCES).filter((s) => s.chain === "de").length, 16);
+  assert.match(urlOf(SOURCES["de-HH"].service, [0, 0, 1, 1], 10, 10), /time=2024/, "Hamburk výslovně 2024 (2022 je satelit pod uzavřenou licencí)");
 });
 
 test("Německo: CSP stránky pustí ortofota všech zemí (connect-src pro odhad, img-src pro podklad) a mapy měst", async () => {
   const fs = await import("node:fs");
   const html = fs.readFileSync(new URL("../app/public/index.html", import.meta.url), "utf8");
   const connect = html.match(/connect-src [^;]*/)[0], img = html.match(/img-src [^;]*/)[0];
-  const { DE_ORTHO } = await import("../app/public/lanes-ortho.js");
-  for (const [land, o] of Object.entries(DE_ORTHO)) {
-    const host = new URL(o.wms).origin;
+  const { SOURCES } = await import("../app/public/lanes-ortho.js");
+  for (const { land, service } of Object.values(SOURCES).filter((s) => s.chain === "de")) {
+    const host = new URL(service.base).origin;
     assert.ok(connect.includes(host), `connect-src ${land} ${host}`);
     assert.ok(img.includes(host), `img-src ${land} ${host}`);
   }

@@ -16,11 +16,11 @@ test("Dánsko: ortofoto jen s tokenem, bez něj poctivá chyba", async () => {
   K.setDkToken("");
   await assert.rejects(L.laneImage({ ...opts, fetchImpl: () => { throw new Error("no request"); } }), (e) => e.noKey === true, "bez tokenu se nic neptá");
   K.setDkToken("test-token");
-  const u = new URL(L.DK_ORTHO(20, 561234, 327654));
+  const u = new URL(L.SOURCES.dk.service.tileUrl(20, 561234, 327654));
   assert.equal(u.origin + u.pathname, "https://api.dataforsyningen.dk/orto_foraar_webm_DAF");
   for (const [k, v] of Object.entries({ service: "WMTS", request: "GetTile", layer: "orto_foraar_webm", tilematrixset: "DFD_GoogleMapsCompatible", tilematrix: "20", tilerow: "327654", tilecol: "561234", token: "test-token" })) assert.equal(u.searchParams.get(k), v, k);
   // The basemap's template (the review of 24. 11. 2026): Leaflet's placeholders stay as they are, not URL-encoded.
-  const tpl = L.DK_ORTHO("{z}", "{x}", "{y}");
+  const tpl = L.SOURCES.dk.service.tileUrl("{z}", "{x}", "{y}");
   for (const k of ["tilematrix={z}", "tilerow={y}", "tilecol={x}"]) assert.ok(tpl.includes(k), k);
   assert.ok(!/%7B|%7D/i.test(tpl), "no encoded braces");
   assert.deepEqual([...tpl.matchAll(/\{ *([\w_ -]+) *\}/g)].map((m) => m[1]).sort(), ["x", "y", "z"]);

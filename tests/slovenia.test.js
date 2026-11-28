@@ -6,7 +6,7 @@ import fs from "node:fs";
 
 test("Slovinsko: ortofoto GURS DOF025 ve Web Mercatoru", async () => {
   const L = await import("../app/public/lanes-ortho.js");
-  const u = new URL(L.SI_ORTHO([1614700, 5790900, 1614775, 5790975], 300, 300));
+  const u = new URL(L.urlOf(L.SOURCES.si.service, [1614700, 5790900, 1614775, 5790975], 300, 300));
   assert.equal(u.origin + u.pathname, "https://ipi.eprostor.gov.si/wms-si-gurs-dts/wms");
   assert.equal(u.searchParams.get("LAYERS"), "SI.GURS.ZPDZ:DOF025_3857");
   assert.equal(u.searchParams.get("CRS"), "EPSG:3857");

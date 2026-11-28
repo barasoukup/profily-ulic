@@ -69,10 +69,10 @@ test("Boston: mapa podle místa (Memorial Drive je Cambridge), domy z počtu pod
   const mem = [-71.1035, 42.3685];
   assert.ok(inArea({ ...AREAS.cambridge, near: 0 }, ...mem));
   assert.ok(!inArea({ ...AREAS.boston, near: 0 }, ...mem));
-  const { US_ORTHO, usOrthoAt } = await import("../app/public/lanes-ortho.js");
+  const { US_ORTHO, idsAt } = await import("../app/public/lanes-ortho.js");
   assert.equal(US_ORTHO["us-ma"].town, "bostonmetro");
-  assert.deepEqual(usOrthoAt(-71.0578, 42.3603), ["us-ma"]);
-  assert.deepEqual(usOrthoAt(-77.0365, 38.8977), ["us-dc"]);
+  assert.deepEqual(idsAt("us", -71.0578, 42.3603), ["us-ma"]);
+  assert.deepEqual(idsAt("us", -77.0365, 38.8977), ["us-dc"]);
 });
 
 test("Boston: pravidla šířek z Boston Complete Streets Guidelines jen v metru Bostonu, ilustrace MBTA", async () => {

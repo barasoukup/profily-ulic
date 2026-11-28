@@ -6,7 +6,7 @@ import fs from "node:fs";
 
 test("Estonsko: dlaždice ortofota v TMS (osa y odspodu)", async () => {
   const L = await import("../app/public/lanes-ortho.js");
-  assert.match(L.EE_ORTHO, /^https:\/\/tiles\.maaamet\.ee\/tm\/tms\/1\.0\.0\/foto@GMC$/);
+  assert.match(L.SOURCES.ee.service.base, /^https:\/\/tiles\.maaamet\.ee\/tm\/tms\/1\.0\.0\/foto@GMC$/);
 });
 
 test("Estonsko: budovy ETAK (výška k hřebeni, podlaží z OSM mají přednost)", async () => {

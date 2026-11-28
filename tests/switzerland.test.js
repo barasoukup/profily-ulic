@@ -23,7 +23,7 @@ test("Švýcarsko: druhy úředního vyměřování na kódy MTVU, vypínač ?av
 });
 
 test("Švýcarsko: SWISSIMAGE po dlaždicích {z}/{x}/{y}, CSP pustí swisstopo a geodienste.ch", async () => {
-  const { CH_ORTHO } = await import("../app/public/lanes-ortho.js");
+  const CH_ORTHO = (await import("../app/public/lanes-ortho.js")).SOURCES.ch.service.base;
   assert.match(CH_ORTHO, /wmts\.geo\.admin\.ch/);
   const html = fs.readFileSync(new URL("../app/public/index.html", import.meta.url), "utf8");
   const connect = html.match(/connect-src [^;]*/)[0], img = html.match(/img-src [^;]*/)[0];

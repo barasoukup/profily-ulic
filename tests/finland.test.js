@@ -9,15 +9,15 @@ const fixture = (f) => JSON.parse(fs.readFileSync(new URL(`./fixtures/${f}`, imp
 
 test("Finsko: ortofoto jen v Helsinkách, Espoo a Turku", async () => {
   const L = await import("../app/public/lanes-ortho.js");
-  assert.deepEqual(L.fiOrthoAt(24.938, 60.1695), ["fi-hki"]);
-  assert.deepEqual(L.fiOrthoAt(24.805, 60.176), ["fi-esp"]);
-  assert.deepEqual(L.fiOrthoAt(22.268, 60.451), ["fi-tku"]);
-  for (const [lon, lat] of [[23.76, 61.498], [25.465, 65.012], [19.935, 60.097]]) assert.deepEqual(L.fiOrthoAt(lon, lat), [], `${lon},${lat}`);
-  const u = new URL(L.FI_ORTHO["fi-hki"].url([2776000, 8437000, 2776080, 8437080], 800, 800));
+  assert.deepEqual(L.idsAt("fi", 24.938, 60.1695), ["fi-hki"]);
+  assert.deepEqual(L.idsAt("fi", 24.805, 60.176), ["fi-esp"]);
+  assert.deepEqual(L.idsAt("fi", 22.268, 60.451), ["fi-tku"]);
+  for (const [lon, lat] of [[23.76, 61.498], [25.465, 65.012], [19.935, 60.097]]) assert.deepEqual(L.idsAt("fi", lon, lat), [], `${lon},${lat}`);
+  const u = new URL(L.urlOf(L.SOURCES["fi-hki"].service, [2776000, 8437000, 2776080, 8437080], 800, 800));
   assert.equal(u.origin + u.pathname, "https://kartta.hel.fi/ws/geoserver/avoindata/wms");
   assert.equal(u.searchParams.get("LAYERS"), "avoindata:Ortoilmakuva_2026_5cm");
   assert.equal(u.searchParams.get("CRS"), "EPSG:3857");
-  assert.equal(new URL(L.FI_ORTHO["fi-tku"].url([0, 0, 1, 1], 1, 1, "image/png")).searchParams.get("TRANSPARENT"), "TRUE");
+  assert.equal(new URL(L.urlOf(L.SOURCES["fi-tku"].service, [0, 0, 1, 1], 1, 1, "image/png")).searchParams.get("TRANSPARENT"), "TRUE");
   // Outside the towns laneImage asks nothing (the estimate from OSM).
   const frame = { toLonLat: () => [23.76, 61.498] };
   assert.equal(await L.laneImage({ source: "fi", frame, dir: [1, 0], t0: -10, t1: 10, fetchImpl: () => { throw new Error("no request"); } }), null);

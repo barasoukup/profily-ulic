@@ -9,7 +9,7 @@ test("Malta: ortofoto 2018 ve stupních (služba nemá Web Mercator)", async () 
   const L = await import("../app/public/lanes-ortho.js");
   const R = 6378137, lat = 35.8989, lon = 14.5146;
   const x = (R * lon * Math.PI) / 180, y = R * Math.log(Math.tan(Math.PI / 4 + (lat * Math.PI) / 360));
-  const u = new URL(L.MT_ORTHO([x - 30, y - 30, x + 30, y + 30], 400, 400));
+  const u = new URL(L.urlOf(L.SOURCES.mt.service, [x - 30, y - 30, x + 30, y + 30], 400, 400));
   assert.equal(u.searchParams.get("CRS"), "CRS:84");
   const [x0, y0, x1, y1] = u.searchParams.get("BBOX").split(",").map(Number);
   assert.ok(Math.abs((x0 + x1) / 2 - lon) < 1e-6 && Math.abs((y0 + y1) / 2 - lat) < 1e-5, "střed výřezu");

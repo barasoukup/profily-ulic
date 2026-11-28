@@ -1,5 +1,5 @@
 // Germany (DE; Bára 17. 11. 2026): what differs from the Czech rules of countries/default.js. Its cities' street surface
-// maps (Berlin, Hamburg, Aachen) are towns/germany.js, the orthophotos of its 16 Länder lanes-ortho.js DE_ORTHO.
+// maps (Berlin, Hamburg, Aachen) are towns/germany.js, the orthophotos of its 16 Länder ortho/sources/de.js.
 // Sources, norms and signs: evaluation/germany/ (SOURCES.md, NORMS.md, REVIEW.md).
 import { t } from "../i18n.js";
 import { GROUP } from "../norms.js";
