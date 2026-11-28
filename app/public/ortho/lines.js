@@ -2,7 +2,7 @@ import { ALONG, median } from "./image.js";
 
 // ---------- the lines ----------
 const FAINT = 0.55, LONG = 0.3, WEAK = 0.05, REL = 0.14, MIN_DL = 10, SHARE = 0.1, MAX_W = 0.6, BLOCKS = 8, MIN_SPREAD = 3, WIDER = 1.5;
-const CURVES = [0, 1 / 200, -1 / 200, 1 / 100, -1 / 100, 1 / 50, -1 / 50];
+const CURVES = [0, 1 / 200, -1 / 200, 1 / 100, -1 / 100, 1 / 50, -1 / 50]; // 1/R: the street may bend (Bára)
 // Pixels brighter than the median of their row's surroundings (±0.75 m) by REL of it; the value is by how much
 // (paint stands out about twice as much as worn, lighter asphalt).
 export function brightMap(st) {
@@ -16,7 +16,7 @@ export function brightMap(st) {
     if (v - m > Math.max(MIN_DL, REL * m)) H[j * nt + i] = Math.min(255, Math.round(v - m));
   }
   return H;
-} // 1/R: the street may bend (Bára)
+}
 export function shareCurve(st, H, s, e, tan, k) {
   const { nt, nu, res, t0 } = st;
   const i0 = Math.max(0, Math.floor((s - WIDER - t0) / res)), i1 = Math.min(nt - 1, Math.floor((e + WIDER - t0) / res));

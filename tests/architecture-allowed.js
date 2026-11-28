@@ -26,7 +26,6 @@ export const UNUSED_EXPORTS = [
 ];
 
 export const LONG_FILES = {
-  "app/public/ortho-osm.js": 1256
 };
 
 export const LONG_FUNCTIONS = {
@@ -39,8 +38,8 @@ export const LONG_FUNCTIONS = {
   "app/public/houses-america.js:drawAmerican": 566,
   "app/public/maplayers.js:createDataLayers": 199,
   "app/public/maplayers.js:draw": 167,
-  "app/public/ortho-osm.js:besidePassport": 168,
-  "app/public/ortho-osm.js:orthoOsmPolys": 427,
+  "app/public/ortho/beside.js:besidePassport": 168,
+  "app/public/ortho/polys.js:orthoOsmPolys": 427,
   "app/public/search.js:mountSearch": 174,
   "app/public/signs.js:deriveSigns": 117,
   "app/public/towns/plzen.js:parking": 110

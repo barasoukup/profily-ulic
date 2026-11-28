@@ -68,8 +68,8 @@ const RAISED = new Set(["chodnik", "chodnik_kola", "stezka_sdilena", "predzahrad
 const BLOCK = new Set(["pruh", "krajnice"]);
 const SNAP = 0.6;
 // ?off=<switch>,<switch>: a rule of this file off for the comparison (the same parameter as app.js ORTHO_P.off).
-const ONE_LANE_MAX = 4.25;
-const SHOULDER_MAX = 3.6; // a lane wider than this (m) is two where the rules had two
+const ONE_LANE_MAX = 4.25; // a lane wider than this (m) is two where the rules had two
+const SHOULDER_MAX = 3.6; // a boundary of other parts (parking, bike lane…) moves to a line this near
 // result: deriveProfile's { segments, runs, extent }; img: laneImage(). Returns the number of carriageways changed
 // (the segments are changed in place).
 export function applyLanes(result, img) {
@@ -128,7 +128,7 @@ export function applyLanes(result, img) {
     result.segments.splice(i, w.parts.length, ...segs.reverse());
   }
   return changed + bands;
-} // a boundary of other parts (parking, bike lane…) moves to a line this near
+}
 // A roadway with a hatched strip [band.s, band.e] (map's t): each side between a kerb and the strip is measured as a
 // roadway of its own (the lines in it, the lanes and shoulders by measured()), the strip is a krajnice marked hatched.
 // The profile's parts go to the side they lie on; a side that gets none takes a lane of the other, turned round.
