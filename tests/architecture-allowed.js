@@ -34,7 +34,6 @@ export const LONG_FILES = {
 
 export const LONG_FUNCTIONS = {
   "app/public/ai-kerbs.js:parkFromAi": 121,
-  "app/public/app/cut.js:cutAt": 418,
   "app/public/app/editor.js:renderEditor": 250,
   "app/public/app/fit.js:fitLabels": 109,
   "app/public/derive.js:deriveProfile": 619,
