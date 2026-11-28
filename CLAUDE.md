@@ -114,4 +114,5 @@ Společné věci států: `docs/countries/README.md`.
 - Ortofoto a odhad z OSM: `docs/orthophoto.md`; dlaždice OSM: `docs/osm.md`; parkování: `docs/parking.md`; budovy: `docs/buildings.md`; značky: `docs/signs.md`; ilustrace: `docs/illustrations.md`.
 - Měření a A/B: `docs/measuring.md`; jazyky: `docs/languages.md`; export: `docs/export.md`; záznam řezů, kontakt a O aplikaci: `docs/logging.md`.
 - Nasazení, balíky OSM před nasazením: `docs/deployment.md`; licence: `docs/licences.md`; struktura repa: `docs/repo-structure.md`; pravidla psaní kódu: `docs/coding-guidelines.md`.
+- Kód stránky (28. 11. 2026, krok 13a plánu úklidu): `app/public/app.js` je jen vstupní bod, části jsou v `app/public/app/` (`state`, `map`, `basemaps`, `cut` = řez od kliknutí po profil, `view` = kreslení profilu, `editor`, `files`, `links`…; `render()` se volá ze `state.js`, registruje ho `view.js`). V `cut.js` jsou místa, která sahají na stránku nebo mapu, označená `// DOM (13b)`: krok 13b z nich udělá jádro bez DOM.
 - Popis aplikace, spuštění a obsah dokumentace: `app/README.md`; vyhodnocení 100 řezů: `evaluation/archive/prague-100/REPORT.md`; licence: `LICENSES-AND-SOURCES.md`.

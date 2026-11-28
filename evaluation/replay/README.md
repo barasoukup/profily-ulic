@@ -3,10 +3,10 @@
 Krok 0 plánu `docs/architecture-countries.md`: přestavba na státy, města a zdroje nesmí změnit, co návštěvník
 uvidí. Proto se odpovědi zdrojů jednou nahrají a pak se přehrávají tak často, jak je potřeba, bez jediného dotazu.
 
-Přehrává se v prohlížeči, ne v Node: celý řetěz od kliknutí (`app.js cutAt`: zdroje města, ortofoto, odhad
+Přehrává se v prohlížeči, ne v Node: celý řetěz od kliknutí (`app/cut.js cutAt`: zdroje města, ortofoto, odhad
 z ortofota a OSM, `deriveProfile`, `deriveSigns`, `keepDrawable`) přes kresbu (`buildSvg`, domy, ilustrace, značky),
 kontrolu šířek (`checkRules`), karty dílů a paletu značek v Návrhu až po kredit a znovu načtený uložený soubor
-(`validate.js`). Větve podle státu a města jsou z velké části v `app.js` a v kresbě, které v Node nejdou spustit.
+(`validate.js`). Větve podle státu a města jsou z velké části v `app/` (dřív `app.js`) a v kresbě, které v Node nejdou spustit.
 Co jde v Node, hlídá `tables.mjs`.
 
 ## Postup

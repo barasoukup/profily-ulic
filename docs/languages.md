@@ -64,7 +64,7 @@ Jazyk není stát (kódy ISO: jazyk `de`, stát `DE`): značky, normy, zdroje da
 - Kromě češtiny, slovenštiny, angličtiny a němčiny jsou překlady strojové (17. 11. 2026, agent na jazyk z češtiny,
   pak kritik Fable jako rodilý mluvčí); měl by je projít rodilý mluvčí. Nejisté bývá: ochranný cyklopruh (většina
   zemí ho nemá), sdílená zóna, hospodaření s vodou.
-- Nový text v kódu: `t("oblast.jméno")` (v `app.js`, `profile.js` a `maplayers.js` se funkce jmenuje `tr`) a
+- Nový text v kódu: `t("oblast.jméno")` (v `app.js`, `app/`, `profile.js` a `maplayers.js` se funkce jmenuje `tr`) a
   `node tools/i18n_add.mjs oblast.jméno "česky" "anglicky" [--de "německy"]`: přidá klíč do všech 24 souborů, ostatní
   jazyky dostanou zatím angličtinu a klíč jde na seznam k překladu `locales/_todo.json`. Změna textu: totéž s
   `--change`. Text, který teče proměnnou (kredit, poznámka řezu), se označí `mark("klíč")`; `t(proměnná)` je povolené jen

@@ -72,7 +72,7 @@ výsledek ve zprávě commitu. Povinné jádro: 1–8, 9 a 11–13a; ostatní po
     chybě importu v `errors.js`.
 11. **Rozdělit `profile.js`** (L): `draw/buildings/` s tabulkou vzhled → funkce, `svg`, `items`, `signs`, `water`, `editor`.
 12. **Rozdělit `derive.js`** (L): jen přesuny, `deriveProfile` na pojmenované fáze, fáze na commit.
-13. **`app.js`**: 13a rozdělit podle oddílů, jen přesuny (L); 13b jádro `cutAt` bez DOM, přehrávka v Node (L, samostatně,
+13. **`app.js`**: 13a rozdělit podle oddílů, jen přesuny (L; hotovo 28. 11. 2026, větev `split-app`: `app.js` je vstupní bod, části v `app/public/app/`, jádro řezu v `app/cut.js` s místy `// DOM (13b)`, přehrávka `sample` a `sample-cz` před a po beze změny); 13b jádro `cutAt` bez DOM, přehrávka v Node (L, samostatně,
     s přehráním všech států) – jediný skutečný refaktor plánu, zlevní každé další měření.
 14. **`ortho-osm.js`, `lanes-ortho.js`** (M): `P` na konstanty a vypínače, `orthoOsmPolys` na fáze.
 15. **Registr ortofot** (L): `ortho/<zdroj>.js` jednoho tvaru; `app.js` staví vrstvy smyčkou.

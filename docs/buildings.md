@@ -24,7 +24,7 @@ Vzhledy domů, výška a podlaží, regionální a socialistické vzhledy (speci
   hanzovní dům ve starém Tallinnu, hřebenem kolmo k ulici) s obrysem štítu, schválené (Bára 23. 11. 2026): štít uříznutý
   okrajem řezu (2/3 šířky domu, `?stit=cely` celý souměrný, `?stit=0` vypne). Okna pokračují za řezem ve stejné rozteči
   (u okraje kus dalšího okna nebo nejvýš zeď mezi okny), vzory stěny až k okraji, u řezu žádný lem ani obrys (všechny
-  vzhledy, i české; Bára 23. 11. 2026). Místo domu `info.at` (app.js). Snímky a zpráva
+  vzhledy, i české; Bára 23. 11. 2026). Místo domu `info.at` (`app/cut.js`). Snímky a zpráva
   `evaluation/archive/regional-buildings/`.
 
 ## Výška a vzhled budov
@@ -68,7 +68,7 @@ dřevěný dům se svislými prkny ve Švédsku, dánský cihlový činžák, d�
 a `nordicDetails(iso)` pro budoucí moduly. Štítové domy (stupňovitý, krkový, zvonový štít; hanzovní dům) kreslí obrys
 štítu nad bočním pohledem (Bára 23. 11. 2026 schválila): štít uříznutý okrajem řezu, vidět jsou 2/3 domu se špičkou
 štítu (`?stit=cely` celý souměrný štít, `?stit=0` bez štítů). U všech domů okna pokračují za řezem ve stejné rozteči a
-u řezu není lem ani obrys: dům tam pokračuje. Místo domu si profil drží zaokrouhlené v `info.at` (`app.js`).
+u řezu není lem ani obrys: dům tam pokračuje. Místo domu si profil drží zaokrouhlené v `info.at` (`app/cut.js`).
 Kancelář, úřad, hotel (OSM nebo RÚIAN využití 5, 11, 14, 15) kancelářská budova; OSM school a kindergarten škola,
 OSM church, chapel aj. kostel, OSM garage(s) a RÚIAN garáž garáž. Starý dům (RÚIAN do 1919, v Praze zastavěno do
 1840) do 5 podlaží v samém centru (`city.coreKm`, výchozí 0,3 km od náměstí, Praha 0,6 km) je měšťanský dům.

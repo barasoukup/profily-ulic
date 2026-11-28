@@ -17,7 +17,7 @@ Pruhy z ortofota a záložní odhad z ortofota a OSM.
 
 - Pokus `evaluation/ortho-osm/REPORT.md` (profil jen z ortofota a OSM proti MTVU, Praha a Brno): kombinace je
   lepší než samotné OSM (obruba do 0,5 m 39–49 % proti 26–35 %), ale zůstává hrubým odhadem. Rozlišení 20 cm stačí.
-- Bára: použít jako záložní případ, když technická mapa chybí. `app/public/ortho-osm.js`, zapojené v `app.js`, když
+- Bára: použít jako záložní případ, když technická mapa chybí. `app/public/ortho-osm.js`, zapojené v `app/cut.js`, když
   `deriveProfile` vrátí odhad z OSM (`estimate`). Plochy jsou označené jako odhad. Popis v `docs/profile-derivation.md` (bod 11a).
 - Pro rozšíření do ciziny: nejdřív hledat místní mapy povrchů (NL BGT, Vídeň FMZK…), tohle je až záloha.
 - Dlaždice OSM (Bára 15. 11. 2026): všechny budovy (ne jen s výškou; v ČR dál primárně RÚIAN, OSM navíc pro zahraničí),

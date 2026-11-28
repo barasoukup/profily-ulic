@@ -131,18 +131,18 @@ Kresby jsou zdaleka nejdražší. Proto:
    Co stát nepřepíše, zdědí z Česka (`default.js`): `tests/countries.test.js` proto chce, aby každý stát kromě CZ výslovně
    uvedl zákon o stání, ortofoto, panorama, značky, normy a `bounds` (`validate.js` je čte pro uložené řezy), a hlídá, že
    mimo `countries/` není podmínka na stát.
-   Co dnes ještě není v modulu státu a nový stát ho musí doplnit zvlášť: podkladové ortofoto v mapě (`app.js`, vrstvy
+   Co dnes ještě není v modulu státu a nový stát ho musí doplnit zvlášť: podkladové ortofoto v mapě (`app/basemaps.js`, vrstvy
    podle `bounds` státu), služby hledání (`search.js`: název služby v `search`, `looksSlovak`/`looksViennese`),
-   katastr značek jako u Salcburku (`app.js`), `city.abroad` (zbytek státu přes `abroad()`).
+   katastr značek jako u Salcburku (`app/cut.js`), `city.abroad` (zbytek státu přes `abroad()`).
 3. **Zbytek státu jako město v `city.js`:** přes `abroad(id, ISO, …)` (`centre: null`, `estateKm`, `dataShort`, `credit`,
    `rulesHead`), texty ve všech souborech jazyků (tabulky CITY). Id zůstává pro uložené řezy a log.
 4. **Zdroje:** v `towns/index.js` id → `towns/<state>.js` se `sources = { osm, surfaces, lines, parking, podlaznost }`,
    `national = true` (žádný pokus o českou DMVS). Zdroj s vlastním územím (pasport, mapa města) má `area` (`places.js
    inArea`: box, případně hranice obce) a patří do `AREAS` modulu (`placeAt` ho pak vypíše, vypínače zdrojů nezná). Kredit
-   zdroje = klíč v `state.cut.sources` (`app.js cutAt`), řádek v `credits.js SOURCE_CREDITS` a případně jméno pro krátký
-   řádek patičky (`app.js cutData`); `validate.js` pak klíč u uloženého řezu nechá.
+   zdroje = klíč v `state.cut.sources` (`app/cut.js cutAt`), řádek v `credits.js SOURCE_CREDITS` a případně jméno pro krátký
+   řádek patičky (`app/view.js cutData`); `validate.js` pak klíč u uloženého řezu nechá.
    **Města státu** (krok 4b): id v `city.js STATE_TOWNS`, hranice obce v `mesta-<kód>.json` (`tools/build_towns_sk.mjs`,
-   `build_towns_at.mjs`; `app.js` je načte do `loadTowns`). Město má texty, zdroje a normy zbytku státu, ilustrace svoje.
+   `build_towns_at.mjs`; `app/boundaries.js` je načte do `loadTowns`). Město má texty, zdroje a normy zbytku státu, ilustrace svoje.
 5. **Seznam států pro nasazení:** řádek v `tools/countries.mjs` (klíč balíku OSM, výřez Geofabrik, zda balík smí na Pages).
    `pages.yml` z něj bere smyčky i klíče cache, nic dalšího se v něm neupravuje. Test `tests/csp.test.js` hlídá, že
    každý stát seznamu má modul.
@@ -188,7 +188,7 @@ Kresby jsou zdaleka nejdražší. Proto:
   - Národní, s otevřenou licencí a CORS (čteme pixely). Ověřit hlavičku `Access-Control-Allow-Origin` a nejvyšší úroveň dlaždic.
     basemap.at: `…/bmaporthofoto30cm/normal/google3857/{z}/{y}/{x}.jpeg`, z20, v `lanes-ortho.js` s `ext: ".jpeg"`.
   - Zapojit do `lanes-ortho.js` (`SOURCES`) a do modulu státu (`laneOrtho`, případně `bedOrtho`), do podkladů mapy
-    (`bounds` státu v `app.js`) a do kreditů (`credits.js orthoCity`).
+    (`bounds` státu v `app/basemaps.js`) a do kreditů (`credits.js orthoCity`).
   - Ověřit vyvážení barev: slovenská mozaika byla žlutá, asfalt vypadal jako tráva.
 - **Odhad bez technické mapy:** `ortho-osm.js` (obruby z ortofota a OSM). U státu ho ověřit na vzorku a obrázcích.
   Skupina silnice pro normy z OSM `highway` (`derive.js osmGroup`), když stát nemá vlastní třídy.
@@ -252,7 +252,7 @@ Agent nezapisuje do repozitáře, výsledek dává do scratchpadu.
 | Katastr dopravních značek | `lines().atSigns` → tagy cesty (`parking:<side>:restriction`) podle strany značky, do 25 m od řezu | značky na začátku úseku (zóny, rychlosti) řez dál od nich nevidí |
 | Sítě | `site.js NETS` | hloubku nemá skoro nikdo; výšky terénu ČÚZK jen v Česku |
 | Hranice měst | `tools/build_towns_sk.mjs` → `towns-sk.json` (okresy velkých měst, jinak obec); území zdroje `{ box, town }` přes `places.js inArea` | obdélníky braly sousední obce (Šamorín jako Bratislava) |
-| Kredit | klíč zdroje v `state.cut.sources` (`app.js`) a řádek v `credits.js SOURCE_CREDITS` (`creditLines` i `validate.js` ho pak znají), patičky ve všech jazycích, `LICENSES-AND-SOURCES.md` | klíč, ne hotová věta (uložený soubor a změna jazyka) |
+| Kredit | klíč zdroje v `state.cut.sources` (`app/cut.js`) a řádek v `credits.js SOURCE_CREDITS` (`creditLines` i `validate.js` ho pak znají), patičky ve všech jazycích, `LICENSES-AND-SOURCES.md` | klíč, ne hotová věta (uložený soubor a změna jazyka) |
 
 Služba, která odpoví skutečnou 4xx nebo chybou ArcGIS se jménem špatného pole, se neopakuje (`gis.js err.refused`).
 
@@ -277,7 +277,7 @@ Služba, která odpoví skutečnou 4xx nebo chybou ArcGIS se jménem špatného 
 `node evaluation/ortho-osm/regression.mjs` proti `results/regression.txt`. Co tam výsledky zhorší, zůstane vypnuté nebo
 se omezí na stát. Nové části odhadu dostanou vypínač (`P.off`, `?off=…`).
 
-**Po každé změně `app.js` udělat v prohlížeči řez v Česku i ve státu.** Testy `app.js` nepokrývají: nový parametr `name`
+**Po každé změně `app.js` a `app/` udělat v prohlížeči řez v Česku i ve státu.** Testy je nepokrývají: nový parametr `name`
 v `cutAt` zastínil pozdější `const name` a rozbil každý řez.
 
 ## 6. Normy a zákony
@@ -384,4 +384,4 @@ ověřit, že odhad státu opravdu čte ortofoto (`sources.orthoCity`) a že nec
   - Cyklický import: `credits.js` nesmí importovat modul z `towns/` (ten importuje `city.js`, který importuje `credits.js`).
   - Prohlížeč pane skrytý = časovače stránky zpomalené; dlouhý sběr počítat s dvojnásobným časem.
   - Limit 5 dev serverů na složku: když ho obsadí jiné konverzace, server pustit na pozadí a otevřít `navigate` na port.
-- **Kód v `app.js`:** nový parametr funkce se srazil s pozdější `const` stejného jména (TDZ) a rozbil každý řez.
+- **Kód v `app/cut.js`:** nový parametr funkce se srazil s pozdější `const` stejného jména (TDZ) a rozbil každý řez.
