@@ -112,7 +112,18 @@ Oprava zůstala zapnutá, smazal se jen vypínač a větev „jako dřív“. Vy
 
 ## Obecná rozhodnutí o aplikaci (dříve CLAUDE.md)
 
-- Zásady profilu jsou v `CLAUDE.md` (oddíl „Zásady profilu“).
+Zásady profilu (platí, dokud je Bára nezmění; Bára 28. 11. 2026: nepatří do `CLAUDE.md`):
+- Obytná a sdílená zóna se zatím kreslí jako jeden pruh vozovky bez krajnice. **Sdílený prostor jako vlastní druh
+  části chceme** (Bára 28. 11. 2026), ale jen tam, kde opravdu je jednolitá plocha pro všechny (v jedné úrovni, bez
+  obrub a dělení na chodník a vozovku); viz `docs/backlog.md`. Streetmix ho nezná, při exportu se převede na pruh.
+- Pěší zóna je chodník (kreslí se s lidmi, ne s auty; pruh jen tam, kde ho technická mapa opravdu má; Bára 17. 11. 2026,
+  `derive.js` `pedestrianZone`).
+- Ulice ze dvou vozovek se řeže uprostřed (středový pás / tramvaj).
+- Ignorovat ulice pod mosty a podzemní cesty (metro, tunely se záporným `layer`/`level`).
+- Interní model smí obsahovat i to, co Streetmix neumí (rychlosti apod.); převod na typy Streetmixu až při exportu.
+- Stav je jen k prohlížení, data se opravují po „Opravit data“; Návrh je editovatelný vždy (Bára 8. 11. 2026).
+- UI: mapa + upravitelný profil, posuvný předěl (výchozí 50:50), krátké popisky, v hlavičce jen název ulice, kurzor
+  křížek. Výchozí podklad „Mapa IPR“ (rychlý rastr z ArcGIS Online).
 
 ## Na příště a nápady (dříve CLAUDE.md)
 

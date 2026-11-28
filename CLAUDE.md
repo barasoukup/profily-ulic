@@ -69,19 +69,6 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
 - Neutrální moderní tramvaj a autobus (`app/public/generic/`, `art.js` GENERIC_VEHICLES; Bára 17. 11. 2026: „všude, kde nemáme specifickou“): v každé sadě, která nemá vlastní tramvaj nebo autobus, místo Streetmixu. Trolejbus a auta zůstávají ze Streetmixu.
 - Auta zůstávají ze Streetmixu (Bára rozhodla 8. 11. 2026).
 
-## Zásady profilu
-- Obytná a sdílená zóna se zatím kreslí jako jeden pruh vozovky bez krajnice. **Sdílený prostor jako vlastní druh
-  části chceme** (Bára 28. 11. 2026), ale jen tam, kde opravdu je jednolitá plocha pro všechny (v jedné úrovni, bez
-  obrub a dělení na chodník a vozovku); viz `docs/backlog.md`. Streetmix ho nezná, při exportu se převede na pruh.
-- Pěší zóna je chodník (kreslí se s lidmi, ne s auty; pruh jen tam, kde ho technická mapa opravdu má; Bára 17. 11. 2026,
-  `derive.js` `pedestrianZone`).
-- Ulice ze dvou vozovek se řeže uprostřed (středový pás / tramvaj).
-- Ignorovat ulice pod mosty a podzemní cesty (metro, tunely se záporným `layer`/`level`).
-- Interní model smí obsahovat i to, co Streetmix neumí (rychlosti apod.); převod na typy Streetmixu až při exportu.
-- Stav je jen k prohlížení, data se opravují po „Opravit data“; Návrh je editovatelný vždy (Bára 8. 11. 2026).
-- UI: mapa + upravitelný profil, posuvný předěl (výchozí 50:50), krátké popisky, v hlavičce jen název ulice, kurzor
-  křížek. Výchozí podklad „Mapa IPR“ (rychlý rastr z ArcGIS Online).
-
 ## Normy a limity (schválené Bárou)
 - Kolmé stání ≥ 4,5 m (5,0 standard, ČSN 73 6056).
 - Cyklopruh 1,50 m; 1,75 vedle podélného stání; 2,00 vedle kolmého/šikmého stání. Cyklostezka 2,50.
@@ -94,7 +81,7 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
 - Srovnání norem: https://claude.ai/artifact/7rkssF8z7y6zhEDBfEhbG8
 
 ## Kde co najdeš
-Pokyny k novému státu: skill `add-state`. Obecná rozhodnutí a smazané pokusy: `docs/decisions.md`, otevřené věci: `docs/backlog.md`.
+Pokyny k novému státu: skill `add-state`. Zásady profilu, obecná rozhodnutí a smazané pokusy: `docs/decisions.md`, otevřené věci: `docs/backlog.md`.
 
 ### Státy a města
 - **Praha, Brno, Jihlava, Most, Opava, Plzeň a další města**: nasazeno (Praha a Brno 9. 11. 2026, celá ČR 10. 11. 2026, `https://streetspace.eu/profily/`) → `docs/countries/CZ.md`
