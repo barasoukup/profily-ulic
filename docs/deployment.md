@@ -32,6 +32,15 @@ servery neposílají (Frýdek-Místek), jsou v `tools/ca/`.
 Plochy jsou povinné jen tam, kde je mapa povrchů (`SURFACE_MAPS` modulů, bod v ulici pro každou v `tools/check_sources_lib.mjs`
 `POINTS`). Co selže, zkusí se po pauze znovu; jen pomalá služba (dvakrát vypršela) je varování, když povinné dotazy státu prošly.
 
+## Verze modulů
+
+Při stavbě webu (`pages.yml`, krok „Assemble the site“, naposled, až je `config.js` a CSP hotové) běží `node tools/version_modules.mjs _site`:
+do `index.html` vloží import mapu, která každému modulu `*.js` a `*.mjs` (mimo `errors.js` a Leaflet) dá `?v=<10 znaků SHA-256 obsahu>`,
+a vstupní `<script type="module" src>` dostane verzi sám (`src` import mapou neprochází). Statické `import` i `import()` tedy jdou
+na adresy s verzí, návštěvník se starou stránkou dostane celou starou sadu (nebo 404 a hlášku z `errors.js`), nikdy směs. Zdroje se
+nemění, lokální server také ne. Import mapa je inline skript, jeho hash je v `script-src` CSP (ne `unsafe-inline`). Hlídá
+`tests/module-versions.test.js` (sestaví web do dočasné složky). Co verzi nemá: soubory čtené `fetch` (JSON, ilustrace, dlaždice) a `ort/*.wasm`.
+
 ## Kde to běží a co obnovuje push (dříve CLAUDE.md)
 
 -  Dlaždice OSM ČR a Slovenska (Geofabrik) jsou zabalené do jednoho souboru na stát (`tools/pack_osm_tiles.mjs`,

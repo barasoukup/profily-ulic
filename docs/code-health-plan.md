@@ -65,7 +65,7 @@ výsledek ve zprávě commitu. Povinné jádro: 1–8, 9 a 11–13a; ostatní po
    (`belgium.test.js`…) na jednu tabulku přes `countries/`; co testuje totéž víckrát, sloučit. Hlídací testy kroku 4 jsou
    povolená výjimka z „testovat chování“. Před a po `node --test --experimental-test-coverage`: pokrytí řádků `derive.js`,
    `signs.js`, `rules.js`, `ortho-osm.js` nesmí klesnout, čas nezhoršit (dnes asi 6 s). Před dělením velkých souborů.
-10. **Smlouvy modulů a verze modulů** (S–M): JSDoc `@typedef` pro díl profilu, `country`, `town`, `source` v jednom
+10. **Smlouvy modulů a verze modulů** (hotovo 28. 11. 2026, větev `module-contracts`: `tools/version_modules.mjs`, `tests/module-versions.test.js`, `tests/towns.test.js`, typedefy v `app/public/types.js`; verze jsou hash obsahu, ne commit; `deriveProfile` už bral jeden objekt, popsaný jako `DeriveArgs`; S–M): JSDoc `@typedef` pro díl profilu, `country`, `town`, `source` v jednom
     souboru, test smlouvy pro `towns/` po vzoru `tests/countries.test.js`; `deriveProfile` s jedním objektem argumentů
     `{ geometry, sources, options }`. Při nasazení import mapa s `?v=<commit>` pro všechny moduly (generuje nástroj
     webu, bez bundleru), aby návštěvník nedostal směs starých a nových modulů; aspoň hláška „načtěte stránku znovu“ při
