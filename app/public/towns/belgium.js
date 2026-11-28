@@ -21,6 +21,7 @@ import { beRegionsAt } from "../lanes-ortho.js";
 import { MTVU_LABELS } from "../city.js";
 import { osmAreas } from "./slovakia.js";
 import { inside } from "../places.js";
+import { polygonsOf, pathsOf } from "./shared.js";
 
 const flag = flagsOf("PROFILY_BE");
 
@@ -32,7 +33,7 @@ export const PICC_EDGE = new Set(["Voirie - Bord", "Trottoir", "Parking", "Piste
 const GRB_LABEL = /rand van de rijbaan|zone zwakke weggebruiker|onverharde zone/;
 
 export const grbPaths = (json) => (json?.features || []).filter((f) => GRB_LABEL.test(f.properties?.LBLTYPE || ""))
-  .flatMap((f) => (f.geometry?.type === "LineString" ? [f.geometry.coordinates] : f.geometry?.type === "MultiLineString" ? f.geometry.coordinates : []));
+  .flatMap((f) => pathsOf(f.geometry));
 export const piccPaths = (json) => (json?.features || []).filter((f) => PICC_EDGE.has(f.attributes?.NATUR_DESC)).flatMap((f) => f.geometry?.paths || []);
 
 // One GRB layer in a box, asked once (WGO serves both the kerbs' lines and the surfaces).
@@ -193,12 +194,12 @@ export function grbSurfaces(wbnJson, wgoJson, osmElements, bbox, tags = null) {
   const wbn = [];
   for (const f of wbnJson?.features || []) {
     const g = f.geometry;
-    for (const rings of g?.type === "Polygon" ? [g.coordinates] : g?.type === "MultiPolygon" ? g.coordinates : []) wbn.push(rings.map((r) => r.map(P)));
+    for (const rings of polygonsOf(g)) wbn.push(rings.map((r) => r.map(P)));
   }
   const wgo = [];
   for (const f of wgoJson?.features || []) {
     const type = GRB_KIND(f.properties?.LBLTYPE || ""), g = f.geometry;
-    if (type) for (const l of g?.type === "LineString" ? [g.coordinates] : g?.type === "MultiLineString" ? g.coordinates : []) wgo.push({ pts: l.map(P), type });
+    if (type) for (const l of pathsOf(g)) wgo.push({ pts: l.map(P), type });
   }
   // Only a street for cars: a path's corridor (a park, a square) has no lines to read.
   if (!ROADS.test((tags || c.tags)?.highway || "")) return null;

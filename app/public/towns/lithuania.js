@@ -22,6 +22,7 @@ import { osmTiles, getJSON, asMtvu, asPassport } from "../gis.js";
 import { MTVU_LABELS } from "../city.js";
 import { inArea, inside } from "../places.js";
 import { osmAreas } from "./slovakia.js";
+import { polygonsOf } from "./shared.js";
 
 const flag = flagsOf("PROFILY_LT");
 // Vilnius's map off by default (?vilnius=1 turns it on; Bára 24. 11. 2026), the GRPK's houses on (?grpk=0 leaves them out).
@@ -67,7 +68,7 @@ export function vilniusFeatures(json) {
   for (const f of json?.features || []) {
     const code = vilniusCode(f.properties), g = f.geometry;
     if (!code) continue;
-    for (const p of g?.type === "Polygon" ? [g.coordinates] : g?.type === "MultiPolygon" ? g.coordinates : []) out.push({ attributes: { code }, geometry: { rings: p } });
+    for (const p of polygonsOf(g)) out.push({ attributes: { code }, geometry: { rings: p } });
   }
   return { features: out };
 }

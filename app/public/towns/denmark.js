@@ -21,6 +21,7 @@
 import { flagsOf } from "../flags.js";
 import { osmTiles } from "../gis.js";
 import { inArea, inside } from "../places.js";
+import { polygonsOf, pathsOf } from "./shared.js";
 
 // The switches (URL parameters; in Node globalThis.PROFILY_DK) and their defaults.
 const DEFAULTS = { kbhkant: "1", kbhpark: "1", kbhbyg: "1", aarbyg: "1" };
@@ -42,8 +43,6 @@ const wfsUrl = (base, typeNames, bbox, propertyName, count) => {
 // Copenhagen cut up to 25 s and more with its retries): the buildings 6 s a facade, the kerb lines and parking areas 8 s.
 const TIMEOUT = 6000, LINES_TIMEOUT = 8000;
 const askCity = (url, ms) => fetch(url, { signal: AbortSignal.timeout(ms) }).then((r) => { if (!r.ok) throw new Error(`${new URL(url).hostname} ${r.status}`); return r.json(); });
-const ringsOf = (g) => (g?.type === "Polygon" ? [g.coordinates] : g?.type === "MultiPolygon" ? g.coordinates : []);
-const pathsOf = (g) => (g?.type === "LineString" ? [g.coordinates] : g?.type === "MultiLineString" ? g.coordinates : []);
 const centreOf = (bbox) => { const [x0, y0, x1, y1] = bbox.split(",").map(Number); return [(x0 + x1) / 2, (y0 + y1) / 2]; };
 
 // ---------- Copenhagen's kerb lines ----------
@@ -87,7 +86,7 @@ export function kbhParking(json) {
     features: (json?.features || []).flatMap((f) => {
       const p = f.properties || {};
       const orient = parkingOrient(p.p_type);
-      return ringsOf(f.geometry).map((rings) => ({ attributes: { KIND: RESERVED.test(p.p_ordning || "") ? "specialni" : "useky",
+      return polygonsOf(f.geometry).map((rings) => ({ attributes: { KIND: RESERVED.test(p.p_ordning || "") ? "specialni" : "useky",
         PS_ZPS: Number(p.antal_p_pladser) > 0 ? Number(p.antal_p_pladser) : 1, ...(orient && { ORIENT: orient }) }, geometry: { rings } }));
     }),
   };
@@ -158,7 +157,7 @@ export function aarBuilding(p) {
 // party wall); demolished or planned ones left out.
 export function pick(json, lat, lon, read, floors) {
   const fs = (json?.features || []).filter((f) => !/nedrevet|projekteret|planlagt/i.test(String(f.properties?.bygningsstatus || "")));
-  const here = fs.filter((f) => ringsOf(f.geometry).some((rings) => inside(rings, lon, lat)));
+  const here = fs.filter((f) => polygonsOf(f.geometry).some((rings) => inside(rings, lon, lat)));
   const f = (here.length ? here : fs).slice().sort((a, b) => (floors(b.properties) || 0) - (floors(a.properties) || 0))[0];
   return f ? read(f.properties) : {};
 }

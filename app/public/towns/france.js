@@ -15,6 +15,7 @@ import { osmTiles, getJSON, asMtvu, asPassport } from "../gis.js";
 import { MTVU_LABELS } from "../city.js";
 import { inArea, inside } from "../places.js";
 import { osmAreas } from "./slovakia.js";
+import { ringsOf } from "./shared.js";
 
 const flag = flagsOf("PROFILY_FR");
 
@@ -29,7 +30,6 @@ export const PARIS_LAYERS = ["plan-de-voirie-pistes-cyclables-et-couloirs-de-bus
 const PARIS_KIND = { "Chaussée": 701, Trottoir: 702, "Piste cyclable": 703, Piste: 704, "Couloir bus": 701, "Couloir mixte bus-vélo": 701, "Terre-plein": 1003, "Aire mixte véhicule-piéton": 701 };
 export const parisCode = (p) => PARIS_KIND[p?.lib_classe] ?? null;
 
-const ringsOf = (g) => (g?.type === "Polygon" ? g.coordinates : g?.type === "MultiPolygon" ? g.coordinates.flat() : null);
 async function parisLayer(name, bbox) {
   const [x0, y0, x1, y1] = bbox.split(",").map(Number);
   const out = [];

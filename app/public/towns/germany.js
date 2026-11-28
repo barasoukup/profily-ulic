@@ -18,6 +18,7 @@ import { osmTiles, getJSON, asMtvu, asPassport } from "../gis.js";
 import { MTVU_LABELS } from "../city.js";
 import { inArea, inside } from "../places.js";
 import { osmAreas } from "./slovakia.js";
+import { ringsOf } from "./shared.js";
 
 const flag = flagsOf("PROFILY_DE");
 // The territories of the cities' maps (places.js inArea; the services are empty outside the city anyway).
@@ -76,7 +77,7 @@ function geoRings(json, code) {
   return {
     features: (json?.features || []).map((f) => {
       const g = f.geometry;
-      const rings = g?.type === "Polygon" ? g.coordinates : g?.type === "MultiPolygon" ? g.coordinates.flat() : null;
+      const rings = ringsOf(g);
       const c = code(f);
       // Berlin's Gleiskörper takes in tracks in the asphalt too (its art 0 and 1 both): derive.js asks OSM.
       return rings && c ? { attributes: { code: c, ...(String(f.id).startsWith("bz_gleiskoerper_strab.") ? { ANY_TRAM: 1 } : {}) }, geometry: { rings } } : null;

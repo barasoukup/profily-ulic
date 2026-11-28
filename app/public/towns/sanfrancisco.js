@@ -26,6 +26,7 @@ import { getJSON, envelope } from "../gis.js";
 import { inArea } from "../places.js";
 import { planimetricMap, runsAlong, memory, carriageway, kerbStrip } from "./planimetrics.js";
 import { heightHouse } from "../floors.js";
+import { polygonsOf } from "./shared.js";
 
 const flag = flagsOf("PROFILY_US");
 export const sfOn = () => flag("sf") !== "0";
@@ -39,8 +40,7 @@ const LIMIT = 2000;
 // A SODA answer (GeoJSON) as ArcGIS's: { features: [{ attributes, geometry: { rings } }] }; full at the limit.
 export function sodaAsEsri(json) {
   const features = (json?.features || []).map((f) => {
-    const g = f.geometry || {}, polys = g.type === "MultiPolygon" ? g.coordinates : g.type === "Polygon" ? [g.coordinates] : [];
-    return { attributes: f.properties || {}, geometry: { rings: polys.flat() } };
+    return { attributes: f.properties || {}, geometry: { rings: polygonsOf(f.geometry).flat() } };
   });
   return { features, ...(features.length >= LIMIT && { exceededTransferLimit: true }) };
 }

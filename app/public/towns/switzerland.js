@@ -18,6 +18,7 @@ import { MTVU_LABELS } from "../city.js";
 import { osmAreas } from "./slovakia.js";
 import { CANTONS } from "../credits.js";
 import { inside } from "../places.js";
+import { ringsOf } from "./shared.js";
 
 const flag = flagsOf("PROFILY_CH");
 
@@ -53,7 +54,7 @@ async function avAsk(bbox) {
     OUTPUTFORMAT: "application/json; subtype=geojson" })}`);
   const features = (json?.features || []).map((f) => {
     const g = f.geometry, p = f.properties || {};
-    const rings = g?.type === "Polygon" ? g.coordinates : g?.type === "MultiPolygon" ? g.coordinates.flat() : null;
+    const rings = ringsOf(g);
     const c = avCode(p);
     if (!rings || !c) return null;
     return { attributes: { code: c, canton: p.Kanton || null }, geometry: { rings: rings.map((r) => r.map(([x, y]) => [x, y])) } };

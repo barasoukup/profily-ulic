@@ -17,6 +17,7 @@ import { osmTiles, getJSON, asMtvu, asPassport } from "../gis.js";
 import { MTVU_LABELS } from "../city.js";
 import { osmAreas } from "./slovakia.js";
 import { inside } from "../places.js";
+import { ringsOf, pathsOf } from "./shared.js";
 
 const flag = flagsOf("PROFILY_NL");
 
@@ -73,7 +74,6 @@ async function bgtAsk(bbox) {
   return Object.fromEntries(BGT_LAYERS.map((name, i) => [name, got[i]]));
 }
 
-const ringsOf = (g) => (g?.type === "Polygon" ? g.coordinates : g?.type === "MultiPolygon" ? g.coordinates.flat() : null);
 
 // The BGT's layers as the ESRI-like features asMtvu takes. Only the level of the street at the cut's centre
 // (relatieve_hoogteligging: a bridge 1, a tunnel −1; the CLAUDE.md rule: no streets under bridges); buildings at the
@@ -94,7 +94,7 @@ export function bgtFeatures(got, cx, cy, tags) {
   // The BGT's tram tracks (a tram and a light rail, sneltram: the hostile review found Amstelveen's line and the Vijzelgracht's
   // so), sampled every metre or so: their vertices lie up to 180 m apart, a straight piece across a bed has none in it.
   const trams = (got.spoor || []).filter((f) => TRAM.has(f.properties?.functie) && (f.properties?.relatieve_hoogteligging ?? 0) === level)
-    .flatMap((f) => (f.geometry?.type === "LineString" ? [f.geometry.coordinates] : f.geometry?.type === "MultiLineString" ? f.geometry.coordinates : []))
+    .flatMap((f) => pathsOf(f.geometry))
     .map(dense);
   const features = [];
   for (const name of Object.keys(KIND)) {

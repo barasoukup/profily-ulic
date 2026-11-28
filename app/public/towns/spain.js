@@ -17,6 +17,7 @@ import { MTVU_LABELS } from "../city.js";
 import { inArea, inside } from "../places.js";
 import { osmAreas } from "./slovakia.js";
 import { foralEnabled, foralFetch } from "./spain-foral.js";
+import { polygonsOf } from "./shared.js";
 
 const flag = flagsOf("PROFILY_ES");
 
@@ -32,7 +33,7 @@ export function zaragozaFeatures(layers) {
   for (const [code, json] of layers) {
     for (const f of json?.features || []) {
       const g = f.geometry;
-      const polys = g?.type === "Polygon" ? [g.coordinates] : g?.type === "MultiPolygon" ? g.coordinates : [];
+      const polys = polygonsOf(g);
       for (const p of polys) out.push({ attributes: { code }, geometry: { rings: p } });
     }
   }

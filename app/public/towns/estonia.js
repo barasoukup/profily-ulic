@@ -14,6 +14,7 @@ import { osmTiles, getJSON, asMtvu, asPassport } from "../gis.js";
 import { MTVU_LABELS } from "../city.js";
 import { inArea, inside } from "../places.js";
 import { osmAreas } from "./slovakia.js";
+import { polygonsOf } from "./shared.js";
 
 const flag = flagsOf("PROFILY_EE");
 export const TALLINN_MAP = "https://gis.tallinn.ee/arcgis/rest/services/tar_maakate/MapServer";
@@ -25,7 +26,7 @@ export function tallinnFeatures(layers) {
   const out = [];
   for (const [code, json] of layers) for (const f of json?.features || []) {
     const g = f.geometry;
-    for (const p of g?.type === "Polygon" ? [g.coordinates] : g?.type === "MultiPolygon" ? g.coordinates : []) out.push({ attributes: { code }, geometry: { rings: p } });
+    for (const p of polygonsOf(g)) out.push({ attributes: { code }, geometry: { rings: p } });
   }
   return { features: out };
 }

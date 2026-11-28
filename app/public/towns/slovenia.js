@@ -10,6 +10,7 @@
 import { flagsOf, offOf } from "../flags.js";
 import { osmTiles } from "../gis.js";
 import { inside } from "../places.js";
+import { polygonsOf } from "./shared.js";
 
 const flag = flagsOf("PROFILY_SI");
 
@@ -25,7 +26,6 @@ export function gursUrl(lat, lon, d = 0.00001) {
     srsName: "EPSG:4326", count: "5", PROPERTYNAME: FIELDS.join(","), FILTER: filter })}`;
 }
 
-const ringsOf = (g) => (g?.type === "Polygon" ? [g.coordinates] : g?.type === "MultiPolygon" ? g.coordinates : []);
 const num = (v) => (v === null || v === undefined || v === "" ? NaN : Number(v));
 
 // A building of the cadastre → the facts of app.js ruianFacts and the floors (as the Spanish Catastro):
@@ -66,7 +66,7 @@ export function gursBuilding(p) {
 // The footprint the point lies in, else the tallest of the answer (a party wall: the box touches the neighbour too).
 export function gursPick(json, lat, lon) {
   const fs = json?.features || [];
-  const here = fs.filter((f) => ringsOf(f.geometry).some((rings) => inside(rings, lon, lat)));
+  const here = fs.filter((f) => polygonsOf(f.geometry).some((rings) => inside(rings, lon, lat)));
   const tall = (a, b) => (num(b.properties?.STEVILO_ETAZ) || 0) - (num(a.properties?.STEVILO_ETAZ) || 0);
   const f = (here.length ? here : fs).slice().sort(tall)[0];
   return f ? { ...gursBuilding(f.properties), gurs: true } : {};
@@ -78,7 +78,7 @@ const NEAR = 6;
 export function gursNearest(json, lat, lon, max = NEAR) {
   const mx = 111320 * Math.cos((lat * Math.PI) / 180), my = 110574;
   let best = null;
-  for (const f of json?.features || []) for (const rings of ringsOf(f.geometry)) for (const r of rings) for (let i = 1; i < r.length; i++) {
+  for (const f of json?.features || []) for (const rings of polygonsOf(f.geometry)) for (const r of rings) for (let i = 1; i < r.length; i++) {
     const ax = (r[i - 1][0] - lon) * mx, ay = (r[i - 1][1] - lat) * my, dx = (r[i][0] - lon) * mx - ax, dy = (r[i][1] - lat) * my - ay;
     const q = Math.max(0, Math.min(1, -(ax * dx + ay * dy) / (dx * dx + dy * dy || 1))), d = Math.hypot(ax + q * dx, ay + q * dy);
     if (d <= max && (!best || d < best.d)) best = { d, f };

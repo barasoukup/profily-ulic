@@ -11,6 +11,7 @@ import { flagsOf } from "../flags.js";
 import { osmTiles, getJSON, asMtvu } from "../gis.js";
 import { MTVU_LABELS } from "../city.js";
 import { inArea, AT_AREAS, inside } from "../places.js";
+import { ringsOf } from "./shared.js";
 
 const flag = flagsOf("PROFILY_AT");
 export const WIEN_WFS = "https://data.wien.gv.at/daten/geo";
@@ -48,7 +49,7 @@ async function wfs(type, bbox) {
   return {
     features: (json.features || []).map((f) => {
       const g = f.geometry;
-      const rings = g?.type === "Polygon" ? g.coordinates : g?.type === "MultiPolygon" ? g.coordinates.flat() : null;
+      const rings = ringsOf(g);
       return { attributes: f.properties || {}, geometry: rings ? { rings } : null };
     }).filter((f) => f.geometry),
   };

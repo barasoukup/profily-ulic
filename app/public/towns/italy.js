@@ -16,6 +16,7 @@ import { MTVU_LABELS } from "../city.js";
 import { inArea, inside } from "../places.js";
 import { osmAreas } from "./slovakia.js";
 import { surfaces as lombardySurfaces, AREAS as LOMBARDY_AREAS } from "./lombardy.js";
+import { polygonsOf } from "./shared.js";
 
 const flag = flagsOf("PROFILY_IT");
 
@@ -36,9 +37,8 @@ async function records(dataset, bbox, select) {
   }
   return out;
 }
-const ringsOf = (g) => (g?.type === "Polygon" ? [g.coordinates] : g?.type === "MultiPolygon" ? g.coordinates : []);
 export function bolognaRoads(rows) {
-  return { features: rows.filter((r) => ROADWAY.has(r.descrizion)).flatMap((r) => ringsOf(r.geo_shape?.geometry).map((rings) => ({ attributes: { code: 701 }, geometry: { rings } }))) };
+  return { features: rows.filter((r) => ROADWAY.has(r.descrizion)).flatMap((r) => polygonsOf(r.geo_shape?.geometry).map((rings) => ({ attributes: { code: 701 }, geometry: { rings } }))) };
 }
 
 const memo = new Map();

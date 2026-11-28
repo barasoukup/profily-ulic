@@ -10,6 +10,7 @@ import { asMtvu, getJSON } from "../gis.js";
 import { MTVU_LABELS } from "../city.js";
 import { inside } from "../places.js";
 import { surfaces as dmvsSurfaces, ruianAreas } from "../dmvs.js";
+import { ringsOf } from "./shared.js";
 
 // Kinds of land (druh pozemku) and uses (způsob využití) of a parcel → MTVU codes, as dmvs.js; a road's
 // parcel beyond the passport's surfaces is mostly a grass verge (an estimate), as in Jihlava.
@@ -68,7 +69,6 @@ export async function withRuian(own, bbox) {
 // answer where the server's S-JTSK → WGS 84 differs from EPSG 1623 (RÚIAN, the orthophoto). props: the
 // fields, with the geometry "msGeometry".
 const R = 6378137;
-const ringsOf = (g) => (g?.type === "Polygon" ? g.coordinates : g?.type === "MultiPolygon" ? g.coordinates.flat() : null);
 export async function tmapyWfs(base, type, bbox, props, shift = [0, 0]) {
   const lonLat = ([x, y]) => [(x / R) * (180 / Math.PI) + shift[0], (360 / Math.PI) * Math.atan(Math.exp(y / R)) - 90 + shift[1]];
   const point = (c) => { const [x, y] = lonLat(c); return { x, y }; };

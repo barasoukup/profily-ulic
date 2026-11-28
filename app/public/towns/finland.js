@@ -23,6 +23,7 @@ import { MTVU_LABELS } from "../city.js";
 import { inArea, inside } from "../places.js";
 import { osmAreas } from "./slovakia.js";
 import { HELSINKI_RINGS } from "./finland-helsinki.js";
+import { polygonsOf } from "./shared.js";
 
 const flag = flagsOf("PROFILY_FI");
 export const HEL_WFS = "https://kartta.hel.fi/ws/geoserver/avoindata/wfs";
@@ -66,7 +67,7 @@ export function ylreFeatures(json) {
     const code = ylreCode(f.properties), g = f.geometry;
     if (!code) continue;
     const sub = String(f.properties?.alatyyppi || "").replace(/\s*\(Silta\)$/, "");
-    for (const p of g?.type === "Polygon" ? [g.coordinates] : g?.type === "MultiPolygon" ? g.coordinates : []) (LAST.has(sub) ? late : out).push({ attributes: { code }, geometry: { rings: p } });
+    for (const p of polygonsOf(g)) (LAST.has(sub) ? late : out).push({ attributes: { code }, geometry: { rings: p } });
   }
   return { features: [...out, ...late] };
 }
@@ -106,7 +107,7 @@ export function hkiHouseFeatures(json) {
   const out = [];
   for (const f of json?.features || []) {
     if (f.properties?.tila && f.properties.tila !== "voimassa") continue;
-    for (const rings of ringsOf(f.geometry)) out.push({ attributes: { CTVUK_KOD: 601, CTVUK_POPIS: MTVU_LABELS[601], ODHAD: 0 }, geometry: { rings } });
+    for (const rings of polygonsOf(f.geometry)) out.push({ attributes: { CTVUK_KOD: 601, CTVUK_POPIS: MTVU_LABELS[601], ODHAD: 0 }, geometry: { rings } });
   }
   return out;
 }
@@ -170,11 +171,10 @@ export function ryhtiBuilding(p) {
   return { built: yearOf(p.completion_date), ...walls(p.material_of_load_bearing_structures, p.facade_material), ...(use === "05" && { house: true, type: "house" }),
     ...(use === "06" && { type: "apartments" }), ...(use === "07" && { office: true }), ...(floors && { cornice: floors, total: floors, roof: 0 }) };
 }
-const ringsOf = (g) => (g?.type === "Polygon" ? [g.coordinates] : g?.type === "MultiPolygon" ? g.coordinates : []);
 // Helsinki: the building whose outline holds the point, else the tallest touching the box (a party wall).
 export function hkiPick(json, lat, lon) {
   const fs = (json?.features || []).filter((f) => !f.properties?.tila || f.properties.tila === "voimassa");
-  const here = fs.filter((f) => ringsOf(f.geometry).some((rings) => inside(rings, lon, lat)));
+  const here = fs.filter((f) => polygonsOf(f.geometry).some((rings) => inside(rings, lon, lat)));
   const f = (here.length ? here : fs).slice().sort((a, b) => (num(b.properties?.i_kerrlkm) || 0) - (num(a.properties?.i_kerrlkm) || 0))[0];
   return f ? { ...hkiBuilding(f.properties), fiBuild: "hki" } : {};
 }
