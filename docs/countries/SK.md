@@ -6,7 +6,7 @@ Stav nasazení: větev `slovensko`, 15.–16. 11. 2026. Přehled všech států:
 
 ### Slovensko (větev slovensko, 15.–16. 11. 2026)
 
-- Stát řezu ze `states.json` (`tools/build_states.mjs`: ČR z RÚIAN, SR ze ZBGIS): `cesko`, `slovensko`, jinde `cizina`;
+- Stát řezu ze `states.json` (`tools/build_boundaries.mjs`: ČR z RÚIAN, SR ze ZBGIS): `cesko`, `slovensko`, jinde `cizina`;
   `city.country` je ISO 3166-1 („CZ“, „SK“, mimo ně null), jazyk rozhraní je nezávislý (Bára).
   Mimo Česko (`towns/slovakia.js`, `city.abroad`) žádné dotazy na DMVS, RÚIAN ani ortofoto ČÚZK; profil je odhad
   z OSM a ortofota.
@@ -41,7 +41,7 @@ Stav nasazení: větev `slovensko`, 15.–16. 11. 2026. Přehled všech států:
 
 ### Slovensko a cizina (Bára 15. 11. 2026)
 
-Mimo města platí stát řezu (`states.json` z `node tools/build_states.mjs`: Česko z RÚIAN, Slovensko ze ZBGIS ÚGKK SR,
+Mimo města platí stát řezu (`states.json` z `node tools/build_boundaries.mjs states`: Česko z RÚIAN, Slovensko ze ZBGIS ÚGKK SR,
 asi 30 m): „cesko“, „slovensko“, jinde „cizina“ (okraje výřezů OSM za hranicí). Bez `states.json` je všechno mimo
 města „cesko“ jako dřív. Mimo Česko (`towns/slovakia.js`, `city.abroad`) se aplikace neptá technické mapy ČÚZK ani
 RÚIAN (DMVS za hranicí odpovídá bez CORS a vypadalo to jako výpadek). Profil je odhad z OSM a ortofota

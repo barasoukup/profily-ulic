@@ -39,8 +39,8 @@ Stav nasazení: větve `usa`, `na-newyork`, `na-sanfrancisco`, `na-boston`, 24.�
 
 ### New York (větev na-newyork z canada, 26. 11. 2026, nenasazené)
 
-- Druhé metro státu `usa`: pět obvodů New Yorku (`tools/build_states.mjs` tabulka `METROS` `dc`, `nyc` z TIGERweb; Boston a San
-  Francisco se přidají řádkem), město `newyork` v `towns-us.json` (`tools/build_towns_us.mjs`). New Jersey, Westchester a Nassau ne.
+- Druhé metro státu `usa`: pět obvodů New Yorku (`tools/build_boundaries.mjs` tabulka `METROS` `dc`, `nyc` z TIGERweb; Boston a San
+  Francisco se přidají řádkem), město `newyork` v `towns-us.json` (`tools/build_boundaries.mjs`). New Jersey, Westchester a Nassau ne.
 - Mapa povrchů NYC Planimetric Database 2022 (NYC OTI, NYCmaps na ArcGIS Online; „Limited to use defined by OTI“ bez zveřejněných podmínek, Bára 26. 11. 2026:
   používat, tatáž data jsou otevřená na NYC Open Data) přes `planimetrics.js` (`towns/newyork.js`,
   `?nyc=0`), domy z obrysů budov téže služby (`?nychouse=0`), ortofoto NYS 2024, normy Street Design Manual jen oranžově
@@ -54,8 +54,8 @@ Stav nasazení: větve `usa`, `na-newyork`, `na-sanfrancisco`, `na-boston`, 24.�
 
 ### San Francisco (větev na-sanfrancisco, 26. 11. 2026, nenasazené)
 
-- Další metro státu `usa`: City and County of San Francisco (TIGERweb 06075; `tools/build_states.mjs` tabulka `METROS` `dc`, `nyc`,
-  `sf`, další metra jako řádky), hranice města v `towns-us.json` (`tools/build_towns_us.mjs`); okolní okresy `closed_us`.
+- Další metro státu `usa`: City and County of San Francisco (TIGERweb 06075; `tools/build_boundaries.mjs` tabulka `METROS` `dc`, `nyc`,
+  `sf`, další metra jako řádky), hranice města v `towns-us.json` (`tools/build_boundaries.mjs`); okolní okresy `closed_us`.
   OSM balík `us_sf` (Geofabrik norcal oříznutý na město, 7,6 MB, jen R2; viz seznam v `docs/deployment.md`).
 - Mapa povrchů `towns/sanfrancisco.js` (`?sf=0`) složená podél řezu (`planimetrics.js` s vlastním `runs`): uliční prostor
   DataSF (2014) = chodník, mezi krajními obrubami SFMTA vozovka, budovy DataSF jen mimo uliční prostor (posun 1,4 m);
@@ -71,7 +71,7 @@ Stav nasazení: větve `usa`, `na-newyork`, `na-sanfrancisco`, `na-boston`, 24.�
 
 ### Boston (větev na-boston, 26. 11. 2026, nenasazené)
 
-- Další metro státu `usa`: okresy Suffolk, Middlesex, Norfolk (`tools/build_states.mjs METROS`, další metro = řádek), OSM balík
+- Další metro státu `usa`: okresy Suffolk, Middlesex, Norfolk (`tools/build_boundaries.mjs METROS`, další metro = řádek), OSM balík
   `us_bos`; města `boston`, `bostonmetro` (celé metro: MBTA autobus a tramvaj, ortofoto MassGIS 2025, normy Boston Complete
   Streets Guidelines 2013 jen oranžově) a `cambridge` (jen území mapy) v `towns-us.json`; v Bostonu lampa acorn.
 - Mapy povrchů Bostonu (Street Edges, Sidewalk Inventory, budovy s podlažími) a Cambridge (PDDL), `towns/boston.js`: vozovky jsou
@@ -80,7 +80,7 @@ Stav nasazení: větve `usa`, `na-newyork`, `na-sanfrancisco`, `na-boston`, 24.�
 - Čerstvé měření 60 řezů (`evaluation/usa/boston/REPORT.md`): A/B mapa : odhad 27 : 21 (p 0,47; místní 13 : 4, tepny 8 : 15),
   univerzální 69 % s mapou, 68 % bez, 72 % jen OSM. Mapa zapnutá, **rozhodne Bára** (tepny: mezera mezi polygony je zeleň i na
   parkovišti a náměstí). Washington 100 řezů beze změny, regrese beze změny.
-- Přegenerovat: `node tools/build_states.mjs usa && node tools/build_towns_us.mjs && node tools/build_coverage.mjs`.
+- Přegenerovat: `node tools/build_boundaries.mjs states usa && node tools/build_boundaries.mjs towns us && node tools/build_coverage.mjs`.
   viz seznam v `docs/deployment.md`
 - Mezery za vnějším chodníkem (26. 11., `evaluation/usa/boston/outer/REPORT.md`, `planimetrics.js outerGaps`, `ortho-osm.js
   outerGapsByImage`): domy a parkoviště z OSM, zbytek ortofotem (MassGIS je bez listí, zeleň podle žlutosti a sytosti). A/B 52
@@ -90,7 +90,7 @@ Stav nasazení: větve `usa`, `na-newyork`, `na-sanfrancisco`, `na-boston`, 24.�
 
 - USA a Kanada kvůli prestiži, ne kvůli rozsahu: jen území, které kryjí dobré a dostupné zdroje. Washington jen District
   of Columbia, Toronto jen město; New York (5 obvodů), San Francisco a Boston s metrem (MassGIS ortofoto 15 cm zdarma)
-  zůstávají. Okolní okresy a obce jsou zavřené s hláškou (`tools/build_states.mjs` METROS, GTA; hranice nafouknuté o 60 m,
+  zůstávají. Okolní okresy a obce jsou zavřené s hláškou (`tools/build_boundaries.mjs` METROS, GTA; hranice nafouknuté o 60 m,
   `grow`, aby ulice po hranici nebyla napůl zavřená); okolí DC jen při ověřené licenci Maryland Six Inch.
 - Stání v NYC, Bostonu a SF je jen „odhad“, ne „podle zákona“. Pět pravidel (DDOT, mapgaps, roadtracks, kerbbays,
   torontohouse) zůstává; opravy z rozboru proher jen obecné: mezery mezi vozovkami a stezka přes osu (`?off=gapsortho`,
@@ -135,8 +135,8 @@ směr (IFC 503.2.1, 18 DCMR § 2405), bez řádku značek, bez paneláků, sever
 
 ### USA: New York (Bára 26. 11. 2026)
 
-Druhé metro státu `usa`: pět obvodů New Yorku (`states-america.json` `usa` je od teď víc metr: `tools/build_states.mjs` tabulka
-`METROS`, `dc` a `nyc`, okresy z TIGERweb; město `newyork` v `towns-us.json` z `tools/build_towns_us.mjs`). Okolní okresy New
+Druhé metro státu `usa`: pět obvodů New Yorku (`states-america.json` `usa` je od teď víc metr: `tools/build_boundaries.mjs` tabulka
+`METROS`, `dc` a `nyc`, okresy z TIGERweb; město `newyork` v `towns-us.json` z `tools/build_boundaries.mjs`). Okolní okresy New
 Jersey, Westchester a Nassau nejsou (nemají mapu povrchů), zůstávají v `closed_us`. OSM balík `us_nyc` (výřez Geofabriku
 New York oříznutý na obdélník města, 44 MB, jen R2). V New Yorku (`towns/newyork.js`, zapojený přes `towns/usa.js`):
 - **mapa povrchů** NYC Planimetric Database 2022 (NYC OTI, organizace NYCmaps na ArcGIS Online, vrstvy Roadbed, Sidewalk,
@@ -151,8 +151,8 @@ přístřešek a ostatní mobiliář severoamerický; Bishop's Crook zatím bez 
 
 ### USA: San Francisco (Bára 26. 11. 2026)
 
-Další metro státu `usa`: City and County of San Francisco (TIGERweb, `tools/build_states.mjs` tabulka `METROS` `dc`, `nyc`, `sf`;
-hranice města v `towns-us.json`, `tools/build_towns_us.mjs`), okolní okresy zůstávají `closed_us`. OSM balík `us_sf` (výřez
+Další metro státu `usa`: City and County of San Francisco (TIGERweb, `tools/build_boundaries.mjs` tabulka `METROS` `dc`, `nyc`, `sf`;
+hranice města v `towns-us.json`, `tools/build_boundaries.mjs`), okolní okresy zůstávají `closed_us`. OSM balík `us_sf` (výřez
 Geofabriku `north-america/us/california/norcal` oříznutý na obdélník města, jen R2). Město nemá polygony vozovek čitelné
 z prohlížeče, proto **`towns/sanfrancisco.js`** skládá mapu povrchů podél řezu (`planimetrics.js` s vlastním `runs`):
 uliční prostor (DataSF Right of Way Polygons, 2014) = chodník, mezi dvěma krajními obrubami SFMTA (blockface curbs, vrstva 12)
@@ -166,7 +166,7 @@ i když ji přechází jen chodník (Lippard Avenue); `?axisroad=0` vypne.
 
 ### USA: Boston (Bára 26. 11. 2026)
 
-Další metro státu `usa`: okresy Suffolk, Middlesex a Norfolk (TIGERweb; `tools/build_states.mjs` má metra v tabulce `METROS`,
+Další metro státu `usa`: okresy Suffolk, Middlesex a Norfolk (TIGERweb; `tools/build_boundaries.mjs` má metra v tabulce `METROS`,
 další metro = další řádek), OSM balík `us_bos` (Geofabrik Massachusetts oříznutý obdélníkem metra, jen R2). Města v
 `towns-us.json`: `boston` (ilustrace: autobus a tramvaj MBTA, označník, lampa acorn do 5 m), `bostonmetro` (celé metro:
 autobus a tramvaj MBTA, ortofoto MassGIS, texty a normy Bostonu) a `cambridge` (jen území mapy povrchů).

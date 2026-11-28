@@ -61,7 +61,7 @@ export const dcOn = () => flag("dc") !== "0";
 export const ddotOn = () => flag("ddot") !== "0";
 export const DC_PLAN = "https://maps2.dcgis.dc.gov/dcgis/rest/services/DCGIS_DATA/Planimetrics_2023/MapServer";
 export const DC_SUBBLOCK = "https://maps2.dcgis.dc.gov/dcgis/rest/services/DCGIS_DATA/Transportation_WebMercator/MapServer/162";
-// The District by its boundary (towns-us.json "washington", tools/build_towns_us.mjs: simplified to 20 m), the box only
+// The District by its boundary (towns-us.json "washington", tools/build_boundaries.mjs: simplified to 20 m), the box only
 // a first test; 60 m beyond it, since Western, Eastern and Southern Avenue run along the line.
 // New York City (26. 11. 2026): towns/newyork.js.
 export const AREAS = { dc: { box: [-77.121, 38.79, -76.908, 38.997], town: "washington", near: 60 }, nyc: NYC_AREA, ...SF_AREAS };

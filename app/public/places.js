@@ -1,5 +1,5 @@
 // Which area a point lies in: rings of boundaries ([[lon, lat], …] per ring) with their boxes, and the Slovak towns'
-// boundaries (tools/build_towns_sk.mjs, towns-sk.json). No import of city.js (the states' modules use it, city.js
+// boundaries (tools/build_boundaries.mjs, towns-sk.json). No import of city.js (the states' modules use it, city.js
 // imports them).
 export const inside = (rings, x, y) => {
   let c = false;

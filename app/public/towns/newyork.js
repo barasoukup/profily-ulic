@@ -1,5 +1,5 @@
 // New York City (Bára 26. 11. 2026, the USA's second metro; evaluation/usa/nyc/): the city's five boroughs (towns-us.json
-// "newyork", tools/build_towns_us.mjs) and 30 m beyond their line. Its sources, read through towns/usa.js:
+// "newyork", tools/build_boundaries.mjs) and 30 m beyond their line. Its sources, read through towns/usa.js:
 // - the NYC Planimetric Database 2022 (NYC Office of Technology and Innovation, flown in 2022 at 0.5 ft; capture rules in
 //   github.com/CityOfNewYork/nyc-planimetrics Capture_Rules.md) as the surface map by the shared adapter (planimetrics.js),
 //   from the city's own ArcGIS Online organisation NYCmaps (services6.arcgis.com/yG5s3afENB5iO9fj, owner "maps.nyc.data";

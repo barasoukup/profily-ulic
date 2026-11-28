@@ -16,7 +16,7 @@ test("USA: mezi okresy ani na hranici DC nejsou dÃ­ry, states.json nenese spoleÄ
   C.loadBounds(JSON.parse(fs.readFileSync(new URL("../app/public/towns.json", import.meta.url), "utf8")));
   C.loadStates(staty);
   // Round each point of the District's ring, nothing of the District is closed (the state's ring is grown by 60 m,
-  // tools/build_states.mjs grow: a street along the line).
+  // tools/build_boundaries.mjs grow: a street along the line).
   C.loadTowns(us);
   for (const [lon, lat] of us.washington[0]) for (const [dx, dy] of [[0, 0], [4e-4, 0], [-4e-4, 0], [0, 3e-4], [0, -3e-4]]) {
     if (C.cityAt(lat + dy, lon + dx) === "washington") assert.equal(C.closedAt(lat + dy, lon + dx), null, `${lat + dy},${lon + dx}`);

@@ -263,7 +263,7 @@ Připojená po srovnání s celostátní DTM ČÚZK nad ortofotem (`evaluation/<
 - **DTM krajů z WFS** (`app/public/dtmwfs.js`): v devíti krajích s DTM od T-MAPY (Jihočeský, Pardubický,
   Vysočina, Moravskoslezský, Královéhradecký, Jihomoravský, Liberecký, Karlovarský, Zlínský) dává mapová služba
   kraje WFS 2.0 se skutečnými polygony (`…/mapservice/v1/wms/dtm_zps_plochy_bar`, GML v S-JTSK, CORS). Kraj řezu
-  se pozná podle `regions-cz.json` (`node tools/build_regions_cz.mjs`), jeden dotaz, kliknutí medián 0,65 s. A/B 137 řezů
+  se pozná podle `regions-cz.json` (`node tools/build_boundaries.mjs regions cz`), jeden dotaz, kliknutí medián 0,65 s. A/B 137 řezů
   proti obrázkům DMVS: lepší 6, horší 3, jinak stejně; ploty a zdi z WFS se nepřipojují (uříznou chodníky).
   `evaluation/archive/dtm-wfs/REPORT.md`.
 - **Obrázky IS DMVS ČÚZK** (`app/public/dmvs.js`): jinde, při chybě WFS nebo když do 1,5 s neodpoví. Služba

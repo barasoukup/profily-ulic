@@ -149,7 +149,7 @@ export function catastroBuilding(buildingGml, partsGml, lat, lon) {
   // catastro: the credit only for a cut with a house of the Catastro (credits.js esCatastro; Bára 27. 11. 2026).
   return { built, office, house: (living && dwellings === 1) || undefined, type, ...(floors && { cornice: floors, total: floors, roof: 0 }), catastro: true };
 }
-// The Basque Country and Navarre (regions-es.json, tools/build_regions_es.mjs: the provinces ar, gi, bi and nc; Bára
+// The Basque Country and Navarre (regions-es.json, tools/build_boundaries.mjs: the provinces ar, gi, bi and nc; Bára
 // 23. 11. 2026): their own foral cadastres, the Catastro answers nothing there. foralAt: the province of a point that
 // lies, with the points about 500 m around it, inside the four (the boundaries are of 1 : 1 000 000; near their outer
 // edge, and when the file did not load, the Catastro is asked as before). Treviño (Burgos) and Villaverde (Cantabria)
