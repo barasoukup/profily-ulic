@@ -11,6 +11,7 @@ export { lawNeedFor } from "./derive/lanes.js";
 export { PERP_MIN, orientFromStalls } from "./derive/parking.js";
 export { nearestStreet, streetAround, savedStreet, dragAlong, snapToWay, awayFromEnds, placeCut, junctionHits, awayFromJunctions, centerOnStreet } from "./derive/placement.js";
 export { esriPolygons, mtvuPolygons, withOsmBuildings } from "./derive/polygons.js";
-export { MAX_REACH, deriveProfile } from "./derive/profile.js";
+export { deriveProfile } from "./derive/profile.js";
+export { MAX_REACH } from "./derive/profile-reach.js";
 export { classGroup, osmGroup, isOnewayTags } from "./derive/tags.js";
 export { bedSurfaces, snapTracksToBeds, widenNarrowTrams, carveTramTracks } from "./derive/tram.js";
