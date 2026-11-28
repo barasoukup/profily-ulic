@@ -17,15 +17,16 @@
 // Lithuania: under Vilnius's map before OSM's buildings (the nearer facade ends a side); for the estimate the houses OSM
 // lacks join OSM's (grpkAsOsm). A failure leaves OSM's alone, silently. ?grpk=0 leaves it out. A/B of 88 cuts in Vilnius
 // (evaluation/lithuania/REPORT.md): 14 changed, better 5, worse 2, same 7; the universal measurement's composition the same.
+import { flagsOf } from "../flags.js";
 import { osmTiles, getJSON, asMtvu, asPassport } from "../gis.js";
 import { MTVU_LABELS } from "../city.js";
 import { inArea } from "../places.js";
 import { osmAreas } from "./slovakia.js";
 
-const param = (k) => (typeof location === "undefined" ? globalThis.PROFILY_LT?.[k] ?? null : new URLSearchParams(location.search).get(k));
+const flag = flagsOf("PROFILY_LT");
 // Vilnius's map off by default (?vilnius=1 turns it on; Bára 24. 11. 2026), the GRPK's houses on (?grpk=0 leaves them out).
-export const vilniusOn = () => param("vilnius") === "1";
-export const grpkOn = () => param("grpk") !== "0";
+export const vilniusOn = () => flag("vilnius") === "1";
+export const grpkOn = () => flag("grpk") !== "0";
 export const VILNIUS_MAP = "https://gis.vplanas.lt/arcgis/rest/services/Baziniai_zemelapiai/Vilnius_basemap_LKS_su_rajonu/MapServer/13";
 export const GRPK_BUILDINGS = "https://www.geoportal.lt/arcgis/rest/services/NZT/GRPK/MapServer/22";
 // Vilnius's box (the map covers the city and the district around it; the cut's town decides beyond).

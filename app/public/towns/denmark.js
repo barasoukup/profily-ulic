@@ -18,12 +18,14 @@
 //   year, the use, walls and roof, the areas the floors are estimated from), the dataset "BBR-ejendomme og
 //   BBR-bygninger" CC BY 4.0 on opendata.dk; ?aarbyg=0 leaves it out.
 // One small request a facade, at most 6 s, kept by the point rounded to about a metre.
+import { flagsOf } from "../flags.js";
 import { osmTiles } from "../gis.js";
 import { inArea } from "../places.js";
 
 // The switches (URL parameters; in Node globalThis.PROFILY_DK) and their defaults.
 const DEFAULTS = { kbhkant: "1", kbhpark: "1", kbhbyg: "1", aarbyg: "1" };
-const param = (k) => (typeof location === "undefined" ? globalThis.PROFILY_DK?.[k] : new URLSearchParams(location.search).get(k)) ?? DEFAULTS[k];
+const flag = flagsOf("PROFILY_DK");
+const param = (k) => flag(k) ?? DEFAULTS[k];
 export const on = (k) => param(k) === "1";
 
 export const KBH_WFS = "https://wfs-kbhkort.kk.dk/k101/ows";

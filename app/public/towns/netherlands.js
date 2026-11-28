@@ -12,11 +12,12 @@
 // As in Switzerland: the BGT's surfaces with OSM's green and water after them, the BGT's buildings (the BAG's
 // footprints) among them, only where the BGT has a surface of the street at the cut's centre (elsewhere the estimate);
 // a BGT that does not answer: the estimate, with a note.
+import { flagsOf } from "../flags.js";
 import { osmTiles, getJSON, asMtvu, asPassport } from "../gis.js";
 import { MTVU_LABELS } from "../city.js";
 import { osmAreas } from "./slovakia.js";
 
-const param = (k) => (typeof location === "undefined" ? globalThis.PROFILY_NL?.[k] ?? null : new URLSearchParams(location.search).get(k));
+const flag = flagsOf("PROFILY_NL");
 
 export const BGT_API = "https://api.pdok.nl/kadaster/bgt/ogc/v1/collections";
 // The layers of the BGT asked for a cut, each its own request (the API takes one collection at a time).
@@ -140,7 +141,7 @@ const ring = (r) => Array.from({ length: 8 }, (_, i) => [r * Math.cos((i * Math.
 const NEAR = [[0, 0], ...[1.5, 4].flatMap(ring)], WIDE = [...NEAR, ...[7, 10].flatMap(ring)];
 
 async function surfaces(bbox, tags) {
-  if (param("bgt") === "0") return { features: [], abroad: true };
+  if (flag("bgt") === "0") return { features: [], abroad: true };
   const [x0, y0, x1, y1] = bbox.split(",").map(Number);
   const cx = (x0 + x1) / 2, cy = (y0 + y1) / 2;
   let own;
@@ -186,7 +187,7 @@ export function bagBuilding(pand, bag3d) {
 // The BAG's buildings that stand (not demolished, not only permitted).
 const STANDING = /^Pand in gebruik|^Verbouwing pand/;
 async function podlaznost(lat, lon) {
-  if (param("bag") === "0") return {};
+  if (flag("bag") === "0") return {};
   const d = 0.000005; // about half a metre around the facade's point
   const json = await getJSON(`${BAG_API}?${new URLSearchParams({ f: "json", limit: "5", bbox: [lon - d, lat - d, lon + d, lat + d].join(",") })}`);
   const standing = (json?.features || []).filter((f) => STANDING.test(f.properties?.status || ""));

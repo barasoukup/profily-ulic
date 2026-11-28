@@ -8,8 +8,9 @@
 //   (a steep gable on a bay-and-gable house raises the height by a floor);
 // - a hall (OSM building=train_station, warehouse, industrial, sports_hall, hangar…) of 6 m or more: no floors from the height, undefined.
 // ?off=floorsh: the old rule (floorsOld) everywhere.
-const param = (k) => (typeof location === "undefined" ? globalThis.PROFILY_CA?.[k] ?? null : new URLSearchParams(location.search).get(k));
-export const floorsHOff = () => (param("off") || "").split(",").includes("floorsh");
+import { offOf } from "./flags.js";
+const off = offOf("PROFILY_CA");
+export const floorsHOff = () => off("floorsh");
 
 export const HALLS = new Set(["train_station", "transportation", "warehouse", "industrial", "sports_hall", "hangar", "hall", "factory", "manufacture",
   "sports_centre", "stadium", "grandstand", "service", "silo", "storage_tank", "greenhouse", "barn"]);

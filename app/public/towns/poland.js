@@ -8,12 +8,13 @@
 // As Germany's city maps: the city's surfaces with OSM's buildings before them and OSM's green and water after, only
 // where the city has a surface of the street at the cut's centre or near it; a city that does not answer: the
 // estimate, with a note.
+import { flagsOf } from "../flags.js";
 import { osmTiles, query, envelope, asMtvu, asPassport } from "../gis.js";
 import { MTVU_LABELS } from "../city.js";
 import { inArea } from "../places.js";
 import { osmAreas } from "./slovakia.js";
 
-const param = (k) => (typeof location === "undefined" ? globalThis.PROFILY_PL?.[k] ?? null : new URLSearchParams(location.search).get(k));
+const flag = flagsOf("PROFILY_PL");
 
 export const KRAKOW = "https://msip.um.krakow.pl/arcgis/rest/services/Mapy_bazowe/basemap_MJO/MapServer";
 export const AREAS = { krakow: { box: [19.79, 49.96, 20.22, 50.13] } };
@@ -44,7 +45,7 @@ const NEAR = [[0, 0], ...[1.5, 4, 7].flatMap((r) => Array.from({ length: 8 }, (_
 export const PL_TOWNS = { krakow };
 // The towns asked only with ?<id>=1 (no consent to their use yet).
 export const OFF_BY_DEFAULT = new Set(["krakow"]);
-const townOn = (id) => (OFF_BY_DEFAULT.has(id) ? param(id) === "1" : param(id) !== "0");
+const townOn = (id) => (OFF_BY_DEFAULT.has(id) ? flag(id) === "1" : flag(id) !== "0");
 const townAt = (lon, lat) => Object.keys(PL_TOWNS).find((id) => townOn(id) && inArea(AREAS[id], lon, lat)) ?? null;
 
 async function surfaces(bbox) {

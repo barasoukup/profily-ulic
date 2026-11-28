@@ -7,9 +7,10 @@
 //   used: the server refuses big queries as bulk downloads; a second one of about 7 m around when the first has no
 //   footprint at the point), at most 6 s each, kept by the point rounded to about a metre.
 //   ?gurs=0 leaves them out; ?off=podkrovi only the rule of the attic (gursBuilding).
+import { flagsOf, offOf } from "../flags.js";
 import { osmTiles } from "../gis.js";
 
-const param = (k) => (typeof location === "undefined" ? globalThis.PROFILY_SI?.[k] ?? null : new URLSearchParams(location.search).get(k));
+const flag = flagsOf("PROFILY_SI");
 
 export const GURS_KN = "https://ipi.eprostor.gov.si/wfs-si-gurs-kn/wfs";
 const FIELDS = ["STEVILO_ETAZ", "STEVILKA_PRITL_ETAZE", "LETO_IZGRADNJE", "VISINA_H1", "VISINA_H2", "VISINA_H3", "NOSILNE_KONSTRUKCIJE_NAZIV_SL", "STEVILO_STANOVANJ", "STEVILO_POSLOVNIH_PROSTOROV", "OBRIS_GEOM"];
@@ -47,7 +48,7 @@ const num = (v) => (v === null || v === undefined || v === "" ? NaN : Number(v))
 // - the walls: brick, stone, wood (solid; NOSILNE_KONSTRUKCIJE_NAZIV_SL); concrete says nothing of a panel house;
 // - one dwelling and no business: a house; more dwellings: a block of flats.
 export const ATTIC = { min: 2, max: 4, perFloor: 3, roof: 2 };
-const offList = () => String(param("off") || "").split(",");
+const off = offOf("PROFILY_SI");
 export function gursBuilding(p) {
   if (!p) return {};
   const all = num(p.STEVILO_ETAZ), ground = num(p.STEVILKA_PRITL_ETAZE);
@@ -58,7 +59,7 @@ export function gursBuilding(p) {
   const top = num(p.VISINA_H2), base = num(p.VISINA_H3) > 0 ? num(p.VISINA_H3) : num(p.VISINA_H1);
   const h = top - base;
   const height = h > 1 && h < 300 ? Math.round(h * 10) / 10 : undefined;
-  const attic = !offList().includes("podkrovi") && floors >= ATTIC.min && floors <= ATTIC.max && height && height < ATTIC.perFloor * floors + ATTIC.roof ? 1 : 0;
+  const attic = !off("podkrovi") && floors >= ATTIC.min && floors <= ATTIC.max && height && height < ATTIC.perFloor * floors + ATTIC.roof ? 1 : 0;
   const walls = String(p.NOSILNE_KONSTRUKCIJE_NAZIV_SL || "");
   const solid = /opeka|kamen|les|zidan/i.test(walls) || undefined;
   const flats = num(p.STEVILO_STANOVANJ), shops = num(p.STEVILO_POSLOVNIH_PROSTOROV);
@@ -92,7 +93,7 @@ const ask = (lat, lon, d) => fetch(gursUrl(lat, lon, d), { signal: AbortSignal.t
 
 const memo = new Map();
 async function podlaznost(lat, lon) {
-  if (param("gurs") === "0") return {};
+  if (flag("gurs") === "0") return {};
   const key = `${lat.toFixed(5)},${lon.toFixed(5)}`;
   if (!memo.has(key)) {
     memo.set(key, ask(lat, lon)

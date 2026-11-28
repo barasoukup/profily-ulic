@@ -10,7 +10,8 @@
 // The gabled looks (the North Sea step, neck and bell gable, the Hanseatic house of Tallinn) draw the gable's outline
 // above the side view (Bára 23. 11. 2026: approved, drawn by default for the old houses the rules pick); ?stit=0 turns
 // them off (the cornice brick house, the look left as it was).
-const STIT = typeof location !== "undefined" ? new URLSearchParams(location.search).get("stit") : null;
+import { flag } from "./flags.js";
+const STIT = flag("stit");
 // The gable cut by the frame (two thirds of a wider house: the house runs on past the cut like the others; Bára
 // 23. 11. 2026 chose it over the whole symmetric gable, which ?stit=cely still draws).
 export const LOOKS = { gables: STIT !== "0", gableCut: STIT !== "cely" };

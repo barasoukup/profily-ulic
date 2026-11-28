@@ -2,9 +2,10 @@
 // street surfaces: the profile is the estimate from OSM and the DLS orthophoto (lanes-ortho.js "cy"). The buildings of
 // the DLS (INSPIRE BU3, CC BY 4.0): floors, height and type (the roof type is not read). In the north and on the British bases the DLS has nothing (the
 // estimate from OSM alone). Sources: evaluation/cyprus/SOURCES.md.
+import { flagsOf } from "../flags.js";
 import { osmTiles, getJSON } from "../gis.js";
 
-const param = (k) => (typeof location === "undefined" ? globalThis.PROFILY_CY?.[k] ?? null : new URLSearchParams(location.search).get(k));
+const flag = flagsOf("PROFILY_CY");
 export const DLS_BUILDINGS = "https://eservices.dls.moi.gov.cy/inspire/rest/services/INSPIRE/BU_Buildings/MapServer/6/query";
 
 // A DLS building → the facts of app.js ruianFacts and an OSM building type for profile.js (as BD TOPO in France).
@@ -19,7 +20,7 @@ export function dlsBuilding(a) {
     ...(floors && { cornice: floors, total: floors, roof: 0, fromHeight: false, height: a.H_ROOF_A_1 > 0 ? Math.round(a.H_ROOF_A_1 * 10) / 10 : undefined }) };
 }
 async function podlaznost(lat, lon) {
-  if (param("dls") === "0") return {};
+  if (flag("dls") === "0") return {};
   const json = await getJSON(`${DLS_BUILDINGS}?${new URLSearchParams({ geometry: `${lon},${lat}`, geometryType: "esriGeometryPoint", inSR: "4326", distance: "1", units: "esriSRUnit_Meter",
     spatialRel: "esriSpatialRelIntersects", outFields: "B_TYPE,FLOOR_QTY,H_ROOF_A_1", returnGeometry: "false", f: "json" })}`);
   const f = (json?.features || []).sort((x, y) => (y.attributes.FLOOR_QTY || 0) - (x.attributes.FLOOR_QTY || 0))[0];

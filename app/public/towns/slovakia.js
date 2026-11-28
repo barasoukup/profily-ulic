@@ -4,6 +4,7 @@
 // are none, so the profile is the estimate from OSM and the orthophoto (app.js, ortho-osm.js). The houses of
 // Slovakia: ZBGIS of ÚGKK SR (layer Budova, CC BY 4.0, GKÚ Bratislava) gives the use and the height above the ground,
 // no floors and no year: the floors are the height by 3.3 m; elsewhere abroad OSM's building:levels.
+import { flagsOf } from "../flags.js";
 import { osmTiles, query, envelope, asMtvu, addPoints, boxAround } from "../gis.js";
 import { MTVU_LABELS } from "../city.js";
 import { inArea } from "../places.js";
@@ -58,7 +59,7 @@ async function podlaznost(lat, lon) {
 // as the estimate (ortho-osm.js) has them. Where a passport has nothing at the cut the profile is the estimate.
 // ?pasport=0 leaves the passports out (the A/B test, evaluation/slovakia/AB.md).
 const ROAD = 701, WALK = 702, BIKE = 703, PARK = 704, OTHER = 1003, GREEN = 401, PLAY = 901;
-const param = (k) => (typeof location === "undefined" ? globalThis.PROFILY_SK?.[k] ?? null : new URLSearchParams(location.search).get(k));
+const flag = flagsOf("PROFILY_SK");
 const AGO_BA = "https://services8.arcgis.com/pRlN1m0su5BYaFAS/arcgis/rest/services";
 // The magistrát's passport and the city's technical map lie 1.4–1.5 m east and 0.3 m south of OSM, the cadastre's
 // buildings and the ZBGIS orthophoto (Bára 19. 11. 2026: the
@@ -174,7 +175,7 @@ const BA_SYMBOL = { 3141: 401, 3140: 401, 3110: 401, 120: 702, 130: 1003, 4060: 
 export const edgeSourceAt = (lon, lat) => EDGE_SOURCES.find((e) => inArea({ box: e.box, town: e.id }, lon, lat)) || null;
 async function edgesAt(bbox) {
   const [x0, y0, x1, y1] = bbox.split(",").map(Number), cx = (x0 + x1) / 2, cy = (y0 + y1) / 2;
-  if (param("hrany") === "0") return { paths: [] };
+  if (flag("hrany") === "0") return { paths: [] };
   const e = edgeSourceAt(cx, cy);
   if (e) {
     const j = await arc(e.url, e.field, bbox).catch(() => null);
@@ -184,7 +185,7 @@ async function edgesAt(bbox) {
     // With its symbols of the kinds of areas (lawn, sidewalk, paved area, yard, car park): the pieces between the lines.
     const [j, p] = await Promise.all([baQuery("Technická_mapa_TM", 7, bbox, "Typ").catch(() => null), baQuery("Technická_mapa_TM", 9, bbox, "Typ").catch(() => null)]);
     // ?symboly=0 leaves the symbols out (the A/B test).
-    const symbols = param("symboly") === "0" ? [] : (p?.features || []).map((f) => ({ x: f.geometry?.x, y: f.geometry?.y, code: BA_SYMBOL[f.attributes?.Typ] })).filter((q) => q.code && q.x !== undefined);
+    const symbols = flag("symboly") === "0" ? [] : (p?.features || []).map((f) => ({ x: f.geometry?.x, y: f.geometry?.y, code: BA_SYMBOL[f.attributes?.Typ] })).filter((q) => q.code && q.x !== undefined);
     return { paths: (j?.features || []).filter((f) => BA_EDGE.has(f.attributes?.Typ)).flatMap((f) => f.geometry?.paths || []), id: "bratislava-tm", symbols };
   }
   return { paths: [] };
@@ -209,7 +210,7 @@ export function zbgisParse(json) {
   return { widths, features };
 }
 function zbgisAt(bbox) {
-  if (param("zbgis") === "0") return Promise.resolve({ widths: [], features: [] });
+  if (flag("zbgis") === "0") return Promise.resolve({ widths: [], features: [] });
   if (!zbMemo.has(bbox)) {
     zbMemo.clear();
     const [x0, y0, x1, y1] = bbox.split(",").map(Number);
@@ -226,7 +227,7 @@ async function surfaces(bbox) {
   const [x0, y0, x1, y1] = bbox.split(",").map(Number);
   const cx = (x0 + x1) / 2, cy = (y0 + y1) / 2, d = 1.5 / 111320;
   const at = (f) => [[0, 0], [d, 0], [-d, 0], [0, d], [0, -d]].some(([dx, dy]) => inRings(f.geometry.rings, cx + dx, cy + dy));
-  const id = param("pasport") === "0" ? null : townAt(cx, cy);
+  const id = flag("pasport") === "0" ? null : townAt(cx, cy);
   const t = SK_TOWNS[id];
   // A passport that does not answer: the estimate, as where there is none (no outage to report).
   const [own, under] = await Promise.all([
@@ -254,7 +255,7 @@ async function lines(bbox) {
 
 // OSM around a point and, in a town that has them, its trees where OSM has none nearby.
 async function osm(lat, lon, radius) {
-  const id = param("pasport") === "0" ? null : townAt(lon, lat);
+  const id = flag("pasport") === "0" ? null : townAt(lon, lat);
   const pts = SK_TOWNS[id]?.points;
   if (!pts) return osmTiles(lat, lon, radius);
   const box = boxAround(lat, lon, Math.min(radius, 50));

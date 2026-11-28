@@ -11,13 +11,14 @@
 //   (towns/spain-foral.js: Navarre, Álava, Bizkaia, Gipuzkoa; ?foral=0 leaves them out).
 // As Kraków's base map: the city's surfaces with OSM's buildings before them and OSM's green and water after, only
 // where the city has a sidewalk near the cut's centre; a city that does not answer: the estimate, with a note.
+import { flagsOf } from "../flags.js";
 import { osmTiles, getJSON, asMtvu, asPassport } from "../gis.js";
 import { MTVU_LABELS } from "../city.js";
 import { inArea } from "../places.js";
 import { osmAreas } from "./slovakia.js";
 import { foralEnabled, foralFetch } from "./spain-foral.js";
 
-const param = (k) => (typeof location === "undefined" ? globalThis.PROFILY_ES?.[k] ?? null : new URLSearchParams(location.search).get(k));
+const flag = flagsOf("PROFILY_ES");
 
 export const ZARAGOZA_WFS = "https://idezar-sig.zaragoza.es/servicios/geoserver/wfs";
 export const AREAS = { zaragoza: { box: [-1.02, 41.58, -0.78, 41.73] } };
@@ -44,7 +45,7 @@ async function zaragoza(bbox) {
   return zaragozaFeatures(layers);
 }
 export const ES_TOWNS = { zaragoza };
-const townAt = (lon, lat) => Object.keys(ES_TOWNS).find((id) => param(id) !== "0" && inArea(AREAS[id], lon, lat)) ?? null;
+const townAt = (lon, lat) => Object.keys(ES_TOWNS).find((id) => flag(id) !== "0" && inArea(AREAS[id], lon, lat)) ?? null;
 
 // The roadway a city without one as a surface leaves between its sidewalks: a band about each OSM road axis, as
 // quadrilaterals (one feature a segment, so overlapping bands do not cancel), half as wide as ROAD_HALF of its kind.
@@ -188,11 +189,11 @@ const once = (key, ask) => {
 async function podlaznost(lat, lon) {
   const key = `${lat.toFixed(5)},${lon.toFixed(5)}`, d = 0.000005; // about half a metre around the facade's point
   const deep = await foralAt(lon, lat), prov = deep ?? (await provinceAt(lon, lat));
-  if (prov && foralEnabled(prov, param("foral"))) {
+  if (prov && foralEnabled(prov, flag("foral"))) {
     const p = await once(`${prov} ${key}`, () => foralFetch(prov, lat, lon, d)).catch((err) => { if (deep) throw err; return {}; });
     if (deep || p.total || p.built) return p;
   }
-  if (deep || param("catastro") === "0") return {};
+  if (deep || flag("catastro") === "0") return {};
   return once(key, () => Promise.all([catastro("BU:Building", lat, lon, d), catastro("BU:BuildingPart", lat, lon, d)]).then(([b, p]) => catastroBuilding(b, p, lat, lon)));
 }
 

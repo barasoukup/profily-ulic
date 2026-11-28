@@ -12,16 +12,17 @@
 //   floors, which OSM's building:levels overrules, and a garage. ?torontohouse=0 leaves it out.
 // A map that does not answer: the estimate, said so (sources.js mapFailed). Requests: four a cut (memo by the box) and the
 // orthophoto's images.
+import { flagsOf, offOf } from "../flags.js";
 import { osmTiles } from "../gis.js";
 import { inArea } from "../places.js";
 import { floorsFromHeight, heightHouse } from "../floors.js";
 import { planimetricMap, gapsBetweenRoads, kerbBays, osmTracks, WALKED } from "./planimetrics.js";
 
-const param = (k) => (typeof location === "undefined" ? globalThis.PROFILY_CA?.[k] ?? null : new URLSearchParams(location.search).get(k));
-const off = (name) => (param("off") || "").split(",").includes(name);
+const flag = flagsOf("PROFILY_CA");
+const off = offOf("PROFILY_CA");
 export const AREAS = { toronto: { box: [-79.645, 43.575, -79.11, 43.86], town: "toronto", near: 30 } };
 export const TORONTO_MAP = {
-  id: "toronto", area: AREAS.toronto, on: () => param("toronto") !== "0", fields: "SUBTYPE_DESC",
+  id: "toronto", area: AREAS.toronto, on: () => flag("toronto") !== "0", fields: "SUBTYPE_DESC",
   service: "https://gis.toronto.ca/arcgis/rest/services/cot_geospatial3/MapServer",
   layers: [
     { id: 2, fields: "SUBTYPE_DESC,DERIVED_HEIGHT", code: (a) => (/building|garage/i.test(a.SUBTYPE_DESC) ? [601, 0] : null) },
@@ -51,7 +52,7 @@ export function torontoHouse(a) {
   return heightHouse(Number(a.DERIVED_HEIGHT), { caHouse: true });
 }
 async function podlaznost(lat, lon) {
-  if (param("torontohouse") === "0" || !TORONTO_MAP.on() || !inArea(AREAS.toronto, lon, lat)) return {};
+  if (flag("torontohouse") === "0" || !TORONTO_MAP.on() || !inArea(AREAS.toronto, lon, lat)) return {};
   return torontoHouse((await map.at(2, lat, lon))?.attributes);
 }
 

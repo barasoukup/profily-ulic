@@ -22,13 +22,14 @@
 // - the houses (podlaznost): the building footprint under the facade (the request the cut has made already): its roof height
 //   (HEIGHT_ROOF, ft) as floors as Toronto's, its year (CONSTRUCTION_YEAR) and a garage. ?nychouse=0 leaves it out.
 // - the orthophoto of the State of New York (NYS ITS Geospatial Services, 2024, 0.5 ft; lanes-ortho.js US_ORTHO "us-nyc").
+import { flagsOf, offOf } from "../flags.js";
 import { inArea } from "../places.js";
 import { planimetricMap, islandsBeside, kerbBays, osmTracks, WALKED } from "./planimetrics.js";
 import { heightHouse } from "../floors.js";
 
-const param = (k) => (typeof location === "undefined" ? globalThis.PROFILY_US?.[k] ?? null : new URLSearchParams(location.search).get(k));
-const off = (name) => (param("off") || "").split(",").includes(name);
-export const nycOn = () => param("nyc") !== "0";
+const flag = flagsOf("PROFILY_US");
+const off = offOf("PROFILY_US");
+export const nycOn = () => flag("nyc") !== "0";
 // The five boroughs by their line (the box only a first test), 30 m beyond it (the Bronx's line along the streets of Yonkers
 // and Mount Vernon, Queens's along Nassau's).
 export const AREA = { box: [-74.27, 40.47, -73.68, 40.93], town: "newyork", near: 30 };
@@ -75,6 +76,6 @@ export function nycHouse(a) {
   return house.cornice || built.built ? { ...house, ...built, nycHouse: true } : {};
 }
 export async function nycPodlaznost(lat, lon) {
-  if (param("nychouse") === "0" || !nycOn() || !inArea(AREA, lon, lat)) return null;
+  if (flag("nychouse") === "0" || !nycOn() || !inArea(AREA, lon, lat)) return null;
   return nycHouse((await nycMap.at(BUILDING, lat, lon))?.attributes);
 }

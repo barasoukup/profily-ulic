@@ -42,6 +42,7 @@ vnitřní podobu kódu.
 | Sdílený kód bez výjimek pro jedno město nebo stát: oprava je obecná. Výjimka jen s měřením, že obecná oprava škodí; jinak se výjimka odstraní. | recenzent |
 | Každá změna odhadu (ortofoto, OSM, odvození profilu) má vypínač `?off=…` a slepé A/B na malém vzorku dotčených řezů (najít bez prohlížeče, asi 20–40) plus kontrolní sadě (30–50), která se nesmí změnit. | recenzent |
 | Změna `ortho-osm.js` projde regresí Praha/Brno: `node evaluation/ortho-osm/regression.mjs`. | recenzent |
+| Nový vypínač se přidává do registru `app/public/flags.js` se záznamem (druh, výchozí hodnota, popis, datum, měření); adresu čte jen `flags.js` (`flag("…")`, `flagsOf(scope)`, `offOf(scope)`), přehled `docs/switches.md` se generuje (`node tools/build_switches_doc.mjs`). | test (`tests/flags.test.js`) |
 | Před commitem: `node tools/check_syntax.mjs && node tools/check_imports.mjs && node node_modules/eslint/bin/eslint.js && node --test tests/*.test.js` (`npm test` je totéž; na Bářině Macu s Node 26 `npm` a `npx` tiše končí kódem 194, spouštěj node přímo). | CI (`pages.yml`, job test) |
 | Zprávy commitů anglicky, popisné: co se změnilo a proč, s datem Bářina rozhodnutí. Commit po logickém kroku. | recenzent |
 | Nikdy nepushovat bez Bářina „nasaď“; push na `main` je nasazení. | recenzent |

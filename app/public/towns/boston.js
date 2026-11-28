@@ -18,11 +18,12 @@
 //   (?bostonhouse=0: not).
 // A tile that does not come: the estimate, said so (mapFailed); a city whose tiles are not on the site (no about.json of
 // its own): the same, said that the map is missing (mapMissing).
+import { flagsOf, offOf } from "../flags.js";
 import { inArea } from "../places.js";
 import { planimetricMap, gapsBetweenRoads, kerbBays, osmTracks, islandsBeside, WALKED } from "./planimetrics.js";
 
-const param = (k) => (typeof location === "undefined" ? globalThis.PROFILY_US?.[k] ?? null : new URLSearchParams(location.search).get(k));
-const off = (name) => (param("off") || "").split(",").includes(name);
+const flag = flagsOf("PROFILY_US");
+const off = offOf("PROFILY_US");
 export const AREAS = {
   boston: { box: [-71.192, 42.227, -70.748, 42.401], town: "boston", near: 30 },
   cambridge: { box: [-71.161, 42.352, -71.063, 42.405], town: "cambridge", near: 30 },
@@ -97,7 +98,7 @@ const prepare = (runs, { tags, tracks, cycleTracks, streets }) => {
   if (!WALKED.has(tags?.highway) && !off("roadtracks")) osmTracks(runs, cycleTracks(), 1.8, !off("trackaxis"));
 };
 export const BOSTON_MAP = {
-  id: "boston", area: AREAS.boston, on: () => param("boston") !== "0", ask: planAsk("boston"),
+  id: "boston", area: AREAS.boston, on: () => flag("boston") !== "0", ask: planAsk("boston"),
   layers: [
     { id: "b", code: () => [601, 0] },
     { id: "s", code: () => [702, 2] },
@@ -107,7 +108,7 @@ export const BOSTON_MAP = {
   prepare,
 };
 export const CAMBRIDGE_MAP = {
-  id: "cambridge", area: AREAS.cambridge, on: () => param("cambridge") !== "0", ask: planAsk("cambridge"),
+  id: "cambridge", area: AREAS.cambridge, on: () => flag("cambridge") !== "0", ask: planAsk("cambridge"),
   layers: [
     { id: "b", code: () => [601, 0] },
     { id: "s", code: (a) => (/TREE/.test(a.TYPE || "") ? [401, 1] : [702, 2]) },
@@ -128,6 +129,6 @@ export function bostonHouse(a) {
   return n >= 1 && n <= 60 ? { cornice: n, roof: 0, total: n, usHouse: "boston" } : {};
 }
 export async function bostonPodlaznost(lat, lon) {
-  if (param("bostonhouse") === "0" || !BOSTON_MAP.on() || !inArea(AREAS.boston, lon, lat)) return {};
+  if (flag("bostonhouse") === "0" || !BOSTON_MAP.on() || !inArea(AREAS.boston, lon, lat)) return {};
   return bostonHouse((await bostonMap.at("b", lat, lon))?.attributes);
 }
