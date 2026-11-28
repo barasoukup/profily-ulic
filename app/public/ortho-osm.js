@@ -404,7 +404,7 @@ export function kerbs(cols, axis, lim, road, lines = [], edges = []) {
   const ref = roadRef(cols, axis), out = {}, why = {};
   if (!Number.isFinite(ref.L)) return null;
   for (const [side, sg] of [["A", -1], ["B", 1]]) {
-    const exp = road.reach[side] * (P.expScale ?? 1), sigma = Math.max(P.sigmaMin, P.sigmaRel * exp);
+    const exp = road.reach[side], sigma = Math.max(P.sigmaMin, P.sigmaRel * exp);
     const lo = sg < 0 ? Math.max(lim.A, cols.t0 + 0.3) : axis + 1, hi = sg < 0 ? axis - 1 : Math.min(lim.B, cols.t0 + cols.nt * cols.res - 0.3);
     const cand = [], w = Math.round(0.3 / cols.res);
     for (let i = Math.max(1, cols.ti(lo)); i <= Math.min(cols.E.length - 2, cols.ti(hi)); i++) {
@@ -542,7 +542,7 @@ export function carsSeen(st, a, b, axis) {
 // sidewalk make some).
 const PIECE_GREEN = 0.35, AREA_GREEN = 0.2;
 // The narrowest sidewalk the image may end (from the kerb) and the stretch of green that ends it (m).
-const WALK_MIN = 1.0, WALK_WIN = 1.0, WALK_SAT = 8, WALK_LIGHT = 100, AI_RUN = 1.0, AI_SNAP = 0.6, SPLIT_MIN = 1.5;
+const WALK_MIN = 1.0, WALK_WIN = 1.0, AI_RUN = 1.0;
 
 const BACK_MIN = 2; // m: the shortest run of green or paving the image may give behind everything else
 // m: a deck edge nearer the kerb (or inside the roadway) does not end the street: OSM drew the roadway only, or roughly
@@ -765,19 +765,6 @@ export function orthoOsmPolys({ osm, frame, dir, way, st, mapRuns = [], edges = 
     if (g.length && g.reduce((x, y) => x + y, 0) / g.length >= GREEN_AREA) polys.push(rect(401, "zeleň (ortofoto)", a, b));
     else if (b - a <= REST_MAX) polys.push(rect(1003, "plocha před domem (odhad)", a, b));
   };
-  // Where a paved stretch from the kerb reaches the cap (SIDEWALK_MAX), the sidewalk's edge was not found: the
-  // strongest change of surface on the image (columns Ec) between SPLIT_MIN and the cap, if it is at least
-  // P.splitMin (Bára 19. 11. 2026: "když nám vyjde 6 m, je to skoro jistě blbě; hledat dodatečné hrany"). A trial
-  // (P.split6, off): without the model 204 of 381 sides reach the cap, the split moves sidewalk F1 by ±1 pp
-  // (regression); with the model's surfaces only 4 of 229 sides in Brno reach it, nothing changes.
-  const splitAt = (kerb, sg) => {
-    const c = k.cols;
-    if (!c?.Ec || !P.split6) return null;
-    let best = null;
-    for (let i = c.ti(kerb + sg * SPLIT_MIN); sg > 0 ? i <= c.ti(kerb + sg * SIDEWALK_MAX) : i >= c.ti(kerb + sg * SIDEWALK_MAX); i += sg > 0 ? 1 : -1)
-      if (i > 0 && i < c.nt && c.Ec[i] >= (P.splitMin ?? 3) && c.Ec[i] >= (c.Ec[i - 1] || 0) && c.Ec[i] >= (c.Ec[i + 1] || 0) && (best === null || c.Ec[i] > c.Ec[best])) best = i;
-    return best === null ? null : c.tOf(best);
-  };
   let edgeUsed = k.why.A === "mapa" || k.why.B === "mapa" || (k2 && (k2.why.A === "mapa" || k2.why.B === "mapa"));
   // The median between the two carriageways: greenery where the image is mostly green, else a paved strip.
   if (k2) {
@@ -869,18 +856,9 @@ export function orthoOsmPolys({ osm, frame, dir, way, st, mapRuns = [], edges = 
     const span = (x, y) => (sg < 0 ? [y, x] : [x, y]);
     // A sidewalk of at most SIDEWALK_MAX; the rest up to the house is some other area (a front garden, a yard, a lawn:
     // MTVU in Prague and Brno: 34 of 42 such stretches over 6 m hold a sidewalk of at most 6 m).
-    // P.walkCap (evaluation/ai-segmentation, 18. 11. 2026): a smaller cap for trials. 2.5 m fixed the sidewalks of up to
-    // 3.5 m (Brno within 1 m 31 → 59 %) but cut the wide ones (over 3.5 m: Brno 55 → 18 %, Prague 36 → 27 %), so the
-    // app keeps SIDEWALK_MAX: telling a sidewalk from other paving needs the image, not a number.
-    // A cap by the street's class (Bára 19. 11. 2026, the worst sidewalks of the regression: a local street's 6 m to
-    // the house is a narrow sidewalk and then a forecourt, a parking bay or a lawn; the main streets' are wide).
-    // Off since the same day: "within 1 m" of the width rewarded any narrow cap (1 m everywhere came out best, Bára:
-    // "nemáš to trochu biasované?"); the sidewalk metre by metre (F1) does not move: regression Prague 62 → 60 %, Brno
-    // 57 → 57 %, hold-out −1 [−2, 0] pp. ?chodnik=2.5,3.5,5 (app.js) or P.walkCapBy: trials.
-    const capBy = P.off?.has("walkcapby") ? {} : P.walkCapBy ?? {};
-    const cap = capBy[o.own.tags?.highway] ?? P.walkCap ?? SIDEWALK_MAX;
-    let swEnd = says === "no" ? kerb : Math.abs(far - kerb) > cap ? kerb + sg * cap : far;
-    if (says !== "no" && Math.abs(far - kerb) > cap && cap >= SIDEWALK_MAX) { const t = splitAt(kerb, sg); if (t !== null) swEnd = t; }
+    // A smaller cap, also by the street's class, lost (docs/decisions.md): telling a sidewalk from other paving needs the
+    // image, not a number.
+    let swEnd = says === "no" ? kerb : Math.abs(far - kerb) > SIDEWALK_MAX ? kerb + sg * SIDEWALK_MAX : far;
     // Lines of the map across the stretch from the kerb to the house (not the house's own front): its pieces, each a
     // sidewalk or green by the image (Bára, Štúrova in Piešťany: the sidewalks lie by the houses, the green strip by
     // the kerb) or by the map's symbol in it. Without such lines a sidewalk from the kerb as before.
@@ -920,9 +898,7 @@ export function orthoOsmPolys({ osm, frame, dir, way, st, mapRuns = [], edges = 
       // area (German maps: forecourts and yards of 8–12 m between the sidewalk and the house, the model's "sidewalk"
       // up to the house; the hold-out, Rudolf-Reusch-Straße, Pestalozzistraße). ?off=aiwalkcap: as the model says.
       if (!P.off?.has("aiwalkcap")) {
-        let lim = kerb + sg * (P.aiWalkMax ?? SIDEWALK_MAX);
-        const first = runs[0];
-        if (first?.c === 702 && sg * (first.e - lim) > -0.05) { const t = splitAt(kerb, sg); if (t !== null) lim = t; }
+        const lim = kerb + sg * SIDEWALK_MAX;
         const out = [];
         for (const r of runs) {
           if (r.c !== 702 || sg * (r.e - lim) <= 0) { out.push(r); continue; }
@@ -931,59 +907,19 @@ export function orthoOsmPolys({ osm, frame, dir, way, st, mapRuns = [], edges = 
         }
         runs.splice(0, runs.length, ...out);
       }
-      // P.aiSnap (a trial): each boundary between two of the model's runs moved to the strongest change of surface on
-      // the image (columns Ec) within ±AI_SNAP, if there is one of at least P.aiSnapMin (the model draws by 20 cm
-      // pixels and its boundary wanders; the line between the sidewalk and the lawn is often plain on the photo).
-      if (P.aiSnap && k.cols?.Ec) for (let q = 0; q + 1 < runs.length; q++) {
-        const b = runs[q].e, c = k.cols;
-        let best = null;
-        for (let i = c.ti(b - AI_SNAP); i <= c.ti(b + AI_SNAP); i++) if (i > 0 && i < c.nt && c.Ec[i] >= (P.aiSnapMin ?? 3) && (!best || c.Ec[i] > c.Ec[best])) best = i;
-        if (best !== null) { const t = c.tOf(best); if (sg * (t - runs[q].s) > 0.3 && sg * (runs[q + 1].e - t) > 0.3) runs[q].e = runs[q + 1].s = t; }
-      }
       const LBL = { 702: "chodník (AI)", 401: "zeleň (AI)", 1003: "zpevněná plocha (AI)" };
       for (const r of runs) polys.push(rect(r.c, LBL[r.c], ...span(r.s, r.e)));
     } else {
       // The sidewalk ends where the image turns green for good (Bára 18. 11. 2026, Za Kalváriou in Prešov: a 1.4 m
       // sidewalk by the kerb, then lawn and trees up to the house, was drawn 6 m wide: the cap, not the image). From
       // WALK_MIN off the kerb on, the first WALK_WIN that is green as a piece between map lines is (PIECE_GREEN over
-      // the roadway's own share) ends it, if the next WALK_WIN is green too. ?off=walkedge: as before.
-      if (k.cols && swEnd !== kerb && Math.abs(swEnd - kerb) > WALK_MIN + 2 * WALK_WIN && !P.off?.has("walkedge")) {
+      // the roadway's own share) ends it, if the next WALK_WIN is green too. Saturation, yellowness and edges of the
+      // image as other ends of it lost (docs/decisions.md).
+      if (k.cols && swEnd !== kerb && Math.abs(swEnd - kerb) > WALK_MIN + 2 * WALK_WIN) {
         const greenOf = (x, y) => { const [a, b] = x < y ? [x, y] : [y, x], g = []; for (let i = k.cols.ti(a); i < k.cols.ti(b); i++) if (i >= 0 && i < k.cols.nt && Number.isFinite(k.cols.green[i])) g.push(k.cols.green[i]); return g.length ? g.reduce((u, v) => u + v, 0) / g.length : NaN; };
-        // Or where the colour turns more saturated than the sidewalk's own first metre (Bára 19. 11. 2026, Hegelstraße in
-        // Cottbus: a 2 m sidewalk, then front gardens of dry grass, yellowish, not green; paving S 2–7, grass 12–23).
-        // ?off=walksat: green only.
-        const satOf = (x, y) => { const [a, b] = x < y ? [x, y] : [y, x], v = []; for (let i = k.cols.ti(a); i < k.cols.ti(b); i++) if (i >= 0 && i < k.cols.nt && Number.isFinite(k.cols.sat[i])) v.push(k.cols.sat[i]); return v.length ? v.reduce((u, w) => u + w, 0) / v.length : NaN; };
-        // Off by default since 19. 11. 2026: the hold-out showed nothing either way (+1 [−1, 2] pp); P.walkSatOn: on.
-        const walkSat = satOf(kerb + sg * 0.3, kerb + sg * WALK_MIN), useSat = Number.isFinite(walkSat) && !!P.walkSatOn && !P.off?.has("walksat");
-        // Not in a shadow: a house's shadow is dark and bluish, saturated as grass (Bělohorská, Olšanská in Prague).
-        const lightOf = (x, y) => { const [a, b] = x < y ? [x, y] : [y, x], v = []; for (let i = k.cols.ti(a); i < k.cols.ti(b); i++) if (i >= 0 && i < k.cols.nt && Number.isFinite(k.cols.medL[i])) v.push(k.cols.medL[i]); return v.length ? v.reduce((u, w) => u + w, 0) / v.length : NaN; };
-        // P.walkYellow (a trial): the saturated stretch must also be yellower than the sidewalk (grass, not a shadow or
-        // coloured paving), instead of the light test.
-        const yelOf = (x, y) => { const [a, b] = x < y ? [x, y] : [y, x], v = []; for (let i = k.cols.ti(a); i < k.cols.ti(b); i++) if (i >= 0 && i < k.cols.nt && Number.isFinite(k.cols.yel[i])) v.push(k.cols.yel[i]); return v.length ? v.reduce((u, w) => u + w, 0) / v.length : NaN; };
-        const walkYel = yelOf(kerb + sg * 0.3, kerb + sg * WALK_MIN);
-        const notShadow = (x, y) => (P.walkYellow != null && Number.isFinite(walkYel) ? yelOf(x, y) >= walkYel + P.walkYellow : lightOf(x, y) >= (P.walkLight ?? WALK_LIGHT));
-        const soft = (x, y) => greenOf(x, y) >= PIECE_GREEN + roadGreen || (useSat && satOf(x, y) >= walkSat + (P.walkSat ?? WALK_SAT) && notShadow(x, y));
-        const mode = P.walkMode ?? "colour";
-        if (mode !== "edge") for (let x = kerb + sg * WALK_MIN; sg * (swEnd - x) > 2 * WALK_WIN; x += sg * 0.2) {
+        const soft = (x, y) => greenOf(x, y) >= PIECE_GREEN + roadGreen;
+        for (let x = kerb + sg * WALK_MIN; sg * (swEnd - x) > 2 * WALK_WIN; x += sg * 0.2) {
           if (soft(x, x + sg * WALK_WIN) && soft(x + sg * WALK_WIN, x + sg * 2 * WALK_WIN)) { swEnd = x; break; }
-        }
-        // P.walkMode "edge" / "both": the first change of surface (Ec, a local peak of at least P.walkEdge) from WALK_MIN
-        // off the kerb on, nearer than the sidewalk found so far.
-        if (mode !== "colour" && k.cols.Ec) {
-          const c = k.cols, i0 = c.ti(kerb + sg * WALK_MIN), i1 = c.ti(swEnd), st2 = sg > 0 ? 1 : -1;
-          for (let i = i0; sg > 0 ? i < i1 : i > i1; i += st2) {
-            const v = c.Ec[i];
-            if (!(v >= (P.walkEdge ?? 4)) || v < (c.Ec[i - 1] || 0) || v < (c.Ec[i + 1] || 0)) continue;
-            // Beyond it (1 m) another surface than the sidewalk's first metre, in brightness or saturation, against the
-            // image's typical step (c.tL, c.tS).
-            const t = c.tOf(i), mean = (arr, x, y) => { const [a, b] = x < y ? [x, y] : [y, x], q = []; for (let j = c.ti(a); j < c.ti(b); j++) if (j >= 0 && j < c.nt && Number.isFinite(arr[j])) q.push(arr[j]); return q.length ? q.reduce((u, w) => u + w, 0) / q.length : NaN; };
-            const dL = Math.abs(mean(c.medL, t + sg * 0.2, t + sg * 1.2) - mean(c.medL, kerb + sg * 0.3, kerb + sg * WALK_MIN)) / c.tL;
-            const dS = Math.abs(mean(c.sat, t + sg * 0.2, t + sg * 1.2) - mean(c.sat, kerb + sg * 0.3, kerb + sg * WALK_MIN)) / c.tS;
-            if (!(dL + dS >= (P.walkDiff ?? 6))) continue;
-            // Not into a shadow (a house's: much darker beyond; grass in a tree's shade is green, the rule above).
-            if (mean(c.medL, t + sg * 0.2, t + sg * 1.2) < (P.walkShadow ?? 0.7) * mean(c.medL, kerb + sg * 0.3, kerb + sg * WALK_MIN)) continue;
-            swEnd = t; break;
-          }
         }
       }
       if (swEnd !== kerb) {

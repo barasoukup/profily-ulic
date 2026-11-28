@@ -27,8 +27,6 @@ if (new URLSearchParams(location.search).get("auta") === "1") ORTHO_P.carsColour
 // The model also decides sidewalk, green and other between the kerb and the house (on since 19. 11. 2026, Bára;
 // hold-out: sidewalk F1 +5 [3, 7] pp); ?aiplochy=0: the rules' own.
 if (new URLSearchParams(location.search).get("aiplochy") !== "0") ORTHO_P.aiWalk = true;
-// ?chodnik=3,3.5,5: the sidewalk's caps for local, tertiary and secondary streets (trials; ortho-osm.js WALK_CAP_BY).
-{ const c = new URLSearchParams(location.search).get("chodnik")?.split(",").map(Number); if (c?.length === 3 && c.every((x) => x > 0)) ORTHO_P.walkCapBy = { residential: c[0], living_street: c[0], unclassified: c[0], service: c[0], tertiary: c[1], secondary: c[2] }; }
 import { underground, KINDS as NET_KINDS, netAt } from "./site.js";
 // Lanes and shoulders from the road markings of the orthophoto (lanes-ortho.js); ?orto=0 leaves the rules' profile.
 const LANES_ORTHO = new URLSearchParams(location.search).get("orto") !== "0";
