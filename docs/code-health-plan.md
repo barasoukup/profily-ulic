@@ -77,7 +77,7 @@ výsledek ve zprávě commitu. Povinné jádro: 1–8, 9 a 11–13a; ostatní po
 14. **`ortho-osm.js`, `lanes-ortho.js`** (M): `P` na konstanty a vypínače, `orthoOsmPolys` na fáze.
 15. **Registr ortofot** (L): `ortho/<zdroj>.js` jednoho tvaru; `app.js` staví vrstvy smyčkou.
 16. **Registr hledání** (M): `{ id, looksLike, find }`, pořadí podle státu, bez cyklu modulů; nejdřív test dnešního chování.
-17. **Vzhled domů podle státu do `countries/`** (S): zbývá 10 podmínek v `house-looks.js`.
+17. **Vzhled domů podle státu do `countries/`** (S): hotovo 28. 11. 2026 (větev `house-looks-countries`, v `house-looks.js` žádná podmínka na stát, 40 000 domů starý/nový kód 0 rozdílů, `evaluation/archive/house-looks-countries/`).
 18. **Měření s malými vzorky** (S hned, knihovna s krokem 19; Bára 27. 11. 2026): `docs/measuring.md` – výběr dotčených
     řezů predikátem nad nahranými vstupy přehrávky (krok 1) nebo uloženými vstupy sběračů, slepé A/B jen na nich
     (20–40), pevná kontrolní sada v gitu (`evaluation/lib/control.json`, 30–50), nikdy celý vzorek v prohlížeči.
