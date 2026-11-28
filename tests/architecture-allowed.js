@@ -36,7 +36,7 @@ export const LONG_FUNCTIONS = {
   "app/public/app/editor.js:renderEditor": 250,
   "app/public/app/fit.js:fitLabels": 109,
   "app/public/derive/lanes.js:splitRoadway": 228,
-  "app/public/derive/profile.js:deriveProfile": 380,
+  "app/public/derive/profile.js:deriveProfile": 109,
   "app/public/dmvs.js:dtmAreas": 128,
   "app/public/dmvs.js:fromLines": 107,
   "app/public/houses-america.js:drawAmerican": 566,
