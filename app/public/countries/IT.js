@@ -5,7 +5,7 @@ import { t } from "../i18n.js";
 import { GROUP } from "../norms.js";
 import { czechFurniture, TOWN_ART } from "../art.js";
 import base, { CZ_CODE } from "./default.js";
-import { mediterraneanDetails, mediterraneanLook } from "../house-looks.js";
+import { mediterraneanDetails, mediterraneanLook, italyAfter } from "../house-looks.js";
 
 // Norms (evaluation/italy/NORMS.md): the accessibility route 0.9 m binding (D.M. 236/1989 8.2.1 through D.P.R. 503/1996);
 // the rest D.M. 5. 11. 2001 (binding for new roads, so only orange) and D.M. 557/1999 for cycling. No warning for a bus
@@ -108,6 +108,6 @@ export default {
   art: { italy: { ...czechFurniture, ...atPosts } },
   search: ["photon-it"],
   // The regional looks of its old houses (house-looks.js, docs/house-types-europe.md; Bára 23. 11. 2026).
-  houseLook: mediterraneanLook("IT"),
-  houseDetails: mediterraneanDetails("IT"),
+  houseLook: mediterraneanLook({ after: italyAfter }),
+  houseDetails: mediterraneanDetails(),
 };

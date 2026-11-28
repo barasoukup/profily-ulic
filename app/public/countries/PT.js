@@ -5,7 +5,7 @@ import { t } from "../i18n.js";
 import { norm } from "../norm-text.js";
 import { czechFurniture, TOWN_ART } from "../art.js";
 import base, { CZ_CODE } from "./default.js";
-import { mediterraneanDetails, mediterraneanLook } from "../house-looks.js";
+import { mediterraneanDetails, mediterraneanLook, portugalAfter } from "../house-looks.js";
 
 // Norms (evaluation/portugal/NORMS.md D): binding only accessibility (Decreto-Lei 163/2006: the free width of a sidewalk
 // of the main and collector streets 1.5 m, of every pedestrian route 1.2 m; Bára 23. 11. 2026: 1.5 m everywhere); the rest IMT's technical documents and
@@ -97,6 +97,6 @@ export default {
   art: { portugal: { ...czechFurniture, ...atPosts } },
   search: ["photon-pt"],
   // The regional looks of its old houses (house-looks.js, docs/house-types-europe.md; Bára 23. 11. 2026).
-  houseLook: mediterraneanLook("PT"),
-  houseDetails: mediterraneanDetails("PT"),
+  houseLook: mediterraneanLook({ after: portugalAfter }),
+  houseDetails: mediterraneanDetails(),
 };

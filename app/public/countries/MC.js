@@ -49,5 +49,5 @@ export default {
   search: ["photon-mc"],
   // The regional looks of its old houses (house-looks.js, docs/house-types-europe.md; Bára 23. 11. 2026).
   houseLook: monacoLook,
-  houseDetails: mediterraneanDetails("MC"),
+  houseDetails: mediterraneanDetails(),
 };

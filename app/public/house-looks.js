@@ -80,37 +80,50 @@ export const CY_OLD_TOWNS = [
   { name: "Larnaka", centre: [33.6360, 34.9150], km: 0.6 }, { name: "Pafos", centre: [32.4230, 34.7760], km: 0.6 },
 ];
 
-// iso: ES, PT, IT, CY, MT, FR (Mediterranean departments), MC. Up to 1930 (Malta, Cyprus 1940) or of no known year.
-export function mediterraneanLook(iso) {
+// The rule of the Mediterranean house, the same for every state; what only one state has comes from its module
+// (countries/<ISO>.js) as options: `first(y, info, n, p)` before the general year limit and `after(y, info, n, p)`
+// after it return a look, undefined (no regional look) or null (the general rule goes on); `flatOld`: a flat house of
+// no known year is old too (Malta, Cyprus build flat roofs). Up to 1930 or of no known year; the default is "stredomori".
+export function mediterraneanLook({ flatOld = false, first = null, after = null } = {}) {
   return (style, info, n) => {
     const y = yearOf(info), p = placeOf(info);
-    // Malta and Cyprus build flat roofs: a flat house of no known year (funkce by OSM's roof:shape=flat) is old too.
-    const flatOld = (iso === "MT" || iso === "CY") && style === "funkce" && !y && !(n > 4);
-    if (!OLD.has(style) && !flatOld) return undefined;
-    if (iso === "MT") return y > 1940 || info?.start > 1960 || n >= 8 ? undefined : "malta";
-    if (iso === "CY") {
-      if (y) return y <= 1940 ? "kypr" : undefined;
-      return !(n > 3) && inOldTown(CY_OLD_TOWNS, p) ? "kypr" : undefined;
-    }
+    const flatHouse = flatOld && style === "funkce" && !y && !(n > 4);
+    if (!OLD.has(style) && !flatHouse) return undefined;
+    if (first) { const r = first(y, info, n, p); if (r !== null) return r; }
     if (y > 1930) return undefined;
     if (style === "nizky" && !(n >= 2)) return undefined; // a one-storey house stays
-    if (iso === "IT" && inBox(p, BOLZANO)) return undefined;
-    if (iso === "ES" && inBoxes(p, ES_NORTH) && n !== 1) return "galeria";
-    if (iso === "PT") return houseHash(info) % 2 ? "azulejo" : "stredomori"; // not every house is tiled
+    if (after) { const r = after(y, info, n, p); if (r !== null) return r; }
     return "stredomori";
   };
 }
-// The roof of a Mediterranean house: a flat terrace where OSM says flat; else a tile roof in Italy and Portugal, in
-// Spain a terrace in Catalonia and the south and every other house elsewhere. Spain's roller blinds and awnings.
-export function mediterraneanDetails(iso) {
+// Malta: the Maltese house up to 1940, nothing of a later or a tall one.
+export const maltaFirst = (y, info, n) => (y > 1940 || info?.start > 1960 || n >= 8 ? undefined : "malta");
+// Cyprus: the Cypriot house of a known year up to 1940, of no known year only in the old towns.
+export const cyprusFirst = (y, info, n, p) => {
+  if (y) return y <= 1940 ? "kypr" : undefined;
+  return !(n > 3) && inOldTown(CY_OLD_TOWNS, p) ? "kypr" : undefined;
+};
+// Italy: the province of Bolzano keeps its houses.
+export const italyAfter = (y, info, n, p) => (inBox(p, BOLZANO) ? undefined : null);
+// Spain: the glazed galleries of the north, except a one-floor house.
+export const spainAfter = (y, info, n, p) => (inBoxes(p, ES_NORTH) && n !== 1 ? "galeria" : null);
+// Portugal: not every house is tiled.
+export const portugalAfter = (y, info) => (houseHash(info) % 2 ? "azulejo" : "stredomori");
+// The roof of a Mediterranean house: a flat terrace where OSM says flat (`roof(look, info, known, p)` of a state may
+// say more: Spain's terrace in Catalonia and the south, roller blinds and awnings).
+export function mediterraneanDetails(roof = null) {
   return (look, info) => {
     if (!["stredomori", "azulejo", "galeria", "kypr"].includes(look)) return {};
-    const rs = info?.roofShape, p = placeOf(info);
+    const rs = info?.roofShape;
     const known = rs ? rs === "flat" : null;
-    if (iso !== "ES") return known === null ? {} : { terrace: known };
-    const flatty = !!p && (p[1] < 38.6 || (p[0] > 0.7 && p[1] > 40.5)); // Andalusia, Murcia; Catalonia
-    return { terrace: known ?? (look === "galeria" ? false : flatty || houseHash(info) % 2 === 0), blinds: true };
+    if (roof) return roof(look, info, known, placeOf(info));
+    return known === null ? {} : { terrace: known };
   };
+}
+// Spain: a terrace in Catalonia and the south and every other house elsewhere; roller blinds.
+export function spainRoof(look, info, known, p) {
+  const flatty = !!p && (p[1] < 38.6 || (p[0] > 0.7 && p[1] > 40.5)); // Andalusia, Murcia; Catalonia
+  return { terrace: known ?? (look === "galeria" ? false : flatty || houseHash(info) % 2 === 0), blinds: true };
 }
 
 // --- 1. The Haussmann house ---------------------------------------------------------------------------------------
@@ -139,11 +152,11 @@ export function haussmannLook({ bigTowns = [], needYear = false, low = false } =
   };
 }
 // France: Haussmann; on the Mediterranean the lower ones are Mediterranean houses.
-const frHaussmann = haussmannLook({ bigTowns: FR_BIG_TOWNS }), frMed = mediterraneanLook("FR");
+const frHaussmann = haussmannLook({ bigTowns: FR_BIG_TOWNS }), frMed = mediterraneanLook();
 export const franceLook = (style, info, n) => frHaussmann(style, info, n) || (inBoxes(placeOf(info), FR_MED) ? frMed(style, info, n) : undefined);
-export const franceDetails = (look, info) => (inBoxes(placeOf(info), FR_MED) ? mediterraneanDetails("FR")(look, info) : {});
+export const franceDetails = (look, info) => (inBoxes(placeOf(info), FR_MED) ? mediterraneanDetails()(look, info) : {});
 // Monaco: Haussmann from 5 floors, below Mediterranean.
-const mcHaussmann = haussmannLook({ bigTowns: [{ name: "Monaco", centre: [7.4246, 43.7384], km: 2 }] }), mcMed = mediterraneanLook("MC");
+const mcHaussmann = haussmannLook({ bigTowns: [{ name: "Monaco", centre: [7.4246, 43.7384], km: 2 }] }), mcMed = mediterraneanLook();
 export const monacoLook = (style, info, n) => (n >= 5 || info?.roofShape === "mansard" ? mcHaussmann(style, info, n) : mcMed(style, info, n));
 export const luxembourgLook = haussmannLook({ needYear: true });
 
@@ -221,23 +234,29 @@ export const NORDIC_WOOD_TOWNS = [
 ];
 const BORNHOLM = [14.68, 54.98, 15.16, 55.3];
 // iso: SE, NO, FI, DK. The stone town's tenement up to 1930 (Denmark: the brick one, rendered → stenstad), the painted
-// wooden house up to 1950 (Denmark only on Bornholm), the wooden town house of 1–2 floors up to 1940.
+// wooden house up to 1950 (Denmark only on Bornholm), the wooden town house of 1–2 floors up to 1940. What differs by
+// state is the table NORDIC_RULES.
+const NORDIC_RULES = {
+  DK: { woodTown: false, woodBox: BORNHOLM, renderedBrick: true, brickRow: true },
+};
+const NORDIC_DEFAULT = { woodTown: true, woodBox: null, renderedBrick: false, brickRow: false };
 export function nordicLook(iso) {
+  const rule = NORDIC_RULES[iso] || NORDIC_DEFAULT;
   return (style, info, n) => {
     const y = yearOf(info), wood = wooden(info), p = placeOf(info);
-    if (iso !== "DK" && (style === "nizky" || style === "mestan") && !HOUSE_TYPES.has(info?.type) && !(n > 2)
+    if (rule.woodTown && (style === "nizky" || style === "mestan") && !HOUSE_TYPES.has(info?.type) && !(n > 2)
       && (wood || (!(y > 1940) && inOldTown(NORDIC_WOOD_TOWNS, p)))) return "puukaupunki";
     if (style === "vila" || style === "statek" || (style === "nizky" && HOUSE_TYPES.has(info?.type) && !(n > 2))) {
-      if (iso === "DK" && !inBox(p, BORNHOLM)) return undefined;
+      if (rule.woodBox && !inBox(p, rule.woodBox)) return undefined;
       return wood || !(y > 1950) ? "drevak" : undefined;
     }
     if (style === "sikma" || style === "mestan") {
       if (y > 1930) return undefined;
-      if (iso === "DK") return /^(plaster|render|stucco)$/.test(info?.material || "") ? "stenstad" : "dansky";
+      if (rule.renderedBrick) return /^(plaster|render|stucco)$/.test(info?.material || "") ? "stenstad" : "dansky";
       return "stenstad";
     }
     // A Danish row of houses (Nyboder, the Kartoffelrækkerne): brick.
-    if (iso === "DK" && style === "nizky" && (info?.type === "terrace" || info?.block?.parts >= 3) && !(n > 2) && !(y > 1930)) return "dansky";
+    if (rule.brickRow && style === "nizky" && (info?.type === "terrace" || info?.block?.parts >= 3) && !(n > 2) && !(y > 1930)) return "dansky";
     return undefined;
   };
 }
@@ -247,6 +266,7 @@ const NORDIC_WOOD = {
   NO: ["#f2f0ea", "#f2f0ea", "#d5d3cc", FALU, "#e3c06a"], DK: ["#e3c06a", FALU, "#f2f0ea"],
 };
 // Board-and-batten upright in Sweden, horizontal boards in Finland and Norway.
+const NORDIC_BOARDS = { SE: "vertical" };
 export function nordicDetails(iso) {
-  return (look) => (look === "drevak" ? { boards: iso === "SE" ? "vertical" : "horizontal", palette: NORDIC_WOOD[iso] } : {});
+  return (look) => (look === "drevak" ? { boards: NORDIC_BOARDS[iso] || "horizontal", palette: NORDIC_WOOD[iso] } : {});
 }

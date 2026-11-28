@@ -4,7 +4,7 @@
 import { t } from "../i18n.js";
 import { czechFurniture, TOWN_ART } from "../art.js";
 import base, { CZ_CODE } from "./default.js";
-import { mediterraneanDetails, mediterraneanLook } from "../house-looks.js";
+import { mediterraneanDetails, mediterraneanLook, spainAfter, spainRoof } from "../house-looks.js";
 
 // Norms (evaluation/spain/NORMS.md): binding only the accessibility order (Orden TMA/851/2021, art. 5.2 b: a free width
 // of 1.80 m on the accessible pedestrian route); the rest the ministry's recommendations for cycling infrastructure
@@ -115,6 +115,6 @@ export default {
   art: { spain: { ...czechFurniture, ...atPosts } },
   search: ["cartociudad"],
   // The regional looks of its old houses (house-looks.js, docs/house-types-europe.md; Bára 23. 11. 2026).
-  houseLook: mediterraneanLook("ES"),
-  houseDetails: mediterraneanDetails("ES"),
+  houseLook: mediterraneanLook({ after: spainAfter }),
+  houseDetails: mediterraneanDetails(spainRoof),
 };

@@ -1,8 +1,6 @@
 // Today's exceptions to tests/architecture.test.js. Only ever shortened or lowered (never extended): when a line here
 // gets stale the test says so. Counts and lengths are the present ones.
-export const STATE_CONDITIONS = {
-  "app/public/house-looks.js": 12
-};
+export const STATE_CONDITIONS = {};
 
 export const UNUSED_EXPORTS = [
   "app/public/ai-kerbs.js:PARK",
