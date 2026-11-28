@@ -1,15 +1,25 @@
-import { strongLines } from "../lanes-ortho.js";
+import { strongLines } from "./lines.js";
 import { limits } from "./road-tags.js";
 import { columns, usable } from "./columns.js";
 import { median } from "./osm-along.js";
-import { P } from "./settings.js";
 
+// The weights and tolerances of the kerb search below, named (docs/code-health-plan.md step 14; they were P.tolL … until
+// 28. 11. 2026). They are constants of the method (evaluation/ortho-osm/REPORT.md, M2); only the tuning scripts
+// evaluation/ortho-osm/tune.mjs and regression.mjs (PSET=…) overwrite them, to sweep a value.
+// tolL, tolS: how far a column's brightness (relative) and saturation may be from the roadway's and still look like it;
+// greenMax: a column greener than this is no roadway; minEdge: the weakest edge a kerb may be; alpha, gamma, beta: the
+// weights of the road-like share inside, of that share beyond (the metre after the kerb) and of the distance from where
+// OSM expects the kerb (in sigmas: sigmaMin m at least, sigmaRel of the expected reach); lineOff: m a kerb lies beyond
+// an edge line; mapBonus: how much better a line of a town's technical map is than an edge of the image alone.
+export const KERB_SCORE = { tolL: 0.2, tolS: 18, greenMax: 0.3, minEdge: 1.6, alpha: 1.5, beta: 0.5, gamma: 0.8, sigmaMin: 1.0, sigmaRel: 0.3, lineOff: 0.4, mapBonus: 0.8 };
+
+// The roadway at the axis (±1.5 m, not green): its brightness and saturation; does column i look like it?
 export function roadRef(cols, axis) {
   const i0 = cols.ti(axis - 1.5), i1 = cols.ti(axis + 1.5), L = [], S = [];
   for (let i = Math.max(0, i0); i <= Math.min(cols.nt - 1, i1); i++) if (cols.green[i] < 0.3) { L.push(cols.medL[i]); S.push(cols.sat[i]); }
   return { L: median(L), S: median(S) };
 }
-export const roadLike = (cols, ref, i) => cols.green[i] < P.greenMax && Math.abs(cols.medL[i] - ref.L) <= Math.max(14, P.tolL * ref.L) && Math.abs(cols.sat[i] - ref.S) <= P.tolS;
+export const roadLike = (cols, ref, i) => cols.green[i] < KERB_SCORE.greenMax && Math.abs(cols.medL[i] - ref.L) <= Math.max(14, KERB_SCORE.tolL * ref.L) && Math.abs(cols.sat[i] - ref.S) <= KERB_SCORE.tolS;
 // ---------- the kerbs (M2) ----------
 // Candidates: local maxima of the edge strength (≥ minEdge) between 1 m from the axis and the limits, and a kerb lineOff
 // beyond each strong line near where OSM expects the kerb (the edge line, V 4). Score: the edge (saturating) + alpha ×
@@ -21,17 +31,17 @@ export function kerbs(cols, axis, lim, road, lines = [], edges = []) {
   const ref = roadRef(cols, axis), out = {}, why = {};
   if (!Number.isFinite(ref.L)) return null;
   for (const [side, sg] of [["A", -1], ["B", 1]]) {
-    const exp = road.reach[side], sigma = Math.max(P.sigmaMin, P.sigmaRel * exp);
+    const exp = road.reach[side], sigma = Math.max(KERB_SCORE.sigmaMin, KERB_SCORE.sigmaRel * exp);
     const lo = sg < 0 ? Math.max(lim.A, cols.t0 + 0.3) : axis + 1, hi = sg < 0 ? axis - 1 : Math.min(lim.B, cols.t0 + cols.nt * cols.res - 0.3);
     const cand = [], w = Math.round(0.3 / cols.res);
     for (let i = Math.max(1, cols.ti(lo)); i <= Math.min(cols.E.length - 2, cols.ti(hi)); i++) {
-      if (cols.E[i] < P.minEdge) continue;
+      if (cols.E[i] < KERB_SCORE.minEdge) continue;
       let top = true;
       for (let q = i - w; q <= i + w; q++) if (q !== i && cols.E[q] > cols.E[i]) { top = false; break; }
       if (top) cand.push({ i, from: "hrana" });
     }
     for (const l of lines) {
-      const t = l + sg * P.lineOff;
+      const t = l + sg * KERB_SCORE.lineOff;
       if ((sg < 0 ? l < axis : l > axis) && t > lo && t < hi && Math.abs(Math.abs(t - axis) - exp) < 2.5 * sigma) cand.push({ i: cols.ti(t), from: "čára" });
     }
     for (const t of edges) if (t > lo && t < hi && Math.abs(Math.abs(t - axis) - exp) < 2.5 * sigma) cand.push({ i: cols.ti(t), from: "mapa" });
@@ -46,7 +56,7 @@ export function kerbs(cols, axis, lim, road, lines = [], edges = []) {
       let nb = 0, okb = 0;
       for (let k = 1; k <= Math.round(1 / cols.res); k++) { const q = sg < 0 ? c.i - k : c.i + k - 1; if (q < 0 || q >= cols.nt || cols.seen[q] < 0.5) continue; nb++; if (roadLike(cols, ref, q)) okb++; }
       const dist = Math.abs(cols.tOf(c.i) - axis), e = Math.min(cols.E[c.i] ?? 0, 12);
-      const score = e / (e + 3) + P.alpha * (n ? ok / n : 0) - P.gamma * (nb ? okb / nb : 0) - P.beta * ((dist - exp) / sigma) ** 2 + (c.from === "mapa" ? P.mapBonus : 0);
+      const score = e / (e + 3) + KERB_SCORE.alpha * (n ? ok / n : 0) - KERB_SCORE.gamma * (nb ? okb / nb : 0) - KERB_SCORE.beta * ((dist - exp) / sigma) ** 2 + (c.from === "mapa" ? KERB_SCORE.mapBonus : 0);
       if (!best || score > best.score) best = { score, t: cols.tOf(c.i), from: c.from };
     }
     // No candidate at all: OSM's expectation.

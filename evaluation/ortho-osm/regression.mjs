@@ -9,7 +9,7 @@
 //   RUIAN=1 …                                                          only the RÚIAN buildings OSM lacks
 //   SRC=cuzk12 …                                                       only this orthophoto (default: cuzk12 and the city's 10 cm)
 import { cuts, truthOf, osmAround, stripOf, median, ROOT } from "./lib.mjs";
-import { orthoOsmPolys, trimToEnds, P } from "../../app/public/ortho-osm.js";
+import { orthoOsmPolys, trimToEnds, P, KERB_SCORE } from "../../app/public/ortho-osm.js";
 import { aiKerbs, parkFromAi, parkSkip } from "../../app/public/ai-kerbs.js";
 import fsAi from "node:fs";
 import path from "node:path";
@@ -22,8 +22,8 @@ const wayAlong = (way, frame, dir) => { const g = way.geometry.map((q) => frame.
 const CITIES = process.argv.slice(2).filter((a) => /^[a-z]+$/.test(a));
 const OFF = (process.env.OFF || "").split(",").filter(Boolean);
 P.off = new Set(OFF);
-// PSET='{"beta":0.25}': other values of the kerb parameters (ortho-osm.js P), for sweeps.
-if (process.env.PSET) Object.assign(P, JSON.parse(process.env.PSET));
+// PSET='{"beta":0.25}': other values of the kerb parameters (ortho-osm.js KERB_SCORE, constants since 28. 11. 2026), for sweeps.
+if (process.env.PSET) Object.assign(KERB_SCORE, JSON.parse(process.env.PSET));
 if (process.env.DBG) P.dbg = {};
 const SRC = process.env.SRC ? process.env.SRC.split(",") : null;
 const ROAD = new Set(["pruh", "pruh_piktokoridor", "bus", "bus_cyklo", "tramvaj_v_pruhu", "tramvaj_pruh", "krajnice", "parkovani", "cyklopruh", "ochranny_pruh", "obsluzna"]);

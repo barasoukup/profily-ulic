@@ -17,7 +17,7 @@ export { heavyRail } from "./ortho/rail.js";
 export { laneWidth, parkingOrient, osmRoad, withRails, limits, partnerOf } from "./ortho/road-tags.js";
 export { columns, usable } from "./ortho/columns.js";
 export { P } from "./ortho/settings.js";
-export { roadRef, roadLike, kerbs, kerbsOnImage } from "./ortho/kerbs.js";
+export { KERB_SCORE, roadRef, roadLike, kerbs, kerbsOnImage } from "./ortho/kerbs.js";
 export { orthoOsmPolys } from "./ortho/polys.js";
 export { medianGapsByImage, houseSources, estimateNote } from "./ortho/estimate-info.js";
 export { besidePassport } from "./ortho/beside.js";
