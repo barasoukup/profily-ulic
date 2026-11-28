@@ -28,16 +28,16 @@ export const UNUSED_EXPORTS = [
 ];
 
 export const LONG_FILES = {
-  "app/public/app.js": 2787,
-  "app/public/derive.js": 3092,
+  "app/public/app.js": 2774,
+  "app/public/derive.js": 3085,
   "app/public/lanes-ortho.js": 1207,
-  "app/public/ortho-osm.js": 1478,
+  "app/public/ortho-osm.js": 1294,
   "app/public/profile.js": 3089
 };
 
 export const LONG_FUNCTIONS = {
   "app/public/ai-kerbs.js:parkFromAi": 121,
-  "app/public/app.js:cutAt": 430,
+  "app/public/app.js:cutAt": 422,
   "app/public/app.js:fitLabels": 109,
   "app/public/app.js:renderEditor": 250,
   "app/public/derive.js:deriveProfile": 641,
@@ -49,7 +49,7 @@ export const LONG_FUNCTIONS = {
   "app/public/maplayers.js:createDataLayers": 204,
   "app/public/maplayers.js:draw": 172,
   "app/public/ortho-osm.js:besidePassport": 168,
-  "app/public/ortho-osm.js:orthoOsmPolys": 535,
+  "app/public/ortho-osm.js:orthoOsmPolys": 438,
   "app/public/profile.js:(anonymous)": 176,
   "app/public/profile.js:buildSvg": 320,
   "app/public/profile.js:drawItem": 145,

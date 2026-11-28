@@ -3,9 +3,9 @@
 // the other 105 sides of those streets, untouched by any tuning), the estimate as the app makes it (with the lanes
 // read on the image and the lane rules): a shoulder at the kerb and how wide, and whether cars stand there; the
 // colour detector (ortho-osm.js carsColoured) on the 2 m strip inside the kerb.
-//   node evaluation/ortho-osm/cars/shoulder.mjs
+//   node evaluation/archive/ortho-osm-cars/shoulder.mjs
 import fs from "node:fs";
-import { cuts, osmAround, stripOf } from "../lib.mjs";
+import { cuts, osmAround, stripOf } from "../../ortho-osm/lib.mjs";
 import { orthoOsmPolys, trimToEnds, carsColoured } from "../../../app/public/ortho-osm.js";
 import { localFrame, deriveProfile, lanesFromShoulders, splitTwoWayLane, capWideLanes, pedestrianZone, widenNarrowTrams } from "../../../app/public/derive.js";
 import { applyLanes } from "../../../app/public/lanes-ortho.js";

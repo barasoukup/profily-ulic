@@ -13,7 +13,6 @@ const { localFrame, deriveProfile } = await import("../../app/public/derive.js")
 
 const [city = "brno", key = "brno10"] = process.argv.slice(2);
 P.off = new Set((process.env.OFF || "").split(",").filter(Boolean));
-P.cars = false;
 setCity(city);
 if (!(await sources.osm(49.1951, 16.6068, 30)).elements.some((e) => e.type === "way")) throw new Error("OSM packs not read");
 const out = {};

@@ -23,3 +23,18 @@ Zapnuté opravy s vypínačem `?off=…`, které se tím jen zbavily vypínače,
 - `P.walkCap`, `P.walkCapBy`, `?chodnik=a,b,c`: strop chodníku podle třídy ulice. Strop 2,5 m zlepšil chodníky do 3,5 m
   (Brno do 1 m 31 → 59 %), ale zkrátil široké (nad 3,5 m: Brno 55 → 18 %, Praha 36 → 27 %); po třídách ulice
   regrese Praha 62 → 60 %, Brno 57 → 57 %, hold-out −1 [−2, 0] p. b. (Bára 18.–19. 11. 2026, `evaluation/ai-segmentation/`).
+- `P.cars` (`carsSeen`): zaparkovaná auta podle rozptylu jasu pásu u obruby. Regrese 16. 11. 2026: přidává stání tam, kde
+  žádné není (Praha 33 proti 5, Brno 52 proti 7), přesnost 56 % (stíny, stromy, střechy) – `evaluation/ortho-osm/CARS.md`,
+  `evaluation/archive/ortho-osm-cars/` (skripty a štítky pokusu přesunuté do archivu).
+- `P.carsColour`, `?auta=1` (`carsColoured`): auta podle barev, jen v místních ulicích. Praha obruby o málo lepší (medián
+  1,00 → 0,90 m), ale Brno na ČÚZK horší (1,05 → 1,15 m) a na 10 cm IPR víc stání, než má MTVU (6 → 16); Bára 19. 11. 2026
+  nechala vypnuto (`evaluation/ortho-osm/CARS.md`).
+- `P.areaGreen`: trávník ze ZBGIS jen tam, kde ho potvrdí zeleň na snímku. A/B 16. 11. 2026 na 91 řezech změnilo 9,
+  Štúrova nic, Mudroňova přišla o správný trávník (`evaluation/archive/unification/AUDIT.md`,
+  `evaluation/slovakia/ab/REPORT.md`).
+- `P.partner80`, `?partner80=1` (`partnerReach`, `partnerGap`): druhá vozovka ulice ze dvou jednosměrek až do 80 m
+  (Paseo de la Casa de Campo, Madrid). Slepé A/B 43 změněných řezů ze 72, dva posuzovatelé jen z ortofota: 24 : 28, bez
+  přínosu (`evaluation/archive/unification/amiens-far`). Zůstává 35 m (40 m při vystředění řezu).
+- `P.edgeOn`, `?nastenu=1` (`edgeBeyond`): výchozí dosah nového řezu až k první zdi nebo plotu do 40 m (Berliner Straße,
+  Lipsko). Na 70 řezech vzorku se nezměnil ani jeden, přínos nelze doložit (`evaluation/archive/railway/REPORT.md`,
+  `docs/backlog.md`).

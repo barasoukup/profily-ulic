@@ -6,8 +6,8 @@ Bára: „když tam stojí dost aut, musí to vychýlit histogram toho pásu opr
 MTVU podélné stání ve vozovce většinou nemá (Brno skoro vůbec), městská data o parkování jen v zónách, takže proti nim
 detektor vypadá horší, než je (Mařákova v Brně: auta na snímku, v MTVU nic). Proto ruční značení: pásy ±3,5 m kolem
 obruby odhadu (ČÚZK 12,5 cm), 125 stran místních ulic Prahy a Brna, kde volné pravidlo něco hlásí
-(`cars/strips.mjs`, `cars/features.mjs`). Řada aut u obruby (aspoň dvě zaparkovaná, i kolmo za obrubou): 44 stran.
-Štítky v `cars/stitky.json`.
+(`evaluation/archive/ortho-osm-cars/strips.mjs`, `evaluation/archive/ortho-osm-cars/features.mjs`). Řada aut u obruby (aspoň dvě zaparkovaná, i kolmo za obrubou): 44 stran.
+Štítky v `evaluation/archive/ortho-osm-cars/stitky.json`.
 
 ## Co funguje
 - Kolísání jasu podél ulice (dosavadní `carsSeen`): na označených pásech skoro stejné u aut i bez nich (stíny, stromy).
@@ -28,8 +28,8 @@ Smíšené (a „navíc“ proti MTVU, které stání nemá), proto vypnuté; za
 (IPR 10 cm) zvlášť, pravda o stání z fotek z ulice (skill measure-accuracy).
 
 ## Krajnice, stání a detektor na nových stranách (20. 11. 2026)
-Ručně označeno dalších 105 stran místních ulic a tertiary Prahy a Brna (`cars/stitky2.json`, na nich se nic neladilo;
-s prvními 125 celkem 230 stran, řada aut u 61). `cars/shoulder.mjs`: odhad jako v aplikaci (pruhy z čar, pravidla pruhů).
+Ručně označeno dalších 105 stran místních ulic a tertiary Prahy a Brna (`evaluation/archive/ortho-osm-cars/stitky2.json`, na nich se nic neladilo;
+s prvními 125 celkem 230 stran, řada aut u 61). `evaluation/archive/ortho-osm-cars/shoulder.mjs`: odhad jako v aplikaci (pruhy z čar, pravidla pruhů).
 - **Krajnice nejsou schovaná auta:** krajnice u obruby jen na 14 stranách, auta u 2 z nich (≥ 1,5 m: 9 a 2).
 - **Stání v odhadu:** na 24 stranách, z toho 20 s auty (přesnost 83 %), ale z 61 stran s auty jen 20 (33 %). Zbylá
   auta: u obruby je v odhadu jízdní pruh (37 ze 41), OSM stání nemá; obruba leží na hraně řady aut a auta spadnou

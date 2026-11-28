@@ -3,7 +3,7 @@
 import { typeFromMtvu, isBuilding, isMinorStructure, DEFAULT_WIDTH, PERMEABLE_TYPES } from "./types.js";
 import { city, country } from "./city.js";
 import { t, num } from "./i18n.js";
-import { P as ORTHO_P, partnerReach } from "./ortho-osm.js";
+import { P as ORTHO_P } from "./ortho-osm.js";
 import { centreLine } from "./lanes-ortho.js";
 
 const STEP = 0.05; // sampling step along the cut (m)
@@ -440,7 +440,7 @@ function partnerJunctions(osm, frame, near) {
     partners.add(el.id);
     for (const g of el.geometry) {
       const q = nearestOnLine(near.pts, frame.toXY(g.lon, g.lat));
-      if (q && q.dist <= partnerReach(PARTNER_REACH)) at.set(key(g), q.p);
+      if (q && q.dist <= PARTNER_REACH) at.set(key(g), q.p);
     }
   }
   return ways.filter((el) => !partners.has(el.id) && el.tags.name !== name && (!MINOR.has(el.tags.highway) || (el.tags.highway === "service" && !NOT_JUNCTION_SERVICE.has(el.tags.service))))
@@ -1969,7 +1969,7 @@ function dualPartner(cross, way, half) {
 
 // On a dual carriageway the cut centre moves from the clicked carriageway to the middle of the
 // street (the tram belt or median between the two), so the cut shows the whole street.
-export function centerOnStreet(osm, frame, near, half = partnerReach(40)) {
+export function centerOnStreet(osm, frame, near, half = 40) {
   const normal = [-near.dir[1], near.dir[0]];
   const cross = crossings(osm, frame, near.point, normal, half);
   const partner = dualPartner(cross, near.way, half);
@@ -1977,13 +1977,6 @@ export function centerOnStreet(osm, frame, near, half = partnerReach(40)) {
   const own = cross.find((c) => c.way.id === near.way.id)?.t ?? 0;
   const m = (own + partner.t) / 2;
   return { ...near, point: [near.point[0] + normal[0] * m, near.point[1] + normal[1] * m] };
-}
-
-// The distance between the cut's carriageway and the other one of its street (0: none), for the orthophoto to reach it.
-export function partnerGap(osm, frame, near) {
-  const normal = [-near.dir[1], near.dir[0]], half = partnerReach(40), cross = crossings(osm, frame, near.point, normal, half);
-  const partner = dualPartner(cross, near.way, half), own = cross.find((c) => c.way.id === near.way.id);
-  return partner && own ? Math.abs(partner.t - own.t) : 0;
 }
 
 // Main entry: returns {segments (screen left → right), edges, runs}.

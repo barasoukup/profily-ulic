@@ -4,7 +4,6 @@
 // checked that it makes nothing worse elsewhere. Per city and orthophoto: the kerbs of the carriageway (median error,
 // share within 0.5 and 1 m), the sidewalks per side, parking at a kerb (found / missed / false).
 //   node evaluation/ortho-osm/regression.mjs [praha|brno …]            the current code
-//   CARS=1 node evaluation/ortho-osm/regression.mjs                   with the parked cars read on the image (off in the app)
 //   OFF=pair,pieces node evaluation/ortho-osm/regression.mjs           with the named features off (ortho-osm.js P.off)
 //   RUIAN=first node evaluation/ortho-osm/regression.mjs               RÚIAN's buildings first, OSM's where it has none (the app in Czechia)
 //   RUIAN=1 …                                                          only the RÚIAN buildings OSM lacks
@@ -23,10 +22,6 @@ const wayAlong = (way, frame, dir) => { const g = way.geometry.map((q) => frame.
 const CITIES = process.argv.slice(2).filter((a) => /^[a-z]+$/.test(a));
 const OFF = (process.env.OFF || "").split(",").filter(Boolean);
 P.off = new Set(OFF);
-// CARS=1: with the parked cars read on the image (off in the app).
-P.cars = process.env.CARS === "1";
-// AUTA=1: parked cars by their colours (ortho-osm.js carsColoured).
-P.carsColour = process.env.AUTA === "1";
 // PSET='{"beta":0.25}': other values of the kerb parameters (ortho-osm.js P), for sweeps.
 if (process.env.PSET) Object.assign(P, JSON.parse(process.env.PSET));
 if (process.env.DBG) P.dbg = {};

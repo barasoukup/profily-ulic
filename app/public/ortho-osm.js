@@ -273,15 +273,11 @@ export function limits(o, axis) {
 // The other carriageway of a street of two one-way ones (Suché mýto in Bratislava; Bára 16. 11. 2026): the nearest
 // one-way street way of the same level and name (unnamed: of the same class), 4 to 35 m from the clicked one. Its
 // kerbs are read as the clicked one's; the strip between them is a median.
-// How far the other carriageway of a street of two one-way ones may lie: 35 m / 40 m (`before`); 80 m with ?partner80=1
-// (Bára 27. 11. 2026, Paseo de la Casa de Campo in Madrid). Off by default: the blind A/B of 43 changed cuts of 72 (two
-// judges, only the aerial) gave 24 : 28 for 80 m, no gain (evaluation/archive/unification/amiens-far).
-export const partnerReach = (before) => (P.partner80 ? 80 : before);
 export function partnerOf(o) {
   const own = o.own, tg = own.tags;
   if (!ONEWAY(tg)) return null;
   const same = (w) => (tg.name ? w.tags.name === tg.name : String(w.tags.highway).replace("_link", "") === String(tg.highway).replace("_link", ""));
-  const c = o.ways.filter((w) => STREET.test(w.tags.highway || "") && (P.off?.has("railpair") || !w.tags.railway) && ONEWAY(w.tags) && sameLevel(w, o) && same(w) && Math.abs(w.t - own.t) > 4 && Math.abs(w.t - own.t) < partnerReach(35));
+  const c = o.ways.filter((w) => STREET.test(w.tags.highway || "") && (P.off?.has("railpair") || !w.tags.railway) && ONEWAY(w.tags) && sameLevel(w, o) && same(w) && Math.abs(w.t - own.t) > 4 && Math.abs(w.t - own.t) < 35);
   // Of the same class first (Bára 18. 11. 2026, Košická in Bratislava: the one-lane residential side road 8.5 m off
   // was taken for the other carriageway of the primary 9.9 m off, which then was left out; ?off=pairclass: nearest).
   const cls = (w) => String(w.tags.highway).replace("_link", "");
@@ -385,7 +381,7 @@ export function columns(st) {
 // Half the width of a tram bed beyond its outer track axis (a 3.3 m track, as derive.js carveTramTracks).
 const TRACK_HALF = 1.75;
 // The roadway at the axis (±1.5 m, not green): its brightness and saturation; does column i look like it?
-export const P = { tolL: 0.2, tolS: 18, greenMax: 0.3, minEdge: 1.6, alpha: 1.5, beta: 0.5, gamma: 0.8, sigmaMin: 1.0, sigmaRel: 0.3, lineOff: 0.4, mapBonus: 0.8, cars: false, axisroad: true };
+export const P = { tolL: 0.2, tolS: 18, greenMax: 0.3, minEdge: 1.6, alpha: 1.5, beta: 0.5, gamma: 0.8, sigmaMin: 1.0, sigmaRel: 0.3, lineOff: 0.4, mapBonus: 0.8, axisroad: true };
 export function roadRef(cols, axis) {
   const i0 = cols.ti(axis - 1.5), i1 = cols.ti(axis + 1.5), L = [], S = [];
   for (let i = Math.max(0, i0); i <= Math.min(cols.nt - 1, i1); i++) if (cols.green[i] < 0.3) { L.push(cols.medL[i]); S.push(cols.sat[i]); }
@@ -478,60 +474,6 @@ export function kerbsOnImage(st, o, road, mapRuns = [], edges = []) {
   return { ...k, lim, cols, image: k.why.A !== "osm" || k.why.B !== "osm" };
 }
 
-// ---------- parked cars ----------
-// A row of parked cars along a kerb (Bára: Kozia, Drevená took them for the sidewalk; Hlavná, Vojtecha Spanyola had
-// parking estimated where no car stands): along the street the strip's brightness changes car by car (roofs,
-// windows, shadows, gaps), the roadway's beside them stays even. The strip [a, b] across the cut: the spread along the
-// street of its mean brightness, against the same of a strip of roadway by the axis.
-const CAR_W = 2.0, CAR_SPREAD = 14, CAR_RATIO = 1.8;
-const LOCAL_STREET = new Set(["residential", "living_street", "service", "unclassified", "tertiary"]);
-function alongSpread(st, a, b) {
-  const i0 = Math.max(0, Math.round((a - st.t0) / st.res)), i1 = Math.min(st.nt - 1, Math.round((b - st.t0) / st.res));
-  if (i1 - i0 < 3) return NaN;
-  const rows = [];
-  for (let j = 0; j < st.nu; j++) {
-    let sum = 0, n = 0;
-    for (let i = i0; i <= i1; i++) { const v = st.L[j * st.nt + i]; if (!Number.isNaN(v)) { sum += v; n++; } }
-    if (n > (i1 - i0) / 2) rows.push(sum / n);
-  }
-  if (rows.length < st.nu / 2) return NaN;
-  // Over 1 m pieces along the street (a car is 4–5 m): the spread of their means.
-  const per = Math.max(1, Math.round(1 / st.res)), m = [];
-  for (let j = 0; j + per <= rows.length; j += per) m.push(rows.slice(j, j + per).reduce((x, y) => x + y, 0) / per);
-  const mean = m.reduce((x, y) => x + y, 0) / m.length;
-  return Math.sqrt(m.reduce((x, y) => x + (y - mean) ** 2, 0) / m.length);
-}
-// Parked cars told by their colours (Bára 19. 11. 2026: "když tam stojí dost aut, musí to vychýlit histogram toho pásu"):
-// per metre along the street the strip's mean saturation; cars of all colours and the gaps between them make it vary
-// (spread ≥ CAR_SAT_SD), a shadow (dark, CAR_DARK) or treetops (green, CAR_GREEN) do not count. Checked by eye on 125
-// kerb strips of Prague and Brno (evaluation/ortho-osm/CARS.md): 13 found, none false; the brightness spread alone
-// (carsSeen) fired as often on shadows and trees.
-const CAR_SAT_SD = 10, CAR_DARK = 0.15, CAR_GREEN = 0.05;
-export function carsColoured(st, a, b) {
-  if (!usable(st) || !st.S || !st.G) return false;
-  const i0 = Math.max(0, Math.round((Math.min(a, b) - st.t0) / st.res)), i1 = Math.min(st.nt - 1, Math.round((Math.max(a, b) - st.t0) / st.res));
-  const per = Math.max(1, Math.round(1 / st.res)), sat = [];
-  let n = 0, dark = 0, green = 0;
-  for (let j0 = 0; j0 + per <= st.nu; j0 += per) {
-    let s = 0, m = 0;
-    for (let j = j0; j < j0 + per; j++) for (let i = i0; i <= i1; i++) {
-      const q = j * st.nt + i, v = st.L[q];
-      if (Number.isNaN(v)) continue;
-      m++; s += st.S[q]; if (v < 50) dark++; if (st.G[q] >= 10) green++;
-    }
-    n += m;
-    if (m) sat.push(s / m);
-  }
-  if (sat.length < 10 || !n) return false;
-  const mean = sat.reduce((x, y) => x + y, 0) / sat.length, sd = Math.sqrt(sat.reduce((x, y) => x + (y - mean) ** 2, 0) / sat.length);
-  return sd >= CAR_SAT_SD && dark / n <= CAR_DARK && green / n <= CAR_GREEN;
-}
-export function carsSeen(st, a, b, axis) {
-  if (!usable(st)) return false;
-  const strip = alongSpread(st, a, b), road = alongSpread(st, axis - 0.8, axis + 0.8);
-  return Number.isFinite(strip) && strip >= CAR_SPREAD && strip >= CAR_RATIO * (Number.isFinite(road) ? road : 0);
-}
-
 // ---------- the surfaces for derive.js ----------
 // The MTVU codes the profile knows: 701 the roadway, 702 a sidewalk, 1003 a paved area, 601 a building. A sidewalk runs
 // from the kerb to the facade, at most SIDEWALK_MAX (the rest greenery where the image is mostly green, else a
@@ -540,7 +482,7 @@ export function carsSeen(st, a, b, axis) {
 // is treated as that rest.
 // PIECE_GREEN: a piece between two lines of a town's map is green from this share of green columns (treetops over a
 // sidewalk make some).
-const PIECE_GREEN = 0.35, AREA_GREEN = 0.2;
+const PIECE_GREEN = 0.35;
 // The narrowest sidewalk the image may end (from the kerb) and the stretch of green that ends it (m).
 const WALK_MIN = 1.0, WALK_WIN = 1.0, AI_RUN = 1.0;
 
@@ -646,29 +588,7 @@ export function orthoOsmPolys({ osm, frame, dir, way, st, mapRuns = [], edges = 
   // The order is the priority (derive.js classify takes the first polygon containing a point): the carriageway, the
   // OSM buildings, OSM's green areas, water and allotments, then the sidewalks and the rest up to the houses. A house in
   // a park stays a house; where OSM has a lawn beside the street it is greenery; water and allotments end the profile.
-  // Parked cars at the outer kerbs: inside the carriageway (its own stalls, drawn before it: the first surface wins)
-  // or beyond the kerb the image found (the cars were taken for the edge: the kerb lies 2 m further out).
-  const cars = [], carsOut = {};
-  for (const [side, sg] of [["A", -1], ["B", 1]]) {
-    if (pair && side === (pair.t < o.own.t ? "A" : "B")) continue; // towards the other carriageway: a median, no kerb
-    // Off (P.cars false): the regression of 16. 11. 2026 (evaluation/ortho-osm/regression.mjs) found it adding parking
-    // where none is (Prague 33 against 5, Brno 52 against 7), as the hand detector of evaluation/orthophoto/CARS-DL.md
-    // (56 % precision: shadows, trees, roofs); a trained detector there did far better but its licence does not fit.
-    // P.carsColour (?auta=1, 19. 11. 2026): by their colours (carsColoured), in local streets only (on main roads moving
-    // cars colour the lanes too); off: the regression found Prague's kerbs a little better (median 1.00 → 0.90 m) but
-    // Brno's sidewalks on ČÚZK worse (1.05 → 1.15 m) and on IPR's 10 cm more parking MTVU has not (6 → 16; tuned on
-    // ČÚZK, and MTVU lacks most parking in the roadway). P.cars: the brightness rule of before, everywhere.
-    const seen = P.cars ? (a, b) => carsSeen(st, a, b, o.own.t) : P.carsColour && LOCAL_STREET.has(o.own.tags.highway) ? (a, b) => carsColoured(st, a, b) : null;
-    if (!seen) continue;
-    const kb = k[side];
-    if (seen(...(sg < 0 ? [kb, kb + CAR_W] : [kb - CAR_W, kb]))) cars.push(rect(704, "stání (auta na ortofotu)", ...(sg < 0 ? [kb, kb + CAR_W] : [kb - CAR_W, kb])));
-    else if (seen(...(sg < 0 ? [kb - CAR_W, kb] : [kb, kb + CAR_W]))) {
-      cars.push(rect(704, "stání (auta na ortofotu)", ...(sg < 0 ? [kb - CAR_W, kb] : [kb, kb + CAR_W])));
-      carsOut[side] = kb + sg * CAR_W;
-    }
-  }
-  const polys = [...cars, rect(701, "vozovka (ortofoto a OSM)", k.A, k.B)];
-  polys.cars = cars.length;
+  const polys = [rect(701, "vozovka (ortofoto a OSM)", k.A, k.B)];
   if (k2) polys.push(rect(701, "vozovka (ortofoto a OSM)", k2.A, k2.B));
   for (const { el } of o.outlines) {
     const rings = [el.geometry, ...(el.holes || [])].map((r) => r.map((g) => frame.toXY(g.lon, g.lat)));
@@ -713,17 +633,6 @@ export function orthoOsmPolys({ osm, frame, dir, way, st, mapRuns = [], edges = 
     if (!rings.length) continue;
     const under = rings.some((r) => { let c = false; for (let i = 0, j = r.length - 1; i < r.length; j = i++) { const [xi, yi] = r[i], [xj, yj] = r[j]; if (yi > 0 !== yj > 0 && 0 < ((xj - xi) * (0 - yi)) / (yj - yi) + xi) c = !c; } return c; });
     if (under) continue;
-    // A lawn of the national map only where the image shows green across the cut too (Bára: Štúrova in Nitra, ZBGIS's
-    // lawn over the sidewalk by the house): its stretches on the cut against the roadway's own green.
-    // Off unless P.areaGreen: the A/B of 16. 11. 2026 on 91 cuts changed 9, Štúrova no better (its sidewalk by the house
-    // stays unseen) and Mudroňova lost the lawn ZBGIS had right.
-    if (f.attributes.CTVUK_KOD === 401 && k.cols && P.areaGreen) {
-      const ts = (f.geometry?.rings || []).flatMap((r) => crossT(r.map(([lo, la]) => tu(lo, la)), 45).map((x) => x.t)).sort((x, y) => x - y);
-      const g = [];
-      for (let q = 0; q + 1 < ts.length; q += 2) for (let i = k.cols.ti(ts[q]); i < k.cols.ti(ts[q + 1]); i++) if (i >= 0 && i < k.cols.nt && Number.isFinite(k.cols.green[i])) g.push(k.cols.green[i]);
-      const road = (() => { const r = []; for (let i = k.cols.ti(o.own.t - 1.5); i <= k.cols.ti(o.own.t + 1.5); i++) if (i >= 0 && i < k.cols.nt && Number.isFinite(k.cols.green[i])) r.push(k.cols.green[i]); return r.length ? r.reduce((x, y) => x + y, 0) / r.length : 0; })();
-      if (g.length && g.reduce((x, y) => x + y, 0) / g.length < road + AREA_GREEN) continue;
-    }
     polys.push({ code: f.attributes.CTVUK_KOD, label: f.attributes.CTVUK_POPIS, rings, bbox: bboxOf(rings[0]) });
     polys.areas++;
   }
@@ -849,7 +758,7 @@ export function orthoOsmPolys({ osm, frame, dir, way, st, mapRuns = [], edges = 
   for (const [side, sg] of [["A", -1], ["B", 1]]) {
     // Beyond the other carriageway its kerb and its sidewalk tags count.
     const out = k2 && side === pSide, rd = out ? road2 : road;
-    const kerb = out ? k2[side] : carsOut[side] ?? k[side], f = o.facade[side], says = rd.sidewalk[side];
+    const kerb = out ? k2[side] : k[side], f = o.facade[side], says = rd.sidewalk[side];
     const far = f !== null ? f : says === "no" ? null : says || rd.sidewalkW[side] ? kerb + sg * (rd.sidewalkW[side] || SIDEWALK) : null;
     reached[side] = far !== null && sg * (far - kerb) >= 0.3 ? far : kerb;
     if (far === null || sg * (far - kerb) < 0.3) continue;
@@ -1048,7 +957,7 @@ export function orthoOsmPolys({ osm, frame, dir, way, st, mapRuns = [], edges = 
       beds.push(rect(RAILWAY_CODE, "železnice (OSM)", ...(sg < 0 ? [b, a] : [a, b])));
       if (sg * (w.t - last) > 0) last = w.t;
     }
-    polys.splice(polys.cars || 0, 0, ...beds);
+    polys.splice(0, 0, ...beds);
   }
   polys.ends = ends;
   // Whether a line of the town's map decided a kerb or a sidewalk's edge (the credits).
@@ -1061,35 +970,6 @@ export function orthoOsmPolys({ osm, frame, dir, way, st, mapRuns = [], edges = 
   // all the houses it read, else OSM.
   polys.houses = houseSources(o);
   return polys;
-}
-
-// The default reach of a new cut goes on to the first building, wall or fence (Bára 27. 11. 2026, Berliner Straße in Leipzig:
-// "na první klik by se mi líbilo, kdyby A bylo až na té zdi"). For each side of the cut that has none of them within its
-// reach (from: { A, B }, m from the axis) and has one between there and MAX_EDGE: the distance of the first from the axis
-// (+ a margin), unless another street's roadway lies between (the profile does not cross it). null where the side stays.
-// ?nastenu=1 only (P.edgeOn). osm: OSM elements; frame, dir, way: as orthoOsmPolys.
-const WALLS = new Set(["wall", "fence", "retaining_wall", "city_wall"]), MAX_EDGE = 40, EDGE_MARGIN = 0.4;
-export function edgeBeyond({ osm, frame, dir, way, from }) {
-  const none = { A: null, B: null };
-  if (!P.edgeOn || !way) return none;
-  const normal = [-dir[1], dir[0]];
-  const tu = (lon, lat) => { const [x, y] = frame.toXY(lon, lat); return [x * normal[0] + y * normal[1], x * dir[0] + y * dir[1]]; };
-  const o = osmAlong(osm?.elements, tu, way.id);
-  if (!o.own) return none;
-  const out = { A: null, B: null };
-  for (const [side, sg] of [["A", -1], ["B", 1]]) {
-    const d = (t) => sg * (t - o.own.t);
-    const stops = [...o.ways.filter((w) => WALLS.has(w.tags.barrier) && sameLevel(w, o)).map((w) => d(w.t)), ...(o.facade[side] !== null ? [d(o.facade[side])] : [])].filter((x) => x > 0.3);
-    if (!stops.length || stops.some((x) => x <= from[side] + 0.3)) continue;
-    const first = Math.min(...stops);
-    if (first > MAX_EDGE) continue;
-    // Another street between the reach and the wall (not a service way, not the street itself).
-    const own = way.tags || {};
-    const blocked = o.ways.some((w) => STREET.test(w.tags.highway || "") && w.tags.highway !== "service" && sameLevel(w, o) && d(w.t) > from[side] && d(w.t) < first
-      && !((own.name && w.tags.name === own.name) || (own.ref && w.tags.ref === own.ref)));
-    if (!blocked) out[side] = +(first + EDGE_MARGIN).toFixed(1);
-  }
-  return out;
 }
 
 // The sources of the estimate's houses (osmAlong): of the facades that end the sides, else of every house the cut
