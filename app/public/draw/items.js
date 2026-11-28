@@ -50,60 +50,96 @@ function postTopLamp(g, x, top, h) {
   part(POST_FOOT - 1, s.h);
   return true;
 }
+function drawLamp(g, it, x, top, right) {
+  // A lamp of its own height (it.h, m; Bára: a small lamp is not a big one made smaller). From 6 m the city's
+  // lamp with its mast longer or shorter: the bracket and luminaire (the top 300 cm of the 930 cm picture) and
+  // the foot (its bottom 130 cm) at their size, the mast between them stretched. Up to 5 m a post-top lamp: a
+  // slim pole with the luminaire on top, as in parks and quiet streets (the set's own picture, lamp-post-top, where
+  // it has one).
+  const name = right ? "lamp-modern-left" : "lamp-modern-right", anchor = right ? 348 : 22;
+  if (!it.h) return sprite(g, name, x, top, false, anchor);
+  const dark = artKey() === "brno", pole = dark ? "#3d4246" : "#b5b9ba", shade = dark ? "#2c3033" : "#94989a";
+  if (it.h <= 5) {
+    if (postTopLamp(g, x, top, it.h)) return;
+    const head = top - it.h * 100;
+    el("path", { d: `M${x - 15} ${top} L${x - 13} ${top - 70} H${x + 13} L${x + 15} ${top} Z`, fill: dark ? "#33373a" : "#727678" }, g);
+    el("rect", { x: x - 6, y: head + 30, width: 12, height: it.h * 100 - 100, fill: pole }, g);
+    el("rect", { x: x + 2, y: head + 30, width: 4, height: it.h * 100 - 100, fill: shade }, g);
+    el("path", { d: `M${x - 30} ${head + 30} L${x - 22} ${head + 8} H${x + 22} L${x + 30} ${head + 30} Z`, fill: dark ? "#3d4246" : "#2f3335" }, g); // the luminaire
+    el("rect", { x: x - 26, y: head + 26, width: 52, height: 4, fill: "#b9c2c1" }, g); // its glass, facing down
+    el("rect", { x: x - 3, y: head, width: 6, height: 9, rx: 2, fill: dark ? "#3d4246" : "#2f3335" }, g);
+    return;
+  }
+  const d = it.h * 100 - lampLight() * 100, base = top - 930;
+  const part = (y0, y1, transform) => {
+    const id = `lamp${nextClip()}`, og = el("g", transform ? { transform } : {}, g);
+    el("rect", { x: x - 400, y: base + y0, width: 800, height: y1 - y0 }, el("clipPath", { id }, og));
+    sprite(el("g", { "clip-path": `url(#${id})` }, og), name, x, top, false, anchor);
+  };
+  part(0, 301, `translate(0 ${-d})`); // the top up or down by d
+  part(299, 801, `translate(0 ${base + 800}) scale(1 ${(500 + d) / 500}) translate(0 ${-(base + 800)})`); // the mast
+  part(799, 930); // the foot
+  return;
+}
+
+function drawBikeRack(g, it, x, top, right) {
+  if (!it.along) return sprite(g, "bike-rack-perpendicular-left", x, top);
+  const rack = artKey() === "praha" ? "#3a332e" : "#7c8082", tyre = "#2c2c2c", frame = "#5f7f8e";
+  el("rect", { x: x - 8, y: top - 104, width: 16, height: 5, rx: 2.5, fill: tyre }, g); // the saddle, behind and higher
+  el("ellipse", { cx: x, cy: top - 33, rx: 4, ry: 32, fill: "none", stroke: tyre, "stroke-width": 4 }, g); // the wheel, edge-on
+  el("path", { d: `M${x} ${top - 66} L${x} ${top - 92}`, stroke: frame, "stroke-width": 4, "stroke-linecap": "round" }, g); // the fork
+  el("path", { d: `M${x - 30} ${top - 90} Q${x} ${top - 99} ${x + 30} ${top - 90}`, fill: "none", stroke: "#4a4d4f", "stroke-width": 3, "stroke-linecap": "round" }, g);
+  for (const d of [-30, 30]) el("rect", { x: x + d - 3, y: top - 93, width: 6, height: 7, rx: 2, fill: tyre }, g); // the grips
+  el("circle", { cx: x, cy: top - 82, r: 3.5, fill: "#f2e9a0", stroke: tyre, "stroke-width": 1 }, g); // the lamp
+  // The rack beside the wheel, seen edge-on: one tube.
+  el("rect", { x: right ? x - 18 : x + 12, y: top - 80, width: 6, height: 80, rx: 3, fill: rack }, g);
+  return;
+}
+
+function drawTramPole(g, it, x, top, right) {
+  const line = (attrs) => el("rect", attrs, g);
+  // The city's own pole (praha/tram-pole-*): its bracket over the tracks, on the right half pointing left;
+  // a pole between the tracks (it.center) carries brackets over both (Bára's photo, Prague).
+  const lamp = it.lamp ? "-lamp" : "";
+  if (ownSprite(`tram-pole${lamp}-left`)) {
+    // Scaled so the wire hangs at WIRE_H, where the trams' pantographs and the trolleybuses' poles reach.
+    // A pole between the tracks reaches with each bracket to the middle of its track (it.reach, cm; the picture's
+    // wire hangs 290 cm from the pole).
+    const sx = it.reach ? it.reach / 290 : POLE_SCALE;
+    const pg = el("g", { transform: `translate(${x} ${top}) scale(${sx} ${POLE_SCALE}) translate(${-x} ${-top})` }, g);
+    // A pole away from the tracks (it.span) holds a span wire to them (spanPlan, drawn with the street), not a bracket (Bára, 17. listopadu): the picture without its bracket (all of the same shape: the
+    // shaft, and the lamp above the bracket's tie at 165 cm from the top of the 1010 cm picture).
+    if (it.span) {
+      const id = `pole${nextClip()}`, cp = el("clipPath", { id }, pg);
+      el("rect", { x: x - 30, y: top - 1010, width: 60, height: 1010 }, cp);
+      el("rect", { x: x - 200, y: top - 1010, width: 400, height: 165 }, cp);
+      pg.setAttribute("clip-path", `url(#${id})`);
+    }
+    if (it.center || !right) sprite(pg, `tram-pole${lamp}-right`, x, top, false, 22);
+    if (it.center || right) sprite(pg, `tram-pole${lamp}-left`, x, top, false, 348);
+    return;
+  }
+  if (it.lamp) sprite(g, right ? "lamp-modern-left" : "lamp-modern-right", x, top, false, right ? 348 : 22);
+  const arm = right ? -1 : 1;
+  el("path", { d: `M ${x - 14} ${top} L ${x - 9} ${top - 900} L ${x + 9} ${top - 900} L ${x + 14} ${top} Z`, fill: "#5b6460" }, g);
+  if (it.span) return; // a span wire instead of the bracket (spanPlan)
+  line({ x: Math.min(x, x + arm * 260), y: top - 830, width: 260, height: 7, fill: "#5b6460" });
+  el("line", { x1: x, y1: top - 760, x2: x + arm * 260, y2: top - 826, stroke: "#5b6460", "stroke-width": 4 }, g);
+  return;
+}
+
 export function drawItem(g, it, x, top, right) {
   const line = (attrs) => el("rect", attrs, g);
   switch (it.kind) {
     // The lamp's arm reaches over the street: on the right half the arm points left. Its foot (not
     // the middle of the picture) stands at x: x = 348 in the "left" picture, 22 in the "right" one.
-    case "lampa": {
-      // A lamp of its own height (it.h, m; Bára: a small lamp is not a big one made smaller). From 6 m the city's
-      // lamp with its mast longer or shorter: the bracket and luminaire (the top 300 cm of the 930 cm picture) and
-      // the foot (its bottom 130 cm) at their size, the mast between them stretched. Up to 5 m a post-top lamp: a
-      // slim pole with the luminaire on top, as in parks and quiet streets (the set's own picture, lamp-post-top, where
-      // it has one).
-      const name = right ? "lamp-modern-left" : "lamp-modern-right", anchor = right ? 348 : 22;
-      if (!it.h) return sprite(g, name, x, top, false, anchor);
-      const dark = artKey() === "brno", pole = dark ? "#3d4246" : "#b5b9ba", shade = dark ? "#2c3033" : "#94989a";
-      if (it.h <= 5) {
-        if (postTopLamp(g, x, top, it.h)) return;
-        const head = top - it.h * 100;
-        el("path", { d: `M${x - 15} ${top} L${x - 13} ${top - 70} H${x + 13} L${x + 15} ${top} Z`, fill: dark ? "#33373a" : "#727678" }, g);
-        el("rect", { x: x - 6, y: head + 30, width: 12, height: it.h * 100 - 100, fill: pole }, g);
-        el("rect", { x: x + 2, y: head + 30, width: 4, height: it.h * 100 - 100, fill: shade }, g);
-        el("path", { d: `M${x - 30} ${head + 30} L${x - 22} ${head + 8} H${x + 22} L${x + 30} ${head + 30} Z`, fill: dark ? "#3d4246" : "#2f3335" }, g); // the luminaire
-        el("rect", { x: x - 26, y: head + 26, width: 52, height: 4, fill: "#b9c2c1" }, g); // its glass, facing down
-        el("rect", { x: x - 3, y: head, width: 6, height: 9, rx: 2, fill: dark ? "#3d4246" : "#2f3335" }, g);
-        return;
-      }
-      const d = it.h * 100 - lampLight() * 100, base = top - 930;
-      const part = (y0, y1, transform) => {
-        const id = `lamp${nextClip()}`, og = el("g", transform ? { transform } : {}, g);
-        el("rect", { x: x - 400, y: base + y0, width: 800, height: y1 - y0 }, el("clipPath", { id }, og));
-        sprite(el("g", { "clip-path": `url(#${id})` }, og), name, x, top, false, anchor);
-      };
-      part(0, 301, `translate(0 ${-d})`); // the top up or down by d
-      part(299, 801, `translate(0 ${base + 800}) scale(1 ${(500 + d) / 500}) translate(0 ${-(base + 800)})`); // the mast
-      part(799, 930); // the foot
-      return;
-    }
+    case "lampa": return drawLamp(g, it, x, top, right);
     // The Prague bench has its back on the left: on the right half it turns to face the street too.
     case "lavicka": return sprite(g, "bench-center", x, top, right);
     case "strom": return sprite(g, "tree", x, top);
     // A rack across the street shows a bike from its side; one along it (it.along, Magdalena) a bike from the front
     // beside the rack seen edge-on (about 0.8 m of room in a row instead of 1.9 m; app.js spreadItems).
-    case "stojan_kola": {
-      if (!it.along) return sprite(g, "bike-rack-perpendicular-left", x, top);
-      const rack = artKey() === "praha" ? "#3a332e" : "#7c8082", tyre = "#2c2c2c", frame = "#5f7f8e";
-      el("rect", { x: x - 8, y: top - 104, width: 16, height: 5, rx: 2.5, fill: tyre }, g); // the saddle, behind and higher
-      el("ellipse", { cx: x, cy: top - 33, rx: 4, ry: 32, fill: "none", stroke: tyre, "stroke-width": 4 }, g); // the wheel, edge-on
-      el("path", { d: `M${x} ${top - 66} L${x} ${top - 92}`, stroke: frame, "stroke-width": 4, "stroke-linecap": "round" }, g); // the fork
-      el("path", { d: `M${x - 30} ${top - 90} Q${x} ${top - 99} ${x + 30} ${top - 90}`, fill: "none", stroke: "#4a4d4f", "stroke-width": 3, "stroke-linecap": "round" }, g);
-      for (const d of [-30, 30]) el("rect", { x: x + d - 3, y: top - 93, width: 6, height: 7, rx: 2, fill: tyre }, g); // the grips
-      el("circle", { cx: x, cy: top - 82, r: 3.5, fill: "#f2e9a0", stroke: tyre, "stroke-width": 1 }, g); // the lamp
-      // The rack beside the wheel, seen edge-on: one tube.
-      el("rect", { x: right ? x - 18 : x + 12, y: top - 80, width: 6, height: 80, rx: 3, fill: rack }, g);
-      return;
-    }
+    case "stojan_kola": return drawBikeRack(g, it, x, top, right);
     case "sdilena_kola": return sprite(g, "bikeshare-left", x, top);
     case "pristresek": case "pristresek_zeleny": {
       const side = right ? "right" : "left";
@@ -119,36 +155,7 @@ export function drawItem(g, it, x, top, right) {
     case "sloupek": return sprite(g, "bollard", x, top);
     // Tram overhead-line pole (technical map): a 9 m steel pole with its bracket over the tracks; a street
     // lamp mounted on it (OSM) is drawn with it.
-    case "sloup_trakce": {
-      // The city's own pole (praha/tram-pole-*): its bracket over the tracks, on the right half pointing left;
-      // a pole between the tracks (it.center) carries brackets over both (Bára's photo, Prague).
-      const lamp = it.lamp ? "-lamp" : "";
-      if (ownSprite(`tram-pole${lamp}-left`)) {
-        // Scaled so the wire hangs at WIRE_H, where the trams' pantographs and the trolleybuses' poles reach.
-        // A pole between the tracks reaches with each bracket to the middle of its track (it.reach, cm; the picture's
-        // wire hangs 290 cm from the pole).
-        const sx = it.reach ? it.reach / 290 : POLE_SCALE;
-        const pg = el("g", { transform: `translate(${x} ${top}) scale(${sx} ${POLE_SCALE}) translate(${-x} ${-top})` }, g);
-        // A pole away from the tracks (it.span) holds a span wire to them (spanPlan, drawn with the street), not a bracket (Bára, 17. listopadu): the picture without its bracket (all of the same shape: the
-        // shaft, and the lamp above the bracket's tie at 165 cm from the top of the 1010 cm picture).
-        if (it.span) {
-          const id = `pole${nextClip()}`, cp = el("clipPath", { id }, pg);
-          el("rect", { x: x - 30, y: top - 1010, width: 60, height: 1010 }, cp);
-          el("rect", { x: x - 200, y: top - 1010, width: 400, height: 165 }, cp);
-          pg.setAttribute("clip-path", `url(#${id})`);
-        }
-        if (it.center || !right) sprite(pg, `tram-pole${lamp}-right`, x, top, false, 22);
-        if (it.center || right) sprite(pg, `tram-pole${lamp}-left`, x, top, false, 348);
-        return;
-      }
-      if (it.lamp) sprite(g, right ? "lamp-modern-left" : "lamp-modern-right", x, top, false, right ? 348 : 22);
-      const arm = right ? -1 : 1;
-      el("path", { d: `M ${x - 14} ${top} L ${x - 9} ${top - 900} L ${x + 9} ${top - 900} L ${x + 14} ${top} Z`, fill: "#5b6460" }, g);
-      if (it.span) return; // a span wire instead of the bracket (spanPlan)
-      line({ x: Math.min(x, x + arm * 260), y: top - 830, width: 260, height: 7, fill: "#5b6460" });
-      el("line", { x1: x, y1: top - 760, x2: x + arm * 260, y2: top - 826, stroke: "#5b6460", "stroke-width": 4 }, g);
-      return;
-    }
+    case "sloup_trakce": return drawTramPole(g, it, x, top, right);
     // Stop pole (označník zastávky, technical map).
     case "oznacnik":
       if (ownSprite("stop-post-left")) return sprite(g, `stop-post${it.tram ? "-tram" : ""}-${right ? "right" : "left"}`, x, top);
