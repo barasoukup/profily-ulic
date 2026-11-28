@@ -11,6 +11,12 @@ v `evaluation/universal/`, zpráva s výsledky a kalibrací `evaluation/universa
 **Co měříme:** nejdřív složení uličního prostoru (chodník, stání, pruhy, cyklo, tramvaj, zeleň, dělicí pás, pořadí
 A→B), pak šířku uličního prostoru, pruhy. Obruby na centimetry ne (Bára: složení je důležitější než přesnost).
 
+**Knihovna (28. 11. 2026, krok 19 plánu úklidu):** společné funkce jsou v `evaluation/lib/` (`docs/measuring.md`): skóre
+a řádek tabulky `lib/score.js` (`compare`, `tableRow`; `universal/compare.mjs` ho jen přeposílá), vzorek a výběr cílů `lib/sample.js`,
+slepé páry s náhodným zaznamenaným pořadím `lib/ab.js` (`blindPairs`, `unblind`, `tally`), kostra zprávy `lib/report.js`. Profily
+aplikace pro nové řezy z nahrávky přehrávky v Node: `lib/collect.js`, bez prohlížeče. Před měřením po opravě kódu nejdřív
+`node evaluation/lib/control.mjs` (0 změn, jinak se měří změněný kód, ne stejný). Nový kód skriptů do knihovny, ne do kopie.
+
 **Kdy:** u každého nového státu (po jeho zapojení, před nasazením) a na pokyn Báry u starých států (po větší změně).
 Výsledek vždy srovnat s minulou tabulkou (`results/staty.md`, REPORT.md).
 
@@ -27,7 +33,8 @@ složení; **bez fotky 28 %, tedy nepoužitelný**. Hodnotí se proto jen řezy 
    Nový stát: přidat jeho národní ortofoto. Výřez: řez vodorovně, ulice nahoru, A vlevo, 10 px = 1 m.
 3. **Dlaždice OSM** pro lokální sběr (`?osm=balik`): u velkého státu jen města vzorku osmiem
    (`osmium extract -c …` z výřezu Geofabriku, pak `tools/build_osm_data.sh` a `pack_osm_tiles.mjs`).
-4. **Profily aplikace:** server s `EVAL_SAVE=1` (`.claude/launch.json` „pilot-germany-eval“, port 5196), body do
+4. **Profily aplikace** (řezy, které nahrávka přehrávky už má: `lib/collect.js` v Node, bez prohlížeče; nový stát nebo nové body:
+   nahrávka se nejdřív udělá živě, `evaluation/replay/README.md`): server s `EVAL_SAVE=1` (`.claude/launch.json` „pilot-germany-eval“, port 5196), body do
    `app/public/zz-pts.json`, v prohlížeči skript z `collect.js` (CSP nedovolí eval: vložit funkci přímo přes
    javascript_tool), uloží `data/app*.json`. Pozdější sběr týchž řezů po opravě: jiný název (`app-at`), vyhrává.
 5. **Výběr a fotky** `node evaluation/universal/select.mjs <ISO>`: nejvýš 4 řezy na město, které mají fotku.
@@ -41,8 +48,8 @@ složení; **bez fotky 28 %, tedy nepoužitelný**. Hodnotí se proto jen řezy 
    Zadání agentovi neutrální: odkázat na `BRIEF.md`, nic nepřidávat (nápověda „pásy jsou tu časté“ zvedla ve Washingtonu
    skóre s mapou o 4 body a bez ní ho o 4 snížila). Posudky se liší i při stejném pokynu (shoda asi 75 %, skóre ±5 bodů): při změně pokynu
    dát i kontrolu starým pokynem (`brief2-select.mjs`, `brief2-score.mjs`).
-7. **Skóre** `node evaluation/universal/score-states.mjs` (jen řezy s vozovkou), uložit do `results/staty.md`,
-   doplnit REPORT.md, commit.
+7. **Skóre** `node evaluation/universal/score-states.mjs` (jen řezy s vozovkou; počítá `lib/score.js`), uložit do `results/staty.md`,
+   doplnit REPORT.md (kostra `reportSkeleton` z `lib/report.js`), commit.
 8. **Úklid:** `node evaluation/universal/clean.mjs` (panoramata Mapy.com se podle podmínek nesmí uchovávat),
    smazat `app/public/zz-pts.json`.
 

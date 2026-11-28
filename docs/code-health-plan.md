@@ -92,6 +92,9 @@ výsledek ve zprávě commitu. Povinné jádro: 1–8, 9 a 11–13a; ostatní po
 19. **`evaluation/`: knihovna a archiv** (M): `evaluation/lib/` (vzorek, sběr, A/B, skóre, šablona zprávy); přesun
     jednorázových pokusů do `evaluation/archive/` jedním commitem spolu s přejmenováním českých složek z backlogu (odkazy
     se lámou jen jednou); historii gitu nepřepisovat, nové obrázky z měření do gitu nepřidávat.
+    **Hotovo 28. 11. 2026 (větev `eval-lib`)**: archiv a názvy už byly; `evaluation/lib/` (`sample.js`, `collect.js`, `ab.js`,
+    `score.js`, `report.js`, `control.mjs` + `control.json` 47 řezů ve 24 státech), `ab.mjs`, `sample.mjs` a `universal/score-states.mjs`
+    přepsané na knihovnu se stejným výstupem; ostatní nástroje se přepíšou, až se budou používat; `docs/measuring.md`.
 20. **`tools/` a workflow** (M): jeden `build_boundaries.mjs`, sloučit `city_site`, kroky měst z `pages.yml` do
     `tools/build_site.mjs`; ověření `diff -r` sestaveného webu. Hotovo 28. 11. 2026 (větev `tools-site`): `build_site.mjs` skládá celý web (`pages.yml` ho volá, sítě a tajné hodnoty zůstaly v něm), `city_site.mjs` i `build_city_site.mjs` v jednom, `build_boundaries.mjs states|towns|regions|laender|all` místo deseti nástrojů; web starým a novým postupem `diff -r` shodný, hranice bajt po bajtu shodné nad atrapou služeb.
 

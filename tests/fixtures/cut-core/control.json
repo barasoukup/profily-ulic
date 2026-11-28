@@ -1,0 +1,56 @@
+{
+ "about": "Kontrolní sada (evaluation/lib/control.mjs): řezy nahraných vzorků, které se oprava nesmí změnit; hash polí výstupu přehrávky v Node.",
+ "seed": 20261128,
+ "lang": "cs",
+ "canvases": false,
+ "cuts": [
+  {
+   "name": "sample-cz:17",
+   "sample": "sample-cz",
+   "id": 17,
+   "town": "hradec",
+   "lat": 50.196902,
+   "lon": 15.828528,
+   "highway": "residential",
+   "country": "CZ",
+   "title": "Nemocnice",
+   "parts": "pruh 3.3 · pruh 3.3",
+   "hash": {
+    "status": "640c346103",
+    "statusClass": "ae33bf4307",
+    "title": "1d44c1445d",
+    "city": "af68e4e388",
+    "cut": "93bae9fa3a",
+    "stav": "ad0172c0c2",
+    "credits": "0049cf4ce0",
+    "misses": "97d170e155",
+    "failed": null,
+    "errors": null
+   }
+  },
+  {
+   "name": "sample-cz:43",
+   "sample": "sample-cz",
+   "id": 43,
+   "town": "jihlava",
+   "lat": 49.402491,
+   "lon": 15.583245,
+   "highway": "residential",
+   "country": "CZ",
+   "title": "Úprkova",
+   "parts": "chodnik 1.95 · pruh 3.5 · zelen 3.5 · stromorad 3 · plocha 13.75",
+   "hash": {
+    "status": "dd29ecf524",
+    "statusClass": "ae33bf4307",
+    "title": "f20d6e500e",
+    "city": "273a08355d",
+    "cut": "8ecfbed871",
+    "stav": "55109eeed5",
+    "credits": "d1e0ae4803",
+    "misses": "97d170e155",
+    "failed": null,
+    "errors": null
+   }
+  }
+ ]
+}

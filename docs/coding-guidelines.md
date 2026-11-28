@@ -14,6 +14,7 @@ co pravidlo kontroluje: **ESLint** (`npm run lint`, jen chyby), **test** (`tests
 | Soubor do 1 000 řádků; jeden soubor = jedno téma, které se dá říct jednou větou. | test (strop 1 000, dnešní delší jen kratší) |
 | Malé moduly s jasným rozhraním (Ousterhout): modul vystavuje málo, užitečného a složitost schová uvnitř; export, který nikdo nepoužívá, se nepíše. | test (žádný nepoužitý export), recenzent |
 | Jedna věc na jednom místě: než napíšeš pomocníka, dohledej, jestli už není (`towns/`, `countries/`, `evaluation/lib/`); kopie se slučují, ne množí. | recenzent |
+| Měření (`evaluation/`) staví na `evaluation/lib/` (vzorek, sběr v Node, A/B, skóre, zpráva) a každá oprava projde `node evaluation/lib/control.mjs` s 0 změn, než se měří dál (`docs/measuring.md`). | recenzent |
 | Žádné cyklické importy, žádný import neexistujícího souboru. | `tools/check_imports.mjs` (součást `npm run check`) |
 | Žádná nedefinovaná ani nepoužitá proměnná, nedosažitelný kód, duplicitní klíč. Nepoužitý argument nebo hodnotu v destrukturování označ `_`. | ESLint |
 | Komentář říká **proč** (a kdo to rozhodl, např. „Bára 27. 11. 2026“), ne co kód dělá. | recenzent |

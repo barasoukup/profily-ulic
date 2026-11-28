@@ -47,16 +47,39 @@ a kontroly dělají v Node**: `node evaluation/replay/node.mjs <vzorek> <běh> [
 jádrem řezu (`app/public/app/cut-core.js`) nad nahrávkou bez prohlížeče, `compare.mjs <A> <B>` porovná dva běhy
 (profil, řez, kredity, město, stavový řádek). Prohlížeč jen na kresbu (SVG, ilustrace, karty Návrhu) a na závěrečnou
 kontrolu; co Node neporovnává, je v `evaluation/replay/README.md` (Přehrávka v Node).
-1. **Dotčené řezy najít offline**: predikát v Node nad nahranými vstupy přehrávky (`data/replay/`, `evaluation/replay/`)
+
+**Knihovna `evaluation/lib/`** (krok 19, 28. 11. 2026) drží, co měření opakují; nástroj z ní si vezme, co potřebuje:
+`sample.js` (vzorek podle délky sítě `lengthWeighted`, vzorek ze seznamu `randomSubset`, rozložení po skupinách `spread`,
+nahrané vzorky přehrávky `loadSample`), `collect.js` (profily řezů v Node nad nahrávkou: `collect({ cuts, switches })`, celý
+vzorek v procesech `collectRun`), `ab.js` (míry profilu, `differs`, soubor verdiktů `review.md`, shrnutí, slepé páry
+`blindPairs` s náhodným a zaznamenaným pořadím, `unblind`, `tally` se znaménkovým testem), `score.js` (skóre složení a šířky
+jako v `universal/`, řádek tabulky `tableRow`), `report.js` (kostra `REPORT.md`), `control.mjs` (kontrolní sada).
+
+**Postup: oprava → cíle offline → kontrolní sada → A/B na cílech → regrese**
+1. **Oprava** se napíše za vypínač (`?off=…`, `flags.js`), aby šla srovnat se stavem bez ní.
+2. **Dotčené řezy najít offline**: predikát v Node nad nahranými vstupy přehrávky (`data/replay/`, `evaluation/replay/`)
    nebo nad uloženými vstupy sběračů (OSM tagy, plochy, uložené díly), např. „řez má `highway=service` a úsek bez
-   volného místa“. Výstup: seznam řezů, které oprava může změnit.
-2. **Cíl**: 20–40 dotčených řezů pro slepé A/B (dva posuzovatelé, pořadí A/B náhodné), každý změněný řez prohlédnout.
-3. **Kontrola**: 30–50 náhodných řezů, které se změnit nesmějí (přehrávka bajt po bajtu); s knihovnou (krok 19) pevná
-   sada `evaluation/lib/control.json` v gitu.
-4. Oprava, která jen přepisuje díly profilu, se ověří offline nad uloženými díly a tagy; prohlížeč jen pro pár cílů.
-5. Regrese Prahy a Brna (`evaluation/ortho-osm/regression.mjs`) jednou po sérii oprav, ne po každé; horší výsledek se
+   volného místa“. `loadSample("sample-cz")` dá řezy, `targets(cuts, predikát)` vybere dotčené, `randomSubset(cíle, 40, semínko)`
+   zmenší na 20–40 pro slepé A/B (každý změněný řez se prohlédne). Výstup: seznam řezů, které oprava může změnit.
+3. **Kontrolní sada**: `node evaluation/lib/control.mjs` přehraje v Node 47 řezů ve 24 státech (`control.json`, v gitu;
+   Praha, Brno, kraje, SK, AT, 20 dalších států po dvou) a porovná hash každého pole výstupu s uloženým (stav, řez, kredity,
+   město, stavový řádek…). **0 změn = OK**, jinak vypíše změněné řezy (pole, profil před a po). Trvá asi 6 s. Pořadí řezů v souboru
+   se nemění (řez si pamatuje ten před sebou, `AGAIN_M`). `--switches='off=mapfill'` ukáže, které řezy vypínač mění. Změna,
+   která se má projevit: zkontrolovat změněné řezy, pak `node evaluation/lib/control.mjs --make` (nový `control.json` do
+   téhož commitu, výběr řezů drží semínko; nový stát přidat do `replay/sample.mjs`, ne sem).
+4. **A/B na cílech**: `node evaluation/replay/node.mjs <vzorek> <běh> --jobs=8` s vypínačem a bez něj a
+   `node evaluation/replay/compare.mjs`, nebo vlastní skript s `collect()`; páry pro posuzovatele `blindPairs(páry, semínko)`
+   (klíč `key` do souboru, který posuzovatel nedostane), po posouzení `unblind(verdikty, key)` a `tally(…)` (počty a p).
+   Dva posuzovatelé, pokyn neutrální, levnější model. Míry šířek a `review.md` z `ab.js` (`evaluation/ab.mjs` je používá).
+5. Oprava, která jen přepisuje díly profilu, se ověří offline nad uloženými díly a tagy; prohlížeč jen pro pár cílů.
+6. **Regrese** Prahy a Brna (`evaluation/ortho-osm/regression.mjs`) jednou po sérii oprav, ne po každé; horší výsledek se
    hledá vypínáním oprav po jedné (`flags.js`).
-6. Do zadání agenta vždy napsat: filtr cílů, velikost vzorku, kontrolní sadu, levnější model pro posuzovatele.
+7. **Zpráva**: `reportSkeleton({…})` z `report.js` dá kostru `REPORT.md` (co se měnilo, vzorek a sběr, výsledky, rozhodnutí,
+   co zůstává). Do zadání agenta vždy napsat: filtr cílů, velikost vzorku, kontrolní sadu, levnější model pro posuzovatele.
+   Nové obrázky z měření do gitu nepřidávat.
+
+Co je zatím mimo knihovnu: nástroje, které se nepoužívají, se přepíšou, až se budou používat (`clicks/`, `holdout/`,
+`ortho-osm/regression.mjs`, `variants/`, `streetview/`, `universal/` kromě `score-states.mjs`; ten, `ab.mjs` a `sample.mjs` knihovnu používají).
 
 ## Test nového zdroje (A/B)
 
