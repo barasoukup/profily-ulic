@@ -82,22 +82,22 @@ const CZ_SERVER = ["brno", "jihlava", "most", "opava", "ostrava", "plzen", "prer
 // are told. A town without one takes its state's (like).
 const SHORT = {
   austria: ["basemap.at", OSM], belgium: [ref("data.orthophotosRegions"), OSM], boston: [part("orthophoto", "MassGIS"), OSM],
-  brno: [part("townMap", place("brno")), OSM], canada: [part("townMap", place("toronto")), OSM],
+  brno: [part("surfaceMap", place("brno")), OSM], canada: [part("surfaceMap", place("toronto")), OSM],
   cesko: [part("technicalMap", CUZK), "RÚIAN", OSM], cizina: [OSM], cyprus: [part("orthophoto", "DLS"), OSM],
   denmark: [part("orthophoto", "GeoDanmark"), OSM], estonia: [part("orthophoto", "Maa- ja Ruumiamet"), OSM],
   finland: [OSM, ref("data.orthophotosCities")], france: [part("orthophoto", "IGN"), OSM],
-  "frydek-mistek": [part("townMap", place("frydek-mistek")), part("technicalMap", CUZK), OSM],
-  germany: [ref("data.orthophotosLaender"), OSM], italy: [ref("data.orthophotosOpen"), OSM], jihlava: [part("townMap", place("jihlava")), OSM],
-  karvina: [part("townMap", place("karvina")), part("technicalMap", CUZK), OSM], liechtenstein: [part("orthophoto", "SWISSIMAGE"), OSM],
+  "frydek-mistek": [part("surfaceMap", place("frydek-mistek")), part("technicalMap", CUZK), OSM],
+  germany: [ref("data.orthophotosLaender"), OSM], italy: [ref("data.orthophotosOpen"), OSM], jihlava: [part("surfaceMap", place("jihlava")), OSM],
+  karvina: [part("surfaceMap", place("karvina")), part("technicalMap", CUZK), OSM], liechtenstein: [part("orthophoto", "SWISSIMAGE"), OSM],
   lithuania: [OSM], luxembourg: [part("orthophoto", "ACT"), OSM], malta: [ref("data.orthophotoBuildingAuthority"), OSM],
-  monaco: [part("orthophoto", "IGN"), OSM], most: [part("townMap", place("most")), OSM], netherlands: [part("orthophoto", "PDOK"), OSM],
-  opava: [part("townMap", place("opava")), OSM], ostrava: [part("townMap", place("ostrava")), OSM],
-  pardubice: [part("technicalMap", CUZK), OSM], plzen: [part("townMap", place("plzen")), OSM], poland: [part("orthophoto", "GUGiK"), OSM],
-  portugal: [part("orthophoto", "DGT"), OSM], praha: ["IPR", OSM], prerov: [part("townMap", place("prerov")), OSM],
-  sanfrancisco: [part("townMap", place("sanfrancisco")), OSM], slovenia: [part("orthophoto", "GURS"), OSM], slovensko: ["ZBGIS", OSM],
+  monaco: [part("orthophoto", "IGN"), OSM], most: [part("surfaceMap", place("most")), OSM], netherlands: [part("orthophoto", "PDOK"), OSM],
+  opava: [part("surfaceMap", place("opava")), OSM], ostrava: [part("surfaceMap", place("ostrava")), OSM],
+  pardubice: [part("technicalMap", CUZK), OSM], plzen: [part("surfaceMap", place("plzen")), OSM], poland: [part("orthophoto", "GUGiK"), OSM],
+  portugal: [part("orthophoto", "DGT"), OSM], praha: ["IPR", OSM], prerov: [part("surfaceMap", place("prerov")), OSM],
+  sanfrancisco: [part("surfaceMap", place("sanfrancisco")), OSM], slovenia: [part("orthophoto", "GURS"), OSM], slovensko: ["ZBGIS", OSM],
   spain: [part("orthophoto", "PNOA"), OSM], switzerland: [part("orthophoto", "SWISSIMAGE"), OSM],
-  trebic: [part("townMap", place("trebic")), part("technicalMap", CUZK), OSM], usa: [ref("data.townMaps"), OSM],
-  usti: [part("technicalMap", CUZK), part("townMap", place("usti")), OSM],
+  trebic: [part("surfaceMap", place("trebic")), part("technicalMap", CUZK), OSM], usa: [ref("data.surfaceMapAny"), OSM],
+  usti: [part("technicalMap", CUZK), part("surfaceMap", place("usti")), OSM],
 };
 // The name of the map a city's data come from (a layer's name, "Načítám data: …"); none abroad.
 const MAP = {
@@ -111,7 +111,7 @@ const MAP = {
 const SERVER = { praha: "IPR", cesko: CUZK, pardubice: CUZK, usti: CUZK, ...Object.fromEntries(CZ_SERVER.map((id) => [id, place(id)])) };
 // Where the parking comes from: its kind (parking.source.<kind>) and whose.
 const PARKING = {
-  praha: ["paidSections", "TSK"], brno: ["paidSections", "parkovanivbrne.cz"], ostrava: ["paidSections", place("ostrava")],
+  praha: ["tskSections"], brno: ["paidSections", "parkovanivbrne.cz"], ostrava: ["paidSections", place("ostrava")],
   jihlava: ["spaces", place("jihlava")], opava: ["spaces", place("opava")], usti: ["spaces", place("usti")],
   cesko: ["technicalMap"], "frydek-mistek": ["technicalMap"], karvina: ["technicalMap"], most: ["technicalMap"], pardubice: ["technicalMap"],
   prerov: ["technicalMap"], plzen: ["technicalMapZones", place("plzen")], trebic: ["passportTechnicalMap"],
@@ -128,7 +128,7 @@ const HEAD = {
   netherlands: ["guidelines", "NL", "CROW"], poland: ["regulations", "PL", "RMI 2022"], portugal: ["regulationsOnly", "PT"],
   sanfrancisco: ["indicative", place("sanfrancisco"), "SFMTA (Sidewalk Widths), NACTO"], slovenia: ["regulationsOnly", "SI"],
   slovensko: ["regulations", "SK", "TP 117, TP 73 6110, TP 085, vyhl. 532/2002 Z. z."], spain: ["regulationsOnly", "ES"],
-  switzerland: ["regulations", "CH", "VSS"], usa: ["indicative", "US", "DDOT (Design and Engineering Manual 2023), NYC Street Design Manual, NACTO"],
+  switzerland: ["regulations", "CH", ref("rules.docs.swiss")], usa: ["indicative", "US", "DDOT (Design and Engineering Manual 2023), NYC Street Design Manual, NACTO"],
   ...Object.fromEntries(CZ_SERVER.map((id) => [id, ["pragueManual", place(id)]])), pardubice: ["pragueManual", place("pardubice")], usti: ["pragueManual", place("usti")],
 };
 const named = (where) => (typeof where === "string" && /^[A-Z]{2}$/.test(where) ? countryName(where) : typeof where === "object" ? text(where) : where);
@@ -144,7 +144,7 @@ export function cityTexts(id, like) {
   if (SHORT[key]) out.dataShort = dataText(SHORT[key]);
   if (MAP[key]) { out.dataName = heading(MAP[key]); out.techMap = text(MAP[key]); }
   const [pk, who, docs] = HEAD[key] || [];
-  if (pk) out.rulesHead = text(ref(`rules.head.${pk}`, { where: named(who) ?? "", documents: docs })).replace(/\.\.$/, "."); // a document ending with a full stop ("Z. z.")
+  if (pk) out.rulesHead = text(ref(`rules.head.${pk}`, { where: named(who) ?? "", documents: typeof docs === "object" ? text(docs) : docs })).replace(/\.\.$/, "."); // a document ending with a full stop ("Z. z.")
   const [pkind, owner] = PARKING[key] || ["estimate"];
   out.parkingSource = text(ref(`parking.source.${pkind}`, owner ? { who: owner } : undefined));
   return out;
