@@ -3,53 +3,33 @@
 // the state: on a cut in Czechia the signs, rules and data stay Czech, only their words are German.
 import { test } from "node:test";
 import assert from "node:assert/strict";
+import { languageSuite } from "./helpers/language-suite.js";
 
 globalThis.PROFILY_LANG = "de";
-const { TYPES, SOURCES } = await import("../app/public/types.js");
-const { checkRules } = await import("../app/public/rules.js");
-const { setCity, creditLines, city } = await import("../app/public/city.js");
-const { outage } = await import("../app/public/sources.js");
-const { signLabel, signDir } = await import("../app/public/signs.js");
-const { shares } = await import("../app/public/shares.js");
 
-const CZECH = /[ěščřžůňťďáíéýú]/i;
-
-test("popisky částí, zdrojů a podílů", () => {
-  assert.equal(TYPES.chodnik.label, "Gehweg");
-  assert.equal(TYPES.cyklopruh.label, "Radfahrstreifen");
-  assert.equal(SOURCES.odhad.label, "Schätzung");
-  for (const [k, v] of Object.entries(TYPES)) assert.doesNotMatch(v.label, CZECH, k);
-  assert.deepEqual(shares({ segments: [{ type: "chodnik", width: 3 }] }).map((g) => g.label)[0], "Fußverkehr");
-});
-
-test("normy: česká pravidla německy, s desetinnou čárkou", () => {
-  setCity("praha");
-  const out = checkRules({ segments: [{ type: "chodnik", width: 1.4 }, { type: "pruh", width: 3 }] });
-  assert.equal(out[0].text, "Gehweg 1,40 m liegt unter dem Mindestmaß (Gehweg: an Engstellen mind. 1,5 m, Regelmaß 2–2,5 m).");
-});
-
-test("výpadky zdrojů a texty měst", () => {
-  setCity("brno");
-  assert.equal(city.dataName, "Technische Karte (Brünn)");
-  const no = { status: "rejected", reason: new Error("503") }, ok = { status: "fulfilled", value: { features: [] } };
-  assert.equal(outage({ surfaces: no, lines: ok, parking: ok }).text,
-    "Technische Karte (Brünn) antwortet gerade nicht, der Querschnitt ist nur eine Schätzung aus OSM. Klicken Sie in Kürze erneut.");
-  setCity("olomouc");
-  assert.equal(city.server, "ČÚZK");
-});
-
-test("kredity exportu", () => {
-  const [data, art] = creditLines(setCity("cesko"), { region: "Pardubický kraj", ortho: true });
-  assert.equal(data, "Daten: Technische Karte © Pardubický kraj, IS DMVS ČÚZK, RÚIAN © ČÚZK, 2026 (CC BY 4.0, bearbeitet) · Luftbild © ČÚZK, 2025 (CC BY 4.0) · © OpenStreetMap-Mitwirkende (ODbL)");
-  assert.match(art, /^Illustrationen © Streetmix/);
+languageSuite({
+  labels: { chodnik: "Gehweg", cyklopruh: "Radfahrstreifen", odhad: "Schätzung", walking: "Fußverkehr" },
+  rule: "Gehweg 1,40 m liegt unter dem Mindestmaß (Gehweg: an Engstellen mind. 1,5 m, Regelmaß 2–2,5 m).",
+  brno: {
+    dataName: "Technische Karte (Brünn)",
+    outage: "Technische Karte (Brünn) antwortet gerade nicht, der Querschnitt ist nur eine Schätzung aus OSM. Klicken Sie in Kürze erneut.",
+  },
+  cesko: {
+    data: "Daten: Technische Karte © Pardubický kraj, IS DMVS ČÚZK, RÚIAN © ČÚZK, 2026 (CC BY 4.0, bearbeitet) · Luftbild © ČÚZK, 2025 (CC BY 4.0) · © OpenStreetMap-Mitwirkende (ODbL)",
+    art: /^Illustrationen © Streetmix/,
+  },
   // The city's credit starts with "Daten ©": said once (the Bulgarian critic, 17. 11. 2026).
-  assert.match(creditLines(setCity("praha"))[0], /^Daten: © IPR Praha/);
+  credits: { praha: /^Daten: © IPR Praha/ },
+  signs: [
+    [{ k: "b20a", v: 30 }, "B 20a Zulässige Höchstgeschwindigkeit 30 km/h"],
+    [{ k: "b1", plate: "obsluha" }, "B 1 + E 13 Verbot für Fahrzeuge aller Art, Anlieger frei"],
+  ],
 });
 
-test("značky: německý popis, česká čísla a české značky v Česku", () => {
+test("značky: v Česku česká čísla a české značky, jen slova německy", async () => {
+  const { setCity, city } = await import("../app/public/city.js");
+  const { signDir } = await import("../app/public/signs.js");
   setCity("praha");
   assert.equal(city.country, "CZ");
   assert.equal(signDir(city.country), "signs-CZ");
-  assert.equal(signLabel({ k: "b20a", v: 30 }, city.country), "B 20a Zulässige Höchstgeschwindigkeit 30 km/h");
-  assert.equal(signLabel({ k: "b1", plate: "obsluha" }, city.country), "B 1 + E 13 Verbot für Fahrzeuge aller Art, Anlieger frei");
 });
