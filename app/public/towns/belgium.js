@@ -15,12 +15,13 @@
 // OSM's buildings, green and water around. Licence: Modellicentie gratis hergebruik v1.0, "Bron: Grootschalig
 // Referentie Bestand Vlaanderen, Digitaal Vlaanderen". ?wbn=0 leaves it out (the A/B test, evaluation/belgium/ab-wbn/:
 // better 10, worse 2 of 25 cuts).
+import { flagsOf } from "../flags.js";
 import { osmTiles, getJSON, query, envelope, asMtvu } from "../gis.js";
 import { beRegionsAt } from "../lanes-ortho.js";
 import { MTVU_LABELS } from "../city.js";
 import { osmAreas } from "./slovakia.js";
 
-const param = (k) => (typeof location === "undefined" ? globalThis.PROFILY_BE?.[k] ?? null : new URLSearchParams(location.search).get(k));
+const flag = flagsOf("PROFILY_BE");
 
 export const GRB_WFS = "https://geo.api.vlaanderen.be/GRB/wfs";
 export const PICC = "https://geoservices.wallonie.be/arcgis/rest/services/TOPOGRAPHIE/PICC_VDIFF/MapServer/20";
@@ -73,7 +74,7 @@ function edgesAt(bbox) {
 }
 
 async function lines(bbox) {
-  if (!bbox || param("hrany") === "0") return { features: [], edges: [], widths: [], areas: [] };
+  if (!bbox || flag("hrany") === "0") return { features: [], edges: [], widths: [], areas: [] };
   const e = await edgesAt(bbox);
   return { features: [], edges: e.paths, edgesFrom: e.paths.length ? e.id : null, symbols: [], widths: [], areas: [] };
 }
@@ -217,7 +218,7 @@ export function grbSurfaces(wbnJson, wgoJson, osmElements, bbox, tags = null) {
 async function surfaces(bbox, tags) {
   const [x0, y0, x1, y1] = bbox.split(",").map(Number);
   const cx = (x0 + x1) / 2, cy = (y0 + y1) / 2;
-  if (param("wbn") === "0") return { features: [], abroad: true };
+  if (flag("wbn") === "0") return { features: [], abroad: true };
   const regions = await beRegionsAt(cx, cy).catch(() => ["vl"]);
   if (!regions.includes("vl")) return { features: [], abroad: true };
   let own;

@@ -12,12 +12,13 @@
 // (a building of the survey, Gebaeude, is the land registry's footprint) before them, only where the survey has a
 // surface of the street at the cut's centre (elsewhere the estimate); a survey that does not answer: the estimate, with
 // a note.
+import { flagsOf } from "../flags.js";
 import { osmTiles, getJSON, asMtvu, asPassport } from "../gis.js";
 import { MTVU_LABELS } from "../city.js";
 import { osmAreas } from "./slovakia.js";
 import { CANTONS } from "../credits.js";
 
-const param = (k) => (typeof location === "undefined" ? globalThis.PROFILY_CH?.[k] ?? null : new URLSearchParams(location.search).get(k));
+const flag = flagsOf("PROFILY_CH");
 
 export const AV_WFS = "https://geodienste.ch/db/av_0/deu";
 // The kinds of the survey (DM.01-AV-CH, Bodenbedeckung Art) → MTVU codes (city.js MTVU_LABELS). Strasse_Weg is the
@@ -69,7 +70,7 @@ const inRings = (rings, x, y) => {
 const STREET = new Set([701, 702, 703, 704]);
 
 async function surfaces(bbox) {
-  if (param("av") === "0") return { features: [], abroad: true };
+  if (flag("av") === "0") return { features: [], abroad: true };
   const [x0, y0, x1, y1] = bbox.split(",").map(Number);
   const cx = (x0 + x1) / 2, cy = (y0 + y1) / 2;
   let own, got;

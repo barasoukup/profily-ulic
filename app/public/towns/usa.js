@@ -47,6 +47,7 @@
 //   points, the residential rows of them, the commercial ones only where a lot has no residential row. An answer later
 //   than CAMA_MS is left out (the house as OSM has it). ?cama=0 leaves it out. The condominium table (24) has no
 //   floors and its units are not on the lot: not asked.
+import { flagsOf, offOf } from "../flags.js";
 import { getJSON, envelope } from "../gis.js";
 import { inArea } from "../places.js";
 import { BOSTON_MAPS, bostonPodlaznost, AREAS as BOSTON_AREAS } from "./boston.js";
@@ -55,9 +56,9 @@ import { AREA as NYC_AREA, nycMap, nycPodlaznost } from "./newyork.js";
 // San Francisco (26. 11. 2026): its own surface map and houses (towns/sanfrancisco.js); the state's sources ask it where it has the place.
 import { AREAS as SF_AREAS, sfHere, sfSurfaces, sfPodlaznost } from "./sanfrancisco.js";
 
-const param = (k) => (typeof location === "undefined" ? globalThis.PROFILY_US?.[k] ?? null : new URLSearchParams(location.search).get(k));
-export const dcOn = () => param("dc") !== "0";
-export const ddotOn = () => param("ddot") !== "0";
+const flag = flagsOf("PROFILY_US");
+export const dcOn = () => flag("dc") !== "0";
+export const ddotOn = () => flag("ddot") !== "0";
 export const DC_PLAN = "https://maps2.dcgis.dc.gov/dcgis/rest/services/DCGIS_DATA/Planimetrics_2023/MapServer";
 export const DC_SUBBLOCK = "https://maps2.dcgis.dc.gov/dcgis/rest/services/DCGIS_DATA/Transportation_WebMercator/MapServer/162";
 // The District by its boundary (towns-us.json "washington", tools/build_towns_us.mjs: simplified to 20 m), the box only
@@ -65,7 +66,7 @@ export const DC_SUBBLOCK = "https://maps2.dcgis.dc.gov/dcgis/rest/services/DCGIS
 // New York City (26. 11. 2026): towns/newyork.js.
 export const AREAS = { dc: { box: [-77.121, 38.79, -76.908, 38.997], town: "washington", near: 60 }, nyc: NYC_AREA, ...SF_AREAS };
 const ft = (x) => (Number(x) || 0) * 0.3048;
-const off = (name) => (param("off") || "").split(",").includes(name);
+const off = offOf("PROFILY_US");
 const SUB_FIELDS = "TOTALTRAVELLANES,TOTALTRAVELLANESINBOUND,TOTALTRAVELLANESOUTBOUND,TOTALBIKELANES,TOTALBIKELANEWIDTH,BIKELANE_DUAL_PROTECTED,BIKELANE_DUAL_BUFFERED,TOTALPARKINGLANES,TOTALPARKINGLANEWIDTH,BIKELANE_CONVENTIONAL,BIKELANE_BUFFERED,BIKELANE_PROTECTED,ROADTYPE";
 
 // A kind of the Planimetrics as [MTVU code, priority] (lower first), or null (left out: canopies, the rest of layer 1).
@@ -246,7 +247,7 @@ async function lines(bbox) {
 }
 
 // ---- The houses: CAMA ----
-export const camaOn = () => param("cama") !== "0";
+export const camaOn = () => flag("cama") !== "0";
 export const DC_LAND = "https://maps2.dcgis.dc.gov/dcgis/rest/services/DCGIS_DATA/Property_and_Land_WebMercator/MapServer";
 const CAMA_MS = 3500, CAMA_REST = 60000; // ms: the longest wait; the rest after a failure
 // The kind of a house by its structure (25 STRUCT_D), else by the lot's use code (the USECODE table, 54). A use that does not

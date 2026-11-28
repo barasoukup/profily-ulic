@@ -21,14 +21,15 @@
 //   floors by the shared rule (floors.js), which OSM's building:levels overrules. ?sfhouse=0 leaves it out.
 // ?sf=0 leaves the map out (the estimate from OSM). A map that does not answer: the estimate, said so (mapFailed "sf").
 // Requests: four a cut (memo by the box). No orthophoto: none of San Francisco's is open (NAIP of USGS is 0.6–1 m).
+import { flagsOf } from "../flags.js";
 import { getJSON, envelope } from "../gis.js";
 import { inArea } from "../places.js";
 import { planimetricMap, runsAlong, memory, carriageway, kerbStrip } from "./planimetrics.js";
 import { heightHouse } from "../floors.js";
 
-const param = (k) => (typeof location === "undefined" ? globalThis.PROFILY_US?.[k] ?? null : new URLSearchParams(location.search).get(k));
-export const sfOn = () => param("sf") !== "0";
-export const sfCurbOn = () => param("sfcurb") !== "0";
+const flag = flagsOf("PROFILY_US");
+export const sfOn = () => flag("sf") !== "0";
+export const sfCurbOn = () => flag("sfcurb") !== "0";
 export const AREAS = { sf: { box: [-122.53, 37.70, -122.35, 37.84], town: "sanfrancisco", near: 30 } };
 export const SF_ROW = "https://data.sf.gov/resource/h8n7-e4ns.geojson";
 export const SF_BUILDINGS = "https://data.sf.gov/resource/ynuv-fyni.geojson";
@@ -165,6 +166,6 @@ export function sfHouse(a) {
   return heightHouse(Number(a?.hgt_median_m), { sfHouse: true });
 }
 export async function sfPodlaznost(lat, lon) {
-  if (param("sfhouse") === "0" || !sfOn() || !inArea(AREAS.sf, lon, lat)) return {};
+  if (flag("sfhouse") === "0" || !sfOn() || !inArea(AREAS.sf, lon, lat)) return {};
   return sfHouse((await map.at("bldg", lat, lon))?.attributes);
 }

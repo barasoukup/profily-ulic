@@ -7,11 +7,12 @@
 // "Stadt Wien – data.wien.gv.at"): roadways, sidewalks, parking lanes, tram beds, islands, green and buildings as
 // surfaces of the cut, as MTVU in Prague. Only where it has a surface at the cut's centre (elsewhere the estimate).
 // ?wien=0 leaves it out (the A/B test, evaluation/austria/ab/).
+import { flagsOf } from "../flags.js";
 import { osmTiles, getJSON, asMtvu } from "../gis.js";
 import { MTVU_LABELS } from "../city.js";
 import { inArea, AT_AREAS } from "../places.js";
 
-const param = (k) => (typeof location === "undefined" ? globalThis.PROFILY_AT?.[k] ?? null : new URLSearchParams(location.search).get(k));
+const flag = flagsOf("PROFILY_AT");
 export const WIEN_WFS = "https://data.wien.gv.at/daten/geo";
 // Vienna's box (places.js AT_AREAS; its boundary within it, outside the city the layers are empty).
 const inWien = (lon, lat) => inArea(AT_AREAS.wien, lon, lat);
@@ -62,7 +63,7 @@ const inRings = (rings, x, y) => {
 async function surfaces(bbox) {
   const [x0, y0, x1, y1] = bbox.split(",").map(Number);
   const cx = (x0 + x1) / 2, cy = (y0 + y1) / 2;
-  if (param("wien") === "0" || !inWien(cx, cy)) return { features: [], abroad: true };
+  if (flag("wien") === "0" || !inWien(cx, cy)) return { features: [], abroad: true };
   // A layer that does not answer: none of them (a map without its sidewalks would be wrong), the estimate with a note.
   let layers;
   try {
@@ -94,7 +95,7 @@ export function salzburgSigns(json) {
 }
 async function lines(bbox) {
   const empty = { features: [], edges: [], widths: [], areas: [] };
-  if (!bbox || param("salzburg") === "0") return empty;
+  if (!bbox || flag("salzburg") === "0") return empty;
   const [x0, y0, x1, y1] = bbox.split(",").map(Number);
   if (!inSalzburg((x0 + x1) / 2, (y0 + y1) / 2)) return empty;
   const json = await getJSON(`${SALZBURG_WFS}?${new URLSearchParams({

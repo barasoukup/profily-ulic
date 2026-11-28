@@ -5,6 +5,7 @@
 // as dmvs.js does it inside a street the DTM has drawn: the profile ends at the houses and front gardens.
 // The RÚIAN requests are the ones dmvs.js has just made (the browser and the evaluation reuse them).
 // Used by towns/frydek-mistek.js, karvina.js, trebic.js.
+import { flagsOf } from "../flags.js";
 import { asMtvu, getJSON, insideRings } from "../gis.js";
 import { MTVU_LABELS } from "../city.js";
 import { surfaces as dmvsSurfaces, ruianAreas } from "../dmvs.js";
@@ -28,9 +29,9 @@ const parcelCode = (a) => LAND_USE[a.zpusobyvyuzitipozemku] ?? LAND_KIND[a.druhp
 // 54, 63: 20–27 m of roadway over courtyards, driveways and the next road). A white area of the DTM's image whose
 // type was not asked (dmvs.js dtmAreas: a roadway by its colour) is left out; a road's parcel of RÚIAN that dmvs.js
 // made a roadway (the DTM's blank gap) is a verge, as dmvs.js has it outside such a gap. ?orez=0: as before.
-const opt = (k) => (typeof location === "undefined" ? globalThis.PROFILY_OPTS?.[k] ?? null : new URLSearchParams(location.search).get(k));
+const flag = flagsOf("PROFILY_OPTS");
 export function trimGuessedRoads(own, dtm, bbox) {
-  if (opt("orez") === "0") return dtm;
+  if (flag("orez") === "0") return dtm;
   const [x0, y0, x1, y1] = bbox.split(",").map(Number), cx = (x0 + x1) / 2, cy = (y0 + y1) / 2;
   if (!own.features.some((f) => f.attributes?.CTVUK_KOD === 701 && f.geometry?.rings && insideRings(f.geometry.rings, cx, cy))) return dtm;
   const features = [];

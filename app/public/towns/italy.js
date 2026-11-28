@@ -10,13 +10,14 @@
 // - Bologna's buildings (c_a944ctc_edifici_pl): the height to the eaves, so the floors (about 3.2 m a floor), and the
 //   kind (a church, a portico…). Under a portico the building behind it (within PORTICO_REACH). ?bolognadomy=0 leaves
 //   them out.
+import { flagsOf } from "../flags.js";
 import { osmTiles, getJSON, asMtvu, asPassport } from "../gis.js";
 import { MTVU_LABELS } from "../city.js";
 import { inArea } from "../places.js";
 import { osmAreas } from "./slovakia.js";
 import { surfaces as lombardySurfaces, AREAS as LOMBARDY_AREAS } from "./lombardy.js";
 
-const param = (k) => (typeof location === "undefined" ? globalThis.PROFILY_IT?.[k] ?? null : new URLSearchParams(location.search).get(k));
+const flag = flagsOf("PROFILY_IT");
 
 export const BOLOGNA_API = "https://opendata.comune.bologna.it/api/explore/v2.1/catalog/datasets";
 export const AREAS = { bologna: { box: [11.22, 44.42, 11.44, 44.56] }, ...LOMBARDY_AREAS };
@@ -63,7 +64,7 @@ async function surfaces(bbox) {
   // Lombardy's DBT (towns/lombardy.js; null outside the region or with ?lombardia=0).
   const lombardy = await lombardySurfaces(bbox);
   if (lombardy) return lombardy;
-  if (param("bologna") !== "1" || !inArea(AREAS.bologna, cx, cy)) return { features: [], abroad: true };
+  if (flag("bologna") !== "1" || !inArea(AREAS.bologna, cx, cy)) return { features: [], abroad: true };
   let own;
   try {
     own = asMtvu([[await cached(bbox), (a) => a.code]], MTVU_LABELS);
@@ -98,7 +99,7 @@ const isPortico = (x) => /portico|tettoia/i.test(x?.descrizion || "");
 const tallest = (rows) => rows.filter((x) => !isPortico(x)).sort((a, b) => (b.altezza_gr || 0) - (a.altezza_gr || 0))[0];
 const buildingsWhere = async (where) => (await getJSON(`${BOLOGNA_API}/c_a944ctc_edifici_pl/records?${new URLSearchParams({ where, select: "altezza_gr,descrizion", limit: "10" })}`)).results || [];
 async function podlaznost(lat, lon) {
-  if (param("bolognadomy") === "0" || !inArea(AREAS.bologna, lon, lat)) return {};
+  if (flag("bolognadomy") === "0" || !inArea(AREAS.bologna, lon, lat)) return {};
   const point = `geom'POINT(${lon} ${lat})'`;
   const hit = await buildingsWhere(`intersects(geo_shape, ${point})`);
   const r = tallest(hit) || (hit.some(isPortico) ? tallest(await buildingsWhere(`within_distance(geo_shape, ${point}, ${PORTICO_REACH})`)) : null);

@@ -9,12 +9,13 @@
 // database ETAK (WFS, CORS *, the Board's open-data licence): the height of the house at the facade, so its floors
 // (an estimate OSM's building:levels overrule), and the kind (a dwelling or public building / an ancillary or
 // industrial one). ?etak=0 leaves them out.
+import { flagsOf } from "../flags.js";
 import { osmTiles, getJSON, asMtvu, asPassport } from "../gis.js";
 import { MTVU_LABELS } from "../city.js";
 import { inArea } from "../places.js";
 import { osmAreas } from "./slovakia.js";
 
-const param = (k) => (typeof location === "undefined" ? globalThis.PROFILY_EE?.[k] ?? null : new URLSearchParams(location.search).get(k));
+const flag = flagsOf("PROFILY_EE");
 export const TALLINN_MAP = "https://gis.tallinn.ee/arcgis/rest/services/tar_maakate/MapServer";
 export const AREAS = { tallinn: { box: [24.55, 59.35, 24.97, 59.51] } };
 // The map's layers → MTVU codes (city.js MTVU_LABELS): big roads (roadways), small roads (sidewalks, paths), a drivable
@@ -65,7 +66,7 @@ export function hasStreet(features, cx, cy, tags = null) {
 async function surfaces(bbox, tags = null) {
   const [x0, y0, x1, y1] = bbox.split(",").map(Number);
   const cx = (x0 + x1) / 2, cy = (y0 + y1) / 2;
-  if (param("tallinn") === "0" || !inArea(AREAS.tallinn, cx, cy)) return { features: [], abroad: true };
+  if (flag("tallinn") === "0" || !inArea(AREAS.tallinn, cx, cy)) return { features: [], abroad: true };
   let first, rest;
   try {
     first = await layers(FIRST, bbox);
@@ -97,7 +98,7 @@ export function etakBuilding(p) {
   return { type: side ? "industrial" : undefined, etak: true, ...(floors && { cornice: floors, total: floors, roof: 0, fromHeight: true, height: h }) };
 }
 async function podlaznost(lat, lon) {
-  if (param("etak") === "0") return {};
+  if (flag("etak") === "0") return {};
   const d = 0.00001; // about a metre around the facade's point
   const json = await getJSON(`${ETAK_WFS}?${new URLSearchParams({ service: "WFS", version: "2.0.0", request: "GetFeature", typeNames: "etak:e_401_hoone_ka",
     outputFormat: "application/json", srsName: "EPSG:4326", count: "5", BBOX: `${lat - d},${lon - d},${lat + d},${lon + d},urn:ogc:def:crs:EPSG::4326` })}`);

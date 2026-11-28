@@ -13,12 +13,13 @@
 // As in Slovakia's passports: the city's surfaces with OSM's buildings before them and OSM's green and water after,
 // only where the city has a surface of the street at the cut's centre (elsewhere the estimate); a city whose service
 // does not answer: the estimate, with a note.
+import { flagsOf } from "../flags.js";
 import { osmTiles, getJSON, asMtvu, asPassport } from "../gis.js";
 import { MTVU_LABELS } from "../city.js";
 import { inArea } from "../places.js";
 import { osmAreas } from "./slovakia.js";
 
-const param = (k) => (typeof location === "undefined" ? globalThis.PROFILY_DE?.[k] ?? null : new URLSearchParams(location.search).get(k));
+const flag = flagsOf("PROFILY_DE");
 // The territories of the cities' maps (places.js inArea; the services are empty outside the city anyway).
 export const AREAS = { berlin: { box: [13.08, 52.33, 13.77, 52.68] }, hamburg: { box: [9.72, 53.39, 10.34, 53.74] }, aachen: { box: [5.97, 50.63, 6.22, 50.86] } };
 
@@ -90,7 +91,7 @@ const inRings = (rings, x, y) => {
 };
 const STREET = new Set([701, 702, 703, 704, 705, 1003]);
 export const DE_TOWNS = { berlin, hamburg, aachen };
-export const deTownAt = (lon, lat) => Object.keys(DE_TOWNS).find((id) => param(id) !== "0" && inArea(AREAS[id], lon, lat)) ?? null;
+export const deTownAt = (lon, lat) => Object.keys(DE_TOWNS).find((id) => flag(id) !== "0" && inArea(AREAS[id], lon, lat)) ?? null;
 
 async function surfaces(bbox) {
   const [x0, y0, x1, y1] = bbox.split(",").map(Number);

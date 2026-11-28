@@ -10,12 +10,13 @@
 // As Kraków's base map: the city's surfaces with OSM's buildings before them and OSM's green and water after, only
 // where the city has a roadway, a cycle track, parking or a bus lane at the cut's centre or near it; a city that does
 // not answer: the estimate, with a note.
+import { flagsOf } from "../flags.js";
 import { osmTiles, getJSON, asMtvu, asPassport } from "../gis.js";
 import { MTVU_LABELS } from "../city.js";
 import { inArea } from "../places.js";
 import { osmAreas } from "./slovakia.js";
 
-const param = (k) => (typeof location === "undefined" ? globalThis.PROFILY_FR?.[k] ?? null : new URLSearchParams(location.search).get(k));
+const flag = flagsOf("PROFILY_FR");
 
 export const PARIS_API = "https://opendata.paris.fr/api/explore/v2.1/catalog/datasets";
 export const AREAS = { paris: { box: [2.22, 48.81, 2.47, 48.91] } };
@@ -58,7 +59,7 @@ const STREET = new Set([701, 703, 704]);
 const ring = (r) => Array.from({ length: 8 }, (_, i) => [r * Math.cos((i * Math.PI) / 4), r * Math.sin((i * Math.PI) / 4)]);
 const NEAR = [[0, 0], ...[1.5, 4].flatMap(ring)], WIDE = [...NEAR, ...[7, 10].flatMap(ring)];
 export const FR_TOWNS = { paris };
-const townAt = (lon, lat) => Object.keys(FR_TOWNS).find((id) => param(id) !== "0" && inArea(AREAS[id], lon, lat)) ?? null;
+const townAt = (lon, lat) => Object.keys(FR_TOWNS).find((id) => flag(id) !== "0" && inArea(AREAS[id], lon, lat)) ?? null;
 
 // One request a box (a cut moved a little asks the same box again: the box rounded to about 10 m), at most 30 kept.
 const memo = new Map();
@@ -127,7 +128,7 @@ export function bdtopoBuilding(f) {
   };
 }
 async function podlaznost(lat, lon) {
-  if (param("bdtopo") === "0") return {};
+  if (flag("bdtopo") === "0") return {};
   const d = 0.000005; // about half a metre around the facade's point
   const json = await wfs("batiment", [lon - d, lat - d, lon + d, lat + d], 5);
   const standing = (json?.features || []).filter((f) => f.properties?.etat_de_l_objet === "En service" && !f.properties?.construction_legere);
@@ -154,7 +155,7 @@ export function parisParking(records) {
 async function parking(bbox) {
   const [x0, y0, x1, y1] = bbox.split(",").map(Number);
   const cx = (x0 + x1) / 2, cy = (y0 + y1) / 2;
-  if (param("parisstani") === "0" || param("paris") === "0" || !inArea(AREAS.paris, cx, cy)) return { features: [] };
+  if (flag("parisstani") === "0" || flag("paris") === "0" || !inArea(AREAS.paris, cx, cy)) return { features: [] };
   const out = [];
   for (let offset = 0; offset < 500; offset += 100) {
     const json = await getJSON(`${PARIS_API}/${PARIS_PARKING_SET}/records?${new URLSearchParams({ where: `in_bbox(geo_point_2d,${y0},${x0},${y1},${x1})`, select: "typsta,locsta,lon,lar,nomvoie,geo_point_2d", limit: "100", offset: String(offset) })}`);

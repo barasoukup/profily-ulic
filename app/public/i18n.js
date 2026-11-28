@@ -20,12 +20,13 @@ export const LANGS = {
   fr: "Français", ga: "Gaeilge", hr: "Hrvatski", it: "Italiano", lv: "Latviešu", lt: "Lietuvių", hu: "Magyar", mt: "Malti",
   nl: "Nederlands", pl: "Polski", pt: "Português", ro: "Română", sk: "Slovenčina", sl: "Slovenščina", fi: "Suomi", sv: "Svenska",
 };
+import { flag, addressWithout } from "./flags.js";
 const KEY = "profily-lang";
 
 function pick() {
   if (globalThis.PROFILY_LANG) return globalThis.PROFILY_LANG;
   if (typeof location === "undefined") return "cs";
-  const asked = new URLSearchParams(location.search).get("lang");
+  const asked = flag("lang");
   if (Object.hasOwn(LANGS, asked ?? "")) {
     try { localStorage.setItem(KEY, asked); } catch {}
     return asked;
@@ -134,10 +135,9 @@ const listeners = [];
 export const onLangChange = (cb) => listeners.push(cb);
 export async function setLang(l) {
   try { localStorage.setItem(KEY, l); } catch {}
-  const url = new URL(location.href);
-  url.searchParams.delete("lang");
-  if (!listeners.length) { if (url.href === location.href) location.reload(); else location.replace(url.href); return; }
-  history.replaceState(history.state, "", url.href);
+  const href = addressWithout("lang");
+  if (!listeners.length) { if (href === location.href) location.reload(); else location.replace(href); return; }
+  history.replaceState(history.state, "", href);
   use(await load(l));
   lang = l;
   translatePage();

@@ -12,6 +12,7 @@
 // lines 3 m apart; the carriageway is the run nearest the axis (gaps to 0.6 m bridged, within 4 m of it), as
 // evaluation/ai-segmentation/compare.py measured it.
 import { orthoPatch } from "./lanes-ortho.js";
+import { flag } from "./flags.js";
 
 const HALF = 41.6, PX = 416, R = 6378137;
 const MEAN = [0.485, 0.456, 0.406], STD = [0.229, 0.224, 0.225];
@@ -73,7 +74,7 @@ async function model() {
     ort.env.wasm.wasmPaths = new URL("./ort/", import.meta.url).href;
     ort.env.wasm.numThreads = globalThis.crossOriginIsolated ? Math.min(4, navigator.hardwareConcurrency || 1) : 1;
     // ?aimodel=kerbs-int8: another file in ai/ (comparing a smaller model on the same cuts).
-    const name = (typeof location !== "undefined" && new URLSearchParams(location.search).get("aimodel")?.replace(/[^a-z0-9-]/gi, "")) || "street";
+    const name = flag("aimodel")?.replace(/[^a-z0-9-]/gi, "") || "street";
     const [wasm, bytes] = await Promise.all([download(new URL("./ort/ort-wasm-simd-threaded.wasm", import.meta.url).href, "wasm"),
       download(new URL(`./ai/${name}.onnx`, import.meta.url).href, "model")]);
     ort.env.wasm.wasmBinary = wasm;

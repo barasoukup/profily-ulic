@@ -1,5 +1,6 @@
 import { TYPES, partLabel, SOURCES, DEFAULT_WIDTH, ITEMS, PARKING_USE, PARKING_POSITION, TRAM_BEDS, TURN_CHOICES, HDV_UNDER, UNDER_TYPES, PERMEABLE_TYPES, SURFACES, LAMP_HEIGHTS, underSize } from "./types.js";
 import { refloor } from "./floors.js";
+import { flag, flagPairs } from "./flags.js";
 import { streetAround, localFrame, nearestStreet, savedStreet, snapToWay, dragAlong, placeCut, centerOnStreet, mtvuPolygons, trackLines, techLines, esriPolygons, deriveProfile, splitTwoWayLane, capWideLanes, pedestrianZone, widenNarrowTrams, carveCycleways, carveTramTracks, lanesFromShoulders, trackAlongRoad, crossFromA, lawNeedFor, isOnewayTags, MAX_REACH, withOsmBuildings } from "./derive.js";
 import { bedOrtho } from "./ortho.js";
 import { laneImage, applyLanes, HATCH_PARAMS, SK_ORTHO, AT_ORTHO, CH_ORTHO, NL_ORTHO, BE_ORTHO, LU_ORTHO, PL_ORTHO, FR_ORTHO, ES_ORTHO, PT_ORTHO, PT_MAINLAND, ES_NOT_PNOA, CY_ORTHO, MT_ORTHO, IT_ORTHO, EE_ORTHO, SI_ORTHO, FI_ORTHO, US_ORTHO, CA_ORTHO, DK_ORTHO, DE_ORTHO, deWmsUrl, landsAt, landAt, orthoHereAt } from "./lanes-ortho.js";
@@ -10,29 +11,29 @@ import { LOOKS as HOUSE_LOOKS } from "./house-looks.js";
 // A click this close to the cut shown (m) is placed exactly, not moved away from junctions (cutAt; Bára 27. 11. 2026).
 const AGAIN_M = 200;
 // The gabled house looks with the gable's outline (house-looks.js; Bára to approve it, 23. 11. 2026): ?stit=1.
-if (new URLSearchParams(location.search).get("stit") === "1") HOUSE_LOOKS.gables = true;
+if (flag("stit") === "1") HOUSE_LOOKS.gables = true;
 import { aiCut, aiKerbs, aiSurface, aiParking, parkFromAi, parkSkip, lawKerbs, layLaw, lawUnsplits, widenLaw, aiReady, onAiProgress } from "./ai-kerbs.js";
 // ?off=… switches named parts of the estimate off (the A/B tests, evaluation/ortho-osm/regression.mjs).
-{ const off = new URLSearchParams(location.search).get("off"); if (off) { ORTHO_P.off = new Set(off.split(",")); HATCH_PARAMS.off = ORTHO_P.off.has("srafy"); } }
+{ const off = flag("off"); if (off) { ORTHO_P.off = new Set(off.split(",")); HATCH_PARAMS.off = ORTHO_P.off.has("srafy"); } }
 // A side the user stretched beyond the usual reach goes on past the last path or sidewalk (ortho-osm.js stretch): on by
 // default, no measuring (Bára 27. 11. 2026: only a hand-stretched side, a deliberate act); ?dosah=0 off. (The random A/B of
 // 27. 11. 2026, 12 cuts at 32 m: better 0, worse 1, measured cuts nobody stretched.)
-ORTHO_P.stretchOn = new URLSearchParams(location.search).get("dosah") !== "0";
-if (new URLSearchParams(location.search).get("axisroad") === "0") ORTHO_P.axisroad = false;
+ORTHO_P.stretchOn = flag("dosah") !== "0";
+if (flag("axisroad") === "0") ORTHO_P.axisroad = false;
 // The model also decides sidewalk, green and other between the kerb and the house (on since 19. 11. 2026, Bára;
 // hold-out: sidewalk F1 +5 [3, 7] pp); ?aiplochy=0: the rules' own.
-if (new URLSearchParams(location.search).get("aiplochy") !== "0") ORTHO_P.aiWalk = true;
+if (flag("aiplochy") !== "0") ORTHO_P.aiWalk = true;
 import { underground, KINDS as NET_KINDS, netAt } from "./site.js";
 // Lanes and shoulders from the road markings of the orthophoto (lanes-ortho.js); ?orto=0 leaves the rules' profile.
-const LANES_ORTHO = new URLSearchParams(location.search).get("orto") !== "0";
+const LANES_ORTHO = flag("orto") !== "0";
 // The carriageway's kerbs of the orthophoto-and-OSM estimate read by a trained model (ai-kerbs.js), a trial: ?ai=1.
 // On by default since 19. 11. 2026 (Bára); ?ai=0 leaves the estimate's own kerbs. The model and onnxruntime load only
 // at the first cut estimated from the orthophoto (ai-kerbs.js imports them on demand).
-const AI_KERBS = new URLSearchParams(location.search).get("ai") !== "0";
+const AI_KERBS = flag("ai") !== "0";
 const AI_WAIT = 12000; // ms: the longest the first estimated cut waits for the model's download
 // ?mapa=0: the estimate from the orthophoto and OSM even where a technical map answers (its surfaces, lines, tracks and
 // parking sections left out), to compare the two (evaluation/ortho-osm/errors.mjs, Bára 18. 11. 2026).
-const NO_MAP = new URLSearchParams(location.search).get("mapa") === "0";
+const NO_MAP = flag("mapa") === "0";
 import { deriveSigns, SIGNS, SIGN_CHOICES, signLabel, signFits, keepDrawable, drawable, MAX_PER_PART } from "./signs.js";
 import { loadSprites, loadSigns, layoutSigns, buildSvg, setSignsShown, getSignsShown, isHole, exportCredits, mountEditor, svgString, twoLines, totalWidth, buildingStyle, artEvents, edgeInfo, underDepth, ROADWAY, nearestRoadway, BUILDING_STYLES, GABLE_LOOKS, turnLabel } from "./profile.js";
 import * as sources from "./sources.js";
@@ -176,7 +177,7 @@ const status = (msg, kind = "") => {
 
 // ---------- map ----------
 // An old city page (/brno/ …) sends its visitors here with ?mesto=brno: the map opens over that city.
-const startCity = new URLSearchParams(location.search).get("mesto");
+const startCity = flag("mesto");
 if (startCity) { setCity(startCity); if (isLate(...city.view)) { await ensurePlace(...city.view).catch(() => {}); setCity(startCity); } history.replaceState(null, "", location.pathname + location.hash); }
 const map = L.map("map", { maxZoom: 21, zoomControl: false }).setView(city.view, startCity === "cesko" ? 8 : 18);
 // The layers' credits are written in Czech: in another language they are translated as they are added and removed.
@@ -690,7 +691,7 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wa
     // A map's gaps between two roadways, a median or a lawn by the orthophoto (towns/planimetrics.js gapsBetweenRoads; Toronto).
     const medianGreen = medianGapsByImage(polys, dir, laneImg?.st);
     // The same image tells grass from paving beside a roadway read from the DTM's lines (derive.js linePieces).
-    const args = { center: [0, 0], dir, half, polys, osm, frame, way: near.way, tracks, parking, lines, reach, inZps, ortho, lanesImage: laneImg?.st, roadOnPath: !!city.roadOnPath, noParkGuess: !country.parkGuess || new URLSearchParams(location.search).get("odhadstani") === "0" || (m.status === "fulfilled" && !!m.value?.noParkGuess && !NO_MAP),
+    const args = { center: [0, 0], dir, half, polys, osm, frame, way: near.way, tracks, parking, lines, reach, inZps, ortho, lanesImage: laneImg?.st, roadOnPath: !!city.roadOnPath, noParkGuess: !country.parkGuess || flag("odhadstani") === "0" || (m.status === "fulfilled" && !!m.value?.noParkGuess && !NO_MAP),
       osmParkGive: !ORTHO_P.off?.has("mapfill"),
       kerbParking: pk.status === "fulfilled" && pk.value?.kerbParking && !NO_MAP ? pk.value.kerbParking.map((p) => ({ ...p, xy: frame.toXY(p.lon, p.lat) })) : null };
     let result = deriveProfile(args);
@@ -2564,7 +2565,7 @@ function restore(data) {
 // then turn off alone).
 function siteOn() { try { return localStorage.getItem("profily-site") === "1"; } catch { return false; } }
 // ?site=1 in a link turns it on (for trying it out).
-if (new URLSearchParams(location.search).get("site") === "1") try { localStorage.setItem("profily-site", "1"); } catch {}
+if (flag("site") === "1") try { localStorage.setItem("profily-site", "1"); } catch {}
 $("#site-btn").setAttribute("aria-pressed", String(siteOn()));
 $("#site-btn").onclick = () => {
   const on = !siteOn();
@@ -2683,9 +2684,7 @@ function save() {
 
 // The link's switches but the language (?ai=1, ?pasport=0…): a cut saved under others is derived again, not restored.
 function optsKey() {
-  const q = new URLSearchParams(location.search);
-  q.delete("lang");
-  return [...q].sort().map(([k, v]) => `${k}=${v}`).join("&");
+  return flagPairs().sort().map(([k, v]) => `${k}=${v}`).join("&");
 }
 
 artEvents.addEventListener("ready", () => render()); // a house of North America drawn in Europe (profile.js)

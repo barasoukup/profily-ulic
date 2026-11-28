@@ -3,6 +3,7 @@
 // (sources.js for Prague and Brno, towns/*.js for the towns asking their own GIS on a click).
 import { t } from "./i18n.js";
 import { STATIC } from "./config.js";
+import { flag } from "./flags.js";
 import { city } from "./city.js";
 
 import { TILE, decodeTile, mergePieces } from "./osmtile.js";
@@ -74,7 +75,7 @@ const tile = (n) => {
 // (app/data/osm-pack); the local server otherwise keeps to the tiles of data/osm-tiles.
 export const OSM_R2 = "https://data.streetspace.eu/osm", OSM_R2_DEV = "https://pub-a2b7312aca0a4dfe8a49583ae59ddbc6.r2.dev/osm";
 export const OSM_PACK = (() => {
-  const v = typeof location === "undefined" ? null : new URLSearchParams(location.search).get("osm");
+  const v = flag("osm");
   return v === "r2" || v === "balik" ? v : STATIC ? "web" : null;
 })();
 // (?osm=r2 on the local server: R2 through the server, app/server.mjs /r2osm/, as R2 sends CORS for streetspace.eu only.)

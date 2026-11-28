@@ -8,10 +8,11 @@
 // cycle tracks, parking strips, islands, tram beds, green, courtyards, water, buildings. Only where the map has a surface
 // of the street at the cut's centre or 1.5 m around it (elsewhere the estimate from OSM; Lombardy has no orthophoto with
 // an open licence: AGEA's). ?lombardia=0 leaves it out (the A/B test).
+import { flagsOf } from "../flags.js";
 import { getJSON, asMtvu, osmTiles } from "../gis.js";
 import { MTVU_LABELS } from "../city.js";
 
-const param = (k) => (typeof location === "undefined" ? globalThis.PROFILY_IT?.[k] ?? null : new URLSearchParams(location.search).get(k));
+const flag = flagsOf("PROFILY_IT");
 export const DBT = "https://www.cartografia.servizirl.it/arcgis2/rest/services/BaseMap/dbtr/MapServer";
 // The region (its box and inLombardy) in towns/lombardy-area.js, a module without imports: lanes-ortho.js keeps
 // Bolzano's orthophoto out of it (the review of 24. 11. 2026: Ponte di Legno and Valfurva asked Bolzano's WMS).
@@ -101,7 +102,7 @@ const memo = new Map();
 export async function surfaces(bbox) {
   const [x0, y0, x1, y1] = bbox.split(",").map(Number);
   const cx = (x0 + x1) / 2, cy = (y0 + y1) / 2;
-  if (param("lombardia") === "0" || !inLombardy(cx, cy)) return null;
+  if (flag("lombardia") === "0" || !inLombardy(cx, cy)) return null;
   const key = bbox.split(",").map((v) => (+v).toFixed(5)).join(",");
   let out;
   try {

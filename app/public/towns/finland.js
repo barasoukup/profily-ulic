@@ -17,13 +17,14 @@
 //   national buildings of Ryhti (SYKE, open_building: points with floors, the year, walls, facade, use; CORS *, CC BY
 //   4.0), the point inside the OSM building at the facade, ?ryhti=0. One small request a facade on a click, at most 6 s,
 //   kept by the point rounded to about a metre.
+import { flagsOf } from "../flags.js";
 import { osmTiles, getJSON, asMtvu, asPassport } from "../gis.js";
 import { MTVU_LABELS } from "../city.js";
 import { inArea } from "../places.js";
 import { osmAreas } from "./slovakia.js";
 import { HELSINKI_RINGS } from "./finland-helsinki.js";
 
-const param = (k) => (typeof location === "undefined" ? globalThis.PROFILY_FI?.[k] ?? null : new URLSearchParams(location.search).get(k));
+const flag = flagsOf("PROFILY_FI");
 export const HEL_WFS = "https://kartta.hel.fi/ws/geoserver/avoindata/wfs";
 const inRings = (rings, x, y) => {
   let c = false;
@@ -116,7 +117,7 @@ export function hkiHouseFeatures(json) {
 }
 const houseMemo = new Map();
 async function hkiHouses(bbox) {
-  if (param("hkihouses") === "0") return [];
+  if (flag("hkihouses") === "0") return [];
   const key = bbox.split(",").map((v) => (+v).toFixed(4)).join(",");
   if (!houseMemo.has(key)) {
     houseMemo.set(key, getJSON(hkiHousesUrl(bbox)).then(hkiHouseFeatures).catch((err) => { houseMemo.delete(key); console.warn("Helsinki buildings", err); return []; }));
@@ -127,7 +128,7 @@ async function hkiHouses(bbox) {
 async function surfaces(bbox, tags = null) {
   const [x0, y0, x1, y1] = bbox.split(",").map(Number);
   const cx = (x0 + x1) / 2, cy = (y0 + y1) / 2;
-  if (param("helsinki") === "0" || !inHelsinki(cx, cy)) return { features: [], abroad: true };
+  if (flag("helsinki") === "0" || !inHelsinki(cx, cy)) return { features: [], abroad: true };
   let own;
   try {
     own = asMtvu([[await cached(bbox), (a) => a.code]], MTVU_LABELS);
@@ -229,14 +230,14 @@ export async function ryhtiAt(lat, lon, outline) {
 }
 const houses = new Map();
 async function podlaznost(lat, lon) {
-  const key = `${lat.toFixed(5)},${lon.toFixed(5)},${param("hkibuild")},${param("ryhti")}`;
+  const key = `${lat.toFixed(5)},${lon.toFixed(5)},${flag("hkibuild")},${flag("ryhti")}`;
   if (!houses.has(key)) {
     houses.set(key, (async () => {
-      if (param("hkibuild") !== "0" && inHelsinki(lon, lat)) {
+      if (flag("hkibuild") !== "0" && inHelsinki(lon, lat)) {
         const p = await ask(hkiBuildingUrl(lat, lon)).then((j) => hkiPick(j, lat, lon)).catch(() => ({}));
         if (p.fiBuild) return p;
       }
-      return param("ryhti") === "0" ? {} : ryhtiAt(lat, lon, await osmOutline(lat, lon));
+      return flag("ryhti") === "0" ? {} : ryhtiAt(lat, lon, await osmOutline(lat, lon));
     })().catch((err) => { houses.delete(key); throw err; }));
     if (houses.size > 30) houses.delete(houses.keys().next().value);
   }
