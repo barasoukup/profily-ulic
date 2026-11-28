@@ -77,8 +77,9 @@ class ImageContext {
 // drawn is logged as the page logs it, and a readback the page recorded is given back (recorded(key) → pixels or null).
 let recorded = () => null;
 export const canvasStats = { recorded: 0, drawn: 0 };
+// The drawing itself waits (queued) until a readback the recording does not have needs it.
 class OffscreenCanvas {
-  constructor(width, height) { Object.assign(this, { width, height, ops: [] }); }
+  constructor(width, height) { Object.assign(this, { width, height, ops: [], queue: [] }); }
   start(kind) {
     this.kind = kind;
     if (kind === "image") { this.data = new Uint8ClampedArray(this.width * this.height * 4); this.ctx = new ImageContext(this); }
@@ -91,13 +92,15 @@ class OffscreenCanvas {
         if (name === "getImageData") return (x, y, w, h) => this.read(x, y, w, h);
         const v = this.ctx[name];
         if (typeof v !== "function") return v;
-        if (!DRAWS.includes(name)) return v.bind(this.ctx);
-        return (...a) => { this.ops.push(opText(name, a.map((x) => (x && typeof x === "object" ? `img:${x.id || "?"}` : x)))); return v.apply(this.ctx, a); };
+        return (...a) => {
+          if (DRAWS.includes(name)) this.ops.push(opText(name, a.map((x) => (x && typeof x === "object" ? `img:${x.id || "?"}` : x))));
+          this.queue.push(() => v.apply(this.ctx, a));
+        };
       },
       set: (_, name, value) => {
         if (!this.kind) this.start("skia");
         if (STYLES.includes(name)) this.ops.push(`${name}=${value}`);
-        this.ctx[name] = value;
+        this.queue.push(() => { this.ctx[name] = value; });
         return true;
       },
     });
@@ -106,6 +109,7 @@ class OffscreenCanvas {
     const got = recorded(canvasKey(this.width, this.height, this.ops, [x, y, w, h]));
     if (got && got.length === w * h * 4) { canvasStats.recorded++; return { width: w, height: h, data: got }; }
     canvasStats.drawn++;
+    for (const run of this.queue.splice(0)) run();
     return this.ctx.getImageData(x, y, w, h);
   }
 }

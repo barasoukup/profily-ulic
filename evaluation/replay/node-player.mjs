@@ -57,26 +57,34 @@ export async function startPlayer({ data, search, onServe = () => {}, canvases =
   const { exportCredits } = await import("../../app/public/profile.js");
   const { streetName } = await import("../../app/public/app/state.js");
   const { t: tr } = await import("../../app/public/i18n.js");
+  const { cleanProfile, cleanCut } = await import("../../app/public/validate.js");
 
   // The timer of the model's first download (cut-core.js AI_WAIT) does not keep Node running after the last cut.
   const wait = (ms) => new Promise((r) => setTimeout(r, ms).unref());
-  // The page's state between cuts: a cut that finds no street leaves the one shown before (as the page does).
+  // The page's state between cuts: a cut that finds no street leaves the one shown before, and that is the saved file
+  // the page's replay loaded again after the cut before (harness.js capture: app/files.js restore, validate.js).
   let shown = null;
   function capture(p, done) {
     const out = { id: p.id, town: p.town, misses: [], notes: [] };
     out.status = done.status.text || "";
     out.statusClass = done.status.kind ? `muted ${done.status.kind}` : "muted";
-    if (done.cut) shown = JSON.parse(JSON.stringify({ cut: done.cut, stav: done.stav }));
-    out.title = shown ? streetName(shown.cut) : null;
+    const now = done.cut ? JSON.parse(JSON.stringify({ cut: done.cut, stav: done.stav })) : shown;
+    out.title = now ? streetName(now.cut) : null;
     out.city = JSON.parse(JSON.stringify(city));
-    out.cut = shown?.cut ?? null;
-    out.stav = shown?.stav ?? null;
-    if (shown) out.credits = exportCredits(shown.cut?.sources);
+    out.cut = now?.cut ?? null;
+    out.stav = now?.stav ?? null;
+    if (now) out.credits = exportCredits(now.cut?.sources);
+    if (done.cut) {
+      shown = JSON.parse(JSON.stringify(now));
+      cleanProfile(shown.stav, tr("app.existing"));
+      shown.cut = cleanCut(shown.cut);
+    }
     return out;
   }
   // One cut of a sample (p: { id, lat, lon, town }), clicked as the page's replay clicks it; name: the cut in the recording.
   async function play(p, name) {
     cutId = name;
+    const drawn = canvasStats.drawn;
     misses.length = 0; notes.length = 0;
     let out;
     try {
@@ -88,12 +96,16 @@ export async function startPlayer({ data, search, onServe = () => {}, canvases =
         notes.push(`error: ${err?.message}`);
         done = { status: { text: tr("app.dataCouldNotLoaded", { error: err.message }), kind: "error" } };
       }
+      // What the cut started and did not wait for (a source asked after the profile) is its too, as harness.js settle().
+      for (let quiet = 0; quiet < 30; quiet++) await new Promise((r) => setImmediate(r));
       out = capture(p, done);
     } catch (e) {
       out = { id: p.id, town: p.town, failed: String(e?.stack || e) };
     }
     out.misses = [...misses];
     out.notes = [...notes];
+    // Readbacks the recording did not have (drawn in Node, close but not equal: README "Přehrávka v Node"); not compared.
+    if (canvasStats.drawn > drawn) out.canvasDrawn = canvasStats.drawn - drawn;
     return out;
   }
   return { play, canvasStats };

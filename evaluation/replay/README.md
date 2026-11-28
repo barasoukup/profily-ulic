@@ -3,7 +3,11 @@
 Krok 0 plánu `docs/architecture-countries.md`: přestavba na státy, města a zdroje nesmí změnit, co návštěvník
 uvidí. Proto se odpovědi zdrojů jednou nahrají a pak se přehrávají tak často, jak je potřeba, bez jediného dotazu.
 
-Přehrává se v prohlížeči, ne v Node: celý řetěz od kliknutí (`app/cut.js cutAt`: zdroje města, ortofoto, odhad
+**Od 28. 11. 2026 (krok 13b) jde řez přehrát i v Node** (oddíl Přehrávka v Node níže): profil, řez, kredity, město
+a stavový řádek, bajt po bajtu jako v prohlížeči. A/B a kontroly se dělají tam; prohlížeč zůstává na kresbu a na to,
+co Node neporovnává.
+
+Přehrává se v prohlížeči: celý řetěz od kliknutí (`app/cut.js cutAt`: zdroje města, ortofoto, odhad
 z ortofota a OSM, `deriveProfile`, `deriveSigns`, `keepDrawable`) přes kresbu (`buildSvg`, domy, ilustrace, značky),
 kontrolu šířek (`checkRules`), karty dílů a paletu značek v Návrhu až po kredit a znovu načtený uložený soubor
 (`validate.js`). Větve podle státu a města jsou z velké části v `app/` (dřív `app.js`) a v kresbě, které v Node nejdou spustit.
@@ -27,6 +31,54 @@ Co jde v Node, hlídá `tables.mjs`.
    po změně totéž nad novým kódem a `node evaluation/replay/compare.mjs <výchozí> <nové>`.
 5. Tabulky: `node evaluation/replay/tables.mjs <jméno>` (složené město × 4 jazyky, kredity, hlášky výpadků, značky
    států, normy států, vzhled domů, město a ilustrace bodu, `cleanCut`), porovnání `tables.mjs <A> <B>`.
+
+## Přehrávka v Node (krok 13b, 28. 11. 2026)
+
+Jádro řezu `app/public/app/cut-core.js` (`computeCut(input, deps)`) nemá stránku ani mapu: prohlížeč ho volá z `app/cut.js
+cutAt` a pak kreslí, loguje, ukládá a vykresluje; Node ho volá z `node-player.mjs` nad nahrávkou.
+
+```
+node evaluation/replay/node.mjs sample cc-a --jobs=8                       # 369 řezů, asi 80 s
+node evaluation/replay/node.mjs sample cc-b --jobs=8 --switches='off=mapfill'
+node evaluation/replay/compare.mjs cc-a cc-b                                # A/B: co se změnilo
+node evaluation/replay/compare.mjs <běh v prohlížeči> cc-a                   # kontrola proti prohlížeči
+```
+
+- `--jobs=N` rozdělí vzorek mezi N procesů (každý nejdřív udělá řez před svým úsekem, kvůli `AGAIN_M`; výsledek je stejný
+  jako v jednom procesu), `--from/--to`, `--lang`, `--switches` (adresa jako v prohlížeči, čte ji `flags.js`).
+- **Co Node porovnává** (`_done.json` `fields`, `compare.mjs` bere jen ta pole): `status`, `statusClass`, `title`, `city`,
+  `cut`, `stav`, `credits`, `misses`, `errors`, `failed`. **Co ne**: `svg`, `svgOtherArt`, `svgNavrh` (kresba a export),
+  `shares`, `widthCheck`, `legend`, `cutInfo`, `ruleCheck`, `palette`, `editors`, `compare`, `restored`, `sub`,
+  `stavText`, `footer` (stránka). Ty dál jen přehrávka v prohlížeči.
+- **Math stránky** (`cr-math.mjs`): Chrome 156 (prohlížeč aplikace Claude, V8 15) počítá `sin`, `cos`, `tan`, `atan`,
+  `atan2`, `asin`, `exp`, `log` správně zaokrouhleně (3 000 hodnot proti mpmath: všechny), Node 26 (V8 14.6, fdlibm) ne
+  (3–20 % hodnot o bit vedle). Poslední bit posune výřez ortofota v adrese dotazu (chybějící odpověď) nebo pixel. Node proto
+  dostane funkce počítané v double-double a zaokrouhlené jednou (270 000 hodnot stránky: všechny stejné), `sinh` vzorcem
+  fdlibm nad správným `expm1` (jako stránka). Jiný prohlížeč (Firefox, Safari, starší Chrome) má jinou Math: běh
+  v prohlížeči pro srovnání pouštět v Chrome 156 a novějším.
+- **Plátno** (`node-browser.mjs`, `canvas-log.js`): Chrome kreslí `OffscreenCanvas` na GPU. Dekódování obrázků je stejné
+  (`@napi-rs/canvas`, Skia), ale zmenšený obrázek vzorkuje GPU s vlastním zaokrouhlením (asi 3 % hodnot o 1 vedle)
+  a čáry nápověd modelu (`ai-kerbs.js hints`) mají jiné okraje. Proto `?replay=canvas` v prohlížeči (jako `play`, navíc
+  nahraje, co vrátilo každé `getImageData` aplikace, pod klíčem toho, co se na plátno kreslilo) a Node je vrátí. Čtení,
+  které nahrávka nemá (změněný řez v A/B), Node nakreslí sám (mipmapa a bilineární vzorkování jako Chrome, okraje podle
+  pokrytí); takový řez má v souboru `canvasDrawn` (nesrovnává se). Bez nahraných pláten (`--canvas=draw`) vyjde jinak
+  96 z 369 řezů `sample`, 32 z 248 `sample-states`, 3 z 56 `sample-cz` (hlavně šířky dílů u řezů s modelem obrub).
+- **ONNX**: model obrub běží ve stejné `onnxruntime-web` wasm (`app/public/ort/`) jako v prohlížeči, jedno vlákno.
+- Nahrání pláten (jednou po změně vzorku nebo nahrávky): `http://localhost:5190/?replay=canvas&run=<jméno>&sample=<vzorek>&lang=cs&osm=balik`;
+  28. 11. 2026 nahrána pro `sample`, `sample-cz` a `sample-states` (asi 6 400 čtení, gzip v `bodies/`).
+- Test `tests/cut-core.test.js`: dva nahrané řezy (`tests/fixtures/cut-core`, `node evaluation/replay/fixture.mjs sample-cz 17,43
+  tests/fixtures/cut-core`, plátna kreslí Node) dají uložený výsledek; ten se shoduje i s prohlížečem.
+
+Shoda 28. 11. 2026 (kód `cut-core`, běhy v prohlížeči `cc-new-s`, `cc-new-cz`, `cc-canvas-st`, v Node `cc-fin-*`):
+
+| Vzorek | Řezů | Node : prohlížeč | Node 1 proces | Node 8 procesů | Prohlížeč |
+|---|---:|---|---:|---:|---:|
+| `sample` | 369 | 0 rozdílů | 362 s | 81 s | 372–638 s |
+| `sample-cz` | 56 | 0 rozdílů | 47 s | 15 s | 32–163 s |
+| `sample-states` | 248 | 0 rozdílů | 163 s | 44 s | 275–721 s |
+
+(Prohlížeč podle toho, co v počítači běží vedle; Node počítá model obrub a Math stránky v JavaScriptu, jeden proces proto
+není rychlejší než prohlížeč, výhoda je v procesech vedle sebe a v tom, že běh nepotřebuje okno ani agenta u prohlížeče.)
 
 ## Vzorky a pokrytí (27. 11. 2026)
 

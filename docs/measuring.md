@@ -42,7 +42,11 @@ Univerzální měření přesnosti, A/B test zdroje a výsledky po státech.
   starý odkaz nebo zaniklá cesta: nejbližší ulice jako dřív.
 
 ## Malé vzorky (Bára 27. 11. 2026, krok 18 plánu úklidu)
-Nikdy neměřit celý vzorek v prohlížeči jen proto, aby se našlo, co se změnilo.
+Nikdy neměřit celý vzorek v prohlížeči jen proto, aby se našlo, co se změnilo. **Od 28. 11. 2026 (krok 13b) se A/B
+a kontroly dělají v Node**: `node evaluation/replay/node.mjs <vzorek> <běh> [--switches='off=mapfill']` přehraje řezy
+jádrem řezu (`app/public/app/cut-core.js`) nad nahrávkou bez prohlížeče, `compare.mjs <A> <B>` porovná dva běhy
+(profil, řez, kredity, město, stavový řádek). Prohlížeč jen na kresbu (SVG, ilustrace, karty Návrhu) a na závěrečnou
+kontrolu; co Node neporovnává, je v `evaluation/replay/README.md` (Přehrávka v Node).
 1. **Dotčené řezy najít offline**: predikát v Node nad nahranými vstupy přehrávky (`data/replay/`, `evaluation/replay/`)
    nebo nad uloženými vstupy sběračů (OSM tagy, plochy, uložené díly), např. „řez má `highway=service` a úsek bez
    volného místa“. Výstup: seznam řezů, které oprava může změnit.
