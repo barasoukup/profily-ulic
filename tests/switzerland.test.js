@@ -21,24 +21,6 @@ test("Švýcarsko: druhy úředního vyměřování na kódy MTVU, vypínač ?av
   } finally { delete globalThis.PROFILY_CH; }
 });
 
-test("Švýcarsko a Lichtenštejnsko: stát podle hranic swisstopo, u hranic sousedé", async () => {
-  const C = await import("../app/public/city.js");
-  C.loadBounds(JSON.parse(fs.readFileSync(new URL("../app/public/towns.json", import.meta.url), "utf8")));
-  C.loadStates(JSON.parse(fs.readFileSync(new URL("../app/public/states.json", import.meta.url), "utf8")));
-  assert.equal(C.cityAt(47.3725, 8.539), "switzerland"); // Zürich
-  assert.equal(C.cityAt(46.2044, 6.1432), "switzerland"); // Genève
-  assert.equal(C.cityAt(46.0037, 8.9511), "switzerland"); // Lugano
-  assert.equal(C.cityAt(47.141, 9.5215), "liechtenstein"); // Vaduz
-  assert.equal(C.cityAt(47.2115, 9.5375), "liechtenstein"); // Schaan
-  assert.equal(C.cityAt(47.4875, 9.5617), "switzerland"); // St. Margrethen
-  assert.equal(C.cityAt(47.6965, 8.6824), "germany"); // Büsingen am Hochrhein: a hole in Switzerland
-  assert.equal(C.cityAt(47.6633, 9.1753), "germany"); // Konstanz
-  assert.equal(C.cityAt(47.2338, 9.5992), "austria"); // Feldkirch
-  assert.notEqual(C.cityAt(46.1934, 6.2363), "switzerland"); // Annemasse (France)
-  assert.equal(C.countryOfCity("switzerland").code, "CH");
-  assert.equal(C.countryOfCity("liechtenstein").code, "LI");
-});
-
 test("Švýcarsko: SWISSIMAGE po dlaždicích {z}/{x}/{y}, CSP pustí swisstopo a geodienste.ch", async () => {
   const { CH_ORTHO } = await import("../app/public/lanes-ortho.js");
   assert.match(CH_ORTHO, /wmts\.geo\.admin\.ch/);

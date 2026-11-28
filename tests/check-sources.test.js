@@ -6,6 +6,7 @@ import fs from "node:fs";
 import { plan, POINTS, runChecks, settle, isBad, watched, answered } from "../tools/check_sources_lib.mjs";
 import * as C from "../app/public/city.js";
 import { TOWNS } from "../app/public/towns/index.js";
+import { loadCities } from "./helpers/cities.js";
 
 const read = (f) => JSON.parse(fs.readFileSync(new URL(`../app/public/${f}`, import.meta.url)));
 const PLAN = plan({ ...C, TOWNS });
@@ -21,8 +22,9 @@ test("kontrola zdrojů: každá mapa povrchů má bod, plochy se žádají jen t
   assert.equal(plan({ ...C, TOWNS }, { ...POINTS, wien: undefined }).find((p) => p.key === "wien")?.at ?? null, null);
 });
 
-test("kontrola zdrojů: bod mapy leží v jejím modulu", () => {
-  C.loadBounds(read("towns.json")); C.loadStates(read("states.json")); C.loadSkTowns(read("towns-sk.json"));
+test("kontrola zdrojů: bod mapy leží v jejím modulu", async () => {
+  await loadCities();
+  C.loadSkTowns(read("towns-sk.json"));
   C.loadTowns(read("towns-sk.json")); C.loadTowns(read("towns-at.json"));
   for (const p of PLAN.filter((x) => x.key)) {
     assert.equal(TOWNS[C.cityAt(...p.at)], TOWNS[p.id], p.key);

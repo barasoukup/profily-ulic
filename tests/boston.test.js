@@ -5,18 +5,10 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
 import "../app/public/america.js";
-const read = (f) => JSON.parse(fs.readFileSync(new URL(`../app/public/${f}`, import.meta.url), "utf8"));
 
-test("Boston: metro (Suffolk, Middlesex, Norfolk) v USA, město, Cambridge a okolí; Washington beze změny", async () => {
-  const C = await import("../app/public/city.js");
-  C.loadBounds(read("towns.json")); C.loadStates({ ...read("states.json"), ...read("states-america.json") }); C.loadTowns(read("towns-us.json"));
-  // City Hall, Dorchester, East Boston; Cambridge, Somerville, Brookline, Newton, Quincy, Lowell; Washington's White House.
-  for (const p of [[42.3603, -71.0578], [42.3016, -71.0676], [42.375, -71.039]]) assert.equal(C.cityAt(...p), "boston", `${p}`);
-  for (const p of [[42.3736, -71.1097], [42.3876, -71.0995], [42.3318, -71.1212], [42.337, -71.209], [42.2529, -71.0023], [42.6334, -71.3162]]) assert.equal(C.cityAt(...p), "bostonmetro", `${p}`);
-  assert.equal(C.cityAt(38.8977, -77.0365), "washington");
-  assert.equal(C.countryOfCity("boston").code, "US");
-  // Worcester, Providence and Salem (Essex County) are closed, with the message naming the metros (New York is a metro of its own).
-  for (const p of [[42.2626, -71.8023], [41.824, -71.4128], [42.5195, -70.8967]]) assert.match(C.closedAt(...p) || "", /Boston/, `${p}`);
+test("Boston: texty a pravidla Bostonu platí i v jeho metru, Washington má své", async () => {
+  const { loadCities } = await import("./helpers/cities.js");
+  const C = await loadCities({ america: true, towns: ["towns-us.json"] });
   // Boston's texts in its metro too (i18n.js TEXT_ALIAS), the guidelines' head.
   C.setCity("bostonmetro");
   assert.match(C.city.rulesHead, /Boston Complete Streets/);

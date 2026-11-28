@@ -3,6 +3,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
+import { loadCities } from "./helpers/cities.js";
 
 const { toWgs, fromWgs } = await import("../app/public/towns/sjtsk.js");
 test("S-JTSK → WGS 84 (EPSG 1623) jako PROJ a zpět", () => {
@@ -24,15 +25,8 @@ test("pasport komunikací Frýdku-Místku na kódy MTVU", () => {
   assert.equal(pakomCode({ typ: "plocha pod kontejnery" }), 1003);
 });
 
-test("řez v moravských městech dostane své město", async () => {
-  const C = await import("../app/public/city.js");
-  C.loadBounds(JSON.parse(fs.readFileSync(new URL("../app/public/towns.json", import.meta.url), "utf8")));
-  assert.equal(C.cityAt(49.8355, 18.2924), "ostrava");
-  assert.equal(C.cityAt(49.6837, 18.3504), "frydek-mistek");
-  assert.equal(C.cityAt(49.8542, 18.542), "karvina");
-  assert.equal(C.cityAt(49.215, 15.8799), "trebic");
-  assert.equal(C.cityAt(49.4555, 17.451), "prerov");
-  assert.equal(C.cityAt(49.7787, 18.4372), "cesko"); // Havířov
+test("řez v moravských městech dostane své město (body v states.test.js), jejich zdroje existují", async () => {
+  const C = await loadCities();
   const { TOWNS } = await import("../app/public/towns/index.js");
   for (const id of ["ostrava", "frydek-mistek", "karvina", "trebic", "prerov"]) {
     assert.ok(TOWNS[id]?.sources?.surfaces, id);

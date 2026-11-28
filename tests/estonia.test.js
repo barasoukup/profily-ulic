@@ -4,14 +4,6 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
 
-test("Estonsko: stát řezu, ostrovy, sousedé mimo", async () => {
-  const C = await import("../app/public/city.js");
-  C.loadBounds(JSON.parse(fs.readFileSync(new URL("../app/public/towns.json", import.meta.url), "utf8")));
-  C.loadStates(JSON.parse(fs.readFileSync(new URL("../app/public/states.json", import.meta.url), "utf8")));
-  for (const [lat, lon] of [[59.437, 24.7536], [58.378, 26.729], [58.385, 24.4966], [59.3772, 28.1903], [58.2528, 22.4853]]) assert.equal(C.cityAt(lat, lon), "estonia", `${lat},${lon}`);
-  for (const [lat, lon] of [[56.9496, 24.1052], [60.1699, 24.9384], [59.37, 28.32]]) assert.notEqual(C.cityAt(lat, lon), "estonia", `${lat},${lon}`);
-});
-
 test("Estonsko: dlaždice ortofota v TMS (osa y odspodu)", async () => {
   const L = await import("../app/public/lanes-ortho.js");
   assert.match(L.EE_ORTHO, /^https:\/\/tiles\.maaamet\.ee\/tm\/tms\/1\.0\.0\/foto@GMC$/);

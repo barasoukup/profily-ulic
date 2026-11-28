@@ -52,16 +52,6 @@ test("Malta: jízda vlevo, značky, normy, zákon o stání", async () => {
   assert.equal(MT.limits({ type: "pruh" }), null);
 });
 
-test("Malta: stát podle hranic (Malta, Gozo, Comino)", async () => {
-  const C = await import("../app/public/city.js");
-  C.loadBounds(JSON.parse(fs.readFileSync(new URL("../app/public/towns.json", import.meta.url), "utf8")));
-  C.loadStates(JSON.parse(fs.readFileSync(new URL("../app/public/states.json", import.meta.url), "utf8")));
-  assert.equal(C.cityAt(35.8989, 14.5146), "malta"); // Valletta
-  assert.equal(C.cityAt(36.0443, 14.2397), "malta"); // Victoria, Gozo
-  assert.equal(C.cityAt(36.0128, 14.3368), "malta"); // Comino
-  assert.equal(C.countryOfCity("malta").code, "MT");
-});
-
 // The whole profile with the state malta (review of 23. 11. 2026, finding 4): a measured roadway, the parking estimate.
 test("Malta: odhad stání podle zákona nechává pruhy aspoň 2,5 m a stání vlevo", async () => {
   const C = await import("../app/public/city.js");

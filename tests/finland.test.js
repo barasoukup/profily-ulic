@@ -7,18 +7,6 @@ import fs from "node:fs";
 
 const fixture = (f) => JSON.parse(fs.readFileSync(new URL(`./fixtures/${f}`, import.meta.url), "utf8"));
 
-test("Finsko: stát řezu, Alandy a sousedé u hranice", async () => {
-  const C = await import("../app/public/city.js");
-  C.loadBounds(JSON.parse(fs.readFileSync(new URL("../app/public/towns.json", import.meta.url), "utf8")));
-  C.loadStates(JSON.parse(fs.readFileSync(new URL("../app/public/states.json", import.meta.url), "utf8")));
-  // Helsinki, Suomenlinna, the quay of the Market Square, Mariehamn (Åland), Tornio, Oulu, Utsjoki, Vaalimaa, Imatra, Karigasniemi
-  for (const [lat, lon] of [[60.1695, 24.938], [60.1455, 24.988], [60.1673, 24.9545], [60.0973, 19.9348], [65.8481, 24.1466], [65.0121, 25.4651],
-    [69.9078, 27.0281], [60.585, 27.84], [61.1717, 28.7614], [69.3986, 25.8442]]) assert.equal(C.cityAt(lat, lon), "finland", `${lat},${lon}`);
-  // Haparanda, Vyborg, Svetogorsk, Karasjok, Kirkenes, Stockholm
-  for (const [lat, lon] of [[65.8355, 24.1368], [60.7096, 28.7491], [61.111, 28.857], [69.4719, 25.5112], [69.727, 30.045], [59.33, 18.06]]) assert.equal(C.cityAt(lat, lon), "cizina", `${lat},${lon}`);
-  assert.equal(C.cityAt(59.437, 24.7536), "estonia");
-});
-
 test("Finsko: ortofoto jen v Helsinkách, Espoo a Turku", async () => {
   const L = await import("../app/public/lanes-ortho.js");
   assert.deepEqual(L.fiOrthoAt(24.938, 60.1695), ["fi-hki"]);

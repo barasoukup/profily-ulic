@@ -1,23 +1,10 @@
 // Monaco (Bára 23. 11. 2026): France's settings with Monaco's own law (countries/MC.js), the border of OSM. No network.
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import fs from "node:fs";
 
-test("Monako: stát podle hranic OSM, francouzské ortofoto, bez odhadu stání a bez norem šířek", async () => {
-  const C = await import("../app/public/city.js");
-  C.loadBounds(JSON.parse(fs.readFileSync(new URL("../app/public/towns.json", import.meta.url), "utf8")));
-  C.loadStates(JSON.parse(fs.readFileSync(new URL("../app/public/states.json", import.meta.url), "utf8")));
-  assert.equal(C.cityAt(43.7447, 7.4310), "monaco"); // Monte-Carlo
-  assert.equal(C.cityAt(43.7310, 7.4190), "monaco"); // Monaco-Ville
-  // The review of 23. 11. 2026: Mareterra (reclaimed land beyond GISCO's coast) and the Boulevard du Général Leclerc
-  // are Monaco, Beausoleil and Cap-d'Ail France, Gibraltar and Andorra abroad; the quays of Barcelona, Lisbon, Funchal and
-  // the village of La Restinga within the coast's tolerance.
-  for (const [lat, lon, id] of [[43.7445, 7.43, "monaco"], [43.7365, 7.427, "monaco"], [43.742, 7.423, "france"], [43.724, 7.406, "france"],
-    [36.1408, -5.3536, "cizina"], [36.147, -5.36, "cizina"], [42.5063, 1.5218, "cizina"], [41.3755, 2.183, "spain"], [27.643, -17.981, "spain"],
-    [38.71, -9.125, "portugal"], [32.6455, -16.905, "portugal"]]) assert.equal(C.cityAt(lat, lon), id, `${lat},${lon}`);
-  assert.equal(C.cityAt(43.7556, 7.4296), "france"); // Beausoleil
-  assert.equal(C.cityAt(43.7225, 7.4050), "france"); // Cap-d'Ail
-  const MC = C.countryOfCity("monaco");
+test("Monako: francouzské ortofoto, bez odhadu stání a bez norem šířek, jen značky, které kodex zná", async () => {
+  const { COUNTRIES } = await import("../app/public/countries/index.js");
+  const MC = COUNTRIES.MC;
   assert.equal(MC.code, "MC");
   assert.equal(MC.laneOrtho, "fr");
   assert.equal(MC.parkGuess, false, "čl. 31: stání jen na vyznačených místech");

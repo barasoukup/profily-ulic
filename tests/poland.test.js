@@ -32,22 +32,6 @@ test("Polsko: hledání GUGiK UUG", async () => {
   assert.equal(S.parsePl({ results: { 1: { city: "Kraków", x: "19.94", y: "50.06" } } })[0].type, "Obec", "samotné město není řez");
 });
 
-test("Polsko: stát podle hranic", async () => {
-  const C = await import("../app/public/city.js");
-  C.loadBounds(JSON.parse(fs.readFileSync(new URL("../app/public/towns.json", import.meta.url), "utf8")));
-  C.loadStates(JSON.parse(fs.readFileSync(new URL("../app/public/states.json", import.meta.url), "utf8")));
-  assert.equal(C.cityAt(52.2297, 21.0122), "poland"); // Warszawa
-  assert.equal(C.cityAt(50.0614, 19.9383), "poland"); // Kraków
-  assert.equal(C.cityAt(49.7477, 18.6262), "cesko"); // Český Těšín
-  assert.equal(C.cityAt(52.343, 14.551), "germany"); // Frankfurt (Oder)
-  // The exact border of PRG (the hostile review: GISCO gave Germany a strip of these towns).
-  assert.equal(C.cityAt(51.1555, 14.999), "poland"); // Zgorzelec by the Altstadtbrücke
-  assert.equal(C.cityAt(51.1555, 14.99), "germany"); // Görlitz
-  assert.equal(C.cityAt(52.35, 14.557), "poland"); // Słubice
-  assert.equal(C.cityAt(51.95, 14.728), "poland"); // Gubin
-  assert.equal(C.countryOfCity("poland").code, "PL");
-});
-
 test("Polsko: značky, normy, zákon o stání", async () => {
   const { default: PL } = await import("../app/public/countries/PL.js");
   assert.equal(PL.signs.file({ k: "oneway" }, { dir: "forward" }), "D-3");

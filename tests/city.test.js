@@ -2,6 +2,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
+import { loadCities } from "./helpers/cities.js";
 
 const read = (f) => fs.readFileSync(new URL(`../app/public/${f}`, import.meta.url), "utf8");
 
@@ -73,34 +74,13 @@ test("zdroje exportu podle města a kraje řezu", async () => {
 test("bývalé stránky měst přesměrují i s řezem", () => {
   assert.match(redirectPage("brno"), /location\.replace\("\.\.\/\?mesto=brno" \+ location\.hash\)/);
 });
-test("město podle polohy řezu", async () => {
-  const C = await import("../app/public/city.js");
-  C.loadBounds(JSON.parse(read("towns.json")));
-  assert.equal(C.cityAt(50.0875, 14.4208), "praha");
-  assert.equal(C.cityAt(49.1951, 16.6085), "brno");
-  assert.equal(C.cityAt(50.503, 13.6363), "most");
-  assert.equal(C.cityAt(50.6607, 14.0322), "usti"); // Mírové náměstí
-  assert.equal(C.cityAt(49.907481, 16.442219), "cesko"); // Česká Třebová
+test("město podle polohy řezu: přídavné jméno města", async () => {
+  const C = await loadCities();
   assert.equal(C.setCity("plzen").adjective, "plzeňské");
   C.setCity("praha");
 });
-test("stát podle polohy řezu: Česko, Slovensko, Rakousko, Německo, cizina", async () => {
-  const C = await import("../app/public/city.js");
-  C.loadBounds(JSON.parse(read("towns.json")));
-  C.loadStates(JSON.parse(read("states.json")));
-  assert.equal(C.cityAt(49.907481, 16.442219), "cesko"); // Česká Třebová
-  assert.equal(C.cityAt(49.7477, 18.6262), "cesko"); // Český Těšín, Hlavní třída (the border is the Olza)
-  assert.equal(C.cityAt(48.146736, 17.106998), "slovensko"); // Bratislava, Suché mýto
-  assert.equal(C.cityAt(48.7206, 21.258), "slovensko"); // Košice, Hlavná
-  assert.equal(C.cityAt(49.7497, 18.6328), "poland"); // Cieszyn (Poland since 21. 11. 2026; the Czech border, exact, decides first)
-  assert.equal(C.cityAt(48.2085, 16.3731), "austria"); // Wien, Stephansplatz
-  assert.equal(C.cityAt(47.0707, 15.4395), "austria"); // Graz
-  assert.equal(C.cityAt(48.137, 11.575), "germany"); // München
-  assert.equal(C.cityAt(52.5163, 13.3777), "germany"); // Berlin, Brandenburger Tor
-  assert.equal(C.cityAt(47.835, 12.98), "germany"); // Freilassing, by Salzburg
-  assert.equal(C.cityAt(50.0796, 12.3739), "cesko"); // Cheb, náměstí
-  assert.equal(C.cityAt(48.5734, 7.8105), "germany"); // Kehl
-  assert.equal(C.cityAt(48.5818, 7.7509), "france"); // Strasbourg (France since 22. 11. 2026)
+test("stát řezu: země města, kredity a texty (hranice jsou v states.test.js)", async () => {
+  const C = await loadCities();
   const sk = C.setCity("slovensko");
   assert.ok(sk.abroad && !sk.techMap && !sk.dataName);
   assert.equal(sk.country, "SK");
@@ -148,8 +128,7 @@ test("slovenská města podle hranic ze ZBGIS (towns-sk.json): Šamorín ani Sv�
   const C = await import("../app/public/city.js");
   C.loadSkTowns(JSON.parse(read("towns-sk.json")));
   // The city of a point and its illustrations (step 4b: the Slovak towns are cities, towns-sk.json).
-  C.loadBounds(JSON.parse(read("towns.json")));
-  C.loadStates(JSON.parse(read("states.json")));
+  await loadCities();
   C.loadTowns(JSON.parse(read("towns-sk.json")));
   const skArtAt = (lat, lon) => C.cityById(C.cityAt(lat, lon)).art;
   assert.equal(skArtAt(48.1467, 17.107), "bratislava"); // Suché mýto
@@ -166,8 +145,7 @@ test("slovenská města podle hranic ze ZBGIS (towns-sk.json): Šamorín ani Sv�
 test("placeAt: stát, město, ilustrace a zdroje s vlastním územím", async () => {
   const C = await import("../app/public/city.js");
   const { placeAt } = await import("../app/public/towns/index.js");
-  C.loadBounds(JSON.parse(read("towns.json")));
-  C.loadStates(JSON.parse(read("states.json")));
+  await loadCities();
   C.loadSkTowns(JSON.parse(read("towns-sk.json")));
   C.loadTowns(JSON.parse(read("towns-sk.json")));
   C.loadTowns(JSON.parse(read("towns-at.json")));

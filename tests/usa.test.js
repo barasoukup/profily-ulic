@@ -7,33 +7,6 @@ import fs from "node:fs";
 import "../app/public/america.js";
 const STATY = { ...JSON.parse(fs.readFileSync(new URL("../app/public/states.json", import.meta.url), "utf8")), ...JSON.parse(fs.readFileSync(new URL("../app/public/states-america.json", import.meta.url), "utf8")) };
 
-test("USA: District of Columbia je stát usa, zbytek USA zavřený (i okresy Marylandu a Virginie)", async () => {
-  const C = await import("../app/public/city.js");
-  C.loadBounds(JSON.parse(fs.readFileSync(new URL("../app/public/towns.json", import.meta.url), "utf8")));
-  C.loadStates(STATY);
-  // The White House; on the DC line (Southern Avenue, dc-8-3): simplified county rings left a gap there.
-  for (const [lat, lon] of [[38.8977, -77.0365], [38.8436094, -76.9725878]]) {
-    assert.equal(C.cityAt(lat, lon), "usa", `${lat},${lon}`);
-    assert.equal(C.closedAt(lat, lon), null);
-  }
-  // New York City (26. 11. 2026): the city of the state, its five boroughs (Manhattan, Queens, the Bronx, Staten Island, Brooklyn).
-  C.loadTowns(JSON.parse(fs.readFileSync(new URL("../app/public/towns-us.json", import.meta.url), "utf8")));
-  for (const [lat, lon] of [[40.7128, -74.006], [40.7282, -73.7949], [40.8448, -73.8648], [40.5795, -74.1502], [40.6782, -73.9442]]) {
-    assert.equal(C.cityAt(lat, lon), "newyork", `${lat},${lon}`);
-    assert.equal(C.closedAt(lat, lon), null);
-  }
-  assert.equal(C.countryOfCity("newyork").code, "US");
-  // Baltimore, Richmond, Jersey City, Yonkers, Hempstead (Nassau): the USA beyond the metros, a message and no profile; since
-  // 26. 11. 2026 (Bára: the District only) also Silver Spring (Montgomery), Hyattsville (Prince George's), Arlington,
-  // Alexandria, Fairfax city, Tysons.
-  for (const [lat, lon] of [[39.2904, -76.6122], [37.5407, -77.436], [40.7178, -74.0431], [40.9312, -73.8988], [40.7062, -73.6187],
-    [38.9907, -77.0261], [38.9559, -76.9455], [38.8816, -77.091], [38.8048, -77.0469], [38.8462, -77.3064], [38.9187, -77.2311]]) {
-    assert.equal(C.cityAt(lat, lon), "cizina", `${lat},${lon}`);
-    assert.match(C.closedAt(lat, lon) || "", /Washington/);
-  }
-  assert.equal(C.countryOfCity("usa").code, "US");
-});
-
 test("USA: mezi okresy ani na hranici DC nejsou díry, states.json nenese společné hranice dvakrát", async () => {
   const C = await import("../app/public/city.js");
   const staty = STATY;

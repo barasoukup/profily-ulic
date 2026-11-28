@@ -2,7 +2,6 @@
 // No network.
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import fs from "node:fs";
 
 test("Francie: mapa povrchů Paříže (třídy Plan de voirie na kódy MTVU), vypínač ?paris=0", async () => {
   const F = await import("../app/public/towns/france.js");
@@ -35,21 +34,6 @@ test("Francie: budovy BD TOPO", async () => {
   assert.equal(F.bdtopoBuilding({ properties: { hauteur: 15.9 } }).total, 5, "bez počtu podlaží podle výšky");
   assert.equal(F.bdtopoBuilding({ properties: { hauteur: 16.7, nombre_d_etages: 8 } }).total, 6, "nepravděpodobný počet: podle výšky");
   assert.equal(F.bdtopoBuilding({ properties: { usage_1: "Résidentiel", nombre_de_logements: 1 } }).house, true);
-});
-
-test("Francie: stát podle hranic", async () => {
-  const C = await import("../app/public/city.js");
-  C.loadBounds(JSON.parse(fs.readFileSync(new URL("../app/public/towns.json", import.meta.url), "utf8")));
-  C.loadStates(JSON.parse(fs.readFileSync(new URL("../app/public/states.json", import.meta.url), "utf8")));
-  assert.equal(C.cityAt(48.8566, 2.3522), "france"); // Paris
-  assert.equal(C.cityAt(48.5734, 7.7521), "france"); // Strasbourg
-  assert.equal(C.cityAt(41.9192, 8.7386), "france"); // Ajaccio
-  assert.equal(C.cityAt(48.5700, 7.8150), "germany"); // Kehl
-  assert.equal(C.cityAt(46.2044, 6.1432), "switzerland"); // Genève
-  assert.equal(C.cityAt(50.8503, 4.3517), "belgium"); // Bruxelles
-  assert.equal(C.cityAt(42.465, 1.98), "spain"); // Llívia, a Spanish enclave (a hole of France's ring, a ring of Spain's)
-  assert.equal(C.cityAt(43.7384, 7.4246), "monaco"); // Monaco (its own state since 23. 11. 2026)
-  assert.equal(C.countryOfCity("france").code, "FR");
 });
 
 test("Francie: hledání Géoplateforme", async () => {

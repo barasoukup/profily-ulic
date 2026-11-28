@@ -2,19 +2,11 @@
 // kerbs and the buildings (towns/sanfrancisco.js through towns/planimetrics.js), the digital curb's parking. No network.
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import fs from "node:fs";
 import "../app/public/america.js";
-const read = (f) => JSON.parse(fs.readFileSync(new URL(`../app/public/${f}`, import.meta.url), "utf8"));
 
-test("San Francisco: město ve státě USA, okolí zůstává zavřené", async () => {
-  const C = await import("../app/public/city.js");
-  C.loadBounds(read("towns.json")); C.loadStates({ ...read("states.json"), ...read("states-america.json") }); C.loadTowns(read("towns-us.json"));
-  // Market Street, the Ferry Building, the Mission, Treasure Island; Washington stays itself.
-  for (const p of [[37.7848, -122.4071], [37.7955, -122.3937], [37.7599, -122.4148], [37.8235, -122.3706]]) assert.equal(C.cityAt(...p), "sanfrancisco", `${p}`);
-  assert.equal(C.cityAt(38.8977, -77.0365), "washington");
-  assert.equal(C.countryOfCity("sanfrancisco").code, "US");
-  // Daly City, Oakland, Sausalito, Berkeley: the closed USA, its message names San Francisco.
-  for (const p of [[37.6879, -122.4702], [37.8044, -122.2712], [37.8591, -122.4853], [37.8715, -122.273]]) assert.match(C.closedAt(...p) || "", /San Francisco/, `${p}`);
+test("San Francisco: město má svou sadu ilustrací", async () => {
+  const { loadCities } = await import("./helpers/cities.js");
+  const C = await loadCities({ america: true, towns: ["towns-us.json"] });
   assert.equal(C.cityById("sanfrancisco").art, "sanfrancisco");
 });
 
@@ -91,8 +83,7 @@ test("San Francisco: výpadek pravidel obrub (SFMTA 56) se hlásí, oříznutá 
 });
 
 test("San Francisco: chodník podle typu ulice (ulička 6 ft, jiná obslužná bez varování), citace Better Streets Plan v datech SFMTA", async () => {
-  const C = await import("../app/public/city.js");
-  C.loadBounds(read("towns.json")); C.loadStates({ ...read("states.json"), ...read("states-america.json") }); C.loadTowns(read("towns-us.json"));
+  const C = await (await import("./helpers/cities.js")).loadCities({ america: true, towns: ["towns-us.json"] });
   const US = (await import("../app/public/countries/US.js")).default;
   const sf = C.cityById("sanfrancisco"), walk = { type: "chodnik", width: 2 };
   const street = US.limits(walk, [walk], 0, sf);

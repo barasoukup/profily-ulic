@@ -42,14 +42,3 @@ test("Portugalsko: značky (H3 / C1 podle směru, C13, zóny)", async () => {
   for (const f of ["M12a", "M12b", "G4-40"]) assert.ok(!fs.existsSync(new URL(`../app/public/signs-PT/${f}.svg`, import.meta.url)), `${f}: nekreslí se`);
 });
 
-test("Portugalsko: stát podle hranic (Madeira, Azory)", async () => {
-  const C = await import("../app/public/city.js");
-  C.loadBounds(JSON.parse(fs.readFileSync(new URL("../app/public/towns.json", import.meta.url), "utf8")));
-  C.loadStates(JSON.parse(fs.readFileSync(new URL("../app/public/states.json", import.meta.url), "utf8")));
-  assert.equal(C.cityAt(38.7223, -9.1393), "portugal"); // Lisboa
-  assert.equal(C.cityAt(41.1579, -8.6291), "portugal"); // Porto
-  assert.equal(C.cityAt(32.6496, -16.9086), "portugal"); // Funchal
-  assert.equal(C.cityAt(37.7412, -25.6756), "portugal"); // Ponta Delgada
-  assert.equal(C.cityAt(42.2406, -8.7207), "spain"); // Vigo, across the Minho
-  assert.equal(C.countryOfCity("portugal").code, "PT");
-});

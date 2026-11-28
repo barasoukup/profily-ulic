@@ -6,25 +6,10 @@ import fs from "node:fs";
 import "../app/public/america.js";
 const read = (f) => JSON.parse(fs.readFileSync(new URL(`../app/public/${f}`, import.meta.url), "utf8"));
 
-test("Kanada: Toronto a okolí, zbytek Kanady s hláškou, hranice s USA u Windsoru a Niagary", async () => {
-  const C = await import("../app/public/city.js");
-  const staty = ({ ...read("states.json"), ...read("states-america.json") });
-  C.loadBounds(read("towns.json")); C.loadStates(staty); C.loadTowns(read("towns-us.json")); C.loadTowns(read("towns-ca.json"));
+test("Kanada: hranice Toronta a zavřené Kanady jsou malé (stáhnou se při prvním řezu v Americe)", () => {
+  const staty = { ...read("states.json"), ...read("states-america.json") };
   assert.ok(JSON.stringify(staty.canada).length < 10_000);
   assert.ok(JSON.stringify(staty.closed_ca).length < 150_000);
-  // Downtown, the islands; Mississauga, Markham, Pickering, north of Steeles Avenue: since 26. 11. 2026 Toronto is the
-  // city only (Bára), the municipalities around it are the closed Canada.
-  for (const p of [[43.6535, -79.3839], [43.623, -79.38]]) assert.equal(C.cityAt(...p), "toronto");
-  for (const p of [[43.589, -79.644], [43.8668, -79.2663], [43.84, -79.09], [43.83, -79.45]]) { assert.equal(C.cityAt(...p), "cizina", `${p}`); assert.match(C.closedAt(...p) || "", /Toronto/, `${p}`); }
-  assert.equal(C.countryOfCity("toronto").code, "CA");
-  // Windsor, Niagara-on-the-Lake's Queenston, Niagara Falls ON, Fort Erie, Sarnia, Hamilton, Montreal, Vancouver.
-  for (const p of [[42.3185, -83.0395], [43.165, -79.053], [43.0896, -79.075], [42.905, -78.925], [42.975, -82.405], [43.2557, -79.8711], [45.5019, -73.5674], [49.2827, -123.1207]]) assert.match(C.closedAt(...p) || "", /Toronto/, `${p}`);
-  // The coasts: Halifax, Prince Rupert, Tofino; Juneau, Ketchikan, Sitka, Atlantic City, Charleston (the Battery is New York's and the Ferry Building San Francisco's since 26. 11. 2026). Not Nuevo Laredo, Tijuana, Matamoros, Juárez.
-  for (const p of [[44.6488, -63.5752], [54.3150, -130.3209], [49.1530, -125.9066]]) assert.match(C.closedAt(...p) || "", /Toronto/, `${p}`);
-  for (const p of [[58.3019, -134.4197], [55.3422, -131.6461], [57.0531, -135.33], [39.355, -74.432], [32.7765, -79.9311]]) assert.match(C.closedAt(...p) || "", /Washington/, `${p}`);
-  for (const p of [[27.4861, -99.507], [32.5149, -117.0382], [25.8690, -97.5027], [31.7300, -106.4850], [32.6245, -115.4523]]) assert.equal(C.closedAt(...p), null, `${p}`);
-  // Detroit, Lewiston, Niagara Falls NY, Buffalo, Port Huron.
-  for (const p of [[42.33, -83.044], [43.1726, -79.0354], [43.087, -79.06], [42.8864, -78.8784], [42.975, -82.425]]) assert.match(C.closedAt(...p) || "", /Washington/, `${p}`);
 });
 
 const LAT = 43.66, LON = -79.4, KX = 111320 * Math.cos((LAT * Math.PI) / 180), KY = 110574;

@@ -69,21 +69,6 @@ test("Belgie: region podle hranic NUTS 1 (ortofoto a čáry jen svého regionu)"
   assert.equal((await beRegionsAt(4.3525, 50.8467))[0], "bru"); // Brussels
 });
 
-test("Belgie a Lucembursko: stát podle hranic", async () => {
-  const C = await import("../app/public/city.js");
-  C.loadBounds(JSON.parse(fs.readFileSync(new URL("../app/public/towns.json", import.meta.url), "utf8")));
-  C.loadStates(JSON.parse(fs.readFileSync(new URL("../app/public/states.json", import.meta.url), "utf8")));
-  assert.equal(C.cityAt(50.8467, 4.3525), "belgium"); // Brussels
-  assert.equal(C.cityAt(51.0543, 3.7174), "belgium"); // Ghent
-  assert.equal(C.cityAt(50.6326, 5.5797), "belgium"); // Liège
-  assert.equal(C.cityAt(49.6116, 6.1319), "luxembourg"); // Luxembourg
-  assert.equal(C.cityAt(49.4958, 5.9806), "luxembourg"); // Esch-sur-Alzette
-  assert.equal(C.cityAt(50.8514, 5.691), "netherlands"); // Maastricht
-  assert.equal(C.cityAt(50.7753, 6.0839), "germany"); // Aachen
-  assert.equal(C.countryOfCity("belgium").code, "BE");
-  assert.equal(C.countryOfCity("luxembourg").code, "LU");
-});
-
 test("Belgie a Lucembursko: značky, normy, zákon o stání", async () => {
   const { default: BE } = await import("../app/public/countries/BE.js");
   const { default: LU } = await import("../app/public/countries/LU.js");

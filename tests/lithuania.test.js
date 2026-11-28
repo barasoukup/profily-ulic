@@ -4,43 +4,6 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
 
-test("Litva: stát řezu, pobřeží, sousedé mimo", async () => {
-  const C = await import("../app/public/city.js");
-  C.loadBounds(JSON.parse(fs.readFileSync(new URL("../app/public/towns.json", import.meta.url), "utf8")));
-  C.loadStates(JSON.parse(fs.readFileSync(new URL("../app/public/states.json", import.meta.url), "utf8")));
-  // Vilnius, Kaunas, Klaipėda (the port), Šiauliai, Panevėžys, Alytus, Nida on the Curonian Spit.
-  for (const [lat, lon] of [[54.6872, 25.2797], [54.897, 23.9262], [55.7075, 21.1335], [55.9349, 23.3137], [55.7348, 24.3575], [54.3964, 24.0459], [55.3036, 21.0065]]) assert.equal(C.cityAt(lat, lon), "lithuania", `${lat},${lon}`);
-  // Riga, Minsk, Kaliningrad, Suwałki (Poland), Daugavpils.
-  for (const [lat, lon] of [[56.9496, 24.1052], [53.9006, 27.559], [54.7104, 20.4522], [54.1118, 22.9309], [55.8714, 26.5161]]) assert.notEqual(C.cityAt(lat, lon), "lithuania", `${lat},${lon}`);
-});
-
-// The coast's 400 m only by the sea (Bára 24. 11. 2026): a harbour and the sea off the beach stay the state's, a cut
-// 300 m beyond a land border does not (city.js stateEntry, states.json land_*).
-test("Pobřeží: tolerance 400 m jen u moře, ne u hranice na souši (LT, FI, DK)", async () => {
-  const C = await import("../app/public/city.js");
-  const staty = JSON.parse(fs.readFileSync(new URL("../app/public/states.json", import.meta.url), "utf8"));
-  C.loadBounds(JSON.parse(fs.readFileSync(new URL("../app/public/towns.json", import.meta.url), "utf8")));
-  // Outside the state's ring (GISCO's ring alone does not take them), within 400 m of the sea coast.
-  const sea = [["lithuania", 55.64922, 21.16001], ["lithuania", 55.84707, 21.0545], ["finland", 60.1316, 24.99252], ["denmark", 55.68931, 12.60393]];
-  for (const [st, lat, lon] of sea) {
-    C.loadStates({ ring: staty[st] });
-    assert.equal(C.cityAt(lat, lon), "cizina", `${lat},${lon} leží mimo kruh`);
-    C.loadStates(staty);
-    assert.equal(C.cityAt(lat, lon), st, `${lat},${lon} moře u pobřeží`);
-  }
-  // 300 m beyond the land border: Latvia, Belarus, Kaliningrad; Sweden, Norway, Russia by Finland.
-  const land = [[56.4133, 22.22338], [56.33535, 23.76874], [54.27878, 25.407], [55.07024, 26.26848], [54.92863, 22.7513], [55.24284, 21.26685],
-    [66.34859, 23.65094], [67.51083, 23.4253], [69.59307, 25.94434], [61.90679, 30.24017]];
-  C.loadStates(staty);
-  for (const [lat, lon] of land) assert.equal(C.cityAt(lat, lon), "cizina", `${lat},${lon}`);
-  // Without the land borders (the old rule) they were taken in.
-  C.loadStates(Object.fromEntries(Object.entries(staty).filter(([id]) => !id.startsWith("land_"))));
-  for (const [lat, lon] of land) assert.notEqual(C.cityAt(lat, lon), "cizina", `${lat},${lon} dřív`);
-  // The land borders are lines, not states.
-  C.loadStates(staty);
-  assert.equal(C.cityAt(54.6872, 25.2797), "lithuania");
-});
-
 test("Litva: mapa povrchů Vilniusu (kód a účel plochy)", async () => {
   const V = await import("../app/public/towns/lithuania.js");
   const c = (KODAS, Paskirtis = null) => V.vilniusCode({ KODAS, Paskirtis });

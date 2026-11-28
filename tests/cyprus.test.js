@@ -54,21 +54,3 @@ test("Kypr: jízda vlevo, značky a normy", async () => {
   assert.equal(CY.limits({ type: "cyklostezka" }, [], 0).zaklad, 3, "obousměrná");
 });
 
-test("Kypr: stát podle hranic (sever bez profilu, nárazníková zóna podle hranice OSM)", async () => {
-  const C = await import("../app/public/city.js");
-  C.loadBounds(JSON.parse(fs.readFileSync(new URL("../app/public/towns.json", import.meta.url), "utf8")));
-  C.loadStates(JSON.parse(fs.readFileSync(new URL("../app/public/states.json", import.meta.url), "utf8")));
-  assert.equal(C.cityAt(35.17, 33.36), "cyprus"); // Nicosia, the south
-  assert.equal(C.cityAt(34.68, 33.045), "cyprus"); // Limassol
-  assert.equal(C.cityAt(34.585, 32.985), "cyprus"); // Akrotiri (a British base)
-  assert.equal(C.cityAt(35.0130, 33.7380), "cyprus"); // Xylotymbou, inside Dhekelia
-  assert.equal(C.cityAt(35.185, 33.364), "cizina"); // Nicosia, the north
-  assert.equal(C.cityAt(35.34, 33.319), "cizina"); // Kyrenia
-  // The north: no profile (Bára 23. 11. 2026); the republic's border by OSM takes in parts of the UN buffer zone (Pyla).
-  assert.match(C.closedAt(35.185, 33.364), /Kypr/);
-  assert.equal(C.closedAt(35.17, 33.36), null);
-  // Pyla, Mammari and Nicosia airport lie in the buffer zone, inside OSM's border of the republic (review of 23. 11. 2026).
-  assert.equal(C.cityAt(35.0142, 33.6925), "cyprus"); // Pyla
-  assert.equal(C.cityAt(35.1756, 33.2051), "cyprus"); // Mammari
-  assert.equal(C.closedAt(35.0142, 33.6925), null);
-});

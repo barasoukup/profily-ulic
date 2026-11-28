@@ -143,22 +143,6 @@ test("Španělsko: značky (S-11 / R-101 podle směru, R-301, autopista a autov�
   assert.deepEqual([ES.limits({ type: "cyklopruh", width: 1.2 }, []).min, ES.limits({ type: "cyklostezka", width: 1.2 }, []).zaklad], [1.4, 1.4], "1,4 m je minimum, 1 m jen výjimka");
 });
 
-test("Španělsko: stát podle hranic (ostrovy, Ceuta, Melilla, Llívia)", async () => {
-  const C = await import("../app/public/city.js");
-  C.loadBounds(JSON.parse(fs.readFileSync(new URL("../app/public/towns.json", import.meta.url), "utf8")));
-  C.loadStates(JSON.parse(fs.readFileSync(new URL("../app/public/states.json", import.meta.url), "utf8")));
-  assert.equal(C.cityAt(40.4168, -3.7038), "spain"); // Madrid
-  assert.equal(C.cityAt(41.3874, 2.1686), "spain"); // Barcelona
-  assert.equal(C.cityAt(39.5696, 2.6502), "spain"); // Palma
-  assert.equal(C.cityAt(28.1235, -15.4363), "spain"); // Las Palmas
-  assert.equal(C.cityAt(35.8894, -5.3213), "spain"); // Ceuta
-  assert.equal(C.cityAt(42.465, 1.98), "spain"); // Llívia
-  assert.equal(C.cityAt(42.5063, 1.5218), "cizina"); // Andorra la Vella
-  assert.equal(C.cityAt(36.1408, -5.3536), "cizina"); // Gibraltar
-  assert.equal(C.cityAt(43.48, -1.56), "france"); // Biarritz
-  assert.equal(C.countryOfCity("spain").code, "ES");
-});
-
 test("Španělsko: obytná ulice S-47 (20 km/h), S-28 jen s 10 km/h; výchozí rychlost podle čl. 50 RGC", async () => {
   const { deriveSigns, signFile } = await import("../app/public/signs.js");
   const two = () => ({ segments: [{ type: "chodnik" }, { type: "pruh", dir: "backward" }, { type: "pruh" }, { type: "chodnik" }] });

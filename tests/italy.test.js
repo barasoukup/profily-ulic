@@ -4,18 +4,7 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
 
-test("Itálie: jen oblasti s ortofotem s otevřenou licencí, jinde (i Vatikán a San Marino) bez profilu", async () => {
-  const C = await import("../app/public/city.js");
-  C.loadBounds(JSON.parse(fs.readFileSync(new URL("../app/public/towns.json", import.meta.url), "utf8")));
-  C.loadStates(JSON.parse(fs.readFileSync(new URL("../app/public/states.json", import.meta.url), "utf8")));
-  // Lombardy by its DBT (Milan, Campione d'Italia inside Switzerland).
-  for (const [lat, lon] of [[44.4949, 11.3426], [44.6471, 10.9252], [45.0703, 7.6869], [46.4983, 11.3548], [46.6713, 11.159], [45.4642, 9.19], [45.6950, 9.67], [45.9690, 8.9710]]) assert.equal(C.cityAt(lat, lon), "italy", `${lat},${lon}`);
-  // Rome, Genoa (Liguria), Novara (Piedmont by the Ticino), Verona (Veneto), Bari, the Vatican, San Marino.
-  for (const [lat, lon] of [[41.9028, 12.4964], [44.407, 8.934], [45.4469, 8.6218], [45.4384, 10.9916], [41.1171, 16.8719], [41.9029, 12.4534], [43.9356, 12.4473]]) {
-    assert.equal(C.cityAt(lat, lon), "cizina", `${lat},${lon}`);
-    assert.match(C.closedAt(lat, lon) || "", /Itálie/, `bez profilu ${lat},${lon}`);
-  }
-  assert.equal(C.closedAt(44.494, 11.343), null, "Bologna");
+test("Itálie: ortofoto jen oblastí s otevřenou licencí (Bologna, Bolzano), Řím jen AGEA", async () => {
   const L = await import("../app/public/lanes-ortho.js");
   assert.deepEqual(L.itOrthoAt(11.3426, 44.4949), ["it-bo"]);
   assert.deepEqual(L.itOrthoAt(11.3548, 46.4983), ["it-bz"]);
