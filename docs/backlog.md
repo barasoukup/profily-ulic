@@ -167,6 +167,10 @@ Co rozhodne Bára, je označeno **(Bára)**.
   v okolí vypne odhad stání na obou stranách, i ve Frederiksbergu (bod 14); ~~dlaždice ortofota 400/429 nechávají černé díry
   (`lanes-ortho.js`)~~ (26. 11. 2026: díra je NaN, 429 se po pauze zeptá jednou znovu, `askImage`); kredit ortofota ověřit po 30. 11. na nové platformě; čára `Cykelsti langs vej` jako vnější hrana
   cyklostezky nezapojená (`ortho-osm.js`); A/B kodaňských vrstev nebylo slepé; titulek a kredit jeho obrázků.
+- Dánské značky bez viewBox (úklid testů 28. 11. 2026, `tests/states.test.js`): 16 souborů `signs-DK/` (C19, C21, C22.1, C25.1,
+  C26.2, C61, C62, D21, D22, D26, D26.2, D27, E33.1, E42, E43, E49) má jen `width` a `height`; `profile.js` `loadSign`
+  čte velikost z `viewBox` (`vb[2]` hodí chybu, značka se jen zapíše do konzole „značka chybí“), takže se ty značky asi
+  nenakreslí. Ověřit v prohlížeči a doplnit `viewBox` (stav je v testu jako výjimka, ať jen ubývá).
 - Jih Evropy po Itálii **odložen** (Bára 23. 11. 2026): Balkán, Řecko, Slovinsko. Až se k nim vrátíme: Albánie (ortofoto
   v albánských souřadnicích, ověřit stupně), Chorvatsko (jen přes proxy, západ), ~~Slovinsko (služby GURS neodpovídaly)~~ (přidáno 23. 11. 2026 přes `ipi.eprostor.gov.si`);
   ostatní bez otevřeného ortofota (`docs/states-survey/c-vychod-balkan.md`).
