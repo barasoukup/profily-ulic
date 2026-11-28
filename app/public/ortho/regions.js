@@ -26,7 +26,7 @@ export async function landsAt(lon, lat, json = null) {
   const hits = Object.keys(all).map((code) => ({ code, n: near.findIndex(([dx, dy]) => inRings(all[code], lon + dx * 1.5, lat + dy)) })).filter((x) => x.n >= 0);
   return hits.sort((a, b) => a.n - b.n).slice(0, 3).map((x) => x.code);
 }
-// Belgium's regions (regions-be.json, tools/build_regions_be.mjs: bru, vl, wal): the one a point lies in first, then
+// Belgium's regions (regions-be.json, tools/build_boundaries.mjs regions be: bru, vl, wal): the one a point lies in first, then
 // those within about 2 km (the language border is of 1 : 1 000 000).
 let regionsBe = null;
 export async function beRegionsAt(lon, lat, json = null) {

@@ -2,7 +2,7 @@
 // 2023 and Modena 2024 (Emilia-Romagna's services), Turin 2023 (the Comune's), the province of Bolzano 2023 (flown in collaboration with
 // AGEA under the monitoring plan; the province's metadata license it CC BY 4.0, Bára 23. 11. 2026: use it). AGEA's own layers (the
 // rest of Italy) are for institutional use only. All WMS in EPSG:3857 with CORS. Modena's box reaches 44.75 for the town's two northern
-// exclaves (the review of 23. 11. 2026) and 10.77 for its western edge by ISTAT's border (tools/build_states.mjs). A box's `outside` is
+// exclaves (the review of 23. 11. 2026) and 10.77 for its western edge by ISTAT's border (tools/build_boundaries.mjs states). A box's `outside` is
 // the territory it overlaps and does not cover (Bolzano's box reaches into Lombardy: Ponte di Legno, Valfurva; the review of 24. 11. 2026).
 // Turin's credit in the wording the Geoportale del Comune di Torino requires (its "Licenze d'uso", Bára 23. 11. 2026): "Base cartografica
 // realizzata da [Licenziatario], integrata con [Livelli informativi o Servizi][data] della Città di Torino reperiti sul Geoportale del
