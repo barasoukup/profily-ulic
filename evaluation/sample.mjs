@@ -5,6 +5,7 @@
 import fs from "node:fs";
 import readline from "node:readline";
 import path from "node:path";
+import { addWay, lengthWeighted } from "./lib/sample.js";
 
 const BRNO = process.env.CITY === "brno";
 // Jihlava: CITY=jihlava → evaluation/jihlava/data/samples.json (OSM Jihlava, boundary of the town).
@@ -21,16 +22,6 @@ const QUOTA = {
 };
 const MIN_SPACING = 300; // m between two sampled cuts
 const END_GAP = 15; // keep away from way ends (junctions), m
-
-function mulberry32(a) {
-  return () => {
-    a |= 0; a = (a + 0x6d2b79f5) | 0;
-    let t = Math.imul(a ^ (a >>> 15), 1 | a);
-    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
-    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
-  };
-}
-const rnd = mulberry32(SEED);
 
 // Prague administrative boundary (OSM, admin_level 4/6/8 "Praha").
 const border = JSON.parse(fs.readFileSync(path.join(DATA, `${CITY}_hranice.geojson`), "utf8"));
@@ -69,41 +60,10 @@ for await (const line of rl) {
   const lens = c.slice(1).map((q, i) => dist(q, c[i]));
   const len = lens.reduce((a, b) => a + b, 0);
   if (len < 2 * END_GAP + 5) continue;
-  st.ways.push({ id: p.osm_id, name: p.name, highway: p.highway, c, lens, len, cum: st.total });
-  st.total += len;
+  addWay(st, { id: p.osm_id, name: p.name, highway: p.highway, c, lens, len });
 }
 
-function pointAt(w, s) {
-  for (let i = 0; i < w.lens.length; i++) {
-    if (s <= w.lens[i] || i === w.lens.length - 1) {
-      const t = Math.min(1, s / w.lens[i]);
-      const [a, b] = [w.c[i], w.c[i + 1]];
-      const bearing = (Math.atan2((b[0] - a[0]) * kx, (b[1] - a[1]) * ky) * 180) / Math.PI;
-      return { lon: a[0] + t * (b[0] - a[0]), lat: a[1] + t * (b[1] - a[1]), bearing };
-    }
-    s -= w.lens[i];
-  }
-}
-
-const samples = [];
-for (const [hw, n] of Object.entries(QUOTA)) {
-  const st = strata[hw];
-  if (!st.ways.length) { console.log(hw, "0 ways"); continue; } // a town without such streets (Most: no secondary)
-  let got = 0, tries = 0;
-  while (got < n && tries++ < 5000) {
-    const x = rnd() * st.total;
-    let lo = 0, hi = st.ways.length - 1;
-    while (lo < hi) { const m = (lo + hi + 1) >> 1; if (st.ways[m].cum <= x) lo = m; else hi = m - 1; }
-    const w = st.ways[lo];
-    const s = x - w.cum;
-    if (s < END_GAP || s > w.len - END_GAP) continue;
-    const p = pointAt(w, s);
-    if (!inPrague(p.lon, p.lat)) continue;
-    if (samples.some((q) => dist([q.lon, q.lat], [p.lon, p.lat]) < MIN_SPACING)) continue;
-    samples.push({ n: samples.length + 1, highway: hw, wayId: w.id, name: w.name || null, lat: +p.lat.toFixed(6), lon: +p.lon.toFixed(6), bearing: Math.round(p.bearing) });
-    got++;
-  }
-  console.log(hw, `${got}/${n}`, `${st.ways.length} ways, ${(st.total / 1000).toFixed(0)} km`);
-}
+const { samples, report } = lengthWeighted(strata, QUOTA, { seed: SEED, minSpacing: MIN_SPACING, endGap: END_GAP, kx, ky, inside: inPrague });
+for (const [hw, r] of Object.entries(report)) console.log(hw, ...(r.ways ? [`${r.got}/${r.n}`, `${r.ways} ways, ${(r.km).toFixed(0)} km`] : ["0 ways"]));
 fs.writeFileSync(path.join(DATA, "samples.json"), JSON.stringify({ seed: SEED, quota: QUOTA, samples }, null, 1));
 console.log(samples.length, "samples");

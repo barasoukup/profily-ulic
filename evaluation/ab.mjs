@@ -8,6 +8,8 @@
 //       against each of the others)
 //   CITY=jihlava VARIANTS=city,bez-pasportu node evaluation/ab.mjs --render [n …]  (again the images)
 //   CITY=jihlava VARIANTS=city,bez-pasportu node evaluation/ab.mjs --summary
+//   CITY=jihlava VARIANTS=city,bez-pasportu node evaluation/ab.mjs --review   (review.md again from the saved pairs, verdicts kept)
+// The measures, the differences, the review file and the summary are evaluation/lib/ab.js (also the blind pairs for a judge).
 // Out: evaluation/<city>/data/ab-<a>-<b>/<n>.json (both profiles, times, measures), png/<n>.svg(.png) of the
 // cuts that differ over the orthophoto, review.md for the verdicts (a / b / obě / žádná).
 // ONLY=1,3,7: just these cuts. CACHE=mem (default): an answer of the web asked for again within the run
@@ -19,6 +21,7 @@ import path from "node:path";
 import crypto from "node:crypto";
 import { execFile } from "node:child_process";
 import { politeFetch } from "./polite.mjs";
+import { measures, differs, parseReview, reviewText, summaryLines } from "./lib/ab.js";
 
 const ROOT = path.dirname(new URL(import.meta.url).pathname);
 const CITY = process.env.CITY || "jihlava";
@@ -110,47 +113,7 @@ async function loadVariant(name) {
   return { name, about: mod.about || "", src, reach: mod.reach, deriveProfile: mod.deriveProfile, ortho: mod.ortho };
 }
 
-// ---------- Measures ----------
-const ROADWAY = new Set(["pruh", "pruh_piktokoridor", "bus", "bus_cyklo", "tramvaj_v_pruhu", "tramvaj_pruh", "tramvaj", "krajnice", "parkovani", "cyklopruh", "ochranny_pruh", "obsluzna"]);
-const SIDEWALK = new Set(["chodnik", "chodnik_kola", "stezka_sdilena"]);
-const sum = (segs, set) => +segs.filter((s) => set.has(s.type)).reduce((a, s) => a + s.width, 0).toFixed(2);
-export function measures(p) {
-  if (!p?.segments) return null;
-  const total = p.segments.reduce((a, s) => a + s.width, 0);
-  const unknown = p.segments.filter((s) => s.type === "nezname").reduce((a, s) => a + s.width, 0);
-  return {
-    total: +total.toFixed(2), roadway: sum(p.segments, ROADWAY), sidewalk: sum(p.segments, SIDEWALK),
-    edges: [p.edges?.left, p.edges?.right], unknown: +(total ? unknown / total : 0).toFixed(3),
-    osmEstimate: /odhad z OSM/.test(p.notice || ""), parts: p.segments.length,
-    // Street furniture by kind, tree strips, parking strips and how many of them are estimates.
-    items: p.segments.flatMap((s) => (s.items || []).map((it) => it.kind)).sort().join(","),
-    trees: p.segments.filter((s) => s.type === "stromorad").length,
-    parking: p.segments.filter((s) => s.type === "parkovani").map((s) => s.source).sort().join(","),
-    // The parts in order with their kind of tram bed and lane widths rounded to 0.25 m (PARTS=1).
-    kinds: p.segments.map((s) => s.type + (s.bed ? `:${s.bed}` : "") + (s.withBus ? "+bus" : "") + (s.position ? `@${s.position}` : "")).join(","),
-    lanes: p.segments.filter((s) => s.type === "pruh" || s.type === "krajnice").map((s) => `${s.type[0]}${Math.round(s.width * 4) / 4}`).join(","),
-  };
-}
-export function differs(a, b) {
-  if (!a || !b) return ["chybí"];
-  const out = [];
-  if (Math.abs(a.roadway - b.roadway) > 0.5) out.push(`vozovka ${a.roadway}/${b.roadway}`);
-  if (Math.abs(a.sidewalk - b.sidewalk) > 0.5) out.push(`chodník ${a.sidewalk}/${b.sidewalk}`);
-  if (a.edges[0] !== b.edges[0] || a.edges[1] !== b.edges[1]) out.push(`okraje ${a.edges.join("+")}/${b.edges.join("+")}`);
-  if (a.osmEstimate !== b.osmEstimate) out.push(`odhad OSM ${a.osmEstimate ? "A" : "B"}`);
-  // ITEMS=1: also the street furniture, the tree strips and the parking (sources of new points and stalls).
-  if (process.env.ITEMS === "1") {
-    if ((a.items ?? "") !== (b.items ?? "")) out.push(`předměty ${a.items || "-"}/${b.items || "-"}`);
-    if ((a.trees ?? 0) !== (b.trees ?? 0)) out.push(`stromy ${a.trees}/${b.trees}`);
-    if ((a.parking ?? "") !== (b.parking ?? "")) out.push(`stání ${a.parking || "-"}/${b.parking || "-"}`);
-  }
-  // PARTS=1: also the kinds of parts (tram kinds) and the driving lanes and shoulders (lane caps).
-  if (process.env.PARTS === "1") {
-    if ((a.kinds ?? "") !== (b.kinds ?? "")) out.push(`části ${a.kinds}/${b.kinds}`);
-    if ((a.lanes ?? "") !== (b.lanes ?? "")) out.push(`pruhy ${a.lanes || "-"}/${b.lanes || "-"}`);
-  }
-  return out;
-}
+// ---------- Measures: evaluation/lib/ab.js (measures, differs) ----------
 
 // ---------- One cut, every variant ----------
 async function place(s, src) {
@@ -357,59 +320,15 @@ async function renderPair(a, b, want = []) {
   }
   return done;
 }
-// Review template: one line per differing cut; a verdict already filled in is kept.
-const VERDICT = /verdikt:\s*(a|b|obě|obe|both|žádná|zadna|neither)(?=[\s·,.;]|$)/iu;
-const norm = (v) => ({ a: "a", b: "b", "obě": "obě", obe: "obě", both: "obě", "žádná": "žádná", zadna: "žádná", neither: "žádná" })[v.toLowerCase()];
-async function readReview(a, b) {
-  const out = new Map();
-  try {
-    for (const line of (await fs.readFile(path.join(pairDir(a, b), "review.md"), "utf8")).split("\n")) {
-      const n = line.match(/^- č\. (\d+)/)?.[1], v = line.match(VERDICT)?.[1];
-      if (n) out.set(Number(n), { verdict: v ? norm(v) : null, line });
-    }
-  } catch {}
-  return out;
-}
+// Review template: one line per differing cut; a verdict already filled in is kept (lib/ab.js).
+const readReview = async (a, b) => parseReview(await fs.readFile(path.join(pairDir(a, b), "review.md"), "utf8").catch(() => ""));
 async function writeReview(a, b) {
-  const old = await readReview(a, b);
-  const lines = [`# ${CITY}: A = ${a}, B = ${b}`, "",
-    "Posuďte každý řez nad ortofotem (png/<n>.svg.png) a místo `?` napište `a`, `b`, `obě` nebo `žádná`;",
-    "za verdikt krátkou poznámku. `--summary` verdikty sečte. Nový běh vyplněné verdikty zachová.", ""];
-  for (const r of await readPair(a, b)) {
-    const d = differs(r.a?.measures, r.b?.measures);
-    if (!d.length) continue;
-    const keep = old.get(r.sample.n);
-    if (keep?.verdict) { lines.push(keep.line); continue; }
-    lines.push(`- č. ${r.sample.n} ${r.cut?.highway || ""} ${r.cut?.name || ""}: ${d.join("; ")} · verdikt: ? · `);
-  }
-  await fs.writeFile(path.join(pairDir(a, b), "review.md"), lines.join("\n") + "\n");
+  await fs.writeFile(path.join(pairDir(a, b), "review.md"), reviewText(CITY, a, b, await readPair(a, b), await readReview(a, b)));
 }
 
 // ---------- Summary ----------
-const median = (xs) => { const v = xs.filter((x) => Number.isFinite(x)).sort((p, q) => p - q); return v.length ? (v.length % 2 ? v[(v.length - 1) / 2] : (v[v.length / 2 - 1] + v[v.length / 2]) / 2) : NaN; };
 async function summary(a, b) {
-  const rs = await readPair(a, b);
-  const ok = rs.filter((r) => r.a?.measures && r.b?.measures);
-  const A = (k) => ok.map((r) => r.a.measures[k]), B = (k) => ok.map((r) => r.b.measures[k]);
-  const d = (k) => median(ok.map((r) => Math.abs(r.a.measures[k] - r.b.measures[k])));
-  const within = (k) => ok.filter((r) => Math.abs(r.a.measures[k] - r.b.measures[k]) <= 0.5).length;
-  const diff = ok.filter((r) => differs(r.a.measures, r.b.measures).length);
-  const mean = (xs) => xs.reduce((p, q) => p + q, 0) / (xs.length || 1);
-  console.log(`\n== ${CITY}: A ${a} × B ${b} ==`);
-  console.log(`${rs.length} řezů, ${ok.length} se dvěma profily, ${rs.length - ok.length} chyb`);
-  console.log(`shoda (vozovka i chodník do 0,5 m, stejné okraje, stejně odhad z OSM): ${ok.length - diff.length}/${ok.length}, liší se ${diff.length}`);
-  console.log(`vozovka do 0,5 m ${within("roadway")}, chodník do 0,5 m ${within("sidewalk")}, okraje stejné ${ok.filter((r) => r.a.measures.edges.join() === r.b.measures.edges.join()).length}`);
-  console.log(`medián |rozdílu|: vozovka ${d("roadway").toFixed(2)} m, chodník ${d("sidewalk").toFixed(2)} m, celkem ${d("total").toFixed(2)} m`);
-  console.log(`B širší vozovka (> 0,5 m) ${ok.filter((r) => r.b.measures.roadway - r.a.measures.roadway > 0.5).length}, užší ${ok.filter((r) => r.a.measures.roadway - r.b.measures.roadway > 0.5).length}`);
-  console.log(`odhad z OSM: A ${A("osmEstimate").filter(Boolean).length}, B ${B("osmEstimate").filter(Boolean).length}; Neurčeno průměr A ${mean(A("unknown")).toFixed(3)}, B ${mean(B("unknown")).toFixed(3)}`);
-  console.log(`čas ploch (medián ms): A ${median(ok.map((r) => r.a.surfacesMs))}, B ${median(ok.map((r) => r.b.surfacesMs))}; dotazů na řez (medián): A ${median(ok.map((r) => r.a.requests))}, B ${median(ok.map((r) => r.b.requests))}`);
-  const review = await readReview(a, b);
-  const counts = { a: 0, b: 0, "obě": 0, "žádná": 0 };
-  let open = 0;
-  for (const r of diff) { const v = review.get(r.sample.n)?.verdict; if (v) counts[v]++; else open++; }
-  console.log(`verdikty (${diff.length - open}/${diff.length} posouzeno): lepší A ${counts.a}, lepší B ${counts.b}, obě ${counts["obě"]}, žádná ${counts["žádná"]}`);
-  if (process.env.LIST !== "0") for (const r of diff) console.log(`  ${r.sample.n} ${r.cut.highway} ${r.cut.name || ""}: ${differs(r.a.measures, r.b.measures).join("; ")}${review.get(r.sample.n)?.verdict ? ` → ${review.get(r.sample.n).verdict}` : ""}`);
-  for (const r of rs) if (!r.a?.measures || !r.b?.measures) console.log(`  ${r.sample.n}: ${r.error || r.a?.error || r.b?.error}`);
+  for (const line of summaryLines(CITY, a, b, await readPair(a, b), await readReview(a, b), { list: process.env.LIST !== "0" })) console.log(line);
 }
 
 // ---------- Main ----------
@@ -418,6 +337,8 @@ if (!others.length) { console.error("VARIANTS=a,b (nejméně dvě varianty, prvn
 const args = process.argv.slice(2).filter((x) => !x.startsWith("--"));
 if (process.argv.includes("--summary")) {
   for (const b of others) await summary(base, b);
+} else if (process.argv.includes("--review")) {
+  for (const b of others) await writeReview(base, b);
 } else if (process.argv.includes("--render")) {
   for (const b of others) console.log(`${base}-${b}: obrázků ${await renderPair(base, b, args.map(Number))}`);
 } else {

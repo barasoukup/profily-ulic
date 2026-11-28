@@ -18,7 +18,7 @@
 //   DATA_DIRS=dir1:dir2 …    more folders with app*.json (the collections live in the worktrees of the states; later wins)
 import fs from "node:fs/promises";
 import path from "node:path";
-import { compare } from "./compare.mjs";
+import { compare, tableRow, TABLE_HEAD } from "../lib/score.js";
 
 const ROOT = path.dirname(new URL(import.meta.url).pathname), DATA = path.join(ROOT, "data");
 const app = new Map();
@@ -34,8 +34,7 @@ const judged = (await Promise.all((await fs.readdir(path.join(ROOT, "results")))
   // Streets only: the random point may fall on a path in a park or a footway (no roadway in the app's profile nor the
   // judge's); those are no street profile to judge.
   .filter((j) => [...app.get(j.id).parts.map((p) => p[0]), ...j.parts.map((p) => String(p[0]).replace("?", ""))].some((t) => ["pruh", "pruh_piktokoridor", "obsluzna", "bus", "bus_cyklo", "tramvaj_v_pruhu"].includes(t)));
-const pct = (a, n) => `${Math.round((100 * a) / n)} %`;
-console.log("| stát | řezů | složení stejné | shoda složení | pruhy stejně | šířka uličního prostoru do 1 / 2 m | nejčastější rozdíly (aplikace proti posuzovateli) |\n|---|---|---|---|---|---|---|");
+console.log(TABLE_HEAD);
 // Parts of a state reported apart (24. 11. 2026): Finland with the app's orthophoto or Helsinki's surface map (Helsinki,
 // Espoo, Turku) and without (Tampere, Oulu, the north of Vantaa); Copenhagen with its kerb lines and parking areas and
 // the rest of Denmark.
@@ -51,8 +50,5 @@ for (const country of ["CZ", "SK", "AT", "DE", "CH", "LI", "NL", "BE", "LU", "PL
   if (out.length) console.error(`${country}: vynecháno ${out.length} (${out.map((j) => `${j.id} ${app.get(j.id).service}`).join(", ")})`);
   const rows = all.filter((j) => !excluded(j)).map((j) => compare(j.parts, app.get(j.id).parts, true, false, process.env.OLD === "1" ? null : { A: j.facadeA === false, B: j.facadeB === false }));
   if (!rows.length) continue;
-  const n = rows.length, edits = {};
-  for (const r of rows) for (const e of r.edits) edits[e] = (edits[e] || 0) + 1;
-  const top = Object.entries(edits).sort((a, b) => b[1] - a[1]).slice(0, 6).map(([e, k]) => `${e} ${k}×`).join(", ");
-  console.log(`| ${country} | ${n} | ${pct(rows.filter((r) => r.same).length, n)} | ${Math.round((100 * rows.reduce((a, r) => a + r.score, 0)) / n)} % | ${pct(rows.filter((r) => r.lanesA === r.lanesB).length, n)} | ${pct(rows.filter((r) => Math.abs(r.widthA - r.widthB) <= 1).length, n)} / ${pct(rows.filter((r) => Math.abs(r.widthA - r.widthB) <= 2).length, n)} | ${top} |`);
+  console.log(tableRow(country, rows));
 }
