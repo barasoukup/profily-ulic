@@ -73,7 +73,7 @@ Přepínač měst není. Město se bere podle místa řezu (`city.js`: `cityAt` 
 při prvním řezu ve městě), texty i uvedení zdrojů v exportu sedí na místo řezu. Mimo města s vlastními zdroji platí
 „cesko“ (`towns/czechia.js`: celostátní technická mapa ČÚZK, domy z RÚIAN, dlaždice OSM, pražský mobiliář a vozidla
 Streetmixu). Bývalé stránky `/<město>/` přesměrují na `/?mesto=<město>` i s řezem v odkazu
-(`tools/city_site.mjs`, `tools/build_city_site.mjs`; místní server totéž).
+(`tools/city_site.mjs`, volá ho `tools/build_site.mjs`; místní server totéž).
 
 ### Státy, města a zdroje (přestavba 16. 11. 2026)
 

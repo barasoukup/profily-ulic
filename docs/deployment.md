@@ -13,8 +13,11 @@ podle IPR 1–10 s.
 Nasazení dělá `.github/workflows/pages.yml`: při každém pushi do `main`, ručně a každé pondělí. Nejdřív `npm test`,
 pak vyrobí dlaždice OSM celé ČR z výřezu Geofabrik (týdenní kopie v cache Actions), hranice ZPS, dlaždice vývoje
 zástavby, otevřená data Prahy, parkování v Brně a zóny v Plzni (při výpadku zdroje se použije soubor z minulého
-nasazení), doplní klíč Mapy.com (`MAPY_KEY`, tajná proměnná) a `LOG_URL`, přidá přesměrování starých stránek měst
-a vystaví vše na GitHub Pages. Dlaždice se do repozitáře neukládají. Jsou to data odvozená z OpenStreetMap, takže
+nasazení) a pak `node tools/build_site.mjs _site` složí web: kopii aplikace do `profily/`, `STATIC = true`, klíč Mapy.com
+(`MAPY_KEY`, tajná proměnná), `LOG_URL` a `DK_TOKEN`, data měst a dlaždic (vstupy `site-*` z předchozích kroků, popsané v záhlaví
+nástroje), přesměrování starých stránek měst, verze modulů a kořen domény; vše vystaví na GitHub Pages. V `pages.yml` zůstává
+jen to, co potřebuje síť, cache Actions nebo tajné hodnoty. Totéž jde sestavit lokálně: `node tools/build_site.mjs <složka>`
+(jen `site-zps.json` je povinný, `--from <složka>` říká, kde jsou vstupy; hlídá `tests/build-site.test.js`). Dlaždice se do repozitáře neukládají. Jsou to data odvozená z OpenStreetMap, takže
 na webu leží pod ODbL 1.0 (viz `data/README.txt` na webu a patičku aplikace).
 
 ### Kontrola zdrojů dat
@@ -34,7 +37,7 @@ Plochy jsou povinné jen tam, kde je mapa povrchů (`SURFACE_MAPS` modulů, bod 
 
 ## Verze modulů
 
-Při stavbě webu (`pages.yml`, krok „Assemble the site“, naposled, až je `config.js` a CSP hotové) běží `node tools/version_modules.mjs _site`:
+Při stavbě webu (`tools/build_site.mjs`, naposled, až je `config.js` a CSP hotové) běží `versionSite` z `tools/version_modules.mjs` (jde spustit i samostatně: `node tools/version_modules.mjs <složka>`):
 do `index.html` vloží import mapu, která každému modulu `*.js` a `*.mjs` (mimo `errors.js` a Leaflet) dá `?v=<10 znaků SHA-256 obsahu>`,
 a vstupní `<script type="module" src>` dostane verzi sám (`src` import mapou neprochází). Statické `import` i `import()` tedy jdou
 na adresy s verzí, návštěvník se starou stránkou dostane celou starou sadu (nebo 404 a hlášku z `errors.js`), nikdy směs. Zdroje se

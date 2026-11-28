@@ -5,6 +5,7 @@
 //   node tools/build_root_site.mjs _site     (after the app was moved to _site/profily)
 import fs from "node:fs";
 import path from "node:path";
+import { fileURLToPath } from "node:url";
 
 export const APP = "profily/";
 // The script of both pages: the address under the site's base moved into the app's folder.
@@ -27,11 +28,13 @@ const page = (title, body) => `<!doctype html>
 </head><body style="font-family: system-ui, sans-serif; margin: 2rem">${body}</body></html>
 `;
 
-const [out] = process.argv.slice(2);
-if (out) {
+// The root pages of the built site (tools/build_site.mjs calls it; the app is already in <out>/profily).
+export function writeRootSite(out) {
   if (!fs.existsSync(path.join(out, APP, "index.html"))) throw new Error(`${out}/${APP}index.html is missing: move the app there first`);
   fs.writeFileSync(path.join(out, "index.html"), page("Profily ulic", `<p><a href="${APP}">Profily ulic</a></p>`));
   // GitHub Pages answers a missing address with 404.html: inside profily/ it is a real "not found".
   fs.writeFileSync(path.join(out, "404.html"), page("Stránka nenalezena", `<p>Tahle stránka neexistuje. <a href="/${APP}">Profily ulic</a></p>`));
   console.log(`${out}/index.html, ${out}/404.html → ${APP}`);
 }
+
+if (process.argv[1] === fileURLToPath(import.meta.url) && process.argv[2]) writeRootSite(process.argv[2]);
