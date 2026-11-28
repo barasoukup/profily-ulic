@@ -50,3 +50,21 @@ Zapnuté opravy s vypínačem `?off=…`, které se tím jen zbavily vypínače,
 - `?outergaps=1`, `?outerosm=1` (Boston: `outerGaps`, `osmAreasAlong`, `outerGapsByImage`): mezery za vnějším chodníkem podle domů
   a parkovišť z OSM a ortofota. Slepé A/B 52 nových tepen 18 : 16; jen z OSM 102 změněných tepen 24 : 22, nic nevyhrálo
   (Bára 26. 11. 2026, `evaluation/usa/boston/outer/REPORT.md`, `evaluation/usa/boston/outer-osm/REPORT.md`).
+- `?nycsigns=1` (New York: stání podle značek NYC DOT, `signTags`, `signsIn`, EPSG:2263): slepé A/B 31 změněných nových řezů
+  17 : 8 (p 0,11), univerzální měření 75 → 72 %; Bára 27. 11. 2026: „nevymýšlet výjimky, nechat NY jak je“
+  (`evaluation/usa/nyc/park/REPORT.md`).
+- `?sfosmpark=1` (San Francisco: orientace stání z OSM tam, kde obruba dá podélné): slepé A/B 30 nových řezů 12 : 11
+  (`evaluation/usa/sf/fixes/REPORT.md`).
+- `?sirka=1` (Francie: šířka vozovky z BD TOPO `largeur_de_chaussee`, `bdtopoWidths`): celé metry, A/B se nikdy neudělalo,
+  proto vypnuto (`evaluation/france/`, CLAUDE.md, oddíl Francie).
+- `?ilots=1` (Paříž: soukromé bloky Plan de voirie jako konec veřejné cesty, `parisBlocks`): slepé A/B 13 změněných řezů
+  ze 60 nových nebylo průkazné (5 : 2, pokud se oba posuzovatelé shodli; každý zvlášť 5 : 2 a 6 : 4); jeden dotaz navíc na
+  řez (Bára 26. 11. 2026, `evaluation/france/facade/REPORT.md`).
+- `?fietsstrook=1` (Nizozemsko: `fietspad` BGT vedle vozovky při cyklopruzích z OSM je vozovka): univerzální posouzení
+  20. 11. 2026 nebylo lepší (složení 53 → 52 %, šířka do 2 m 47 → 41 %; z pruhů vznikly obyčejné pruhy a z dlažby vedle
+  nich střední pás), `evaluation/netherlands/ab/`.
+- `?amspark=1` (Amsterdam: jednotlivá parkovací místa se způsobem stání, `amsParking`): A/B 16 řezů smíšené, stání se našlo
+  tam, kde ho BGT nemá, ale mezery mezi místy rozřízly pás stání na krajnici a jedna strana o stání přišla; licence
+  neuvedena (`evaluation/netherlands/ab/PARKING.md`).
+- `?floorsosm=1` (výška z OSM bez `building:levels` přes `floors.js` místo výška / 3,5): slepé A/B na fotkách 11 : 8,
+  p = 0,65, bez výhry (`evaluation/archive/floors-height/REPORT.md`). Výška z jiných zdrojů dál přes `floors.js`.

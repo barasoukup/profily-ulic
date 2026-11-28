@@ -7,8 +7,6 @@
 //   areas of crossings and raised junctions. ?paris=0 leaves it out (the A/B test, evaluation/france/ab/).
 // - Buildings everywhere: IGN's BD TOPO (data.geopf.fr WFS, CORS *, Licence Ouverte 2.0): floors, height, year,
 //   dwellings and use (?bdtopo=0 leaves them out).
-// - The width of the roadway: BD TOPO's road sections (troncon_de_route) carry largeur_de_chaussee, in whole metres;
-//   given to the estimate as ZBGIS's roads in Slovakia (ortho-osm.js widths). Off unless ?sirka=1 until its A/B.
 // As Kraków's base map: the city's surfaces with OSM's buildings before them and OSM's green and water after, only
 // where the city has a roadway, a cycle track, parking or a bus lane at the cut's centre or near it; a city that does
 // not answer: the estimate, with a note.
@@ -45,22 +43,8 @@ async function parisLayer(name, bbox) {
 export function parisFeatures(layers) {
   return { features: layers.flat().map((r) => ({ attributes: { code: parisCode(r) }, geometry: { rings: ringsOf(r.geo_shape?.geometry) } })).filter((f) => f.attributes.code && f.geometry.rings) };
 }
-// The Plan de voirie's private blocks (plan-de-voirie-emprises-ilots-prives, ODbL as the rest): where the public way
-// ends. Against the far edge of the map's sidewalk on 86 sides of Paris cuts (evaluation/france/facade/gap.mjs) a
-// block lies within 0.2 m on 71 and never 0.2–1.5 m off; OSM's houses within 0.2 m on 38, 0.2–1.5 m off on 15 (the
-// strip "plocha" at the facade, 0.65 m on Rue des Tournelles), BD TOPO's on 43 and 8 (farther than OSM's on 17, nearer
-// on 14). Drawn as houses after OSM's houses and the map's surfaces (OSM's outlines keep the arcades they draw, the
-// map's sidewalk wins where a block overlaps it), so the profile ends at the block's line. Off, ?ilots=1 turns them on:
-// the blind A/B on 13 changed cuts of 60 new ones, with the strip at the facade already joined to the sidewalk
-// (ortho-osm.js facadeStrip), was not conclusive (5 : 2 where both judges agree, each 5 : 2 and 6 : 4; Bára 26. 11. 2026,
-// evaluation/france/facade/REPORT.md), and it asks one more request a cut.
-export const PARIS_BLOCKS = "plan-de-voirie-emprises-ilots-prives";
-export function parisBlocks(records) {
-  return records.map((r) => ringsOf(r.geo_shape?.geometry)).filter(Boolean).map((rings) => ({ attributes: { CTVUK_KOD: 601, CTVUK_POPIS: MTVU_LABELS[601], ODHAD: 0 }, geometry: { rings } }));
-}
 async function paris(bbox) {
-  const [layers, blocks] = await Promise.all([Promise.all(PARIS_LAYERS.map((l) => parisLayer(l, bbox))), param("ilots") !== "1" ? [] : parisLayer(PARIS_BLOCKS, bbox)]);
-  return { ...parisFeatures(layers), blocks: parisBlocks(blocks) };
+  return parisFeatures(await Promise.all(PARIS_LAYERS.map((l) => parisLayer(l, bbox))));
 }
 
 const inRings = (rings, x, y) => {
@@ -79,7 +63,7 @@ const townAt = (lon, lat) => Object.keys(FR_TOWNS).find((id) => param(id) !== "0
 // One request a box (a cut moved a little asks the same box again: the box rounded to about 10 m), at most 30 kept.
 const memo = new Map();
 function cached(id, bbox) {
-  const key = `${id}${param("ilots") === "1" ? "+" : ""} ${bbox.split(",").map((v) => (+v).toFixed(4)).join(",")}`;
+  const key = `${id} ${bbox.split(",").map((v) => (+v).toFixed(4)).join(",")}`;
   if (!memo.has(key)) {
     memo.set(key, FR_TOWNS[id](bbox).catch((err) => { memo.delete(key); throw err; }));
     if (memo.size > 30) memo.delete(memo.keys().next().value);
@@ -92,11 +76,10 @@ async function surfaces(bbox) {
   const cx = (x0 + x1) / 2, cy = (y0 + y1) / 2;
   const id = townAt(cx, cy);
   if (!id) return { features: [], abroad: true };
-  let own, blocks;
+  let own;
   try {
     const got = await cached(id, bbox);
     own = asMtvu([[got, (a) => a.code]], MTVU_LABELS);
-    blocks = got.blocks || [];
   } catch {
     return { features: [], abroad: true, frFailed: id };
   }
@@ -106,7 +89,7 @@ async function surfaces(bbox) {
   const at = own.features.some((f) => STREET.has(f.attributes.CTVUK_KOD) && around.some(([ox, oy]) => inRings(f.geometry.rings, cx + ox * mx, cy + oy * my)));
   if (!at) return { features: [], abroad: true };
   const o = await osmAreas(bbox);
-  return { features: [...o.buildings, ...asPassport(own).features, ...blocks, ...o.rest], frTown: id, passport: true };
+  return { features: [...o.buildings, ...asPassport(own).features, ...o.rest], frTown: id, passport: true };
 }
 
 // ---------- BD TOPO (IGN) ----------
@@ -118,20 +101,7 @@ const wfs = (layer, bbox, count) => {
     BBOX: `${y0},${x0},${y1},${x1},urn:ogc:def:crs:EPSG::4326`, OUTPUTFORMAT: "application/json", COUNT: String(count) })}`);
 };
 
-// The roads' widths (ortho-osm.js widths: { path, w }), only of roads at the ground and in service.
-export function bdtopoWidths(json) {
-  return (json?.features || []).filter((f) => f.properties?.largeur_de_chaussee > 0 && String(f.properties?.position_par_rapport_au_sol ?? "0") === "0" && f.properties?.etat_de_l_objet === "En service")
-    .flatMap((f) => (f.geometry?.type === "LineString" ? [f.geometry.coordinates] : f.geometry?.type === "MultiLineString" ? f.geometry.coordinates : []).map((path) => ({ path: path.map(([x, y]) => [x, y]), w: f.properties.largeur_de_chaussee })));
-}
-async function lines(bbox) {
-  const none = { features: [], edges: [], widths: [], areas: [] };
-  if (!bbox || param("sirka") !== "1") return none;
-  try {
-    return { ...none, widths: bdtopoWidths(await wfs("troncon_de_route", bbox.split(",").map(Number), 200)) };
-  } catch {
-    return none;
-  }
-}
+const lines = async () => ({ features: [], edges: [], widths: [], areas: [] });
 
 // A building of BD TOPO → the facts of app.js ruianFacts and an OSM building type for profile.js (as the BAG).
 export function bdtopoBuilding(f) {

@@ -25,7 +25,6 @@ import { getJSON, envelope } from "../gis.js";
 import { inArea } from "../places.js";
 import { planimetricMap, runsAlong, memory, carriageway, kerbStrip } from "./planimetrics.js";
 import { heightHouse } from "../floors.js";
-import { parkingOrient } from "../ortho-osm.js";
 
 const param = (k) => (typeof location === "undefined" ? globalThis.PROFILY_US?.[k] ?? null : new URLSearchParams(location.search).get(k));
 export const sfOn = () => param("sf") !== "0";
@@ -99,10 +98,7 @@ export function sfRuns([bldg, row, curbs], c) {
 // layer 56. Returns { sides: ["lo"|"hi"…], known: the sides that have zones at the cut }.
 const PARKING = /^(general parking|residential permit parking|accessible parking|car share parking|motorcycle parking|special permit parking|commercial loading|general loading|six wheeled truck loading)$/i;
 const ALONG = 15, KERB_NEAR = 2.5; // m
-// osmOrient(side "lo"|"hi"): OSM's orientation of the parking there (ortho-osm.js parkingOrient), which turns a side the
-// curb would park parallel angled (Indiana Street: perpendicular in OSM and on the street, the curb's zone one long one).
-// Off: the blind A/B of 30 new cuts did not show it better (12 : 11, evaluation/usa/sf/fixes/REPORT.md); ?sfosmpark=1 on.
-export function curbParking(runs, zones, c, osmOrient = () => null) {
+export function curbParking(runs, zones, c) {
   const at = carriageway(runs);
   if (!at) return { sides: [], known: [] };
   const P = ([lon, lat]) => [(lon - c.lon0) * c.kx, (lat - c.lat0) * c.ky];
@@ -129,9 +125,7 @@ export function curbParking(runs, zones, c, osmOrient = () => null) {
     // (Angled by the longest zone of cars: motorcycles' stalls are short whatever the kerb.)
     const cars = park.filter((a) => !/motorcycle/i.test(a.POLICY_CATEGORY || "")).sort((a, b) => Number(b.LENGTH_FT) - Number(a.LENGTH_FT))[0];
     const angled = !!cars && Number(cars.NUM_SPACES) >= 3 && Number(cars.LENGTH_FT) / Number(cars.NUM_SPACES) < 14;
-    const osm = !angled && cars ? osmOrient(s) : null, byOsm = osm === "diagonal" || osm === "perpendicular";
-    const x = kerbStrip(runs[s === "lo" ? at[0] : at[1]], s, angled || byOsm ? 4.88 : 2.44, 704);
-    if (x && byOsm) x.orient = osm === "diagonal" ? "sikme" : "kolme";
+    const x = kerbStrip(runs[s === "lo" ? at[0] : at[1]], s, angled ? 4.88 : 2.44, 704);
     if (x) { runs.push(x); sides.push(s); }
   }
   runs.sort((x, y) => x.s - y.s);
@@ -158,8 +152,7 @@ export const SF_MAP = {
   adjust: (runs, { c, extra, tags, wayAlong }) => {
     if (!extra) return { ...(extra === null && { sfCurbFailed: true }) };
     // (The way's right is the cut's "hi" where it runs along the street: planimetrics.js alongOf.)
-    const osmOrient = (s) => (param("sfosmpark") !== "1" ? null : parkingOrient(tags, (s === "hi") === wayAlong ? "right" : "left"));
-    const { sides, known } = curbParking(runs, extra, c, osmOrient);
+    const { sides, known } = curbParking(runs, extra, c);
     return known.length || sides.length ? { sfCurb: true, ...(known.length === 2 && { noParkGuess: true }) } : {};
   },
 };

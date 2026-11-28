@@ -1,7 +1,6 @@
-// Three trims of 26. 11. 2026 (Bára): the strip of paving at the facade beside a surface map's sidewalk
-// (ortho-osm.js facadeStrip), the roadways the DTM only guesses around a Czech town's passport roadway
-// (towns/overlay.js trimGuessedRoads) and Paris's private blocks as the end of the public way (towns/france.js
-// parisBlocks). No network.
+// Two trims of 26. 11. 2026 (Bára): the strip of paving at the facade beside a surface map's sidewalk
+// (ortho-osm.js facadeStrip) and the roadways the DTM only guesses around a Czech town's passport roadway
+// (towns/overlay.js trimGuessedRoads). No network.
 import { test } from "node:test";
 import assert from "node:assert/strict";
 
@@ -41,13 +40,4 @@ test("Pasport: odhadnuté vozovky DTM kolem vozovky pasportu pod středem řezu 
   assert.equal(trimGuessedRoads(own, dtm, "4,-1,6,1"), dtm, "pasport nemá vozovku pod středem: beze změny");
   globalThis.PROFILY_OPTS = { orez: "0" };
   try { assert.equal(trimGuessedRoads(own, dtm, "-1,-1,1,1"), dtm); } finally { delete globalThis.PROFILY_OPTS; }
-});
-
-test("Paříž: soukromé bloky Plan de voirie jako domy (parisBlocks)", async () => {
-  const F = await import("../app/public/towns/france.js");
-  const sq = { geometry: { type: "Polygon", coordinates: [[[0, 0], [1, 0], [1, 1], [0, 1], [0, 0]]] } };
-  const got = F.parisBlocks([{ geo_shape: sq }, { geo_shape: null }]);
-  assert.equal(got.length, 1);
-  assert.equal(got[0].attributes.CTVUK_KOD, 601);
-  assert.equal(F.PARIS_BLOCKS, "plan-de-voirie-emprises-ilots-prives");
 });

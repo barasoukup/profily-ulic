@@ -20,10 +20,9 @@ test("Francie: mapa povrchů Paříže (třídy Plan de voirie na kódy MTVU), v
   globalThis.PROFILY_FR = { paris: "0" };
   try { assert.deepEqual(await F.sources.surfaces("2.350,48.856,2.353,48.858"), { features: [], abroad: true }); } finally { delete globalThis.PROFILY_FR; }
   assert.deepEqual(await F.sources.surfaces("4.832,45.759,4.835,45.761"), { features: [], abroad: true }, "Lyon: bez mapy, bez dotazu");
-  assert.deepEqual((await F.sources.lines("4.832,45.759,4.835,45.761")).widths, [], "šířky BD TOPO jen s ?sirka=1");
 });
 
-test("Francie: budovy a šířky BD TOPO", async () => {
+test("Francie: budovy BD TOPO", async () => {
   const F = await import("../app/public/towns/france.js");
   const b = F.bdtopoBuilding({ properties: { nature: "Indifférenciée", usage_1: "Résidentiel", hauteur: 28.3, nombre_d_etages: 6, nombre_de_logements: 15, date_d_apparition: "1830-01-01Z" } });
   assert.equal(b.built, 1830);
@@ -36,12 +35,6 @@ test("Francie: budovy a šířky BD TOPO", async () => {
   assert.equal(F.bdtopoBuilding({ properties: { hauteur: 15.9 } }).total, 5, "bez počtu podlaží podle výšky");
   assert.equal(F.bdtopoBuilding({ properties: { hauteur: 16.7, nombre_d_etages: 8 } }).total, 6, "nepravděpodobný počet: podle výšky");
   assert.equal(F.bdtopoBuilding({ properties: { usage_1: "Résidentiel", nombre_de_logements: 1 } }).house, true);
-  const w = F.bdtopoWidths({ features: [
-    { properties: { largeur_de_chaussee: 7, position_par_rapport_au_sol: "0", etat_de_l_objet: "En service" }, geometry: { type: "LineString", coordinates: [[4.83, 45.76, 166], [4.84, 45.76, 166]] } },
-    { properties: { largeur_de_chaussee: 7, position_par_rapport_au_sol: "1", etat_de_l_objet: "En service" }, geometry: { type: "LineString", coordinates: [[4.83, 45.76], [4.84, 45.76]] } },
-    { properties: { largeur_de_chaussee: 0, position_par_rapport_au_sol: "0", etat_de_l_objet: "En service" }, geometry: { type: "LineString", coordinates: [[4.83, 45.76], [4.84, 45.76]] } },
-  ] });
-  assert.deepEqual(w, [{ path: [[4.83, 45.76], [4.84, 45.76]], w: 7 }], "jen u země, bez výšky, s šířkou");
 });
 
 test("Francie: stát podle hranic", async () => {

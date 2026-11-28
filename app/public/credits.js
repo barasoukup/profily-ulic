@@ -132,7 +132,6 @@ export const SOURCE_CREDITS = {
     cambridge: () => CR["credits.surfaceMapCityCambridge"]() },
   // San Francisco's digital curb (towns/sanfrancisco.js), where it placed the parking.
   sfCurb: { true: () => CR["credits.parkingDigitalCurbSfmta"]() },
-  nycSigns: { true: () => CR["credits.parkingRegulationLocationsSigns"]() },
   // San Francisco's building heights, where they gave the floors.
   sfHouse: { true: () => CR["credits.buildingHeightsCityCounty"]() },
   usHouse: { boston: () => CR["credits.buildingStoreysCityBoston"]() },
@@ -164,7 +163,6 @@ export const SOURCE_CREDITS = {
   beTown: { grb: () => quoted(W("surfaceMap"), "Bron: Grootschalig Referentie Bestand Vlaanderen, Digitaal Vlaanderen (Modellicentie gratis hergebruik v1.0)", "GRB") },
   nlBgt: { true: () => CR["credits.bgtSurfaceMapKadaster"]() },
   // Amsterdam's parking spaces (towns/netherlands.js).
-  amsParking: { true: () => CR["credits.parkingSpacesGemeenteAmsterdam"]() },
   // ZBGIS's roads, car parks and lawns in the estimate (towns/slovakia.js).
   zbgis: { true: () => CR["credits.roadsCarParksGrass"]() },
   // The carriageway's kerbs read by the AI model (ai-kerbs.js, ?ai=1): the surface maps and OSM it learnt on.

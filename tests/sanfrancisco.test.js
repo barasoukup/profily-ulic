@@ -65,25 +65,17 @@ test("San Francisco: domy podle výšky obrysu, vlastní normy chodníku", async
   assert.match(US.limits({ type: "chodnik", width: 2 }).why, /DDOT/);
 });
 
-test("San Francisco: šikmé a kolmé stání podle OSM, kde ho obruba nepozná; osa ve vykrojeném stání", async () => {
+test("San Francisco: stání z obruby je podélné, i když OSM u strany píše šikmé nebo kolmé (?sfosmpark smazán)", async () => {
   const { SF_MAP } = await import("../app/public/towns/sanfrancisco.js");
   const { planimetricCut } = await import("../app/public/towns/planimetrics.js");
   const row = poly([[-12, 13]]), bldg = poly([[-35, -13.4], [11.3, 28]]), kerbs = lines([[-7.2, { CBB_TYPE: "BLK" }], [8.7, { CBB_TYPE: "BLK" }]]);
   const zone = (x, n = 10, len = 200) => [x, { POLICY_CATEGORY: "General Parking", NUM_SPACES: n, LENGTH_FT: len }];
   const zones = lines([zone(-7.2), zone(8.7)]);
-  globalThis.PROFILY_US = { sfosmpark: "1" };
   const cut = (tags) => { const w = { ...way, tags }; return planimetricCut(SF_MAP, [bldg, row, kerbs], [w], BBOX, tags, { way: w, extra: zones }); };
   const parks = (r) => r.features.filter((f) => f.attributes.code === 704).map((f) => f.attributes.ORIENT || "-");
-  // The curb's zones are long ones (20 ft a stall): parallel on both sides, unless OSM says angled or perpendicular there.
+  // The curb's zones are long ones (20 ft a stall): parallel on both sides.
   assert.deepEqual(parks(cut({ highway: "residential" })), ["-", "-"]);
-  const both = parks(cut({ highway: "residential", "parking:left:orientation": "diagonal", "parking:left": "lane", "parking:lane:right": "perpendicular" }));
-  assert.deepEqual([...both].sort(), ["kolme", "sikme"]);
-  // (The way runs north: its right is the east kerb.)
-  const east = cut({ highway: "residential", "parking:lane:right": "perpendicular" }).features.filter((f) => f.attributes.code === 704).map((f) => [f.attributes.ORIENT || "-", f.geometry.rings[0][0][0] > LON]);
-  assert.deepEqual(east.sort(), [["-", false], ["kolme", true]]);
-  globalThis.PROFILY_US = {};
-  assert.deepEqual(parks(cut({ highway: "residential", "parking:lane:right": "perpendicular" })), ["-", "-"]);
-  delete globalThis.PROFILY_US;
+  assert.deepEqual(parks(cut({ highway: "residential", "parking:left:orientation": "diagonal", "parking:left": "lane", "parking:lane:right": "perpendicular" })), ["-", "-"]);
 });
 
 test("San Francisco: výpadek pravidel obrub (SFMTA 56) se hlásí, oříznutá odpověď je výpadek", async () => {

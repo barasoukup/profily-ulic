@@ -32,7 +32,7 @@ export const LONG_FILES = {
   "app/public/derive.js": 3084,
   "app/public/lanes-ortho.js": 1207,
   "app/public/ortho-osm.js": 1267,
-  "app/public/profile.js": 3089
+  "app/public/profile.js": 3088
 };
 
 export const LONG_FUNCTIONS = {

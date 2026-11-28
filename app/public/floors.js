@@ -10,9 +10,6 @@
 // ?off=floorsh: the old rule (floorsOld) everywhere.
 const param = (k) => (typeof location === "undefined" ? globalThis.PROFILY_CA?.[k] ?? null : new URLSearchParams(location.search).get(k));
 export const floorsHOff = () => (param("off") || "").split(",").includes("floorsh");
-// OSM's own height (profile.js, building:levels missing) is converted by this rule only with ?floorsosm=1: the blind A/B on photos
-// did not show a win there (11 : 8, p = 0.65), so by default it stays height / 3.5.
-export const floorsOsmOn = () => param("floorsosm") === "1" && !floorsHOff();
 
 export const HALLS = new Set(["train_station", "transportation", "warehouse", "industrial", "sports_hall", "hangar", "hall", "factory", "manufacture",
   "sports_centre", "stadium", "grandstand", "service", "silo", "storage_tank", "greenhouse", "barn"]);
