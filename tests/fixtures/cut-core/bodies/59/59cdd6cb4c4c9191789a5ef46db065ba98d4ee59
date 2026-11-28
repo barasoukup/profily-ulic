@@ -1,0 +1,1 @@
+{"displayFieldName":"typ","fieldAliases":{"stav":"stav"},"geometryType":"esriGeometryPoint","spatialReference":{"wkid":4326,"latestWkid":4326},"fields":[{"name":"stav","type":"esriFieldTypeString","alias":"stav","length":254}],"features":[]}

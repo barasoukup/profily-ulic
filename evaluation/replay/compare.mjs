@@ -10,7 +10,10 @@ import path from "node:path";
 import { OUT } from "./paths.mjs";
 const args = process.argv.slice(2), opt = (k) => args.find((a) => a.startsWith(`--${k}=`))?.slice(k.length + 3);
 const [A, B] = args.filter((a) => !a.startsWith("--"));
-const only = opt("field")?.split(","), ignore = (opt("ignore") || "").split(",").filter(Boolean), SHOW = Number(opt("show") ?? 8);
+// A run in Node (node.mjs) writes only some of the fields (its _done.json lists them): only those are compared.
+const doneOf = (run) => { try { return JSON.parse(fs.readFileSync(path.join(OUT, run, "_done.json"), "utf8")); } catch { return {}; } };
+const nodeFields = doneOf(A).fields || doneOf(B).fields;
+const only = opt("field")?.split(",") || nodeFields, ignore = (opt("ignore") || "").split(",").filter(Boolean), SHOW = Number(opt("show") ?? 8);
 const ids = (run) => fs.readdirSync(path.join(OUT, run)).filter((f) => /^\d+\.json$/.test(f)).map((f) => +f.slice(0, -5)).sort((a, b) => a - b);
 const read = (run, id) => JSON.parse(fs.readFileSync(path.join(OUT, run, `${id}.json`), "utf8"));
 const drop = (o) => {
@@ -26,7 +29,11 @@ const drop = (o) => {
 const renum = (s) => { const m = new Map(); return s.replace(/\b(pc|pole|cut)\d+\b/g, (x, p) => (m.has(x) || m.set(x, `${p}${m.size}`), m.get(x))); };
 // The page's own elements carry the keys of their texts since 27. 11. 2026 (data-t="…", index.html): not compared.
 const noKeys = (s) => s.replace(/ data-t(?:-[\w-]+)?="[^"]*"/g, "");
-const text = (v) => (v === undefined ? undefined : noKeys(renum(typeof v === "string" ? v : JSON.stringify(v))));
+// --digits=N: numbers compared to N significant digits (a run in Node against one in the page: their engines' Math.sin,
+// cos, atan2 … differ in the last bit, README "Přehrávka v Node").
+const DIGITS = opt("digits") ? Number(opt("digits")) : null;
+const round = DIGITS ? (_, v) => (typeof v === "number" && !Number.isInteger(v) ? +v.toPrecision(DIGITS) : v) : undefined;
+const text = (v) => (v === undefined ? undefined : noKeys(renum(typeof v === "string" ? v : JSON.stringify(v, round))));
 const where = (a, b) => {
   let i = 0;
   while (i < a.length && a[i] === b[i]) i++;

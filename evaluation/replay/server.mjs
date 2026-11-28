@@ -37,9 +37,10 @@ const safe = (s) => String(s).replace(/[^a-z0-9_.-]/gi, "_");
 http.createServer(async (req, res) => {
   const url = new URL(req.url, `http://localhost:${PORT}`);
   try {
-    if (url.pathname === "/__replay/harness.js") {
+    // The player in the page and what it shares with node.mjs: the recording's keys and answers, the canvases' log.
+    if (["/__replay/harness.js", "/__replay/recording.js", "/__replay/canvas-log.js"].includes(url.pathname)) {
       res.writeHead(200, { "Content-Type": "text/javascript; charset=utf-8", "Cache-Control": "no-cache" });
-      return res.end(await fs.readFile(path.join(HERE, "harness.js")));
+      return res.end(await fs.readFile(path.join(HERE, url.pathname.slice("/__replay/".length))));
     }
     if (url.pathname === "/__replay/layers.js") {
       res.writeHead(200, { "Content-Type": "text/javascript; charset=utf-8", "Cache-Control": "no-cache" });

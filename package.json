@@ -14,6 +14,7 @@
     "test": "npm run check && npm run lint && node --test tests/*.test.js"
   },
   "devDependencies": {
+    "@napi-rs/canvas": "^1.2.1",
     "eslint": "^10.15.0",
     "espree": "^11.2.0",
     "globals": "^17.14.0"

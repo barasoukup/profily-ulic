@@ -1,0 +1,296 @@
+[
+ {
+  "point": {
+   "id": 17,
+   "lat": 50.196902,
+   "lon": 15.828528,
+   "town": "hradec"
+  },
+  "name": "sample-cz:17",
+  "out": {
+   "id": 17,
+   "town": "hradec",
+   "misses": [],
+   "notes": [],
+   "status": "Mapa povrchů tu ulici nemá. Obruby jsou odhadnuté z ortofota a domy z OSM, šířky ověřte.",
+   "statusClass": "muted",
+   "title": "Nemocnice",
+   "city": {
+    "country": "CZ",
+    "id": "hradec",
+    "cover": "Českou republiku",
+    "view": [
+     49.8,
+     15.5
+    ],
+    "centre": null,
+    "inCity": "v Hradci Králové",
+    "adjective": "hradecké",
+    "mapLabel": "Mapa",
+    "art": "hradec",
+    "artLabel": "Ilustrace",
+    "artTitle": "Kreslit domy a mobiliář (vypnuto: ilustrace Streetmixu)",
+    "emptyImg": "praha/t3-inbound.svg",
+    "innerKm": 0,
+    "estateKm": 0.5,
+    "example": "49.907481, 16.442219",
+    "artMap": {
+     "trolleybus-inbound": "trolleybus-inbound",
+     "trolleybus-outbound": "trolleybus-outbound",
+     "bus-inbound": "bus-inbound",
+     "bus-outbound": "bus-outbound",
+     "lamp-modern-left": "lamp-left",
+     "lamp-modern-right": "lamp-right",
+     "bench-center": "bench-center",
+     "bike-rack-perpendicular-left": "bike-rack",
+     "bollard": "bollard",
+     "transit-shelter-01-left": "transit-shelter-left",
+     "transit-shelter-01-right": "transit-shelter-right",
+     "tram-pole-left": "tram-pole-left",
+     "tram-pole-right": "tram-pole-right",
+     "tram-pole-lamp-left": "tram-pole-lamp-left",
+     "tram-pole-lamp-right": "tram-pole-lamp-right",
+     "stop-post-left": "stop-post-left",
+     "stop-post-right": "stop-post-right",
+     "stop-post-tram-left": "stop-post-tram-left",
+     "stop-post-tram-right": "stop-post-tram-right",
+     "transit-shelter-green-left": "transit-shelter-green-left",
+     "transit-shelter-green-right": "transit-shelter-green-right",
+     "swale-plants": "swale-plants",
+     "reeds-left": "reeds-left",
+     "reeds-right": "reeds-right"
+    },
+    "like": "cesko",
+    "credit": "technická mapa © {kraj}, IS DMVS ČÚZK, RÚIAN © ČÚZK, 2026 (CC BY 4.0, upraveno)",
+    "server": "ČÚZK",
+    "dataShort": "technická mapa (ČÚZK), RÚIAN a OSM",
+    "dataName": "Technická mapa (ČÚZK)",
+    "techMap": "technická mapa (ČÚZK)",
+    "rulesHead": "Šířky podle pražského Manuálu IPR (C.2), orientačně (Česko):",
+    "parkingSource": "parkoviště z technické mapy"
+   },
+   "cut": {
+    "lat": 50.19690201884657,
+    "lon": 15.828527891657144,
+    "bearing": 15.105112751061494,
+    "wayId": 33858696,
+    "name": "Nemocnice",
+    "city": "hradec",
+    "reach": {
+     "left": 22,
+     "right": 22
+    },
+    "span": {
+     "left": 2.32,
+     "right": 4.28
+    },
+    "sources": {
+     "region": "Královéhradecký kraj",
+     "aiKerbs": true,
+     "ortho": true
+    },
+    "note": ""
+   },
+   "stav": {
+    "segments": [
+     {
+      "type": "pruh",
+      "width": 3.3,
+      "source": "osm",
+      "dir": "backward"
+     },
+     {
+      "type": "pruh",
+      "width": 3.3,
+      "source": "osm",
+      "dir": "forward"
+     }
+    ],
+    "edges": {
+     "right": "zelen",
+     "left": "zelen"
+    }
+   },
+   "credits": [
+    "Data: technická mapa © Královéhradecký kraj, IS DMVS ČÚZK, RÚIAN © ČÚZK, 2026 (CC BY 4.0, upraveno) · ortofoto © ČÚZK, 2025 (CC BY 4.0) · obruby vozovky: model AI učený na mapách povrchů © IPR Praha, Stadt Wien – data.wien.gv.at (CC BY 4.0), Geoportal Berlin (dl-de/zero-2-0), Freie und Hansestadt Hamburg (dl-de/by-2-0) · © přispěvatelé OpenStreetMap (ODbL)",
+    "Ilustrace © Streetmix, streetmix.net (CC BY-SA 4.0) a Bára Soukupová (MIT) · obrázek CC BY-SA 4.0 · licence: creativecommons.org/licenses/by/4.0, creativecommons.org/licenses/by-sa/4.0"
+   ]
+  }
+ },
+ {
+  "point": {
+   "id": 43,
+   "lat": 49.402491,
+   "lon": 15.583245,
+   "town": "jihlava"
+  },
+  "name": "sample-cz:43",
+  "out": {
+   "id": 43,
+   "town": "jihlava",
+   "misses": [],
+   "notes": [],
+   "status": "",
+   "statusClass": "muted",
+   "title": "Úprkova",
+   "city": {
+    "country": "CZ",
+    "id": "jihlava",
+    "cover": "Jihlavu",
+    "view": [
+     49.3961,
+     15.5912
+    ],
+    "centre": [
+     15.5912,
+     49.3961
+    ],
+    "inCity": "v Jihlavě",
+    "adjective": "jihlavské",
+    "mapLabel": "Mapa Jihlavy",
+    "art": "jihlava",
+    "artLabel": "Jihlavské ilustrace",
+    "artTitle": "Kreslit jihlavskými ilustracemi (vypnuto: ilustrace Streetmixu)",
+    "emptyImg": "jihlava/trolleybus-inbound.svg",
+    "innerKm": 0.7,
+    "estateKm": 1.6,
+    "example": "49.396100, 15.591200",
+    "artMap": {
+     "trolleybus-inbound": "trolleybus-inbound",
+     "trolleybus-outbound": "trolleybus-outbound",
+     "bus-inbound": "bus-inbound",
+     "bus-outbound": "bus-outbound",
+     "lamp-modern-left": "lamp-left",
+     "lamp-modern-right": "lamp-right",
+     "bench-center": "bench-center",
+     "bike-rack-perpendicular-left": "bike-rack",
+     "bollard": "bollard",
+     "transit-shelter-01-left": "transit-shelter-left",
+     "transit-shelter-01-right": "transit-shelter-right",
+     "tram-pole-left": "tram-pole-left",
+     "tram-pole-right": "tram-pole-right",
+     "tram-pole-lamp-left": "tram-pole-lamp-left",
+     "tram-pole-lamp-right": "tram-pole-lamp-right",
+     "stop-post-left": "stop-post-left",
+     "stop-post-right": "stop-post-right",
+     "stop-post-tram-left": "stop-post-tram-left",
+     "stop-post-tram-right": "stop-post-tram-right",
+     "transit-shelter-green-left": "transit-shelter-green-left",
+     "transit-shelter-green-right": "transit-shelter-green-right",
+     "swale-plants": "swale-plants",
+     "reeds-left": "reeds-left",
+     "reeds-right": "reeds-right"
+    },
+    "credit": "data © Statutární město Jihlava (pasport komunikací, parkování CC BY-SA, mobiliář), RÚIAN a katastr © ČÚZK, 2026 (CC BY 4.0, upraveno)",
+    "server": "Jihlava",
+    "dataShort": "mapa povrchů (Jihlava) a OSM",
+    "dataName": "Pasport komunikací (Jihlava)",
+    "techMap": "pasport komunikací (Jihlava)",
+    "rulesHead": "Šířky podle pražského Manuálu IPR (C.2), orientačně (Jihlava):",
+    "parkingSource": "parkovací místa (Jihlava)"
+   },
+   "cut": {
+    "lat": 49.402491050829866,
+    "lon": 15.583245136555735,
+    "bearing": -29.604065879785214,
+    "wayId": 26328791,
+    "name": "Úprkova",
+    "city": "jihlava",
+    "reach": {
+     "left": 22,
+     "right": 22
+    },
+    "span": {
+     "left": 5.77,
+     "right": 19.93
+    },
+    "sources": {},
+    "note": ""
+   },
+   "stav": {
+    "segments": [
+     {
+      "type": "chodnik",
+      "width": 1.95,
+      "source": "pasport",
+      "items": [
+       {
+        "kind": "lampa",
+        "f": 0.123
+       }
+      ]
+     },
+     {
+      "type": "pruh",
+      "width": 3.5,
+      "source": "osm",
+      "dir": "forward",
+      "signs": [
+       {
+        "k": "oneway"
+       }
+      ]
+     },
+     {
+      "type": "zelen",
+      "width": 3.5,
+      "source": "odhad"
+     },
+     {
+      "type": "stromorad",
+      "width": 3,
+      "source": "odhad"
+     },
+     {
+      "type": "plocha",
+      "width": 13.75,
+      "source": "dtm"
+     }
+    ],
+    "edges": {
+     "right": "volno",
+     "left": "budova",
+     "leftInfo": {
+      "levels": 2,
+      "km": 0.9,
+      "block": {
+       "length": 105.3,
+       "width": 12,
+       "fill": 0.75,
+       "parts": 12,
+       "area": 948
+      },
+      "tint": 0,
+      "type": "residential",
+      "footprint": 74,
+      "own": {
+       "rect": 0.5,
+       "length": 12.7,
+       "width": 11.6
+      },
+      "around": {
+       "built": 0.26,
+       "green": 0
+      },
+      "atWalk": 1,
+      "cornice": 1,
+      "roof": 1,
+      "newBuild": false,
+      "area": 76,
+      "src": "ipr",
+      "built": 1945,
+      "house": 1,
+      "at": [
+       15.58313,
+       49.40245
+      ]
+     }
+    }
+   },
+   "credits": [
+    "Data: © Statutární město Jihlava (pasport komunikací, parkování CC BY-SA, mobiliář), RÚIAN a katastr © ČÚZK, 2026 (CC BY 4.0, upraveno) · © přispěvatelé OpenStreetMap (ODbL)",
+    "Ilustrace © Streetmix, streetmix.net (CC BY-SA 4.0) a Bára Soukupová (MIT) · obrázek CC BY-SA 4.0 · licence: creativecommons.org/licenses/by/4.0, creativecommons.org/licenses/by-sa/4.0"
+   ]
+  }
+ }
+]

@@ -1,0 +1,832 @@
+<?xml version='1.0' encoding="UTF-8" ?>
+<wfs:FeatureCollection
+   xmlns:ms="http://mapserver.gis.umn.edu/mapserver"
+   xmlns:gml="http://www.opengis.net/gml/3.2"
+   xmlns:wfs="http://www.opengis.net/wfs/2.0"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation="http://mapserver.gis.umn.edu/mapserver https://khk.krajdtm.cz/mapservice/v1/wms/dtm_zps_plochy_bar?SERVICE=WFS&amp;VERSION=2.0.0&amp;REQUEST=DescribeFeatureType&amp;TYPENAME=ms:zps_pl_vod_tok,ms:zps_pl_jezero,ms:zps_pl_zem_pl_nezj,ms:zps_pl_zem_pl_jiny,ms:zps_pl_zem_pl_ttp,ms:zps_pl_zem_pl_ov_sad,ms:zps_pl_zem_pl_chmel,ms:zps_pl_zem_pl_vin,ms:zps_pl_zem_pl_or_puda,ms:zps_pl_zahr,ms:zps_pl_les,ms:zps_pl_hosp_nevyuz_pl,ms:zps_pl_udrz_pl_zel_nezj,ms:zps_p_udrz_pl_zel_sil_veg,ms:zps_p_udrz_pl_zel_okr_pl,ms:zps_p_udrz_pl_zel_sk_stromu,ms:zps_p_udrz_pl_zel_mest,ms:zps_pl_vod_nadrz_vzd_obj,ms:zps_pl_vod_nadrz_bez_vzd_obj,ms:zps_pl_hraz,ms:zps_pl_jez,ms:zps_pl_sterk_prehr,ms:zps_pl_stupen,ms:zps_pl_st_upr_koryto,ms:zps_pl_mel_prikop,ms:zps_pl_st_protipov_zabr,ms:zps_pl_such_nadrz,ms:zps_pl_dul_lom,ms:zps_pl_pl_rekult,ms:zps_pl_ul_mis_tez_pr,ms:zps_pl_jine_dul_dilo,ms:zps_pl_hriste,ms:zps_pl_dr_sakr_st,ms:zps_pl_hrbitov,ms:zps_pl_dr_kult_st_nezj,ms:zps_pl_dr_kult_st_zvon,ms:zps_pl_dr_kult_st_moh,ms:zps_pl_dr_kult_st_socha,ms:zps_pl_dr_kult_st_pom,ms:zps_pl_dr_kult_st_font,ms:zps_pl_dr_kult_st_kas,ms:zps_pl_podezd,ms:zps_pl_sch,ms:zps_pl_zed_mes_hrad,ms:zps_pl_zed_nezj,ms:zps_pl_zed_zarubni,ms:zps_pl_zed_operna,ms:zps_pl_zed,ms:zps_pl_ramp,ms:zps_pl_ter,ms:zps_pl_kom,ms:zps_pl_skl,ms:zps_pl_baz,ms:zps_pl_patka,ms:zps_pl_st_zpev_pov,ms:zps_pl_dv,ms:zps_pl_celo_prop,ms:zps_pl_ost_zastr_st,ms:zps_pl_veg,ms:zps_pl_poz_kom,ms:zps_pl_chod,ms:zps_pl_cyklo,ms:zps_pl_park,ms:zps_pl_dopr_ostr,ms:zps_pl_del_pas,ms:zps_pl_najezd,ms:zps_pl_pridr_pl,ms:zps_pl_zel,ms:zps_pl_tram_dr,ms:zps_pl_poz_lan_dr,ms:zps_pl_spec_zel_dr,ms:zps_pl_prikop,ms:zps_pl_nast,ms:zps_pl_map_pl,ms:zps_pl_mostovka,ms:zps_pl_portal_tunel,ms:zps_pl_portal_podchod,ms:zps_pl_most_vaha,ms:zps_pl_bud&amp;OUTPUTFORMAT=application%2Fgml%2Bxml%3B%20version%3D3.2 http://www.opengis.net/wfs/2.0 http://schemas.opengis.net/wfs/2.0/wfs.xsd http://www.opengis.net/gml/3.2 http://schemas.opengis.net/gml/3.2.1/gml.xsd"
+   timeStamp="2026-11-26T11:40:21" numberMatched="20" numberReturned="20">
+  <wfs:boundedBy>
+  	<gml:Envelope srsName="urn:ogc:def:crs:EPSG::5514">
+  		<gml:lowerCorner>-641525.150000 -1043890.040000</gml:lowerCorner>
+  		<gml:upperCorner>-641289.790000 -1043513.370000</gml:upperCorner>
+  	</gml:Envelope>
+  </wfs:boundedBy>
+  <wfs:member>
+   <wfs:FeatureCollection timeStamp="2026-11-26T11:40:21" numberMatched="1" numberReturned="1">
+      <wfs:boundedBy>
+      	<gml:Envelope srsName="urn:ogc:def:crs:EPSG::5514">
+      		<gml:lowerCorner>-641525.150000 -1043890.040000</gml:lowerCorner>
+      		<gml:upperCorner>-641289.790000 -1043709.510000</gml:upperCorner>
+      	</gml:Envelope>
+      </wfs:boundedBy>
+    <wfs:member>
+      <ms:zps_pl_udrz_pl_zel_nezj gml:id="zps_pl_udrz_pl_zel_nezj.52003010000378228">
+        <gml:boundedBy>
+        	<gml:Envelope srsName="urn:ogc:def:crs:EPSG::5514">
+        		<gml:lowerCorner>-641525.150000 -1043890.040000</gml:lowerCorner>
+        		<gml:upperCorner>-641289.790000 -1043709.510000</gml:upperCorner>
+        	</gml:Envelope>
+        </gml:boundedBy>
+        <ms:msGeometry>
+          <gml:MultiSurface gml:id="zps_pl_udrz_pl_zel_nezj.52003010000378228.1" srsName="urn:ogc:def:crs:EPSG::5514">
+            <gml:surfaceMember>
+              <gml:Polygon gml:id="zps_pl_udrz_pl_zel_nezj.52003010000378228.2">
+                <gml:exterior>
+                  <gml:LinearRing>
+                    <gml:posList srsDimension="2">-641487.250000 -1043724.650000 -641523.560000 -1043811.040000 -641524.780000 -1043814.200000 -641524.990000 -1043814.970000 -641525.150000 -1043816.020000 -641525.120000 -1043816.930000 -641525.000000 -1043818.000000 -641524.690000 -1043818.830000 -641524.320000 -1043819.620000 -641521.020000 -1043821.230000 -641519.740000 -1043818.420000 -641514.240000 -1043820.920000 -641515.520000 -1043823.730000 -641515.160000 -1043823.870000 -641515.500000 -1043824.700000 -641515.680000 -1043825.150000 -641489.300000 -1043835.980000 -641468.510000 -1043844.440000 -641430.980000 -1043859.790000 -641394.450000 -1043874.690000 -641378.350000 -1043881.240000 -641356.490000 -1043890.040000 -641355.300000 -1043887.920000 -641355.270000 -1043887.180000 -641353.410000 -1043887.890000 -641352.640000 -1043888.150000 -641351.160000 -1043888.510000 -641348.960000 -1043888.570000 -641347.210000 -1043888.330000 -641346.330000 -1043888.000000 -641345.840000 -1043887.530000 -641342.670000 -1043879.950000 -641334.500000 -1043860.610000 -641326.680000 -1043842.180000 -641311.560000 -1043806.310000 -641299.210000 -1043776.950000 -641290.110000 -1043755.120000 -641289.790000 -1043754.370000 -641290.080000 -1043753.030000 -641290.830000 -1043751.690000 -641291.550000 -1043750.930000 -641292.780000 -1043750.320000 -641296.870000 -1043748.250000 -641302.680000 -1043761.820000 -641305.870000 -1043760.570000 -641311.860000 -1043774.530000 -641308.390000 -1043775.900000 -641308.560000 -1043776.260000 -641311.820000 -1043774.980000 -641314.020000 -1043780.310000 -641314.530000 -1043780.090000 -641320.560000 -1043777.670000 -641320.870000 -1043777.530000 -641322.670000 -1043776.740000 -641399.460000 -1043746.800000 -641396.330000 -1043739.800000 -641398.240000 -1043739.010000 -641419.470000 -1043730.070000 -641421.500000 -1043729.240000 -641424.340000 -1043736.420000 -641465.550000 -1043716.590000 -641463.700000 -1043711.430000 -641468.550000 -1043709.510000 -641468.780000 -1043709.790000 -641469.300000 -1043709.660000 -641471.900000 -1043711.700000 -641474.910000 -1043712.910000 -641477.760000 -1043713.520000 -641480.120000 -1043714.870000 -641482.750000 -1043716.880000 -641484.630000 -1043719.200000 -641486.060000 -1043721.940000 -641487.250000 -1043724.650000 </gml:posList>
+                  </gml:LinearRing>
+                </gml:exterior>
+                <gml:interior>
+                  <gml:LinearRing>
+                    <gml:posList srsDimension="2">-641478.060000 -1043714.910000 -641478.640000 -1043714.680000 -641478.420000 -1043714.150000 -641478.210000 -1043714.070000 -641477.600000 -1043713.800000 -641478.060000 -1043714.910000 </gml:posList>
+                  </gml:LinearRing>
+                </gml:interior>
+              </gml:Polygon>
+            </gml:surfaceMember>
+          </gml:MultiSurface>
+        </ms:msGeometry>
+        <ms:id>52003010000378228</ms:id>
+        <ms:id_html>id-52003010000378228</ms:id_html>
+        <ms:code_base>0100000215</ms:code_base>
+        <ms:idvf>0100000215</ms:idvf>
+        <ms:kodkk>3010714</ms:kodkk>
+        <ms:objektovytypnazev>Vegetace a terén</ms:objektovytypnazev>
+        <ms:popisobjektu></ms:popisobjektu>
+        <ms:urovenumisteniobjektuzps>0</ms:urovenumisteniobjektuzps>
+        <ms:tridapresnostipoloha>3</ms:tridapresnostipoloha>
+        <ms:tridapresnostivyska>3</ms:tridapresnostivyska>
+        <ms:datumvkladu gml:id="zps_pl_udrz_pl_zel_nezj.52003010000378228.datumvkladu"><gml:timePosition>2026-05-11T07:26:47Z</gml:timePosition></ms:datumvkladu>
+        <ms:datumzmeny gml:id="zps_pl_udrz_pl_zel_nezj.52003010000378228.datumzmeny"><gml:timePosition>2026-11-20T14:18:59Z</gml:timePosition></ms:datumzmeny>
+        <ms:idzmeny>PGAD-6ADCAD48-9B78-46F9-9F2A-0FD130653FE3</ms:idzmeny>
+        <ms:ics></ms:ics>
+      </ms:zps_pl_udrz_pl_zel_nezj>
+    </wfs:member>
+   </wfs:FeatureCollection>
+  </wfs:member>
+  <wfs:member>
+   <wfs:FeatureCollection timeStamp="2026-11-26T11:40:21" numberMatched="2" numberReturned="2">
+      <wfs:boundedBy>
+      	<gml:Envelope srsName="urn:ogc:def:crs:EPSG::5514">
+      		<gml:lowerCorner>-641478.290000 -1043736.420000</gml:lowerCorner>
+      		<gml:upperCorner>-641399.110000 -1043513.370000</gml:upperCorner>
+      	</gml:Envelope>
+      </wfs:boundedBy>
+    <wfs:member>
+      <ms:zps_p_udrz_pl_zel_okr_pl gml:id="zps_p_udrz_pl_zel_okr_pl.52003010000379977">
+        <gml:boundedBy>
+        	<gml:Envelope srsName="urn:ogc:def:crs:EPSG::5514">
+        		<gml:lowerCorner>-641478.290000 -1043706.150000</gml:lowerCorner>
+        		<gml:upperCorner>-641399.110000 -1043513.370000</gml:upperCorner>
+        	</gml:Envelope>
+        </gml:boundedBy>
+        <ms:msGeometry>
+          <gml:MultiSurface gml:id="zps_p_udrz_pl_zel_okr_pl.52003010000379977.1" srsName="urn:ogc:def:crs:EPSG::5514">
+            <gml:surfaceMember>
+              <gml:Polygon gml:id="zps_p_udrz_pl_zel_okr_pl.52003010000379977.2">
+                <gml:exterior>
+                  <gml:LinearRing>
+                    <gml:posList srsDimension="2">-641399.110000 -1043518.330000 -641400.970000 -1043515.920000 -641401.910000 -1043513.370000 -641404.200000 -1043514.570000 -641405.130000 -1043515.360000 -641406.100000 -1043516.370000 -641407.110000 -1043517.780000 -641421.140000 -1043551.170000 -641448.380000 -1043616.180000 -641450.230000 -1043622.220000 -641450.890000 -1043625.360000 -641451.530000 -1043630.720000 -641452.050000 -1043635.250000 -641452.150000 -1043636.050000 -641452.600000 -1043639.000000 -641453.230000 -1043642.330000 -641453.850000 -1043644.620000 -641454.890000 -1043647.390000 -641478.290000 -1043703.140000 -641478.150000 -1043704.310000 -641477.450000 -1043705.360000 -641476.160000 -1043706.150000 -641475.490000 -1043706.050000 -641474.370000 -1043705.270000 -641474.290000 -1043704.480000 -641470.790000 -1043696.220000 -641469.240000 -1043696.410000 -641435.500000 -1043616.390000 -641439.670000 -1043614.560000 -641423.340000 -1043575.870000 -641423.170000 -1043575.940000 -641415.580000 -1043557.560000 -641412.860000 -1043551.000000 -641405.770000 -1043534.110000 -641401.620000 -1043524.060000 -641400.180000 -1043520.880000 -641399.110000 -1043518.330000 </gml:posList>
+                  </gml:LinearRing>
+                </gml:exterior>
+                <gml:interior>
+                  <gml:LinearRing>
+                    <gml:posList srsDimension="2">-641459.050000 -1043665.860000 -641457.920000 -1043663.430000 -641457.120000 -1043663.800000 -641458.210000 -1043666.140000 -641459.050000 -1043665.860000 </gml:posList>
+                  </gml:LinearRing>
+                </gml:interior>
+              </gml:Polygon>
+            </gml:surfaceMember>
+          </gml:MultiSurface>
+        </ms:msGeometry>
+        <ms:id>52003010000379977</ms:id>
+        <ms:id_html>id-52003010000379977</ms:id_html>
+        <ms:code_base>0100000215</ms:code_base>
+        <ms:idvf>0100000215</ms:idvf>
+        <ms:kodkk>3010709</ms:kodkk>
+        <ms:objektovytypnazev>Vegetace a terén</ms:objektovytypnazev>
+        <ms:popisobjektu></ms:popisobjektu>
+        <ms:urovenumisteniobjektuzps>0</ms:urovenumisteniobjektuzps>
+        <ms:tridapresnostipoloha>3</ms:tridapresnostipoloha>
+        <ms:tridapresnostivyska>3</ms:tridapresnostivyska>
+        <ms:datumvkladu gml:id="zps_p_udrz_pl_zel_okr_pl.52003010000379977.datumvkladu"><gml:timePosition>2026-05-26T17:11:09Z</gml:timePosition></ms:datumvkladu>
+        <ms:datumzmeny gml:id="zps_p_udrz_pl_zel_okr_pl.52003010000379977.datumzmeny"><gml:timePosition>2026-06-10T15:31:25Z</gml:timePosition></ms:datumzmeny>
+        <ms:idzmeny>PGAD-FC408F6B-16BE-4311-927F-7CD37147EC84</ms:idzmeny>
+        <ms:ics></ms:ics>
+      </ms:zps_p_udrz_pl_zel_okr_pl>
+    </wfs:member>
+    <wfs:member>
+      <ms:zps_p_udrz_pl_zel_okr_pl gml:id="zps_p_udrz_pl_zel_okr_pl.52003010000378238">
+        <gml:boundedBy>
+        	<gml:Envelope srsName="urn:ogc:def:crs:EPSG::5514">
+        		<gml:lowerCorner>-641465.550000 -1043736.420000</gml:lowerCorner>
+        		<gml:upperCorner>-641421.500000 -1043711.430000</gml:upperCorner>
+        	</gml:Envelope>
+        </gml:boundedBy>
+        <ms:msGeometry>
+          <gml:Polygon gml:id="zps_p_udrz_pl_zel_okr_pl.52003010000378238.1" srsName="urn:ogc:def:crs:EPSG::5514">
+            <gml:exterior>
+              <gml:LinearRing>
+                <gml:posList srsDimension="2">-641463.700000 -1043711.430000 -641465.550000 -1043716.590000 -641424.340000 -1043736.420000 -641421.500000 -1043729.240000 -641463.700000 -1043711.430000 </gml:posList>
+              </gml:LinearRing>
+            </gml:exterior>
+          </gml:Polygon>
+        </ms:msGeometry>
+        <ms:id>52003010000378238</ms:id>
+        <ms:id_html>id-52003010000378238</ms:id_html>
+        <ms:code_base>0100000215</ms:code_base>
+        <ms:idvf>0100000215</ms:idvf>
+        <ms:kodkk>3010709</ms:kodkk>
+        <ms:objektovytypnazev>Vegetace a terén</ms:objektovytypnazev>
+        <ms:popisobjektu></ms:popisobjektu>
+        <ms:urovenumisteniobjektuzps>0</ms:urovenumisteniobjektuzps>
+        <ms:tridapresnostipoloha>3</ms:tridapresnostipoloha>
+        <ms:tridapresnostivyska>3</ms:tridapresnostivyska>
+        <ms:datumvkladu gml:id="zps_p_udrz_pl_zel_okr_pl.52003010000378238.datumvkladu"><gml:timePosition>2026-05-11T07:26:47Z</gml:timePosition></ms:datumvkladu>
+        <ms:datumzmeny gml:id="zps_p_udrz_pl_zel_okr_pl.52003010000378238.datumzmeny"><gml:timePosition>2026-06-10T15:31:25Z</gml:timePosition></ms:datumzmeny>
+        <ms:idzmeny>PGAD-FC408F6B-16BE-4311-927F-7CD37147EC84</ms:idzmeny>
+        <ms:ics></ms:ics>
+      </ms:zps_p_udrz_pl_zel_okr_pl>
+    </wfs:member>
+   </wfs:FeatureCollection>
+  </wfs:member>
+  <wfs:member>
+   <wfs:FeatureCollection timeStamp="2026-11-26T11:40:21" numberMatched="1" numberReturned="1">
+      <wfs:boundedBy>
+      	<gml:Envelope srsName="urn:ogc:def:crs:EPSG::5514">
+      		<gml:lowerCorner>-641470.250000 -1043699.020000</gml:lowerCorner>
+      		<gml:upperCorner>-641408.730000 -1043576.150000</gml:upperCorner>
+      	</gml:Envelope>
+      </wfs:boundedBy>
+    <wfs:member>
+      <ms:zps_pl_podezd gml:id="zps_pl_podezd.52003010000378231">
+        <gml:boundedBy>
+        	<gml:Envelope srsName="urn:ogc:def:crs:EPSG::5514">
+        		<gml:lowerCorner>-641470.250000 -1043699.020000</gml:lowerCorner>
+        		<gml:upperCorner>-641408.730000 -1043576.150000</gml:upperCorner>
+        	</gml:Envelope>
+        </gml:boundedBy>
+        <ms:msGeometry>
+          <gml:Polygon gml:id="zps_pl_podezd.52003010000378231.1" srsName="urn:ogc:def:crs:EPSG::5514">
+            <gml:exterior>
+              <gml:LinearRing>
+                <gml:posList srsDimension="2">-641435.340000 -1043616.280000 -641469.000000 -1043696.490000 -641469.240000 -1043696.410000 -641470.250000 -1043698.900000 -641469.820000 -1043699.020000 -641435.090000 -1043616.160000 -641439.190000 -1043614.400000 -641423.260000 -1043576.330000 -641422.790000 -1043576.530000 -641417.140000 -1043578.950000 -641409.910000 -1043581.910000 -641408.730000 -1043582.390000 -641408.840000 -1043582.180000 -641423.280000 -1043576.150000 -641439.400000 -1043614.500000 -641435.340000 -1043616.280000 </gml:posList>
+              </gml:LinearRing>
+            </gml:exterior>
+          </gml:Polygon>
+        </ms:msGeometry>
+        <ms:id>52003010000378231</ms:id>
+        <ms:id_html>id-52003010000378231</ms:id_html>
+        <ms:code_base>0100000163</ms:code_base>
+        <ms:idvf>0100000163</ms:idvf>
+        <ms:kodkk>3010217</ms:kodkk>
+        <ms:objektovytypnazev>Drobné stavby a příslušenství</ms:objektovytypnazev>
+        <ms:popisobjektu></ms:popisobjektu>
+        <ms:urovenumisteniobjektuzps>0</ms:urovenumisteniobjektuzps>
+        <ms:tridapresnostipoloha>3</ms:tridapresnostipoloha>
+        <ms:tridapresnostivyska>3</ms:tridapresnostivyska>
+        <ms:datumvkladu gml:id="zps_pl_podezd.52003010000378231.datumvkladu"><gml:timePosition>2026-05-11T07:26:47Z</gml:timePosition></ms:datumvkladu>
+        <ms:datumzmeny gml:id="zps_pl_podezd.52003010000378231.datumzmeny"><gml:timePosition>2026-06-10T15:31:25Z</gml:timePosition></ms:datumzmeny>
+        <ms:idzmeny>PGAD-FC408F6B-16BE-4311-927F-7CD37147EC84</ms:idzmeny>
+        <ms:ics></ms:ics>
+      </ms:zps_pl_podezd>
+    </wfs:member>
+   </wfs:FeatureCollection>
+  </wfs:member>
+  <wfs:member>
+   <wfs:FeatureCollection timeStamp="2026-11-26T11:40:21" numberMatched="1" numberReturned="1">
+      <wfs:boundedBy>
+      	<gml:Envelope srsName="urn:ogc:def:crs:EPSG::5514">
+      		<gml:lowerCorner>-641468.550000 -1043711.430000</gml:lowerCorner>
+      		<gml:upperCorner>-641462.730000 -1043707.360000</gml:upperCorner>
+      	</gml:Envelope>
+      </wfs:boundedBy>
+    <wfs:member>
+      <ms:zps_pl_sch gml:id="zps_pl_sch.52003010000378235">
+        <gml:boundedBy>
+        	<gml:Envelope srsName="urn:ogc:def:crs:EPSG::5514">
+        		<gml:lowerCorner>-641468.550000 -1043711.430000</gml:lowerCorner>
+        		<gml:upperCorner>-641462.730000 -1043707.360000</gml:upperCorner>
+        	</gml:Envelope>
+        </gml:boundedBy>
+        <ms:msGeometry>
+          <gml:Polygon gml:id="zps_pl_sch.52003010000378235.1" srsName="urn:ogc:def:crs:EPSG::5514">
+            <gml:exterior>
+              <gml:LinearRing>
+                <gml:posList srsDimension="2">-641468.550000 -1043709.510000 -641463.700000 -1043711.430000 -641462.730000 -1043709.160000 -641463.170000 -1043708.970000 -641466.930000 -1043707.360000 -641467.600000 -1043708.440000 -641468.550000 -1043709.510000 </gml:posList>
+              </gml:LinearRing>
+            </gml:exterior>
+          </gml:Polygon>
+        </ms:msGeometry>
+        <ms:id>52003010000378235</ms:id>
+        <ms:id_html>id-52003010000378235</ms:id_html>
+        <ms:code_base>0100000166</ms:code_base>
+        <ms:idvf>0100000166</ms:idvf>
+        <ms:kodkk>3010221</ms:kodkk>
+        <ms:objektovytypnazev>Drobné stavby a příslušenství</ms:objektovytypnazev>
+        <ms:popisobjektu></ms:popisobjektu>
+        <ms:urovenumisteniobjektuzps>0</ms:urovenumisteniobjektuzps>
+        <ms:tridapresnostipoloha>3</ms:tridapresnostipoloha>
+        <ms:tridapresnostivyska>3</ms:tridapresnostivyska>
+        <ms:datumvkladu gml:id="zps_pl_sch.52003010000378235.datumvkladu"><gml:timePosition>2026-05-11T07:26:47Z</gml:timePosition></ms:datumvkladu>
+        <ms:datumzmeny gml:id="zps_pl_sch.52003010000378235.datumzmeny"><gml:timePosition>2026-06-10T15:31:25Z</gml:timePosition></ms:datumzmeny>
+        <ms:idzmeny>PGAD-FC408F6B-16BE-4311-927F-7CD37147EC84</ms:idzmeny>
+        <ms:ics></ms:ics>
+      </ms:zps_pl_sch>
+    </wfs:member>
+   </wfs:FeatureCollection>
+  </wfs:member>
+  <wfs:member>
+   <wfs:FeatureCollection timeStamp="2026-11-26T11:40:21" numberMatched="1" numberReturned="1">
+      <wfs:boundedBy>
+      	<gml:Envelope srsName="urn:ogc:def:crs:EPSG::5514">
+      		<gml:lowerCorner>-641469.300000 -1043709.790000</gml:lowerCorner>
+      		<gml:upperCorner>-641456.190000 -1043681.260000</gml:upperCorner>
+      	</gml:Envelope>
+      </wfs:boundedBy>
+    <wfs:member>
+      <ms:zps_pl_zed_operna gml:id="zps_pl_zed_operna.52003010000378237">
+        <gml:boundedBy>
+        	<gml:Envelope srsName="urn:ogc:def:crs:EPSG::5514">
+        		<gml:lowerCorner>-641469.300000 -1043709.790000</gml:lowerCorner>
+        		<gml:upperCorner>-641456.190000 -1043681.260000</gml:upperCorner>
+        	</gml:Envelope>
+        </gml:boundedBy>
+        <ms:msGeometry>
+          <gml:Polygon gml:id="zps_pl_zed_operna.52003010000378237.1" srsName="urn:ogc:def:crs:EPSG::5514">
+            <gml:exterior>
+              <gml:LinearRing>
+                <gml:posList srsDimension="2">-641466.900000 -1043705.930000 -641467.890000 -1043707.920000 -641468.980000 -1043709.440000 -641469.300000 -1043709.660000 -641468.780000 -1043709.790000 -641468.550000 -1043709.510000 -641467.600000 -1043708.440000 -641466.930000 -1043707.360000 -641456.190000 -1043681.360000 -641456.430000 -1043681.260000 -641464.850000 -1043701.290000 -641466.900000 -1043705.930000 </gml:posList>
+              </gml:LinearRing>
+            </gml:exterior>
+          </gml:Polygon>
+        </ms:msGeometry>
+        <ms:id>52003010000378237</ms:id>
+        <ms:id_html>id-52003010000378237</ms:id_html>
+        <ms:code_base>0100000168</ms:code_base>
+        <ms:idvf>0100000168</ms:idvf>
+        <ms:kodkk>3010215</ms:kodkk>
+        <ms:objektovytypnazev>Drobné stavby a příslušenství</ms:objektovytypnazev>
+        <ms:popisobjektu></ms:popisobjektu>
+        <ms:urovenumisteniobjektuzps>0</ms:urovenumisteniobjektuzps>
+        <ms:tridapresnostipoloha>3</ms:tridapresnostipoloha>
+        <ms:tridapresnostivyska>3</ms:tridapresnostivyska>
+        <ms:datumvkladu gml:id="zps_pl_zed_operna.52003010000378237.datumvkladu"><gml:timePosition>2026-05-11T07:26:47Z</gml:timePosition></ms:datumvkladu>
+        <ms:datumzmeny gml:id="zps_pl_zed_operna.52003010000378237.datumzmeny"><gml:timePosition>2026-06-10T15:31:25Z</gml:timePosition></ms:datumzmeny>
+        <ms:idzmeny>PGAD-FC408F6B-16BE-4311-927F-7CD37147EC84</ms:idzmeny>
+        <ms:ics></ms:ics>
+      </ms:zps_pl_zed_operna>
+    </wfs:member>
+   </wfs:FeatureCollection>
+  </wfs:member>
+  <wfs:member>
+   <wfs:FeatureCollection timeStamp="2026-11-26T11:40:21" numberMatched="1" numberReturned="1">
+      <wfs:boundedBy>
+      	<gml:Envelope srsName="urn:ogc:def:crs:EPSG::5514">
+      		<gml:lowerCorner>-641469.440000 -1043701.090000</gml:lowerCorner>
+      		<gml:upperCorner>-641456.790000 -1043679.520000</gml:upperCorner>
+      	</gml:Envelope>
+      </wfs:boundedBy>
+    <wfs:member>
+      <ms:zps_pl_ramp gml:id="zps_pl_ramp.52003010000378233">
+        <gml:boundedBy>
+        	<gml:Envelope srsName="urn:ogc:def:crs:EPSG::5514">
+        		<gml:lowerCorner>-641469.440000 -1043701.090000</gml:lowerCorner>
+        		<gml:upperCorner>-641456.790000 -1043679.520000</gml:upperCorner>
+        	</gml:Envelope>
+        </gml:boundedBy>
+        <ms:msGeometry>
+          <gml:Polygon gml:id="zps_pl_ramp.52003010000378233.1" srsName="urn:ogc:def:crs:EPSG::5514">
+            <gml:exterior>
+              <gml:LinearRing>
+                <gml:posList srsDimension="2">-641469.440000 -1043699.210000 -641469.440000 -1043699.320000 -641465.280000 -1043701.090000 -641456.990000 -1043681.180000 -641456.790000 -1043680.980000 -641461.140000 -1043679.520000 -641469.440000 -1043699.210000 </gml:posList>
+              </gml:LinearRing>
+            </gml:exterior>
+          </gml:Polygon>
+        </ms:msGeometry>
+        <ms:id>52003010000378233</ms:id>
+        <ms:id_html>id-52003010000378233</ms:id_html>
+        <ms:code_base>0100000173</ms:code_base>
+        <ms:idvf>0100000173</ms:idvf>
+        <ms:kodkk>3010220</ms:kodkk>
+        <ms:objektovytypnazev>Drobné stavby a příslušenství</ms:objektovytypnazev>
+        <ms:popisobjektu></ms:popisobjektu>
+        <ms:urovenumisteniobjektuzps>0</ms:urovenumisteniobjektuzps>
+        <ms:tridapresnostipoloha>3</ms:tridapresnostipoloha>
+        <ms:tridapresnostivyska>3</ms:tridapresnostivyska>
+        <ms:datumvkladu gml:id="zps_pl_ramp.52003010000378233.datumvkladu"><gml:timePosition>2026-05-11T07:26:47Z</gml:timePosition></ms:datumvkladu>
+        <ms:datumzmeny gml:id="zps_pl_ramp.52003010000378233.datumzmeny"><gml:timePosition>2026-06-10T15:31:25Z</gml:timePosition></ms:datumzmeny>
+        <ms:idzmeny>PGAD-FC408F6B-16BE-4311-927F-7CD37147EC84</ms:idzmeny>
+        <ms:ics></ms:ics>
+      </ms:zps_pl_ramp>
+    </wfs:member>
+   </wfs:FeatureCollection>
+  </wfs:member>
+  <wfs:member>
+   <wfs:FeatureCollection timeStamp="2026-11-26T11:40:21" numberMatched="3" numberReturned="3">
+      <wfs:boundedBy>
+      	<gml:Envelope srsName="urn:ogc:def:crs:EPSG::5514">
+      		<gml:lowerCorner>-641478.640000 -1043714.910000</gml:lowerCorner>
+      		<gml:upperCorner>-641457.120000 -1043656.020000</gml:upperCorner>
+      	</gml:Envelope>
+      </wfs:boundedBy>
+    <wfs:member>
+      <ms:zps_pl_patka gml:id="zps_pl_patka.52003010000378230">
+        <gml:boundedBy>
+        	<gml:Envelope srsName="urn:ogc:def:crs:EPSG::5514">
+        		<gml:lowerCorner>-641476.630000 -1043659.000000</gml:lowerCorner>
+        		<gml:upperCorner>-641474.940000 -1043656.020000</gml:upperCorner>
+        	</gml:Envelope>
+        </gml:boundedBy>
+        <ms:msGeometry>
+          <gml:Polygon gml:id="zps_pl_patka.52003010000378230.1" srsName="urn:ogc:def:crs:EPSG::5514">
+            <gml:exterior>
+              <gml:LinearRing>
+                <gml:posList srsDimension="2">-641476.630000 -1043658.760000 -641475.980000 -1043659.000000 -641474.940000 -1043656.290000 -641475.500000 -1043656.020000 -641476.630000 -1043658.760000 </gml:posList>
+              </gml:LinearRing>
+            </gml:exterior>
+          </gml:Polygon>
+        </ms:msGeometry>
+        <ms:id>52003010000378230</ms:id>
+        <ms:id_html>id-52003010000378230</ms:id_html>
+        <ms:code_base>0100000183</ms:code_base>
+        <ms:idvf>0100000183</ms:idvf>
+        <ms:kodkk>3010216</ms:kodkk>
+        <ms:objektovytypnazev>Drobné stavby a příslušenství</ms:objektovytypnazev>
+        <ms:popisobjektu></ms:popisobjektu>
+        <ms:urovenumisteniobjektuzps>0</ms:urovenumisteniobjektuzps>
+        <ms:tridapresnostipoloha>3</ms:tridapresnostipoloha>
+        <ms:tridapresnostivyska>3</ms:tridapresnostivyska>
+        <ms:datumvkladu gml:id="zps_pl_patka.52003010000378230.datumvkladu"><gml:timePosition>2026-05-11T07:26:47Z</gml:timePosition></ms:datumvkladu>
+        <ms:datumzmeny gml:id="zps_pl_patka.52003010000378230.datumzmeny"><gml:timePosition>2026-06-10T15:31:25Z</gml:timePosition></ms:datumzmeny>
+        <ms:idzmeny>PGAD-FC408F6B-16BE-4311-927F-7CD37147EC84</ms:idzmeny>
+        <ms:ics></ms:ics>
+      </ms:zps_pl_patka>
+    </wfs:member>
+    <wfs:member>
+      <ms:zps_pl_patka gml:id="zps_pl_patka.52003010000379976">
+        <gml:boundedBy>
+        	<gml:Envelope srsName="urn:ogc:def:crs:EPSG::5514">
+        		<gml:lowerCorner>-641478.640000 -1043714.910000</gml:lowerCorner>
+        		<gml:upperCorner>-641477.600000 -1043713.800000</gml:upperCorner>
+        	</gml:Envelope>
+        </gml:boundedBy>
+        <ms:msGeometry>
+          <gml:Polygon gml:id="zps_pl_patka.52003010000379976.1" srsName="urn:ogc:def:crs:EPSG::5514">
+            <gml:exterior>
+              <gml:LinearRing>
+                <gml:posList srsDimension="2">-641478.210000 -1043714.070000 -641478.420000 -1043714.150000 -641478.640000 -1043714.680000 -641478.060000 -1043714.910000 -641477.600000 -1043713.800000 -641478.210000 -1043714.070000 </gml:posList>
+              </gml:LinearRing>
+            </gml:exterior>
+          </gml:Polygon>
+        </ms:msGeometry>
+        <ms:id>52003010000379976</ms:id>
+        <ms:id_html>id-52003010000379976</ms:id_html>
+        <ms:code_base>0100000183</ms:code_base>
+        <ms:idvf>0100000183</ms:idvf>
+        <ms:kodkk>3010216</ms:kodkk>
+        <ms:objektovytypnazev>Drobné stavby a příslušenství</ms:objektovytypnazev>
+        <ms:popisobjektu>betonová_patka</ms:popisobjektu>
+        <ms:urovenumisteniobjektuzps>0</ms:urovenumisteniobjektuzps>
+        <ms:tridapresnostipoloha>3</ms:tridapresnostipoloha>
+        <ms:tridapresnostivyska>3</ms:tridapresnostivyska>
+        <ms:datumvkladu gml:id="zps_pl_patka.52003010000379976.datumvkladu"><gml:timePosition>2026-05-26T17:11:09Z</gml:timePosition></ms:datumvkladu>
+        <ms:datumzmeny gml:id="zps_pl_patka.52003010000379976.datumzmeny"><gml:timePosition>2026-06-10T15:31:25Z</gml:timePosition></ms:datumzmeny>
+        <ms:idzmeny>PGAD-FC408F6B-16BE-4311-927F-7CD37147EC84</ms:idzmeny>
+        <ms:ics></ms:ics>
+      </ms:zps_pl_patka>
+    </wfs:member>
+    <wfs:member>
+      <ms:zps_pl_patka gml:id="zps_pl_patka.52003010000379978">
+        <gml:boundedBy>
+        	<gml:Envelope srsName="urn:ogc:def:crs:EPSG::5514">
+        		<gml:lowerCorner>-641459.050000 -1043666.140000</gml:lowerCorner>
+        		<gml:upperCorner>-641457.120000 -1043663.430000</gml:upperCorner>
+        	</gml:Envelope>
+        </gml:boundedBy>
+        <ms:msGeometry>
+          <gml:Polygon gml:id="zps_pl_patka.52003010000379978.1" srsName="urn:ogc:def:crs:EPSG::5514">
+            <gml:exterior>
+              <gml:LinearRing>
+                <gml:posList srsDimension="2">-641459.050000 -1043665.860000 -641458.210000 -1043666.140000 -641457.120000 -1043663.800000 -641457.920000 -1043663.430000 -641459.050000 -1043665.860000 </gml:posList>
+              </gml:LinearRing>
+            </gml:exterior>
+          </gml:Polygon>
+        </ms:msGeometry>
+        <ms:id>52003010000379978</ms:id>
+        <ms:id_html>id-52003010000379978</ms:id_html>
+        <ms:code_base>0100000183</ms:code_base>
+        <ms:idvf>0100000183</ms:idvf>
+        <ms:kodkk>3010216</ms:kodkk>
+        <ms:objektovytypnazev>Drobné stavby a příslušenství</ms:objektovytypnazev>
+        <ms:popisobjektu>-</ms:popisobjektu>
+        <ms:urovenumisteniobjektuzps>0</ms:urovenumisteniobjektuzps>
+        <ms:tridapresnostipoloha>3</ms:tridapresnostipoloha>
+        <ms:tridapresnostivyska>3</ms:tridapresnostivyska>
+        <ms:datumvkladu gml:id="zps_pl_patka.52003010000379978.datumvkladu"><gml:timePosition>2026-05-26T17:11:09Z</gml:timePosition></ms:datumvkladu>
+        <ms:datumzmeny gml:id="zps_pl_patka.52003010000379978.datumzmeny"><gml:timePosition>2026-06-10T15:31:25Z</gml:timePosition></ms:datumzmeny>
+        <ms:idzmeny>PGAD-FC408F6B-16BE-4311-927F-7CD37147EC84</ms:idzmeny>
+        <ms:ics>-</ms:ics>
+      </ms:zps_pl_patka>
+    </wfs:member>
+   </wfs:FeatureCollection>
+  </wfs:member>
+  <wfs:member>
+   <wfs:FeatureCollection timeStamp="2026-11-26T11:40:21" numberMatched="6" numberReturned="6">
+      <wfs:boundedBy>
+      	<gml:Envelope srsName="urn:ogc:def:crs:EPSG::5514">
+      		<gml:lowerCorner>-641469.820000 -1043709.160000</gml:lowerCorner>
+      		<gml:upperCorner>-641422.790000 -1043576.330000</gml:upperCorner>
+      	</gml:Envelope>
+      </wfs:boundedBy>
+    <wfs:member>
+      <ms:zps_pl_chod gml:id="zps_pl_chod.52003010000378243">
+        <gml:boundedBy>
+        	<gml:Envelope srsName="urn:ogc:def:crs:EPSG::5514">
+        		<gml:lowerCorner>-641447.560000 -1043672.300000</gml:lowerCorner>
+        		<gml:upperCorner>-641443.700000 -1043663.700000</gml:upperCorner>
+        	</gml:Envelope>
+        </gml:boundedBy>
+        <ms:msGeometry>
+          <gml:Polygon gml:id="zps_pl_chod.52003010000378243.1" srsName="urn:ogc:def:crs:EPSG::5514">
+            <gml:exterior>
+              <gml:LinearRing>
+                <gml:posList srsDimension="2">-641443.700000 -1043663.710000 -641443.990000 -1043663.700000 -641444.340000 -1043663.870000 -641445.610000 -1043666.840000 -641447.560000 -1043671.530000 -641447.520000 -1043672.050000 -641447.300000 -1043672.300000 -641443.700000 -1043663.710000 </gml:posList>
+              </gml:LinearRing>
+            </gml:exterior>
+          </gml:Polygon>
+        </ms:msGeometry>
+        <ms:id>52003010000378243</ms:id>
+        <ms:id_html>id-52003010000378243</ms:id_html>
+        <ms:code_base>0100000007</ms:code_base>
+        <ms:idvf>0100000007</ms:idvf>
+        <ms:kodkk>3010304</ms:kodkk>
+        <ms:objektovytypnazev>Dopravní stavby</ms:objektovytypnazev>
+        <ms:popisobjektu></ms:popisobjektu>
+        <ms:urovenumisteniobjektuzps>0</ms:urovenumisteniobjektuzps>
+        <ms:tridapresnostipoloha>3</ms:tridapresnostipoloha>
+        <ms:tridapresnostivyska>3</ms:tridapresnostivyska>
+        <ms:datumvkladu gml:id="zps_pl_chod.52003010000378243.datumvkladu"><gml:timePosition>2026-05-11T07:26:47Z</gml:timePosition></ms:datumvkladu>
+        <ms:datumzmeny gml:id="zps_pl_chod.52003010000378243.datumzmeny"><gml:timePosition>2026-06-10T15:31:25Z</gml:timePosition></ms:datumzmeny>
+        <ms:idzmeny>PGAD-FC408F6B-16BE-4311-927F-7CD37147EC84</ms:idzmeny>
+        <ms:ics></ms:ics>
+      </ms:zps_pl_chod>
+    </wfs:member>
+    <wfs:member>
+      <ms:zps_pl_chod gml:id="zps_pl_chod.52003010000378242">
+        <gml:boundedBy>
+        	<gml:Envelope srsName="urn:ogc:def:crs:EPSG::5514">
+        		<gml:lowerCorner>-641457.710000 -1043696.200000</gml:lowerCorner>
+        		<gml:upperCorner>-641448.060000 -1043674.080000</gml:upperCorner>
+        	</gml:Envelope>
+        </gml:boundedBy>
+        <ms:msGeometry>
+          <gml:Polygon gml:id="zps_pl_chod.52003010000378242.1" srsName="urn:ogc:def:crs:EPSG::5514">
+            <gml:exterior>
+              <gml:LinearRing>
+                <gml:posList srsDimension="2">-641448.060000 -1043674.120000 -641448.330000 -1043674.080000 -641448.660000 -1043674.180000 -641457.710000 -1043695.710000 -641457.570000 -1043696.070000 -641457.310000 -1043696.200000 -641448.060000 -1043674.120000 </gml:posList>
+              </gml:LinearRing>
+            </gml:exterior>
+          </gml:Polygon>
+        </ms:msGeometry>
+        <ms:id>52003010000378242</ms:id>
+        <ms:id_html>id-52003010000378242</ms:id_html>
+        <ms:code_base>0100000007</ms:code_base>
+        <ms:idvf>0100000007</ms:idvf>
+        <ms:kodkk>3010304</ms:kodkk>
+        <ms:objektovytypnazev>Dopravní stavby</ms:objektovytypnazev>
+        <ms:popisobjektu></ms:popisobjektu>
+        <ms:urovenumisteniobjektuzps>0</ms:urovenumisteniobjektuzps>
+        <ms:tridapresnostipoloha>3</ms:tridapresnostipoloha>
+        <ms:tridapresnostivyska>3</ms:tridapresnostivyska>
+        <ms:datumvkladu gml:id="zps_pl_chod.52003010000378242.datumvkladu"><gml:timePosition>2026-05-11T07:26:47Z</gml:timePosition></ms:datumvkladu>
+        <ms:datumzmeny gml:id="zps_pl_chod.52003010000378242.datumzmeny"><gml:timePosition>2026-06-10T15:31:25Z</gml:timePosition></ms:datumzmeny>
+        <ms:idzmeny>PGAD-FC408F6B-16BE-4311-927F-7CD37147EC84</ms:idzmeny>
+        <ms:ics></ms:ics>
+      </ms:zps_pl_chod>
+    </wfs:member>
+    <wfs:member>
+      <ms:zps_pl_chod gml:id="zps_pl_chod.52003010000378244">
+        <gml:boundedBy>
+        	<gml:Envelope srsName="urn:ogc:def:crs:EPSG::5514">
+        		<gml:lowerCorner>-641442.980000 -1043661.130000</gml:lowerCorner>
+        		<gml:upperCorner>-641438.810000 -1043652.040000</gml:upperCorner>
+        	</gml:Envelope>
+        </gml:boundedBy>
+        <ms:msGeometry>
+          <gml:Polygon gml:id="zps_pl_chod.52003010000378244.1" srsName="urn:ogc:def:crs:EPSG::5514">
+            <gml:exterior>
+              <gml:LinearRing>
+                <gml:posList srsDimension="2">-641438.810000 -1043652.040000 -641439.160000 -1043652.160000 -641439.560000 -1043652.450000 -641442.980000 -1043660.590000 -641442.850000 -1043660.930000 -641442.620000 -1043661.130000 -641438.810000 -1043652.040000 </gml:posList>
+              </gml:LinearRing>
+            </gml:exterior>
+          </gml:Polygon>
+        </ms:msGeometry>
+        <ms:id>52003010000378244</ms:id>
+        <ms:id_html>id-52003010000378244</ms:id_html>
+        <ms:code_base>0100000007</ms:code_base>
+        <ms:idvf>0100000007</ms:idvf>
+        <ms:kodkk>3010304</ms:kodkk>
+        <ms:objektovytypnazev>Dopravní stavby</ms:objektovytypnazev>
+        <ms:popisobjektu></ms:popisobjektu>
+        <ms:urovenumisteniobjektuzps>0</ms:urovenumisteniobjektuzps>
+        <ms:tridapresnostipoloha>3</ms:tridapresnostipoloha>
+        <ms:tridapresnostivyska>3</ms:tridapresnostivyska>
+        <ms:datumvkladu gml:id="zps_pl_chod.52003010000378244.datumvkladu"><gml:timePosition>2026-05-11T07:26:47Z</gml:timePosition></ms:datumvkladu>
+        <ms:datumzmeny gml:id="zps_pl_chod.52003010000378244.datumzmeny"><gml:timePosition>2026-06-10T15:31:25Z</gml:timePosition></ms:datumzmeny>
+        <ms:idzmeny>PGAD-FC408F6B-16BE-4311-927F-7CD37147EC84</ms:idzmeny>
+        <ms:ics></ms:ics>
+      </ms:zps_pl_chod>
+    </wfs:member>
+    <wfs:member>
+      <ms:zps_pl_chod gml:id="zps_pl_chod.52003010000378232">
+        <gml:boundedBy>
+        	<gml:Envelope srsName="urn:ogc:def:crs:EPSG::5514">
+        		<gml:lowerCorner>-641469.820000 -1043699.210000</gml:lowerCorner>
+        		<gml:upperCorner>-641422.790000 -1043576.330000</gml:upperCorner>
+        	</gml:Envelope>
+        </gml:boundedBy>
+        <ms:msGeometry>
+          <gml:Polygon gml:id="zps_pl_chod.52003010000378232.1" srsName="urn:ogc:def:crs:EPSG::5514">
+            <gml:exterior>
+              <gml:LinearRing>
+                <gml:posList srsDimension="2">-641461.140000 -1043679.520000 -641459.590000 -1043675.740000 -641455.510000 -1043666.090000 -641447.940000 -1043648.020000 -641434.420000 -1043615.810000 -641438.530000 -1043614.120000 -641422.790000 -1043576.530000 -641423.260000 -1043576.330000 -641439.190000 -1043614.400000 -641435.090000 -1043616.160000 -641469.820000 -1043699.020000 -641469.440000 -1043699.210000 -641461.140000 -1043679.520000 </gml:posList>
+              </gml:LinearRing>
+            </gml:exterior>
+          </gml:Polygon>
+        </ms:msGeometry>
+        <ms:id>52003010000378232</ms:id>
+        <ms:id_html>id-52003010000378232</ms:id_html>
+        <ms:code_base>0100000007</ms:code_base>
+        <ms:idvf>0100000007</ms:idvf>
+        <ms:kodkk>3010304</ms:kodkk>
+        <ms:objektovytypnazev>Dopravní stavby</ms:objektovytypnazev>
+        <ms:popisobjektu></ms:popisobjektu>
+        <ms:urovenumisteniobjektuzps>0</ms:urovenumisteniobjektuzps>
+        <ms:tridapresnostipoloha>3</ms:tridapresnostipoloha>
+        <ms:tridapresnostivyska>3</ms:tridapresnostivyska>
+        <ms:datumvkladu gml:id="zps_pl_chod.52003010000378232.datumvkladu"><gml:timePosition>2026-05-11T07:26:47Z</gml:timePosition></ms:datumvkladu>
+        <ms:datumzmeny gml:id="zps_pl_chod.52003010000378232.datumzmeny"><gml:timePosition>2026-06-10T15:31:25Z</gml:timePosition></ms:datumzmeny>
+        <ms:idzmeny>PGAD-FC408F6B-16BE-4311-927F-7CD37147EC84</ms:idzmeny>
+        <ms:ics></ms:ics>
+      </ms:zps_pl_chod>
+    </wfs:member>
+    <wfs:member>
+      <ms:zps_pl_chod gml:id="zps_pl_chod.52003010000378240">
+        <gml:boundedBy>
+        	<gml:Envelope srsName="urn:ogc:def:crs:EPSG::5514">
+        		<gml:lowerCorner>-641463.170000 -1043709.160000</gml:lowerCorner>
+        		<gml:upperCorner>-641458.020000 -1043697.840000</gml:upperCorner>
+        	</gml:Envelope>
+        </gml:boundedBy>
+        <ms:msGeometry>
+          <gml:Polygon gml:id="zps_pl_chod.52003010000378240.1" srsName="urn:ogc:def:crs:EPSG::5514">
+            <gml:exterior>
+              <gml:LinearRing>
+                <gml:posList srsDimension="2">-641458.020000 -1043697.910000 -641458.300000 -1043697.840000 -641458.650000 -1043698.010000 -641463.170000 -1043708.970000 -641462.730000 -1043709.160000 -641458.020000 -1043697.910000 </gml:posList>
+              </gml:LinearRing>
+            </gml:exterior>
+          </gml:Polygon>
+        </ms:msGeometry>
+        <ms:id>52003010000378240</ms:id>
+        <ms:id_html>id-52003010000378240</ms:id_html>
+        <ms:code_base>0100000007</ms:code_base>
+        <ms:idvf>0100000007</ms:idvf>
+        <ms:kodkk>3010304</ms:kodkk>
+        <ms:objektovytypnazev>Dopravní stavby</ms:objektovytypnazev>
+        <ms:popisobjektu></ms:popisobjektu>
+        <ms:urovenumisteniobjektuzps>0</ms:urovenumisteniobjektuzps>
+        <ms:tridapresnostipoloha>3</ms:tridapresnostipoloha>
+        <ms:tridapresnostivyska>3</ms:tridapresnostivyska>
+        <ms:datumvkladu gml:id="zps_pl_chod.52003010000378240.datumvkladu"><gml:timePosition>2026-05-11T07:26:47Z</gml:timePosition></ms:datumvkladu>
+        <ms:datumzmeny gml:id="zps_pl_chod.52003010000378240.datumzmeny"><gml:timePosition>2026-06-10T15:31:25Z</gml:timePosition></ms:datumzmeny>
+        <ms:idzmeny>PGAD-FC408F6B-16BE-4311-927F-7CD37147EC84</ms:idzmeny>
+        <ms:ics></ms:ics>
+      </ms:zps_pl_chod>
+    </wfs:member>
+    <wfs:member>
+      <ms:zps_pl_chod gml:id="zps_pl_chod.52003010000378234">
+        <gml:boundedBy>
+        	<gml:Envelope srsName="urn:ogc:def:crs:EPSG::5514">
+        		<gml:lowerCorner>-641466.900000 -1043705.930000</gml:lowerCorner>
+        		<gml:upperCorner>-641456.430000 -1043680.980000</gml:upperCorner>
+        	</gml:Envelope>
+        </gml:boundedBy>
+        <ms:msGeometry>
+          <gml:Polygon gml:id="zps_pl_chod.52003010000378234.1" srsName="urn:ogc:def:crs:EPSG::5514">
+            <gml:exterior>
+              <gml:LinearRing>
+                <gml:posList srsDimension="2">-641464.850000 -1043701.290000 -641456.430000 -1043681.260000 -641456.450000 -1043681.070000 -641456.790000 -1043680.980000 -641456.990000 -1043681.180000 -641465.280000 -1043701.090000 -641466.900000 -1043705.930000 -641464.850000 -1043701.290000 </gml:posList>
+              </gml:LinearRing>
+            </gml:exterior>
+          </gml:Polygon>
+        </ms:msGeometry>
+        <ms:id>52003010000378234</ms:id>
+        <ms:id_html>id-52003010000378234</ms:id_html>
+        <ms:code_base>0100000007</ms:code_base>
+        <ms:idvf>0100000007</ms:idvf>
+        <ms:kodkk>3010304</ms:kodkk>
+        <ms:objektovytypnazev>Dopravní stavby</ms:objektovytypnazev>
+        <ms:popisobjektu></ms:popisobjektu>
+        <ms:urovenumisteniobjektuzps>0</ms:urovenumisteniobjektuzps>
+        <ms:tridapresnostipoloha>3</ms:tridapresnostipoloha>
+        <ms:tridapresnostivyska>3</ms:tridapresnostivyska>
+        <ms:datumvkladu gml:id="zps_pl_chod.52003010000378234.datumvkladu"><gml:timePosition>2026-05-11T07:26:47Z</gml:timePosition></ms:datumvkladu>
+        <ms:datumzmeny gml:id="zps_pl_chod.52003010000378234.datumzmeny"><gml:timePosition>2026-06-10T15:31:25Z</gml:timePosition></ms:datumzmeny>
+        <ms:idzmeny>PGAD-FC408F6B-16BE-4311-927F-7CD37147EC84</ms:idzmeny>
+        <ms:ics></ms:ics>
+      </ms:zps_pl_chod>
+    </wfs:member>
+   </wfs:FeatureCollection>
+  </wfs:member>
+  <wfs:member>
+   <wfs:FeatureCollection timeStamp="2026-11-26T11:40:21" numberMatched="1" numberReturned="1">
+      <wfs:boundedBy>
+      	<gml:Envelope srsName="urn:ogc:def:crs:EPSG::5514">
+      		<gml:lowerCorner>-641477.760000 -1043713.520000</gml:lowerCorner>
+      		<gml:upperCorner>-641465.280000 -1043699.320000</gml:upperCorner>
+      	</gml:Envelope>
+      </wfs:boundedBy>
+    <wfs:member>
+      <ms:zps_pl_najezd gml:id="zps_pl_najezd.52003010000378229">
+        <gml:boundedBy>
+        	<gml:Envelope srsName="urn:ogc:def:crs:EPSG::5514">
+        		<gml:lowerCorner>-641477.760000 -1043713.520000</gml:lowerCorner>
+        		<gml:upperCorner>-641465.280000 -1043699.320000</gml:upperCorner>
+        	</gml:Envelope>
+        </gml:boundedBy>
+        <ms:msGeometry>
+          <gml:Polygon gml:id="zps_pl_najezd.52003010000378229.1" srsName="urn:ogc:def:crs:EPSG::5514">
+            <gml:exterior>
+              <gml:LinearRing>
+                <gml:posList srsDimension="2">-641466.900000 -1043705.930000 -641465.280000 -1043701.090000 -641469.440000 -1043699.320000 -641469.960000 -1043700.460000 -641470.880000 -1043702.080000 -641472.090000 -1043703.570000 -641473.240000 -1043704.650000 -641474.370000 -1043705.270000 -641477.760000 -1043713.520000 -641474.910000 -1043712.910000 -641471.900000 -1043711.700000 -641469.300000 -1043709.660000 -641468.980000 -1043709.440000 -641467.890000 -1043707.920000 -641466.900000 -1043705.930000 </gml:posList>
+              </gml:LinearRing>
+            </gml:exterior>
+          </gml:Polygon>
+        </ms:msGeometry>
+        <ms:id>52003010000378229</ms:id>
+        <ms:id_html>id-52003010000378229</ms:id_html>
+        <ms:code_base>0100000017</ms:code_base>
+        <ms:idvf>0100000017</ms:idvf>
+        <ms:kodkk>3010309</ms:kodkk>
+        <ms:objektovytypnazev>Dopravní stavby</ms:objektovytypnazev>
+        <ms:popisobjektu></ms:popisobjektu>
+        <ms:urovenumisteniobjektuzps>0</ms:urovenumisteniobjektuzps>
+        <ms:tridapresnostipoloha>3</ms:tridapresnostipoloha>
+        <ms:tridapresnostivyska>3</ms:tridapresnostivyska>
+        <ms:datumvkladu gml:id="zps_pl_najezd.52003010000378229.datumvkladu"><gml:timePosition>2026-05-11T07:26:47Z</gml:timePosition></ms:datumvkladu>
+        <ms:datumzmeny gml:id="zps_pl_najezd.52003010000378229.datumzmeny"><gml:timePosition>2026-06-10T15:31:25Z</gml:timePosition></ms:datumzmeny>
+        <ms:idzmeny>PGAD-FC408F6B-16BE-4311-927F-7CD37147EC84</ms:idzmeny>
+        <ms:ics></ms:ics>
+      </ms:zps_pl_najezd>
+    </wfs:member>
+   </wfs:FeatureCollection>
+  </wfs:member>
+  <wfs:member>
+   <wfs:FeatureCollection timeStamp="2026-11-26T11:40:21" numberMatched="1" numberReturned="1">
+      <wfs:boundedBy>
+      	<gml:Envelope srsName="urn:ogc:def:crs:EPSG::5514">
+      		<gml:lowerCorner>-641466.930000 -1043708.970000</gml:lowerCorner>
+      		<gml:upperCorner>-641410.020000 -1043576.530000</gml:upperCorner>
+      	</gml:Envelope>
+      </wfs:boundedBy>
+    <wfs:member>
+      <ms:zps_pl_map_pl gml:id="zps_pl_map_pl.52003010000378236">
+        <gml:boundedBy>
+        	<gml:Envelope srsName="urn:ogc:def:crs:EPSG::5514">
+        		<gml:lowerCorner>-641466.930000 -1043708.970000</gml:lowerCorner>
+        		<gml:upperCorner>-641410.020000 -1043576.530000</gml:upperCorner>
+        	</gml:Envelope>
+        </gml:boundedBy>
+        <ms:msGeometry>
+          <gml:Polygon gml:id="zps_pl_map_pl.52003010000378236.1" srsName="urn:ogc:def:crs:EPSG::5514">
+            <gml:exterior>
+              <gml:LinearRing>
+                <gml:posList srsDimension="2">-641429.920000 -1043630.820000 -641430.180000 -1043630.640000 -641430.260000 -1043630.250000 -641429.750000 -1043629.000000 -641429.390000 -1043628.840000 -641429.100000 -1043628.860000 -641428.590000 -1043627.650000 -641428.820000 -1043627.450000 -641428.880000 -1043626.910000 -641425.710000 -1043619.420000 -641425.340000 -1043619.150000 -641424.970000 -1043619.000000 -641424.540000 -1043617.960000 -641424.760000 -1043617.760000 -641424.840000 -1043617.310000 -641420.760000 -1043607.550000 -641420.390000 -1043607.330000 -641420.040000 -1043607.220000 -641419.360000 -1043605.610000 -641419.580000 -1043605.390000 -641419.680000 -1043604.990000 -641418.930000 -1043603.160000 -641418.440000 -1043602.700000 -641418.050000 -1043602.470000 -641415.830000 -1043597.180000 -641416.020000 -1043596.900000 -641416.090000 -1043596.350000 -641413.890000 -1043591.170000 -641413.520000 -1043590.970000 -641413.230000 -1043590.960000 -641412.540000 -1043589.320000 -641412.740000 -1043589.090000 -641412.790000 -1043588.500000 -641410.730000 -1043583.590000 -641410.350000 -1043583.330000 -641410.020000 -1043583.300000 -641410.400000 -1043583.150000 -641417.530000 -1043580.150000 -641417.140000 -1043578.950000 -641422.790000 -1043576.530000 -641438.530000 -1043614.120000 -641434.420000 -1043615.810000 -641447.940000 -1043648.020000 -641455.510000 -1043666.090000 -641459.590000 -1043675.740000 -641461.140000 -1043679.520000 -641456.790000 -1043680.980000 -641456.450000 -1043681.070000 -641456.430000 -1043681.260000 -641456.190000 -1043681.360000 -641466.930000 -1043707.360000 -641463.170000 -1043708.970000 -641458.650000 -1043698.010000 -641458.300000 -1043697.840000 -641458.020000 -1043697.910000 -641457.310000 -1043696.200000 -641457.570000 -1043696.070000 -641457.710000 -1043695.710000 -641448.660000 -1043674.180000 -641448.330000 -1043674.080000 -641448.060000 -1043674.120000 -641447.300000 -1043672.300000 -641447.520000 -1043672.050000 -641447.560000 -1043671.530000 -641445.610000 -1043666.840000 -641444.340000 -1043663.870000 -641443.990000 -1043663.700000 -641443.700000 -1043663.710000 -641442.620000 -1043661.130000 -641442.850000 -1043660.930000 -641442.980000 -1043660.590000 -641439.560000 -1043652.450000 -641439.160000 -1043652.160000 -641438.810000 -1043652.040000 -641438.140000 -1043650.440000 -641438.290000 -1043650.080000 -641438.350000 -1043649.570000 -641431.100000 -1043632.260000 -641430.740000 -1043632.040000 -641430.420000 -1043632.000000 -641429.920000 -1043630.820000 </gml:posList>
+              </gml:LinearRing>
+            </gml:exterior>
+          </gml:Polygon>
+        </ms:msGeometry>
+        <ms:id>52003010000378236</ms:id>
+        <ms:id_html>id-52003010000378236</ms:id_html>
+        <ms:code_base>0100000055</ms:code_base>
+        <ms:idvf>0100000055</ms:idvf>
+        <ms:kodkk>3010306</ms:kodkk>
+        <ms:objektovytypnazev>Dopravní stavby</ms:objektovytypnazev>
+        <ms:popisobjektu></ms:popisobjektu>
+        <ms:urovenumisteniobjektuzps>0</ms:urovenumisteniobjektuzps>
+        <ms:tridapresnostipoloha>3</ms:tridapresnostipoloha>
+        <ms:tridapresnostivyska>3</ms:tridapresnostivyska>
+        <ms:datumvkladu gml:id="zps_pl_map_pl.52003010000378236.datumvkladu"><gml:timePosition>2026-05-11T07:26:47Z</gml:timePosition></ms:datumvkladu>
+        <ms:datumzmeny gml:id="zps_pl_map_pl.52003010000378236.datumzmeny"><gml:timePosition>2026-06-10T15:31:25Z</gml:timePosition></ms:datumzmeny>
+        <ms:idzmeny>PGAD-FC408F6B-16BE-4311-927F-7CD37147EC84</ms:idzmeny>
+        <ms:ics></ms:ics>
+      </ms:zps_pl_map_pl>
+    </wfs:member>
+   </wfs:FeatureCollection>
+  </wfs:member>
+  <wfs:member>
+   <wfs:FeatureCollection timeStamp="2026-11-26T11:40:21" numberMatched="2" numberReturned="2">
+      <wfs:boundedBy>
+      	<gml:Envelope srsName="urn:ogc:def:crs:EPSG::5514">
+      		<gml:lowerCorner>-641501.150000 -1043771.370000</gml:lowerCorner>
+      		<gml:upperCorner>-641290.380000 -1043583.300000</gml:upperCorner>
+      	</gml:Envelope>
+      </wfs:boundedBy>
+    <wfs:member>
+      <ms:zps_pl_bud gml:id="zps_pl_bud.52003010000378239">
+        <gml:boundedBy>
+        	<gml:Envelope srsName="urn:ogc:def:crs:EPSG::5514">
+        		<gml:lowerCorner>-641463.700000 -1043771.370000</gml:lowerCorner>
+        		<gml:upperCorner>-641290.380000 -1043583.300000</gml:upperCorner>
+        	</gml:Envelope>
+        </gml:boundedBy>
+        <ms:msGeometry>
+          <gml:MultiSurface gml:id="zps_pl_bud.52003010000378239.1" srsName="urn:ogc:def:crs:EPSG::5514">
+            <gml:surfaceMember>
+              <gml:Polygon gml:id="zps_pl_bud.52003010000378239.2">
+                <gml:exterior>
+                  <gml:LinearRing>
+                    <gml:posList srsDimension="2">-641429.920000 -1043630.820000 -641430.420000 -1043632.000000 -641438.140000 -1043650.440000 -641438.810000 -1043652.040000 -641442.620000 -1043661.130000 -641443.700000 -1043663.710000 -641447.300000 -1043672.300000 -641448.060000 -1043674.120000 -641457.310000 -1043696.200000 -641458.020000 -1043697.910000 -641462.730000 -1043709.160000 -641463.700000 -1043711.430000 -641421.500000 -1043729.240000 -641419.470000 -1043730.070000 -641398.240000 -1043739.010000 -641396.330000 -1043739.800000 -641320.640000 -1043771.370000 -641314.980000 -1043757.720000 -641314.230000 -1043755.970000 -641312.150000 -1043751.110000 -641303.440000 -1043730.140000 -641302.110000 -1043727.100000 -641298.560000 -1043718.680000 -641298.220000 -1043717.860000 -641290.480000 -1043699.540000 -641290.380000 -1043699.300000 -641341.740000 -1043677.710000 -641344.100000 -1043676.720000 -641367.770000 -1043666.760000 -641388.810000 -1043657.290000 -641381.350000 -1043639.040000 -641374.470000 -1043622.640000 -641377.030000 -1043621.550000 -641368.200000 -1043600.850000 -641393.720000 -1043590.150000 -641406.180000 -1043584.920000 -641410.020000 -1043583.300000 -641412.540000 -1043589.320000 -641413.230000 -1043590.960000 -641415.830000 -1043597.180000 -641418.050000 -1043602.470000 -641419.360000 -1043605.610000 -641420.040000 -1043607.220000 -641424.540000 -1043617.960000 -641424.970000 -1043619.000000 -641428.590000 -1043627.650000 -641429.100000 -1043628.860000 -641429.920000 -1043630.820000 </gml:posList>
+                  </gml:LinearRing>
+                </gml:exterior>
+                <gml:interior>
+                  <gml:LinearRing>
+                    <gml:posList srsDimension="2">-641322.160000 -1043711.500000 -641321.120000 -1043711.940000 -641327.040000 -1043726.370000 -641327.810000 -1043728.250000 -641333.070000 -1043741.060000 -641335.730000 -1043739.940000 -641342.090000 -1043737.260000 -641341.040000 -1043734.740000 -641337.040000 -1043725.180000 -641335.980000 -1043722.650000 -641329.930000 -1043708.190000 -641327.760000 -1043709.110000 -641322.160000 -1043711.500000 </gml:posList>
+                  </gml:LinearRing>
+                </gml:interior>
+                <gml:interior>
+                  <gml:LinearRing>
+                    <gml:posList srsDimension="2">-641401.370000 -1043686.890000 -641398.070000 -1043679.140000 -641376.770000 -1043688.320000 -641366.680000 -1043692.690000 -641369.850000 -1043700.330000 -641372.490000 -1043706.720000 -641372.950000 -1043707.820000 -641375.630000 -1043714.370000 -641378.760000 -1043721.870000 -641389.130000 -1043717.710000 -641410.790000 -1043709.070000 -641407.390000 -1043701.060000 -641404.570000 -1043694.440000 -641404.250000 -1043693.690000 -641401.370000 -1043686.890000 </gml:posList>
+                  </gml:LinearRing>
+                </gml:interior>
+              </gml:Polygon>
+            </gml:surfaceMember>
+          </gml:MultiSurface>
+        </ms:msGeometry>
+        <ms:id>52003010000378239</ms:id>
+        <ms:id_html>id-52003010000378239</ms:id_html>
+        <ms:code_base>0100000001</ms:code_base>
+        <ms:idvf>0100000001</ms:idvf>
+        <ms:kodkk>3010101</ms:kodkk>
+        <ms:objektovytypnazev>Budovy</ms:objektovytypnazev>
+        <ms:popisobjektu></ms:popisobjektu>
+        <ms:urovenumisteniobjektuzps>0</ms:urovenumisteniobjektuzps>
+        <ms:tridapresnostipoloha>3</ms:tridapresnostipoloha>
+        <ms:tridapresnostivyska>3</ms:tridapresnostivyska>
+        <ms:datumvkladu gml:id="zps_pl_bud.52003010000378239.datumvkladu"><gml:timePosition>2026-05-11T07:26:47Z</gml:timePosition></ms:datumvkladu>
+        <ms:datumzmeny gml:id="zps_pl_bud.52003010000378239.datumzmeny"><gml:timePosition>2026-06-10T15:31:25Z</gml:timePosition></ms:datumzmeny>
+        <ms:idzmeny>PGAD-FC408F6B-16BE-4311-927F-7CD37147EC84</ms:idzmeny>
+        <ms:ics></ms:ics>
+      </ms:zps_pl_bud>
+    </wfs:member>
+    <wfs:member>
+      <ms:zps_pl_bud gml:id="zps_pl_bud.52003010000378316">
+        <gml:boundedBy>
+        	<gml:Envelope srsName="urn:ogc:def:crs:EPSG::5514">
+        		<gml:lowerCorner>-641501.150000 -1043771.370000</gml:lowerCorner>
+        		<gml:upperCorner>-641290.380000 -1043638.510000</gml:upperCorner>
+        	</gml:Envelope>
+        </gml:boundedBy>
+        <ms:msGeometry>
+          <gml:MultiSurface gml:id="zps_pl_bud.52003010000378316.1" srsName="urn:ogc:def:crs:EPSG::5514">
+            <gml:surfaceMember>
+              <gml:Polygon gml:id="zps_pl_bud.52003010000378316.2">
+                <gml:exterior>
+                  <gml:LinearRing>
+                    <gml:posList srsDimension="2">-641311.080000 -1043690.600000 -641303.880000 -1043673.040000 -641306.450000 -1043671.960000 -641313.920000 -1043689.410000 -641433.140000 -1043638.510000 -641445.550000 -1043668.130000 -641475.650000 -1043655.550000 -641499.790000 -1043645.400000 -641501.150000 -1043648.940000 -641476.240000 -1043659.170000 -641447.050000 -1043671.700000 -641463.700000 -1043711.430000 -641320.640000 -1043771.370000 -641309.260000 -1043743.030000 -641308.960000 -1043742.360000 -641308.300000 -1043740.760000 -641306.140000 -1043735.590000 -641290.380000 -1043699.300000 -641311.080000 -1043690.600000 </gml:posList>
+                  </gml:LinearRing>
+                </gml:exterior>
+                <gml:interior>
+                  <gml:LinearRing>
+                    <gml:posList srsDimension="2">-641352.590000 -1043698.400000 -641343.760000 -1043702.380000 -641355.900000 -1043731.550000 -641365.010000 -1043727.860000 -641352.590000 -1043698.400000 </gml:posList>
+                  </gml:LinearRing>
+                </gml:interior>
+                <gml:interior>
+                  <gml:LinearRing>
+                    <gml:posList srsDimension="2">-641433.290000 -1043699.150000 -641421.040000 -1043669.810000 -641412.010000 -1043673.350000 -641424.490000 -1043702.930000 -641433.290000 -1043699.150000 </gml:posList>
+                  </gml:LinearRing>
+                </gml:interior>
+              </gml:Polygon>
+            </gml:surfaceMember>
+          </gml:MultiSurface>
+        </ms:msGeometry>
+        <ms:id>52003010000378316</ms:id>
+        <ms:id_html>id-52003010000378316</ms:id_html>
+        <ms:code_base>0100000001</ms:code_base>
+        <ms:idvf>0100000001</ms:idvf>
+        <ms:kodkk>3010101</ms:kodkk>
+        <ms:objektovytypnazev>Budovy</ms:objektovytypnazev>
+        <ms:popisobjektu></ms:popisobjektu>
+        <ms:urovenumisteniobjektuzps>1</ms:urovenumisteniobjektuzps>
+        <ms:tridapresnostipoloha>3</ms:tridapresnostipoloha>
+        <ms:tridapresnostivyska>3</ms:tridapresnostivyska>
+        <ms:datumvkladu gml:id="zps_pl_bud.52003010000378316.datumvkladu"><gml:timePosition>2026-05-11T07:26:47Z</gml:timePosition></ms:datumvkladu>
+        <ms:datumzmeny gml:id="zps_pl_bud.52003010000378316.datumzmeny"><gml:timePosition>2026-06-10T15:31:25Z</gml:timePosition></ms:datumzmeny>
+        <ms:idzmeny>PGAD-FC408F6B-16BE-4311-927F-7CD37147EC84</ms:idzmeny>
+        <ms:ics></ms:ics>
+      </ms:zps_pl_bud>
+    </wfs:member>
+   </wfs:FeatureCollection>
+  </wfs:member>
+</wfs:FeatureCollection>
+

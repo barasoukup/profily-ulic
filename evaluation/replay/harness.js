@@ -5,7 +5,11 @@
 // always the current ones. Then every cut of the sample is made as a click, and what the visitor would see is
 // written to data/out/<run>/<id>.json: the profile, the status line, the export SVG with and without the
 // illustrations, the credits, the city, the design's warnings and the editor of each part, a saved file reloaded.
-//   ?replay=record|play|fill &run=<name> &sample=<file without .json> &from=&to= &pause=<ms> &lang=cs|sk|en|de (+ any switch of the app)
+// ?replay=canvas: as play, and what the app's own canvases gave (getImageData) is recorded for node.mjs (canvas-log.js).
+//   ?replay=record|play|fill|canvas &run=<name> &sample=<file without .json> &from=&to= &pause=<ms> &lang=cs|sk|en|de (+ any switch of the app)
+import { keyOf as recordedKey, readIndex, answerFor as recordedAnswer, toError } from "./recording.js";
+import { opText, canvasKey, DRAWS, STYLES } from "./canvas-log.js";
+
 const P = new URLSearchParams(location.search);
 const MODE = P.get("replay"), RUN = P.get("run") || MODE, SAMPLE = P.get("sample") || "sample";
 const FROM = Number(P.get("from") || 0), TO = Number(P.get("to") || Infinity);
@@ -17,29 +21,10 @@ try { localStorage.clear(); sessionStorage.clear(); } catch {}
 // same recording played over other packs (the slim ones, evaluation/osm-r2/REPORT-SLIM.md).
 const OSM_LIVE = P.get("osmlive") === "1";
 const isData = (u) => (u.origin !== location.origin || u.pathname.startsWith("/api/") || u.pathname.startsWith("/data/")) && !(OSM_LIVE && u.origin === location.origin && u.pathname.startsWith("/data/osm-pack/"));
-const headerOf = (init, name) => {
-  const h = init?.headers;
-  if (!h) return null;
-  if (h instanceof Headers) return h.get(name);
-  const k = Object.keys(h).find((x) => x.toLowerCase() === name);
-  return k ? h[k] : null;
-};
-// A time in the request (the Dutch BGT's datetime=now) would never match the recording: the key without it.
-// The site's data folders renamed on 27. 11. 2026 (data/vyvoj → built-up-age, brno/parkovani → parking, plzen/zony.json →
-// zones.json): recordings and requests under the new names, so old recordings and old code still meet.
-const stamp = (k) => k.replace(/([?&]datetime=)[^&\s]*/g, "$1NOW")
-  .replace(/^(\w+ SELF\/data\/)(?:vyvoj\/)/, "$1built-up-age/").replace(/^(\w+ SELF\/data\/brno\/)parkovani\//, "$1parking/")
-  .replace(/^(\w+ SELF\/data\/plzen\/)zony\.json/, "$1zones.json");
-const keyOf = (u, init) => {
-  const range = headerOf(init, "range"), b = init?.body;
-  // The app's own server by its path only (the recording and a replay may be served on other ports).
-  const where = u.origin === location.origin ? `SELF${u.pathname}${u.search}` : u.href;
-  return stamp(`${(init?.method || "GET").toUpperCase()} ${where}${range ? ` R:${range}` : ""}${typeof b === "string" ? ` B:${b}` : ""}`);
-};
+const keyOf = (u, init) => recordedKey(u, init, location.origin);
 const hex = (buf) => [...new Uint8Array(buf)].map((x) => x.toString(16).padStart(2, "0")).join("");
 const KEEP = ["content-type", "content-range", "etag", "accept-ranges"];
 const errorOf = (e) => ({ name: e?.name || "TypeError", message: String(e?.message || e) });
-const toError = (x) => (x.name === "TypeError" ? new TypeError(x.message) : new DOMException(x.message, x.name));
 
 let cutId = null, pending = 0;
 const idle = [];
@@ -49,37 +34,45 @@ const misses = [], recorded = [], uploaded = new Set();
 let index = null;
 const served = new Map();
 async function loadIndex() {
-  index = new Map();
-  const text = await native("/__replay/index").then((r) => r.text());
-  for (const line of text.split("\n")) {
-    if (!line) continue;
-    const e = JSON.parse(line);
-    e.key = stamp(e.key.replace(/^(\w+ )http:\/\/localhost:\d+/, "$1SELF")); // recorded before the keys dropped the port
-    if (!index.has(e.key)) index.set(e.key, []);
-    index.get(e.key).push(e);
-  }
+  index = readIndex(await native("/__replay/index").then((r) => r.text()));
 }
-// The answer for this cut: those recorded during it, in order (the last one again when they run out); a request
-// the recording answered in another cut (a memory cache of the app spared it then): the first good answer.
-function answerFor(key) {
-  const all = index.get(key);
-  if (!all) return null;
-  let mine = all.filter((e) => e.cut === cutId);
-  // What ?replay=fill asked live in this cut (fill: 1) replaces the old answers of the same request that were errors:
-  // the app was given the live one at once (an old 503 first would have it retry or give up).
-  if (mine.some((e) => e.fill)) mine = mine.filter((e) => e.fill);
-  if (mine.length) {
-    const k = `${cutId}|${key}`, n = served.get(k) || 0;
-    served.set(k, n + 1);
-    return mine[Math.min(n, mine.length - 1)];
-  }
-  // (of the same recording first: its sample's name before the colon; the common folder holds several, e.g. with the
-  // packs' index of different times)
-  const good = (e) => !e.error && e.status < 500, group = cutId.split(":")[0] + ":";
-  return all.find((e) => good(e) && e.cut.startsWith(group)) || all.find(good) || all[0];
-}
+const answerFor = (key) => recordedAnswer(index, served, cutId, key);
 const bodies = new Map();
 const bodyOf = (sha) => bodies.get(sha) || (bodies.set(sha, native(`/__replay/body/${sha}`).then((r) => r.arrayBuffer())), bodies.get(sha));
+
+// ?replay=canvas: the app's OffscreenCanvas drawing logged, each readback recorded under the key of what was drawn on
+// it (canvas-log.js): the pixels gzipped as a body, an entry of the index like an answer. Only observed, never changed.
+function recordCanvases() {
+  const ids = new WeakMap(), logs = new WeakMap(), ownBitmap = globalThis.createImageBitmap.bind(globalThis);
+  globalThis.createImageBitmap = async (src, ...rest) => {
+    const bmp = await ownBitmap(src, ...rest);
+    if (src instanceof Blob) ids.set(bmp, hex(await crypto.subtle.digest("SHA-1", await src.arrayBuffer())));
+    return bmp;
+  };
+  const proto = OffscreenCanvasRenderingContext2D.prototype, log = (ctx) => logs.get(ctx) || (logs.set(ctx, []), logs.get(ctx));
+  for (const name of DRAWS) {
+    const own = proto[name];
+    proto[name] = function (...a) { log(this).push(opText(name, a.map((x) => (x && typeof x === "object" ? `img:${ids.get(x) || "?"}` : x)))); return own.apply(this, a); };
+  }
+  for (const name of STYLES) {
+    const d = Object.getOwnPropertyDescriptor(proto, name);
+    Object.defineProperty(proto, name, { configurable: true, get: d.get, set(v) { log(this).push(`${name}=${v}`); d.set.call(this, v); } });
+  }
+  const read = proto.getImageData;
+  proto.getImageData = function (x, y, w, h, ...rest) {
+    const img = read.call(this, x, y, w, h, ...rest), key = canvasKey(this.canvas.width, this.canvas.height, log(this), [x, y, w, h]), cut = cutId;
+    if (!cut) return img;
+    pending++;
+    (async () => {
+      const buf = await new Response(new Blob([img.data]).stream().pipeThrough(new CompressionStream("gzip"))).arrayBuffer();
+      const sha = hex(await crypto.subtle.digest("SHA-1", buf));
+      recorded.push({ key, cut, status: 200, sha, gz: 1 });
+      if (!uploaded.has(sha)) { uploaded.add(sha); await native(`/__replay/body/${sha}`, { method: "POST", body: buf }); }
+    })().finally(done);
+    return img;
+  };
+}
+if (MODE === "canvas") recordCanvases();
 
 window.fetch = async (input, init = {}) => {
   const u = new URL(typeof input === "string" || input instanceof URL ? String(input) : input.url, location.href);
@@ -98,7 +91,7 @@ window.fetch = async (input, init = {}) => {
     // ?replay=fill (evaluation/holdout): the recorded answer where there is one (no source asked twice), else live and
     // recorded, as record.
     const filled = MODE === "fill" ? answerFor(key) : null;
-    if (MODE === "play" || (filled && !filled.error && filled.status < 500)) {
+    if (MODE === "play" || MODE === "canvas" || (filled && !filled.error && filled.status < 500)) {
       const e = filled || answerFor(key);
       if (!e) { misses.push(key); throw new TypeError("replay: not recorded"); }
       if (e.error) throw toError(e.error);
@@ -198,7 +191,7 @@ async function main() {
   while (!(window.cutAt && H.state && window.profilyReady)) await sleep(100);
   await settle();
   const mods = { profile: await import("/profile.js"), city: await import("/city.js") };
-  if (MODE === "play" || MODE === "fill") await loadIndex();
+  if (MODE === "play" || MODE === "fill" || MODE === "canvas") await loadIndex();
   const sample = (await native(`/__replay/sample?name=${SAMPLE}`).then((r) => r.json())).filter((p) => p.id >= FROM && p.id <= TO);
   const t0 = Date.now();
   for (const [n, p] of sample.entries()) {
@@ -216,11 +209,11 @@ async function main() {
     out.misses = [...misses];
     out.notes = [...notes];
     await native(`/__replay/out?run=${RUN}&id=${p.id}`, { method: "POST", body: JSON.stringify(out) });
-    if ((MODE === "record" || MODE === "fill") && recorded.length) {
+    if ((MODE === "record" || MODE === "fill" || MODE === "canvas") && recorded.length) {
       await native("/__replay/index", { method: "POST", body: JSON.stringify(recorded.splice(0)) });
     }
     // &pause=<ms> (recording only): a pause after each cut (geodienste.ch: 10 WFS requests a minute).
-    if (MODE !== "play" && P.get("pause")) await sleep(Number(P.get("pause")));
+    if (MODE !== "play" && MODE !== "canvas" && P.get("pause")) await sleep(Number(P.get("pause")));
   }
   H.progress = `done ${sample.length} in ${Math.round((Date.now() - t0) / 1000)} s`;
   await native(`/__replay/out?run=${RUN}&id=_done`, { method: "POST", body: JSON.stringify({ progress: H.progress, mode: MODE, sample: SAMPLE, lang: P.get("lang"), search: location.search }) });
