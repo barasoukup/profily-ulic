@@ -71,7 +71,12 @@ výsledek ve zprávě commitu. Povinné jádro: 1–8, 9 a 11–13a; ostatní po
     webu, bez bundleru), aby návštěvník nedostal směs starých a nových modulů; aspoň hláška „načtěte stránku znovu“ při
     chybě importu v `errors.js`.
 11. **Rozdělit `profile.js`** (L): `draw/buildings/` s tabulkou vzhled → funkce, `svg`, `items`, `signs`, `water`, `editor`.
-12. **Rozdělit `derive.js`** (L): jen přesuny, `deriveProfile` na pojmenované fáze, fáze na commit.
+12. **Rozdělit `derive.js`** (L; hotovo 28. 11. 2026, větev `split-derive`): jen přesuny; `derive.js` je vstup s týmiž exporty, práce v
+    `app/public/derive/<téma>.js` (geometry, tags, placement, crossings, polygons, classify, parking, part-types, tram, lanes, walkways,
+    items, buildings, output, adjust, estimate); `deriveProfile` (16 řádků) volá fáze nad jedním objektem `ctx`: `profile-prepare`
+    (`prepareCut`, `classifyRuns`), `profile-reach` (`findAxisRun`, `reachLimits`, `walkToEdges`, `keepRuns`), `profile-parts`
+    a `profile-roadway` (`buildParts`), `profile-finish` (`addFurniture`, `describeEdges`, `markSurfaces`, `profileOf`). Přehrávka
+    v Node nad `sample`, `sample-cz`, `sample-states` po každém commitu 0 rozdílů; stropy: zbývá jen `splitRoadway` (228 řádků).
 13. **`app.js`**: 13a rozdělit podle oddílů, jen přesuny (L; hotovo 28. 11. 2026, větev `split-app`: `app.js` je vstupní bod, části v `app/public/app/`, jádro řezu v `app/cut.js` s místy `// DOM (13b)`, přehrávka `sample` a `sample-cz` před a po beze změny); 13b jádro `cutAt` bez DOM, přehrávka v Node (L, samostatně,
     s přehráním všech států) – jediný skutečný refaktor plánu, zlevní každé další měření. 13b hotovo 28. 11. 2026 (větev
     `cut-core`): `app/cut-core.js computeCut` po fázích, `cutAt` 16 řádků; `evaluation/replay/node.mjs` přehraje všech 673
