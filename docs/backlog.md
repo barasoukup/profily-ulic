@@ -398,3 +398,7 @@ Co rozhodne Bára, je označeno **(Bára)**.
 - Při dělení `derive.js` se dva běhy nezměněného kódu v prohlížeči lišily v poli `compare` (pohled Porovnat) u 90 z 369
   řezů; ostatní pole stejná, Node přehrávka (bez `compare`) 0 rozdílů. Dřív bylo `compare` stálé (krok 1 plánu): najít,
   od kterého kroku (13a, 13b?) a proč (časování, pořadí načtení) a vrátit determinismus.
+
+## Testy běží dvakrát déle (28. 11. 2026)
+- `tests/ortho-registry.test.js` (registr ortofot, 72 míst) trvá asi 13 s, celé testy 15,7 s místo asi 7 s (krok 9 chtěl čas
+  nezhoršit). Zrychlit: v běžném běhu menší výběr míst, plný průchod jen na požádání (`FULL=1`).
