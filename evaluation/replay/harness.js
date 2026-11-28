@@ -26,6 +26,23 @@ const hex = (buf) => [...new Uint8Array(buf)].map((x) => x.toString(16).padStart
 const KEEP = ["content-type", "content-range", "etag", "accept-ranges"];
 const errorOf = (e) => ({ name: e?.name || "TypeError", message: String(e?.message || e) });
 
+// Animation frames in the replay's own order: the page lays out the labels in a frame after a redraw (fit.js
+// fitPhone → fitLabels), and a browser in the background gives frames when it likes, so a capture right after a
+// redraw caught the fitted view only sometimes (Porovnat differed in 90 of 369 cuts between two runs of the same
+// code, 28. 11. 2026). The frames wait here and settle() runs them, always before what is written down.
+const frames = new Map();
+let frameId = 0;
+window.requestAnimationFrame = (cb) => { frames.set(++frameId, cb); return frameId; };
+window.cancelAnimationFrame = (id) => { frames.delete(id); };
+function runFrames() {
+  for (let round = 0; round < 20 && frames.size; round++) {
+    const batch = [...frames.values()];
+    frames.clear();
+    const t = performance.now();
+    for (const cb of batch) cb(t);
+  }
+}
+
 let cutId = null, pending = 0;
 const idle = [];
 const done = () => { if (--pending === 0) idle.splice(0).forEach((r) => r()); };
@@ -130,7 +147,12 @@ channel.port1.onmessage = () => turns.shift()?.();
 const turn = () => new Promise((r) => { turns.push(r); channel.port2.postMessage(0); });
 // Settled: no request under way for a while (the signs and sprites load after a cut, then redraw).
 async function settle() {
-  for (let quiet = 0; quiet < 30;) { await turn(); quiet = pending ? 0 : quiet + 1; if (pending) await new Promise((r) => idle.push(r)); }
+  for (let quiet = 0; quiet < 30;) {
+    await turn();
+    if (frames.size) { runFrames(); quiet = 0; continue; }
+    quiet = pending ? 0 : quiet + 1;
+    if (pending) await new Promise((r) => idle.push(r));
+  }
 }
 const $ = (s) => document.querySelector(s);
 const text = (s) => $(s)?.textContent ?? null;

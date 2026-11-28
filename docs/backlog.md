@@ -392,6 +392,9 @@ Co rozhodne Bára, je označeno **(Bára)**.
   Vlastní kresba (dlažba, chodci, kola i auta), značka zóny, při exportu do Streetmixu pruh. A/B na malém vzorku.
 
 ## Přehrávka v prohlížeči: pole `compare` není stálé (28. 11. 2026)
+- ~~viz níže~~ Opraveno 28. 11. 2026: `fit.js fitPhone` dopasuje popisky v dalším snímku (`requestAnimationFrame`), přehrávka na
+  snímek nečekala a prohlížeč na pozadí ho dával nahodile. `harness.js` teď snímky drží a pouští v `settle()`: dva běhy 150
+  řezů 0 rozdílů (dřív 43 v `compare` na týchž řezech); proti starým během se `compare` liší jednou (vždy dopasovaný pohled).
 - Při dělení `derive.js` se dva běhy nezměněného kódu v prohlížeči lišily v poli `compare` (pohled Porovnat) u 90 z 369
   řezů; ostatní pole stejná, Node přehrávka (bez `compare`) 0 rozdílů. Dřív bylo `compare` stálé (krok 1 plánu): najít,
   od kterého kroku (13a, 13b?) a proč (časování, pořadí načtení) a vrátit determinismus.
