@@ -42,7 +42,7 @@ z PNOA nečtou (snímek Airbus, licence nevyjasněná).
   Baskicko a Navarra mají vlastní katastr: tam se Catastra neptá, ale foralního katastru provincie (`towns/spain-foral.js`:
   Navarra, Álava, Bizkaia, Gipuzkoa, INSPIRE WFS, podlaží, rok, užití, byty; `?foral=0` vypne, `?foral=nc,gi` jen
   vybrané; Álava a Navarra mají proti OSM o 1–2 podlaží víc, fotky dávají za pravdu katastru: OSM ve Španělsku
-  nepočítá přízemí a podkroví). Provincie podle hranic NUTS 3 z GISCO v `regions-es.json` (`node tools/build_regions_es.mjs`; Treviño patří
+  nepočítá přízemí a podkroví). Provincie podle hranic NUTS 3 z GISCO v `regions-es.json` (`node tools/build_boundaries.mjs regions es`; Treviño patří
   Burgosu; u vnější hranice do 500 m se ptá foralního katastru a bez domu pak Catastra). Limit 25 s, paměť na bod,
   jeden dotaz na fasádu. A/B v `evaluation/spain/foral-ab/REPORT.md`.
 - **Normy:** závazná přístupnost (Orden TMA/851/2021: chodník 1,8 m), ostatní podle doporučení ministerstva dopravy

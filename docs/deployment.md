@@ -20,6 +20,14 @@ jen to, co potřebuje síť, cache Actions nebo tajné hodnoty. Totéž jde sest
 (jen `site-zps.json` je povinný, `--from <složka>` říká, kde jsou vstupy; hlídá `tests/build-site.test.js`). Dlaždice se do repozitáře neukládají. Jsou to data odvozená z OpenStreetMap, takže
 na webu leží pod ODbL 1.0 (viz `data/README.txt` na webu a patičku aplikace).
 
+### Hranice (`app/public/*.json`)
+
+Hranice států, měst, krajů a německých zemí (`states.json`, `states-america.json`, `towns*.json`, `regions-*.json`, `laender.json`) stavějí
+z otevřených služeb při tvorbě, ne při kliknutí, a leží v repozitáři. Jeden nástroj: `node tools/build_boundaries.mjs states [stát …]`,
+`towns [cz sk at us ca]`, `regions [cz be es]`, `laender`, `all`. Každá část si nechala zaokrouhlení a zjednodušení, které měla
+(výstup je bajt po bajtu stejný, ověřeno nad atrapou služeb); společné je jen opakování dotazu, kruhy GISCO NUTS a obrys sousedních ploch.
+`towns us` čte `states-america.json`, proto nejdřív `states usa`.
+
 ### Kontrola zdrojů dat
 
 Každé pondělí ráno (po nasazení) a ručně běží `.github/workflows/zdroje.yml`: `node tools/check_sources.mjs` udělá

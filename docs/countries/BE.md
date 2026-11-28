@@ -14,7 +14,7 @@ Stav nasazení: větev `belgium`, 20. 11. 2026, nenasazené. Přehled všech st�
 - Stání: Belgie čl. 25.1, 7° AR 1975 3 m volného průjezdu celkem (AR 1975 platí do 31. 5. 2027, pak nové kódy);
   Lucembursko obecnou šířku nemá (3 m jen u plné čáry): zákonný odhad stání zapnutý (Bára 21. 11. 2026: bez obecné šířky se smí stát skoro všude, aplikace nechává průjezdné pruhy aspoň 3 m).
   Lucemburské značky jsou úřední díla (Bára 21. 11. 2026; Commons u části uvádí CC BY-SA od toho, kdo je nahrál).
-- Regiony Belgie podle NUTS 1 (`regions-be.json`, `tools/build_regions_be.mjs`): ortofoto i čáry jen regionu řezu,
+- Regiony Belgie podle NUTS 1 (`regions-be.json`, `tools/build_boundaries.mjs`): ortofoto i čáry jen regionu řezu,
   Brusel bez dotazu na čáry. Měření 20. 11.: BE složení 52 %, šířka do 2 m 26 % (nejčastěji chybí stání v úzkých
   ulicích, jeden široký pruh), LU 53 % a 33 % (12 řezů). Recenze `evaluation/belgium/REVIEW.md`.
 - viz seznam v `docs/deployment.md`

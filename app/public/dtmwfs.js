@@ -9,7 +9,7 @@ import { t } from "./i18n.js";
 import { toWgs, fromWgs } from "./towns/sjtsk.js";
 import { typeCode, jvfName } from "./dmvs.js";
 
-// The regions with the WFS (RÚIAN codes of VÚSC in tools/build_regions_cz.mjs) and the names for the credit.
+// The regions with the WFS (RÚIAN codes of VÚSC in tools/build_boundaries.mjs) and the names for the credit.
 export const REGIONS = {
   jck: ["https://jck.krajdtm.cz", "Jihočeský kraj"],
   pak: ["https://pak.krajdtm.cz", "Pardubický kraj"],
@@ -53,7 +53,7 @@ const LINE_CODES = {
 const LINE_TYPES = Object.keys(LINE_CODES).map((t) => `ms:${t}`).join(",");
 
 // ---------- The region of a cut ----------
-// regions-cz.json: the regions' boundaries (tools/build_regions_cz.mjs), loaded on the first cut.
+// regions-cz.json: the regions' boundaries (tools/build_boundaries.mjs), loaded on the first cut.
 let kraje = null;
 async function loadKraje() {
   if (!kraje) {

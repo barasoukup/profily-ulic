@@ -457,11 +457,11 @@ export function setCity(id) {
 }
 setCity(globalThis.PROFILY_CITY || "praha");
 
-// The city a point lies in, by the boundaries of the cities (towns.json, tools/build_towns.mjs); elsewhere its
+// The city a point lies in, by the boundaries of the cities (towns.json, tools/build_boundaries.mjs); elsewhere its
 // state (below). Before the file has loaded (or without it) the current city.
 let bounds = null;
 export const loadBounds = (json) => { bounds = Object.entries(json).map(([id, rings]) => boxed(id, rings)); };
-// The states (states.json, tools/build_states.mjs): the Czech Republic (RÚIAN) and Slovakia; a point in neither is
+// The states (states.json, tools/build_boundaries.mjs): the Czech Republic (RÚIAN) and Slovakia; a point in neither is
 // "cizina". Without the file (or before it has loaded) a point outside the cities is "cesko", as before.
 let states = null;
 // The land borders of a state of COAST whose neighbours are abroad (states.json land_<id>: lines, not rings; Bára
@@ -536,7 +536,7 @@ function americanCoast(lat, lon, dist) {
   }
   return best;
 }
-// Where the app makes no profile (tools/build_states.mjs closed_*; Bára 23. 11. 2026): the message to show, or null.
+// Where the app makes no profile (tools/build_boundaries.mjs closed_*; Bára 23. 11. 2026): the message to show, or null.
 export function closedAt(lat, lon) {
   if (!states || (bounds && within(bounds, lat, lon))) return null;
   return CLOSED_TEXT[stateEntry(lat, lon)]?.() ?? null;

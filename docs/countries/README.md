@@ -30,7 +30,7 @@ Přehled souborů po státech: jeden soubor na stát (`<ISO>.md`), v něm nahoř
 ### Jedna stránka pro celou ČR (Bára 10. 11. 2026)
 
 - Žádný přepínač měst: město se pozná podle místa řezu (`city.js` `cityAt`, hranice obcí z RÚIAN v
-  `app/public/towns.json`, `node tools/build_towns.mjs`), mimo naše města platí „cesko“ (technická mapa ČÚZK,
+  `app/public/towns.json`, `node tools/build_boundaries.mjs towns cz`), mimo naše města platí „cesko“ (technická mapa ČÚZK,
   RÚIAN, OSM, pražský mobiliář a vozidla Streetmixu). Zdroje dat, ilustrace a texty se mění s městem řezu.
 - Podkladové mapy: Mapa, Ortofoto, Technická mapa, OpenStreetMap; v každé jsou vrstvy měst omezené na jejich území.
 - Staré adresy `/brno/`, `/jihlava/`… přesměrují na `/?mesto=…` i s řezem v odkazu. Data měst v `data/brno/`, `data/plzen/`.
@@ -51,7 +51,7 @@ Přehled souborů po státech: jeden soubor na stát (`<ISO>.md`), v něm nahoř
 - Krok 4b (Bára 16. 11. 2026): města všude. Slovenská (Bratislava, Košice, Žilina, B. Bystrica, Prešov, Nitra, Trnava,
   Trenčín, Martin, Poprad, Piešťany, Hlohovec, Zvolen) a rakouská (Vídeň, Graz, Linz, Salcburk, Innsbruck) jsou města jako
   Brno, podle hranic obcí (`towns-sk.json` ze ZBGIS, `towns-at.json` z obcí LAU Eurostatu GISCO 2024 = Statistik Austria,
-  `tools/build_towns_at.mjs`; soubor Statistik Austria na open data už není). Texty, zdroje a normy mají od zbytku státu,
+  `tools/build_boundaries.mjs`; soubor Statistik Austria na open data už není). Texty, zdroje a normy mají od zbytku státu,
   ilustrace svoje (bez vlastní sady státu). Log má vedle `city` i `country` (ISO); D1 potřebuje
   `ALTER TABLE events ADD COLUMN country TEXT` a nový Worker (nasadit musí Bára, `logging/README.md`). Opraveno zároveň:
   Worker zahazoval polohu řezů východně od 20° v. d. (Košice) a západně od 11° (Bregenz).
@@ -69,7 +69,7 @@ Přehled souborů po státech: jeden soubor na stát (`<ISO>.md`), v něm nahoř
 ### Jedna stránka pro celou ČR
 
 Přepínač měst není. Město se bere podle místa řezu (`city.js`: `cityAt` podle hranic obcí z RÚIAN v `towns.json`,
-`node tools/build_towns.mjs`; `setCity`). Moduly čtou `city` až při použití, takže zdroje dat, ilustrace (načtou se
+`node tools/build_boundaries.mjs towns cz`; `setCity`). Moduly čtou `city` až při použití, takže zdroje dat, ilustrace (načtou se
 při prvním řezu ve městě), texty i uvedení zdrojů v exportu sedí na místo řezu. Mimo města s vlastními zdroji platí
 „cesko“ (`towns/czechia.js`: celostátní technická mapa ČÚZK, domy z RÚIAN, dlaždice OSM, pražský mobiliář a vozidla
 Streetmixu). Bývalé stránky `/<město>/` přesměrují na `/?mesto=<město>` i s řezem v odkazu
@@ -92,7 +92,7 @@ Struktura je všude stejná: stát → město → zdroje (`docs/architecture-cou
 - **Město** je záznam v `city.js` (a modul `towns/<město>.js`, má-li vlastní zdroje); co nemá svého (ortofoto, značky,
   normy), dědí od státu. Zbytek státu je město `cesko`, `slovensko`, `austria`, mimo státy `cizina` (`towns/abroad.js`).
   Slovenská a rakouská města a Washington (`city.js STATE_TOWNS`: Bratislava, Košice … Vídeň, Graz …) jsou města podle hranic
-  (`towns-sk.json`, `towns-at.json`, `towns-us.json`, `tools/build_towns_sk.mjs`, `build_towns_at.mjs`, `build_towns_us.mjs`); texty, zdroje a normy mají od zbytku
+  (`towns-sk.json`, `towns-at.json`, `towns-us.json`, `tools/build_boundaries.mjs towns`); texty, zdroje a normy mají od zbytku
   státu, ilustrace své, má-li je stát nakreslené (`countries/<ISO>.js art`), jinak státu.
 - **Zdroj** s vlastním územím (pasport, čáry mapy města, mapa povrchů Vídně, značky Salcburku) má `area` (box, případně
   hranice obce, `places.js inArea`) a jeho modul ho uvádí v `AREAS`. `towns/index.js placeAt(lat, lon)` vrací stát,
@@ -123,7 +123,7 @@ mapy (`maps`) a ortofoto pro kontrolu řezů (`ortho`). Společné funkce jsou v
 v `tools/cities.mjs`. Město patří do státu a dědí od něj, co nemá svého (`countries/<ISO>.js`; vlastní ortofoto pruhů
 přepíše `laneOrtho`); jen data města popisují jeho vlastnosti (`roadOnPath`, `slowServer`, `ruianYear` u Prahy a Brna). Nové město: záznam v
 `city.js` a `tools/cities.mjs`, modul v `towns/` (a v `towns/index.js`), kredit jeho zdrojů pod klíčem v `credits.js`,
-kód obce v `tools/build_towns.mjs` (pak `node tools/build_towns.mjs`), ilustrace v `app/public/<město>/`,
+kód obce v `tools/build_boundaries.mjs` (pak `node tools/build_boundaries.mjs towns cz`), ilustrace v `app/public/<město>/`,
 kontrola `CITY=<město> node evaluation/sample.mjs|run_brno.mjs|render_brno.mjs` a A/B test (níže).
 
 Ilustrace měst (`app/public/<město>/`, podle fotek z Wikimedia Commons): tramvaje, trolejbusy a autobusy místních

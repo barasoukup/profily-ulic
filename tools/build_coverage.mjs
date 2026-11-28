@@ -107,7 +107,7 @@ export async function buildCoverage({ nuts = readJson(NUTS_FILE), lau = readJson
   const { countryOfCity, cityById } = await import(new URL("city.js", PUB));
   const STATY = { ...json("states.json"), ...json("states-america.json") };
   const BOUNDS = Object.assign({}, ...["towns.json", "towns-sk.json", "towns-at.json", "towns-us.json", "towns-ca.json", "passports.json", "regions-be.json", "regions-es.json"].map(json));
-  // (Not a state's extra rings either, "<id>+<what>": tools/build_states.mjs.)
+  // (Not a state's extra rings either, "<id>+<what>": tools/build_boundaries.mjs.)
   const states = Object.keys(STATY).filter((id) => !/^(land|foreign|closed)_|\+/.test(id));
   const problems = [];
 

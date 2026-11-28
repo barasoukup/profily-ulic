@@ -9,7 +9,6 @@ import { buildSite } from "../tools/build_site.mjs";
 
 const tmp = fs.mkdtempSync(path.join(os.tmpdir(), "profily-build-site-"));
 after(() => fs.rmSync(tmp, { recursive: true, force: true }));
-const read = (...p) => fs.readFileSync(path.join(tmp, ...p), "utf8");
 
 const from = path.join(tmp, "in");
 fs.mkdirSync(path.join(from, "site-brno/data/parking"), { recursive: true });

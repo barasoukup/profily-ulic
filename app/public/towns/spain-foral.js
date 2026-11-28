@@ -10,7 +10,7 @@
 // INSPIRE code in xlink:href, xlink:title (Bizkaia, with trailing spaces) or as text (Álava).
 
 const URI4258 = "http://www.opengis.net/def/crs/EPSG/0/4258";
-// The province codes as in regions-es.json (tools/build_regions_es.mjs, NUTS 3).
+// The province codes as in regions-es.json (tools/build_boundaries.mjs, NUTS 3).
 export const FORAL = {
   nc: { url: "https://inspire.navarra.es/services/BU/wfs", type: "BU:Building", srs: URI4258, bboxCrs: URI4258, lonLat: false },
   gi: { url: "https://b5m.gipuzkoa.eus/inspire/wfs/gipuzkoa_wfs_bu", type: "bu-ext2d:Building", srs: URI4258, bboxCrs: URI4258, lonLat: false },

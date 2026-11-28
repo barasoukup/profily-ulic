@@ -93,7 +93,7 @@ výsledek ve zprávě commitu. Povinné jádro: 1–8, 9 a 11–13a; ostatní po
     jednorázových pokusů do `evaluation/archive/` jedním commitem spolu s přejmenováním českých složek z backlogu (odkazy
     se lámou jen jednou); historii gitu nepřepisovat, nové obrázky z měření do gitu nepřidávat.
 20. **`tools/` a workflow** (M): jeden `build_boundaries.mjs`, sloučit `city_site`, kroky měst z `pages.yml` do
-    `tools/build_site.mjs`; ověření `diff -r` sestaveného webu.
+    `tools/build_site.mjs`; ověření `diff -r` sestaveného webu. Hotovo 28. 11. 2026 (větev `tools-site`): `build_site.mjs` skládá celý web (`pages.yml` ho volá, sítě a tajné hodnoty zůstaly v něm), `city_site.mjs` i `build_city_site.mjs` v jednom, `build_boundaries.mjs states|towns|regions|laender|all` místo deseti nástrojů; web starým a novým postupem `diff -r` shodný, hranice bajt po bajtu shodné nad atrapou služeb.
 
 Odhad celkem 28–32 dní (Fable: původních 21–25 bylo asi o třetinu optimistických).
 

@@ -8,11 +8,11 @@ Stav nasazení: 17. 11. 2026, nenasazené. Přehled všech států: [docs/countr
 
 - Stát `germany` (`country` DE): `countries/DE.js` (normy, značky, zákon o stání, ortofota zemí, domy, hledání),
   `towns/germany.js` (mapy povrchů měst), `signs-DE/`, `evaluation/germany/` (ZDROJE, NORMY, RECENZE, ab/). Hranice GISCO 1 : 1 M za Českem,
-  Slovenskem a Rakouskem (`node tools/build_states.mjs germany` přestaví jen Německo).
+  Slovenskem a Rakouskem (`node tools/build_boundaries.mjs states germany` přestaví jen Německo).
 - OSM: Německo po 16 zemích (výřezy Geofabriku, balíky `de_by`, `de_nw` … jen na R2, každý pod 512 MB), každá země svůj job
   v `osm-tiles.yml` (`tools/countries.mjs` parts); index má obdélník dlaždic každého balíku.
 - Ortofoto všech 16 spolkových zemí (WMS v EPSG:3857 s CORS, `lanes-ortho.js DE_ORTHO`), země řezu podle `laender.json`
-  (GISCO NUTS 1, `tools/build_laender.mjs`); u hranice se zkusí sousední země, prázdný snímek se nepoužije. Hamburg
+  (GISCO NUTS 1, `tools/build_boundaries.mjs`); u hranice se zkusí sousední země, prázdný snímek se nepoužije. Hamburg
   výslovně rok 2024 (2022 je satelit pod uzavřenou licencí). Tabulka a licence `evaluation/germany/SOURCES.md`.
 - Bára: zatím bez vlastních ilustrací („obrázky jsou nejdražší“): rakouské označníky a přístřešky (kulaté H = Z 224),
   český mobiliář, neutrální tramvaj a autobus (`generic/`).

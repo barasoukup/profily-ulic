@@ -106,7 +106,7 @@ Kresby jsou zdaleka nejdražší. Proto:
 
 ## 1. Stát a jeho modul
 
-1. **Hranice:** `tools/build_states.mjs` → `app/public/states.json`.
+1. **Hranice:** `node tools/build_boundaries.mjs states <id>` (jen tento stát; bez id všechny) → `app/public/states.json`.
    - Národní služba, zjednodušeno asi na 30 m. Když je vypnutá (BEV WFS), Eurostat GISCO 1 : 1 M (`CNTR_RG_01M_2024_4326`)
      s kreditem „© EuroGeographics“.
    - **Pořadí států rozhoduje:** přesné hranice (CZ, SK) první, hrubší až za nimi, aby bod u hranice dostal ten přesný.
@@ -141,8 +141,8 @@ Kresby jsou zdaleka nejdražší. Proto:
    inArea`: box, případně hranice obce) a patří do `AREAS` modulu (`placeAt` ho pak vypíše, vypínače zdrojů nezná). Kredit
    zdroje = klíč v `state.cut.sources` (`app/cut.js cutAt`), řádek v `credits.js SOURCE_CREDITS` a případně jméno pro krátký
    řádek patičky (`app/view.js cutData`); `validate.js` pak klíč u uloženého řezu nechá.
-   **Města státu** (krok 4b): id v `city.js STATE_TOWNS`, hranice obce v `mesta-<kód>.json` (`tools/build_towns_sk.mjs`,
-   `build_towns_at.mjs`; `app/boundaries.js` je načte do `loadTowns`). Město má texty, zdroje a normy zbytku státu, ilustrace svoje.
+   **Města státu** (krok 4b): id v `city.js STATE_TOWNS`, hranice obce v `mesta-<kód>.json` (`tools/build_boundaries.mjs towns`,
+   `app/boundaries.js` je načte do `loadTowns`). Město má texty, zdroje a normy zbytku státu, ilustrace svoje.
 5. **Seznam států pro nasazení:** řádek v `tools/countries.mjs` (klíč balíku OSM, výřez Geofabrik, zda balík smí na Pages).
    `pages.yml` z něj bere smyčky i klíče cache, nic dalšího se v něm neupravuje. Test `tests/csp.test.js` hlídá, že
    každý stát seznamu má modul.
@@ -175,7 +175,7 @@ Kresby jsou zdaleka nejdražší. Proto:
   - Na Pages je limit 1 GB, velký stát jen na R2 (`pages: false`, Rakousko). Když R2 neodpoví, stát nemá zálohu: říct Báře.
 - **Ortofoto:**
   - **Ortofota po oblastech** (Německo: 16 zemí, každá svou WMS): `laneOrtho: "de"` a v `lanes-ortho.js` zdroj podle
-    oblasti řezu (`DE_ORTHO`, hranice `laender.json` z GISCO NUTS 1, `tools/build_laender.mjs`); u hranice i sousední
+    oblasti řezu (`DE_ORTHO`, hranice `laender.json` z GISCO NUTS 1, `tools/build_boundaries.mjs laender`); u hranice i sousední
     oblast, vše v jednom časovém limitu; prázdný (bílý) snímek mimo pokrytí nepoužít. Podklad mapy: `L.GridLayer`, u
     hranice obě oblasti přes sebe jako průhledné PNG. Kredit podle oblasti (`credits.js orthoCity de-XX`).
   - **Každou službu ověřit sám:** agent u Německa 4 země nenašel. GetCapabilities, jeden GetMap v EPSG:3857, snímek
@@ -251,7 +251,7 @@ Agent nezapisuje do repozitáře, výsledek dává do scratchpadu.
 | Značky ploch technické mapy | `lines().symbols` → druh kousku mezi čarami | — |
 | Katastr dopravních značek | `lines().atSigns` → tagy cesty (`parking:<side>:restriction`) podle strany značky, do 25 m od řezu | značky na začátku úseku (zóny, rychlosti) řez dál od nich nevidí |
 | Sítě | `site.js NETS` | hloubku nemá skoro nikdo; výšky terénu ČÚZK jen v Česku |
-| Hranice měst | `tools/build_towns_sk.mjs` → `towns-sk.json` (okresy velkých měst, jinak obec); území zdroje `{ box, town }` přes `places.js inArea` | obdélníky braly sousední obce (Šamorín jako Bratislava) |
+| Hranice měst | `tools/build_boundaries.mjs towns sk` → `towns-sk.json` (okresy velkých měst, jinak obec); území zdroje `{ box, town }` přes `places.js inArea` | obdélníky braly sousední obce (Šamorín jako Bratislava) |
 | Kredit | klíč zdroje v `state.cut.sources` (`app/cut.js`) a řádek v `credits.js SOURCE_CREDITS` (`creditLines` i `validate.js` ho pak znají), patičky ve všech jazycích, `LICENSES-AND-SOURCES.md` | klíč, ne hotová věta (uložený soubor a změna jazyka) |
 
 Služba, která odpoví skutečnou 4xx nebo chybou ArcGIS se jménem špatného pole, se neopakuje (`gis.js err.refused`).

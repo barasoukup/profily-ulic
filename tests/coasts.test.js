@@ -1,6 +1,6 @@
 // The coasts and land borders of Estonia, Slovenia, Finland and Denmark (the reviews of 24. 11. 2026): harbours, quays,
 // bridges and towns on a border river that GISCO's 1 : 1 M ring cuts off are the state's, a point beyond a land border
-// is not (city.js stateEntry, tools/build_states.mjs: COAST, land_*, the extra rings "<id>+<what>").
+// is not (city.js stateEntry, tools/build_boundaries.mjs: COAST, land_*, the extra rings "<id>+<what>").
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
