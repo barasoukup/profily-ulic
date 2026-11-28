@@ -10,16 +10,15 @@
 // bent (one direction and curve per carriageway), narrow peaks, solid or dashed by their gaps; then the lines whose
 // gaps look like lanes, chosen together. Anything doubtful leaves the rules' profile as it is.
 //
-// The entry of the orthophoto's lanes (docs/code-health-plan.md step 14, Bára 28. 11. 2026): its parts are in ortho/ —
-// sources.js (the orthophoto of each state and its URLs), regions.js (the Länder, the regions of Belgium), si-retry.js
-// (Slovenia's server that hangs), image.js (the image and the square asked and sampled), lines.js (the lines and the
-// lane lines), lanes.js (the profile's lanes and shoulders), hatch.js (V 13); this file only names what the app imports.
+// The entry of the orthophoto's lanes (docs/code-health-plan.md steps 14 and 15, Bára 28. 11. 2026): its parts are in ortho/ —
+// registry.js with sources/<state>.js (the orthophoto of each state: one record of one shape), service.js (the URL a kind of service
+// makes), credit.js, regions.js (the Länder, the regions of Belgium), si-retry.js (a server that hangs), image.js (the image and the
+// square asked and sampled), lines.js (the lines and the lane lines), lanes.js (the profile's lanes and shoulders), hatch.js (V 13),
+// views.js (the areas for tools/build_coverage.mjs); this file only names what the app imports.
 
-export {
-  AT_ORTHO, CH_ORTHO, NL_ORTHO, BE_ORTHO, LU_ORTHO, PL_ORTHO, FR_ORTHO, ES_ORTHO, PT_ORTHO, PT_MAINLAND, ES_NOT_PNOA,
-  CY_ORTHO, MT_ORTHO, TO_ORTHO_WHO, IT_ORTHO, itOrthoAt, EE_ORTHO, SI_ORTHO, FI_ORTHO, fiOrthoAt, DC_ORTHO,
-  NYS_ORTHO, MA_ORTHO, US_ORTHO, CA_ORTHO, usOrthoAt, caOrthoAt, orthoHereAt, DK_ORTHO, SK_ORTHO, DE_ORTHO, deWmsUrl
-} from "./ortho/sources.js";
+export { SOURCES, MAP_LAYERS, orthoHereAt, idsAt } from "./ortho/registry.js";
+export { urlOf } from "./ortho/service.js";
+export { IT_ORTHO, FI_ORTHO, US_ORTHO, CA_ORTHO, PT_MAINLAND, ES_NOT_PNOA } from "./ortho/views.js";
 export { SI_RETRY } from "./ortho/si-retry.js";
 export { landAt, landsAt, beRegionsAt } from "./ortho/regions.js";
 export { RETRY_429_MS, askImage, laneImage, orthoPatch } from "./ortho/image.js";

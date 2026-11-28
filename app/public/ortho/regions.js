@@ -41,5 +41,3 @@ export async function beRegionsAt(lon, lat, json = null) {
   const hits = Object.keys(all).map((code) => ({ code, n: near.findIndex(([dx, dy]) => inRings(all[code], lon + dx * 1.5, lat + dy)) })).filter((x) => x.n >= 0);
   return hits.sort((a, b) => a.n - b.n).map((x) => x.code);
 }
-// The orthophoto of a Belgian region: Flanders' covers Brussels too.
-export const beOrthoOf = (region) => (region === "wal" ? "wal" : "vl");

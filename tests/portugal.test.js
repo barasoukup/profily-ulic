@@ -6,8 +6,8 @@ import fs from "node:fs";
 
 test("Portugalsko: ortofota DGT (2025, 2021, 2018, satelit 2023) v EPSG:3857", async () => {
   const L = await import("../app/public/lanes-ortho.js");
-  assert.deepEqual(Object.keys(L.PT_ORTHO), ["pt-25", "pt-21", "pt-18", "pt-sat"]);
-  const u = new URL(L.PT_ORTHO["pt-25"]([1, 2, 3, 4], 100, 100));
+  assert.deepEqual(Object.values(L.SOURCES).filter((s) => s.chain === "pt").map((s) => s.id), ["pt-25", "pt-21", "pt-18", "pt-sat"]);
+  const u = new URL(L.urlOf(L.SOURCES["pt-25"].service, [1, 2, 3, 4], 100, 100));
   assert.equal(u.searchParams.get("LAYERS"), "Ortos2025-RGB");
   assert.equal(u.searchParams.get("CRS"), "EPSG:3857");
   // Madeira and the Azores: DGT has no photo there, nothing is asked (the review of 23. 11. 2026).

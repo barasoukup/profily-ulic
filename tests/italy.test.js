@@ -6,9 +6,9 @@ import fs from "node:fs";
 
 test("Itálie: ortofoto jen oblastí s otevřenou licencí (Bologna, Bolzano), Řím jen AGEA", async () => {
   const L = await import("../app/public/lanes-ortho.js");
-  assert.deepEqual(L.itOrthoAt(11.3426, 44.4949), ["it-bo"]);
-  assert.deepEqual(L.itOrthoAt(11.3548, 46.4983), ["it-bz"]);
-  assert.deepEqual(L.itOrthoAt(12.4964, 41.9028), [], "Řím: jen AGEA");
+  assert.deepEqual(L.idsAt("it", 11.3426, 44.4949), ["it-bo"]);
+  assert.deepEqual(L.idsAt("it", 11.3548, 46.4983), ["it-bz"]);
+  assert.deepEqual(L.idsAt("it", 12.4964, 41.9028), [], "Řím: jen AGEA");
 });
 
 test("Itálie: budovy Bologni (výška → podlaží), mapa povrchů vypnutá", async () => {
@@ -35,9 +35,9 @@ test("Itálie: značky a normy", async () => {
 
 test("Itálie: ortofoto Turína a Modeny i v severních exklávách Modeny", async () => {
   const L = await import("../app/public/lanes-ortho.js");
-  assert.deepEqual(L.itOrthoAt(7.6869, 45.0703), ["it-to"]);
-  assert.deepEqual(L.itOrthoAt(10.9252, 44.6471), ["it-mo"]);
-  assert.deepEqual(L.itOrthoAt(10.89281, 44.74047), ["it-mo"], "exkláva Modeny");
+  assert.deepEqual(L.idsAt("it", 7.6869, 45.0703), ["it-to"]);
+  assert.deepEqual(L.idsAt("it", 10.9252, 44.6471), ["it-mo"]);
+  assert.deepEqual(L.idsAt("it", 10.89281, 44.74047), ["it-mo"], "exkláva Modeny");
 });
 
 // ISTAT's municipal borders (Bára 23. 11. 2026, the review): points 80 m inside and outside Turin, Modena and Bologna that
@@ -62,9 +62,9 @@ test("Itálie: hranice obcí ISTAT, ortofoto pokrývá celé území, kredit Tur
   const { inLombardy } = await import("../app/public/towns/lombardy.js");
   // Every point outside Lombardy has an orthophoto; inside it none (Bolzano's box reaches in: Ponte di Legno, Valfurva;
   // the review of 24. 11. 2026), and the kerb model is not loaded there (lanes-ortho.js orthoHereAt).
-  for (const ring of staty.italy) for (const [lon, lat] of ring) if (!inLombardy(lon, lat)) assert.ok(L.itOrthoAt(lon, lat).length, `mimo obdélníky ortofot ${lon},${lat}`);
+  for (const ring of staty.italy) for (const [lon, lat] of ring) if (!inLombardy(lon, lat)) assert.ok(L.idsAt("it", lon, lat).length, `mimo obdélníky ortofot ${lon},${lat}`);
   for (const [lon, lat] of [[10.51, 46.26], [10.50, 46.41], [9.19, 45.46]]) {
-    assert.deepEqual(L.itOrthoAt(lon, lat), [], `Lombardie ${lon},${lat}`);
+    assert.deepEqual(L.idsAt("it", lon, lat), [], `Lombardie ${lon},${lat}`);
     assert.equal(L.orthoHereAt("it", lon, lat), false);
   }
   assert.equal(L.orthoHereAt("it", 11.35, 46.5), true, "Bolzano");

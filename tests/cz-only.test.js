@@ -48,24 +48,23 @@ test("ortofoto: neznámý nebo žádný zdroj se ČÚZK neptá", async () => {
   for (const source of [null, "at", "de", "none"]) assert.equal(await bedOrtho({ osm, frame, dir: [0, 1], fetchImpl: noFetch, source }), null, String(source));
 });
 
-test("mapa: vrstvy českých, slovenských a rakouských služeb jen na svém území", () => {
+test("mapa: vrstvy českých, slovenských a rakouských služeb jen na svém území", async () => {
   const app = src("app/basemaps.js");
-  // ČÚZK's orthophoto and the DMVS: a layer class kept to Czechia's rings, with Czechia's bounds (credit by the rings).
+  // The DMVS: a layer class kept to Czechia's rings, with Czechia's bounds (credit by the rings).
   assert.match(app, /const CzWms = CZ_RINGS\.length \? keptInside\(L\.TileLayer\.WMS, CZ_RINGS\)/);
-  assert.match(app, /const cuzkOrtho = \(\) => new CzWms\("https:\/\/ags\.cuzk\.gov\.cz[^]*?\.\.\.czBounds\(\)/);
   assert.match(app, /const dmvsWms = \(layer, opts = \{\}\) => new CzWms\([^]*?\.\.\.czBounds\(\)/);
   // A city's box carries its rings (credit only where the view reaches the city).
   assert.match(app, /const within = \(id\) => \(TOWN_BOUNDS\?\.\[id\]\?\.length \? \{ bounds: boundsOf\(TOWN_BOUNDS\[id\]\) \} : \{\}\)/);
-  // Every tile layer asking a Czech service (or Slovakia's, Austria's) names its area: Czechia, a city or a state's rings.
-  const hosts = /cuzk\.gov\.cz|praha\.eu|tiles\.arcgis\.com\/tiles\/SBTXIEUGWbqzUecw|gis\.brno\.cz|\$\{GS\}|SK_ORTHO|AT_ORTHO/;
-  const layers = app.split("\n").map((line, i) => [line, i]).filter(([line]) => /tileLayer|new [A-Z]\w*\(|ArcgisExport\(/.test(line) && hosts.test(line));
-  assert.ok(layers.length >= 6, `${layers.length}`);
-  for (const [line, i] of layers) {
-    const block = app.split("\n").slice(i, i + 4).join("\n");
-    assert.match(block, /czBounds\(\)|within\("|boundsOf\(STATES\./, `řádek ${i + 1}: ${line.trim().slice(0, 90)}`);
-  }
-  assert.match(app, /const Sk = keptInside\(L\.TileLayer, STATES\.slovensko\)/);
-  assert.match(app, /const At = keptInside\(L\.TileLayer, STATES\.austria\)/);
+  // The orthophotos are the registry's: every layer names its area (a state's rings, a city's boundary) and how it is kept to it, and
+  // those of Czechia, Slovakia and Austria are kept by their rings, Brno's by its city's boundary.
+  const { MAP_LAYERS } = await import("../app/public/lanes-ortho.js");
+  for (const e of MAP_LAYERS) assert.ok((e.map.state || e.map.states || e.map.town) && ["kept", "inside", "none", "own"].includes(e.map.limit), e.id);
+  const by = Object.fromEntries(MAP_LAYERS.map((e) => [e.id, e.map]));
+  assert.deepEqual([by.cuzk.state, by.cuzk.limit], ["cesko", "kept"]);
+  assert.deepEqual([by.sk.state, by.sk.limit], ["slovensko", "kept"]);
+  assert.deepEqual([by.at.state, by.at.limit], ["austria", "kept"]);
+  assert.deepEqual([by.brno.town, by.brno.limit], ["brno", "none"]);
+  assert.match(src("app/ortho-layers.js"), /kept: \(Base, area\) => keptInside\(Base, area\.rings\)/);
 });
 
 test("hledání: RÚIAN napřed jen v Česku, jinde až když nic nenašlo nic jiného", () => {

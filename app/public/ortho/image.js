@@ -1,6 +1,7 @@
-import { BOXED, DE_ORTHO, R, SOURCES, esKeys, itOrthoAt, merc, ptKeys, tileUrlOf } from "./sources.js";
+import { CHAINS, SOURCES, sourcesAt, usableAt } from "./registry.js";
+import { R, merc } from "./mercator.js";
+import { tileUrlOf, urlOf } from "./service.js";
 import { SI_RETRY, siDown, siFetch, siTries } from "./si-retry.js";
-import { beOrthoOf, beRegionsAt, landsAt } from "./regions.js";
 
 export const ALONG = 20;
 const TIMEOUT = 4000;
@@ -49,80 +50,32 @@ export const median = (a) => { const b = a.filter((v) => !Number.isNaN(v)).sort(
 export async function laneImage(opts) {
   // A state with no orthophoto it may use (Lithuania: the NŽT's is for viewing on its geoportal only): none.
   if (opts.source === "none") return null;
-  // Belgium: Flanders' photo, else Wallonia's (a blank image outside a region's coverage is no photo).
-  if (opts.source === "be") {
-    const start = Date.now(), budget = opts.timeout ?? TIMEOUT;
-    let lastError = null;
-    // The region of the cut's centre first (the hostile review: a Flemish image half white at the language border).
-    const regions = await beRegionsAt(...opts.frame.toLonLat(0, 0)).catch(() => ["vl", "wal"]);
-    for (const r of [...new Set([...regions.map(beOrthoOf), "vl", "wal"])]) {
-      const left = budget - (Date.now() - start);
-      if (left < 500) break;
-      try { const out = await laneImageOf(`be-${r}`, { ...opts, timeout: left }); if (out) return out; } catch (err) { lastError = err; }
-    }
-    if (lastError) throw lastError;
-    return null;
-  }
-  // Italy: the open orthophoto whose box holds the cut (a blank image outside its town is none; a failure is told, as
-  // in Belgium and Portugal).
-  if (opts.source === "it") {
-    let lastError = null;
-    for (const key of itOrthoAt(...opts.frame.toLonLat(0, 0))) {
-      try { const out = await laneImageOf(key, opts); if (out) return out; } catch (err) { lastError = err; }
-    }
-    if (lastError) throw lastError;
-    return null;
-  }
-  // Finland and the USA: the town's orthophoto whose box holds the cut (none elsewhere; a blank image is none).
-  if (BOXED[opts.source]) {
-    let lastError = null;
-    for (const key of BOXED[opts.source](...opts.frame.toLonLat(0, 0))) {
-      try { const out = await laneImageOf(key, opts); if (out) return out; } catch (err) { lastError = err; }
-    }
-    if (lastError) throw lastError;
-    return null;
-  }
-  // Portugal: the newest flight that has a photo here (a white image is none).
-  if (opts.source === "pt") {
-    const start = Date.now(), budget = opts.timeout ?? TIMEOUT;
-    let lastError = null;
-    for (const key of ptKeys(...opts.frame.toLonLat(0, 0))) {
-      const left = budget - (Date.now() - start);
-      if (left < 500) break;
-      try { const out = await laneImageOf(key, { ...opts, timeout: left }); if (out) return out; } catch (err) { lastError = err; }
-    }
-    if (lastError) throw lastError;
-    return null;
-  }
-  // Slovenia: GURS's server hangs now and then (a 504 after 30 s): siTries, each try SI_RETRY.timeout long; an image that
-  // would not decode or a 404 is no image (not tried again). A PNG (Node's evaluation, decode) takes GURS 4–7 s, twice
-  // the JPEG's time. The images kept for the session only with the browser's fetch.
-  if (opts.source === "si") {
-    const fetchImpl = opts.fetchImpl ?? siFetch, slow = opts.decode ? 2 : 1;
-    return siTries((timeout) => laneImageOf("si", { ...opts, fetchImpl, timeout }), opts.timeout ?? SI_RETRY.timeout * slow, SI_RETRY.budget * slow);
-  }
-  if (opts.source === "es" && !esKeys(...opts.frame.toLonLat(0, 0)).length) return null;
+  // A chain: the sources whose area holds the cut, in the chain's order (a blank image is no photo; a failure is told, as in Belgium
+  // and Portugal); a chain that shares one timeout gives each source what is left of it.
+  const chain = CHAINS[opts.source];
+  if (chain) return chainImage(chain, opts);
   // A source the app does not know: no image (not ČÚZK's, which covers only Czechia; Bára 26. 11. 2026).
-  // Any other server failing now and then (Spain's PNOA: a 502 after 6 s one time in eight, Bára 27. 11. 2026) is tried
-  // again as GURS is (siTries: a try TIMEOUT long, pauses, SI_RETRY.budget in all); a timeout given is the whole budget.
-  if (opts.source !== "de") {
-    if (!SOURCES[opts.source]) return null;
-    if (opts.timeout !== undefined) return laneImageOf(opts.source, opts);
-    return siTries((timeout) => laneImageOf(opts.source, { ...opts, timeout }), TIMEOUT, SI_RETRY.budget, opts.source);
+  const src = SOURCES[opts.source];
+  if (!src || !usableAt(src, ...opts.frame.toLonLat(0, 0))) return null;
+  // A server that hangs now and then (Slovenia: GURS's, a 504 after 30 s): each try cut short at SI_RETRY.timeout, within SI_RETRY.budget;
+  // an image that would not decode or a 404 is no image (not tried again). A PNG (Node's evaluation, decode) takes GURS 4–7 s, twice
+  // the JPEG's time. The images kept for the session only with the browser's fetch.
+  if (src.hangs) {
+    const fetchImpl = opts.fetchImpl ?? siFetch, slow = opts.decode ? 2 : 1;
+    return siTries((timeout) => laneImageOf(src.id, { ...opts, fetchImpl, timeout }), opts.timeout ?? SI_RETRY.timeout * slow, SI_RETRY.budget * slow);
   }
-  // Germany (countries/DE.js laneOrtho "de"): the Land's orthophoto, near a border the next Land's when the first has no
-  // photo there, all within one timeout (the review of Germany).
-  const tried = new Set(), start = Date.now(), budget = opts.timeout ?? TIMEOUT;
+  if (opts.timeout !== undefined) return laneImageOf(src.id, opts);
+  // Any other server failing now and then (Spain's PNOA: a 502 after 6 s one time in eight, Bára 27. 11. 2026) is tried again as GURS
+  // is (siTries: a try TIMEOUT long, pauses, SI_RETRY.budget in all); a timeout given is the whole budget.
+  return siTries((timeout) => laneImageOf(src.id, { ...opts, timeout }), TIMEOUT, SI_RETRY.budget, src.id);
+}
+async function chainImage(chain, opts) {
+  const start = Date.now(), budget = opts.timeout ?? TIMEOUT;
   let lastError = null;
-  for (const land of await landsAt(...opts.frame.toLonLat(0, 0)).catch(() => [])) {
-    if (tried.has(DE_ORTHO[land].wms)) continue; // Berlin and Brandenburg: one service
-    tried.add(DE_ORTHO[land].wms);
+  for (const src of await sourcesAt(chain.id, ...opts.frame.toLonLat(0, 0))) {
     const left = budget - (Date.now() - start);
-    if (left < 500) break;
-    try {
-      const out = await laneImageOf(`de-${land}`, { ...opts, timeout: left });
-      if (out) return out;
-    } catch (err) { lastError = err; }
+    if (chain.share && left < 500) break;
+    try { const out = await laneImageOf(src.id, chain.share ? { ...opts, timeout: left } : opts); if (out) return out; } catch (err) { lastError = err; }
   }
   if (lastError) throw lastError;
   return null;
@@ -146,19 +99,19 @@ async function laneImageOf(key, { frame, dir, t0, t1, timeout = TIMEOUT, fetchIm
   if (w > 2000 || h > 2000) return null;
   try {
     let img;
-    if (src.tiles) {
+    if (src.service.type === "xyz") {
       // XYZ tiles of Web Mercator, glued on a canvas; the bbox becomes the tiles' own.
-      const size = (2 * Math.PI * R) / 2 ** src.z;
+      const size = (2 * Math.PI * R) / 2 ** src.service.z;
       const tx0 = Math.floor((x0 + Math.PI * R) / size), tx1 = Math.floor((x1 + Math.PI * R) / size);
       const ty0 = Math.floor((Math.PI * R - y1) / size), ty1 = Math.floor((Math.PI * R - y0) / size);
       if ((tx1 - tx0 + 1) * (ty1 - ty0 + 1) > 30) return null;
-      const tp = src.px || 256; // pixels of a tile
+      const tp = src.service.px || 256; // pixels of a tile
       const canvas = new OffscreenCanvas((tx1 - tx0 + 1) * tp, (ty1 - ty0 + 1) * tp), g = canvas.getContext("2d");
       const signal = AbortSignal.timeout(timeout), jobs = [];
       // A server error on every tile is an outage (app.js says so), not an empty image; a key turned away on every
       // tile is no key (noKey).
       let down = 0, missing = 0, denied = 0;
-      for (let ty = ty0; ty <= ty1; ty++) for (let tx = tx0; tx <= tx1; tx++) jobs.push(askImage(fetchImpl, tileUrlOf(src, tx, ty), { signal }).then(async (r) => { if (r.ok) g.drawImage(await createImageBitmap(await r.blob()), (tx - tx0) * tp, (ty - ty0) * tp, tp, tp); else if (r.status >= 500) down++; else if (src.key && (r.status === 401 || r.status === 403)) denied++; else missing++; }));
+      for (let ty = ty0; ty <= ty1; ty++) for (let tx = tx0; tx <= tx1; tx++) jobs.push(askImage(fetchImpl, tileUrlOf(src.service, tx, ty), { signal }).then(async (r) => { if (r.ok) g.drawImage(await createImageBitmap(await r.blob()), (tx - tx0) * tp, (ty - ty0) * tp, tp, tp); else if (r.status >= 500) down++; else if (src.key && (r.status === 401 || r.status === 403)) denied++; else missing++; }));
       await Promise.all(jobs);
       if (jobs.length && down === jobs.length) throw Object.assign(new Error(`ortofoto ${down}× 5xx`), { outage: true });
       if (jobs.length && denied === jobs.length) throw Object.assign(new Error("ortofoto: klíč odmítnut"), { noKey: true });
@@ -166,7 +119,7 @@ async function laneImageOf(key, { frame, dir, t0, t1, timeout = TIMEOUT, fetchIm
       img = g.getImageData(0, 0, canvas.width, canvas.height);
       x0 = tx0 * size - Math.PI * R; x1 = (tx1 + 1) * size - Math.PI * R; y1 = Math.PI * R - ty0 * size; y0 = Math.PI * R - (ty1 + 1) * size;
     } else {
-      const r = await askImage(fetchImpl, src.url([x0, y0, x1, y1], w, h, decode ? "image/png" : undefined), { signal: AbortSignal.timeout(timeout) });
+      const r = await askImage(fetchImpl, urlOf(src.service, [x0, y0, x1, y1], w, h, decode ? "image/png" : undefined), { signal: AbortSignal.timeout(timeout) });
       if (!r.ok) { if (r.status >= 500) throw Object.assign(new Error(`ortofoto ${r.status}`), { outage: true }); return null; } // a server error: an outage
       if (decode) {
         const png = await decode(await r.arrayBuffer());
@@ -178,10 +131,10 @@ async function laneImageOf(key, { frame, dir, t0, t1, timeout = TIMEOUT, fetchIm
         img = g.getImageData(0, 0, bmp.width, bmp.height);
       }
     }
-    // Outside a Land's coverage its WMS answers white (only the German sources).
-    // Estonia and Cyprus too (the reviews of 24. 11. 2026): Cyprus's missing tiles (404 by the Green Line) are left
-    // transparent on the canvas.
-    if ((key.startsWith("de-") || key.startsWith("be-") || key.startsWith("pt-") || key === "mt" || key.startsWith("it-") || key.startsWith("fi-") || key === "dk" || key === "ee" || key === "cy") && blank(img)) return null;
+    // Outside a Land's coverage its WMS answers white, and so do the sources of Belgium, Portugal, Italy, Finland, Malta, Denmark,
+    // Estonia and Cyprus (the reviews of 24. 11. 2026): Cyprus's missing tiles (404 by the Green Line) are left transparent on the
+    // canvas. Such a source is `blank` in the registry.
+    if (src.blank && blank(img)) return null;
     // Resample on the grid of the cut.
     let unknown = 0;
     const res = src.res, nt = Math.round((t1 - t0) / res), nu = Math.round((2 * ALONG) / res), L = new Float32Array(nt * nu), G = new Float32Array(nt * nu), Y = new Float32Array(nt * nu), D = new Float32Array(nt * nu), S = new Float32Array(nt * nu);
@@ -202,7 +155,7 @@ async function laneImageOf(key, { frame, dir, t0, t1, timeout = TIMEOUT, fetchIm
     // Mostly unknown (tiles missing over half the cut): no image, lanes are not read from blanks.
     if (unknown > nt * nu * 0.5) return null;
     if (src.balance) balance(G, Y, D, S);
-    return { source: key, st: { nt, nu, res, t0, L, G, Y, D, S, fine: key !== "cuzk" } };
+    return { source: key, st: { nt, nu, res, t0, L, G, Y, D, S, fine: src.fine !== false } };
   } catch (e) {
     // The server did not answer (a server error, the network, the timeout): an outage, passed on for app.js to say
     // (Bára 16. 11. 2026); anything else (an image that would not decode) is just no image, as before.
@@ -226,20 +179,16 @@ function balance(G, Y, D, S) {
 export async function orthoPatch({ source, lon, lat, half, px, timeout = TIMEOUT, fetchImpl = null }) {
   // No orthophoto it may use (Lithuania): none, and nothing asked of ČÚZK (the review of Lithuania).
   if (source === "none") return null;
-  // Slovenia: GURS tried again and the square kept (siTries, siFetch); GURS just down: an outage at once.
-  if (source === "si") {
+  // A server that hangs (Slovenia: GURS): tried again and the square kept (siTries, siFetch); just down: an outage at once.
+  const own = SOURCES[source];
+  if (own?.hangs) {
     if (siDown()) throw Object.assign(new Error("ortofoto GURS nedostupné"), { outage: true });
-    const img = await siTries((t) => patchOf("si", lon, lat, half, px, t, fetchImpl ?? siFetch), SI_RETRY.timeout, SI_RETRY.patchBudget);
-    return img ? { source: "si", img } : null;
+    const img = await siTries((t) => patchOf(own.id, lon, lat, half, px, t, fetchImpl ?? siFetch), SI_RETRY.timeout, SI_RETRY.patchBudget);
+    return img ? { source: own.id, img } : null;
   }
-  const keys = source === "de" ? (await landsAt(lon, lat).catch(() => [])).map((l) => `de-${l}`) : source === "be" ? [...new Set([...(await beRegionsAt(lon, lat).catch(() => [])).map(beOrthoOf), "vl", "wal"])].map((r) => `be-${r}`) : source === "pt" ? ptKeys(lon, lat) : source === "es" ? esKeys(lon, lat) : source === "it" ? itOrthoAt(lon, lat) : BOXED[source] ? BOXED[source](lon, lat) : SOURCES[source] ? [source] : [];
-  const seen = new Set(); // Berlin and Brandenburg: one service
-  for (const key of keys) {
-    const id = key.startsWith("de-") ? DE_ORTHO[key.slice(3)].wms : key;
-    if (seen.has(id)) continue;
-    seen.add(id);
-    const img = await patchOf(key, lon, lat, half, px, timeout);
-    if (img) return { source: key, img };
+  for (const src of await sourcesAt(source, lon, lat)) {
+    const img = await patchOf(src.id, lon, lat, half, px, timeout);
+    if (img) return { source: src.id, img };
   }
   return null;
 }
@@ -250,8 +199,8 @@ async function patchOf(key, lon, lat, half, px, timeout, fetchImpl = fetch) {
   const b = [cx - h + sx, cy - h + sy, cx + h + sx, cy + h + sy];
   const canvas = new OffscreenCanvas(px, px), g = canvas.getContext("2d");
   const signal = AbortSignal.timeout(timeout);
-  if (src.tiles) {
-    const size = (2 * Math.PI * R) / 2 ** src.z, scale = px / (b[2] - b[0]);
+  if (src.service.type === "xyz") {
+    const size = (2 * Math.PI * R) / 2 ** src.service.z, scale = px / (b[2] - b[0]);
     const tx0 = Math.floor((b[0] + Math.PI * R) / size), tx1 = Math.floor((b[2] + Math.PI * R) / size);
     const ty0 = Math.floor((Math.PI * R - b[3]) / size), ty1 = Math.floor((Math.PI * R - b[1]) / size);
     if ((tx1 - tx0 + 1) * (ty1 - ty0 + 1) > 40) return null;
@@ -259,7 +208,7 @@ async function patchOf(key, lon, lat, half, px, timeout, fetchImpl = fetch) {
     const jobs = [];
     for (let ty = ty0; ty <= ty1; ty++) for (let tx = tx0; tx <= tx1; tx++) {
       const gx = tx * size - Math.PI * R, gy = Math.PI * R - ty * size;
-      jobs.push(askImage(fetch, tileUrlOf(src, tx, ty), { signal }).then(async (r) => {
+      jobs.push(askImage(fetch, tileUrlOf(src.service, tx, ty), { signal }).then(async (r) => {
         if (r.ok) g.drawImage(await createImageBitmap(await r.blob()), (gx - b[0]) * scale, (b[3] - gy) * scale, size * scale, size * scale);
         else if (r.status >= 500) down++; else missing++;
       }));
@@ -268,7 +217,7 @@ async function patchOf(key, lon, lat, half, px, timeout, fetchImpl = fetch) {
     if (jobs.length && down === jobs.length) throw Object.assign(new Error(`ortofoto ${down}× 5xx`), { outage: true });
     if (missing && src.fallback) return patchOf(src.fallback, lon, lat, half, px, timeout);
   } else {
-    const r = await askImage(fetchImpl, src.url(b, px, px), { signal });
+    const r = await askImage(fetchImpl, urlOf(src.service, b, px, px), { signal });
     if (!r.ok) { if (r.status >= 500) throw Object.assign(new Error(`ortofoto ${r.status}`), { outage: true }); return null; }
     g.drawImage(await createImageBitmap(await r.blob()), 0, 0, px, px);
   }

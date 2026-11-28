@@ -33,12 +33,12 @@ const loadWashington = async () => {
   return C;
 };
 test("USA: DC je District, ne obdélník (ortofoto, mapa povrchů, město)", async () => {
-  const { orthoHereAt, usOrthoAt } = await import("../app/public/lanes-ortho.js");
+  const { orthoHereAt, idsAt } = await import("../app/public/lanes-ortho.js");
   const { AREAS } = await import("../app/public/towns/usa.js");
   const { inArea } = await import("../app/public/places.js");
   const C = await loadWashington();
   C.loadStates(STATY);
-  assert.deepEqual(usOrthoAt(-77.0365, 38.8977), ["us-dc"]);
+  assert.deepEqual(idsAt("us", -77.0365, 38.8977), ["us-dc"]);
   assert.equal(C.cityAt(38.8977, -77.0365), "washington");
   // Inside the box, outside the District: Clarendon, Bethesda, Silver Spring, Old Town Alexandria, the airport; and Fairfax.
   for (const [lat, lon] of [[38.8868, -77.0953], [38.9847, -77.0947], [38.9935, -77.0265], [38.8048, -77.0469], [38.8512, -77.0402], [38.8462, -77.3064]]) {

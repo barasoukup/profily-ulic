@@ -8,7 +8,8 @@
 import { t } from "./i18n.js";
 import { CR, W, cr, lead, quoted } from "./credit-text.js";
 import { PASSPORT_NAMES, GREEN_PASSPORTS } from "./towns/passport-names.js";
-import { DE_ORTHO, TO_ORTHO_WHO } from "./lanes-ortho.js";
+import { SOURCES } from "./lanes-ortho.js";
+import { orthoCredit } from "./ortho/credit.js";
 
 // The cantons (and Liechtenstein, FL in the survey) by their code in Switzerland's cadastral survey (towns/switzerland.js).
 export const CANTONS = ["AG", "AI", "AR", "BE", "BL", "BS", "FR", "GE", "GL", "GR", "JU", "LU", "NE", "NW", "OW", "SG", "SH", "SO", "SZ", "TG", "TI", "UR", "VD", "VS", "ZG", "ZH", "FL", "LI"];
@@ -23,44 +24,8 @@ export const SOURCE_CREDITS = {
     : cr(W("roadInventory"), PASSPORT_NAMES[id]))])),
   // ČÚZK's orthophoto, where it was read (a tram bed, the lanes, the estimate's kerbs).
   ortho: { true: () => CR["credits.orthophotoCuzk2025Cc"]() },
-  // A city's or a state's own orthophoto (lanes-ortho.js).
-  orthoCity: {
-    ipr: () => CR["credits.orthophotoIprPraha2024"](), brno: () => CR["credits.orthophotoStatutarniMestoBrno"](), plzen: () => CR["credits.orthophotoStatutarniMestoPlzen"](),
-    sk: () => CR["credits.orthophotoGkuBratislavaNlc"](), at: () => CR["credits.orthophotoBasemapCc4"](),
-    at19: () => CR["credits.orthophotoBasemapCc4"](),
-    ch: () => CR["common.orthophotoSwissimageSwisstopo"](),
-    nl: () => CR["common.orthophotoBeeldmateriaalNlPdok"](),
-    "be-vl": () => CR["credits.orthophotoBronLuchtopnamenDigitaal"](), "be-wal": () => CR["credits.orthophotoSpwServicePublic"](),
-    lu: () => CR["common.orthophotoActLuxembourgGeoportail"](),
-    pl: () => CR["common.orthophotoGugikGeoportalGov"](),
-    fr: () => CR["common.orthophotoIgnGeoplateforme"](),
-    es: () => CR["common.pnoaOrthophotoIgnCc"](),
-    "pt-25": () => CR["common.orthophotoDgt"](),
-    cy: () => CR["common.orthophotoDlsCyprus"](), // with the flight's year, 2019, as in the footer (Bára 27. 11. 2026)
-    mt: () => CR["credits.orthophotoPlanningAuthorityMalta"](),
-    ee: () => CR["common.orthophotoMaaJaRuumiamet"](),
-    si: () => CR["credits.orthophotoDof025GeodetskaUprava"](),
-    // Finland: the towns' orthophotos (lanes-ortho.js FI_ORTHO).
-    "fi-hki": () => CR["credits.orthophotoHelsinginKaupunkiKaupunkimittauspalvel"](),
-    "fi-esp": () => CR["credits.orthophotoEspoonKaupunkiCc"](),
-    "fi-tku": () => CR["credits.orthophotoTurunKaupunki2022"](),
-    // The USA: DC's orthophoto (lanes-ortho.js US_ORTHO).
-    "us-dc": () => CR["credits.orthophotoDcOfficeChief"](),
-    "us-nyc": () => CR["credits.orthophotoNysGeospatialServices"](),
-    "us-ma": () => CR["credits.orthophotoMassgisBureauGeographic"](),
-    "ca-tor": () => CR["credits.orthophotoCityToronto2025"](),
-    // Denmark: GeoDanmark's spring orthophoto through Dataforsyningen, credited as its terms ask (evaluation/denmark/SOURCES.md 1).
-    dk: () => CR["common.orthophotoIndeholderDataFra"](),
-    "it-bo": () => CR["credits.orthophotoComuneDiBologna"](),
-    "it-mo": () => CR["credits.orthophotoComuneDiModena"](),
-    "it-to": () => lead(W("orthophoto"), TO_ORTHO_WHO),
-    "it-bz": () => CR["credits.orthophotoProvinciaAutonomaDi"](),
-    "pt-21": () => CR["common.orthophotoDgt"](),
-    "pt-18": () => CR["common.orthophotoDgt"](),
-    "pt-sat": () => CR["common.orthophotoDgt"](),
-    // Germany: the orthophoto of the Land (lanes-ortho.js DE_ORTHO, "de-BY" …), with the credit the Land asks for.
-    ...Object.fromEntries(Object.entries(DE_ORTHO).map(([land, o]) => [`de-${land}`, () => lead(W("orthophoto"), o.credit)])),
-  },
+  // A city's or a state's own orthophoto (the registry, ortho/sources/<state>.js: each source's credit).
+  orthoCity: Object.fromEntries(Object.values(SOURCES).filter((s) => s.credit || s.creditWho).map((s) => [s.id, () => orthoCredit(s)])),
   // Bratislava's technical map: only in cuts saved before the trial ?tm=1 was deleted (28. 11. 2026).
   skTm: { true: () => CR["credits.technicalMapCityBratislava"]() },
   // A Slovak town's passport where the cut took its surfaces (towns/slovakia.js SK_TOWNS).
