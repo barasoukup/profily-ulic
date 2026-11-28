@@ -141,6 +141,7 @@ const SK_ART = { slovensko: { ...skArt(false, false, false), "bus-inbound": "bus
 
 
 
+/** @type {import("../types.js").Country} */
 export default {
   ...base,
   code: "SK",

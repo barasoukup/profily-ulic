@@ -95,6 +95,7 @@ export const lawNote = (law) => (free, need) => t("country.default.parkingHalfSi
 // its own number in its place.
 export const CZ_CODE = /^(?:[A-Z]{1,2} \d+[a-z]?(?: [/+] |\s))+/;
 
+/** @type {import("../types.js").Country} */
 export default {
   code: null, // ISO 3166-1 of the state
   bounds: null, // [lon0, lat0, lon1, lat1]: where a saved cut may lie (validate.js)

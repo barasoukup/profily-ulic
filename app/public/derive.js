@@ -2045,8 +2045,8 @@ export function linePieces(polys, tags, center, normal, st = null, along = true)
   return polys.map((p) => (code.has(p) && code.get(p) !== p.code ? { ...p, code: code.get(p), label: "" } : p));
 }
 
-// noParkGuess: no parking estimated by the law alone (Monaco; and everywhere for the profile the lanes are measured on,
-// app.js lawAt).
+// noParkGuess: no parking estimated by the law alone (Monaco; and everywhere for the profile the lanes are measured on, app.js lawAt).
+/** One object of arguments: @param {import("./types.js").DeriveArgs} args @returns {import("./types.js").Profile} */
 export function deriveProfile({ center, dir, half, polys, osm, frame, way, tracks = [], parking = [], lines = [], reach, inZps: zoneKnown, itemReach, ortho, lanesImage, roadOnPath = false, noParkGuess = false, lawAt = [], kerbParking = null, osmParkGive = false }) {
   const reachItems = { ...REACH, ...itemReach };
   const at = (t) => [center[0] + normal[0] * t, center[1] + normal[1] * t];

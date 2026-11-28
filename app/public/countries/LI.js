@@ -7,6 +7,7 @@ import { t } from "../i18n.js";
 import { czechFurniture } from "../art.js";
 import CH from "./CH.js";
 
+/** @type {import("../types.js").Country} */
 export default {
   ...CH,
   code: "LI",

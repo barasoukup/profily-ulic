@@ -38,6 +38,7 @@ import * as denmark from "./denmark.js";
 import * as lithuania from "./lithuania.js";
 import * as abroad from "./abroad.js";
 
+/** @type {Object<string, import("../types.js").Town>} */
 export const TOWNS = { cesko: czechia, jihlava, most, opava, pardubice, plzen, usti, ostrava, "frydek-mistek": frydekMistek, karvina, trebic, prerov,
   // Towns with only their own vehicles: the national data.
   olomouc: czechia, liberec: czechia, hradec: czechia, budejovice: czechia, zlin: czechia,
@@ -56,7 +57,13 @@ const complete = () => {
 };
 complete();
 // The modules of another continent, loaded when a cut is there (late.js, america.js).
+/** @param {Object<string, import("../types.js").Town>} more */
 export const addTowns = (more) => { Object.assign(TOWNS, more); complete(); };
+/**
+ * @param {number} lat
+ * @param {number} lon
+ * @returns {{ country: string|null, city: string, art: any, sources: string[] }} the state, the city and the own sources of a point
+ */
 export function placeAt(lat, lon) {
   const id = cityAt(lat, lon);
   return { country: countryOfCity(id).code, city: id, art: cityById(id).art,

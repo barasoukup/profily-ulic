@@ -72,6 +72,7 @@ const signLabel = (x, own, label) => {
   return code ? `SSV ${code} ${label.replace(CZ_CODE, "")}` : label;
 };
 
+/** @type {import("../types.js").Country} */
 export default {
   ...base,
   code: "CH",

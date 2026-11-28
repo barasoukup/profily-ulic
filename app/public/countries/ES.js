@@ -87,6 +87,7 @@ const signLabel = (x, own, label) => {
 // No drawings of its own (as France): the neutral vehicles of generic/, the Czech furniture, the Austrian stop posts.
 const atPosts = Object.fromEntries(["stop-post-left", "stop-post-right", "stop-post-tram-left", "stop-post-tram-right"].map((k) => [k, `../austria/${TOWN_ART[k]}`]));
 
+/** @type {import("../types.js").Country} */
 export default {
   ...base,
   code: "ES",
