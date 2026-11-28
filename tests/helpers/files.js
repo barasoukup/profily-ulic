@@ -13,9 +13,9 @@ export const readText = (f) => fs.readFileSync(publicUrl(f), "utf8");
 export const readJson = (f) => JSON.parse(readText(f));
 export const exists = (f) => fs.existsSync(publicUrl(f));
 
-// The scripts of app/public (relative to it): the top ones and those of the folders asked for (app/: the parts of app.js; derive/: the parts of derive.js); with `noLangs` without the
+// The scripts of app/public (relative to it): the top ones and those of the folders asked for (app/: the parts of app.js; derive/: the parts of derive.js; draw/, draw/buildings/: the parts of profile.js); with `noLangs` without the
 // languages' texts (en.js, sk.js … only data, they link to the sources in the footer).
-export function moduleFiles({ dirs = ["towns", "countries", "app", "derive"], noLangs = false } = {}) {
+export function moduleFiles({ dirs = ["towns", "countries", "app", "derive", "draw", "draw/buildings"], noLangs = false } = {}) {
   const files = [...fs.readdirSync(PUBLIC).filter((f) => f.endsWith(".js")), ...dirs.flatMap((d) => fs.readdirSync(publicUrl(`${d}/`)).map((f) => `${d}/${f}`))]
     .filter((f) => f.endsWith(".js"));
   return noLangs ? files.filter((f) => !Object.keys(LANGS).some((l) => f === `${l}.js`)) : files;

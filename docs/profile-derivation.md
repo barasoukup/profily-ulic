@@ -144,7 +144,7 @@ Pravidla odvození profilu z dat (`derive.js` a okolí), číslované body.
 12. Konec A je vždy západní, B východní; tlačítko **⇄ Otočit** je prohodí (zrcadlí stav, návrh i opravy, domy si
     nechají barvy).
 13. Trakční sloup dál než 4 m od kolejí (mezi nimi pruhy pro auta, 17. listopadu) nemá výložník, ale drží vodorovné
-    příčné lano nad koleje (`spanPlan` v `profile.js`, věšák s trolejí nad každou kolejí pod lanem): na druhé straně ke
+    příčné lano nad koleje (`spanPlan` v `draw/overhead.js`, věšák s trolejí nad každou kolejí pod lanem): na druhé straně ke
     sloupu za kolejemi (před další řadou kolejí; ten pak také nemá výložník), jinak k domu na kraji, sahá-li fasáda
     do výšky lana (růžice), jinak lano končí u kraje kolejí. Na každé straně řady kolejí drží lano jen sloup nejbližší
     kolejím, další stojí bez výložníku. Koleje se sloupy mezi sebou (Olšanská) lano nemají. Řídí se sloupy a okraji

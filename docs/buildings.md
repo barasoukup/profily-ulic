@@ -14,7 +14,7 @@ Vzhledy domů, výška a podlaží, regionální a socialistické vzhledy (speci
   sada mobiliáře smí mít lampu do 5 m (`lamp-post-top`). Rakousko ve všech kolech 19 : 18, výjimka není.
   Blok kolem dvora jako „není poválečný dům“ zkoušeno, nevyhrálo (47 : 50; CH by ztratilo), v aplikaci není.
 - Socialistické vzhledy (sorela, zděný dům 50.–60. let, panelák) jen v CZ, SK, PL, EE a bývalé NDR (Bára 23. 11. 2026,
-  `countries/<ISO>.js` `socialistLooks`, DE podle `city.panels`); jinde i v „cizině“ `profile.js` `westernLook`: 1946–90
+  `countries/<ISO>.js` `socialistLooks`, DE podle `city.panels`); jinde i v „cizině“ `draw/buildings/style.js` `westernLook`: 1946–90
   poválečný bytový dům, deska před 1946 funkcionalistický, po 1990 moderní. Snímky `evaluation/archive/postwar-buildings/`.
 - Regionální vzhledy starých domů Evropy (Bára 23. 11. 2026, specifikace `docs/house-types-europe.md`, pravidla
   `app/public/house-looks.js`, háček státu `houseLook`/`houseDetails` volaný po `westernLook`, Česko beze změny):
@@ -36,7 +36,7 @@ podlaží, celkem, příznak nové budovy), v Brně z Průzkumu budov KAM, v Plz
 (+ `roof:levels`). Výška se kreslí 3,5 m na podlaží (přesná výška z OSM `height` nebo z 3D budov), střešní podlaží
 užší a tmavší. Osmnáct vzhledů domu (činžák se šikmou střechou, měšťanský dům na náměstí, sorela, zděný bytový dům 50.–60. let, poválečný bytový dům, škola, kostel, garáž, funkcionalistický činžák, panelák, moderní
 bytový dům, kancelářská budova, městský dům, vila, rodinný dům 60.–80. let, nový rodinný dům, venkovský dům štítem do
-ulice, hala; Bára 16. 11. 2026, nové kreslené na základě starších v `profile.js` `BASE_STYLE`) se volí podle tvaru bloku z OSM, údajů o domě a stáří zástavby: v Praze z vrstvy IPR *Vývoj zástavby*
+ulice, hala; Bára 16. 11. 2026, nové kreslené na základě starších v `draw/buildings/style.js` `BASE_STYLE`) se volí podle tvaru bloku z OSM, údajů o domě a stáří zástavby: v Praze z vrstvy IPR *Vývoj zástavby*
 (statické dlaždice z `tools/build_built_up_age.mjs`), jinde z roku dokončení v RÚIAN (do 1919 a 1946–57 šikmá střecha,
 1948–57 sorela, 1958–69 zděný bytový dům do 5 podlaží (i deska), jinak od 1955 panelová éra, od 1996 moderní dům;
 v Praze a Brně rok, zdi a využití domu z RÚIAN ČÚZK dalším dotazem při kliknutí, podlaží dál z IPR a KAM; stáří
@@ -50,7 +50,7 @@ ulice (úzký půdorys, delší strana napříč ulicí, `derive.js` `gableToStr
 stejně zemědělská usedlost RÚIAN (dřív hala); v řadě starší městský dům. Bytový dům 1948–57 (RÚIAN) sorela, 1958–69 bez panelů v RÚIAN zděný bytový dům 50.–60. let se šikmou střechou (Street View 25 domů, `evaluation/archive/panel-buildings/k-foceni.md`).
 Socialistické vzhledy (sorela, zděný bytový dům 50.–60. let, panelák) jen tam, kde se stavěly (Bára 23. 11. 2026):
 v Česku, na Slovensku, v Polsku, v Estonsku (sovětská sídliště) a v bývalé NDR (`countries/<ISO>.js` `socialistLooks`,
-v Německu podle `city.panels`). Jinde, i v „cizině“, platí `profile.js` `westernLook`: sorela, zděný dům 50.–60. let,
+v Německu podle `city.panels`). Jinde, i v „cizině“, platí `draw/buildings/style.js` `westernLook`: sorela, zděný dům 50.–60. let,
 panelová deska a plochý činžák z let 1946–90 jsou poválečný bytový dům (hladká omítka, pravidelné řady oken s rolety,
 balkony s barevným parapetem, plochá střecha s tenkou atikou; `evaluation/archive/postwar-buildings/REPORT.md`), deska před 1946
 funkcionalistický dům, po 1990 moderní, kancelář zůstává kanceláří. Ručně jde poválečný dům vybrat všude.

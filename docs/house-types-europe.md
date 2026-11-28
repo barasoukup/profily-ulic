@@ -6,7 +6,7 @@
 Návrh nových vzhledů domu vedle profilu (`app/public/profile.js`) pro starší zástavbu mimo Česko, kde český
 činžák se šikmou střechou (`sikma`) a další české vzhledy nesedí, a pro severské státy do budoucna. Jen specifikace:
 nic z toho není nakreslené ani zapojené. Číselné hodnoty jsou ve stejných jednotkách jako `STOREY`, `WINDOWS`,
-`DEFAULT_FLOORS` a `plinth` v `profile.js`; barvy jsou výchozí návrh k ověření od oka.
+`DEFAULT_FLOORS` (`draw/buildings/style.js`) a `plinth` (`draw/buildings/walls.js`); barvy jsou výchozí návrh k ověření od oka.
 
 ## Jak se dům kreslí dnes (co z toho plyne pro nové vzhledy)
 
