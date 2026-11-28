@@ -155,10 +155,6 @@ test("Dánsko: značky a normy", async () => {
   assert.equal(f({ k: "c10a" }), "D26.2");
   assert.equal(f({ k: "sdilena" }), null);
   assert.equal(f({ k: "zona30" }), null);
-  for (const k of ["b1", "b11", "b8", "b30", "b28", "b29", "ip11a", "ip14a", "ip15a", "ip26a", "ip27a", "cyklozona", "c8a", "c9a", "c7a"]) {
-    assert.ok(fs.existsSync(new URL(`../app/public/signs-DK/${f({ k })}.svg`, import.meta.url)), k);
-  }
-  assert.ok(fs.existsSync(new URL("../app/public/signs-DK/C55.svg", import.meta.url)));
   const { SPEED_TEMPLATES } = await import("../app/public/signs.js");
   assert.ok(SPEED_TEMPLATES.has("C55"));
   assert.match(DK.signs.label({ k: "b29" }, null, "B 29 Zákaz stání"), /^C 62 Zákaz stání$/);

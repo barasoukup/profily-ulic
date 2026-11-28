@@ -27,12 +27,6 @@ test("Portugalsko: značky (H3 / C1 podle směru, C13, zóny)", async () => {
   assert.equal(f({ k: "oneway", dir: "backward", plate: "protismer" }), "C1-plus-10e");
   assert.equal(f({ k: "b20a", v: 30 }), "C13-30");
   assert.equal(f({ k: "ztp" }), null);
-  for (const k of ["b1", "b11", "b8", "b30", "b28", "b29", "ip11a", "ip14a", "ip15a", "ip20a", "zona30", "ip26a", "sdilena", "ip27a", "c8a", "c9a", "c10a", "c7a"]) {
-    const file = f({ k });
-    assert.ok(file && fs.existsSync(new URL(`../app/public/signs-PT/${file}.svg`, import.meta.url)), `${k}: ${file}`);
-  }
-  for (const file of ["H3", "C1", "C1-plus-10e", ...[10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120].map((v) => `C13-${v}`)])
-    assert.ok(fs.existsSync(new URL(`../app/public/signs-PT/${file}.svg`, import.meta.url)), file);
   assert.equal(PT.limits({ type: "chodnik", width: 1 }, []).min, 1.5);
   // A cycle lane beside parallel parking: IMT's 2.2 m at least (the review of 23. 11. 2026), elsewhere 1.2 m.
   const lane = { type: "cyklopruh", width: 1.5 };

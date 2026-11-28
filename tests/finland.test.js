@@ -163,15 +163,6 @@ test("Finsko: značky, normy, zákon o stání", async () => {
   assert.equal(f({ k: "sdilena" }), null, "sdílenou zónu Finsko nemá");
   assert.equal(f({ k: "ztp" }), null);
   assert.equal(FI.signs.label({ k: "b29" }, null, "B 29 Zákaz stání"), "C38 Zákaz stání");
-  for (const k of ["b1", "b11", "b8", "b30", "b28", "b29", "ip11a", "ip14a", "ip15a", "ip20a", "zona30", "ip26a", "ip27a", "cyklozona", "c8a", "c9a", "c10a", "c7a"]) {
-    const file = f({ k });
-    assert.ok(file && fs.existsSync(new URL(`../app/public/signs-FI/${file}.svg`, import.meta.url)), `${k}: ${file}`);
-  }
-  for (const v of [20, 30, 40, 50, 60, 70, 80, 100, 120]) assert.ok(fs.existsSync(new URL(`../app/public/signs-FI/C32-${v}.svg`, import.meta.url)), `${v}`);
-  for (const file of ["E14.1", "C17", "D7.2"]) assert.ok(fs.existsSync(new URL(`../app/public/signs-FI/${file}.svg`, import.meta.url)), file);
-  for (const file of fs.readdirSync(new URL("../app/public/signs-FI/", import.meta.url)).filter((x) => x.endsWith(".svg"))) {
-    assert.match(fs.readFileSync(new URL(`../app/public/signs-FI/${file}`, import.meta.url), "utf8"), /viewBox=/, file);
-  }
   // Guides only: nothing red.
   for (const s of [{ type: "chodnik" }, { type: "cyklopruh" }, { type: "cyklostezka" }, { type: "bus" }, { type: "parkovani" }]) assert.equal(FI.limits(s, [], 0).min, 0, s.type);
   assert.equal(FI.limits({ type: "cyklopruh" }, [], 0).zaklad, 1.5);

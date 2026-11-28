@@ -62,14 +62,6 @@ test("Litva: značky, normy, bez ortofota", async () => {
   assert.equal(f({ k: "ip27a" }), null, "pěší zónu Litva nemá");
   assert.equal(f({ k: "b1", plate: "obsluha" }), null);
   assert.equal(LT.signs.label({ k: "b29" }, null, "B 29 Zákaz stání"), "333 Zákaz stání");
-  for (const k of ["b1", "b11", "b8", "b30", "b28", "b29", "ip11a", "ip12", "ip14a", "ip15a", "ip20a", "zona30", "ip26a", "cyklozona", "c8a", "c7a", "c9a"]) {
-    const file = f({ k });
-    assert.ok(file && fs.existsSync(new URL(`../app/public/signs-LT/${file}.svg`, import.meta.url)), `${k}: ${file}`);
-  }
-  for (const file of ["301", "503", "329", "413a", "413b", "846", "853"]) {
-    const svg = fs.readFileSync(new URL(`../app/public/signs-LT/${file}.svg`, import.meta.url), "utf8");
-    assert.match(svg.match(/<svg[\s\S]*?>/)[0], /viewBox="[\d.]+ [\d.]+ [\d.]+ [\d.]+"/, file);
-  }
   assert.match(fs.readFileSync(new URL("../app/public/signs-LT/329.svg", import.meta.url), "utf8"), /<text id="v"/);
   const S = await import("../app/public/signs.js");
   assert.ok(S.SPEED_TEMPLATES.has("329"));

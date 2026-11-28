@@ -132,11 +132,6 @@ test("Španělsko: značky (S-11 / R-101 podle směru, R-301, autopista a autov�
   assert.equal(f({ k: "ip14a" }), null);
   assert.equal(ES.signs.label({ k: "zona30" }, null, "IZ 8a Zóna 30"), "Zóna 30", "tabule ZONA z katalogu 2003: bez kódu");
   assert.equal(f({ k: "ztp" }), null, "vyhrazené stání jen s textem: nekreslí se");
-  for (const k of ["b1", "b11", "b8", "b30", "b28", "b29", "ip11a", "ip15a", "ip20a", "zona30", "ip26a", "sdilena", "ip27a", "c8a", "c9a", "c10a", "c7a"]) {
-    const file = f({ k });
-    assert.ok(file && fs.existsSync(new URL(`../app/public/signs-ES/${file}.svg`, import.meta.url)), `${k}: ${file}`);
-  }
-  for (const v of [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120]) assert.ok(fs.existsSync(new URL(`../app/public/signs-ES/R-301-${v}.svg`, import.meta.url)), `R-301-${v}`);
   assert.equal(ES.lawNeed(false, 1, 2.5), 5, "obousměrka: dva průjezdné pruhy");
   assert.equal(ES.lawNeed(true, 1, 2.5), 3, "jednosměrka: 3 m k protějšímu okraji (čl. 91.2 a RGC)");
   assert.equal(ES.limits({ type: "chodnik", width: 1.5 }, []).min, 1.8);

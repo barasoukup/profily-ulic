@@ -147,14 +147,6 @@ test("Slovinsko: značky, normy, zákon o stání", async () => {
   assert.equal(f({ k: "ip15a" }), null);
   assert.equal(f({ k: "ztp" }), null);
   assert.equal(SI.signs.label({ k: "b29" }, null, "B 29 Zákaz stání"), "2237 Zákaz stání");
-  for (const k of ["b1", "b11", "b8", "b30", "b28", "b29", "ip11a", "ip14a", "ip20a", "zona30", "ip26a", "ip27a", "sdilena", "c8a", "c9a", "c10a", "c7a"]) {
-    const file = f({ k });
-    assert.ok(file && fs.existsSync(new URL(`../app/public/signs-SI/${file}.svg`, import.meta.url)), `${k}: ${file}`);
-  }
-  for (const v of [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130]) assert.ok(fs.existsSync(new URL(`../app/public/signs-SI/2232-${v}.svg`, import.meta.url)), `${v}`);
-  for (const file of fs.readdirSync(new URL("../app/public/signs-SI/", import.meta.url)).filter((x) => x.endsWith(".svg"))) {
-    assert.match(fs.readFileSync(new URL(`../app/public/signs-SI/${file}`, import.meta.url), "utf8"), /viewBox=/, file);
-  }
   assert.equal(SI.limits({ type: "chodnik" }, [], 0), null, "minimum chodníku nenalezeno");
   assert.equal(SI.limits({ type: "cyklopruh" }, [], 0).zaklad, 1.75);
   assert.equal(SI.limits({ type: "cyklostezka" }, [], 0).min, 1, "bez směru jako jednosměrná");

@@ -74,12 +74,6 @@ test("Estonsko: značky a normy", async () => {
   assert.equal(f({ k: "b1", plate: "obsluha" }), null, "tabulka mimo dopravní obsluhy chybí");
   assert.equal(EE.signs.label({ k: "b29" }, null, "B 29 Zákaz stání"), "362 Zákaz stání");
   assert.equal(EE.signs.label({ k: "oneway", dir: "backward", plate: "protismer" }, null, "Zákaz vjezdu"), "331 + 891a Zákaz vjezdu");
-  for (const k of ["b1", "b11", "b8", "b30", "b28", "b29", "ip11a", "ztp", "ip12", "ip14a", "ip20a", "zona30", "ip26a", "ip27a", "c8a", "c9a", "c10a", "c7a"]) {
-    const file = f({ k });
-    assert.ok(file && fs.existsSync(new URL(`../app/public/signs-EE/${file}.svg`, import.meta.url)), `${k}: ${file}`);
-  }
-  for (const file of ["521-plus-836", "331-plus-891a-kolo", "525b", "331"]) assert.ok(fs.existsSync(new URL(`../app/public/signs-EE/${file}.svg`, import.meta.url)), file);
-  for (const v of [5, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110]) assert.ok(fs.existsSync(new URL(`../app/public/signs-EE/351-${v}.svg`, import.meta.url)), `${v}`);
   assert.equal(f({ k: "ip15a" }), null, "silnici pro motorová vozidla Estonsko nemá");
   assert.equal(EE.limits({ type: "chodnik" }).min, 1.5);
   // Druhá ruka jen oranžově (recenze 24. 11. 2026, jako Litva).

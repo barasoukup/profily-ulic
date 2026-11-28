@@ -29,11 +29,6 @@ test("Itálie: značky a normy", async () => {
   assert.equal(f({ k: "oneway", dir: "backward", plate: "protismer" }), "II-47-plus-II-4b");
   assert.equal(IT.signs.label({ k: "b29" }, null, "B 29 Zákaz stání"), "II.74 Zákaz stání");
   assert.equal(IT.signs.label({ k: "zona30" }, null, "IZ 8a Zóna s dopravním omezením"), "II.323/a Zóna s dopravním omezením");
-  for (const k of ["b1", "b11", "b8", "b30", "b28", "b29", "ip11a", "ztp", "ip14a", "ip15a", "zona30", "ip26a", "ip27a", "c8a", "c9a", "c10a", "c7a"]) {
-    const file = f({ k });
-    assert.ok(file && fs.existsSync(new URL(`../app/public/signs-IT/${file}.svg`, import.meta.url)), `${k}: ${file}`);
-  }
-  for (const v of [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130]) assert.ok(fs.existsSync(new URL(`../app/public/signs-IT/II-50-${v}.svg`, import.meta.url)), `${v}`);
   assert.equal(f({ k: "ip20a" }), null, "vyhrazený pruh je panel Uso corsie, kresba chybí");
   assert.equal(IT.limits({ type: "chodnik" }).min, 0.9);
 });

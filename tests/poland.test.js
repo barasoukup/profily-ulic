@@ -2,7 +2,6 @@
 // its border, the signs, norms and parking law. No network.
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import fs from "node:fs";
 
 test("Polsko: mapa povrchů Krakova (druhy MJO na kódy MTVU), ve výchozím stavu vypnutá, zapne ?krakow=1", async () => {
   const P = await import("../app/public/towns/poland.js");
@@ -39,9 +38,6 @@ test("Polsko: značky, normy, zákon o stání", async () => {
   assert.equal(PL.signs.file({ k: "b20a", v: 50 }), "B-33-50");
   assert.equal(PL.signs.file({ k: "ip27a" }), null, "Polsko nemá značku pěší zóny");
   assert.equal(PL.signs.plate({ k: "ztp" }), "T-29");
-  for (const k of ["B-1", "B-2", "B-2_T-22", "B-33-50", "B-43-30", "D-3", "D-3_T-22", "D-18", "T-29", "D-40", "C-13", "C-13-16", "C-16"]) {
-    assert.match(fs.readFileSync(new URL(`../app/public/signs-PL/${k}.svg`, import.meta.url), "utf8"), /<svg[^>]*viewBox="[-\d.]+ [-\d.]+ [\d.]+ [\d.]+"/, k);
-  }
   assert.equal(PL.limits({ type: "chodnik" }, [], 0).zaklad, 1.8);
   assert.equal(PL.limits({ type: "pruh" }, [{ type: "pruh", roadClass: "mk3" }, { type: "pruh" }], 0).min, 2.5);
   assert.equal(PL.tramBelt([], 6.5).length, 1);

@@ -6,7 +6,7 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
 import { loadCities } from "./helpers/cities.js";
-import { exists, PUBLIC } from "./helpers/files.js";
+import { exists, publicUrl } from "./helpers/files.js";
 import { COUNTRIES } from "../app/public/countries/index.js";
 import { SIGNS } from "../app/public/signs.js";
 
@@ -141,15 +141,36 @@ test("jízda vlevo jen na Kypru a na Maltě", () => {
   assert.deepEqual(Object.entries(COUNTRIES).filter(([, c]) => c.leftHand).map(([k]) => k).sort(), ["CY", "MT"]);
 });
 
-// Every sign a state draws is a file with a viewBox (else drawn NaN): the keys of the signs, with the plates and directions
-// they come with, through each state's own `signs.file`; the speeds apart.
+// Every sign a state draws is a file: the keys of the signs (SIGNS), with the plates and directions they come with, through
+// each state's own `signs.file`, the speeds apart; and every file of a state's folder has a viewBox, from which profile.js
+// loadSign reads the sign's size (without it the sign is not drawn).
 const KEYS = [...Object.keys(SIGNS), "ip11b", "ip11c"];
-const WITHOUT_VIEWBOX = { DK: ["C19", "C21", "C22.1", "C25.1", "C26.2", "C61", "C62", "D21", "D22", "D26", "D26.2", "D27", "E33.1", "E42", "E43", "E49"] };
-const PLATES = [undefined, "protismer", "obsluha", "kolo"];
+const PLATES = [undefined, "protismer", "obsluha", "kolo", "kola", "podelne", "kolme", "sikme"];
 const SPEEDS = [5, 10, 15, 20, 25, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130];
+// The signs of DK without a viewBox (Commons files with width and height only): not drawn (docs/backlog.md).
+const WITHOUT_VIEWBOX = { "signs-DK": ["C19", "C21", "C22.1", "C25.1", "C26.2", "C61", "C62", "D21", "D22", "D26", "D26.2", "D27", "E33.1", "E42", "E43", "E49"] };
+// Files a state's tests named by hand (its pictures of plates and speeds, the shapes of its mapping) and that must be there.
+const speeds = (prefix, list) => list.map((v) => `${prefix}${v}`);
+const NAMED = {
+  "signs-BE": ["C1", "C3", "C11", "C19", "C43_50", "E1", "E3", "E9", "F4a", "F19", "F12a", "F103", "D07", "D09", "D10", "D11"],
+  "signs-LU": ["C_2", "C_1a", "C_3c", "C_14_50", "E_13a", "C_18", "C_19", "E_23", "H_1_1", "E_25a", "D_4", "D_5b"],
+  "signs-PL": ["B-1", "B-2", "B-2_T-22", "B-33-50", "B-43-30", "D-3", "D-3_T-22", "D-18", "T-29", "D-40", "C-13", "C-13-16", "C-16"],
+  "signs-NL": ["C1", "C2", "C3", "C12", "C14", "C16", "E1", "E2", "E4", "E6", "E9", "F13", "G1", "G3", "G5", "G7", "G7_Zone", "G11", "A1_30_Zone", "A1-50"],
+  "signs-LT": ["301", "503", "329", "413a", "413b", "846", "853"],
+  "signs-PT": ["H3", "C1", "C1-plus-10e", ...speeds("C13-", [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120])],
+  "signs-EE": ["521-plus-836", "331-plus-891a-kolo", "525b", "331", ...speeds("351-", [5, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110])],
+  "signs-FI": ["E14.1", "C17", "D7.2", ...speeds("C32-", [20, 30, 40, 50, 60, 70, 80, 100, 120])],
+  "signs-DK": ["C55"],
+  "signs-IT": speeds("II-50-", [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130]),
+  "signs-ES": speeds("R-301-", [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120]),
+  "signs-SI": speeds("2232-", [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130]),
+  "signs-CY": speeds("speed-", [10, 20, 30, 40, 50, 60, 70, 80, 90, 100]),
+};
+const DIRS = [...new Set(Object.values(COUNTRIES).map((c) => c.signs?.dir).filter(Boolean))];
+
 for (const [code, country] of Object.entries(COUNTRIES)) {
   if (!country.signs?.file) continue;
-  test(`značky: soubor každé značky ${code} existuje a má viewBox`, () => {
+  test(`značky: soubor každé značky ${code} existuje`, () => {
     const files = new Set();
     for (const k of KEYS) for (const plate of PLATES) for (const extra of [{}, { dir: "forward" }, { dir: "backward" }, { walk: "left" }]) {
       const sign = { k, plate, ...extra };
@@ -157,15 +178,32 @@ for (const [code, country] of Object.entries(COUNTRIES)) {
       for (const f of [country.signs.file(sign), country.signs.file({ k, plate }, extra)]) if (f) files.add(f);
     }
     for (const v of SPEEDS) { const f = country.signs.file({ k: "b20a", v }); if (f) files.add(f); }
-    const dir = country.signs.dir;
-    if (!files.size) return;
-    const noViewBox = [];
-    for (const f of files) {
-      const rel = `${dir}/${f}.svg`;
-      assert.ok(exists(rel), `${code}: ${f}`);
-      if (!/viewBox="[-\d.]+[ ,]+[-\d.]+[ ,]+[\d.]+[ ,]+[\d.]+"/.test(fs.readFileSync(new URL(rel, PUBLIC), "utf8"))) noViewBox.push(f);
-    }
-    // profile.js loadSign reads the size from the viewBox: a sign without one is not drawn (backlog, tests: DK).
-    assert.deepEqual(noViewBox.sort(), (WITHOUT_VIEWBOX[code] || []).sort(), `${code}: značky bez viewBox`);
+    for (const f of files) assert.ok(exists(`${country.signs.dir}/${f}.svg`), `${code}: ${f}`);
   });
 }
+
+for (const dir of DIRS) {
+  test(`značky: každý soubor ${dir} má viewBox a to, co testy jmenují, existuje`, () => {
+    const noViewBox = fs.readdirSync(publicUrl(`${dir}/`)).filter((f) => f.endsWith(".svg"))
+      .filter((f) => !/viewBox="[-\d.]+[ ,]+[-\d.]+[ ,]+[\d.]+[ ,]+[\d.]+"/.test(fs.readFileSync(publicUrl(`${dir}/${f}`), "utf8"))).map((f) => f.slice(0, -4));
+    assert.deepEqual(noViewBox.sort(), (WITHOUT_VIEWBOX[dir] || []).sort(), `${dir}: značky bez viewBox`);
+    for (const f of NAMED[dir] || []) assert.ok(exists(`${dir}/${f}.svg`), `${dir}/${f}`);
+  });
+}
+
+// The keys a state has a picture for (each of them is a file, above); a key a state does not draw is null in its own test.
+const BASE = ["b1", "b11", "b8", "b30", "b28", "b29", "c8a", "c9a", "c10a", "c7a", "ip11a", "ip14a", "ip15a", "ip20a", "zona30", "ip26a", "ip27a"];
+const DRAWN = {
+  CH: BASE, LI: BASE,
+  EE: ["b1", "b11", "b8", "b30", "b28", "b29", "ip11a", "ztp", "ip12", "ip14a", "ip20a", "zona30", "ip26a", "ip27a", "c8a", "c9a", "c10a", "c7a"],
+  FI: [...BASE, "cyklozona"],
+  IT: ["b1", "b11", "b8", "b30", "b28", "b29", "ip11a", "ztp", "ip14a", "ip15a", "zona30", "ip26a", "ip27a", "c8a", "c9a", "c10a", "c7a"],
+  LT: ["b1", "b11", "b8", "b30", "b28", "b29", "ip11a", "ip12", "ip14a", "ip15a", "ip20a", "zona30", "ip26a", "cyklozona", "c8a", "c7a", "c9a"],
+  PT: [...BASE, "sdilena"],
+  SI: ["b1", "b11", "b8", "b30", "b28", "b29", "ip11a", "ip14a", "ip20a", "zona30", "ip26a", "ip27a", "sdilena", "c8a", "c9a", "c10a", "c7a"],
+  ES: ["b1", "b11", "b8", "b30", "b28", "b29", "ip11a", "ip15a", "ip20a", "zona30", "ip26a", "sdilena", "ip27a", "c8a", "c9a", "c10a", "c7a"],
+  DK: ["b1", "b11", "b8", "b30", "b28", "b29", "ip11a", "ip14a", "ip15a", "ip26a", "ip27a", "cyklozona", "c8a", "c9a", "c7a"],
+};
+test("značky: tyto klíče stát kreslí (soubor není null)", () => {
+  for (const [code, keys] of Object.entries(DRAWN)) for (const k of keys) assert.ok(COUNTRIES[code].signs.file({ k }, null), `${code}: ${k}`);
+});

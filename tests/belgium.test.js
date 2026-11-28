@@ -2,7 +2,6 @@
 // borders, the signs, norms and parking laws. No network.
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import fs from "node:fs";
 
 test("Belgie: čáry GRB a PICC jako kandidáti obrub, vypínač ?hrany=0", async () => {
   const B = await import("../app/public/towns/belgium.js");
@@ -81,10 +80,6 @@ test("Belgie a Lucembursko: značky, normy, zákon o stání", async () => {
   assert.equal(LU.signs.file({ k: "oneway" }, { dir: "forward" }), "E_13a");
   assert.equal(LU.signs.file({ k: "b20a", v: 30 }), null, "lucemburská 30 jako SVG chybí");
   assert.equal(LU.signs.label({ k: "c9a" }, true, "x"), "D,5b x");
-  for (const [dir, list] of [["signs-BE", ["C1", "C3", "C11", "C19", "C43_50", "E1", "E3", "E9", "F4a", "F19", "F12a", "F103", "D07", "D09", "D10", "D11"]],
-    ["signs-LU", ["C_2", "C_1a", "C_3c", "C_14_50", "E_13a", "C_18", "C_19", "E_23", "H_1_1", "E_25a", "D_4", "D_5b"]]]) {
-    for (const k of list) assert.match(fs.readFileSync(new URL(`../app/public/${dir}/${k}.svg`, import.meta.url), "utf8"), /<svg[^>]*viewBox="[-\d.]+ [-\d.]+ [\d.]+ [\d.]+"/, `${dir}/${k}`);
-  }
   assert.equal(BE.limits({ type: "chodnik" }, [], 0).min, 1.5);
   assert.equal(LU.limits({ type: "chodnik" }, [], 0).zaklad, 2);
   assert.equal(BE.limits({ type: "pruh" }, [{ type: "pruh" }], 0), null, "zdroj jen pro hlavní silnice Flander: bez varování");

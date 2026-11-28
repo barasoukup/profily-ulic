@@ -63,14 +63,6 @@ test("Švýcarsko: značky SSV (2.49 zákaz zastavení, 2.50 zákaz stání, 4.0
   assert.equal(signFile({ k: "ip20a" }, null, "CH"), "2.64");
   assert.match(signLabel({ k: "b28" }, "CH"), /^SSV 2\.49 /);
   assert.equal(signFile({ k: "b28" }, null, "LI"), "2.49", "Lichtenštejnsko má stejná čísla");
-  // Every file of the mapping exists and has a viewBox (else drawn NaN).
-  for (const f of fs.readdirSync(new URL("../app/public/signs-CH/", import.meta.url)).filter((f) => f.endsWith(".svg"))) {
-    assert.match(fs.readFileSync(new URL(`../app/public/signs-CH/${f}`, import.meta.url), "utf8"), /viewBox="[\d.]+ [\d.]+ [\d.]+ [\d.]+"/, f);
-  }
-  for (const k of ["b1", "b11", "b8", "b30", "b28", "b29", "c8a", "c9a", "c10a", "c7a", "ip11a", "ip14a", "ip15a", "ip20a", "zona30", "ip26a", "ip27a"]) {
-    const f = signFile({ k }, null, "CH");
-    assert.ok(fs.existsSync(new URL(`../app/public/signs-CH/${f}.svg`, import.meta.url)), `${k} → ${f}`);
-  }
   C.setCity("praha");
 });
 

@@ -2,7 +2,6 @@
 // Locatieserver (search-nl.js), the state by its border, the RVV signs, norms and parking law. No network.
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import fs from "node:fs";
 
 const sq = (x, y, d = 0.0001) => [[[x - d, y - d], [x + d, y - d], [x + d, y + d], [x - d, y + d], [x - d, y - d]]];
 
@@ -91,10 +90,6 @@ test("Nizozemsko: značky RVV, normy, zákon o stání", async () => {
   assert.equal(f({ k: "b1", plate: "obsluha" }), null);
   assert.equal(f({ k: "ip26a" }), "G5");
   assert.equal(f({ k: "c9a" }), null, "Nizozemsko nemá stezku pro chodce a cyklisty");
-  for (const k of ["C1", "C2", "C3", "C12", "C14", "C16", "E1", "E2", "E4", "E6", "E9", "F13", "G1", "G3", "G5", "G7", "G7_Zone", "G11", "A1_30_Zone", "A1-50"]) {
-    const svg = fs.readFileSync(new URL(`../app/public/signs-NL/${k}.svg`, import.meta.url), "utf8");
-    assert.match(svg, /<svg[^>]*viewBox="[\d.]+ [\d.]+ [\d.]+ [\d.]+"/, k);
-  }
   assert.equal(NL.limits({ type: "chodnik" }, [], 0).min, 1.8);
   assert.equal(NL.limits({ type: "cyklopruh" }, [{ type: "parkovani" }, { type: "cyklopruh" }], 1).min, 1.7);
   assert.equal(NL.limits({ type: "parkovani", orient: "sikme" }, [], 0), null);

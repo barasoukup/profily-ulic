@@ -35,7 +35,6 @@ test("Kypr: jízda vlevo, značky a normy", async () => {
     assert.ok(fs.existsSync(new URL(`../app/public/signs-CY/${file}.svg`, import.meta.url)), file);
     assert.ok(licence[file], `licence ${file}`);
   }
-  for (const v of [10, 20, 30, 40, 50, 60, 70, 80, 90, 100]) assert.ok(fs.existsSync(new URL(`../app/public/signs-CY/speed-${v}.svg`, import.meta.url)), `${v}`);
   assert.equal(CY.signs.label({ k: "b29" }, null, "B 29 Zákaz stání"), "Zákaz stání", "Kodex značky nečísluje");
   // The files under the Open Government Licence (their credit in the export) are those of signs-licence.json.
   const ogl = Object.entries(JSON.parse(fs.readFileSync(new URL("../evaluation/cyprus/signs-licence.json", import.meta.url), "utf8"))).filter(([, v]) => /OGL/.test(v.lic)).map(([k]) => k).sort();
