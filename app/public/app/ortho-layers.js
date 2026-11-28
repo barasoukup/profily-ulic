@@ -14,8 +14,7 @@
 import { MAP_LAYERS, urlOf, landAt, landsAt } from "../lanes-ortho.js";
 import { tileTemplate } from "../ortho/service.js";
 import { orthoCredit } from "../ortho/credit.js";
-import { boxed as boxedPlace, within as withinPlace } from "../places.js";
-import { insideRings } from "../gis.js";
+import { boxed as boxedPlace, within as withinPlace, inside } from "../places.js";
 
 // A blank tile: what a layer kept to its area draws beyond it (nothing is asked of its server there).
 const BLANK_TILE = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7";
@@ -24,7 +23,7 @@ const BLANK_TILE = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALA
 function tileReaches(layer, coords, rings) {
   const size = layer.getTileSize(), at = (fx, fy) => layer._map.unproject([(coords.x + fx) * size.x, (coords.y + fy) * size.y], coords.z);
   const nw = at(0, 0), se = at(1, 1);
-  if ([[0.5, 0.5], [0, 0], [1, 0], [0, 1], [1, 1]].some(([fx, fy]) => { const q = at(fx, fy); return insideRings(rings, q.lng, q.lat); })) return true;
+  if ([[0.5, 0.5], [0, 0], [1, 0], [0, 1], [1, 1]].some(([fx, fy]) => { const q = at(fx, fy); return inside(rings, q.lng, q.lat); })) return true;
   return rings.some((r) => r.some(([x, y]) => x >= nw.lng && x <= se.lng && y >= se.lat && y <= nw.lat));
 }
 // A layer class of a state's (or a city's) own service kept to its area: a tile wholly beyond it is blank and not asked

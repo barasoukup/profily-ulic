@@ -13,12 +13,10 @@
 // A gap between the polygons (the tree strip, a front yard, a lawn) is green 401.
 import { osmTiles, getJSON, envelope, asMtvu } from "../gis.js";
 import { MTVU_LABELS } from "../city.js";
-import { inArea } from "../places.js";
+import { inArea, inside } from "../places.js";
 import { cutOfBox } from "./belgium.js";
 
 const STEP = 0.1;
-const inRing = (ring, x, y) => { let c = false; for (let i = 0, j = ring.length - 1; i < ring.length; j = i++) { const [xi, yi] = ring[i], [xj, yj] = ring[j]; if (yi > y !== yj > y && x < ((xj - xi) * (y - yi)) / (yj - yi) + xi) c = !c; } return c; };
-export const inRings = (rings, x, y) => rings.reduce((c, r) => (inRing(r, x, y) ? !c : c), false);
 
 // The kinds along the cut: runs { code, s, e } in metres from the centre along dir (c: cutOfBox's frame), a gap (code 401)
 // marked so. layers: [[code(attributes), esri json]…].
@@ -35,7 +33,7 @@ export function runsAlong(layers, c) {
   const runs = [];
   for (let t = -c.half; t < c.half - 1e-9; t += STEP) {
     const x = c.dir[0] * (t + STEP / 2), y = c.dir[1] * (t + STEP / 2);
-    const p = polys.find((q) => x >= q.box[0] && x <= q.box[2] && y >= q.box[1] && y <= q.box[3] && inRings(q.rings, x, y));
+    const p = polys.find((q) => x >= q.box[0] && x <= q.box[2] && y >= q.box[1] && y <= q.box[3] && inside(q.rings, x, y));
     const code = p ? p.code : 401, last = runs.at(-1);
     if (last && last.code === code && !last.lot === !p?.lot) last.e = t + STEP; else runs.push({ code, s: t, e: t + STEP, ...(!p && { gap: true }), ...(p?.lot && { lot: true }) });
   }
@@ -242,7 +240,7 @@ export function planimetricCut(d, answers, osmElements, bbox, tags = null, { way
   const more = d.adjust?.(runs, { c, tags: tags || {}, way, wayAlong: way ? alongOf(way, c, street) : true, osmElements, extra }) || {};
   const at = d.junction && answers[d.layers.findIndex((l) => l.id === d.junction.layer)];
   const junction = !!at && (at.features || []).some((f) => d.junction.test(f.attributes || {}) && f.geometry?.rings
-    && inRings(f.geometry.rings.map((r) => r.map(([lon, lat]) => [(lon - c.lon0) * c.kx, (lat - c.lat0) * c.ky])), 0, 0));
+    && inside(f.geometry.rings.map((r) => r.map(([lon, lat]) => [(lon - c.lon0) * c.kx, (lat - c.lat0) * c.ky])), 0, 0));
   const back = ([x, y]) => [x / c.kx + c.lon0, y / c.ky + c.lat0];
   const features = runs.map((r) => ({ attributes: { code: r.code, ...(r.medianGap && { MEDIAN_GAP: 1 }), ...(r.carvedTrack && { CARVED_TRACK: 1 }), ...(r.fromOsm && { FROM_OSM: 1 }), ...(r.orient && { ORIENT: r.orient }) }, geometry: { rings: [[[r.s, -1], [r.e, -1], [r.e, 1], [r.s, 1], [r.s, -1]]
     .map(([t, u]) => back([c.dir[0] * t + street[0] * u, c.dir[1] * t + street[1] * u]))] } }));
@@ -291,7 +289,7 @@ export function planimetricMap(d) {
       for (const f of (await json.catch(() => null))?.features || []) {
         if (!f.geometry?.rings) continue;
         const rings = f.geometry.rings.map((r) => r.map(([x, y]) => [(x - lon) * kx, (y - lat) * ky]));
-        const dist = inRings(rings, 0, 0) ? 0 : Math.min(...rings.map(toRing));
+        const dist = inside(rings, 0, 0) ? 0 : Math.min(...rings.map(toRing));
         if (dist <= 1 && (!best || dist < best.dist)) best = { dist, f };
       }
       if (best) return best.f;

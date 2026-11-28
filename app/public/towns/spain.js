@@ -14,7 +14,7 @@
 import { flagsOf } from "../flags.js";
 import { osmTiles, getJSON, asMtvu, asPassport } from "../gis.js";
 import { MTVU_LABELS } from "../city.js";
-import { inArea } from "../places.js";
+import { inArea, inside } from "../places.js";
 import { osmAreas } from "./slovakia.js";
 import { foralEnabled, foralFetch } from "./spain-foral.js";
 
@@ -81,11 +81,6 @@ function cached(id, bbox) {
   return memo.get(key);
 }
 
-const inRings = (rings, x, y) => {
-  let c = false;
-  for (const r of rings) for (let i = 0, j = r.length - 1; i < r.length; j = i++) { const [xi, yi] = r[i], [xj, yj] = r[j]; if (yi > y !== yj > y && x < ((xj - xi) * (y - yi)) / (yj - yi) + xi) c = !c; }
-  return c;
-};
 // A sidewalk of the city within NEAR m of the cut's centre (the city maps this street).
 const NEAR = 25;
 const ring = (r) => Array.from({ length: 12 }, (_, i) => [r * Math.cos((i * Math.PI) / 6), r * Math.sin((i * Math.PI) / 6)]);
@@ -103,7 +98,7 @@ async function surfaces(bbox) {
     return { features: [], abroad: true, esFailed: id };
   }
   const my = 1 / 110574, mx = 1 / (111320 * Math.cos((cy * Math.PI) / 180));
-  const at = own.features.some((f) => f.attributes.CTVUK_KOD === 702 && AROUND.some(([ox, oy]) => inRings(f.geometry.rings, cx + ox * mx, cy + oy * my)));
+  const at = own.features.some((f) => f.attributes.CTVUK_KOD === 702 && AROUND.some(([ox, oy]) => inside(f.geometry.rings, cx + ox * mx, cy + oy * my)));
   if (!at) return { features: [], abroad: true };
   const r = Math.max((x1 - x0) / mx, (y1 - y0) / my) / 2;
   const [o, osm] = await Promise.all([osmAreas(bbox), osmTiles(cy, cx, r)]);
@@ -134,9 +129,9 @@ const USE = { "1_residential": "living", "4_1_office": "office", "4_2_retail": "
 export function catastroBuilding(buildingGml, partsGml, lat, lon) {
   // The building the point lies in, else the first of the window (a party wall: the neighbour's year and use otherwise).
   const all = members(buildingGml);
-  const b = all.find((m) => { const r = ringsGml(m); return r.length && inRings(r, lon, lat); }) || all[0];
+  const b = all.find((m) => { const r = ringsGml(m); return r.length && inside(r, lon, lat); }) || all[0];
   const parts = members(partsGml).map((m) => ({ floors: Number(value(m, "numberOfFloorsAboveGround")), rings: ringsGml(m) })).filter((p) => p.floors > 0);
-  const here = parts.filter((p) => p.rings.length && inRings(p.rings, lon, lat));
+  const here = parts.filter((p) => p.rings.length && inside(p.rings, lon, lat));
   const floors = Math.max(0, ...(here.length ? here : parts).map((p) => p.floors)) || undefined;
   if (!b && !floors) return {};
   const year = parseInt(String(b ? value(b, "beginning") : "").slice(0, 4), 10);
@@ -167,13 +162,13 @@ const regions = (json) => {
 };
 export async function provinceAt(lon, lat, json = null) {
   const all = await regions(json);
-  return Object.keys(all).find((code) => inRings(all[code], lon, lat)) ?? null;
+  return Object.keys(all).find((code) => inside(all[code], lon, lat)) ?? null;
 }
 export async function foralAt(lon, lat, json = null) {
   const all = await regions(json), d = 0.005, codes = Object.keys(all);
   const near = [[d, 0], [-d, 0], [0, d], [0, -d], [d, d], [-d, -d], [d, -d], [-d, d]];
-  const here = codes.find((code) => inRings(all[code], lon, lat));
-  return here && near.every(([dx, dy]) => codes.some((code) => inRings(all[code], lon + dx * 1.4, lat + dy))) ? here : null;
+  const here = codes.find((code) => inside(all[code], lon, lat));
+  return here && near.every(([dx, dy]) => codes.some((code) => inside(all[code], lon + dx * 1.4, lat + dy))) ? here : null;
 }
 // One answer a point (rounded to about a metre: a cut moved a little asks the same facade again), at most 30 kept.
 // In the four provinces the cadastre of the province (towns/spain-foral.js; ?foral=0 none, ?foral=nc,gi some); near

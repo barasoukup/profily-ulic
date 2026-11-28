@@ -9,6 +9,7 @@
 //   ?gurs=0 leaves them out; ?off=podkrovi only the rule of the attic (gursBuilding).
 import { flagsOf, offOf } from "../flags.js";
 import { osmTiles } from "../gis.js";
+import { inside } from "../places.js";
 
 const flag = flagsOf("PROFILY_SI");
 
@@ -24,11 +25,6 @@ export function gursUrl(lat, lon, d = 0.00001) {
     srsName: "EPSG:4326", count: "5", PROPERTYNAME: FIELDS.join(","), FILTER: filter })}`;
 }
 
-const inRings = (rings, x, y) => {
-  let c = false;
-  for (const r of rings) for (let i = 0, j = r.length - 1; i < r.length; j = i++) { const [xi, yi] = r[i], [xj, yj] = r[j]; if (yi > y !== yj > y && x < ((xj - xi) * (y - yi)) / (yj - yi) + xi) c = !c; }
-  return c;
-};
 const ringsOf = (g) => (g?.type === "Polygon" ? [g.coordinates] : g?.type === "MultiPolygon" ? g.coordinates : []);
 const num = (v) => (v === null || v === undefined || v === "" ? NaN : Number(v));
 
@@ -70,7 +66,7 @@ export function gursBuilding(p) {
 // The footprint the point lies in, else the tallest of the answer (a party wall: the box touches the neighbour too).
 export function gursPick(json, lat, lon) {
   const fs = json?.features || [];
-  const here = fs.filter((f) => ringsOf(f.geometry).some((rings) => inRings(rings, lon, lat)));
+  const here = fs.filter((f) => ringsOf(f.geometry).some((rings) => inside(rings, lon, lat)));
   const tall = (a, b) => (num(b.properties?.STEVILO_ETAZ) || 0) - (num(a.properties?.STEVILO_ETAZ) || 0);
   const f = (here.length ? here : fs).slice().sort(tall)[0];
   return f ? { ...gursBuilding(f.properties), gurs: true } : {};

@@ -32,10 +32,10 @@ test("Boston: dlaždice map povrchů (oříznutí obdélníkem, zápis a čtení
   const tiles = new Map();
   T.tileFeatures([{ attributes: { type: "RD-PAVED" }, geometry: { rings: [outer, hole] } }], ["type"], tiles, "r");
   assert.ok(tiles.size >= 2);
-  const { inRings } = await import("../app/public/towns/planimetrics.js");
+  const { inside } = await import("../app/public/places.js");
   const feats = [...tiles].flatMap(([k, t]) => { const [ix, iy] = k.split("_").map(Number); return B.decodePlanTile(t.r, ix, iy, ["type"]); });
   assert.ok(feats.every((f) => f.attributes.type === "RD-PAVED"));
-  const hit = (x, y) => feats.some((f) => inRings(f.geometry.rings, x, y));
+  const hit = (x, y) => feats.some((f) => inside(f.geometry.rings, x, y));
   for (const [x, y, want] of [[x0 + 0.0003, y0 + 0.0003, true], [x0 + 0.0019, y0 + 0.0017, true], [x0 + 0.001, y0 + 0.001, false], [x0 - 0.0002, y0 + 0.001, false], [x0 + 0.0015, y0 + 0.0005, true]])
     assert.equal(hit(x, y), want, `${x},${y}`);
 });

@@ -13,7 +13,7 @@
 import { flagsOf } from "../flags.js";
 import { osmTiles, getJSON, asMtvu, asPassport } from "../gis.js";
 import { MTVU_LABELS } from "../city.js";
-import { inArea } from "../places.js";
+import { inArea, inside } from "../places.js";
 import { osmAreas } from "./slovakia.js";
 import { surfaces as lombardySurfaces, AREAS as LOMBARDY_AREAS } from "./lombardy.js";
 
@@ -50,11 +50,6 @@ function cached(bbox) {
   }
   return memo.get(key);
 }
-const inRings = (rings, x, y) => {
-  let c = false;
-  for (const r of rings) for (let i = 0, j = r.length - 1; i < r.length; j = i++) { const [xi, yi] = r[i], [xj, yj] = r[j]; if (yi > y !== yj > y && x < ((xj - xi) * (y - yi)) / (yj - yi) + xi) c = !c; }
-  return c;
-};
 const ring = (r) => Array.from({ length: 12 }, (_, i) => [r * Math.cos((i * Math.PI) / 6), r * Math.sin((i * Math.PI) / 6)]);
 const AROUND = [[0, 0], ...[2, 5, 10].flatMap(ring)];
 
@@ -73,7 +68,7 @@ async function surfaces(bbox) {
   }
   // A roadway of the map at the cut's centre or within 10 m.
   const my = 1 / 110574, mx = 1 / (111320 * Math.cos((cy * Math.PI) / 180));
-  if (!own.features.some((f) => AROUND.some(([ox, oy]) => inRings(f.geometry.rings, cx + ox * mx, cy + oy * my)))) return { features: [], abroad: true };
+  if (!own.features.some((f) => AROUND.some(([ox, oy]) => inside(f.geometry.rings, cx + ox * mx, cy + oy * my)))) return { features: [], abroad: true };
   const o = await osmAreas(bbox);
   // The rest of the box: paved walking area (sidewalks, squares), an estimate, after everything else.
   const fill = { attributes: { CTVUK_KOD: 702, CTVUK_POPIS: MTVU_LABELS[702], ODHAD: 1 }, geometry: { rings: [[[x0, y0], [x1, y0], [x1, y1], [x0, y1], [x0, y0]]] } };

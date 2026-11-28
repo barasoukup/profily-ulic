@@ -5,10 +5,11 @@
 // Layers, fields and the reading of answers are shared with server.mjs (queries.js).
 import { STATIC } from "./config.js";
 import { city, country, MTVU_LABELS } from "./city.js";
-import { TILE, getJSON, query, envelope, osmTiles, insideRings, OSM_PACK } from "./gis.js";
+import { TILE, getJSON, query, envelope, osmTiles, OSM_PACK } from "./gis.js";
 import { TOWNS } from "./towns/index.js";
 import { t, mark, text as textOf, place, ucfirst } from "./i18n.js";
 import { part } from "./data.js";
+import { inside } from "./places.js";
 export { events } from "./gis.js";
 
 import { MTVU, MTVU_FIELDS, TM_LINES, LINE_WHERE, TM_POINTS, POINT_WHERE, PARKOVANI, PARKING_LAYERS, parkingFields, PODLAZNOST, PODLAZNOST_FIELDS, podlaznostInfo } from "./queries.js";
@@ -489,7 +490,7 @@ export async function vyvoj(lat, lon) {
   const polys = await vyvojTiles.get(k);
   if (!polys) return undefined;
   let year = AFTER_2010;
-  for (const [rok, rings] of polys) if (rok < year && insideRings(rings, lon, lat)) year = rok;
+  for (const [rok, rings] of polys) if (rok < year && inside(rings, lon, lat)) year = rok;
   return year;
 }
 

@@ -5,8 +5,9 @@
 //
 // A town module (towns/<id>.js, listed in towns/index.js) gives sources.js the five data sources of a
 // click (osm, surfaces, lines, parking, podlaznost; see towns/jihlava.js) and app.js its base maps.
-import { query, envelope, osmTiles, asMtvu, insideRings, ruianBuilding } from "../gis.js";
+import { query, envelope, osmTiles, asMtvu, ruianBuilding } from "../gis.js";
 import { MTVU_LABELS } from "../city.js";
+import { inside } from "../places.js";
 
 const OV = "https://mapy.ostrava.cz/arcgisserver/rest/services";
 const OV_DTM = `${OV}/MAPPA/Polohopis_DTM_generalizace/MapServer/0/query`;
@@ -55,7 +56,7 @@ async function surfaces(bbox) {
   const axes = (t.features || []).flatMap((f) => f.geometry?.paths || []);
   // Points along the axes every 2 m or so (vertices and midpoints).
   const pts = axes.flatMap((p) => p.flatMap((q, i) => (i ? [[(q[0] + p[i - 1][0]) / 2, (q[1] + p[i - 1][1]) / 2], q] : [q])));
-  const onTrack = (f) => pts.some(([x, y]) => insideRings(f.geometry.rings, x, y));
+  const onTrack = (f) => pts.some(([x, y]) => inside(f.geometry.rings, x, y));
   const out = asMtvu([[d, code]], MTVU_LABELS);
   for (const f of out.features) {
     if (f.attributes.CTVUK_KOD === 1003 && pts.length && onTrack(f)) Object.assign(f.attributes, { CTVUK_KOD: 705, CTVUK_POPIS: MTVU_LABELS[705] });

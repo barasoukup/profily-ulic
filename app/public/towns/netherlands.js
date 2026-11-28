@@ -16,6 +16,7 @@ import { flagsOf } from "../flags.js";
 import { osmTiles, getJSON, asMtvu, asPassport } from "../gis.js";
 import { MTVU_LABELS } from "../city.js";
 import { osmAreas } from "./slovakia.js";
+import { inside } from "../places.js";
 
 const flag = flagsOf("PROFILY_NL");
 
@@ -73,11 +74,6 @@ async function bgtAsk(bbox) {
 }
 
 const ringsOf = (g) => (g?.type === "Polygon" ? g.coordinates : g?.type === "MultiPolygon" ? g.coordinates.flat() : null);
-const inRings = (rings, x, y) => {
-  let c = false;
-  for (const r of rings) for (let i = 0, j = r.length - 1; i < r.length; j = i++) { const [xi, yi] = r[i], [xj, yj] = r[j]; if (yi > y !== yj > y && x < ((xj - xi) * (y - yi)) / (yj - yi) + xi) c = !c; }
-  return c;
-};
 
 // The BGT's layers as the ESRI-like features asMtvu takes. Only the level of the street at the cut's centre
 // (relatieve_hoogteligging: a bridge 1, a tunnel −1; the CLAUDE.md rule: no streets under bridges); buildings at the
@@ -93,7 +89,7 @@ export function bgtFeatures(got, cx, cy, tags) {
   // The street's level: of the BGT's roads at the centre the one nearest OSM's level of the cut's way (the hostile
   // review: over a sunken quay, the werf of Utrecht's Oudegracht at −1, or on a bridge the answer's order decided).
   const want = osmLevel(tags);
-  const here = (got.wegdeel || []).filter((f) => { const r = ringsOf(f.geometry); return r && inRings(r, cx, cy); }).map((f) => f.properties?.relatieve_hoogteligging ?? 0);
+  const here = (got.wegdeel || []).filter((f) => { const r = ringsOf(f.geometry); return r && inside(r, cx, cy); }).map((f) => f.properties?.relatieve_hoogteligging ?? 0);
   const level = here.length ? here.reduce((a, b) => (Math.abs(b - want) < Math.abs(a - want) ? b : a)) : want;
   // The BGT's tram tracks (a tram and a light rail, sneltram: the hostile review found Amstelveen's line and the Vijzelgracht's
   // so), sampled every metre or so: their vertices lie up to 180 m apart, a straight piece across a bed has none in it.
@@ -110,7 +106,7 @@ export function bgtFeatures(got, cx, cy, tags) {
       if (!code) continue;
       // An OV-baan or a railway bed (spoorbaan: a tram's own bed with grass or ballast, Amstelveen) with a BGT tram track
       // in it is a tram's bed.
-      const tram = name === "wegdeel" && (p.functie === "OV-baan" || p.functie === "spoorbaan") && trams.some((line) => line.some(([x, y]) => inRings(rings, x, y)));
+      const tram = name === "wegdeel" && (p.functie === "OV-baan" || p.functie === "spoorbaan") && trams.some((line) => line.some(([x, y]) => inside(rings, x, y)));
       if (tram) code = 705;
       features.push({ attributes: { code, ...(tram ? { ANY_TRAM: 1 } : {}) }, geometry: { rings } });
     }
@@ -152,9 +148,9 @@ async function surfaces(bbox, tags) {
   }
   // Only where the BGT has a surface of the street at the cut's centre or near it.
   const my = 1 / 110574, mx = 1 / (111320 * Math.cos((cy * Math.PI) / 180));
-  const centre = own.features.find((f) => inRings(f.geometry.rings, cx, cy))?.attributes.CTVUK_KOD;
+  const centre = own.features.find((f) => inside(f.geometry.rings, cx, cy))?.attributes.CTVUK_KOD;
   const around = centre === 702 ? NEAR : WIDE;
-  const at = own.features.some((f) => STREET.has(f.attributes.CTVUK_KOD) && around.some(([ox, oy]) => inRings(f.geometry.rings, cx + ox * mx, cy + oy * my)));
+  const at = own.features.some((f) => STREET.has(f.attributes.CTVUK_KOD) && around.some(([ox, oy]) => inside(f.geometry.rings, cx + ox * mx, cy + oy * my)));
   if (!at) return { features: [], abroad: true };
   // The BGT covers all land, so OSM's green and water fill little.
   const o = await osmAreas(bbox);
@@ -191,7 +187,7 @@ async function podlaznost(lat, lon) {
   const d = 0.000005; // about half a metre around the facade's point
   const json = await getJSON(`${BAG_API}?${new URLSearchParams({ f: "json", limit: "5", bbox: [lon - d, lat - d, lon + d, lat + d].join(",") })}`);
   const standing = (json?.features || []).filter((f) => STANDING.test(f.properties?.status || ""));
-  const pand = standing.find((f) => { const r = ringsOf(f.geometry); return r && inRings(r, lon, lat); }) || standing[0];
+  const pand = standing.find((f) => { const r = ringsOf(f.geometry); return r && inside(r, lon, lat); }) || standing[0];
   if (!pand) return {};
   let bag3d = null;
   try { bag3d = await getJSON(`${BAG3D_API}/NL.IMBAG.Pand.${pand.properties.identificatie}`); } catch {}

@@ -20,7 +20,7 @@
 // One small request a facade, at most 6 s, kept by the point rounded to about a metre.
 import { flagsOf } from "../flags.js";
 import { osmTiles } from "../gis.js";
-import { inArea } from "../places.js";
+import { inArea, inside } from "../places.js";
 
 // The switches (URL parameters; in Node globalThis.PROFILY_DK) and their defaults.
 const DEFAULTS = { kbhkant: "1", kbhpark: "1", kbhbyg: "1", aarbyg: "1" };
@@ -154,16 +154,11 @@ export function aarBuilding(p) {
   return { built: yearOf(p.Opfoerelse_Aar), ...walls(p.Ydervaeg_Kode), ...use(p.BygAnvendelseKode),
     ...(n >= 1 && n <= 40 && { cornice: n, roof: attic > 0 ? 1 : 0, total: n + (attic > 0 ? 1 : 0), fromHeight: true }) };
 }
-const inRings = (rings, x, y) => {
-  let c = false;
-  for (const r of rings) for (let i = 0, j = r.length - 1; i < r.length; j = i++) { const [xi, yi] = r[i], [xj, yj] = r[j]; if (yi > y !== yj > y && x < ((xj - xi) * (y - yi)) / (yj - yi) + xi) c = !c; }
-  return c;
-};
 // The building whose outline holds the facade's point, else the one with the most floors touching the small box (a
 // party wall); demolished or planned ones left out.
 export function pick(json, lat, lon, read, floors) {
   const fs = (json?.features || []).filter((f) => !/nedrevet|projekteret|planlagt/i.test(String(f.properties?.bygningsstatus || "")));
-  const here = fs.filter((f) => ringsOf(f.geometry).some((rings) => inRings(rings, lon, lat)));
+  const here = fs.filter((f) => ringsOf(f.geometry).some((rings) => inside(rings, lon, lat)));
   const f = (here.length ? here : fs).slice().sort((a, b) => (floors(b.properties) || 0) - (floors(a.properties) || 0))[0];
   return f ? read(f.properties) : {};
 }

@@ -20,22 +20,17 @@
 import { flagsOf } from "../flags.js";
 import { osmTiles, getJSON, asMtvu, asPassport } from "../gis.js";
 import { MTVU_LABELS } from "../city.js";
-import { inArea } from "../places.js";
+import { inArea, inside } from "../places.js";
 import { osmAreas } from "./slovakia.js";
 import { HELSINKI_RINGS } from "./finland-helsinki.js";
 
 const flag = flagsOf("PROFILY_FI");
 export const HEL_WFS = "https://kartta.hel.fi/ws/geoserver/avoindata/wfs";
-const inRings = (rings, x, y) => {
-  let c = false;
-  for (const r of rings) for (let i = 0, j = r.length - 1; i < r.length; j = i++) { const [xi, yi] = r[i], [xj, yj] = r[j]; if (yi > y !== yj > y && x < ((xj - xi) * (y - yi)) / (yj - yi) + xi) c = !c; }
-  return c;
-};
 // Helsinki: its box and its border with its waters (the city's districts; the box alone took parts of Espoo and Vantaa,
 // where the register is empty: a request for nothing and, when Helsinki did not answer, a note about its map there).
 const ringsBox = (rings) => { const p = rings.flat(); return [Math.min(...p.map((q) => q[0])), Math.min(...p.map((q) => q[1])), Math.max(...p.map((q) => q[0])), Math.max(...p.map((q) => q[1]))]; };
 export const AREAS = { helsinki: { box: ringsBox(HELSINKI_RINGS) } };
-export const inHelsinki = (lon, lat) => inArea(AREAS.helsinki, lon, lat) && inRings(HELSINKI_RINGS, lon, lat);
+export const inHelsinki = (lon, lat) => inArea(AREAS.helsinki, lon, lat) && inside(HELSINKI_RINGS, lon, lat);
 
 // ---------- YLRE: the parts of Helsinki's streets ----------
 // The register's kinds (paatyyppi / alatyyppi, counted over four districts, SOURCES.md 2) → MTVU codes (city.js
@@ -99,7 +94,7 @@ const WALKED = new Set(["footway", "path", "pedestrian", "cycleway", "steps", "b
 export function hasStreet(features, cx, cy, tags = null) {
   const my = 1 / 110574, mx = 1 / (111320 * Math.cos((cy * Math.PI) / 180));
   const kinds = !tags?.highway || WALKED.has(tags.highway) ? [701, 702, 703] : [701];
-  return features.some((f) => kinds.includes(f.attributes.CTVUK_KOD) && AROUND.some(([ox, oy]) => inRings(f.geometry.rings, cx + ox * mx, cy + oy * my)));
+  return features.some((f) => kinds.includes(f.attributes.CTVUK_KOD) && AROUND.some(([ox, oy]) => inside(f.geometry.rings, cx + ox * mx, cy + oy * my)));
 }
 // The city's building outlines of the cut (as surfaces, before OSM's), or none (switched off, or no answer: OSM's alone).
 export const hkiHousesUrl = (bbox) => {
@@ -179,7 +174,7 @@ const ringsOf = (g) => (g?.type === "Polygon" ? [g.coordinates] : g?.type === "M
 // Helsinki: the building whose outline holds the point, else the tallest touching the box (a party wall).
 export function hkiPick(json, lat, lon) {
   const fs = (json?.features || []).filter((f) => !f.properties?.tila || f.properties.tila === "voimassa");
-  const here = fs.filter((f) => ringsOf(f.geometry).some((rings) => inRings(rings, lon, lat)));
+  const here = fs.filter((f) => ringsOf(f.geometry).some((rings) => inside(rings, lon, lat)));
   const f = (here.length ? here : fs).slice().sort((a, b) => (num(b.properties?.i_kerrlkm) || 0) - (num(a.properties?.i_kerrlkm) || 0))[0];
   return f ? { ...hkiBuilding(f.properties), fiBuild: "hki" } : {};
 }
@@ -190,7 +185,7 @@ export function ryhtiPick(json, lat, lon, outline = null) {
   const mx = 111320 * Math.cos((lat * Math.PI) / 180), my = 110574;
   const pts = (json?.features || []).filter((f) => f.geometry?.type === "Point" && !f.properties?.demolition_date)
     .map((f) => ({ f, d: Math.hypot((f.geometry.coordinates[0] - lon) * mx, (f.geometry.coordinates[1] - lat) * my) }));
-  const cand = outline ? pts.filter((x) => inRings(outline, ...x.f.geometry.coordinates)) : pts.filter((x) => x.d <= NEAR);
+  const cand = outline ? pts.filter((x) => inside(outline, ...x.f.geometry.coordinates)) : pts.filter((x) => x.d <= NEAR);
   const best = cand.sort((a, b) => a.d - b.d)[0];
   return best ? { ...ryhtiBuilding(best.f.properties), fiBuild: "ryhti" } : {};
 }
@@ -210,7 +205,7 @@ async function osmOutline(lat, lon) {
   for (const el of o?.elements || []) {
     if (el.type !== "area" || !el.geometry || !el.tags?.building || el.tags.building === "no") continue;
     const rings = [el.geometry, ...(el.holes || [])].map((g) => g.map((p) => [p.lon, p.lat]));
-    if (inRings(rings, lon, lat)) return rings;
+    if (inside(rings, lon, lat)) return rings;
   }
   return null;
 }

@@ -49,9 +49,9 @@
 //   floors and its units are not on the lot: not asked.
 import { flagsOf, offOf } from "../flags.js";
 import { getJSON, envelope } from "../gis.js";
-import { inArea } from "../places.js";
+import { inArea, inside } from "../places.js";
 import { BOSTON_MAPS, bostonPodlaznost, AREAS as BOSTON_AREAS } from "./boston.js";
-import { planimetricMap, planimetricCut, memory, carriageway, kerbStrip, carveTrack, trackPlace, isTrack, parallelsAt, islandsBeside, inRings, WALKED } from "./planimetrics.js";
+import { planimetricMap, planimetricCut, memory, carriageway, kerbStrip, carveTrack, trackPlace, isTrack, parallelsAt, islandsBeside, WALKED } from "./planimetrics.js";
 import { AREA as NYC_AREA, nycMap, nycPodlaznost } from "./newyork.js";
 // San Francisco (26. 11. 2026): its own surface map and houses (towns/sanfrancisco.js); the state's sources ask it where it has the place.
 import { AREAS as SF_AREAS, sfHere, sfSurfaces, sfPodlaznost } from "./sanfrancisco.js";
@@ -278,7 +278,7 @@ export function camaHouse(res, com, use) {
 export function camaAt(points, lots, res, com) {
   const row = (json, ssl) => (json?.features || []).map((f) => f.attributes).filter((a) => a.SSL === ssl).sort((a, b) => (a.BLDG_NUM || 1) - (b.BLDG_NUM || 1))[0];
   return points.map(([x, y]) => {
-    const here = (lots?.features || []).filter((f) => f.geometry?.rings && inRings(f.geometry.rings, x, y)).map((f) => f.attributes);
+    const here = (lots?.features || []).filter((f) => f.geometry?.rings && inside(f.geometry.rings, x, y)).map((f) => f.attributes);
     const rows = here.map((a) => [row(res, a.SSL), row(com, a.SSL), a.USECODE]);
     const best = rows.find((r) => r[0]) || rows.find((r) => r[1]) || rows[0];
     return best ? camaHouse(...best) : {};
@@ -292,7 +292,7 @@ async function camaOf(points) {
     const path = points.length > 1 ? points : [points[0], [points[0][0] + 1e-6, points[0][1]]];
     const lots = await camaAsk(40, { geometry: JSON.stringify({ paths: [path] }), geometryType: "esriGeometryPolyline", inSR: "4326", outSR: "4326",
       spatialRel: "esriSpatialRelIntersects", outFields: "SSL,USECODE", returnGeometry: "true", geometryPrecision: "7" });
-    const here = (lots.features || []).filter((f) => f.geometry?.rings && points.some(([x, y]) => inRings(f.geometry.rings, x, y)));
+    const here = (lots.features || []).filter((f) => f.geometry?.rings && points.some(([x, y]) => inside(f.geometry.rings, x, y)));
     const ssl = [...new Set(here.map((f) => f.attributes.SSL).filter((v) => /^[\w ]+$/.test(v || "")))].slice(0, 40);
     if (!ssl.length) return points.map(() => ({}));
     const where = (list) => `SSL IN (${list.map((v) => `'${v}'`).join(",")})`;

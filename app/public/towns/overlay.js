@@ -6,8 +6,9 @@
 // The RÚIAN requests are the ones dmvs.js has just made (the browser and the evaluation reuse them).
 // Used by towns/frydek-mistek.js, karvina.js, trebic.js.
 import { flagsOf } from "../flags.js";
-import { asMtvu, getJSON, insideRings } from "../gis.js";
+import { asMtvu, getJSON } from "../gis.js";
 import { MTVU_LABELS } from "../city.js";
+import { inside } from "../places.js";
 import { surfaces as dmvsSurfaces, ruianAreas } from "../dmvs.js";
 
 // Kinds of land (druh pozemku) and uses (způsob využití) of a parcel → MTVU codes, as dmvs.js; a road's
@@ -33,7 +34,7 @@ const flag = flagsOf("PROFILY_OPTS");
 export function trimGuessedRoads(own, dtm, bbox) {
   if (flag("orez") === "0") return dtm;
   const [x0, y0, x1, y1] = bbox.split(",").map(Number), cx = (x0 + x1) / 2, cy = (y0 + y1) / 2;
-  if (!own.features.some((f) => f.attributes?.CTVUK_KOD === 701 && f.geometry?.rings && insideRings(f.geometry.rings, cx, cy))) return dtm;
+  if (!own.features.some((f) => f.attributes?.CTVUK_KOD === 701 && f.geometry?.rings && inside(f.geometry.rings, cx, cy))) return dtm;
   const features = [];
   for (const f of dtm.features) {
     const a = f.attributes || {};

@@ -11,8 +11,9 @@
 // the blind A/B on new cuts, 12 : 12 (evaluation/archive/passports-blind/REPORT.md), its credit too; Kuřim (lines of winter maintenance with their widths) after the same blind A/B, 14 : 16. Left out before: Mohelnice and Velké Meziříčí (an empty passport on 15. 11.),
 // Litoměřice's T-MAPY (asks to log in).
 // No licence is stated by any of them (as with the T-MAPY towns already used).
-import { asMtvu, asPassport, insideRings } from "../gis.js";
+import { asMtvu, asPassport } from "../gis.js";
 import { MTVU_LABELS } from "../city.js";
+import { inside } from "../places.js";
 import { overDmvs, tmapyWfs } from "./overlay.js";
 export { PASSPORT_NAMES } from "./passport-names.js";
 
@@ -49,7 +50,7 @@ async function loadBounds() {
 }
 export async function passportAt(lon, lat) {
   const b = bounds || (await loadBounds());
-  return Object.keys(b).find((id) => insideRings(b[id], lon, lat)) || null;
+  return Object.keys(b).find((id) => inside(b[id], lon, lat)) || null;
 }
 
 // The surfaces of a box: the passport of its town over the national DTM (which surfaces gives), or the DTM alone.

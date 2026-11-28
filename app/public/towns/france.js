@@ -13,7 +13,7 @@
 import { flagsOf } from "../flags.js";
 import { osmTiles, getJSON, asMtvu, asPassport } from "../gis.js";
 import { MTVU_LABELS } from "../city.js";
-import { inArea } from "../places.js";
+import { inArea, inside } from "../places.js";
 import { osmAreas } from "./slovakia.js";
 
 const flag = flagsOf("PROFILY_FR");
@@ -48,11 +48,6 @@ async function paris(bbox) {
   return parisFeatures(await Promise.all(PARIS_LAYERS.map((l) => parisLayer(l, bbox))));
 }
 
-const inRings = (rings, x, y) => {
-  let c = false;
-  for (const r of rings) for (let i = 0, j = r.length - 1; i < r.length; j = i++) { const [xi, yi] = r[i], [xj, yj] = r[j]; if (yi > y !== yj > y && x < ((xj - xi) * (y - yi)) / (yj - yi) + xi) c = !c; }
-  return c;
-};
 // A roadway, a cycle track or a parking bay near the cut's centre (a sidewalk alone is not enough, as in the
 // Netherlands); up to 4 m when a sidewalk lies at the centre, else up to 10 m (a median between two roadways).
 const STREET = new Set([701, 703, 704]);
@@ -85,9 +80,9 @@ async function surfaces(bbox) {
     return { features: [], abroad: true, frFailed: id };
   }
   const my = 1 / 110574, mx = 1 / (111320 * Math.cos((cy * Math.PI) / 180));
-  const centre = own.features.find((f) => inRings(f.geometry.rings, cx, cy))?.attributes.CTVUK_KOD;
+  const centre = own.features.find((f) => inside(f.geometry.rings, cx, cy))?.attributes.CTVUK_KOD;
   const around = centre === 702 ? NEAR : WIDE;
-  const at = own.features.some((f) => STREET.has(f.attributes.CTVUK_KOD) && around.some(([ox, oy]) => inRings(f.geometry.rings, cx + ox * mx, cy + oy * my)));
+  const at = own.features.some((f) => STREET.has(f.attributes.CTVUK_KOD) && around.some(([ox, oy]) => inside(f.geometry.rings, cx + ox * mx, cy + oy * my)));
   if (!at) return { features: [], abroad: true };
   const o = await osmAreas(bbox);
   return { features: [...o.buildings, ...asPassport(own).features, ...o.rest], frTown: id, passport: true };
@@ -132,7 +127,7 @@ async function podlaznost(lat, lon) {
   const d = 0.000005; // about half a metre around the facade's point
   const json = await wfs("batiment", [lon - d, lat - d, lon + d, lat + d], 5);
   const standing = (json?.features || []).filter((f) => f.properties?.etat_de_l_objet === "En service" && !f.properties?.construction_legere);
-  const b = standing.find((f) => { const r = ringsOf(f.geometry); return r && inRings(r, lon, lat); }) || standing[0];
+  const b = standing.find((f) => { const r = ringsOf(f.geometry); return r && inside(r, lon, lat); }) || standing[0];
   return b ? bdtopoBuilding(b) : {};
 }
 

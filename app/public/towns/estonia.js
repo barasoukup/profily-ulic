@@ -12,7 +12,7 @@
 import { flagsOf } from "../flags.js";
 import { osmTiles, getJSON, asMtvu, asPassport } from "../gis.js";
 import { MTVU_LABELS } from "../city.js";
-import { inArea } from "../places.js";
+import { inArea, inside } from "../places.js";
 import { osmAreas } from "./slovakia.js";
 
 const flag = flagsOf("PROFILY_EE");
@@ -46,11 +46,6 @@ function cached(key, f) {
 const boxKey = (bbox) => bbox.split(",").map((v) => (+v).toFixed(4)).join(",");
 const layers = (ids, bbox) => cached(`${ids.join("+")}:${boxKey(bbox)}`, async () =>
   tallinnFeatures(await Promise.all(ids.map(async (id) => [TALLINN_LAYERS[id], await layer(id, bbox)]))));
-const inRings = (rings, x, y) => {
-  let c = false;
-  for (const r of rings) for (let i = 0, j = r.length - 1; i < r.length; j = i++) { const [xi, yi] = r[i], [xj, yj] = r[j]; if (yi > y !== yj > y && x < ((xj - xi) * (y - yi)) / (yj - yi) + xi) c = !c; }
-  return c;
-};
 // The map has the street under the cut's centre (as Vilnius's hasStreet, hostile review 24. 11. 2026): within 3 m, a
 // roadway under a street for cars (a service road: a drivable yard or car park too); a sidewalk or path only under a
 // footway, path or cycleway. Before: a roadway or a sidewalk within 15 m, which took the map for clicks on paths and
@@ -61,7 +56,7 @@ export function hasStreet(features, cx, cy, tags = null) {
   const my = 1 / 110574, mx = 1 / (111320 * Math.cos((cy * Math.PI) / 180));
   const hw = tags?.highway;
   const kinds = !hw || WALKED.has(hw) ? [701, 702, 704] : hw === "service" ? [701, 704] : [701];
-  return features.some((f) => kinds.includes(f.attributes.CTVUK_KOD) && AROUND.some(([ox, oy]) => inRings(f.geometry.rings, cx + ox * mx, cy + oy * my)));
+  return features.some((f) => kinds.includes(f.attributes.CTVUK_KOD) && AROUND.some(([ox, oy]) => inside(f.geometry.rings, cx + ox * mx, cy + oy * my)));
 }
 async function surfaces(bbox, tags = null) {
   const [x0, y0, x1, y1] = bbox.split(",").map(Number);

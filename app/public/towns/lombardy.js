@@ -17,6 +17,7 @@ export const DBT = "https://www.cartografia.servizirl.it/arcgis2/rest/services/B
 // The region (its box and inLombardy) in towns/lombardy-area.js, a module without imports: lanes-ortho.js keeps
 // Bolzano's orthophoto out of it (the review of 24. 11. 2026: Ponte di Legno and Valfurva asked Bolzano's WMS).
 import { LOMBARDY_BOX, inLombardy } from "./lombardy-area.js";
+import { inside } from "../places.js";
 export { LOMBARDY_BOX, inLombardy };
 
 // The layers (identify's layerId) in the order of precedence (the first surface at a point wins, derive.js classify):
@@ -78,24 +79,19 @@ export function dbtSurfaces(feats) {
   return asMtvu([[{ features: coded.map((f) => ({ attributes: { c: f.code === PORTICO ? 702 : f.code }, geometry: f.geometry })) }, (a) => a.c]], MTVU_LABELS);
 }
 
-const inRings = (rings, x, y) => {
-  let c = false;
-  for (const r of rings) for (let i = 0, j = r.length - 1; i < r.length; j = i++) { const [xi, yi] = r[i], [xj, yj] = r[j]; if (yi > y !== yj > y && x < ((xj - xi) * (y - yi)) / (yj - yi) + xi) c = !c; }
-  return c;
-};
 // The beds of railways (1100) with an OSM tram track inside (a point of it) are tram beds (705).
 export function trams(out, osm) {
   const rails = (osm?.elements || []).filter((e) => e.type === "way" && e.tags?.railway === "tram" && e.geometry && !(Number(e.tags.layer) < 0) && e.tags.tunnel !== "yes");
   for (const f of out.features) {
     if (f.attributes.CTVUK_KOD !== 1100) continue;
-    if (rails.some((w) => w.geometry.some((g) => inRings(f.geometry.rings, g.lon, g.lat)))) Object.assign(f.attributes, { CTVUK_KOD: 705, CTVUK_POPIS: MTVU_LABELS[705] });
+    if (rails.some((w) => w.geometry.some((g) => inside(f.geometry.rings, g.lon, g.lat)))) Object.assign(f.attributes, { CTVUK_KOD: 705, CTVUK_POPIS: MTVU_LABELS[705] });
   }
   return out;
 }
 // Does the map have a surface of the street at the box's centre or 1.5 m around it?
 export function streetAtCentre(out, cx, cy) {
   const dy = 1.5 / 110574, dx = 1.5 / (111320 * Math.cos((cy * Math.PI) / 180));
-  return out.features.some((f) => STREET.has(f.attributes.CTVUK_KOD) && [[0, 0], [dx, 0], [-dx, 0], [0, dy], [0, -dy]].some(([ox, oy]) => inRings(f.geometry.rings, cx + ox, cy + oy)));
+  return out.features.some((f) => STREET.has(f.attributes.CTVUK_KOD) && [[0, 0], [dx, 0], [-dx, 0], [0, dy], [0, -dy]].some(([ox, oy]) => inside(f.geometry.rings, cx + ox, cy + oy)));
 }
 
 const memo = new Map();

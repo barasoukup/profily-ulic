@@ -20,6 +20,7 @@ import { osmTiles, getJSON, query, envelope, asMtvu } from "../gis.js";
 import { beRegionsAt } from "../lanes-ortho.js";
 import { MTVU_LABELS } from "../city.js";
 import { osmAreas } from "./slovakia.js";
+import { inside } from "../places.js";
 
 const flag = flagsOf("PROFILY_BE");
 
@@ -106,8 +107,6 @@ const cross = (a, b, p, q) => {
   const t = ((p[0] - a[0]) * s[1] - (p[1] - a[1]) * s[0]) / den, u = ((p[0] - a[0]) * r[1] - (p[1] - a[1]) * r[0]) / den;
   return t >= 0 && t <= 1 && u >= 0 && u <= 1 ? t : null;
 };
-const inRing = (ring, x, y) => { let c = false; for (let i = 0, j = ring.length - 1; i < ring.length; j = i++) { const [xi, yi] = ring[i], [xj, yj] = ring[j]; if (yi > y !== yj > y && x < ((xj - xi) * (y - yi)) / (yj - yi) + xi) c = !c; } return c; };
-const inRings = (rings, x, y) => rings.reduce((c, r) => (inRing(r, x, y) ? !c : c), false);
 
 // The parts of the cut (metres from its centre along dir, a unit vector; half its length) from WBN's polygons and WGO's
 // lines in metres around the centre: [{ from, to, code }], or null where the centre lies outside WBN. start: the kind
@@ -116,7 +115,7 @@ const inRings = (rings, x, y) => rings.reduce((c, r) => (inRing(r, x, y) ? !c : 
 // OSM draws, grbSurfaces; the review of 24. 11. 2026: from the median as "road" every kind came out inverted).
 export function grbAlong(wbn, wgo, dir, half, start = "road", anchor = 0.5) {
   const A = [-dir[0] * half, -dir[1] * half], B = [dir[0] * half, dir[1] * half], at = (t) => [A[0] + (B[0] - A[0]) * t, A[1] + (B[1] - A[1]) * t];
-  const inWbn = (t) => { const [x, y] = at(t); return wbn.some((rings) => inRings(rings, x, y)); };
+  const inWbn = (t) => { const [x, y] = at(t); return wbn.some((rings) => inside(rings, x, y)); };
   if (!inWbn(0.5) || !inWbn(anchor)) return null;
   const ev = [];
   for (const rings of wbn) for (const r of rings) for (let i = 1; i < r.length; i++) { const t = cross(A, B, r[i - 1], r[i]); if (t != null) ev.push({ t, type: "wbn" }); }

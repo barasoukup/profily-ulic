@@ -16,7 +16,7 @@
 import { flagsOf } from "../flags.js";
 import { osmTiles, getJSON, asMtvu, asPassport } from "../gis.js";
 import { MTVU_LABELS } from "../city.js";
-import { inArea } from "../places.js";
+import { inArea, inside } from "../places.js";
 import { osmAreas } from "./slovakia.js";
 
 const flag = flagsOf("PROFILY_DE");
@@ -84,11 +84,6 @@ function geoRings(json, code) {
   };
 }
 
-const inRings = (rings, x, y) => {
-  let c = false;
-  for (const r of rings) for (let i = 0, j = r.length - 1; i < r.length; j = i++) { const [xi, yi] = r[i], [xj, yj] = r[j]; if (yi > y !== yj > y && x < ((xj - xi) * (y - yi)) / (yj - yi) + xi) c = !c; }
-  return c;
-};
 const STREET = new Set([701, 702, 703, 704, 705, 1003]);
 export const DE_TOWNS = { berlin, hamburg, aachen };
 export const deTownAt = (lon, lat) => Object.keys(DE_TOWNS).find((id) => flag(id) !== "0" && inArea(AREAS[id], lon, lat)) ?? null;
@@ -106,7 +101,7 @@ async function surfaces(bbox) {
   }
   // Only where the city has a surface of the street at the cut's centre or 1.5 m around it.
   const dy = 1.5 / 110574, dx = 1.5 / (111320 * Math.cos((cy * Math.PI) / 180));
-  const at = own.features.some((f) => STREET.has(f.attributes.CTVUK_KOD) && [[0, 0], [dx, 0], [-dx, 0], [0, dy], [0, -dy]].some(([ox, oy]) => inRings(f.geometry.rings, cx + ox, cy + oy)));
+  const at = own.features.some((f) => STREET.has(f.attributes.CTVUK_KOD) && [[0, 0], [dx, 0], [-dx, 0], [0, dy], [0, -dy]].some(([ox, oy]) => inside(f.geometry.rings, cx + ox, cy + oy)));
   if (!at) return { features: [], abroad: true };
   const o = await osmAreas(bbox);
   return { features: [...o.buildings, ...asPassport(own).features, ...o.rest], deTown: id, passport: true };

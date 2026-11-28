@@ -9,6 +9,7 @@
 // with XML attributes (Gipuzkoa: xsi:nil="false"), the year in "beginning", in "end" or as plain text, the use as an
 // INSPIRE code in xlink:href, xlink:title (Bizkaia, with trailing spaces) or as text (Álava).
 
+import { inside } from "../places.js";
 const URI4258 = "http://www.opengis.net/def/crs/EPSG/0/4258";
 // The province codes as in regions-es.json (tools/build_boundaries.mjs, NUTS 3).
 export const FORAL = {
@@ -50,11 +51,6 @@ const ringsGml = (m, lonLat) => [...m.matchAll(/<gml:posList[^>]*>([^<]*)<\/gml:
   for (let i = 0; i + 1 < v.length; i += 2) r.push(lonLat ? [v[i], v[i + 1]] : [v[i + 1], v[i]]);
   return r;
 });
-const inRings = (rings, x, y) => {
-  let c = false;
-  for (const r of rings) for (let i = 0, j = r.length - 1; i < r.length; j = i++) { const [xi, yi] = r[i], [xj, yj] = r[j]; if (yi > y !== yj > y && x < ((xj - xi) * (y - yi)) / (yj - yi) + xi) c = !c; }
-  return c;
-};
 // The distance in metres from a point to the nearest edge of the rings.
 function edgeDist(rings, lon, lat) {
   const mx = 111320 * Math.cos((lat * Math.PI) / 180), my = 110574;
@@ -99,8 +95,8 @@ export function foralBuilding(code, gml, lat, lon) {
   const lonLat = !!FORAL[code]?.lonLat;
   const all = members(gml).map((m) => ({ m, rings: ringsGml(m, lonLat) }));
   if (!all.length) return {};
-  const inside = all.find((b) => b.rings.length && inRings(b.rings, lon, lat));
-  const b = inside || all.slice().sort((p, q) => edgeDist(p.rings, lon, lat) - edgeDist(q.rings, lon, lat))[0];
+  const here = all.find((b) => b.rings.length && inside(b.rings, lon, lat));
+  const b = here || all.slice().sort((p, q) => edgeDist(p.rings, lon, lat) - edgeDist(q.rings, lon, lat))[0];
   const m = b.m;
   const floors = Number(value(m, "numberOfFloorsAboveGround")) || undefined;
   const built = yearOf(m);

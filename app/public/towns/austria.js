@@ -10,7 +10,7 @@
 import { flagsOf } from "../flags.js";
 import { osmTiles, getJSON, asMtvu } from "../gis.js";
 import { MTVU_LABELS } from "../city.js";
-import { inArea, AT_AREAS } from "../places.js";
+import { inArea, AT_AREAS, inside } from "../places.js";
 
 const flag = flagsOf("PROFILY_AT");
 export const WIEN_WFS = "https://data.wien.gv.at/daten/geo";
@@ -54,11 +54,6 @@ async function wfs(type, bbox) {
   };
 }
 
-const inRings = (rings, x, y) => {
-  let c = false;
-  for (const r of rings) for (let i = 0, j = r.length - 1; i < r.length; j = i++) { const [xi, yi] = r[i], [xj, yj] = r[j]; if (yi > y !== yj > y && x < ((xj - xi) * (y - yi)) / (yj - yi) + xi) c = !c; }
-  return c;
-};
 
 async function surfaces(bbox) {
   const [x0, y0, x1, y1] = bbox.split(",").map(Number);
@@ -75,7 +70,7 @@ async function surfaces(bbox) {
   // Only where the map has a surface of the street at the cut's centre or 1.5 m around it (a courtyard, a park or a
   // monument there: the estimate).
   const dy = 1.5 / 110574, dx = 1.5 / (111320 * Math.cos((cy * Math.PI) / 180));
-  const at = out.features.some((f) => STREET.has(f.attributes.CTVUK_KOD) && [[0, 0], [dx, 0], [-dx, 0], [0, dy], [0, -dy]].some(([ox, oy]) => inRings(f.geometry.rings, cx + ox, cy + oy)));
+  const at = out.features.some((f) => STREET.has(f.attributes.CTVUK_KOD) && [[0, 0], [dx, 0], [-dx, 0], [0, dy], [0, -dy]].some(([ox, oy]) => inside(f.geometry.rings, cx + ox, cy + oy)));
   if (!at) return { features: [], abroad: true };
   return { ...out, atTown: "wien" };
 }

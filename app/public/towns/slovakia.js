@@ -7,7 +7,7 @@
 import { flagsOf } from "../flags.js";
 import { osmTiles, query, envelope, asMtvu, addPoints, boxAround } from "../gis.js";
 import { MTVU_LABELS } from "../city.js";
-import { inArea } from "../places.js";
+import { inArea, inside } from "../places.js";
 import { tmapyWfs } from "./overlay.js";
 import { GREEN as OSM_GREEN, WATER as OSM_WATER } from "../ortho-osm.js";
 
@@ -110,14 +110,6 @@ export const SK_TOWNS = {
   // Košice (the review of Slovakia, 16. 11. 2026): the same T-MAPY PaKom, so far mostly Košice-Západ; the city is
   // having the whole town surveyed.
   kosice: { box: [21.15, 48.64, 21.36, 48.79], credit: "pasport komunikácií © mesto Košice", own: pakom("https://gisplan.kosice.sk/services/mapserver/common/pakom") },
-};
-const inRings = (rings, x, y) => {
-  let c = false;
-  for (const r of rings) for (let i = 0, j = r.length - 1; i < r.length; j = i++) {
-    const [xi, yi] = r[i], [xj, yj] = r[j];
-    if (yi > y !== yj > y && x < ((xj - xi) * (y - yi)) / (yj - yi) + xi) c = !c;
-  }
-  return c;
 };
 // ---------- Bratislava's technical map ----------
 // The city's digital technical map (geoportal.bratislava.sk, ArcGIS, CORS for our site; © Hlavné mesto SR Bratislava, no
@@ -226,7 +218,7 @@ function zbgisAt(bbox) {
 async function surfaces(bbox) {
   const [x0, y0, x1, y1] = bbox.split(",").map(Number);
   const cx = (x0 + x1) / 2, cy = (y0 + y1) / 2, d = 1.5 / 111320;
-  const at = (f) => [[0, 0], [d, 0], [-d, 0], [0, d], [0, -d]].some(([dx, dy]) => inRings(f.geometry.rings, cx + dx, cy + dy));
+  const at = (f) => [[0, 0], [d, 0], [-d, 0], [0, d], [0, -d]].some(([dx, dy]) => inside(f.geometry.rings, cx + dx, cy + dy));
   const id = flag("pasport") === "0" ? null : townAt(cx, cy);
   const t = SK_TOWNS[id];
   // A passport that does not answer: the estimate, as where there is none (no outage to report).

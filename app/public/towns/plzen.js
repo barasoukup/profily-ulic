@@ -7,8 +7,9 @@
 // A town module (towns/<id>.js, listed in towns/index.js) gives sources.js the five data sources of a
 // click (osm, surfaces, lines, parking, podlaznost; the shapes are those of Prague's answers, see
 // queries.js) and app.js its base maps. See towns/jihlava.js.
-import { query, envelope, osmTiles, boxAround, asMtvu, addPoints, ruianBuilding, ruianLook, insideRings, metres } from "../gis.js";
+import { query, envelope, osmTiles, boxAround, asMtvu, addPoints, ruianBuilding, ruianLook, metres } from "../gis.js";
 import { MTVU_LABELS } from "../city.js";
+import { inside } from "../places.js";
 
 const PL = "https://ags.plzen.eu/arcgis/rest/services";
 const PL_ZPS = `${PL}/GIS_DTM/GIS_DTM_ZPS_kesovana`;
@@ -158,7 +159,7 @@ async function parking(bbox) {
     const xs = rings[0].map((q) => q[0]), ys = rings[0].map((q) => q[1]);
     return { rings, box: [Math.min(...xs), Math.min(...ys), Math.max(...xs), Math.max(...ys)] };
   });
-  const isIn = (as, [x, y]) => as.some((a) => x >= a.box[0] && x <= a.box[2] && y >= a.box[1] && y <= a.box[3] && insideRings(a.rings, x, y));
+  const isIn = (as, [x, y]) => as.some((a) => x >= a.box[0] && x <= a.box[2] && y >= a.box[1] && y <= a.box[3] && inside(a.rings, x, y));
   const level0 = (id) => (layers[id]?.features || []).filter((f) => f.geometry?.rings && !(f.attributes?.[LEVEL] > 0)).map((f) => ({ rings: f.geometry.rings }));
   // The roadway with its tram beds: a curb is where both end (a tram in the middle is no curb).
   const roadway = areas([...level0(298), ...level0(318), ...level0(307)]);

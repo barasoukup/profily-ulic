@@ -20,7 +20,7 @@
 import { flagsOf } from "../flags.js";
 import { osmTiles, getJSON, asMtvu, asPassport } from "../gis.js";
 import { MTVU_LABELS } from "../city.js";
-import { inArea } from "../places.js";
+import { inArea, inside } from "../places.js";
 import { osmAreas } from "./slovakia.js";
 
 const flag = flagsOf("PROFILY_LT");
@@ -131,9 +131,9 @@ export function grpkAsOsm(houses, elements) {
     const outers = h.geometry.rings.filter((r) => signed(r) < 0), holes = h.geometry.rings.filter((r) => signed(r) >= 0);
     for (const [i, r] of (outers.length ? outers : h.geometry.rings.slice(0, 1)).entries()) {
       const c = centre(r);
-      if (osm.some((o) => inRings(o, c[0], c[1]) || inRings([r], ...centre(o[0])))) continue;
+      if (osm.some((o) => inside(o, c[0], c[1]) || inside([r], ...centre(o[0])))) continue;
       out.push({ type: "area", id: -(k * 10 + i + 1), from: "GRPK", tags: { building: "yes", source: "GRPK" }, geometry: r.map(([lon, lat]) => ({ lat, lon })),
-        holes: holes.filter((q) => inRings([r], q[0][0], q[0][1])).map((q) => q.map(([lon, lat]) => ({ lat, lon }))) });
+        holes: holes.filter((q) => inside([r], q[0][0], q[0][1])).map((q) => q.map(([lon, lat]) => ({ lat, lon }))) });
     }
   });
   return out;
@@ -150,11 +150,6 @@ async function osm(lat, lon, radius) {
   return add.length ? { ...o, elements: [...o.elements, ...add] } : o;
 }
 
-const inRings = (rings, x, y) => {
-  let c = false;
-  for (const r of rings) for (let i = 0, j = r.length - 1; i < r.length; j = i++) { const [xi, yi] = r[i], [xj, yj] = r[j]; if (yi > y !== yj > y && x < ((xj - xi) * (y - yi)) / (yj - yi) + xi) c = !c; }
-  return c;
-};
 // The map has the street when an area of its kind lies under the cut's centre (within 3 m): a roadway under a street
 // for cars, a roadway or a walked area under a footway, path or cycleway. (The A/B, 24. 11. 2026: under four streets for
 // cars the map has only a paved yard or a walked area, and the street lost its roadway; the estimate is better there.)
@@ -163,7 +158,7 @@ const WALKED = new Set(["footway", "path", "pedestrian", "cycleway", "steps", "b
 export function hasStreet(features, cx, cy, tags = null) {
   const my = 1 / 110574, mx = 1 / (111320 * Math.cos((cy * Math.PI) / 180));
   const kinds = !tags?.highway || WALKED.has(tags.highway) ? [701, 702, 703] : [701];
-  return features.some((f) => kinds.includes(f.attributes.CTVUK_KOD) && AROUND.some(([ox, oy]) => inRings(f.geometry.rings, cx + ox * mx, cy + oy * my)));
+  return features.some((f) => kinds.includes(f.attributes.CTVUK_KOD) && AROUND.some(([ox, oy]) => inside(f.geometry.rings, cx + ox * mx, cy + oy * my)));
 }
 async function surfaces(bbox, tags = null) {
   const [x0, y0, x1, y1] = bbox.split(",").map(Number);

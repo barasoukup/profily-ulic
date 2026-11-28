@@ -5,6 +5,7 @@ import { t } from "./i18n.js";
 import { STATIC } from "./config.js";
 import { flag } from "./flags.js";
 import { city } from "./city.js";
+import { inside } from "./places.js";
 
 import { TILE, decodeTile, mergePieces } from "./osmtile.js";
 import { PackSet } from "./osmpack.js";
@@ -94,17 +95,6 @@ export async function osmTiles(lat, lon, radius) {
   return { source: "local", elements: mergePieces(await Promise.all(names.map(tile))) };
 }
 
-export const insideRings = (rings, x, y) => {
-  let c = false;
-  for (const r of rings) {
-    for (let i = 0, j = r.length - 1; i < r.length; j = i++) {
-      const [xi, yi] = r[i], [xj, yj] = r[j];
-      if (yi > y !== yj > y && x < ((xj - xi) * (y - yi)) / (yj - yi) + xi) c = !c;
-    }
-  }
-  return c;
-};
-
 // Metres per degree of longitude and latitude around a latitude.
 export const metres = (lat) => [111320 * Math.cos((lat * Math.PI) / 180), 110574];
 
@@ -123,7 +113,7 @@ export function ringArea(geometry, lat) {
   return Math.round(Math.abs(area) / 2);
 }
 
-export const insideAny = (feats, x, y) => feats.find((f) => f.geometry?.rings && insideRings(f.geometry.rings, x, y));
+export const insideAny = (feats, x, y) => feats.find((f) => f.geometry?.rings && inside(f.geometry.rings, x, y));
 
 // Surfaces of a town as the MTVU features derive.js reads: each layer's features with a code (or a
 // function of the attributes giving a code, or [code, guess] for an estimate; null: left out).

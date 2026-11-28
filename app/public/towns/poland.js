@@ -11,7 +11,7 @@
 import { flagsOf } from "../flags.js";
 import { osmTiles, query, envelope, asMtvu, asPassport } from "../gis.js";
 import { MTVU_LABELS } from "../city.js";
-import { inArea } from "../places.js";
+import { inArea, inside } from "../places.js";
 import { osmAreas } from "./slovakia.js";
 
 const flag = flagsOf("PROFILY_PL");
@@ -34,11 +34,6 @@ async function krakow(bbox) {
   return { features: got.flatMap((j) => j.features || []).map((f) => ({ attributes: { code: krakowCode(f.attributes) }, geometry: f.geometry })).filter((f) => f.attributes.code && f.geometry?.rings) };
 }
 
-const inRings = (rings, x, y) => {
-  let c = false;
-  for (const r of rings) for (let i = 0, j = r.length - 1; i < r.length; j = i++) { const [xi, yi] = r[i], [xj, yj] = r[j]; if (yi > y !== yj > y && x < ((xj - xi) * (y - yi)) / (yj - yi) + xi) c = !c; }
-  return c;
-};
 // A roadway near the cut's centre (a sidewalk alone is not enough, as in the Netherlands).
 const STREET = new Set([701]);
 const NEAR = [[0, 0], ...[1.5, 4, 7].flatMap((r) => Array.from({ length: 8 }, (_, i) => [r * Math.cos((i * Math.PI) / 4), r * Math.sin((i * Math.PI) / 4)]))];
@@ -60,7 +55,7 @@ async function surfaces(bbox) {
     return { features: [], abroad: true, plFailed: id };
   }
   const my = 1 / 110574, mx = 1 / (111320 * Math.cos((cy * Math.PI) / 180));
-  const at = own.features.some((f) => STREET.has(f.attributes.CTVUK_KOD) && NEAR.some(([ox, oy]) => inRings(f.geometry.rings, cx + ox * mx, cy + oy * my)));
+  const at = own.features.some((f) => STREET.has(f.attributes.CTVUK_KOD) && NEAR.some(([ox, oy]) => inside(f.geometry.rings, cx + ox * mx, cy + oy * my)));
   if (!at) return { features: [], abroad: true };
   const o = await osmAreas(bbox);
   return { features: [...o.buildings, ...asPassport(own).features, ...o.rest], plTown: id, passport: true };
