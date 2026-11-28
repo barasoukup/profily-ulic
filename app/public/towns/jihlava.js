@@ -9,6 +9,7 @@
 // queries.js) and app.js its base maps. Copy this file for another town.
 import { query, envelope, osmTiles, boxAround, asMtvu, asPassport, addPoints, parkingStrip, ruianBuilding, metres } from "../gis.js";
 import { MTVU_LABELS } from "../city.js";
+import { cachedBy } from "./shared.js";
 
 const JI = "https://gis.jihlava-city.cz";
 const JI_PASPORT = `${JI}/server1/rest/services/ost/Pasporty/MapServer`;
@@ -27,13 +28,7 @@ const none = () => ({ features: [] });
 
 // The passport is asked once per cut for the surfaces and again for the parking: one request.
 const roadsCache = new Map();
-const roads = (bbox) => {
-  if (!roadsCache.has(bbox)) {
-    if (roadsCache.size > 8) roadsCache.delete(roadsCache.keys().next().value);
-    roadsCache.set(bbox, jiQuery(JI_ROADS, { ...envelope(bbox), outFields: "typ_useku,spravce,povrch" }).catch((err) => { roadsCache.delete(bbox); throw err; }));
-  }
-  return roadsCache.get(bbox);
-};
+const roads = (bbox) => cachedBy(roadsCache, bbox, () => jiQuery(JI_ROADS, { ...envelope(bbox), outFields: "typ_useku,spravce,povrch" }), { max: 8, evictFirst: true });
 
 // Land of the cadastre (druh pozemku, způsob využití) → MTVU codes, for what the layers above leave
 // open: front gardens, yards, verges. Prague's MTVU covers the whole ground; Jihlava's passport only the

@@ -17,7 +17,7 @@ import { MTVU_LABELS } from "../city.js";
 import { inArea, inside } from "../places.js";
 import { osmAreas } from "./slovakia.js";
 import { foralEnabled, foralFetch } from "./spain-foral.js";
-import { polygonsOf } from "./shared.js";
+import { polygonsOf, cachedBy, boxKey } from "./shared.js";
 
 const flag = flagsOf("PROFILY_ES");
 
@@ -73,14 +73,7 @@ export function roadBands(elements, lat) {
 
 // One request a box (a cut moved a little asks the same box again: the box rounded to about 10 m), at most 30 kept.
 const memo = new Map();
-function cached(id, bbox) {
-  const key = `${id} ${bbox.split(",").map((v) => (+v).toFixed(4)).join(",")}`;
-  if (!memo.has(key)) {
-    memo.set(key, ES_TOWNS[id](bbox).catch((err) => { memo.delete(key); throw err; }));
-    if (memo.size > 30) memo.delete(memo.keys().next().value);
-  }
-  return memo.get(key);
-}
+const cached = (id, bbox) => cachedBy(memo, `${id} ${boxKey(bbox)}`, () => ES_TOWNS[id](bbox));
 
 // A sidewalk of the city within NEAR m of the cut's centre (the city maps this street).
 const NEAR = 25;
@@ -175,13 +168,7 @@ export async function foralAt(lon, lat, json = null) {
 // In the four provinces the cadastre of the province (towns/spain-foral.js; ?foral=0 none, ?foral=nc,gi some); near
 // their outer edge, where it has no building, the Catastro after it.
 const houses = new Map();
-const once = (key, ask) => {
-  if (!houses.has(key)) {
-    houses.set(key, ask().catch((err) => { houses.delete(key); throw err; }));
-    if (houses.size > 30) houses.delete(houses.keys().next().value);
-  }
-  return houses.get(key);
-};
+const once = (key, ask) => cachedBy(houses, key, ask);
 async function podlaznost(lat, lon) {
   const key = `${lat.toFixed(5)},${lon.toFixed(5)}`, d = 0.000005; // about half a metre around the facade's point
   const deep = await foralAt(lon, lat), prov = deep ?? (await provinceAt(lon, lat));

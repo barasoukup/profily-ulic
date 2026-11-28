@@ -18,7 +18,7 @@ import { MTVU_LABELS } from "../city.js";
 import { osmAreas } from "./slovakia.js";
 import { CANTONS } from "../credits.js";
 import { inside } from "../places.js";
-import { ringsOf } from "./shared.js";
+import { ringsOf, cachedBy, boxKey } from "./shared.js";
 
 const flag = flagsOf("PROFILY_CH");
 
@@ -39,12 +39,7 @@ export const avCode = (p) => AV_KIND[p.Art] ?? null;
 // 30 (geodienste.ch fair use: 10 WFS requests a minute).
 const memo = new Map();
 async function av(bbox) {
-  const key = bbox.split(",").map((v) => (+v).toFixed(4)).join(",");
-  if (!memo.has(key)) {
-    memo.set(key, avAsk(bbox).catch((err) => { memo.delete(key); throw err; }));
-    if (memo.size > 30) memo.delete(memo.keys().next().value);
-  }
-  return memo.get(key);
+  return cachedBy(memo, boxKey(bbox), () => avAsk(bbox));
 }
 async function avAsk(bbox) {
   const [x0, y0, x1, y1] = bbox.split(",").map(Number);

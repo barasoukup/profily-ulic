@@ -10,6 +10,7 @@
 import { query, envelope, osmTiles, boxAround, asMtvu, addPoints, ruianBuilding, ruianLook, metres } from "../gis.js";
 import { MTVU_LABELS } from "../city.js";
 import { inside } from "../places.js";
+import { cachedBy } from "./shared.js";
 
 const PL = "https://ags.plzen.eu/arcgis/rest/services";
 const PL_ZPS = `${PL}/GIS_DTM/GIS_DTM_ZPS_kesovana`;
@@ -60,25 +61,21 @@ const LEVEL = "UrovenUmisteniObjektuZPS";
 // One query of the feature service for all areas and lines of a cut (surfaces and lines ask with the same
 // envelope), objects under the ground left out.
 const zpsCache = new Map();
-const zps = (bbox) => {
-  if (!zpsCache.has(bbox)) {
-    if (zpsCache.size > 8) zpsCache.delete(zpsCache.keys().next().value);
-    const ids = [...PL_SURFACES.map(([id]) => id), ...Object.keys(PL_LINES).map(Number)];
-    const layerDefs = JSON.stringify(ids.map((layerId) => ({ layerId, where: `${LEVEL} IS NULL OR ${LEVEL} >= 0`, outFields: [LEVEL, FIELDS[layerId]].filter(Boolean).join(",") })));
-    zpsCache.set(bbox, query(`${PL_ZPS}/FeatureServer/query`, { ...envelope(shiftBox(bbox)), layerDefs }).then((json) => {
-      const byId = {};
-      for (const l of json.layers || []) {
-        for (const f of l.features || []) {
-          if (f.geometry?.rings) f.geometry.rings = f.geometry.rings.map(unshift);
-          if (f.geometry?.paths) f.geometry.paths = f.geometry.paths.map(unshift);
-        }
-        byId[l.id] = l;
+const zps = (bbox) => cachedBy(zpsCache, bbox, () => {
+  const ids = [...PL_SURFACES.map(([id]) => id), ...Object.keys(PL_LINES).map(Number)];
+  const layerDefs = JSON.stringify(ids.map((layerId) => ({ layerId, where: `${LEVEL} IS NULL OR ${LEVEL} >= 0`, outFields: [LEVEL, FIELDS[layerId]].filter(Boolean).join(",") })));
+  return query(`${PL_ZPS}/FeatureServer/query`, { ...envelope(shiftBox(bbox)), layerDefs }).then((json) => {
+    const byId = {};
+    for (const l of json.layers || []) {
+      for (const f of l.features || []) {
+        if (f.geometry?.rings) f.geometry.rings = f.geometry.rings.map(unshift);
+        if (f.geometry?.paths) f.geometry.paths = f.geometry.paths.map(unshift);
       }
-      return byId;
-    }).catch((err) => { zpsCache.delete(bbox); throw err; }));
-  }
-  return zpsCache.get(bbox);
-};
+      byId[l.id] = l;
+    }
+    return byId;
+  });
+}, { max: 8, evictFirst: true });
 
 // Areas above the ground (bridges, footbridges) carry LEVEL 1: derive.js uses them only for a cut on a bridge.
 async function surfaces(bbox) {

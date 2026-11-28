@@ -16,7 +16,7 @@ import { MTVU_LABELS } from "../city.js";
 import { inArea, inside } from "../places.js";
 import { osmAreas } from "./slovakia.js";
 import { surfaces as lombardySurfaces, AREAS as LOMBARDY_AREAS } from "./lombardy.js";
-import { polygonsOf } from "./shared.js";
+import { polygonsOf, cachedBy, boxKey } from "./shared.js";
 
 const flag = flagsOf("PROFILY_IT");
 
@@ -42,14 +42,7 @@ export function bolognaRoads(rows) {
 }
 
 const memo = new Map();
-function cached(bbox) {
-  const key = bbox.split(",").map((v) => (+v).toFixed(4)).join(",");
-  if (!memo.has(key)) {
-    memo.set(key, records("aree-stradali", bbox, "descrizion,geo_shape").then(bolognaRoads).catch((err) => { memo.delete(key); throw err; }));
-    if (memo.size > 30) memo.delete(memo.keys().next().value);
-  }
-  return memo.get(key);
-}
+const cached = (bbox) => cachedBy(memo, boxKey(bbox), () => records("aree-stradali", bbox, "descrizion,geo_shape").then(bolognaRoads));
 const ring = (r) => Array.from({ length: 12 }, (_, i) => [r * Math.cos((i * Math.PI) / 6), r * Math.sin((i * Math.PI) / 6)]);
 const AROUND = [[0, 0], ...[2, 5, 10].flatMap(ring)];
 

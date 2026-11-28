@@ -10,7 +10,7 @@
 import { flagsOf, offOf } from "../flags.js";
 import { osmTiles } from "../gis.js";
 import { inside } from "../places.js";
-import { polygonsOf } from "./shared.js";
+import { polygonsOf, cachedBy } from "./shared.js";
 
 const flag = flagsOf("PROFILY_SI");
 
@@ -91,13 +91,8 @@ const memo = new Map();
 async function podlaznost(lat, lon) {
   if (flag("gurs") === "0") return {};
   const key = `${lat.toFixed(5)},${lon.toFixed(5)}`;
-  if (!memo.has(key)) {
-    memo.set(key, ask(lat, lon)
-      .then(async (json) => { const p = gursPick(json, lat, lon); return p.gurs ? p : gursNearest(await ask(lat, lon, 0.00006), lat, lon); })
-      .catch((err) => { memo.delete(key); throw err; }));
-    if (memo.size > 30) memo.delete(memo.keys().next().value);
-  }
-  return memo.get(key);
+  return cachedBy(memo, key, () => ask(lat, lon)
+    .then(async (json) => { const p = gursPick(json, lat, lon); return p.gurs ? p : gursNearest(await ask(lat, lon, 0.00006), lat, lon); }));
 }
 
 export const sources = {

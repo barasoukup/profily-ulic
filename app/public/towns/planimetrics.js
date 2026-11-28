@@ -15,6 +15,7 @@ import { osmTiles, getJSON, envelope, asMtvu } from "../gis.js";
 import { MTVU_LABELS } from "../city.js";
 import { inArea, inside } from "../places.js";
 import { cutOfBox } from "./belgium.js";
+import { cachedBy } from "./shared.js";
 
 const STEP = 0.1;
 
@@ -251,13 +252,7 @@ const toRing = (r) => { let d = Infinity; for (let i = 1; i < r.length; i++) { c
 // Answers kept by their key (a click asks each layer once; a failed one is asked again).
 export function memory(size = 40) {
   const memo = new Map();
-  return (key, make) => {
-    if (!memo.has(key)) {
-      if (memo.size > size) memo.delete(memo.keys().next().value);
-      memo.set(key, make().catch((err) => { memo.delete(key); throw err; }));
-    }
-    return memo.get(key);
-  };
+  return (key, make) => cachedBy(memo, key, make, { max: size, evictFirst: true });
 }
 
 // The alleys of a map as areas (service=alley) that a click keeps away from as from a crossing (derive.js awayFromJunctions).

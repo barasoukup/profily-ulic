@@ -18,6 +18,7 @@ export const DBT = "https://www.cartografia.servizirl.it/arcgis2/rest/services/B
 // Bolzano's orthophoto out of it (the review of 24. 11. 2026: Ponte di Legno and Valfurva asked Bolzano's WMS).
 import { LOMBARDY_BOX, inLombardy } from "./lombardy-area.js";
 import { inside } from "../places.js";
+import { cachedBy, boxKey } from "./shared.js";
 export { LOMBARDY_BOX, inLombardy };
 
 // The layers (identify's layerId) in the order of precedence (the first surface at a point wins, derive.js classify):
@@ -99,14 +100,9 @@ export async function surfaces(bbox) {
   const [x0, y0, x1, y1] = bbox.split(",").map(Number);
   const cx = (x0 + x1) / 2, cy = (y0 + y1) / 2;
   if (flag("lombardia") === "0" || !inLombardy(cx, cy)) return null;
-  const key = bbox.split(",").map((v) => (+v).toFixed(5)).join(",");
   let out;
   try {
-    if (!memo.has(key)) {
-      memo.set(key, dbtFeatures(bbox).then(dbtSurfaces).catch((err) => { memo.delete(key); throw err; }));
-      if (memo.size > 20) memo.delete(memo.keys().next().value);
-    }
-    out = await memo.get(key);
+    out = await cachedBy(memo, boxKey(bbox, 5), () => dbtFeatures(bbox).then(dbtSurfaces), { max: 20 });
   } catch {
     return { features: [], abroad: true, itFailed: "lombardia" };
   }

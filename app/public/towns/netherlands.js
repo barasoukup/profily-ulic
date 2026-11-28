@@ -17,7 +17,7 @@ import { osmTiles, getJSON, asMtvu, asPassport } from "../gis.js";
 import { MTVU_LABELS } from "../city.js";
 import { osmAreas } from "./slovakia.js";
 import { inside } from "../places.js";
-import { ringsOf, pathsOf } from "./shared.js";
+import { ringsOf, pathsOf, cachedBy, boxKey } from "./shared.js";
 
 const flag = flagsOf("PROFILY_NL");
 
@@ -49,14 +49,7 @@ export const bgtCode = (layer, p) => KIND[layer]?.(p || {}) ?? null;
 
 // One request a box and layer (a cut moved a little asks the same box again), kept for the session, at most 30 boxes.
 const memo = new Map();
-function bgt(bbox) {
-  const key = bbox.split(",").map((v) => (+v).toFixed(4)).join(",");
-  if (!memo.has(key)) {
-    memo.set(key, bgtAsk(bbox).catch((err) => { memo.delete(key); throw err; }));
-    if (memo.size > 30) memo.delete(memo.keys().next().value);
-  }
-  return memo.get(key);
-}
+const bgt = (bbox) => cachedBy(memo, boxKey(bbox), () => bgtAsk(bbox));
 async function layer(name, bbox, now) {
   const features = [];
   let url = `${BGT_API}/${name}/items?${new URLSearchParams({ f: "json", limit: "1000", bbox, datetime: now })}`;

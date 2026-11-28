@@ -21,7 +21,7 @@ import { beRegionsAt } from "../lanes-ortho.js";
 import { MTVU_LABELS } from "../city.js";
 import { osmAreas } from "./slovakia.js";
 import { inside } from "../places.js";
-import { polygonsOf, pathsOf } from "./shared.js";
+import { polygonsOf, pathsOf, cachedBy } from "./shared.js";
 
 const flag = flagsOf("PROFILY_BE");
 
@@ -39,16 +39,11 @@ export const piccPaths = (json) => (json?.features || []).filter((f) => PICC_EDG
 // One GRB layer in a box, asked once (WGO serves both the kerbs' lines and the surfaces).
 const grbMemo = new Map();
 function grbLayer(type, bbox) {
-  const key = `${type} ${bbox}`;
-  if (!grbMemo.has(key)) {
-    if (grbMemo.size > 30) grbMemo.delete(grbMemo.keys().next().value);
-    const [x0, y0, x1, y1] = bbox.split(",").map(Number);
+  const [x0, y0, x1, y1] = bbox.split(",").map(Number);
+  return cachedBy(grbMemo, `${type} ${bbox}`, () =>
     // WFS 2.0 with the URN of EPSG:4326: the box lat, lon; the answer's GeoJSON lon, lat.
-    grbMemo.set(key, getJSON(`${GRB_WFS}?${new URLSearchParams({ service: "WFS", version: "2.0.0", request: "GetFeature", typeNames: `GRB:${type}`,
-      srsName: "EPSG:4326", bbox: `${y0},${x0},${y1},${x1},urn:ogc:def:crs:EPSG::4326`, outputFormat: "application/json", count: "3000" })}`)
-      .catch((err) => { grbMemo.delete(key); throw err; }));
-  }
-  return grbMemo.get(key);
+    getJSON(`${GRB_WFS}?${new URLSearchParams({ service: "WFS", version: "2.0.0", request: "GetFeature", typeNames: `GRB:${type}`,
+      srsName: "EPSG:4326", bbox: `${y0},${x0},${y1},${x1},urn:ogc:def:crs:EPSG::4326`, outputFormat: "application/json", count: "3000" })}`), { evictFirst: true });
 }
 async function grb(bbox) {
   return grbPaths(await grbLayer("WGO", bbox));

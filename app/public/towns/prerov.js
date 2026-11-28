@@ -11,6 +11,7 @@ import { osmTiles, asMtvu, ruianBuilding } from "../gis.js";
 import { MTVU_LABELS } from "../city.js";
 import { decodeMvt } from "./mvt.js";
 import { toWgs, fromWgs } from "./sjtsk.js";
+import { cachedBy } from "./shared.js";
 
 const PR_TILES = "https://gis.prerov.eu/arcgis1/rest/services/DTM_polohopis_vector/VectorTileServer/tile";
 // The tiling of the service (tileInfo): origin, level 7 and its resolution (m/px), 512 px tiles.
@@ -21,14 +22,9 @@ const PR_CENTRE = [-534350, -1138260];
 const tiles = new Map();
 const tile = (row, col) => {
   const key = `${row}/${col}`;
-  if (!tiles.has(key)) {
-    if (tiles.size > 16) tiles.delete(tiles.keys().next().value);
-    tiles.set(key, fetch(`${PR_TILES}/${LOD}/${row}/${col}.pbf`, { signal: AbortSignal.timeout(20000) })
-      .then((r) => (r.ok ? r.arrayBuffer() : r.status === 404 ? null : Promise.reject(new Error(`Přerov ${r.status}`))))
-      .then((buf) => ({ row, col, layers: buf ? decodeMvt(new Uint8Array(buf)) : {} }))
-      .catch((err) => { tiles.delete(key); throw err; }));
-  }
-  return tiles.get(key);
+  return cachedBy(tiles, key, () => fetch(`${PR_TILES}/${LOD}/${row}/${col}.pbf`, { signal: AbortSignal.timeout(20000) })
+    .then((r) => (r.ok ? r.arrayBuffer() : r.status === 404 ? null : Promise.reject(new Error(`Přerov ${r.status}`))))
+    .then((buf) => ({ row, col, layers: buf ? decodeMvt(new Uint8Array(buf)) : {} })), { max: 16, evictFirst: true });
 };
 // The tiles an envelope "x0,y0,x1,y1" (WGS 84) touches.
 async function tilesOf(bbox) {

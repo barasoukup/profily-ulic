@@ -8,6 +8,7 @@
 import { query, envelope, osmTiles, asMtvu, ruianBuilding } from "../gis.js";
 import { MTVU_LABELS } from "../city.js";
 import { inside } from "../places.js";
+import { cachedBy } from "./shared.js";
 
 const OV = "https://mapy.ostrava.cz/arcgisserver/rest/services";
 const OV_DTM = `${OV}/MAPPA/Polohopis_DTM_generalizace/MapServer/0/query`;
@@ -20,13 +21,7 @@ const none = () => ({ features: [] });
 
 // The DTM is asked once per cut for the surfaces and again for the walls and fences.
 const dtmCache = new Map();
-const dtm = (bbox) => {
-  if (!dtmCache.has(bbox)) {
-    if (dtmCache.size > 8) dtmCache.delete(dtmCache.keys().next().value);
-    dtmCache.set(bbox, ovQuery(OV_DTM, { ...envelope(bbox), outFields: "POPIS" }).catch((err) => { dtmCache.delete(bbox); throw err; }));
-  }
-  return dtmCache.get(bbox);
-};
+const dtm = (bbox) => cachedBy(dtmCache, bbox, () => ovQuery(OV_DTM, { ...envelope(bbox), outFields: "POPIS" }), { max: 8, evictFirst: true });
 
 // Kinds of the DTM (POPIS) → MTVU codes; the first that matches. Curbs, gutters, joints, footings, manholes
 // and the like are left out (the surface around them goes on). "Nevyhodnocená plocha" is left open.

@@ -8,6 +8,7 @@
 // click (osm, surfaces, lines, parking, podlaznost; see towns/jihlava.js) and app.js its base maps.
 import { query, envelope, osmTiles, boxAround, asMtvu, addPoints, ruianBuilding } from "../gis.js";
 import { MTVU_LABELS } from "../city.js";
+import { cachedBy } from "./shared.js";
 
 const OP = "https://mapy.opava-city.cz/server/rest/services";
 const OP_EXT = `${OP}/external`;
@@ -28,19 +29,13 @@ const none = () => ({ features: [] });
 // are asked apart, generalized to 0.2 m (2.4 MB → 0.1 MB for the largest), and read as roadway.
 const OP_BIG = "Shape_Area > 100000 AND (POPIS LIKE 'Bud%' OR POPIS LIKE 'Chodn%' OR POPIS LIKE 'Zpevn%' OR POPIS = 'Cesta')";
 const plochyCache = new Map();
-const plochy = (bbox) => {
-  if (!plochyCache.has(bbox)) {
-    if (plochyCache.size > 8) plochyCache.delete(plochyCache.keys().next().value);
-    plochyCache.set(bbox, Promise.all([
-      opQuery(OP_PLOCHY, { ...envelope(bbox), outFields: "POPIS", where: `NOT (${OP_BIG})` }),
-      opQuery(OP_PLOCHY, { ...envelope(bbox), outFields: "OBJECTID", where: OP_BIG, maxAllowableOffset: 0.000002, geometryPrecision: 7 }),
-    ]).then(([rest, big]) => ({
-      // Last: where it overlaps a surface drawn on its own, that one wins.
-      features: [...(rest.features || []), ...(big.features || []).map((f) => ({ ...f, attributes: { POPIS: ROADWAYS } }))],
-    })).catch((err) => { plochyCache.delete(bbox); throw err; }));
-  }
-  return plochyCache.get(bbox);
-};
+const plochy = (bbox) => cachedBy(plochyCache, bbox, () => Promise.all([
+  opQuery(OP_PLOCHY, { ...envelope(bbox), outFields: "POPIS", where: `NOT (${OP_BIG})` }),
+  opQuery(OP_PLOCHY, { ...envelope(bbox), outFields: "OBJECTID", where: OP_BIG, maxAllowableOffset: 0.000002, geometryPrecision: 7 }),
+  ]).then(([rest, big]) => ({
+    // Last: where it overlaps a surface drawn on its own, that one wins.
+    features: [...(rest.features || []), ...(big.features || []).map((f) => ({ ...f, attributes: { POPIS: ROADWAYS } }))],
+  })), { max: 8, evictFirst: true });
 const ROADWAYS = "vozovky";
 
 // Kinds of the map of the ground (POPIS) → MTVU codes. "SN" (shora neviditelná) is ground under a roof

@@ -10,3 +10,18 @@ export const polygonsOf = (g) => (g?.type === "Polygon" ? [g.coordinates] : g?.t
 export const ringsOf = (g) => (g?.type === "Polygon" ? g.coordinates : g?.type === "MultiPolygon" ? g.coordinates.flat() : null);
 // The lines of a LineString or MultiLineString, each an array of points; none for any other kind.
 export const pathsOf = (g) => (g?.type === "LineString" ? [g.coordinates] : g?.type === "MultiLineString" ? g.coordinates : []);
+
+// "x0,y0,x1,y1" with each number rounded to digits decimals (4 is about 10 m): a cut moved a little asks the same box.
+export const boxKey = (bbox, digits = 4) => bbox.split(",").map((v) => (+v).toFixed(digits)).join(",");
+
+// One answer a key in memo (a Map the module owns), kept as the promise: a click asks each source once, and the one that
+// failed is asked again. At most max kept, the oldest out. evictFirst is where the copies differed: false puts the new
+// answer in and then drops the oldest above max (max kept), true drops the oldest first (one more than max kept).
+export function cachedBy(memo, key, make, { max = 30, evictFirst = false } = {}) {
+  if (!memo.has(key)) {
+    if (evictFirst && memo.size > max) memo.delete(memo.keys().next().value);
+    memo.set(key, make().catch((err) => { memo.delete(key); throw err; }));
+    if (!evictFirst && memo.size > max) memo.delete(memo.keys().next().value);
+  }
+  return memo.get(key);
+}

@@ -22,7 +22,7 @@ import { osmTiles, getJSON, asMtvu, asPassport } from "../gis.js";
 import { MTVU_LABELS } from "../city.js";
 import { inArea, inside } from "../places.js";
 import { osmAreas } from "./slovakia.js";
-import { polygonsOf } from "./shared.js";
+import { polygonsOf, cachedBy, boxKey } from "./shared.js";
 
 const flag = flagsOf("PROFILY_LT");
 // Vilnius's map off by default (?vilnius=1 turns it on; Bára 24. 11. 2026), the GRPK's houses on (?grpk=0 leaves them out).
@@ -86,14 +86,7 @@ async function vilnius(bbox) {
   return vilniusFeatures({ features });
 }
 const memo = new Map();
-function cached(bbox) {
-  const key = bbox.split(",").map((v) => (+v).toFixed(4)).join(",");
-  if (!memo.has(key)) {
-    memo.set(key, vilnius(bbox).catch((err) => { memo.delete(key); throw err; }));
-    if (memo.size > 30) memo.delete(memo.keys().next().value);
-  }
-  return memo.get(key);
-}
+const cached = (bbox) => cachedBy(memo, boxKey(bbox), () => vilnius(bbox));
 // The GRPK's buildings (GKODAS by the layer's legend: pa0 a building, pa23 a garage, pa6 a tower, pa58 a greenhouse;
 // pa651/652 wind mills are left out). Esri JSON (the service gives no GeoJSON): the rings of a polygon, holes among them.
 const GRPK_KINDS = new Set(["pa0", "pa23", "pa6", "pa58"]);
@@ -106,14 +99,7 @@ export function grpkFeatures(json) {
 }
 const grpk = async (bbox) => grpkFeatures(await getJSON(grpkUrl(bbox)));
 const grpkMemo = new Map();
-function grpkCached(bbox) {
-  const key = bbox.split(",").map((v) => (+v).toFixed(4)).join(",");
-  if (!grpkMemo.has(key)) {
-    grpkMemo.set(key, grpk(bbox).catch((err) => { grpkMemo.delete(key); throw err; }));
-    if (grpkMemo.size > 30) grpkMemo.delete(grpkMemo.keys().next().value);
-  }
-  return grpkMemo.get(key);
-}
+const grpkCached = (bbox) => cachedBy(grpkMemo, boxKey(bbox), () => grpk(bbox));
 // The GRPK's houses of the cut, or none (switched off, or no answer: OSM's alone).
 async function grpkHouses(bbox) {
   if (!grpkOn()) return [];

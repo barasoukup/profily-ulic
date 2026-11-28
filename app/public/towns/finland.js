@@ -23,7 +23,7 @@ import { MTVU_LABELS } from "../city.js";
 import { inArea, inside } from "../places.js";
 import { osmAreas } from "./slovakia.js";
 import { HELSINKI_RINGS } from "./finland-helsinki.js";
-import { polygonsOf } from "./shared.js";
+import { polygonsOf, cachedBy, boxKey } from "./shared.js";
 
 const flag = flagsOf("PROFILY_FI");
 export const HEL_WFS = "https://kartta.hel.fi/ws/geoserver/avoindata/wfs";
@@ -78,14 +78,7 @@ export const ylreUrl = (bbox) => {
     bbox: `${y0},${x0},${y1},${x1},urn:ogc:def:crs:EPSG::4326` })}`;
 };
 const memo = new Map();
-function cached(bbox) {
-  const key = bbox.split(",").map((v) => (+v).toFixed(4)).join(",");
-  if (!memo.has(key)) {
-    memo.set(key, getJSON(ylreUrl(bbox)).then(ylreFeatures).catch((err) => { memo.delete(key); throw err; }));
-    if (memo.size > 30) memo.delete(memo.keys().next().value);
-  }
-  return memo.get(key);
-}
+const cached = (bbox) => cachedBy(memo, boxKey(bbox), () => getJSON(ylreUrl(bbox)).then(ylreFeatures));
 // The register has the street when a part of its kind lies under the cut's centre (within 3 m): a roadway under a
 // street for cars, a roadway, sidewalk or cycle track under a footway, path or cycleway (the hostile review of
 // 24. 11. 2026, bod 1: the old rule, a roadway or sidewalk within 15 m, took the register 29 m beside a park path and
@@ -226,17 +219,13 @@ export async function ryhtiAt(lat, lon, outline) {
 const houses = new Map();
 async function podlaznost(lat, lon) {
   const key = `${lat.toFixed(5)},${lon.toFixed(5)},${flag("hkibuild")},${flag("ryhti")}`;
-  if (!houses.has(key)) {
-    houses.set(key, (async () => {
-      if (flag("hkibuild") !== "0" && inHelsinki(lon, lat)) {
-        const p = await ask(hkiBuildingUrl(lat, lon)).then((j) => hkiPick(j, lat, lon)).catch(() => ({}));
-        if (p.fiBuild) return p;
-      }
-      return flag("ryhti") === "0" ? {} : ryhtiAt(lat, lon, await osmOutline(lat, lon));
-    })().catch((err) => { houses.delete(key); throw err; }));
-    if (houses.size > 30) houses.delete(houses.keys().next().value);
-  }
-  return houses.get(key);
+  return cachedBy(houses, key, async () => {
+    if (flag("hkibuild") !== "0" && inHelsinki(lon, lat)) {
+      const p = await ask(hkiBuildingUrl(lat, lon)).then((j) => hkiPick(j, lat, lon)).catch(() => ({}));
+      if (p.fiBuild) return p;
+    }
+    return flag("ryhti") === "0" ? {} : ryhtiAt(lat, lon, await osmOutline(lat, lon));
+  });
 }
 
 export const sources = {

@@ -14,7 +14,7 @@ import { osmTiles, getJSON, asMtvu, asPassport } from "../gis.js";
 import { MTVU_LABELS } from "../city.js";
 import { inArea, inside } from "../places.js";
 import { osmAreas } from "./slovakia.js";
-import { polygonsOf } from "./shared.js";
+import { polygonsOf, cachedBy, boxKey } from "./shared.js";
 
 const flag = flagsOf("PROFILY_EE");
 export const TALLINN_MAP = "https://gis.tallinn.ee/arcgis/rest/services/tar_maakate/MapServer";
@@ -37,15 +37,7 @@ const layer = (id, bbox) => getJSON(`${TALLINN_MAP}/${id}/query?${new URLSearchP
 // layers only where the map has the street (most clicks outside the city, in Maardu or Viimsi, stop after two).
 const FIRST = ["36", "35"];
 const memo = new Map();
-function cached(key, f) {
-  if (!memo.has(key)) {
-    memo.set(key, f().catch((err) => { memo.delete(key); throw err; }));
-    if (memo.size > 30) memo.delete(memo.keys().next().value);
-  }
-  return memo.get(key);
-}
-const boxKey = (bbox) => bbox.split(",").map((v) => (+v).toFixed(4)).join(",");
-const layers = (ids, bbox) => cached(`${ids.join("+")}:${boxKey(bbox)}`, async () =>
+const layers = (ids, bbox) => cachedBy(memo, `${ids.join("+")}:${boxKey(bbox)}`, async () =>
   tallinnFeatures(await Promise.all(ids.map(async (id) => [TALLINN_LAYERS[id], await layer(id, bbox)]))));
 // The map has the street under the cut's centre (as Vilnius's hasStreet, hostile review 24. 11. 2026): within 3 m, a
 // roadway under a street for cars (a service road: a drivable yard or car park too); a sidewalk or path only under a

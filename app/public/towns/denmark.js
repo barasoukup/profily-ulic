@@ -21,7 +21,7 @@
 import { flagsOf } from "../flags.js";
 import { osmTiles } from "../gis.js";
 import { inArea, inside } from "../places.js";
-import { polygonsOf, pathsOf } from "./shared.js";
+import { polygonsOf, pathsOf, cachedBy } from "./shared.js";
 
 // The switches (URL parameters; in Node globalThis.PROFILY_DK) and their defaults.
 const DEFAULTS = { kbhkant: "1", kbhpark: "1", kbhbyg: "1", aarbyg: "1" };
@@ -54,11 +54,7 @@ export const kantUrl = (bbox) => wfsUrl(KBH_WFS, "k101:vejkant", bbox, "vejtype,
 // and said nothing): the next cut asks again, and this one tells the visitor (dkFailed, app.js).
 const memo = new Map();
 function kanter(bbox) {
-  if (!memo.has(bbox)) {
-    if (memo.size > 30) memo.delete(memo.keys().next().value);
-    memo.set(bbox, askCity(kantUrl(bbox), LINES_TIMEOUT).then(kantPaths).catch((err) => { memo.delete(bbox); throw err; }));
-  }
-  return memo.get(bbox);
+  return cachedBy(memo, bbox, () => askCity(kantUrl(bbox), LINES_TIMEOUT).then(kantPaths), { evictFirst: true });
 }
 async function lines(bbox) {
   if (!bbox) return { features: [] };
@@ -171,21 +167,17 @@ export const aarBuildingUrl = (lat, lon) => wfsUrl(AAR_WFS, "spatialsuite:geokod
 const houses = new Map();
 async function podlaznost(lat, lon) {
   const key = `${lat.toFixed(5)},${lon.toFixed(5)},${param("kbhbyg")},${param("aarbyg")}`;
-  if (!houses.has(key)) {
-    houses.set(key, (async () => {
-      if (on("kbhbyg") && inArea(AREAS.kobenhavn, lon, lat)) {
-        const p = pick(await ask(kbhBuildingUrl(lat, lon)), lat, lon, kbhBuilding, (q) => num(q?.antaletager));
-        if (p.built || p.cornice) return { ...p, dkBuild: "kbh" };
-      }
-      if (on("aarbyg") && inArea(AREAS.aarhus, lon, lat)) {
-        const p = pick(await ask(aarBuildingUrl(lat, lon)), lat, lon, aarBuilding, (q) => num(q?.Byg_Arl_Saml));
-        if (p.built || p.cornice) return { ...p, dkBuild: "aar" };
-      }
-      return {};
-    })().catch((err) => { houses.delete(key); throw err; }));
-    if (houses.size > 30) houses.delete(houses.keys().next().value);
-  }
-  return houses.get(key);
+  return cachedBy(houses, key, async () => {
+    if (on("kbhbyg") && inArea(AREAS.kobenhavn, lon, lat)) {
+      const p = pick(await ask(kbhBuildingUrl(lat, lon)), lat, lon, kbhBuilding, (q) => num(q?.antaletager));
+      if (p.built || p.cornice) return { ...p, dkBuild: "kbh" };
+    }
+    if (on("aarbyg") && inArea(AREAS.aarhus, lon, lat)) {
+      const p = pick(await ask(aarBuildingUrl(lat, lon)), lat, lon, aarBuilding, (q) => num(q?.Byg_Arl_Saml));
+      if (p.built || p.cornice) return { ...p, dkBuild: "aar" };
+    }
+    return {};
+  });
 }
 
 export const sources = {

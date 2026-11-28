@@ -15,7 +15,7 @@ import { osmTiles, getJSON, asMtvu, asPassport } from "../gis.js";
 import { MTVU_LABELS } from "../city.js";
 import { inArea, inside } from "../places.js";
 import { osmAreas } from "./slovakia.js";
-import { ringsOf } from "./shared.js";
+import { ringsOf, cachedBy, boxKey } from "./shared.js";
 
 const flag = flagsOf("PROFILY_FR");
 
@@ -58,14 +58,7 @@ const townAt = (lon, lat) => Object.keys(FR_TOWNS).find((id) => flag(id) !== "0"
 
 // One request a box (a cut moved a little asks the same box again: the box rounded to about 10 m), at most 30 kept.
 const memo = new Map();
-function cached(id, bbox) {
-  const key = `${id} ${bbox.split(",").map((v) => (+v).toFixed(4)).join(",")}`;
-  if (!memo.has(key)) {
-    memo.set(key, FR_TOWNS[id](bbox).catch((err) => { memo.delete(key); throw err; }));
-    if (memo.size > 30) memo.delete(memo.keys().next().value);
-  }
-  return memo.get(key);
-}
+const cached = (id, bbox) => cachedBy(memo, `${id} ${boxKey(bbox)}`, () => FR_TOWNS[id](bbox));
 
 async function surfaces(bbox) {
   const [x0, y0, x1, y1] = bbox.split(",").map(Number);
