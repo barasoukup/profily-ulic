@@ -148,7 +148,7 @@ const KEYS = [...Object.keys(SIGNS), "ip11b", "ip11c"];
 const PLATES = [undefined, "protismer", "obsluha", "kolo", "kola", "podelne", "kolme", "sikme"];
 const SPEEDS = [5, 10, 15, 20, 25, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130];
 // The signs of DK without a viewBox (Commons files with width and height only): not drawn (docs/backlog.md).
-const WITHOUT_VIEWBOX = { "signs-DK": ["C19", "C21", "C22.1", "C25.1", "C26.2", "C61", "C62", "D21", "D22", "D26", "D26.2", "D27", "E33.1", "E42", "E43", "E49"] };
+const WITHOUT_VIEWBOX = {};
 // Files a state's tests named by hand (its pictures of plates and speeds, the shapes of its mapping) and that must be there.
 const speeds = (prefix, list) => list.map((v) => `${prefix}${v}`);
 const NAMED = {
