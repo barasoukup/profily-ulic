@@ -70,7 +70,7 @@ výsledek ve zprávě commitu. Povinné jádro: 1–8, 9 a 11–13a; ostatní po
     `{ geometry, sources, options }`. Při nasazení import mapa s `?v=<commit>` pro všechny moduly (generuje nástroj
     webu, bez bundleru), aby návštěvník nedostal směs starých a nových modulů; aspoň hláška „načtěte stránku znovu“ při
     chybě importu v `errors.js`.
-11. **Rozdělit `profile.js`** (L): `draw/buildings/` s tabulkou vzhled → funkce, `svg`, `items`, `signs`, `water`, `editor`.
+11. **Rozdělit `profile.js`** (hotovo 28. 11. 2026, větev `split-profile`: `profile.js` jen re-exportuje z `app/public/draw/` a `draw/buildings/`, žádná funkce nad 100 ř., `drawPrahaBuilding` jsou fáze nad jedním kontextem `hs` a if-řetězce podle vzhledu jsou tabulky; L): `draw/buildings/` s tabulkou vzhled → funkce, `svg`, `items`, `signs`, `water`, `editor`.
 12. **Rozdělit `derive.js`** (L; hotovo 28. 11. 2026, větev `split-derive`): jen přesuny; `derive.js` je vstup s týmiž exporty, práce v
     `app/public/derive/<téma>.js` (geometry, tags, placement, crossings, polygons, classify, parking, part-types, tram, lanes, walkways,
     items, buildings, output, adjust, estimate); `deriveProfile` (16 řádků) volá fáze nad jedním objektem `ctx`: `profile-prepare`
