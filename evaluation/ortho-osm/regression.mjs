@@ -4,7 +4,7 @@
 // checked that it makes nothing worse elsewhere. Per city and orthophoto: the kerbs of the carriageway (median error,
 // share within 0.5 and 1 m), the sidewalks per side, parking at a kerb (found / missed / false).
 //   node evaluation/ortho-osm/regression.mjs [praha|brno …]            the current code
-//   OFF=pair,pieces node evaluation/ortho-osm/regression.mjs           with the named features off (ortho-osm.js P.off)
+//   OFF=mapfill node evaluation/ortho-osm/regression.mjs                with the named features off (ortho-osm.js P.off)
 //   RUIAN=first node evaluation/ortho-osm/regression.mjs               RÚIAN's buildings first, OSM's where it has none (the app in Czechia)
 //   RUIAN=1 …                                                          only the RÚIAN buildings OSM lacks
 //   SRC=cuzk12 …                                                       only this orthophoto (default: cuzk12 and the city's 10 cm)

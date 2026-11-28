@@ -1,8 +1,8 @@
 # Rozhodnutí: smazané pokusy
 
 Tady je každý pokus, který prohrál nebo zůstal navždy vypnutý a Bára 27. 11. 2026 řekla, že se z kódu maže (krok 6 plánu
-`docs/code-health-plan.md`; smazáno 28. 11. 2026, větev `drop-experiments`). Kód každého pokusu je v gitu před commitem
-„Drop experiments“ téže větve (`git log --grep "Drop experiments"`). Řádek: co to bylo, výsledek měření, kde je zpráva.
+`docs/code-health-plan.md`; smazáno 28. 11. 2026, větev `drop-experiments`). Kód každého pokusu je v gitu v `main` před
+úklidem (commit b62f8174) a v prvním z commitů „Drop experiments“, který ho maže (`git log --grep "Drop experiments"`). Řádek: co to bylo, výsledek měření, kde je zpráva.
 Zapnuté opravy s vypínačem `?off=…`, které se tím jen zbavily vypínače, jsou v druhém oddílu.
 
 ## Vypnuté pokusy (smazané)

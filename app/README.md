@@ -203,8 +203,8 @@ WMS-Raster v Web Mercatoru, `lanes-ortho.js` zdroj `fr`; mimo Francii bílé, pr
   téže ulice z OSM, nebo plochy ulice z mapy pokračují až k vozovce; totéž dálnice a silnice pro motorová vozidla). Vozovka jen pro autobusy se stejným jménem je druhá polovina ulice, když
   jiná není (`?off=busduo`, obecně); krajnice aspoň 2,75 m u obruby s buspruhem z OSM je buspruh (`?off=buskrajnice`,
   obecně). Zpráva `evaluation/france/ab/boulevards/REPORT.md`.
-- **Budovy** z BD TOPO IGN (podlaží, výška, rok, byty, užití; `?bdtopo=0`). **Šířky vozovek** BD TOPO (celé metry) jen
-  s `?sirka=1`, bez A/B.
+- **Budovy** z BD TOPO IGN (podlaží, výška, rok, byty, užití; `?bdtopo=0`). ~~**Šířky vozovek** BD TOPO (celé metry) jen
+  s `?sirka=1`, bez A/B~~ (smazáno 28. 11. 2026, `docs/decisions.md`).
 - **Normy:** závazná je jen přístupnost (arrêté z 15. 1. 2007: chodník 1,4 m, 1,2 m bez překážek); cyklistika podle
   doporučení CEREMA a příručky Paříže 2023, stání podle Paříže, pruhy jen oranžově podle Grand Lyon 2010. **Stání:**
   zákon (Code de la route R417-10, R417-11) volnou šířku nemá, odhad jako v Lucembursku; auto na chodníku je „très
@@ -478,7 +478,7 @@ mezera do 2 m k domu patří domu). Stání po stranách z digitální obruby SF
 z výšky obrysu (`?sfhouse=0`). `?sf=0` vypne vše. Bez ortofota (otevřené pro SF není, NAIP je 0,6–1 m). Chodníky varují
 podle SFMTA Sidewalk Widths, jinak jen NACTO (`evaluation/usa/sf/NORMS.md`). Ilustrace Muni (`sanfrancisco/`: autobus,
 trolejbus, LRV4, označník). Měření `evaluation/usa/sf/REPORT.md`. Vypnuté zkoušky (`evaluation/usa/sf/fixes/REPORT.md`):
-`?sfosmpark=1` orientace stání z OSM, kde obruba dá podélné. Zapnuté všude (Bára 27. 11. 2026 po kontrole 3 566 řezů ve
+~~`?sfosmpark=1` orientace stání z OSM, kde obruba dá podélné~~ (smazáno 28. 11. 2026, `docs/decisions.md`). Zapnuté všude (Bára 27. 11. 2026 po kontrole 3 566 řezů ve
 24 státech beze změny, `evaluation/axisroad-check/REPORT.md`): vozovka, na kterou oprava osy přesunula osu, je ulice,
 i když ji přechází jen chodník (Lippard Avenue); `?axisroad=0` vypne.
 
@@ -497,10 +497,10 @@ autobus a tramvaj MBTA, ortofoto MassGIS, texty a normy Bostonu) a `cambridge` (
   `?boston=0`, `?cambridge=0` vypnou, `?bostonhouse=0` vypne podlaží domů.
 - **ortofoto** MassGIS 2025 (15 cm, dlaždice z20, „No restrictions“) nad celým metrem: pruhy, obruby, podklad mapy (`lanes-ortho.js us-ma`).
 - normy Boston Complete Streets Guidelines 2013 jen oranžově (`evaluation/usa/boston/NORMS.md`), stání 3 m na směr jako DC.
-- mezery za vnějším chodníkem podle domů a parkovišť z OSM a ortofota (`planimetrics.js outerGaps`, `ortho-osm.js
+- ~~mezery za vnějším chodníkem podle domů a parkovišť z OSM a ortofota (`planimetrics.js outerGaps`, `ortho-osm.js
   outerGapsByImage`) jen s `?outergaps=1` (A/B 18 : 16, `evaluation/usa/boston/outer/REPORT.md`); jen domy a parkoviště z OSM bez
   ortofota s `?outerosm=1` (A/B 24 : 22, `evaluation/usa/boston/outer-osm/REPORT.md`). New York: stání ze značek NYC DOT
-  (`towns/newyork.js signTags`) jen s `?nycsigns=1` (A/B 17 : 8, p 0,11, `evaluation/usa/nyc/park/REPORT.md`).
+  (`towns/newyork.js signTags`) jen s `?nycsigns=1` (A/B 17 : 8, p 0,11, `evaluation/usa/nyc/park/REPORT.md`)~~ (smazáno 28. 11. 2026, `docs/decisions.md`).
 Měření `evaluation/usa/boston/REPORT.md`.
 
 ### Kanada: Toronto (Bára 25. 11. 2026)
@@ -515,9 +515,9 @@ než mapa z OSM, samostatné i jen jako tag silnice (`?off=roadtracks`). Stát, 
 `towns/…`, kredity (`cityMap`), texty.
 
 Tři společné změny z pilotu (všechny státy, každá s vypínačem): ústí uličky (OSM `service=alley` a plochy uliček) je
-křižovatka (`?off=ulicky`); jamky stromů v chodníku, tedy pás zeleně do 1,3 m mezi chodníkem a obrubou, který na ortofotu
+křižovatka (`?off=ulicky`); ~~jamky stromů v chodníku, tedy pás zeleně do 1,3 m mezi chodníkem a obrubou, který na ortofotu
 vypadá jako dlažba, patří chodníku (`derive.js treePitsAsSidewalk`; **vypnuté**, `?treepits=1` zapne: slepé A/B DC 2 : 2,
-české kontroly 0 : 1); obousměrka s jedním pruhem se dělí na dva
+české kontroly 0 : 1)~~ (smazáno 28. 11. 2026, `docs/decisions.md`); obousměrka s jedním pruhem se dělí na dva
 už od 4,0 m, kde je počet pruhů známý (OSM `lanes` ≥ 2 nebo inventář; `?off=pocetpruhu`).
 
 ### Dlaždice OSM

@@ -26,7 +26,7 @@ Co rozhodne Bára, je označeno **(Bára)**.
   `evaluation/universal` (fr-*), zda jde o úzké chodníky u fasády nebo o zákonný odhad stání.
 - Chodník mezi obrubou a domem (hlášení 23. 11., regrese s domy z RÚIAN): stín domu přes chodník a stání (Spojovací)
   nebo přes vozovku (U libušské sokolovny) se bere jako chodník či obruba, suchý hnědý trávník jako chodník (Kukelská),
-  podélná spára uprostřed vozovky jako obruba (Dářská). Pokusy `walkSatOn`, `walkYellow`, `walkMode`, `split6` znovu
+  podélná spára uprostřed vozovky jako obruba (Dářská). Pokusy ~~`walkSatOn`, `walkYellow`, `walkMode`, `split6`~~ (smazáno 28. 11. 2026, `docs/decisions.md`) znovu
   změřené s RÚIAN: nic nevyhrálo všude. Spíš model (`ai-kerbs`, `ai-segmentation`) než další pravidla.
 ~~- Silnice 230 u Mariánských Lázní (`#rez=50.037075,12.789854,37`): vozovka 6,5 m, ortofoto našlo jen jeden pruh 4,74 m
   a krajnici 1,76 m (chybí středová čára?).~~
@@ -59,10 +59,10 @@ Co rozhodne Bára, je označeno **(Bára)**.
   `export_park.py` ve větvi `ai-segmentation`, `street.onnx` 5,5 MB beze změny velikosti), A/B a regrese. Odhad 3–5 h.
   Zpráva `evaluation/orthophoto/REPORT.md`, oddíl „Šrafy a auta z modelu“.
 - Zeď nebo plot za ulicí: profil v Lipsku končil 1,3 m před zdí (opraveno `?off=murkonec`); pravidlo „nový řez až
-  ke zdi do 40 m“ (`?nastenu=1`) na 70 řezech nic nezměnilo, vypnuto.
+  ke zdi do 40 m“ (~~`?nastenu=1`~~) na 70 řezech nic nezměnilo, vypnuto (smazáno 28. 11. 2026, `docs/decisions.md`).
 - Bulváry se zelení uprostřed: německé mapy povrchů (`towns/germany.js` STREET) mohou řez vystředěný v zeleném pásu
   odmítnout, protože pod středem není vozovka (neověřeno, nález 27. 11. 2026).
-- Paneláky v zahraničí (`?panel2=1`, skóre tvaru, velikosti a okolí): Bára 27. 11. 2026 – raději panelák vynechat než
+- Paneláky v zahraničí (skóre tvaru, velikosti a okolí; ~~`?off=panel2`~~, smazáno 28. 11. 2026, `docs/decisions.md`): Bára 27. 11. 2026 – raději panelák vynechat než
   ho dát, kde není.
 - Kresby domů: statek má okno ve střeše jako tmavý čtvereček bez rámu; cihlový a štítový dům v 1 NP tmavou střechu
   bez okapu; druhá půlka severoamerických vzhledů neprošla kontrolou (27. 11. 2026).
