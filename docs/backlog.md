@@ -390,3 +390,8 @@ Co rozhodne Bára, je označeno **(Bára)**.
   dělení na chodník a vozovku), ne v každé obytné nebo sdílené zóně. Kandidáti: OSM `living_street`/`shared_space`/
   `highway=pedestrian` s provozem, mapa povrchů s jednou plochou od fasády k fasádě bez obruby, OSM bez `sidewalk`.
   Vlastní kresba (dlažba, chodci, kola i auta), značka zóny, při exportu do Streetmixu pruh. A/B na malém vzorku.
+
+## Přehrávka v prohlížeči: pole `compare` není stálé (28. 11. 2026)
+- Při dělení `derive.js` se dva běhy nezměněného kódu v prohlížeči lišily v poli `compare` (pohled Porovnat) u 90 z 369
+  řezů; ostatní pole stejná, Node přehrávka (bez `compare`) 0 rozdílů. Dřív bylo `compare` stálé (krok 1 plánu): najít,
+  od kterého kroku (13a, 13b?) a proč (časování, pořadí načtení) a vrátit determinismus.
