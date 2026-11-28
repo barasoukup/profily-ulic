@@ -79,6 +79,7 @@ const atPosts = Object.fromEntries(["stop-post-left", "stop-post-right", "stop-p
 
 const GDR = new Set(["BE", "BB", "MV", "SN", "ST", "TH"]);
 
+/** @type {import("../types.js").Country} */
 export default {
   ...base,
   code: "DE",

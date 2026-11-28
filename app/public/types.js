@@ -144,3 +144,105 @@ export function typeFromMtvu(code) {
 // 602 "ostatní stavby" (garages, kiosks, walls) is not a building facade; it ends the profile as a minor structure.
 export const isBuilding = (code) => code === 601 || code === 604 || code === 600;
 export const isMinorStructure = (code) => code === 602;
+
+// ---------------------------------------------------------------------------------------------------------------------
+// Contracts of the modules (docs/code-health-plan.md, step 10): only a description in JSDoc, no code. A file refers to
+// them as `@param {import("./types.js").Segment} s`. What the tests hold to: tests/countries.test.js (a state's module),
+// tests/towns.test.js (a town's module).
+
+/**
+ * A part of the street profile (the one of `deriveProfile().segments`, of the saved JSON and of the editor). The ids
+ * of the types are Czech (TYPES above); what the data do not know is left out.
+ * @typedef {object} Segment
+ * @property {string} type id of the type, a key of TYPES ("chodnik", "pruh", "parkovani", "tramvaj"…)
+ * @property {number} width width across the street (m)
+ * @property {string} [source] where the width comes from, a key of SOURCES ("dtm", "osm", "odhad", "ortofoto", "user"…)
+ * @property {"forward"|"backward"} [dir] direction of a lane (by the direction of the cut's street)
+ * @property {Array<{ kind: string, [k: string]: any }>} [items] street furniture and barriers in the part (ITEMS)
+ * @property {string} [orient] parking: "podelne", "kolme" or "sikme"
+ * @property {string} [position] parking: "on_kerb" or "half_on_kerb" (PARKING_POSITION)
+ * @property {string} [use] parking: "ztp", "zasobovani" or "specialni" (PARKING_USE)
+ * @property {string} [turn] turn lane: OSM turn:lanes value ("left;through"; TURNS)
+ * @property {string} [roadClass] the street's class of the city (TSK, MK I…) or of OSM, for the width rules
+ * @property {string} [bed] bed of a separate tram track (TRAM_BEDS)
+ * @property {boolean} [withBus] a tram track the buses use too
+ * @property {boolean} [hatched] a hatched strip of the roadway (krajnice drawn so)
+ * @property {boolean|string} [permeable] permeable surface (SURFACES)
+ */
+
+/**
+ * A profile as deriveProfile returns it (and the app keeps it).
+ * @typedef {object} Profile
+ * @property {Segment[]} segments from the left facade to the right one, as the viewer looks along the street
+ * @property {{ left: string, right: string }} edges what ends each side: "budova", "volno", a fence…
+ * @property {Array<any>} runs the pieces of the cut as read from the data (the map's polygons, OSM, the orthophoto)
+ * @property {number} axisT offset of the street's axis from the cut's centre (m)
+ * @property {boolean} [estimate] the profile is an estimate from OSM (no map of surfaces under the cut)
+ * @property {string} [notice] what the viewer is told about the data
+ */
+
+/**
+ * The one object deriveProfile takes: where the cut lies, the data read there, and what the app has decided.
+ * @typedef {object} DeriveArgs
+ * @property {[number, number]} center the cut's centre in the local frame (m)
+ * @property {[number, number]} dir unit vector of the street's direction
+ * @property {number} half half of the cut's length (m)
+ * @property {Array<any>} polys the surface map's polygons (esriPolygons, mtvuPolygons)
+ * @property {any} osm the OSM data of the place ({ ways, nodes… }, towns' `sources.osm`)
+ * @property {any} frame the local frame (localFrame: metres around the cut)
+ * @property {any} [way] the OSM way the cut crosses
+ * @property {Array<any>} [tracks] the tram tracks (trackLines)
+ * @property {Array<any>} [parking] the parking sections (`sources.parking`)
+ * @property {Array<any>} [lines] the lines of the technical map (techLines)
+ * @property {{ left?: number, right?: number }} [reach] how far the profile goes on each side (m)
+ * @property {boolean} [inZps] whether a paid parking zone is known at the cut
+ * @property {Object<string, number>} [itemReach] reach of the street furniture (m) by kind
+ * @property {any} [ortho] the orthophoto's reading of the tram bed
+ * @property {any} [lanesImage] the orthophoto's reading of the lanes (lanes-ortho.js)
+ * @property {boolean} [roadOnPath] the road's polygon lies on a path (a town's property)
+ * @property {boolean} [noParkGuess] no parking estimated by the law (the measured profile, Monaco)
+ * @property {Array<any>} [lawAt] where the law's parking was laid
+ * @property {any} [kerbParking] parking by the kerbs
+ * @property {boolean} [osmParkGive] OSM's parking may narrow the lanes
+ */
+
+/**
+ * A source of a town: the data it answers to a click (towns/<town>.js `sources`). Every function returns a promise; an
+ * answer is an ArcGIS-like `{ features: [] }` with the flags the town's module adds (see towns/abroad.js: the empty one).
+ * @typedef {object} Source
+ * @property {(lat: number, lon: number, radius: number) => Promise<any>} osm the OSM data around a point
+ * @property {(bbox: any, tags?: any, way?: any) => Promise<any>} surfaces the map of surfaces under the cut
+ * @property {(bbox?: any) => Promise<any>} lines the lines and points of the technical map (tracks, fences, kerbs…)
+ * @property {(...args: any[]) => Promise<any>} parking the parking places and sections
+ * @property {(...args: any[]) => Promise<any>} podlaznost the floors and years of the houses
+ */
+
+/**
+ * A town module (towns/<town>.js, registered in towns/index.js TOWNS under the id of the town or of the state's rest).
+ * @typedef {object} Town
+ * @property {Source} sources the data it asks on a click
+ * @property {string[]} SURFACE_MAPS its own maps of surfaces for the map of the coverage ("all", ids of AREAS, "-NUTS3" to leave out; tools/build_coverage.mjs)
+ * @property {null|{ service: string, datum?: number }} ortho its own orthophoto service for the lanes (null: the state's)
+ * @property {boolean} [national] true: no fallback to the national map of ČÚZK (DMVS)
+ * @property {Object<string, { box: [number, number, number, number], town?: string }>} [AREAS] where its own sources answer, by their ids
+ * @property {(deps: object) => any} [maps] the base maps of the town (jihlava.js and the other Czech towns)
+ */
+
+/**
+ * A state's module (countries/<ISO>.js; countries/default.js lists every field and what it does).
+ * @typedef {object} Country
+ * @property {string|null} code ISO 3166-1 alpha-2, null for a place in no state the app knows
+ * @property {[number, number, number, number]|null} bounds [lon0, lat0, lon1, lat1]
+ * @property {(s: Segment, segs: Segment[], i: number) => ({ min: number, zaklad: number, why: string }|null)} limits the width rules (rules.js)
+ * @property {(belt: Segment[], width: number) => Array<{ level: string, text: string }>} tramBelt warnings of a tram belt
+ * @property {() => ({ lo: number, base: number, why: string }|null)} contraflow width of a one-way street with contraflow cyclists
+ * @property {{ dir: string, file: Function, plate: Function, label: Function, drawable: Function }} signs the traffic signs of the state (signs.js)
+ * @property {string|null} bedOrtho orthophoto of a tram bed (ortho.js)
+ * @property {string} laneOrtho orthophoto of the lanes (lanes-ortho.js), "none" for none
+ * @property {boolean} parkGuess parking estimated by the law
+ * @property {number} freeLane the free lane the law leaves beside parked cars (m per direction)
+ * @property {boolean} panorama Mapy.com panoramas
+ * @property {object} art the state's illustrations by city id
+ * @property {boolean|((city: any) => boolean)} socialistLooks
+ * @property {string[]} search the search services besides RÚIAN
+ */

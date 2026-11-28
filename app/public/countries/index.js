@@ -25,7 +25,13 @@ import FI from "./FI.js";
 import DK from "./DK.js";
 import DEFAULT from "./default.js";
 
+/** @type {Object<string, import("../types.js").Country>} */
 export const COUNTRIES = { CZ, SK, AT, DE, CH, LI, NL, BE, LU, PL, FR, ES, PT, MC, CY, MT, IT, EE, SI, FI, DK, LT };
 // The states of another continent, loaded when a cut is there (late.js, america.js).
+/** @param {Object<string, import("../types.js").Country>} more */
 export const addCountries = (more) => Object.assign(COUNTRIES, more);
+/**
+ * @param {string|null} code ISO 3166-1 alpha-2
+ * @returns {import("../types.js").Country} the state's module, countries/default.js for a place in none
+ */
 export const countryOf = (code) => (code && Object.hasOwn(COUNTRIES, code) ? COUNTRIES[code] : DEFAULT);

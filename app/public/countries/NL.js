@@ -66,6 +66,7 @@ const signLabel = (x, own, label) => {
 // kind; the shelter is a plain glass one).
 const atPosts = Object.fromEntries(["stop-post-left", "stop-post-right", "stop-post-tram-left", "stop-post-tram-right"].map((k) => [k, `../austria/${TOWN_ART[k]}`]));
 
+/** @type {import("../types.js").Country} */
 export default {
   ...base,
   code: "NL",

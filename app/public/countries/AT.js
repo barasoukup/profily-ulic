@@ -87,6 +87,7 @@ const atArt = ({ posts = "../austria/", tram, trolley, bus }) => ({ ...czechFurn
 const AT_ART = { austria: atArt({}), wien: atArt({ posts: "", tram: true, bus: true }), graz: atArt({ tram: true, bus: true }), linz: atArt({ tram: true, trolley: true, bus: true }),
   salzburg: atArt({ trolley: true, bus: true }), innsbruck: atArt({ tram: true, bus: true }) };
 
+/** @type {import("../types.js").Country} */
 export default {
   ...base,
   code: "AT",

@@ -2,6 +2,7 @@
 // data are city.js and towns/.
 import base, { CZ_SIGNS, lawNote } from "./default.js";
 
+/** @type {import("../types.js").Country} */
 export default {
   ...base,
   code: "CZ",

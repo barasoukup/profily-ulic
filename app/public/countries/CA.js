@@ -40,6 +40,7 @@ function limitsCA(s, segs = [], i = -1) {
 const toronto = { ...northAmericaFurniture, ...NORTH_AMERICA_VEHICLES.toronto, ...ownArt(["stop-post-left", "stop-post-right", "stop-post-tram-left", "stop-post-tram-right",
   "transit-shelter-01-left", "transit-shelter-01-right", "transit-shelter-green-left", "transit-shelter-green-right"]) };
 
+/** @type {import("../types.js").Country} */
 export default {
   ...base,
   code: "CA",

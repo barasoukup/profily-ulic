@@ -72,6 +72,7 @@ const signLabel = (x, own, label) => {
 // Denmark; the Lithuanian stop sign 538 is not drawn yet).
 const atPosts = Object.fromEntries(["stop-post-left", "stop-post-right", "stop-post-tram-left", "stop-post-tram-right"].map((k) => [k, `../austria/${TOWN_ART[k]}`]));
 
+/** @type {import("../types.js").Country} */
 export default {
   ...base,
   code: "LT",

@@ -141,6 +141,7 @@ const sanfrancisco = { ...northAmericaFurniture, ...NORTH_AMERICA_VEHICLES.sanfr
 const bostonmetro = { ...northAmericaFurniture, ...NORTH_AMERICA_VEHICLES.boston, ...ownArt(["stop-post-left", "stop-post-right"]) };
 const boston = { ...bostonmetro, "lamp-post-top": "lamp-acorn-left" };
 
+/** @type {import("../types.js").Country} */
 export default {
   ...base,
   code: "US",
