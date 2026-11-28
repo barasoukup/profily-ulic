@@ -150,7 +150,6 @@ test("Dánsko: značky a normy", async () => {
   assert.equal(f({ k: "b20a", v: 40 }), "C55");
   assert.equal(f({ k: "oneway", dir: "backward" }), "C19");
   assert.equal(f({ k: "oneway", dir: "forward" }), null, "E 19 je šipka podél ulice");
-  assert.equal(f({ k: "oneway", dir: "backward", plate: "protismer" }), null);
   assert.equal(f({ k: "c10a", walk: "left" }), "D26");
   assert.equal(f({ k: "c10a" }), "D26.2");
   assert.equal(f({ k: "sdilena" }), null);

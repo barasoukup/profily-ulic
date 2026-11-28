@@ -22,7 +22,6 @@ test("Kypr: jízda vlevo, značky a normy", async () => {
   assert.equal(f({ k: "oneway", dir: "forward" }), "oneway");
   assert.equal(f({ k: "oneway", dir: "backward" }), "noentry");
   assert.equal(f({ k: "oneway" }, { dir: "backward" }), "noentry", "směr podle pruhu");
-  assert.equal(f({ k: "oneway", dir: "backward", plate: "protismer" }), null, "tabulku „kromě cyklistů“ Kodex nemá, zákaz vjezdu by lhal");
   assert.equal(f({ k: "zona30" }), null, "zónu 30 Kodex nemá");
   assert.equal(f({ k: "ip27a" }), null, "pěší zónu Kodex nemá (Bára 23. 11. 2026: nekreslit)");
   assert.equal(f({ k: "c10a", walk: "left" }), "c10a-walk-left", "chodci na své straně");

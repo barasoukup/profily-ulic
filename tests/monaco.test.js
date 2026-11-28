@@ -14,7 +14,6 @@ test("Monako: francouzské ortofoto, bez odhadu stání a bez norem šířek, je
   // Not the French signs Monaco's code does not know (the review of 23. 11. 2026, Bára): zone 30, zone de rencontre,
   // voie verte, motorway; speeds only 30, 50, 70 (art. 11); the aire piétonne stays.
   for (const k of ["zona30", "ip26a", "sdilena", "c9a", "ip14a", "ip15a", "c7a"]) assert.equal(MC.signs.file({ k }), null, k);
-  assert.equal(MC.signs.file({ k: "oneway", dir: "backward", plate: "protismer" }), null, "double sens cyclable kodex nezná");
   assert.equal(MC.signs.file({ k: "ip27a" }), "B54");
   assert.deepEqual([30, 50, 70, 80, 110].map((v) => MC.signs.file({ k: "b20a", v })), ["B14-30", "B14-50", "B14-70", null, null]);
   // A living street with 20 km/h: no zone sign, so its speed is drawn (and the town's 50 is not).

@@ -23,7 +23,6 @@ test("Malta: jízda vlevo, značky, normy, zákon o stání", async () => {
   assert.equal(f({ k: "oneway", dir: "forward" }), null, "jednosměrku předpis nemá");
   assert.equal(f({ k: "oneway", dir: "backward" }), "II.A4");
   assert.equal(f({ k: "oneway" }, { dir: "backward" }), "II.A4", "směr podle pruhu");
-  assert.equal(f({ k: "oneway", dir: "backward", plate: "protismer" }), null, "tabulku „Except cycles“ předpis nemá");
   assert.equal(f({ k: "ip14a" }), null, "Malta dálnici nemá");
   for (const k of ["c8a", "c9a", "c10a"]) assert.equal(f({ k }), null, `${k}: předpis nemá`);
   const expected = { b1: "II.A5", b11: "II.A6", b8: "II.B1", b30: "II.B5", b28: "II.D7", b29: "II.D6", ip11a: "III.B1", ip20a: "II.E11", zona30: "II.D12-30", ip27a: "II.B6" };

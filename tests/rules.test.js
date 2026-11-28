@@ -70,6 +70,9 @@ test("Slovensko: pravidla podle TP 117 (cyklopruh 1,75 m, bus s cyklisty mimo 3,
   assert.deepEqual(at([{ type: "bus_cyklo", width: 4.25 }]), ["min"]);
   assert.deepEqual(at([{ type: "bus_cyklo", width: 3.4 }]), []);
   assert.deepEqual(at([{ type: "chodnik", width: 1.4 }]), ["zaklad"]);
+  assert.deepEqual(at([{ type: "chodnik", width: 1.2 }]), ["min"]);
+  assert.deepEqual(at([{ type: "chodnik", width: 1.5 }]), []);
+  assert.deepEqual(at([{ type: "cyklopruh", width: 1.6 }]), ["min"]);
   // No Slovak width of a tram belt: no warning.
   assert.deepEqual(at([{ type: "tramvaj", width: 3 }, { type: "tramvaj", width: 3 }]), []);
   setCity("praha");

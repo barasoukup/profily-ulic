@@ -60,7 +60,6 @@ test("Litva: značky, normy, bez ortofota", async () => {
   assert.equal(f({ k: "ztp" }), "528");
   assert.equal(LT.signs.plate({ k: "ztp" }), "846");
   assert.equal(f({ k: "ip27a" }), null, "pěší zónu Litva nemá");
-  assert.equal(f({ k: "b1", plate: "obsluha" }), null);
   assert.equal(LT.signs.label({ k: "b29" }, null, "B 29 Zákaz stání"), "333 Zákaz stání");
   assert.match(fs.readFileSync(new URL("../app/public/signs-LT/329.svg", import.meta.url), "utf8"), /<text id="v"/);
   const S = await import("../app/public/signs.js");

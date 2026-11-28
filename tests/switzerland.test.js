@@ -49,7 +49,6 @@ test("Švýcarsko: značky SSV (2.49 zákaz zastavení, 2.50 zákaz stání, 4.0
   assert.equal(signFile({ k: "oneway", dir: "forward" }, null, "CH"), "4.08");
   assert.equal(signFile({ k: "oneway", dir: "backward" }, null, "CH"), "2.02");
   assert.equal(signFile({ k: "oneway", dir: "forward", plate: "protismer" }, null, "CH"), "4.08.1");
-  assert.equal(signFile({ k: "oneway", dir: "backward", plate: "protismer" }, null, "CH"), null, "2.02 bez tabulky „ausgenommen Velos“ by zakázala i kola");
   assert.equal(signFile({ k: "b1", plate: "obsluha" }, null, "CH"), null, "Zubringerdienst je jen text");
   assert.equal(signFile({ k: "b20a", v: 30 }, null, "CH"), "2.30");
   assert.equal(signFile({ k: "ztp" }, null, "CH"), "4.17");

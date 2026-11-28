@@ -73,7 +73,6 @@ test("Belgie a Lucembursko: značky, normy, zákon o stání", async () => {
   const { default: LU } = await import("../app/public/countries/LU.js");
   assert.equal(BE.signs.file({ k: "oneway" }, { dir: "forward" }), "F19");
   assert.equal(BE.signs.file({ k: "oneway" }, { dir: "backward" }), "C1");
-  assert.equal(BE.signs.file({ k: "oneway", plate: "protismer" }, { dir: "backward" }), null);
   assert.equal(BE.signs.file({ k: "b20a", v: 30 }), "C43_30");
   assert.equal(BE.signs.file({ k: "b20a", v: 40 }), null);
   assert.equal(BE.signs.file({ k: "ztp" }), null, "E9 s tabulkou ZTP není nakreslená");

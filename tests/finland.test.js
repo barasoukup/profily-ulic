@@ -154,12 +154,10 @@ test("Finsko: značky, normy, zákon o stání", async () => {
   const FI = COUNTRIES.FI, f = FI.signs.file;
   assert.equal(f({ k: "oneway", dir: "forward" }), "E14.1");
   assert.equal(f({ k: "oneway", dir: "backward" }), "C17");
-  assert.equal(f({ k: "oneway", dir: "backward", plate: "protismer" }), null, "zákaz vjezdu by platil i pro cyklisty");
   assert.equal(f({ k: "c10a" }), "D7.1");
   assert.equal(f({ k: "c10a", walk: "left" }), "D7.2");
   assert.equal(f({ k: "b20a", v: 50 }), "C32-50");
   assert.equal(f({ k: "b20a", v: 90 }), null);
-  assert.equal(f({ k: "b1", plate: "obsluha" }), null);
   assert.equal(f({ k: "sdilena" }), null, "sdílenou zónu Finsko nemá");
   assert.equal(f({ k: "ztp" }), null);
   assert.equal(FI.signs.label({ k: "b29" }, null, "B 29 Zákaz stání"), "C38 Zákaz stání");

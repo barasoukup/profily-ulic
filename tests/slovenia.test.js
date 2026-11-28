@@ -140,10 +140,8 @@ test("Slovinsko: značky, normy, zákon o stání", async () => {
   const SI = COUNTRIES.SI, f = SI.signs.file;
   assert.equal(f({ k: "oneway", dir: "forward" }), "2407");
   assert.equal(f({ k: "oneway", dir: "backward" }), "2201");
-  assert.equal(f({ k: "oneway", dir: "backward", plate: "protismer" }), null, "zákaz vjezdu by platil i pro cyklisty");
   assert.equal(f({ k: "c10a" }), "2313-1");
   assert.equal(f({ k: "c10a", walk: "left" }), "2313");
-  assert.equal(f({ k: "b1", plate: "obsluha" }), null);
   assert.equal(f({ k: "ip15a" }), null);
   assert.equal(f({ k: "ztp" }), null);
   assert.equal(SI.signs.label({ k: "b29" }, null, "B 29 Zákaz stání"), "2237 Zákaz stání");

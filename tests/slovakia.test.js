@@ -44,14 +44,3 @@ test("ilustrace slovenských měst: každý soubor existuje", async () => {
     }
   }
 });
-
-test("Slovensko: pravidla podle slovenských předpisů (chodník 1,3 m, cyklopruh 1,75 m)", async () => {
-  const { checkRules } = await import("../app/public/rules.js");
-  C.setCity("slovensko");
-  try {
-    const lv = (segments) => checkRules({ segments }).map((f) => `${f.i}:${f.level}`);
-    assert.deepEqual(lv([{ type: "chodnik", width: 1.2 }]), ["0:min"]);
-    assert.deepEqual(lv([{ type: "chodnik", width: 1.5 }]), []);
-    assert.deepEqual(lv([{ type: "cyklopruh", width: 1.6 }]), ["0:min"]);
-  } finally { C.setCity("praha"); }
-});

@@ -84,10 +84,8 @@ test("Nizozemsko: značky RVV, normy, zákon o stání", async () => {
   const f = NL.signs.file;
   assert.equal(f({ k: "oneway" }, { dir: "forward" }), "C3");
   assert.equal(f({ k: "oneway" }, { dir: "backward" }), "C2");
-  assert.equal(f({ k: "oneway", plate: "protismer" }, { dir: "backward" }), null, "tabulka „uitgezonderd fietsers“ není nakreslená");
   assert.equal(f({ k: "b20a", v: 30 }), "A1-30");
   assert.equal(f({ k: "b20a", v: 40 }), null);
-  assert.equal(f({ k: "b1", plate: "obsluha" }), null);
   assert.equal(f({ k: "ip26a" }), "G5");
   assert.equal(f({ k: "c9a" }), null, "Nizozemsko nemá stezku pro chodce a cyklisty");
   assert.equal(NL.limits({ type: "chodnik" }, [], 0).min, 1.8);

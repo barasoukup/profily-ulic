@@ -207,3 +207,16 @@ const DRAWN = {
 test("značky: tyto klíče stát kreslí (soubor není null)", () => {
   for (const [code, keys] of Object.entries(DRAWN)) for (const k of keys) assert.ok(COUNTRIES[code].signs.file({ k }, null), `${code}: ${k}`);
 });
+
+// Plates a state does not draw (its regulation has none, or the drawing is missing): a one-way ban with "except cycles" would ban
+// the cycles too, a ban of entry with "except access" would ban all entry, so the sign is left out (null), not drawn wrong.
+const NO_CYCLE_PLATE = ["BE", "DK", "CY", "FI", "MT", "MC", "NL", "SI", "CH"];
+const NO_ACCESS_PLATE = ["EE", "FI", "IT", "LT", "NL", "SI"];
+test("značky: tabulku „kromě cyklistů“ ani „mimo dopravní obsluhy“ stát bez ní nekreslí", () => {
+  for (const code of NO_CYCLE_PLATE) {
+    const f = COUNTRIES[code].signs.file;
+    assert.equal(f({ k: "oneway", dir: "backward", plate: "protismer" }), null, `${code}: protisměr`);
+    assert.equal(f({ k: "oneway", plate: "protismer" }, { dir: "backward" }), null, `${code}: protisměr podle pruhu`);
+  }
+  for (const code of NO_ACCESS_PLATE) assert.equal(COUNTRIES[code].signs.file({ k: "b1", plate: "obsluha" }), null, `${code}: obsluha`);
+});

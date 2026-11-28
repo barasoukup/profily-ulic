@@ -71,7 +71,6 @@ test("Estonsko: značky a normy", async () => {
   assert.equal(f({ k: "oneway", dir: "forward", plate: "protismer" }), "521-plus-836");
   assert.equal(f({ k: "oneway", dir: "backward", plate: "protismer" }), "331-plus-891a-kolo");
   assert.equal(f({ k: "ip20a", plate: "kolo" }), "525b");
-  assert.equal(f({ k: "b1", plate: "obsluha" }), null, "tabulka mimo dopravní obsluhy chybí");
   assert.equal(EE.signs.label({ k: "b29" }, null, "B 29 Zákaz stání"), "362 Zákaz stání");
   assert.equal(EE.signs.label({ k: "oneway", dir: "backward", plate: "protismer" }, null, "Zákaz vjezdu"), "331 + 891a Zákaz vjezdu");
   assert.equal(f({ k: "ip15a" }), null, "silnici pro motorová vozidla Estonsko nemá");

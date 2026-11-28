@@ -133,7 +133,6 @@ test("Itálie: značky s tabulkami a popisky", async () => {
   const { COUNTRIES } = await import("../app/public/countries/index.js");
   const IT = COUNTRIES.IT, f = IT.signs.file, label = IT.signs.label;
   assert.equal(f({ k: "ip27a", plate: "kola" }), "II-320", "pěší zóna kola pouští sama");
-  assert.equal(f({ k: "b1", plate: "obsluha" }), null);
   assert.equal(f({ k: "oneway" }, { dir: "backward" }), "II-47");
   assert.match(label({ k: "oneway" }, null, "IP 4b / B 2 Jednosměrný provoz"), /^II\.349 \/ II\.47 /, "bez směru obě čísla");
   assert.match(label({ k: "oneway", dir: "backward", plate: "protismer" }, null, "IP 4b / B 2 Jednosměrný provoz"), /^II\.47 \+ II\.4\/b /);
