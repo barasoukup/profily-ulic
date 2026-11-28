@@ -41,6 +41,19 @@ Univerzální měření přesnosti, A/B test zdroje a výsledky po státech.
   posouvají jen kliknutí. Odkaz nese i cestu OSM (`#rez=lat,lon,azimut,vlevo,vpravo,way`, azimut na 0,1° od 25. 11. 2026; `share.js`, `derive.js savedStreet`);
   starý odkaz nebo zaniklá cesta: nejbližší ulice jako dřív.
 
+## Malé vzorky (Bára 27. 11. 2026, krok 18 plánu úklidu)
+Nikdy neměřit celý vzorek v prohlížeči jen proto, aby se našlo, co se změnilo.
+1. **Dotčené řezy najít offline**: predikát v Node nad nahranými vstupy přehrávky (`data/replay/`, `evaluation/replay/`)
+   nebo nad uloženými vstupy sběračů (OSM tagy, plochy, uložené díly), např. „řez má `highway=service` a úsek bez
+   volného místa“. Výstup: seznam řezů, které oprava může změnit.
+2. **Cíl**: 20–40 dotčených řezů pro slepé A/B (dva posuzovatelé, pořadí A/B náhodné), každý změněný řez prohlédnout.
+3. **Kontrola**: 30–50 náhodných řezů, které se změnit nesmějí (přehrávka bajt po bajtu); s knihovnou (krok 19) pevná
+   sada `evaluation/lib/control.json` v gitu.
+4. Oprava, která jen přepisuje díly profilu, se ověří offline nad uloženými díly a tagy; prohlížeč jen pro pár cílů.
+5. Regrese Prahy a Brna (`evaluation/ortho-osm/regression.mjs`) jednou po sérii oprav, ne po každé; horší výsledek se
+   hledá vypínáním oprav po jedné (`flags.js`).
+6. Do zadání agenta vždy napsat: filtr cílů, velikost vzorku, kontrolní sadu, levnější model pro posuzovatele.
+
 ## Test nového zdroje (A/B)
 
 **Pravidlo: nový zdroj (nebo jiné použití starého) jde do aplikace, jen když nad ortofotem vyhraje.**

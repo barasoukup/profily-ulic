@@ -53,3 +53,5 @@ vnitřní podobu kódu.
 `tests/architecture-allowed.js` obsahuje dnešní výjimky (podmínky na stát, nepoužité exporty, dlouhé soubory a funkce).
 Seznam se **smí jen zkracovat**: když kód výjimku opraví, test řekne „stale“ a řádek se smaže nebo číslo sníží. Nový
 řádek se nepřidává; přidat ho smí jen Bára.
+
+- Měření a A/B na malých vzorcích: `docs/measuring.md` (oddíl Malé vzorky).

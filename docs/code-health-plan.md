@@ -89,6 +89,18 @@ výsledek ve zprávě commitu. Povinné jádro: 1–8, 9 a 11–13a; ostatní po
 
 Odhad celkem 28–32 dní (Fable: původních 21–25 bylo asi o třetinu optimistických).
 
+## Pořadí od 28. 11. 2026 (Bára schválila)
+1. Nasadit hotové (kroky 6, 5, 7, 10) po malých dávkách, jen na Bářino „nasaď“.
+2. Drobnosti: krok 17 (vzhled domů do `countries/`) a 18 (malé vzorky v `docs/measuring.md`).
+3. Krok 9: úklid testů, před dělením souborů.
+4. Krok 13a (app.js podle oddílů, jen přesuny), pak hned **13b** (jádro řezu bez DOM, přehrávka a A/B v Node): největší
+   úspora času a tokenů u každého dalšího měření.
+5. Dělení: krok 12 (`derive.js`), 11 (`profile.js`), 14 (`ortho-osm.js`, `lanes-ortho.js`), po jednom s přehrávkou;
+   drobné opravy po tu dobu pozastavit.
+6. Kroky 15, 16, 8 (registry ortofot a hledání, pomocníci měst), až bude potřeba další stát nebo město.
+7. Kroky 19, 20 (knihovna `evaluation/`, nástroje a workflow) na konec.
+Mimo přestavbu: Dánsko Dataforsyningen → Datafordeler do 15. 1. 2027 (Bářin klíč).
+
 ## Co nedělat
 
 Bundler, TypeScript, framework; přepisovat logiku měřených pravidel (jen přesuny); přejmenovávat česká id v datech
