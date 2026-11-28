@@ -93,7 +93,7 @@ const WIDE_END = new Set(["plocha", "delici", "zelen", "stromorad", "chodnik", "
 // other carriageway (an OSM way of its name or ref) crosses the cut there, or the map's street surfaces go on from the
 // reach to a roadway. A map that draws all land (the Czech DTM, the
 // BGT, the cadastral survey) has fields, woods and car parks beyond a motorway's verge: 35 m ran into them (Czech
-// motorways, worse 13 : 1). ?off=widereach: never.
+// motorways, worse 13 : 1).
 const WIDE_ROADS = /^(motorway|trunk)(_link)?$/, WIDE_STREETS = /^(primary|secondary)$/;
 const CAR_WAYS = /^(motorway|trunk|primary|secondary|tertiary|unclassified|residential)(_link)?$/;
 // MTVU codes: a roadway or a tram bed; the surfaces of a street (with a sidewalk, a cycle track, a median, other paving).
@@ -607,8 +607,8 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wa
       // A click lands the cut away from junctions and crossings; a dragged cut stays where it is put, a saved one (a link,
       // a pasted position with its azimuth) exactly where it was saved. Only the first click in an area is moved (Bára
       // 27. 11. 2026): a click within AGAIN_M of the cut shown lands where it is, only snapped onto the street and between
-      // two carriageways (?off=firstclick: every click moved as before).
-      const again = bearing === null && !!state.cut && !ORTHO_P.off?.has("firstclick") && Math.hypot(...frame.toXY(state.cut.lon, state.cut.lat)) <= AGAIN_M;
+      // two carriageways.
+      const again = bearing === null && !!state.cut && Math.hypot(...frame.toXY(state.cut.lon, state.cut.lat)) <= AGAIN_M;
       if (near) near = again ? centerOnStreet(osm, frame, near) : placeCut(osm, frame, near, bearing !== null);
     }
     if (!near) {
@@ -694,7 +694,7 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wa
       osmParkGive: !ORTHO_P.off?.has("mapfill"),
       kerbParking: pk.status === "fulfilled" && pk.value?.kerbParking && !NO_MAP ? pk.value.kerbParking.map((p) => ({ ...p, xy: frame.toXY(p.lon, p.lat) })) : null };
     let result = deriveProfile(args);
-    if (freshReach && !ORTHO_P.off?.has("widereach")) {
+    if (freshReach) {
       // No surface map at the axis (the estimate below): a motorway's sides reach WIDE_REACH, as the estimate finds its
       // own ends; under a map, by what the map has beyond the reach (widerSides).
       if (result.estimate && WIDE_ROADS.test(near.way.tags?.highway || "")) { reach = { left: WIDE_REACH, right: WIDE_REACH }; args.reach = reach; result = deriveProfile(args); }
@@ -771,7 +771,7 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wa
       }
     }
     // The law's parking waits for the lanes and the model's cars (ai-kerbs.js lawKerbs, layLaw; ?off=lawlanes).
-    const lawPark = ORTHO_P.off?.has("aipark") || ORTHO_P.off?.has("lawlanes") ? null : orthoOsm ? aiPark : mapCut && aiParking(mapCut);
+    const lawPark = ORTHO_P.off?.has("lawlanes") ? null : orthoOsm ? aiPark : mapCut && aiParking(mapCut);
     const lawSkip = parkSkip(near.way.tags, !near.dir || dir[0] * near.dir[0] + dir[1] * near.dir[1] >= 0, inZps === true || parking.length > 0);
     const lawAt = lawPark && !lawSkip.all ? lawKerbs(result) : [];
     if (lawAt.length) {
@@ -792,9 +792,9 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wa
     if (orthoOsm) widenNarrowTrams(result.segments);
     const lawRows = [];
     if (lawAt.length) layLaw(result, lawAt, lawPark, lawNeed, { sure: true, skip: lawSkip, rows: lawRows });
-    // Parking where the model sees cars at the kerb (ai-kerbs.js parkFromAi; Bára 20. 11. 2026), ?off=aipark.
+    // Parking where the model sees cars at the kerb (ai-kerbs.js parkFromAi; Bára 20. 11. 2026),.
     // Not where parking data decide: a paid zone, the city's parking sections at the cut, a side OSM tags.
-    if (orthoOsm && aiPark && !ORTHO_P.off?.has("aipark")) {
+    if (orthoOsm && aiPark) {
       const along = !near.dir || dir[0] * near.dir[0] + dir[1] * near.dir[1] >= 0;
       // A strip the law estimated, gone back to the roadway, keeps the lane's cap there too (as in a map's roadway below;
       // evaluation/archive/unification, Slovakia: Royova in Bratislava, one lane of 6 m).
@@ -804,7 +804,7 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wa
     // In a surface map's roadway (mapFill above) the same, but never over the map's own sidewalk or green (inside).
     const mapPark = mapCut && aiParking(mapCut);
     let mapParked = false;
-    if (mapPark && !ORTHO_P.off?.has("aipark")) {
+    if (mapPark) {
       const along = !near.dir || dir[0] * near.dir[0] + dir[1] * near.dir[1] >= 0;
       mapParked = parkFromAi(result, mapPark, { ...parkSkip(near.way.tags, along, inZps === true || parking.length > 0), inside: true, old: ORTHO_P.off?.has("parkshare") }) > 0;
       // A strip the law estimated, gone back to its lane where no car stands, keeps the lane's cap (capWideLanes above;

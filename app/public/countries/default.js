@@ -107,7 +107,7 @@ export default {
   // a two-way street without a centre line).
   parkOnRoadway: null,
   // The law's parking and the centre line of a two-way roadway, read on the orthophoto (lanes-ortho.js centreLine; derive.js
-  // splitRoadway; ?off=stredcara: not read). null: the centre line is no condition of the law. { required: a two-way
+  // splitRoadway). null: the centre line is no condition of the law. { required: a two-way
   // roadway has no parking by the law without one (Slovenia: ZPrCP čl. 65/4/12); solid: the free width is measured to a
   // solid centre line, not to the opposite kerb (čl. 65/4/10) }. Where the photo does not say (no photo, not known) the
   // rule of parkOnRoadway stands.

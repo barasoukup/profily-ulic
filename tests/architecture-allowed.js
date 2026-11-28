@@ -29,9 +29,9 @@ export const UNUSED_EXPORTS = [
 
 export const LONG_FILES = {
   "app/public/app.js": 2768,
-  "app/public/derive.js": 3026,
-  "app/public/lanes-ortho.js": 1207,
-  "app/public/ortho-osm.js": 1267,
+  "app/public/derive.js": 3019,
+  "app/public/lanes-ortho.js": 1206,
+  "app/public/ortho-osm.js": 1256,
   "app/public/profile.js": 3088
 };
 
@@ -49,7 +49,7 @@ export const LONG_FUNCTIONS = {
   "app/public/maplayers.js:createDataLayers": 204,
   "app/public/maplayers.js:draw": 172,
   "app/public/ortho-osm.js:besidePassport": 168,
-  "app/public/ortho-osm.js:orthoOsmPolys": 438,
+  "app/public/ortho-osm.js:orthoOsmPolys": 427,
   "app/public/profile.js:(anonymous)": 176,
   "app/public/profile.js:buildSvg": 320,
   "app/public/profile.js:drawItem": 145,

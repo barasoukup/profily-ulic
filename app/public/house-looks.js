@@ -18,10 +18,9 @@ export const LOOKS = { gables: STIT !== "0", gableCut: STIT !== "cely" };
 // A small house standing alone, of which OSM knows nothing else (no floors, no height): a family house, not a block of
 // flats (Bára 27. 11. 2026: Girbigsdorfer Straße, a village, two small houses drawn as five-floor tenements). Its own
 // footprint up to SMALL_HOUSE_AREA m², at most 3 buildings joined to it (the house with its garage and shed) and all of
-// them together up to SMALL_BLOCK_AREA m². ?off=vesnice: as before.
+// them together up to SMALL_BLOCK_AREA m².
 export const SMALL_HOUSE_AREA = 250, SMALL_BLOCK_AREA = 450, SMALL_BLOCK_PARTS = 3;
-export const villageOff = () => ((typeof location === "undefined" ? globalThis.PROFILY_CA?.off : new URLSearchParams(location.search).get("off")) || "").split(",").includes("vesnice");
-export const smallHouse = (info) => !villageOff() && info?.footprint > 0 && info.footprint <= SMALL_HOUSE_AREA
+export const smallHouse = (info) => info?.footprint > 0 && info.footprint <= SMALL_HOUSE_AREA
   && !!info.block && info.block.parts <= SMALL_BLOCK_PARTS && info.block.area <= SMALL_BLOCK_AREA;
 
 // A panel house abroad (Bára 27. 11. 2026: Leipzig, two town houses of 6 floors drawn as panel houses): the shape alone makes
@@ -29,8 +28,7 @@ export const smallHouse = (info) => !villageOff() && info?.footprint > 0 && info
 // filled 29 % of the box); stronger evidence is a year of the panel era (flatKind) or OSM's own word (info.panel).
 // Default on (Bára 27. 11. 2026: a false panel house is worse than a missing one): blind A/B on photographs of the houses it changes,
 // two rounds (EE, LT, PL, DE) and two judges: 54 : 48 for the new look, the panel houses it adds 7 right of 14, those it
-// takes away 27 right against 35 wrong (evaluation/archive/village-houses/REPORT.md). ?off=panel2 turns it off.
-export const panelOn = () => !((typeof location === "undefined" ? globalThis.PROFILY_CA?.off : new URLSearchParams(location.search).get("off")) || "").split(",").includes("panel2");
+// takes away 27 right against 35 wrong (evaluation/archive/village-houses/REPORT.md). turns it off.
 // Where the house's own outline and surroundings are known (derive.js own, around), the panel house needs a clear agreement of
 // several signs (Bára 27. 11. 2026: "better no panel house than a false one"): an exact rectangle, a big building, free
 // space round it (little built over within 80 m; green adds), the estate of slabs rather than the town's street. Score:

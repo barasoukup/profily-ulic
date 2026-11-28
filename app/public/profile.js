@@ -7,7 +7,7 @@ import { GENERIC_VEHICLES } from "./art.js";
 import { PLATES, signFile, plateFile, signLabel, signDir, SPEED_TEMPLATES } from "./signs.js";
 // tr: t is a part's type here.
 import { t as tr, num } from "./i18n.js";
-import { LOOKS, houseHash, smallHouse, strictSlab, panelOn, panelScore, PANEL_SCORE } from "./house-looks.js";
+import { LOOKS, houseHash, smallHouse, strictSlab, panelScore, PANEL_SCORE } from "./house-looks.js";
 import { AMERICA, AMERICA_PALETTES } from "./houses-america-spec.js";
 
 const NS = "http://www.w3.org/2000/svg";
@@ -644,12 +644,12 @@ function drawItem(g, it, x, top, right) {
 // A lane with no direction of its own is a two-way one (a single lane of a two-way street): its traffic runs on the
 // right of the roadway forward (the left where traffic keeps left), so the cars parked on each side stand with the
 // traffic of their side (Broulíkova: Bára 27. 11. 2026, the car on the left side turned). `right`: the part is on the
-// right half of the profile (?off=parkdir).
+// right half of the profile.
 function laneDir(segs, i, right) {
   for (let d = 1; d < segs.length; d++) {
     for (const j of [i - d, i + d]) {
       if (["pruh", "pruh_piktokoridor", "bus", "bus_cyklo", "tramvaj_v_pruhu"].includes(segs[j]?.type)) {
-        if (segs[j].dir || right === undefined || new URLSearchParams(location.search).get("off")?.split(",").includes("parkdir")) return segs[j].dir || "forward";
+        if (segs[j].dir || right === undefined) return segs[j].dir || "forward";
         return right !== !!country.leftHand ? "forward" : "backward";
       }
     }
@@ -898,7 +898,7 @@ const OLD_SETBACK_KM = 4.5, PANEL_FROM = 1955, MODERN_FROM = 1995;
 const isSlab = (b) => !!b && ((b.fill >= PANEL_FILL && b.width <= PANEL_WIDTH) || (b.parts >= 2 && (b.length + b.width) / b.parts >= PANEL_PART));
 // Abroad, where panel houses were built (socialistLooks), the shape alone makes a panel house only as a long compact slab (house-looks.js strictSlab); Czechia keeps isSlab.
 const slabOf = (b, info) => {
-  if (!(city.abroad && socialistLooks() && panelOn())) return isSlab(b);
+  if (!(city.abroad && socialistLooks())) return isSlab(b);
   const sc = panelScore(info);
   return sc === null ? strictSlab(b) : sc >= PANEL_SCORE;
 };

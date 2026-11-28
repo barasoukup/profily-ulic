@@ -194,7 +194,7 @@ test("Vzhled čte všechny budovy OSM, panelák ne z tvaru samotného, řadový 
 });
 
 // A small house standing alone, of which OSM knows no floors and no height (Bára 27. 11. 2026, Girbigsdorfer Straße): a family
-// house, not a five-floor tenement; a big or joined one and one with known floors keep their looks; ?off=vesnice as before.
+// house, not a five-floor tenement; a big or joined one and one with known floors keep their looks.
 test("malý dům o samotě bez dalších údajů je rodinný dům", () => {
   const alone = (area, extra = {}) => ({ footprint: area, block: { length: 12, width: 10, fill: 0.7, parts: 1, area }, km: 99, ...extra });
   for (const id of ["germany", "austria", "cizina", "poland"]) {
@@ -211,9 +211,5 @@ test("malý dům o samotě bez dalších údajů je rodinný dům", () => {
     // office types stay offices
     assert.notEqual(buildingStyle(alone(120, { type: "office" })), "vila", id);
   }
-  globalThis.PROFILY_CA = { off: "vesnice" };
-  at("germany");
-  assert.notEqual(buildingStyle(alone(120)), "vila"); // (a slab of 12 m filling its box: the old reading, a post-war block)
-  delete globalThis.PROFILY_CA;
   setCity("praha");
 });

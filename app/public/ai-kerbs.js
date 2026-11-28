@@ -12,7 +12,6 @@
 // lines 3 m apart; the carriageway is the run nearest the axis (gaps to 0.6 m bridged, within 4 m of it), as
 // evaluation/ai-segmentation/compare.py measured it.
 import { orthoPatch } from "./lanes-ortho.js";
-import { P } from "./ortho-osm.js";
 
 const HALF = 41.6, PX = 416, R = 6378137;
 const MEAN = [0.485, 0.456, 0.406], STD = [0.229, 0.224, 0.225];
@@ -209,7 +208,7 @@ export function aiParking(cut) {
 // stays at PARK_ON or more (gaps to 0.4 m), starting within 0.6 m of the kerb: inside the roadway it takes the strip at
 // the kerb (a shoulder first, a lane only while LANE_LEFT stays); outside it, a sidewalk, paved area or green at the
 // kerb gives its strip to cars standing on the kerb. A parallel strip the law estimated where the model sees no cars
-// (below PARK_OFF in the 2.5 m at the kerb) goes back to the roadway. Parking the data put there stays. ?off=aipark;
+// (below PARK_OFF in the 2.5 m at the kerb) goes back to the roadway. Parking the data put there stays.;
 // skip.old (?off=parkshare): the strip back to the lane beside it only, and the law's strip kept where the model sees
 // other cars (before 25. 11. 2026).
 export const PARK = { on: 0.4, off: 0.2, minW: 1.6, laneLeft: 2.75, road: 3 };
@@ -283,8 +282,8 @@ export function parkFromAi(result, pAt, skip = {}) {
     // A kerb towards a median of green between two roadways: no cars stand there, in the roadway nor on the lawn (Bára
     // 27. 11. 2026, Avenue de l'Europe in Amiens: a 4.4 m row "half on the sidewalk" over the median, the model at 0.5
     // across lane and lawn; the orthophoto shows two lanes and grass; ortho-osm.js has no cars at a median kerb either).
-    // ?off=parkmedian: as before.
-    if (MEDIAN_GREEN.has(segs[out]?.type) && ROADISH.has(segs[out + sg]?.type) && !P.off?.has("parkmedian")) continue;
+    //.
+    if (MEDIAN_GREEN.has(segs[out]?.type) && ROADISH.has(segs[out + sg]?.type)) continue;
     let a = reach(kerb, dirIn), b = reach(kerb, -dirIn);
     const N = segs[out];
     // Cars cannot stand in a row of trees or beyond the profile: what reaches there counts to the roadway (the kerb is
@@ -333,8 +332,8 @@ export function parkFromAi(result, pAt, skip = {}) {
         const n = Math.max(1, Math.min(lanes.length, Math.floor((total - need) / PARK.laneLeft + 1e-9))), each = r2((total - need) / n);
         // The one lane left of a two-way run goes both ways; of a one-way carriageway's lanes (all one direction) it keeps
         // its direction (Bára 27. 11. 2026, Avenue de l'Europe in Amiens: the lane read "↑↓" and the sign pointed the wrong
-        // way; ?off=parkdir: as before).
-        const oneDir = new Set(lanes.map((x) => x.dir ?? "forward")).size === 1 && !P.off?.has("parkdir");
+        // way).
+        const oneDir = new Set(lanes.map((x) => x.dir ?? "forward")).size === 1;
         lanes.forEach((x, q) => { if (q < n) { x.width = q === n - 1 ? r2(total - need - each * (n - 1)) : each; if (n === 1 && lanes.length > 1 && !oneDir) delete x.dir; } });
         for (const x of lanes.slice(n)) segs.splice(segs.indexOf(x), 1);
       }

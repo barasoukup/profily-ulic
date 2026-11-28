@@ -133,9 +133,6 @@ function streetSpeed(tags, zones, showDefault = false, country = "CZ") {
   if (speed === townSpeedOf(tags, country) && !showDefault && !/sign/.test(String(tags["source:maxspeed"] || "")) && !tags.traffic_sign) return undefined;
   return speed;
 }
-
-// ?off=<switch>,<switch>: a rule off for the comparison (app.js ORTHO_P.off).
-const offSign = (k) => { try { return new URLSearchParams(globalThis.location?.search || "").get("off")?.split(",").includes(k) ?? false; } catch { return false; } };
 // Signs of the parts of a derived profile (segments from the viewer's left to right), at most MAX_PER_PART each.
 export function deriveSigns(profile, tags = {}, ctx = {}) {
   const segs = profile.segments;
@@ -172,9 +169,9 @@ export function deriveSigns(profile, tags = {}, ctx = {}) {
   for (const [tg, ls] of groups) {
     const rules = streetSigns(tg, ctx.country);
     // Not where the street is divided into two one-way roadways of opposite directions (a median, a tram between: the same
-    // street, only its directions apart; Výškovická in Ostrava, Bára 27. 11. 2026; ?off=jednosmerka): the sign is a one-way street's.
+    // street, only its directions apart; Výškovická in Ostrava, Bára 27. 11. 2026): the sign is a one-way street's.
     const here = profile.roads?.find((r) => r.tags === tg);
-    const twin = !offSign("jednosmerka") && here?.fwd !== undefined && profile.roads.some((r) => r.tags !== tg && r.fwd !== undefined && r.fwd !== here.fwd
+    const twin = here?.fwd !== undefined && profile.roads.some((r) => r.tags !== tg && r.fwd !== undefined && r.fwd !== here.fwd
       && ["yes", "1", "true", "-1"].includes(r.tags?.oneway) && (r.tags.name || tg.name ? r.tags.name === tg.name : r.tags.highway === tg.highway));
     const oneway = ["yes", "1", "true", "-1"].includes(tg.oneway) && dirs.size === 1 && !twin;
     const contra = oneway && (tg["oneway:bicycle"] === "no" || segs.some((s) => s.bikeDir && s.bikeDir !== [...dirs][0]));

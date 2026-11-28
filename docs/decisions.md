@@ -77,3 +77,33 @@ Zapnuté opravy s vypínačem `?off=…`, které se tím jen zbavily vypínače,
 - `?otherstreet=1` (`OTHER_CUT`): profil končí u chodníku nebo zeleně před jinou ulicí, která řez kříží šikmo. Slepé A/B
   25. 11. 2026 remíza: 13 : 10 z 31 změněných řezů, Evropa 9 : 10, Washington a Toronto 4 : 0 (`evaluation/canada/review/`).
   Upozornění „řez vede křižovatkou“ zůstává, vypíná ho `?off=otherstreet`.
+
+## Vypínače `?off=…` zapnutých oprav, které se smazaly (Bára 27. 11. 2026)
+
+Oprava zůstala zapnutá, smazal se jen vypínač a větev „jako dřív“. Vypínače, které uvádí `CLAUDE.md` nebo
+`app/README.md` (`mapfill`, `lawlanes`, `parkshare`, `ulicky`, `otherstreet`, `mostdeska`, `zabradli`, `railway`, `osmwalk`,
+`floorsh`…), zůstaly. A/B při zavedení je v komentářích commitů před smazáním (`git log -S'off=<klíč>'`) a ve zprávách
+`evaluation/` (často `evaluation/archive/unification/`, `evaluation/archive/railway/`).
+
+- `ortho-osm.js` (odhad z ortofota a OSM): `mostchodnik` (chodníky na mostě podle OSM), `embedded2` (koleje `embedded_rails=tram`
+  ve vozovce), `raillimit`, `railpair`, `pairclass`, `pair` (druhá vozovka ulice ze dvou jednosměrek: kolejová cesta, stejná
+  třída, vůbec), `tramway` (kolejové těleso z OSM ve středním pásu), `bedwidth` (těleso jen kolem kolejí, ne přes celý
+  pás), `koruny` (koruny stromů z ortofota nejsou tráva), `osmbike` (cyklostezka z OSM za obrubou), `vyplnkonec` a
+  `zachodnikem` (profil končí za poslední věcí ulice místo dosahu), `konec` (konec strany u schodů, plotu, zdi), `murkonec`
+  (zeď za ulicí, Lipsko; `evaluation/archive/railway/REPORT.md`), `pieces` a `pieceMax` (kusy chodníku mezi čarami mapy
+  města, strop 6 m), `aiwalk`, `aiwalkcap` (model rozhoduje chodník, zeleň, plochu před domem; hold-out chodník F1 +5 [3, 7] p. b.),
+  `soubezna` (souběžná vozovka z OSM), `pozadi` (zeleň nebo dlažba za vším ostatním), `sdilena` (stezka sdílená s chodci), `besidezbgis`
+  (plochy ZBGIS vedle pasportu), `fasada` (proužek dlažby u fasády vedle chodníku mapy).
+- `derive.js` (odvození profilu): `bezaut` (pruh zakázaný autům), `promenade` (promenáda jako část ulice), `obsluznevolne`
+  (obslužná cesta při kliku, `evaluation/clicks/REPORT.md`: mapy 32 : 13), `bocni` (stání jen vlastní ulice), `stripparking`
+  (parkoviště jako pruh u obruby), `stanisirka` (šířka podélného zálivu), `raillanes` (pruhy kolejí z OSM), `dualbed` (dvě vozovky
+  a těleso mezi nimi), `tramhalf`, `tramroad`, `tramwide` (šířky a počet kolejí), `stromy3` (strom v zeleném pruhu), `cyklosirka`
+  (`cycleway:width`, `footway:width`), `anytram` (plocha tramvaje jako vozovka), `rucniplot` (ručně natažený dosah za plot),
+  `grassbed` (těleso v trávníku jen kolem kolejí), `dvapruhy` (rozdělení dvousměrného pruhu), `stredcara` (osa podle ortofota
+  v zákonném stání a u krajnic), `strop` (strop šířky pruhu), `rezkolo` (cyklostezky vyříznuté z vozovky), `stezkapodel`
+  (stezka podél silnice), `bezpruhu` (pruhy z krajnic), `rezkoleje` (koleje vyříznuté z vozovky), `cesty` (odhad cest a stezek).
+- Ostatní: `jedenpruh`, `obousmerka` (`lanes-ortho.js`, pruhy z čar), `parkmedian`, `parkdir` (`ai-kerbs.js`, stání u středního
+  pásu a směr stání), `jednosmerka` (`signs.js`, dvojice jednosměrných vozovek), `chata` (RÚIAN, rekreační dům bez podlaží),
+  `vesnice` (malý dům o samotě je rodinný), `panel2` (zahraniční panelák jen podle tvaru; slepé A/B na fotkách 54 : 48,
+  `evaluation/archive/village-houses/REPORT.md`), `firstclick` (jen první klik v oblasti se posouvá od křižovatek),
+  `widereach` (delší dosah dálnic a hlavních ulic), `aipark` (stání podle aut modelu), `posunba` (posun pasportu Bratislavy).

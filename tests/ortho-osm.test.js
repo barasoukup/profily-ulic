@@ -265,7 +265,7 @@ test("ortofoto a OSM: ulice na mostě přes vodu OSM: voda pod mostem profil neu
   P.off = new Set();
 });
 
-test("ortofoto a OSM: zeď za ulicí v dosahu ukončí profil, mezeru do ní vyplní plocha (Berliner Straße v Lipsku; ?off=murkonec dřív)", () => {
+test("ortofoto a OSM: zeď za ulicí v dosahu ukončí profil, mezeru do ní vyplní plocha (Berliner Straße v Lipsku)", () => {
   const els = { elements: [osm().elements[0], house(8, 16), { type: "way", id: 9, tags: { barrier: "wall" }, geometry: [ll(-17, -30), ll(-17, 30)] }] };
   const run = () => {
     const polys = orthoOsmPolys({ osm: els, frame, dir, way: els.elements[0], st: image() });
@@ -274,7 +274,4 @@ test("ortofoto a OSM: zeď za ulicí v dosahu ukončí profil, mezeru do ní vyp
   };
   // The wall is 17 m from the axis (west is +t); the image is all paving, a run of 40 m, longer than REST_MAX.
   assert.ok(Math.abs(run().extent[1] - 17) < 0.3, JSON.stringify(run().extent));
-  P.off = new Set(["murkonec"]);
-  assert.ok(run().extent[1] < 15.5, JSON.stringify(run().extent));
-  P.off = null;
 });

@@ -136,12 +136,12 @@ export const offDecks = (a, b, decks) => {
 // roadway and the end of the profile (the deck's edge or open space), is the bridge's sidewalk (Bára 27. 11. 2026:
 // Augustusbrücke in Dresden, two metres of "Ostatní" at both edges, in fact sidewalks). Only the estimate's own strip
 // (source "odhad", so still marked as an estimate), only beside a roadway part, up to BRIDGE_WALK_MAX m wide. Returns the
-// number of strips changed (not on a motorway, motorroad or a way tagged without a sidewalk). ?off=mostchodnik: none.
+// number of strips changed (not on a motorway, motorroad or a way tagged without a sidewalk).
 const BRIDGE_WALK_MAX = 4.5, BRIDGE_WALK_FROM = new Set(["nezname", "plocha"]);
 const BRIDGE_ROADWAY = new Set(["pruh", "pruh_piktokoridor", "bus", "bus_cyklo", "tramvaj_v_pruhu", "tramvaj_pruh", "tramvaj", "krajnice", "parkovani", "cyklopruh", "ochranny_pruh", "obsluzna"]);
 export function bridgeWalks(result, way) {
   const t = way?.tags;
-  if (P.off?.has("mostchodnik") || !onBridge(t) || !result?.segments?.length) return 0;
+  if (!onBridge(t) || !result?.segments?.length) return 0;
   // Not on a motorway or a motorroad, nor where OSM says there is no sidewalk: the strip is a verge there.
   if (/^motorway/.test(t.highway) || t.motorroad === "yes" || ["no", "none"].includes(t.sidewalk) || (["no", "none"].includes(t["sidewalk:left"]) && ["no", "none"].includes(t["sidewalk:right"]))) return 0;
   const segs = result.segments;
@@ -242,8 +242,8 @@ export function withRails(road, o) {
   const axis = o.own.t, far = Math.max(road.reach.A, road.reach.B), rails = o.ways.filter((w) => w.tags.railway === "tram" && sameLevel(w, o) && Math.abs(w.t - axis) < far + 3.5);
   // A two-way street with its tracks in the roadway (embedded_rails) but not mapped apart: two tracks 3 m apart about
   // the axis, so the roadway reaches at least 1.5 + 1.7 m each way (Josefstädter Straße in 2019 read 4.7 m on the photo
-  // and drew trams of 2.0 and 2.7 m; ?off=embedded2).
-  if (!rails.length && o.own.tags.embedded_rails === "tram" && !ONEWAY(o.own.tags) && !P.off?.has("embedded2")) {
+  // and drew trams of 2.0 and 2.7 m).
+  if (!rails.length && o.own.tags.embedded_rails === "tram" && !ONEWAY(o.own.tags)) {
     const reach = { A: Math.max(road.reach.A, 3.2), B: Math.max(road.reach.B, 3.2) };
     return { ...road, reach, w: reach.A + reach.B, rails: 2, embeddedOnly: true };
   }
@@ -265,7 +265,7 @@ export function limits(o, axis) {
     if ((w.id === o.pairId || ["motorway", "trunk", "primary", "secondary", "tertiary"].includes(String(hw).replace("_link", "")) && w.tags.oneway === "yes") && Math.abs(w.t - axis) > 4) near(side, (w.t + axis) / 2);
     // Tracks between the street's two carriageways mapped as roads too (a tram bed: Radlinského): the kerb stays 1.7 m
     // off the nearer rail (only these: with all of Prague's tracks the regression lost a point).
-    if (!P.off?.has("raillimit") && o.pairT !== undefined && w.tags.railway === "tram" && w.tags.highway && (w.t - axis) * (o.pairT - axis) > 0 && Math.abs(w.t - axis) < Math.abs(o.pairT - axis)) near(side, w.t, 1.7);
+    if (o.pairT !== undefined && w.tags.railway === "tram" && w.tags.highway && (w.t - axis) * (o.pairT - axis) > 0 && Math.abs(w.t - axis) < Math.abs(o.pairT - axis)) near(side, w.t, 1.7);
   }
   return lim;
 }
@@ -277,11 +277,11 @@ export function partnerOf(o) {
   const own = o.own, tg = own.tags;
   if (!ONEWAY(tg)) return null;
   const same = (w) => (tg.name ? w.tags.name === tg.name : String(w.tags.highway).replace("_link", "") === String(tg.highway).replace("_link", ""));
-  const c = o.ways.filter((w) => STREET.test(w.tags.highway || "") && (P.off?.has("railpair") || !w.tags.railway) && ONEWAY(w.tags) && sameLevel(w, o) && same(w) && Math.abs(w.t - own.t) > 4 && Math.abs(w.t - own.t) < 35);
+  const c = o.ways.filter((w) => STREET.test(w.tags.highway || "") && !w.tags.railway && ONEWAY(w.tags) && sameLevel(w, o) && same(w) && Math.abs(w.t - own.t) > 4 && Math.abs(w.t - own.t) < 35);
   // Of the same class first (Bára 18. 11. 2026, Košická in Bratislava: the one-lane residential side road 8.5 m off
-  // was taken for the other carriageway of the primary 9.9 m off, which then was left out; ?off=pairclass: nearest).
+  // was taken for the other carriageway of the primary 9.9 m off, which then was left out).
   const cls = (w) => String(w.tags.highway).replace("_link", "");
-  const rank = (w) => (P.off?.has("pairclass") || cls(w) === cls(own) ? 0 : 1000) + Math.abs(w.t - own.t);
+  const rank = (w) => (cls(w) === cls(own) ? 0 : 1000) + Math.abs(w.t - own.t);
   return c.length ? c.reduce((a, b) => (rank(b) < rank(a) ? b : a)) : null;
 }
 
@@ -542,7 +542,7 @@ export function orthoOsmPolys({ osm, frame, dir, way, st, mapRuns = [], edges = 
   if (!o.own) return null;
   // The clicked way is a track mapped as a road too (Radlinského in Bratislava: highway=service + railway=tram): the
   // street's carriageway is the nearest road of its name beside it, the tracks its tram bed.
-  if (o.own.tags.railway && !P.off?.has("tramway")) {
+  if (o.own.tags.railway) {
     const name = o.own.tags.name;
     const road = o.ways.filter((w) => !w.tags.railway && STREET.test(w.tags.highway || "") && w.tags.highway !== "service" && sameLevel(w, o) && (!name || w.tags.name === name) && Math.abs(w.t - o.own.t) < 12)
       .sort((a, b) => Math.abs(a.t - o.own.t) - Math.abs(b.t - o.own.t))[0];
@@ -550,7 +550,7 @@ export function orthoOsmPolys({ osm, frame, dir, way, st, mapRuns = [], edges = 
   }
   // Where the map's lines cross the cut (t), on the cut's line and a metre either side (a line may end just at it).
   const edgeT = [...new Set(edges.flatMap((path) => [0, -1, 1].flatMap((u0) => crossT(path.map(([lo, la]) => tu(lo, la)), 45, u0).map((x) => Math.round(x.t * 20) / 20))))].sort((a, b) => a - b);
-  const pair = P.off?.has("pair") ? null : partnerOf(o);
+  const pair = partnerOf(o);
   if (pair) { o.pairId = pair.id; o.pairT = pair.t; }
   // A road's width from the national map (ZBGIS) where its centre line crosses the cut within 4 m of the axis.
   const widthT = widths.flatMap(({ path, w }) => crossT(path.map(([lo, la]) => tu(lo, la)), 45).map((x) => ({ t: x.t, w })));
@@ -562,8 +562,8 @@ export function orthoOsmPolys({ osm, frame, dir, way, st, mapRuns = [], edges = 
     return { ...rd, w: reach.A + reach.B, reach, from: "zbgis" };
   };
   // The crowns of the trees OSM knows (natural=tree, tree rows), CROWN m round each: their green is no lawn
-  // (Bára 17. 11. 2026, Václavské náměstí: paving under the crowns read as grass; ?off=koruny).
-  if (st && !P.off?.has("koruny")) st = { ...st, canopy: canopyMask(st, osm, tu) };
+  // (Bára 17. 11. 2026, Václavské náměstí: paving under the crowns read as grass).
+  if (st) st = { ...st, canopy: canopyMask(st, osm, tu) };
   const road = withRails(mapWidth(osmRoad(o.own), o.own.t), o), k = kerbsOnImage(st, o, road, mapRuns, edgeT);
   const byAi = ai?.(o.own.t);
   if (byAi) {
@@ -571,8 +571,8 @@ export function orthoOsmPolys({ osm, frame, dir, way, st, mapRuns = [], edges = 
     if (B - A >= 2 && A < o.own.t && o.own.t < B) { k.A = A; k.B = B; k.why = { A: "ai", B: "ai" }; k.image = true; }
   }
   if (!Number.isFinite(k.A) || !Number.isFinite(k.B) || k.B - k.A < 2) return null;
-  // No kerb across a track: with trams in the roadway it reaches at least as far as withRails says (?off=embedded2).
-  if (road.embeddedOnly && !P.off?.has("embedded2")) { k.A = Math.min(k.A, o.own.t - road.reach.A); k.B = Math.max(k.B, o.own.t + road.reach.B); }
+  // No kerb across a track: with trams in the roadway it reaches at least as far as withRails says.
+  if (road.embeddedOnly) { k.A = Math.min(k.A, o.own.t - road.reach.A); k.B = Math.max(k.B, o.own.t + road.reach.B); }
   // The other carriageway, its side (pSide) and the clicked one's kerb towards it.
   let k2 = null, road2 = null, pSide = null;
   if (pair) {
@@ -613,9 +613,8 @@ export function orthoOsmPolys({ osm, frame, dir, way, st, mapRuns = [], edges = 
   // A cycle track OSM maps on its own beyond a kerb, short of the house (1000 Slovak streets: 21 of 35 missing cycle
   // tracks lay in the estimate's unknown, green or paved strips): its width (OSM width, else 2.5 m two-way, 2 m one-way)
   // about its line, within the map's lines around it, never over the roadway or past the house. Before the sidewalks'
-  // stretches below, so it wins where both would be. P.off "osmbike": off (the A/B).
+  // stretches below, so it wins where both would be.
   for (const [side, sg] of [["A", -1], ["B", 1]]) {
-    if (P.off?.has("osmbike")) break;
     const out = k2 && side === pSide, kerb = out ? k2[side] : k[side], f = o.facade[side];
     for (const w of o.ways.filter((x) => OSM_CYCLEWAY(x.tags) && sameLevel(x, o) && sg * (x.t - kerb) > 0.5 && (f === null || sg * (f - x.t) > 0.3))) {
       const width = num(w.tags.width) || (["yes", "-1"].includes(OSM_SHARED(w.tags) ? w.tags["oneway:bicycle"] ?? w.tags.oneway : w.tags.oneway) ? 2 : 2.5);
@@ -682,7 +681,7 @@ export function orthoOsmPolys({ osm, frame, dir, way, st, mapRuns = [], edges = 
       const g = [];
       if (k.cols) for (let i = k.cols.ti(a); i < k.cols.ti(b); i++) if (i >= 0 && i < k.cols.nt && Number.isFinite(k.cols.green[i])) g.push(k.cols.green[i]);
       // Tram tracks of OSM in it: the street's tram bed (as MTVU's 705: derive.js makes its tracks).
-      let rails = P.off?.has("tramway") ? [] : o.ways.filter((w) => w.tags.railway === "tram" && sameLevel(w, o) && w.t > a && w.t < b);
+      let rails = o.ways.filter((w) => w.tags.railway === "tram" && sameLevel(w, o) && w.t > a && w.t < b);
       // No tram but a railway in the median (Bahnhofstraße with the train between the carriageways): its bed the same way.
       const heavy = !rails.length && railTracks(o.ways.filter((w) => heavyRail(w, o) && w.t > a && w.t < b));
       const [bedCode, bedLabel, bedHalf] = heavy.length ? [RAILWAY_CODE, "železnice (OSM)", railHalf(heavy[0])] : [705, "tramvajové těleso (OSM)", TRACK_HALF];
@@ -693,25 +692,23 @@ export function orthoOsmPolys({ osm, frame, dir, way, st, mapRuns = [], edges = 
         return gg.length && gg.reduce((u, v) => u + v, 0) / gg.length >= GREEN_AREA ? rect(401, "zeleň (ortofoto)", x, y) : rect(1003, "dělicí pás (odhad)", x, y);
       };
       // The bed only round its tracks (TRACK_HALF beyond the outer axes): the rest of a wide median keeps its own
-      // surface (Werichova in 2022, the whole 36 m between the carriageways became two trams of 18 m; ?off=bedwidth).
-      if (rails.length && !P.off?.has("bedwidth")) {
+      // surface (Werichova in 2022, the whole 36 m between the carriageways became two trams of 18 m).
+      if (rails.length) {
         const ts = rails.map((w) => w.t).sort((x, y) => x - y), lo = Math.max(a, ts[0] - bedHalf), hi = Math.min(b, ts[ts.length - 1] + bedHalf);
         if (lo - a >= 0.5) polys.push(greenOr(a, lo)); else if (lo > a) polys.push(rect(bedCode, bedLabel, a, lo));
         polys.push(rect(bedCode, bedLabel, lo, hi));
         if (b - hi >= 0.5) polys.push(greenOr(hi, b)); else if (b > hi) polys.push(rect(bedCode, bedLabel, hi, b));
-      } else if (rails.length) polys.push(rect(bedCode, bedLabel, a, b));
-      else polys.push(greenOr(a, b));
+      } else polys.push(greenOr(a, b));
     }
   }
   // Where a side without a house ends (Bára 17. 11. 2026, Smetanovo nábřeží: the profile ran on over the ground below
   // the street on both sides): at the first steps (a change of level), fence or wall OSM maps across the cut beyond the
-  // kerb, or the fenced edge of a park; null: as before (?off=konec).
+  // kerb, or the fenced edge of a park.
   // Where the carriageway OSM says ends on a side (its lanes' width about the axis): a track beyond it is no embedded one,
   // whatever kerb the image found (the track's bed reads as roadway on it).
   const edgeOf = (side) => { const out = k2 && side === pSide; return (out ? pair.t : o.own.t) + (side === "A" ? -1 : 1) * (out ? road2 : road).reach[side]; };
   const ends = { A: null, B: null }, hard = { A: null, B: null }, chain = { A: [], B: [] }, reached = { A: null, B: null };
-  const FILL_OFF = !!P.off?.has("vyplnkonec");
-  if (!P.off?.has("konec")) for (const [side, sg] of [["A", -1], ["B", 1]]) {
+  for (const [side, sg] of [["A", -1], ["B", 1]]) {
     if (o.facade[side] !== null) continue;
     const kerbT = (k2 && side === pSide ? k2 : k)[side];
     const cand = [
@@ -728,8 +725,7 @@ export function orthoOsmPolys({ osm, frame, dir, way, st, mapRuns = [], edges = 
     // No such end: the side ends just beyond the last thing of the street OSM maps there (a sidewalk or path, a cycle
     // track, tram tracks, another carriageway), each LAST_WALK within the one before; nothing there: LAST_NONE past the
     // kerb (Bára 17. 11. 2026, Generála Šišky: "když nic pak není, tak se řez vezme jen po poslední zajímavý prvek").
-    // A sidewalk mapped apart is drawn as one. ?off=zachodnikem: as before (to the reach).
-    if (P.off?.has("zachodnikem")) continue;
+    // A sidewalk mapped apart is drawn as one.
     const things0 = o.ways.filter((w) => sameLevel(w, o) && (heavyRail(w, o) ? sg * (w.t - edgeOf(side)) > 0.3 : sg * (w.t - kerbT) > 0.3) && Math.abs(w.t - o.own.t) < 40 && (w.tags.railway === "tram" || heavyRail(w, o) || ["footway", "path", "pedestrian", "cycleway", "steps"].includes(w.tags.highway) || (STREET.test(w.tags.highway || "") && w.tags.highway !== "service")))
       .sort((a, b) => sg * (a.t - b.t));
     const things = things0.filter((w) => !heavyRail(w, o) || railTracks(things0.filter((x) => heavyRail(x, o))).includes(w));
@@ -750,10 +746,6 @@ export function orthoOsmPolys({ osm, frame, dir, way, st, mapRuns = [], edges = 
     if (stretch?.[side] && P.stretchOn) { ends[side] = null; continue; }
     ends[side] = lastW ? (sg > 0 ? Math.max : Math.min)(last + sg * halfOf(lastW), ...chain[side].map((w) => w.t + sg * halfOf(w))) : kerbT + sg * LAST_NONE;
     if (!lastW) (ends.soft ??= {})[side] = true;
-    if (FILL_OFF && lastW && ["footway", "path"].includes(lastW.tags.highway) && sg * (lastW.t - kerbT) > SIDEWALK / 2) {
-      const a = lastW.t - sg * SIDEWALK / 2, b = lastW.t + sg * SIDEWALK / 2;
-      polys.push(rect(702, "chodník (OSM, zvlášť)", ...(sg < 0 ? [b, a] : [a, b])));
-    }
   }
   for (const [side, sg] of [["A", -1], ["B", 1]]) {
     // Beyond the other carriageway its kerb and its sidewalk tags count.
@@ -772,7 +764,7 @@ export function orthoOsmPolys({ osm, frame, dir, way, st, mapRuns = [], edges = 
     // sidewalk or green by the image (Bára, Štúrova in Piešťany: the sidewalks lie by the houses, the green strip by
     // the kerb) or by the map's symbol in it. Without such lines a sidewalk from the kerb as before.
     const roadGreen = (() => { if (!k.cols) return 0; const g = []; for (let i = k.cols.ti(o.own.t - 1.5); i <= k.cols.ti(o.own.t + 1.5); i++) if (i >= 0 && i < k.cols.nt && Number.isFinite(k.cols.green[i])) g.push(k.cols.green[i]); return g.length ? g.reduce((x, y) => x + y, 0) / g.length : 0; })();
-    const cuts = says === "no" || P.off?.has("pieces") ? [] : edgeT.filter((t) => sg * (t - kerb) >= 1 && sg * (far - t) > 0.5).sort((x, y) => sg * (x - y));
+    const cuts = says === "no" ? [] : edgeT.filter((t) => sg * (t - kerb) >= 1 && sg * (far - t) > 0.5).sort((x, y) => sg * (x - y));
     if (cuts.length) {
       edgeUsed = true;
       const ends = [kerb, ...cuts, far];
@@ -787,14 +779,14 @@ export function orthoOsmPolys({ osm, frame, dir, way, st, mapRuns = [], edges = 
         const green = g.length && g.reduce((x, y) => x + y, 0) / g.length >= PIECE_GREEN + roadGreen;
         // The last piece up to a house farther than a sidewalk: as the rest (a front garden, a yard). So is any other
         // paved piece wider than a sidewalk, and the first one by the kerb keeps SIDEWALK_MAX of sidewalk (1000 Slovak
-        // streets: 8 sidewalks of 9–18 m between the town map's lines; P.off "pieceMax": as before).
-        const wide = !green && b - a > SIDEWALK_MAX && !P.off?.has("pieceMax");
+        // streets: 8 sidewalks of 9–18 m between the town map's lines).
+        const wide = !green && b - a > SIDEWALK_MAX;
         if (q === ends.length - 2 && b - a > SIDEWALK_MAX) rest(a, b);
         else if (wide && q === 0) { const m = kerb + sg * SIDEWALK_MAX, [c, d] = span(kerb, m), [e, h] = span(m, ends[1]); put(rect(702, "chodník (ortofoto a mapa)", c, d)); rest(e, h); }
         else if (wide) rest(a, b);
         else put(green ? rect(401, "zeleň (ortofoto a mapa)", a, b) : rect(702, "chodník (ortofoto a mapa)", a, b));
       }
-    } else if (aiSurf && P.aiWalk && !P.off?.has("aiwalk")) {
+    } else if (aiSurf && P.aiWalk) {
       // P.aiWalk (a trial, 19. 11. 2026): the model's kinds from the kerb to the house (or OSM's sidewalk end) decide
       // sidewalk, green and other, in runs of at least AI_RUN (the rules confuse sidewalks under trees with lawns and
       // dry lawns with paving; the hold-out: some 300 m each way).
@@ -805,17 +797,15 @@ export function orthoOsmPolys({ osm, frame, dir, way, st, mapRuns = [], edges = 
       if (runs.length) { runs[0].s = kerb; runs.at(-1).e = far; }
       // Paving the model calls sidewalk counts as sidewalk only up to SIDEWALK_MAX from the kerb, beyond it as a paved
       // area (German maps: forecourts and yards of 8–12 m between the sidewalk and the house, the model's "sidewalk"
-      // up to the house; the hold-out, Rudolf-Reusch-Straße, Pestalozzistraße). ?off=aiwalkcap: as the model says.
-      if (!P.off?.has("aiwalkcap")) {
-        const lim = kerb + sg * SIDEWALK_MAX;
-        const out = [];
-        for (const r of runs) {
-          if (r.c !== 702 || sg * (r.e - lim) <= 0) { out.push(r); continue; }
-          if (sg * (r.s - lim) >= 0) { out.push({ ...r, c: 1003 }); continue; }
-          out.push({ ...r, e: lim }, { c: 1003, s: lim, e: r.e });
-        }
-        runs.splice(0, runs.length, ...out);
+      // up to the house; the hold-out, Rudolf-Reusch-Straße, Pestalozzistraße).
+      const lim = kerb + sg * SIDEWALK_MAX;
+      const out = [];
+      for (const r of runs) {
+        if (r.c !== 702 || sg * (r.e - lim) <= 0) { out.push(r); continue; }
+        if (sg * (r.s - lim) >= 0) { out.push({ ...r, c: 1003 }); continue; }
+        out.push({ ...r, e: lim }, { c: 1003, s: lim, e: r.e });
       }
+      runs.splice(0, runs.length, ...out);
       const LBL = { 702: "chodník (AI)", 401: "zeleň (AI)", 1003: "zpevněná plocha (AI)" };
       for (const r of runs) polys.push(rect(r.c, LBL[r.c], ...span(r.s, r.e)));
     } else {
@@ -845,9 +835,9 @@ export function orthoOsmPolys({ osm, frame, dir, way, st, mapRuns = [], edges = 
   // Between the street's own sidewalk and the end the last thing of the street sets (a path, a cycle track, tracks,
   // another carriageway OSM maps there; Bára 18. 11. 2026: "Neurčeno" beyond the street in 67 of 87 Prague cuts, under
   // it MTVU's green, paths and side roads; evaluation/ortho-osm/errors.mjs): each such thing drawn as what it is, the
-  // gaps between them green where the image is mostly green, else paved. ?off=vyplnkonec: as before. A side road
-  // there is a roadway of its own (?off=soubezna: it ends the filling).
-  if (!FILL_OFF) for (const [side, sg] of [["A", -1], ["B", 1]]) {
+  // gaps between them green where the image is mostly green, else paved. A side road
+  // there is a roadway of its own.
+  for (const [side, sg] of [["A", -1], ["B", 1]]) {
     if (!chain[side].length || reached[side] === null) continue;
     let outer = reached[side];
     const span = (x, y) => (sg < 0 ? [y, x] : [x, y]);
@@ -860,7 +850,7 @@ export function orthoOsmPolys({ osm, frame, dir, way, st, mapRuns = [], edges = 
     };
     for (const w of chain[side]) {
       const kind = w.tags.railway === "tram" ? [705, "tramvajové těleso (OSM)", TRACK_HALF] : heavyRail(w, o) ? [RAILWAY_CODE, "železnice (OSM)", railHalf(w)] : w.tags.highway === "cycleway" && !OSM_SHARED(w.tags) ? [703, "cyklostezka (OSM)", 1.3]
-        : STREET.test(w.tags.highway || "") ? (P.off?.has("soubezna") ? null : [701, "vozovka (OSM, souběžná)", 3]) : [702, "chodník (OSM, zvlášť)", SIDEWALK / 2];
+        : STREET.test(w.tags.highway || "") ? [701, "vozovka (OSM, souběžná)", 3] : [702, "chodník (OSM, zvlášť)", SIDEWALK / 2];
       if (!kind) break;
       const a = w.t - sg * kind[2], b = w.t + sg * kind[2];
       if (sg * (b - outer) < 0.3) continue;
@@ -871,8 +861,8 @@ export function orthoOsmPolys({ osm, frame, dir, way, st, mapRuns = [], edges = 
   }
   // Whatever is left uncovered beyond the street (a yard, a lawn past a path, ground up to a house farther than REST_MAX:
   // "Neurčeno" in most cuts, errors.mjs, Bára 18. 11. 2026): green or paved by the image, in runs of at least
-  // BACK_MIN, behind everything else (the order is the priority; trimToEnds does not reach out for them). ?off=pozadi.
-  if (k.cols && !P.off?.has("pozadi")) {
+  // BACK_MIN, behind everything else (the order is the priority; trimToEnds does not reach out for them).
+  if (k.cols) {
     const c = k.cols, half = Math.round(1 / c.res), isG = [];
     for (let i = 0; i < c.nt; i++) {
       let sum = 0, n = 0;
@@ -898,8 +888,7 @@ export function orthoOsmPolys({ osm, frame, dir, way, st, mapRuns = [], edges = 
       const a = Math.max(fA, c.tOf(r.i0) - c.res / 2), b = Math.min(fB, c.tOf(r.i1) + c.res / 2);
       // Paving beyond REST_MAX is no lot of the street, but up to a wall, a fence or steps the street's side ends at (Bára
       // 27. 11. 2026, Leipzig, Berliner Straße: the profile stopped 1.3 m before the wall): from the kerb to that end.
-      // ?off=murkonec: as before.
-      if (!r.g && b - a > REST_MAX && !P.off?.has("murkonec")) {
+      if (!r.g && b - a > REST_MAX) {
         for (const [side, sg] of [["A", -1], ["B", 1]]) {
           const e = hard[side];
           if (e === null) continue;
@@ -1030,8 +1019,8 @@ const BESIDE_MAX = 15, WALK_REACH = 8, BESIDE_GREEN = 0.22, BARRIER = (t) => ["f
 // A path for walkers and cyclists in one (C 9): a footway or path with bicycle=designated and not segregated=yes (the
 // segregated one stays a cycle track as before: its two halves are not measured), a cycle way with foot=designated and not
 // segregated, or segregated=no. One part along the street, not a cycle track
-// (Brandenburger Straße in Leipzig: a path=sidewalk with oneway:bicycle=yes drew two cycle tracks; ?off=sdilena: as before).
-const OSM_SHARED = (t) => !P.off?.has("sdilena") && (["path", "footway"].includes(t.highway) ? t.bicycle === "designated" && t.segregated !== "yes"
+// (Brandenburger Straße in Leipzig: a path=sidewalk with oneway:bicycle=yes drew two cycle tracks).
+const OSM_SHARED = (t) => (["path", "footway"].includes(t.highway) ? t.bicycle === "designated" && t.segregated !== "yes"
   : t.highway === "cycleway" && (t.segregated === "no" || (t.foot === "designated" && t.segregated !== "yes")));
 const OSM_SIDEWALK = (t) => t.highway === "footway" && t.footway === "sidewalk";
 const OSM_CYCLEWAY = (t) => (t.highway === "cycleway" || (["path", "footway"].includes(t.highway) && t.bicycle === "designated"));
@@ -1072,7 +1061,7 @@ export function besidePassport({ osm, frame, dir, way, st, edges = [], symbols =
   const LABEL = { 401: "zeleň (technická mapa)", 702: "chodník (technická mapa)", 1003: "zpevněná plocha (technická mapa)", 603: "dvůr (technická mapa)", 704: "parkoviště (technická mapa)" };
   // The national map's lawns and car parks (ZBGIS, towns/slovakia.js) say what a piece is where they cover its middle
   // (front gardens: their image is as green as the paving, 0.12–0.32 against 0.04–0.20).
-  const zb = P.off?.has("besidezbgis") ? [] : areas.map((f) => ({ code: f.attributes?.CTVUK_KOD, rings: (f.geometry?.rings || []).map((r) => r.map(([lo, la]) => frame.toXY(lo, la))) })).filter((f) => f.rings.length);
+  const zb = areas.map((f) => ({ code: f.attributes?.CTVUK_KOD, rings: (f.geometry?.rings || []).map((r) => r.map(([lo, la]) => frame.toXY(lo, la))) })).filter((f) => f.rings.length);
   const zbAt = (t) => { const [x, y] = xy(t, 0); return zb.find((f) => inRing(f.rings[0], x, y))?.code ?? null; };
   const ZB_LABEL = { 401: "zeleň (ZBGIS)", 704: "parkoviště (ZBGIS)" };
   const out = [];
@@ -1201,8 +1190,8 @@ export function besidePassport({ osm, frame, dir, way, st, edges = [], symbols =
     }
     // A strip of paving up to FACADE_STRIP wide between a sidewalk and the house it ends at is the sidewalk's own (the
     // house's outline drawn a little off the map's sidewalk: Rue des Tournelles in Paris 0.65 m, Helsinki's YLRE; Bára
-    // 26. 11. 2026, evaluation/archive/facade-strip). ?off=fasada: as before.
-    if (!farEnd && !P.off?.has("fasada") && (to === house || to === o.facade[side]) && out.length > before) facadeStrip(out, before, to, sg, at);
+    // 26. 11. 2026, evaluation/archive/facade-strip).
+    if (!farEnd && (to === house || to === o.facade[side]) && out.length > before) facadeStrip(out, before, to, sg, at);
     // The house found beside the cut only: its front across the cut, the profile ends at it.
     // With ?off=mapfill only where the surfaces have no house farther on (Tammitie in Helsinki: OSM's house beside the
     // cut stood nearer than the city's outline across it, the profile ran on past it as "neurčeno").

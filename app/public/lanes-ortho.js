@@ -692,10 +692,10 @@ export function laneLines(st, H, s, e) {
 // side moves the middle of the lanes).
 // Solid: paint along (nearly) all of its length; dashed: regular dashes and gaps, or a line with long bare runs.
 // Returns { found: false } (a roadway seen, no line), { found: true, kind: "solid" | "dashed" | null (not known which),
-// t, share, fill } or null (not known: no photo, the roadway outside it, a narrow one, ?off=stredcara).
+// t, share, fill } or null (not known: no photo, the roadway outside it, a narrow one,).
 export const CENTRE = { edge: 2.2, near: 0.2, nearMin: 1.5, solidFill: 0.8, dashedFill: 0.65, minWidth: 4.5, seen: 0.6 };
 export function centreLine(st, s, e, H = null) {
-  if (!st || OFF("stredcara") || !(e - s >= CENTRE.minWidth)) return null;
+  if (!st || !(e - s >= CENTRE.minWidth)) return null;
   if (s - 0.5 <= st.t0 || e + 0.5 >= st.t0 + st.nt * st.res) return null;
   // The middle part must be seen: pixels of the photo along it.
   const i0 = Math.max(0, Math.floor((s + CENTRE.edge - st.t0) / st.res)), i1 = Math.min(st.nt - 1, Math.floor((e - CENTRE.edge - st.t0) / st.res));
@@ -778,7 +778,6 @@ const RAISED = new Set(["chodnik", "chodnik_kola", "stezka_sdilena", "predzahrad
 const BLOCK = new Set(["pruh", "krajnice"]);
 const SNAP = 0.6;
 // ?off=<switch>,<switch>: a rule of this file off for the comparison (the same parameter as app.js ORTHO_P.off).
-const OFF = (k) => { try { return new URLSearchParams(globalThis.location?.search || "").get("off")?.split(",").includes(k) ?? false; } catch { return false; } };
 const ONE_LANE_MAX = 4.25; // a lane wider than this (m) is two where the rules had two
 const SHOULDER_MAX = 3.6; // a boundary of other parts (parking, bike lane…) moves to a line this near
 
@@ -945,8 +944,8 @@ function measured(w, c, lines, solid = [], fine = true) {
     const more = list.filter((p) => p.kind === "pruh").length > had;
     // Never the roadway's last lane: of two pieces behind solid lines the first becomes the shoulder and the other stays the lane
     // (Výškovická in Ostrava: a lane and a hatched strip, both made shoulders and the roadway left without a lane;
-    // Bára 27. 11. 2026; ?off=jedenpruh).
-    const lastLane = !OFF("jedenpruh") && list.filter((p) => p.kind === "pruh").length <= 1;
+    // Bára 27. 11. 2026).
+    const lastLane = list.filter((p) => p.kind === "pruh").length <= 1;
     if (ruled && end.kind === "pruh" && !lastLane && ((solid[line] === true && end.w <= LANE_MAX) || (solid[line] === undefined && more && end.w <= SHOULDER_MAX))) end.kind = "krajnice";
   }
   // The profile's roadway against the map's: the difference to the shoulder the rules had on that side (or a new
@@ -968,8 +967,8 @@ function measured(w, c, lines, solid = [], fine = true) {
   const oldLanes = w.parts.filter((p) => p.seg.type === "pruh"), lanes = list.filter((p) => p.kind === "pruh");
   // One lane wider than a lane is where the rules had two (a two-way road): the centre line was not found, and the one found
   // (a worn trace, a patch) is no edge line (silnice 230 by Mariánské Lázně: 6.45 m, a line 1.3 m from the kerb made a lane of
-  // 4.73 m and a shoulder of 1.7 m). The rules' lanes stay. ?off=obousmerka.
-  if (!OFF("obousmerka") && had >= 2 && lanes.length < had && lanes.some((p) => p.w > ONE_LANE_MAX)) return fail("jeden široký pruh, pravidla mají víc");
+  // 4.73 m and a shoulder of 1.7 m). The rules' lanes stay.
+  if (had >= 2 && lanes.length < had && lanes.some((p) => p.w > ONE_LANE_MAX)) return fail("jeden široký pruh, pravidla mají víc");
   let li = 0;
   const segs = list.map((p) => {
     if (p.kind === "krajnice" || p.kind === "stred") return { type: "krajnice", width: +p.w.toFixed(2), source: p.rules ? "odhad" : "ortofoto" };

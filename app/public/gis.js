@@ -240,7 +240,6 @@ export function withBuildings(osm, outlines, mode = "fill") {
   return missing.length ? { ...osm, elements: [...(osm.elements || []), ...missing] } : osm;
 }
 
-const offFlag = (n) => !!globalThis.location?.search && new URLSearchParams(globalThis.location.search).get("off")?.split(",").includes(n);
 export async function ruianBuilding(lat, lon) {
   const json = await query(RUIAN_SO, {
     geometry: `${lon},${lat}`, geometryType: "esriGeometryPoint", inSR: "4326", spatialRel: "esriSpatialRelIntersects",
@@ -255,7 +254,7 @@ export async function ruianBuilding(lat, lon) {
   const attic = (use === 7 || use === 8) && floors >= 2 ? 1 : 0;
   // A holiday house (use 8) with no count of floors: one floor and a lived-in attic in the roof, drawn as 2 under the
   // roof (Bára 27. 11. 2026; of the 300 000 in RÚIAN three in four have no count, and those that have are 1 NP in 65 %;
-  // silnice 506338718). ?off=chata keeps the old default (2 floors of the family house).
-  if (use === 8 && !floors && !offFlag("chata")) return { cornice: 1, roof: 1, total: 2, newBuild: false, area: area || undefined, ...ruianLook(use, walls, dokonceni) };
+  // silnice 506338718). keeps the old default (2 floors of the family house).
+  if (use === 8 && !floors) return { cornice: 1, roof: 1, total: 2, newBuild: false, area: area || undefined, ...ruianLook(use, walls, dokonceni) };
   return { cornice: floors ? floors - attic : undefined, roof: attic, total: floors || 0, newBuild: false, area: area || undefined, ...ruianLook(use, walls, dokonceni) };
 }

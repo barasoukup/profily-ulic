@@ -200,13 +200,10 @@ test("Dánsko: cyklostezka podél silnice z OSM (cycleway:<strana>=track)", asyn
   D.trackAlongRoad(s, { highway: "secondary", "cycleway:right": "track" }, false);
   assert.equal(s[1].type, "cyklostezka");
   assert.equal(s.at(-2).type, "pruh");
-  // A narrow estimated sidewalk keeps 1 m; a map's own surfaces give nothing; the switch off.
+  // A narrow estimated sidewalk keeps 1 m; a map's own surfaces give nothing.
   s = [{ type: "chodnik", width: 2.5, source: "odhad" }, { type: "pruh", width: 3.5 }];
   D.trackAlongRoad(s, { "cycleway:left": "track" });
   assert.deepEqual(s.map((x) => [x.type, x.width]), [["chodnik", 1], ["cyklostezka", 1.5], ["pruh", 3.5]]);
   s = [{ type: "chodnik", width: 4, source: "dtm" }, { type: "pruh", width: 3.5 }];
   assert.equal(D.trackAlongRoad(s, { "cycleway:left": "track" }), 0);
-  const O = await import("../app/public/ortho-osm.js");
-  O.P.off = new Set(["stezkapodel"]);
-  try { assert.equal(D.trackAlongRoad(seg(), { "cycleway:both": "track" }), 0); } finally { O.P.off = undefined; }
 });
