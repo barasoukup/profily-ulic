@@ -3,7 +3,7 @@
 // the kerbs and the OSM facades.
 import { median, mean } from "./lib.mjs";
 import { brightMap, laneLines, strongLines } from "../../app/public/lanes-ortho.js";
-import { osmRoad, withRails, limits, columns, roadRef, roadLike, kerbs as m2, P, laneWidth } from "../../app/public/ortho-osm.js";
+import { osmRoad, withRails, limits, columns, roadRef, roadLike, kerbs as m2, KERB_SCORE as P, laneWidth } from "../../app/public/ortho-osm.js";
 export { osmRoad, withRails, limits, columns, m2, P, laneWidth, strongLines };
 // M1's own: how long a stretch that does not look like the road ends it, and how far the end snaps to an edge.
 Object.assign(P, { stopRun: 0.8, snap: 0.4 });
