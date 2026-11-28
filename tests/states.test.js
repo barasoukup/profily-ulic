@@ -144,7 +144,7 @@ test("jízda vlevo jen na Kypru a na Maltě", () => {
 // Every sign a state draws is a file: the keys of the signs (SIGNS), with the plates and directions they come with, through
 // each state's own `signs.file`, the speeds apart; and every file of a state's folder has a viewBox, from which profile.js
 // loadSign reads the sign's size (without it the sign is not drawn).
-const KEYS = [...Object.keys(SIGNS), "ip11b", "ip11c"];
+const KEYS = Object.keys(SIGNS);
 const PLATES = [undefined, "protismer", "obsluha", "kolo", "kola", "podelne", "kolme", "sikme"];
 const SPEEDS = [5, 10, 15, 20, 25, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130];
 // The signs of DK without a viewBox (Commons files with width and height only): not drawn (docs/backlog.md).

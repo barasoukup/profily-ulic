@@ -11,7 +11,11 @@ export const PUBLIC = new URL("../../app/public/", import.meta.url);
 export const publicUrl = (f) => new URL(f, PUBLIC);
 export const readText = (f) => fs.readFileSync(publicUrl(f), "utf8");
 export const readJson = (f) => JSON.parse(readText(f));
-export const exists = (f) => fs.existsSync(publicUrl(f));
+// Exists with the name's exact letter case (macOS does not tell IP11b.svg from ip11b.svg, GitHub's Linux and Pages do).
+export const exists = (f) => {
+  const file = fileURLToPath(publicUrl(f));
+  return fs.existsSync(file) && fs.readdirSync(path.dirname(file)).includes(path.basename(file));
+};
 
 // The scripts of app/public (relative to it): the top ones and those of the folders asked for (app/: the parts of app.js; derive/: the parts of derive.js; ortho/, ortho/sources/: the parts of ortho-osm.js and lanes-ortho.js, the registry of the orthophotos; draw/, draw/buildings/: the parts of profile.js; search/: the services of the address search); with `noLangs` without the
 // languages' texts (en.js, sk.js … only data, they link to the sources in the footer).
