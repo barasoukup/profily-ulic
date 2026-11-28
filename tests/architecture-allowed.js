@@ -28,16 +28,16 @@ export const UNUSED_EXPORTS = [
 ];
 
 export const LONG_FILES = {
-  "app/public/app.js": 2774,
-  "app/public/derive.js": 3085,
+  "app/public/app.js": 2772,
+  "app/public/derive.js": 3084,
   "app/public/lanes-ortho.js": 1207,
-  "app/public/ortho-osm.js": 1294,
+  "app/public/ortho-osm.js": 1267,
   "app/public/profile.js": 3089
 };
 
 export const LONG_FUNCTIONS = {
   "app/public/ai-kerbs.js:parkFromAi": 121,
-  "app/public/app.js:cutAt": 422,
+  "app/public/app.js:cutAt": 420,
   "app/public/app.js:fitLabels": 109,
   "app/public/app.js:renderEditor": 250,
   "app/public/derive.js:deriveProfile": 641,

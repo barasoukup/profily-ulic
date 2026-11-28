@@ -13,14 +13,13 @@
 // Both maps as Toronto's: an island with no roadway on both sides is land beside the street (islandsBeside); a gap between
 // two roadways is the median, with OSM's tram tracks in it the tram bed (?off=mapgaps); a cycle track OSM has in the map's
 // carriageway is cut out of it (?off=roadtracks; the maps are older than many of Boston's separated bike lanes); the
-// alleys of the maps join OSM's elements as alley areas (?off=ulicky). A gap beyond the outer sidewalk told by OSM's houses and
-// lots and the orthophoto (outerGaps) only with ?outergaps=1.
+// alleys of the maps join OSM's elements as alley areas (?off=ulicky).
 // - The houses (podlaznost): Boston's buildings count their floors (part_floors), which stand for the house's floors
 //   (?bostonhouse=0: not).
 // A tile that does not come: the estimate, said so (mapFailed); a city whose tiles are not on the site (no about.json of
 // its own): the same, said that the map is missing (mapMissing).
 import { inArea } from "../places.js";
-import { planimetricMap, gapsBetweenRoads, kerbBays, osmTracks, islandsBeside, outerGaps, WALKED } from "./planimetrics.js";
+import { planimetricMap, gapsBetweenRoads, kerbBays, osmTracks, islandsBeside, WALKED } from "./planimetrics.js";
 
 const param = (k) => (typeof location === "undefined" ? globalThis.PROFILY_US?.[k] ?? null : new URLSearchParams(location.search).get(k));
 const off = (name) => (param("off") || "").split(",").includes(name);
@@ -91,17 +90,10 @@ const roadCode = (t) => {
   return null;
 };
 // (The shared fixes of the lost pairs, evaluation/canada/fixes: ?off=gapsortho, gapswide, trackaxis.)
-const prepare = (runs, { tags, tracks, cycleTracks, osmAreas, streets }) => {
+const prepare = (runs, { tags, tracks, cycleTracks, streets }) => {
   islandsBeside(runs);
   if (!off("mapgaps")) gapsBetweenRoads(runs, tracks(), { byImage: !off("gapsortho"), streets: off("gapswide") ? null : streets });
   if (!off("kerbbays")) kerbBays(runs);
-  // (Off, ?outergaps=1 on: the gaps beyond the outer sidewalk by OSM and the orthophoto, planimetrics.js outerGaps; the blind
-  // A/B of 52 new arterials did not show it better, 18 : 16, evaluation/usa/boston/outer/REPORT.md.)
-  if (param("outergaps") === "1") outerGaps(runs, osmAreas());
-  // (Off, ?outerosm=1 on: the same gaps filled with OSM's houses, lots and squares only, the orthophoto left out, the part
-  // that did better in that A/B, 13 : 8; the blind A/B of 102 changed new arterials 24 : 22, not shown better,
-  // evaluation/usa/boston/outer-osm/REPORT.md.)
-  else if (param("outerosm") === "1") outerGaps(runs, osmAreas(), { image: false });
   if (!WALKED.has(tags?.highway) && !off("roadtracks")) osmTracks(runs, cycleTracks(), 1.8, !off("trackaxis"));
 };
 export const BOSTON_MAP = {

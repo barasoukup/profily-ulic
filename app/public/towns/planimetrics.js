@@ -89,59 +89,6 @@ export function kerbBays(runs, max = 3.5) {
   runs.forEach((r, i) => { if (r.lot && r.e - r.s >= 1.5 && r.e - r.s <= max && [runs[i - 1], runs[i + 1]].some((x) => x?.code === 701)) r.code = 704; });
   return runs;
 }
-// Beyond a street's carriageway a gap of the map is not always a lawn (Boston: Street Edges has no parking lots, its
-// buildings are not all there; evaluation/usa/boston/REPORT.md, 22 m of green over a lot or a house): what OSM has there
-// takes it (spans: [{ s, e, code }] of osmAreasAlong), a building 601 in any gap outside the carriageway, a parking lot or a
-// square 1003 (704 from OUTER_LOT, a lot beside the street) only beyond the first sidewalk out from the carriageway on each
-// side (a tree strip by the kerb stays the map's green). What stays of the gaps there is marked outer, for the
-// orthophoto to tell green from paving (ortho-osm.js outerGapsByImage). Runs changed in place. A city's prepare calls it
-// (Boston's only with ?outergaps=1: not shown better, evaluation/usa/boston/outer/REPORT.md). image: false leaves the
-// rest unmarked, OSM's houses and lots alone (?outerosm=1, evaluation/usa/boston/outer-osm/REPORT.md).
-export function outerGaps(runs, spans = [], { image = true } = {}) {
-  const at = carriageway(runs);
-  if (!at) return runs;
-  const gaps = [];
-  for (const [from, step] of [[at[0] - 1, -1], [at[1] + 1, 1]]) {
-    let walked = false;
-    for (let i = from; i >= 0 && i < runs.length; i += step) {
-      if (runs[i].code === 702) walked = true;
-      else if (runs[i].gap && runs[i].code === 401) gaps.push([runs[i], walked]);
-    }
-  }
-  for (const [r, outer] of gaps) {
-    const pieces = [], here = spans.filter((x) => outer || x.code === 601);
-    for (let t = r.s; t < r.e - 1e-9; t += STEP) {
-      const m = t + STEP / 2, hit = here.find((x) => x.s <= m && x.e >= m), code = hit ? hit.code : 401, last = pieces.at(-1);
-      if (last && last.code === code) last.e = Math.min(r.e, t + STEP); else pieces.push({ code, s: t, e: Math.min(r.e, t + STEP), ...(code === 401 ? { gap: true, ...(outer && image && { outer: true }) } : { fromOsm: true }) });
-    }
-    // (A lot of OSM as wide as a wide lawn ends the profile as that did: derive.js stopAt.)
-    for (const x of pieces) if (x.code === 1003 && x.e - x.s >= OUTER_LOT) x.code = 704;
-    runs.splice(runs.indexOf(r), 1, ...pieces);
-  }
-  return runs;
-}
-const OUTER_LOT = 8; // m, derive.js OPEN_LAND
-// Where OSM's areas cross the cut (c: cutOfBox's frame): buildings above the ground 601, parking lots, squares and
-// pedestrian areas 1003, as [{ s, e, code }] in t.
-const OSM_PAVED = (t) => (t.amenity === "parking" && t.parking !== "underground" && t.parking !== "multi-storey") || t.place === "square" || (t.highway === "pedestrian" && t.area === "yes") || t["area:highway"] === "pedestrian";
-export function osmAreasAlong(osmElements, c) {
-  const out = [], P = (g) => g.map((p) => { const x = (p.lon - c.lon0) * c.kx, y = (p.lat - c.lat0) * c.ky; return [x * c.dir[0] + y * c.dir[1], -x * c.dir[1] + y * c.dir[0]]; });
-  for (const el of osmElements || []) {
-    const t = el.tags || {};
-    if (el.type !== "area" || !el.geometry || underground(t) || Number(t.layer) < 0) continue;
-    const code = t.building && t.building !== "no" && t.building !== "roof" ? 601 : OSM_PAVED(t) ? 1003 : null;
-    if (!code) continue;
-    const xs = [];
-    for (const r of [el.geometry, ...(el.holes || [])].map(P)) for (let i = 0; i < r.length; i++) {
-      const [a, b] = [r[i], r[(i + 1) % r.length]];
-      if (a[1] > 0 !== b[1] > 0) xs.push(a[0] + ((b[0] - a[0]) * -a[1]) / (b[1] - a[1]));
-    }
-    xs.sort((a, b) => a - b);
-    for (let i = 0; i + 1 < xs.length; i += 2) out.push({ s: xs[i], e: xs[i + 1], code });
-  }
-  // (A house first where a lot and a house overlap.)
-  return out.sort((a, b) => b.code - a.code);
-}
 // Neighbours of one code made one (in place).
 function merged(runs) {
   for (let i = runs.length - 1; i > 0; i--) if (runs[i].code === runs[i - 1].code) { runs[i - 1].e = runs[i].e; runs.splice(i, 1); }
@@ -281,7 +228,7 @@ export function planimetricCut(d, answers, osmElements, bbox, tags = null, { way
   tags ||= c.tags;
   const street = [-c.dir[1], c.dir[0]], along = way ? alongOf(way, c, street) : true;
   const car = (el) => el.tags?.highway && !WALKED.has(el.tags.highway) && !/^(service|track)$/.test(el.tags.highway);
-  d.prepare?.(runs, { tags, osmAreas: () => osmAreasAlong(osmElements, c), tracks: () => parallelsAt(osmElements, c, (el) => /^(tram|light_rail)$/.test(el.tags.railway)),
+  d.prepare?.(runs, { tags, tracks: () => parallelsAt(osmElements, c, (el) => /^(tram|light_rail)$/.test(el.tags.railway)),
     // (The ways for cars across the cut.)
     streets: () => (osmElements || []).filter((el) => el.tags && car(el)).flatMap((el) => parallelsAt([el], c, () => true).map((t) => ({ t, name: el.tags.name || "", ref: el.tags.ref || "" }))),
     cycleTracks: () => [...(osmElements || []).filter((el) => el.tags && el.id !== way?.id && isTrack(el))
@@ -297,7 +244,7 @@ export function planimetricCut(d, answers, osmElements, bbox, tags = null, { way
   const junction = !!at && (at.features || []).some((f) => d.junction.test(f.attributes || {}) && f.geometry?.rings
     && inRings(f.geometry.rings.map((r) => r.map(([lon, lat]) => [(lon - c.lon0) * c.kx, (lat - c.lat0) * c.ky])), 0, 0));
   const back = ([x, y]) => [x / c.kx + c.lon0, y / c.ky + c.lat0];
-  const features = runs.map((r) => ({ attributes: { code: r.code, ...(r.outer && { OUTER_GAP: 1 }), ...(r.medianGap && { MEDIAN_GAP: 1 }), ...(r.carvedTrack && { CARVED_TRACK: 1 }), ...(r.fromOsm && { FROM_OSM: 1 }), ...(r.orient && { ORIENT: r.orient }) }, geometry: { rings: [[[r.s, -1], [r.e, -1], [r.e, 1], [r.s, 1], [r.s, -1]]
+  const features = runs.map((r) => ({ attributes: { code: r.code, ...(r.medianGap && { MEDIAN_GAP: 1 }), ...(r.carvedTrack && { CARVED_TRACK: 1 }), ...(r.fromOsm && { FROM_OSM: 1 }), ...(r.orient && { ORIENT: r.orient }) }, geometry: { rings: [[[r.s, -1], [r.e, -1], [r.e, 1], [r.s, 1], [r.s, -1]]
     .map(([t, u]) => back([c.dir[0] * t + street[0] * u, c.dir[1] * t + street[1] * u]))] } }));
   return { features, junction, ...more };
 }

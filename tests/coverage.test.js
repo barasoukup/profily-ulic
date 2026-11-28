@@ -33,7 +33,7 @@ test("pokrytí: coverage.json odpovídá modulům a je malý", async () => {
   assert.equal(of("germany"), "ortho");
   assert.equal(of("lithuania"), "osm");
   assert.equal(of("vilnius"), undefined, "Vilnius jen s ?vilnius=1");
-  assert.equal(of("zvolen-pasport"), undefined, "Zvolen jen s ?zvolen=1");
+  assert.equal(of("zvolen-pasport"), undefined, "Zvolen nemá pasport");
   assert.equal(of("kobenhavn"), undefined, "Kodaň má jen čáry obrub");
   assert.deepEqual([...new Set(coverage.features.map((f) => f.properties.c))].sort(), ["ortho", "osm", "surface"]);
 });

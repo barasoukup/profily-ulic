@@ -85,7 +85,6 @@ export const CR = {
   "credits.roadInventoryCityZilina": () => cr(W("roadInventory"), "mesto Žilina"),
   "credits.roadInventoryMestoKosice": () => cr(W("roadInventory"), "mesto Košice"),
   "credits.roadsCarParksGrass": () => cr(W("roadsCarParksGrass"), "GKÚ Bratislava", { note: ["ZBGIS", "CC BY 4.0"] }),
-  "credits.roadsPavedAreasCity": () => cr(W("roadsPavedAreas"), "mesto Zvolen"),
   "credits.streetSurfacesFeinkartierungStra": () => cr(W("streetSurfaces"), "Freie und Hansestadt Hamburg", { detail: ["Feinkartierung Straße"], note: ["dl-de/by-2-0"] }),
   "credits.streetSurfacesStraEnbefahrung": () => cr(W("streetSurfaces"), "Geoportal Berlin", { detail: ["Straßenbefahrung 2014"], note: ["dl-de/zero-2-0"] }),
   "credits.streetSurfacesStraEndatenbank": () => cr(W("streetSurfaces"), "Stadt Aachen", { detail: ["Straßendatenbank"], note: ["dl-de/zero-2-0"] }),

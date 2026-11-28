@@ -38,3 +38,15 @@ Zapnuté opravy s vypínačem `?off=…`, které se tím jen zbavily vypínače,
 - `P.edgeOn`, `?nastenu=1` (`edgeBeyond`): výchozí dosah nového řezu až k první zdi nebo plotu do 40 m (Berliner Straße,
   Lipsko). Na 70 řezech vzorku se nezměnil ani jeden, přínos nelze doložit (`evaluation/archive/railway/REPORT.md`,
   `docs/backlog.md`).
+
+### Mapy povrchů a státy (`towns/`)
+
+- `?tm=1` (`baTechMap`): plochy z technické mapy Bratislavy (čáry uzavřené na mřížce 10 cm, druh plochy podle značky uvnitř).
+  Slepé A/B 16. 11. 2026: plochy vzácné (málo značek, mnoho otevřených čar, jedna plocha přes celý řez), ploty
+  ukončovaly profil u předzahrádek (`evaluation/slovakia/ab/REPORT.md`). Čáry téže mapy (`edgesAt`, kraje) zůstávají.
+  V uložených řezech se `skTm` dál uznává (kredit), kdyby je někdo měl.
+- `?zvolen=1` (pasport Zvolena: komunikace z čar se šířkou, spevnené plochy): A/B 16. 11. 2026 horší, plochy leží přes
+  trávníky a parkoviště, šířky čar jsou rozmezí (`evaluation/slovakia/ab/REPORT.md`). Čáry kresby Zvolena (`EDGE_SOURCES`) zůstávají.
+- `?outergaps=1`, `?outerosm=1` (Boston: `outerGaps`, `osmAreasAlong`, `outerGapsByImage`): mezery za vnějším chodníkem podle domů
+  a parkovišť z OSM a ortofota. Slepé A/B 52 nových tepen 18 : 16; jen z OSM 102 změněných tepen 24 : 22, nic nevyhrálo
+  (Bára 26. 11. 2026, `evaluation/usa/boston/outer/REPORT.md`, `evaluation/usa/boston/outer-osm/REPORT.md`).

@@ -61,13 +61,12 @@ export const SOURCE_CREDITS = {
     // Germany: the orthophoto of the Land (lanes-ortho.js DE_ORTHO, "de-BY" …), with the credit the Land asks for.
     ...Object.fromEntries(Object.entries(DE_ORTHO).map(([land, o]) => [`de-${land}`, () => lead(W("orthophoto"), o.credit)])),
   },
-  // Bratislava's technical map (towns/slovakia.js, ?tm=1).
+  // Bratislava's technical map: only in cuts saved before the trial ?tm=1 was deleted (28. 11. 2026).
   skTm: { true: () => CR["credits.technicalMapCityBratislava"]() },
   // A Slovak town's passport where the cut took its surfaces (towns/slovakia.js SK_TOWNS).
   skTown: {
     bratislava: () => CR["credits.roadInventoryCityBratislava"](), presov: () => CR["credits.inventoryRoadsGreenCity"](),
     zilina: () => CR["credits.roadInventoryCityZilina"](), bystrica: () => CR["credits.roadInventoryCityBanska"](), kosice: () => CR["credits.roadInventoryMestoKosice"](),
-    zvolen: () => CR["credits.roadsPavedAreasCity"](),
   },
   // The lines of a town's map that placed the kerbs (towns/slovakia.js EDGE_SOURCES).
   skEdges: {

@@ -975,33 +975,6 @@ export function orthoOsmPolys({ osm, frame, dir, way, st, mapRuns = [], edges = 
 // The sources of the estimate's houses (osmAlong): of the facades that end the sides, else of every house the cut
 // crosses; an element's "from" (gis.js ruianOutlines RÚIAN, towns/lithuania.js GRPK), else OSM. The state's own
 // register first, OSM last.
-// A surface map's gaps beyond the outer sidewalk (towns/planimetrics.js outerGaps: what OSM had no building or lot for),
-// at least OUTER_WIDE m wide (a front yard stays the map's green), told on the orthophoto: paving where the part the image
-// covers (OUTER_SEEN m of it at least) is neither green (GREEN_AREA, as the estimate's rest) nor yellowish or saturated
-// as a lawn is out of leaf (MassGIS's photos are of April: OUTER_YELLOW, OUTER_SAT; evaluation/usa/boston/outer/REPORT.md).
-// A paved gap of OPEN_LAND or more is a lot beside the street (704: the profile ends at it, as at a wide lawn), a
-// narrower one a paved area (1003). polys: derive.js mtvuPolygons (changed in place); dir: the street's direction in
-// frame; st: laneImage's. Returns how many changed.
-const OUTER_WIDE = 6, OUTER_SEEN = 3, OUTER_YELLOW = 6, OUTER_SAT = 12, OUTER_LOT = 8;
-export function outerGapsByImage(polys, dir, st) {
-  if (!usable(st) || !polys.some((p) => p.outerGap && p.code === 401)) return 0;
-  const cols = columns(st), normal = [-dir[1], dir[0]];
-  let n = 0;
-  for (const p of polys) {
-    if (!p.outerGap || p.code !== 401) continue;
-    const ts = p.rings[0].map(([x, y]) => x * normal[0] + y * normal[1]), a = Math.min(...ts), b = Math.max(...ts);
-    if (b - a < OUTER_WIDE) continue;
-    const g = [], Y = [], S = [];
-    for (let i = cols.ti(a); i < cols.ti(b); i++) if (i >= 0 && i < cols.nt && Number.isFinite(cols.green[i])) { g.push(cols.green[i]); if (Number.isFinite(cols.yel[i])) Y.push(cols.yel[i]); S.push(cols.sat[i]); }
-    if (g.length * st.res < OUTER_SEEN || g.reduce((x, y) => x + y, 0) / g.length >= GREEN_AREA) continue;
-    if ((Y.length && median(Y) >= OUTER_YELLOW) || median(S) >= OUTER_SAT) continue;
-    const lot = b - a >= OUTER_LOT;
-    Object.assign(p, { code: lot ? 704 : 1003, label: lot ? "parkoviště nebo plocha (ortofoto)" : "zpevněná plocha (ortofoto)", guess: true });
-    n++;
-  }
-  return n;
-}
-
 // A planimetric map's gaps between two roadways taken as medians (towns/planimetrics.js gapsBetweenRoads, Toronto), told on
 // the orthophoto: green as the estimate's rest (GREEN_AREA) is the grass strip it is (401), the rest stays the median. Not by
 // yellowness or saturation as outerGapsByImage: on Toronto's orthophoto the concrete islands are as yellow and saturated

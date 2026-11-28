@@ -609,7 +609,6 @@ export function mtvuPolygons(json, frame) {
       fromLines: f.attributes.Z_CAR === 1, // read from the DTM's lines (dmvs.js fromLines), its kind a guess
       passport: f.attributes.PASPORT === 1, // a town's passport (gis.js asPassport)
       ...(f.attributes.ORIENT && { orient: f.attributes.ORIENT }), // a planimetric map's parking with its orientation (towns/sanfrancisco.js)
-      outerGap: f.attributes.OUTER_GAP === 1, // a gap of a planimetric map beyond the outer sidewalk (towns/planimetrics.js outerGaps)
       medianGap: f.attributes.MEDIAN_GAP === 1, // a planimetric map's gap between two roadways taken as the median (towns/planimetrics.js gapsBetweenRoads)
       carvedTrack: f.attributes.CARVED_TRACK === 1, // a cycle track cut out of a planimetric map's roadway (towns/planimetrics.js osmTracks)
       rings,

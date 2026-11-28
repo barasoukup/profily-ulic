@@ -9,11 +9,10 @@ const C = await import("../app/public/city.js");
 const SK = await import("../app/public/towns/slovakia.js");
 const read = (f) => fs.readFileSync(new URL(`../app/public/${f}`, import.meta.url), "utf8");
 
-test("pasporty měst: Bratislava, Žilina, Banská Bystrica, Košice, Zvolen jen na přání; Prešov jen stromy (vrstvy uzavřel)", () => {
-  assert.deepEqual(Object.keys(SK.SK_TOWNS).sort(), ["bratislava", "bystrica", "kosice", "presov", "zilina", "zvolen"]);
+test("pasporty měst: Bratislava, Žilina, Banská Bystrica, Košice; Prešov jen stromy (vrstvy uzavřel)", () => {
+  assert.deepEqual(Object.keys(SK.SK_TOWNS).sort(), ["bratislava", "bystrica", "kosice", "presov", "zilina"]);
   for (const [id, t] of Object.entries(SK.SK_TOWNS)) assert.equal(typeof t.own, id === "presov" ? "undefined" : "function");
   assert.ok(SK.SK_TOWNS.presov.points.length && !SK.SURFACE_MAPS.includes("presov-pasport"));
-  assert.equal(SK.SK_TOWNS.zvolen.optIn, "zvolen");
 });
 
 test("čáry map měst podle místa a hranic měst (mimo hranici Nitry nic)", () => {
