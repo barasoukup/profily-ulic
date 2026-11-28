@@ -247,6 +247,10 @@ jobs:
           © přispěvatelé OpenStreetMap, licence ODbL 1.0 (https://opendatacommons.org/licenses/odbl/).
           Vytvořeno skripty tools/build_osm_data.sh a tools/pack_osm_tiles.mjs v repozitáři této aplikace.
           EOF
+          # Versions of the modules (tools/version_modules.mjs): an import map in index.html gives every module ?v=<hash of its
+          # content>, so a visitor never gets a mix of old and new modules after a deploy. Last, after config.js and the CSP
+          # are final (the hash of the map goes into the CSP).
+          node tools/version_modules.mjs _site
           # The app at streetspace.eu/profily/ (Bára 16. 11. 2026); the root and old links send there (tools/build_root_site.mjs).
           mv _site _app && mkdir _site && mv _app _site/profily
           node tools/build_root_site.mjs _site
