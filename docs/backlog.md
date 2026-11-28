@@ -402,3 +402,12 @@ Co rozhodne Bára, je označeno **(Bára)**.
 ## Testy běží dvakrát déle (28. 11. 2026)
 - `tests/ortho-registry.test.js` (registr ortofot, 72 míst) trvá asi 13 s, celé testy 15,7 s místo asi 7 s (krok 9 chtěl čas
   nezhoršit). Zrychlit: v běžném běhu menší výběr míst, plný průchod jen na požádání (`FULL=1`).
+
+## Angličtina v datech řezů a parametrech (Bára 28. 11. 2026)
+- Nové řezy a uložené soubory (JSON: `cut`, `stav`, `navrh`, typy dílů `chodnik`, `pruh`, `parkovani`…, klíče značek,
+  `zdroje`, `navrhEdited`…), odkaz (`#rez=`) a parametry adresy a API (`?mesto=`, `?off=<klíč>`, `?stit=`, `?odhadstani=`…,
+  `/api/parkovani`, log Workeru) anglicky.
+- **Zpětná kompatibilita:** staré soubory, staré odkazy (`#rez=`, `?mesto=`), staré klíče `?off=` a zapsané řezy v logu se
+  dál načtou: převodní tabulka starý → nový název při čtení (jako `legacy-cs-keys.json` u textů), zapisuje se jen nová podoba.
+  Test, že každý starý název má převod a starý soubor/odkaz dá stejný profil.
+- Před tím: seznam všech českých id v datech a adresách; Worker logu a D1 nasazuje Bára.
