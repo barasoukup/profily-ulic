@@ -179,3 +179,7 @@ Z 683 klíčů ve skupinách 1–8 se asi **380** dnešních textů změní vidi
 
 Mechanika: `i18n.js` má `ucfirst`, `list` (Intl.ListFormat), `countryName` (Intl.DisplayNames, krátký tvar), `ref`/`text`/`place`; hodnota šablony `{k, v}` se překládá znovu. Poznámka řezu s parametry je `klíč|{json}` (`mark(klíč, vars)`), `legacy-cs-keys.json` vede staré české věty i odstraněné klíče `note.*MapDown` na `note.mapDownOrthoOsm|{…}` (nebo `…Osm`) se jménem. Klíče skládané v kódu hlídá `tests/i18n.test.js` seznamem prefixů `COMPOSED`.
 Nedodělané skupiny z tabulky: 7 (stání napůl na chodníku), 9 (velká/malá písmena, 10 dvojic), 10, popis stránky `page.streetCrossSections*` (meta v `index.html` je statická čeština).
+
+## Jména měst v jiných jazycích (Bára 28. 11. 2026)
+- Ustálená exonyma zůstávají (Praga, Opawa, Koszyce, Pozsony, Prag, Brünn, Pilsen); jinak jméno v původní podobě (polsky Plzeň, ne Pilzno).
+- Němčina: historická jména, která dnešní němčina běžně nepoužívá (Iglau, Troppau, Kaschau, Aussig…), ne.
